@@ -839,7 +839,7 @@ Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLe
 
 | Phase | Delivers |
 |---|---|
-| **1. Foundations and migration** | Roles, client records, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
+| **1. Foundations and migration** | Roles, client records, smart onboarding forms with automatic gate checks and downloads, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
 | **2. Client experience** | Client Hub (Today, journey, documents, Review Room, CQC centre, Ask), notifications, e-signatures |
 | **3. Tenders** | Tender Radar, tender delivery journey and workspace, evidence library, promise register, compliance checklist |
 | **4. Sales and growth** | Opportunity Engine, sales workspace, call cards, GoHighLevel sync, price book controls |
@@ -847,7 +847,83 @@ Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLe
 
 ---
 
-## 26. Open questions for Care Sync
+## 26. Smart onboarding forms
+
+Replaces the Google Forms (CQC Registration Information Form, Tender Preparation Questionnaire, and the CIW and RQIA versions) with forms built into the Hub. Reviewed on 2 November 2026 from the form response sheets; only the question structure was used.
+
+### 26.1 What the current forms teach us
+
+| Observation | Design response |
+|---|---|
+| The CQC form has about 120 questions and the tender form about 236, many hidden by branching | Keep the branching, and pre-fill everything the Hub already knows so clients answer far fewer |
+| Directors, contract examples and private clients are fixed blocks ("Director 1" to "Director 4") | Repeating groups: "Add another director", unlimited |
+| Address history boxes are filled with dates instead of addresses | A structured address timeline with postcode lookup, from and to months, and automatic gap detection |
+| A DBS issue date was entered as year 3026; dates arrive in US format | Validation: real date pickers, UK format, no future dates where impossible, DBS certificate numbers checked for 12 digits |
+| **Portal usernames and passwords are collected in plain text and stored in a spreadsheet** | Never collected in a form. The client adds Care Sync's bid lead as a portal user; if a password is unavoidable it goes straight into the secure vault (section 21) |
+| Signatures are typed names | E-signature with name, time and the exact version signed |
+| The tender form already asks "What has changed since you last completed this?" | Previous answers are shown pre-filled with a "still correct?" check, so a repeat form takes about 10 minutes |
+| The tender deck tells clients to write "not sure" when unsure | A "Not sure" button on every question that creates a question for staff instead of a blank |
+
+### 26.2 What the client experiences
+
+- **Tailored from the first screen.** The form knows the client's package and only shows what applies: company formation (only if not yet incorporated), regulator (CQC, CIW or RQIA), service type, registered manager and nominated individual the same person or not, DBS done or three IDs, office type, and for tenders the lot types (home care, supported living, care home, community support).
+- **Pre-filled, not re-typed.**
+  - Company number → name, registered office, incorporation date, directors and persons with significant control filled from Companies House; the client confirms.
+  - CQC provider ID → rating and date, locations, regulated activities and service types filled from the CQC register.
+  - Postcode lookup for every address.
+  - Everything already in the company profile ("tell us once", section 5.10).
+- **Shared out to the right people.** The owner invites the registered manager, nominated individual, each director or the accountant to complete **only their own section** by secure link. Each section shows who owns it and its progress.
+- **Helpful while answering.**
+  - Every question says why we ask it and where it is used ("This goes in your provider application"), following the tender deck's "where each part of the form ends up" table.
+  - Gap detection on address history (5 years) and CV history (age 16 to present) with a prompt to explain each gap.
+  - Uploads inline beside the question, with date checks (for example a bill within 3 months).
+  - Format checks for phone numbers, emails, postcodes and professional registration numbers, with a gentle "Is this right?" rather than a hard block where a format can vary.
+- **Easy to finish.** Saves as you go on any device, shows time remaining, voice answers for long text, and a reminder if unfinished (target 2 working days for tenders). Reminders stop the moment it is submitted.
+- **Signed properly.** The declaration and consent are e-signed, and the client gets a copy of their answers as a PDF.
+
+### 26.3 What staff get (the main benefit)
+
+1. **Nothing to re-type.** Answers land directly in the client record and company profile. Uploads are filed automatically into the right vault folder (01 Onboarding information, 06 Premises and supporting evidence, and so on) with consistent names.
+2. **Instant automatic checks.** The moment the form is submitted, the onboarding gates (section 18.2) run:
+   - directors on the form match Companies House;
+   - address and CV gaps;
+   - DBS details complete and valid in format;
+   - a professional register link opened ready to verify;
+   - registered manager and nominated individual the same person, flagged for a specialist check;
+   - the office address on the form matches the address evidence.
+
+   Staff see Pass, Fail with the exact issue, or Needs a person, and confirm. They no longer check 38 columns by hand.
+3. **One-click fix list.** Failed checks become a plain-English list the client can act on, sent only when staff press Send.
+4. **Changes highlighted.** If the client edits after submitting, staff see exactly what changed (old and new value) and the affected gates are rechecked. The onboarding lead is alerted once.
+5. **Assisted mode.** A staff member can fill in the form with the client during a call, recorded as "completed with [staff name] on [date]".
+6. **Downloads, in every useful shape:**
+
+   | Download | What it is | Used for |
+   |---|---|---|
+   | **Client Information Pack (PDF)** | Branded, sectioned and readable, with a contents page, signature record, timestamp and a list of uploaded documents | The record, sharing internally, printing |
+   | **Editable Word version** | The same content as a Word document | Editing and reusing text |
+   | **CQC application sheet** | Answers arranged in the order the CQC provider and registered manager applications ask for them, each with a Copy button | Filling in the CQC application quickly and accurately |
+   | **Tender data sheet** | Answers arranged by the Procurement Specific Questionnaire and Central Digital Platform sections, plus the evidence library | Supplier information and quality answers |
+   | **Everything pack (ZIP)** | The PDF plus every upload, consistently named (for example CSE-071_RM_DBS.pdf) | Handover, archiving |
+   | **Spreadsheet export** | One or many responses as Excel or CSV | Reporting |
+   | **Redacted PDF** | Dates of birth, DBS numbers and ID numbers hidden | Sharing safely with partners such as AssuredBid, with the client's agreement |
+
+   Every download is logged. A copy of the PDF is saved automatically to the client's Drive folder during migration.
+7. **Answers feed the work.** Company name, addresses, people, service types and service user bands flow straight into the Statement of Purpose, policy headers, business plan, training plan and tender answers, and power the consistency check (section 10.3).
+8. **Form builder for directors.** Questions, help text, branching and validation can be edited without developers. Each question records where it maps to in the Hub and in CQC or tender forms. Versions are kept, and live clients stay on the version they started.
+9. **Insight.** The form reports where clients drop off, which questions get "Not sure" most often and how long each section takes, so the form keeps getting better.
+10. **Privacy built in.** Sensitive fields are masked by default for staff, revealing one is logged, and retention follows section 13.
+
+### 26.4 Until the Hub is live: quick wins in Google Forms
+
+1. **Remove the portal password questions now.** Ask the client to add the bid lead as a portal user instead.
+2. Add response validation: DBS number 12 digits, UK date format, email and phone patterns.
+3. Replace the five free-text address boxes with a clearer format hint and an example.
+4. Add an Apps Script that, on every submission, creates a branded PDF of the response in the client's Drive folder and emails the onboarding lead. This gives a downloadable copy straight away.
+
+---
+
+## 27. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -858,5 +934,7 @@ Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLe
 7. **GoHighLevel:** Answered: it is the sales CRM. Confirm that a won deal (signed agreement and paid deposit) should start a Hub journey automatically.
 10. **Price book items marked Pending:** retained tender rate, policy fees, variation prices, bid review VAT, and mock inspection and marketing prices for registration-only clients.
 11. **Logins spreadsheet:** agree to move it into a password manager now, before the Hub is live.
+12. **Tender form passwords:** agree to remove the portal username and password questions from the Google Form now.
+13. **Interim PDF script:** would you like the Google Forms Apps Script (section 26.4) built now, so every submission produces a downloadable PDF before the Hub exists?
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
