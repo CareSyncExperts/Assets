@@ -1033,7 +1033,132 @@ Features that follow from these principles:
 
 ---
 
-## 30. Open questions for Care Sync
+## 30. Care Sync's skills as engines inside the Hub
+
+Care Sync already has a large library of specialist AI skills. In the Hub they become buttons and automatic checks inside the right stage. Staff stay in charge: every skill output is a draft or a suggestion that a person reviews, and nothing reaches a client or a regulator without passing the quality gate.
+
+| Hub moment | Skills that power it |
+|---|---|
+| Enquiry reply and quote | sales-strategy (price book, call cards, live coaching, debriefs), caresync-client-enquiry-engine (written replies, always using the sales-strategy prices) |
+| Onboarding checks | cv-gap-analysis (CV from age 16, gaps), cqc-registration-expert (specialist questions such as one person in two roles), provider-location-trading-name-rules (company, location and trading name consistency), marker-care-sync-document-intelligence (reading bills, tenancies, leases and title registers) |
+| Drafting the pack | cqc-sop-creation, cqc-business-plan, cqc-domiciliary-care-policies, cqc-supported-living-policies, caresync-pro-policy-writer, caresync-pro-sl-policy-writer, caresync-legislation-policy-writer, cqc-staff-training-plan, care-training-matrix, cqc-supported-living-service-user-contract, cqc-supported-living-org-structure-chart, cqc-forms-creator, cqc-application |
+| Rebranding existing policies | supported-living-policy-rebrand, dom-care-policy-rebrand |
+| Writing standard | cqc-writing-standard, cqc-writing-library, cqc-regulations-master, cqc-rule-register |
+| Pack Doctor before submission | cqc-pre-submission-checker, cqc-pack-alignment-checker, cqc-pack-scanner, dom-cqc-pack-auditor, sl-cqc-pack-auditor, cqc-application-rejection-prevention-engine |
+| Wales and Northern Ireland | ciw-domiciliary-registration, ciw-registration-form-filler, ciw-domiciliary-policy-writer, rqia-interview (and the interview prep managers for the separate Interview Preparation Hub) |
+| After registration | cqc-registration-variations (supported living add-on, locations, bands), cqc-pir-completion (PIR writing), cqc-inspection-readiness (first inspection readiness) |
+| Tenders | tender-opportunity-analyser (reading packs, triage), uk-care-tender-score-engineer (where the marks are), uk-care-tender-questionnaire (PSQ and Central Digital Platform), uk-care-tender-writer (drafting), uk-care-tender-evaluator and uk-care-tender-readiness-auditor (second review and final check) |
+| Brand, website and marketing services | caresync-website-builder, caresync-branding, care-sync-worldclass-marketing, care-sync-seo-2, care-sync-content-engine, social-media-manager, care-sync-meta-ads |
+| Client communications | care-sync-marketing-psychology (ethical persuasion rules), stop-slop and humanizer (natural writing) |
+| Quality and safety of every AI output | no-fabrication, fact-check, care-sync-quality-gate, care-sync-strict-council (high-stakes decisions) |
+| Platform building blocks | docuseal-care-sync-signature-governance (e-signatures), stirling-pdf-care-sync-pdf-governance (PDF packs and redaction), n8n-care-sync-automation-governance (automations), ragflow-care-sync-knowledge-governance (knowledge for the Sync Assistant and Staff Assistant), langfuse-care-sync-observability and promptfoo-care-sync-quality-gate (monitoring and testing AI quality), opa-care-sync-policy-engine-governance (permission rules), gohighlevel (sales record sync) |
+
+Rules for every skill in the Hub:
+- The output is labelled as a draft, shows which skill produced it, and records who reviewed and approved it.
+- Facts come only from the client record and approved sources; anything unverified is marked for checking, never invented.
+- A second person signs off anything going to a client, CQC or a buyer.
+- AI quality is measured continuously, and a skill whose drafts are often heavily edited is reviewed.
+
+---
+
+## 31. Onboarding that changes with the package
+
+The client only ever sees questions for what they bought. A CQC registration client never sees website questions; a full package client gets their brand and business plan sections too; a supported living add-on client sees only what the add-on needs.
+
+### 31.1 Form modules by package
+
+| Module | DOM reg | SL reg | CIW | RQIA | Full start-up | SL add-on | Interview only | PIR | Tender | Variation | Website or marketing | Single service |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A. Company and contacts | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| B. Company formation (only if not yet incorporated) | | | | | ✓ | | | | | | | |
+| C. Regulator, service type and regulated activity | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | ✓ | | |
+| D. Registered manager | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | | | |
+| E. Nominated individual (England) or Responsible Individual (Wales, Northern Ireland) | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | | | |
+| F. Directors and persons with significant control | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | | | |
+| G. Office and premises evidence | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | ✓ | | |
+| H. Service users, bands and specialisms | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | | | ✓ | | |
+| I. Supported living (housing arrangements, separation of housing and care, client groups, specialist services) | | ✓ | | | if SL | ✓ | | | | | | |
+| J. Business plan, cash flow, financial viability | | ✓ | ✓ | ✓ | ✓ | | | | | | | if a business plan |
+| K. Insurance quote details | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | | | |
+| L. Interview details (date, role, service type) | ✓ | ✓ | ✓ | ✓ | ✓ | | ✓ | | | | | |
+| M. PIR (deadline, location, data checklist) | | | | | | | | ✓ | | | | |
+| N. Tender (the full tender questionnaire with its lot branching) | | | | | | | | | ✓ | | | |
+| O. Brand, website and marketing (logo, colours, domain, tone, photos, service pages) | | | | | ✓ | | | | | | ✓ | |
+| P. Welsh language Active Offer | | | ✓ | | if CIW | | | | | | | |
+| Q. Declarations and e-signature | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+### 31.2 Rules
+- A client with two packages gets each module **once**. Answers are shared, never asked twice.
+- When a client buys something new later (for example the supported living add-on or a tender), only the **new** modules are sent, pre-filled from what is already known.
+- The opening screen says plainly: "Your form has 9 sections because you chose the Domiciliary Care Full Package. About 40 minutes. You can invite your manager to do her part."
+- Each module has an owner role, so the right person gets the right section (for example section D goes to the registered manager).
+- Staff can add or remove a module for an individual client, with a reason recorded.
+- Packages and their modules are set in the form builder by directors, so new packages need no developer work.
+
+---
+
+## 32. Stage-by-stage client communications
+
+The full wording of every email is in `docs/superpowers/specs/2026-11-02-care-sync-hub-client-emails.md`.
+
+### 32.1 Principles
+- **Every stage change tells the client**, in the Hub and by email (and by text or WhatsApp where they agreed): what happened, what it means, what happens next, and whether anything is needed from them.
+- **One email, one job, one button.** Short, calm, specific, ending on reassurance and the next step.
+- **Help first, sell second.** Delivery emails never contain sales offers. Offers appear only in aftercare and growth emails, only when relevant to the client's own situation, and never when the client is unhappy, has a Critical risk, or is dealing with a refusal.
+- **True and lawful.** British English, no dashes, no bold in email bodies, no "free", no guarantees, real proof only, and an opt-out on every marketing email. Sole traders get marketing only with consent.
+- **Signed by a real person**, the client's consultant, with a reply going straight to them and into the Hub.
+- **Frequency cap.** At most one marketing email a week per client; service emails are not capped but are combined where several happen on one day.
+
+### 32.2 The email map
+
+| Stage | Emails |
+|---|---|
+| Before signing | Enquiry reply within 15 minutes in staffed hours; quote; agreement reminder |
+| Welcome | Welcome and login; meet your team; your tailored form |
+| Onboarding | Form reminders (day 2 and 4); form received with what we checked; one quick question or fix list; all checks passed and your named team |
+| Delivery | Weekly update (nine-part); document accepted or needs re-upload; draft ready to review; review reminder; final pack ready to sign |
+| CQC | Submitted; CQC acknowledged; CQC asked for more information; interview booked (with the Interview Preparation Hub link); interview reminders; after the interview |
+| Outcome | You are registered (celebration, Registration File, next steps); Notice of Proposal (calm plan); application returned (recovery plan) |
+| Aftercare and growth | Day 7 launch checklist; day 30 check-in; tender in your area; month 4 first inspection readiness; policy review 60 days before the anniversary; PIR received; registration anniversary with "your year with Care Sync" |
+| Tenders | Tender onboarding; deadlines; submitted; won (mobilisation, case study request); not successful (feedback review, next window) |
+| Win-back | No activity for 6 months: one useful update relevant to their service, and a way to say "not now" |
+
+---
+
+## 33. Relationship and growth programme (learning from the best)
+
+| What the best companies do | How Care Sync applies it |
+|---|---|
+| **Amazon: order tracking that tells you before you ask** | Every stage email, a live tracker, and a "we're running late" message before any promised date is missed |
+| **Amazon: "frequently bought together", at the right moment** | A next-best-offer map (below) that suggests one relevant service at the moment it is genuinely useful, never a catalogue |
+| **Amazon Subscribe and Save, Prime** | A retained option for clients who need ongoing work: retained tender package, annual policy review, priority tender alerts. Pricing set by Collins before launch |
+| **Alibaba: trust between buyer and seller** | The Care Sync promise written into every client's Hub: fixed fees agreed before work starts, response times, who handles CQC correspondence, and what happens if something goes wrong |
+| **Alibaba: matching buyers to opportunities** | Tender Radar matching clients to tenders in their area, with a readiness score that shows what to fix first |
+| **Spotify "Wrapped", year in review** | "Your year with Care Sync" on the registration anniversary: registered date, policies updated, tenders bid and won, milestones. Easy to share if the client wants to |
+| **Starbucks and Uber: rewards and referrals** | A refer-a-provider programme with a thank-you agreed by Collins, asked for at natural high points (registration, award letter, paid deposit) |
+| **Apple: signature moments** | A personal video from the consultant on big days, a registration celebration screen and email, and optionally a posted card on registration day |
+| **Big platforms: partner networks** | A directory of trusted partners clients often need (insurers, accountants, recruitment, care monitoring systems for clients to buy directly), with any referral arrangement disclosed |
+
+### 33.1 Next-best-offer map
+One relevant suggestion, at the right moment, only if the client is happy and has no open problem:
+
+| Moment | Suggestion (prices from the price book) |
+|---|---|
+| Registered, home care client | Tender alerts for their area; marketing or website if they have few enquiries |
+| Registered, client mentions learning disability or autism work | Supported living add-on, £1,500 including VAT (policies quoted separately) |
+| Tender matched in their area | Tender planning call (no charge), then tender writing from £1,500 + VAT |
+| PIR received | PIR writing, £750 + VAT |
+| Month 4 to 6 after registration | First inspection readiness (price Pending) |
+| 60 days before the policy anniversary | Policy review and update (price Pending) |
+| Opening a new office or area | Variation support (price Pending) |
+| Second tender in 12 months | Retained tender package (rate Pending) |
+
+### 33.2 Measures
+Client satisfaction per stage, Net Promoter Score at registration and anniversary, response times, time from payment to submission, services per client, repeat purchase rate, referral rate, and unsubscribe rate (a rise means the emails are not helping).
+
+---
+
+## 34. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1048,5 +1173,7 @@ Features that follow from these principles:
 13. **Interim PDF script:** would you like the Google Forms Apps Script (section 26.4) built now, so every submission produces a downloadable PDF before the Hub exists?
 14. **Data services:** confirm Care Sync is happy to register for a Companies House API key (no charge), an Ordnance Survey Places API account (usage-based pricing, to be confirmed with Ordnance Survey) and to pay HM Land Registry's per-title fee when a title register check is needed.
 15. **WhatsApp updates:** confirm whether client updates by WhatsApp are wanted, using the Care Sync business number.
+16. **Growth programme:** prices for the retained options, the referral thank-you, and whether to post a card on registration day.
+17. **Partner directory:** which partners to list, and any referral arrangements to disclose.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
