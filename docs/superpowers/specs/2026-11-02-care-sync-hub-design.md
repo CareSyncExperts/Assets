@@ -39,7 +39,7 @@ Care Sync Hub is one system that runs every client journey Care Sync Experts del
 | Role | Who | What they can do |
 |---|---|---|
 | **Client owner** | The person who bought the package (usually the nominated individual or director) | See everything for their company, upload documents, review and approve drafts, book sessions, invite team members |
-| **Client team member** | For example the proposed registered manager | Only what the owner shares, for example interview preparation and their own documents (CV, DBS, training) |
+| **Client team member** | For example the proposed registered manager | Only what the owner shares, for example their own documents (CV, DBS, training) and interview dates |
 | **Consultant** | Care Sync staff member assigned to a client pack | Run the journey: request and check documents, write drafts, reply to feedback, log submissions and outcomes, send emails |
 | **Quality reviewer** | Senior staff | Check drafts before they reach the client, sign off final packs |
 | **Director / admin** | Care Sync leadership | All of the above plus assignment, templates, reporting, user management |
@@ -100,7 +100,7 @@ This is the default Registration track. Each stage shows on the client tracker w
 | 6 | **Final pack sign-off** | Consistency check across the whole pack (section 10.3). Client gives a final approval of the complete pack. | Client |
 | 7 | **Submitted** | Consultant submits by email outside the Hub, then logs the submission with the date and captured email (section 7.3). | Care Sync |
 | 8 | **With CQC** | Tracks everything CQC sends: acknowledgement, requests for more information, DBS steps, returned applications. | Shared |
-| 9 | **Interview** | Interview date logged; Interview Hub opens a countdown preparation plan (section 8). | Client, with Care Sync support |
+| 9 | **Interview** | Interview date logged; client is reminded and given a button to log in to the separate Interview Preparation Hub (section 8). | Client, with Care Sync support |
 | 10 | **Outcome** | Registered, or Notice of Proposal (with deadline handling, section 6.3), or withdrawn. | Shared |
 | 11 | **Aftercare** | 12 months of guidance: monthly check-ins, first inspection readiness, policy review reminders. | Care Sync |
 
@@ -175,14 +175,14 @@ A dedicated screen for everything to do with the regulator, written in calm, pla
 | Acknowledged / reference received | Reference number stored and shown |
 | More information requested | What CQC asked for, who is handling it, and the response deadline |
 | Returned as incomplete | What was missing, what we are doing, and when it will be resubmitted |
-| Interview date set | Date, time, format, and a link straight into the Interview Hub |
+| Interview date set | Date, time, format, and a button to log in to the Interview Preparation Hub |
 | Notice of Proposal to refuse | What it means, the date of service, a **28-day countdown** for written representations, and the plan (section 6.3) |
 | Notice of Decision | What it means and the **28-day window** to appeal to the First-tier Tribunal |
 | Registered | A celebration screen, the next steps for starting the service, and the move into Aftercare |
 
-### 5.5 Interview Hub
+### 5.5 Interview preparation
 
-See section 8.
+A link only. See section 8.
 
 ### 5.6 Sessions and booking
 
@@ -280,18 +280,24 @@ The same approach works for tenders submitted through council portals: the consu
 
 ---
 
-## 8. Interview Hub
+## 8. Interview preparation (link to the separate Interview Preparation Hub)
 
-Opens as soon as an interview date is logged (and is available earlier for clients who want to start).
+Interview preparation content does **not** live in Care Sync Hub. Care Sync already has a separate Interview Preparation Hub with its own login, and that is where clients learn and practise. Care Sync Hub only points clients to it.
 
-- **Countdown plan:** a day-by-day preparation plan from today to the interview date.
-- **Question bank:** questions matched to the service type (Domiciliary Care or Supported Living) and the role being interviewed (registered manager, nominated individual), grouped by theme, with guidance on what a strong answer covers.
-- **"Know your pack":** quick quizzes drawn from the client's own Statement of Purpose and policies, because interviewers ask about what the client has submitted.
-- **Practice mode:** the client answers questions in writing or by voice; the Hub gives feedback on structure and coverage, which the consultant can review.
-- **Mock interview booking:** one click to book a mock interview session (counts against the package).
-- **Day-before checklist:** documents to have to hand, technology check for video interviews, what to expect.
-- **After the interview:** client logs how it went and the questions they were asked. These feed the learning loop (section 10.4).
-- Client owners can give the registered manager their own login with access only to the Interview Hub and their own documents.
+What Care Sync Hub does:
+
+- Shows a clear **"Go to Interview Preparation Hub"** button that opens the Interview Preparation Hub's login page in a new tab.
+- Shows the button only to clients whose package includes interview preparation.
+- Makes the button prominent when an interview date is logged, and includes it in the interview confirmation and reminder emails (7 days, 1 day and the morning of).
+- Keeps the interview date, time and format on the client's tracker and in the CQC outcome centre.
+- Lets the client book one of their included sessions with a consultant if they want help before the interview (section 5.6).
+
+What Care Sync Hub does not do:
+
+- No question banks, practice, quizzes or learning materials.
+- No copy of the Interview Preparation Hub's content.
+
+The link address is set once by a director in the Hub's settings, so it can be changed without developer work.
 
 ---
 
@@ -329,10 +335,10 @@ Each document can have an expiry or freshness rule (for example a utility bill w
 Before final sign-off, the Hub checks the whole pack for mismatches that commonly cause problems: the company name, registered office address, service type, registered manager name and service user groups should match across the Statement of Purpose, policies, business plan, application details and supporting documents. Mismatches are listed for the consultant to fix. (This uses Care Sync's existing pack alignment knowledge.)
 
 ### 10.4 The learning loop
-Every real interview question, every CQC request for more information, every returned application reason and every tender feedback note is recorded and tagged. Over time this becomes Care Sync's own knowledge base: better question banks, a "common reasons for delays" checklist, and better first drafts. This is something competitors cannot copy.
+Every CQC request for more information, every returned application reason and every tender feedback note is recorded and tagged. Over time this becomes Care Sync's own knowledge base: a "common reasons for delays" checklist and better first drafts. This is something competitors cannot copy.
 
 ### 10.5 AI assistance for staff
-Care Sync already has AI skills for CV gap analysis, policies, Statements of Purpose, business plans, training plans, CQC application checks, interview preparation and tender writing. In the Hub these become buttons inside the relevant stage ("Generate first draft from onboarding answers", "Run CV gap analysis", "Check pack before sign-off"). A person always reviews and owns the output; nothing AI-generated reaches a client without passing the quality check.
+Care Sync already has AI skills for CV gap analysis, policies, Statements of Purpose, business plans, training plans, CQC application checks and tender writing. In the Hub these become buttons inside the relevant stage ("Generate first draft from onboarding answers", "Run CV gap analysis", "Check pack before sign-off"). A person always reviews and owns the output; nothing AI-generated reaches a client without passing the quality check.
 
 ### 10.6 Quality gate
 A deliverable cannot be published to the client until a second person (quality reviewer) approves it. Directors can relax this per staff member once they are trusted. This protects Care Sync's reputation as the team grows.
@@ -457,7 +463,7 @@ Each phase gets its own implementation plan and delivers something usable.
 |---|---|
 | **1. Foundations** | Logins and roles, client records, journey templates (Dom Care and Supported Living), tracker, smart document checklist with checking, staff assignment, "My day", email notifications, client timeline |
 | **2. Review and email** | Review Room (comments, questions, approve, versions), quality gate, staff email sending with templates, inbound email capture, submission logging, CQC outcome centre with deadline handling |
-| **3. Sessions and interviews** | Booking with session counts, calendar and video links, Interview Hub (countdown, question bank, practice, mock booking) |
+| **3. Sessions and interviews** | Booking with session counts, calendar and video links, interview date tracking and reminders, link to the Interview Preparation Hub |
 | **4. Tenders and full packages** | Tender template with back-scheduling, brand and website and business plan tracks, aftercare track, single-element templates |
 | **5. Intelligence** | AI drafting buttons, pack consistency check, expiry watch, learning loop, readiness score, director dashboard, weekly summaries |
 | **6. Extras** | SMS and WhatsApp alerts, GoHighLevel connection, payments for extra sessions, CIW / RQIA / Ofsted templates |
