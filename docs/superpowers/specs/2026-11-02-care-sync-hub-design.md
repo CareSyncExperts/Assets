@@ -839,7 +839,7 @@ Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLe
 
 | Phase | Delivers |
 |---|---|
-| **1. Foundations and migration** | Roles, client records, smart onboarding forms with automatic gate checks and downloads, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
+| **1. Foundations and migration** | Roles, client records, address lookup with UPRNs, Companies House checks, the address matching engine and consistency matrix, smart onboarding forms with automatic gate checks and downloads, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
 | **2. Client experience** | Client Hub (Today, journey, documents, Review Room, CQC centre, Ask), notifications, e-signatures |
 | **3. Tenders** | Tender Radar, tender delivery journey and workspace, evidence library, promise register, compliance checklist |
 | **4. Sales and growth** | Opportunity Engine, sales workspace, call cards, GoHighLevel sync, price book controls |
@@ -923,7 +923,117 @@ Replaces the Google Forms (CQC Registration Information Form, Tender Preparation
 
 ---
 
-## 27. Open questions for Care Sync
+## 27. Address intelligence and company verification
+
+Applications fail on small inconsistencies: Flat 2 on the form, Flat 3 on the bill, "Road" in one document and "Rd" in another, a registered office that is not the office CQC will register. The Hub checks every address and every company fact automatically, everywhere it appears, and shows a person the exact difference.
+
+### 27.1 Prevent errors at the source
+- Every address is chosen from a **postcode lookup** (Ordnance Survey Places API), not typed. Each address gets its **UPRN** (the unique reference for that exact property), its standard form and its map position.
+- Clients pick their flat or unit from the list for that building, so "Flat 2" cannot silently become "Flat 3".
+- If an address is genuinely missing from the lookup (for example a new build), the client can type it, and it is flagged for a person to check.
+
+### 27.2 Every address has a role
+One client can have many addresses, each with a role:
+
+| Role | Source |
+|---|---|
+| Registered office | Companies House |
+| Office where the service is managed (CQC location) | Onboarding form, then CQC application |
+| Correspondence address | Onboarding form |
+| Registered manager, nominated individual and director addresses and 5-year history | Onboarding form |
+| Supported living properties and service delivery addresses | Onboarding or tender form |
+| Address on each evidence document | Read from the document: lease, tenancy, title, utility bill, bank statement |
+| Address written in the Statement of Purpose, policies, business plan and insurance quote | Read from the drafts |
+| Address on the CQC register (after registration) | CQC API |
+
+### 27.3 The matching engine
+Every pair of addresses that should agree is compared, strongest test first:
+1. **Same UPRN:** exact match.
+2. **Same standardised address:** case, punctuation and abbreviations normalised ("Rd" and "Road", "St" and "Street"), flat and unit parsed separately.
+3. **Same building, different unit:** for example Flat 2 against Flat 3. Always a **mismatch**, shown clearly, because it is the most common real error.
+4. **Same postcode only:** probable, needs a person.
+5. **Different:** mismatch.
+
+Results show the two addresses **side by side with the differing words highlighted**, the source of each, and a suggested fix.
+
+### 27.4 Reading the documents
+When a document is uploaded, the Hub reads it and extracts the facts that matter, then a person confirms them. Nothing is accepted on the machine's word alone.
+
+| Document | Facts read | Checks |
+|---|---|---|
+| Utility bill or bank statement | Name, address, date, issuer | Address matches the person's current address; dated within 3 months; name matches the person |
+| Tenancy agreement | Tenants, landlord, address, term dates, any clause on business use | Address matches the office; tenancy current; flags a ban on business use; flags when the tenancy is in a director's personal name, so the landlord's letter must cover the company |
+| Landlord or lender permission letter | Who gave permission, to whom, for which address, for what use, date, signature | Covers administrative office use, names the company, matches the office address and the landlord or lender |
+| Commercial lease or licence | Parties, premises address, term, permitted use | The company (not only a director) is a party or authorised; address matches; lease current |
+| Title register (HM Land Registry official copy, small fee per title) | Registered owner, any registered charge such as a mortgage | Owner matches the director; **a registered charge means lender permission is required** |
+| Virtual office agreement | Provider and address | Not accepted; the client is told why and shown the options |
+
+### 27.5 Companies House checks (Companies House public data API)
+Run when the company number is entered, again before submission, and continuously afterwards:
+- Company status is active, with no strike-off proposal, liquidation or dissolution
+- Registered office matches the form, and the role it plays is clear (registered office and the CQC office can differ, but the client must be clear which is which)
+- Directors on the form match the officers on the register (names, and month and year of birth); persons with significant control match
+- Accounts and confirmation statement are not overdue
+- Nature of business (SIC codes) fits a care provider, with a prompt to review it if not (for example 88100, social work activities without accommodation for the elderly and disabled)
+- Director identity verification: each director's 11-character Companies House personal code is recorded, as the current form already asks
+- Disqualified directors search for every director
+- Company name used **exactly** as registered everywhere (Ltd or Limited, spacing, ampersands), feeding the consistency check
+
+**Continuous monitoring:** the Companies House streaming service watches every client company. A change of registered office, a new or departing director, overdue accounts or a strike-off notice alerts the case owner, updates the client record, and prompts a check of whether CQC needs to be told.
+
+### 27.6 CQC register checks
+- Before tenders and after registration, the CQC API confirms the provider and location addresses, the registered manager, regulated activities and service types, and alerts on any difference from the Hub.
+- For tenders, the office's distance to each lot is worked out from the postcode, measured the way the pack defines it.
+
+### 27.7 The Address and identity check screen (staff)
+One view per client: a **consistency matrix**. Rows are the facts (company name, registered office, CQC office address, registered manager name and address, nominated individual, service types, service user bands). Columns are the sources (onboarding form, Companies House, evidence documents, Statement of Purpose, policies, insurance quote, CQC application sheet). Each cell shows a tick, a cross with the exact difference, or "needs a person". One click opens the side-by-side comparison and the fix.
+
+### 27.8 What the client sees
+A mismatch becomes one calm question, never an error message:
+> "Your electricity bill says Flat 3, 14 Orchard Way. Your form says Flat 2. Which is right?"
+
+Buttons: "Flat 3 is right, update my form" or "Flat 2 is right, I'll upload another bill". The fix updates every place that address is used, and the client sees the tick appear.
+
+---
+
+## 28. The consultant cockpit
+
+How a consultant doing CQC applications and tenders would want the system to work:
+
+1. **Client at a glance.** One page answers everything in 10 seconds: stage, who has the ball, risk, pack components, next deadline, last update, open questions, expiring documents, Companies House status, the consistency matrix result and each person's readiness.
+2. **People profiles.** Each registered manager, nominated individual and director has one profile: identity route, DBS, Companies House personal code, professional registration, address timeline, CV timeline with gaps, training. If the same person is involved in two client companies, the Hub links them and flags it.
+3. **Pack Doctor before submission.** A pre-submission check (built on Care Sync's existing pack alignment and pre-submission checking skills) runs everything: the consistency matrix, exact company name, service types and service user bands identical across the Statement of Purpose, forms and policies, registered manager details the same everywhere, signatures present, documents in date. It gives a list of **blockers** and **warnings**. Submission stays locked while any blocker remains.
+4. **Copy-to-application.** The CQC application sheet with Copy buttons (section 26.3).
+5. **CQC correspondence assistant.** When a CQC email is captured, the Hub extracts the request and the deadline, finds the relevant documents and drafts a reply for the consultant to edit and send.
+6. **Command bar.** Press one shortcut and type to jump to any client, document or action ("Bright Path SoP", "send update", "new tender").
+7. **Generated documents.** Statement of Purpose, policy headers, business plan and tender facts generated from the single client record, so a change made once updates everywhere at the next version.
+8. **Everything for tenders in one place.** Tender Radar, evidence library, question drafting with word counts and weightings, the promise register and the compliance checklist (section 19).
+9. **Four-eyes quality.** Second-person sign-off on packs, bids and anything sent to CQC.
+10. **Playbook at hand.** The "how we do this" guide beside every step, and the Staff Assistant for quick answers.
+
+---
+
+## 29. Client experience principles (how the best companies would approach it)
+
+| Company habit | What it means for Care Sync Hub |
+|---|---|
+| **Apple: prevent the problem, keep it calm** | Postcode lookup and pre-fill stop errors before they happen. One clear next step per screen. Bad news explained calmly with a plan. Privacy treated as a feature |
+| **Amazon: tell people before they ask** | Order-tracking style updates. If Care Sync is going to miss a promised date, the client is told **before** the date, with the new date and the reason. The Hub detects the risk from overdue tasks automatically |
+| **Google: measure what matters** | The HEART measures (happiness, engagement, adoption, retention, task success) tracked per stage. Reminder wording and timing tested and improved using real results |
+| **Meta: meet people where they already are** | Updates by WhatsApp or text where the client agrees, as well as email and in the Hub, with quiet hours respected |
+| **Uber and delivery apps: show progress and timing** | A live tracker with expected dates for the stages Care Sync controls, based on how long those stages really take. **No dates are ever promised for CQC's own decisions**; instead the client sees how long it has been since submission and what normally happens next |
+
+Features that follow from these principles:
+- **Proactive updates.** Every milestone triggers an update, plus the weekly nine-part update (section 18.5). A short update is sent even when there is no news ("CQC has not replied yet. Nothing is needed from you. We check every week.").
+- **Personal video updates.** For big moments (submitted, interview booked, registered) the consultant can record a 60-second video message that appears in the client's Hub.
+- **Plain-English glossary.** Tap any term such as "nominated individual", "service user band" or "framework" for a one-line explanation.
+- **Privacy dashboard for clients.** Clients can see who at Care Sync opened their documents and when, as a Google account activity page does.
+- **No surprises on money.** The payment schedule and what is paid are always visible.
+- **Feedback that is acted on.** One-tap stage feedback (section 10.11), reviewed weekly, with changes recorded so clients see their feedback made a difference.
+
+---
+
+## 30. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -936,5 +1046,7 @@ Replaces the Google Forms (CQC Registration Information Form, Tender Preparation
 11. **Logins spreadsheet:** agree to move it into a password manager now, before the Hub is live.
 12. **Tender form passwords:** agree to remove the portal username and password questions from the Google Form now.
 13. **Interim PDF script:** would you like the Google Forms Apps Script (section 26.4) built now, so every submission produces a downloadable PDF before the Hub exists?
+14. **Data services:** confirm Care Sync is happy to register for a Companies House API key (no charge), an Ordnance Survey Places API account (usage-based pricing, to be confirmed with Ordnance Survey) and to pay HM Land Registry's per-title fee when a title register check is needed.
+15. **WhatsApp updates:** confirm whether client updates by WhatsApp are wanted, using the Care Sync business number.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
