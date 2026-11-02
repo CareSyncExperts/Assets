@@ -97,12 +97,12 @@ This is the default Registration track. Each stage shows on the client tracker w
 | 3 | **Your documents** | Smart checklist (section 5.2). Each item is uploaded, checked, and accepted or returned with a reason. | Client |
 | 4 | **Drafting** | Consultant prepares the deliverables: Statement of Purpose, policies, training plan, business plan and any others in the package. Each passes the quality check before the client sees it. | Care Sync |
 | 5 | **Your review** | Client reviews each draft in the Review Room, leaves comments and questions, and approves or asks for changes. | Client, then Care Sync |
-| 6 | **Final pack sign-off** | Consistency check across the whole pack (section 10.3). Client gives a final approval of the complete pack. | Client |
+| 6 | **Final pack sign-off** | Consistency check across the whole pack (section 10.3). Client gives a final approval of the complete pack with an e-signature (section 10.10). | Client |
 | 7 | **Submitted** | Consultant submits by email outside the Hub, then logs the submission with the date and captured email (section 7.3). | Care Sync |
 | 8 | **With CQC** | Tracks everything CQC sends: acknowledgement, requests for more information, DBS steps, returned applications. | Shared |
 | 9 | **Interview** | Interview date logged; client is reminded and given a button to log in to the separate Interview Preparation Hub (section 8). | Client, with Care Sync support |
 | 10 | **Outcome** | Registered, or Notice of Proposal (with deadline handling, section 6.3), or withdrawn. | Shared |
-| 11 | **Aftercare** | 12 months of guidance: monthly check-ins, first inspection readiness, policy review reminders. | Care Sync |
+| 11 | **Aftercare** | Client receives their Registration File (section 10.14). Then 12 months of guidance: monthly check-ins, first inspection readiness, policy review reminders. | Care Sync |
 
 Stages can move backwards (for example CQC returns the application), and the tracker shows that honestly, with what is needed to move forward again.
 
@@ -195,12 +195,36 @@ A link only. See section 8.
 ### 5.7 Messages
 
 - Messages are attached to what they are about: a document, a draft, a stage. Nothing gets lost.
-- A general "Ask us anything" thread for everything else.
+- A general "Ask us anything" thread for everything else (all the ways to ask are in section 5.9).
 - Every message is also sent by email, and email replies come back into the Hub (section 7).
 
 ### 5.8 Document vault
 
 Everything the client has given us and everything we have produced, organised by track, with final versions clearly marked. Available for the full aftercare period and beyond, subject to the retention policy (section 13).
+
+### 5.9 Asking questions: clients
+
+Clients should never feel stuck or unsure who to ask. There are four ways to ask, all ending up in the same place for staff.
+
+1. **"Ask about this" on everything.** Every document, draft, stage and deadline has a small "Ask about this" button. The question is automatically linked to that item, so the consultant sees exactly what the client is looking at and never has to ask "which document do you mean?".
+2. **Sync Assistant (instant answers, any time).** A help assistant inside the Hub that answers common questions straight away, day or night, for example "Where do I get an enhanced DBS?", "Why do you need a utility bill?", "What happens after you submit?", "When is my next session?".
+   - It only answers from Care Sync's approved help content and the client's own journey status. It does not give advice on the client's specific application.
+   - If it is not sure, or the question is about the client's case, it says so and passes the question to their consultant with one tap, including the conversation so far.
+   - Every answer shows "Was this helpful?". Unhelpful answers are reviewed by staff and the help content is improved.
+3. **Ask your consultant.** A direct question to the assigned consultant. The Hub shows the promised reply time (for example "We reply within 1 working day") and the question appears in "who has the ball" until it is answered.
+4. **Request a call back.** For anything easier to talk through. The client picks a few suitable times; the consultant confirms one. Call backs do not use up the included sessions unless staff decide they should.
+
+**Questions become help content.** When staff answer a question that other clients are likely to ask, they can tick "Add to help" and the answer (with client details removed) becomes part of the Sync Assistant's approved content after a director approves it. The Hub gets smarter every week.
+
+**Short "what happens now" guides.** Each stage has a two-minute guide or video explaining what happens in that stage, what the client needs to do and how long it usually takes.
+
+### 5.10 Making it easier for clients
+
+- **Tell us once.** Company name, addresses, people, service type and other details are entered once in a company profile and reused everywhere: forms, drafts, the submission bundle and the consistency check. Clients never type the same thing twice, and staff never copy and paste it into documents.
+- **Reply to upload.** Clients can simply reply to a reminder email with the document attached. The Hub files it against the right item automatically, and staff confirm it.
+- **Voice answers.** Busy clients can answer onboarding and questionnaire questions with a voice note on their phone. The Hub turns it into text for the consultant, and the client can check the text.
+- **Save and come back.** Every form saves as the client goes, so they can stop and continue later on any device.
+- **Easy to read.** Adjustable text size, read-aloud support and plain-English explanations on every screen.
 
 ---
 
@@ -222,6 +246,9 @@ Everything the client has given us and everything we have produced, organised by
 | Document accepted / please re-upload | When checked |
 | Draft ready for review | When published |
 | Review reminder | After 3 days without a response |
+| Your question has been answered | When a consultant replies |
+| Document to sign | When an engagement letter or final sign-off is ready, with a reminder after 2 days |
+| How did we do? | When a stage finishes |
 | Stage changed | When moved |
 | Ready for final sign-off | When pack passes consistency check |
 | Submitted to CQC | When logged |
@@ -288,6 +315,7 @@ What Care Sync Hub does:
 
 - Shows a clear **"Go to Interview Preparation Hub"** button that opens the Interview Preparation Hub's login page in a new tab.
 - Shows the button only to clients whose package includes interview preparation.
+- Sets up the client's Interview Preparation Hub account automatically when the interview stage starts, and emails their login details, so no one on the team has to do it by hand (section 10.13).
 - Makes the button prominent when an interview date is logged, and includes it in the interview confirmation and reminder emails (7 days, 1 day and the morning of).
 - Keeps the interview date, time and format on the client's tracker and in the CQC outcome centre.
 - Lets the client book one of their included sessions with a consultant if they want help before the interview (section 5.6).
@@ -356,6 +384,42 @@ After registration, the Aftercare track runs for the 12 months included in the p
 - Upcoming legal deadlines across all clients
 - Outcomes: registrations, refusals, tender wins and losses
 - Revenue by package and stage (if payments are linked)
+- Staff time and profitability per package (section 10.12)
+- Client feedback scores by stage and consultant (section 10.11)
+
+### 10.10 E-signatures for approvals and the engagement letter
+- At the start, the client signs the engagement letter and terms inside the Hub before work begins.
+- At final pack sign-off, the client signs to confirm they have reviewed and approved the content that will be submitted.
+- Each signature records the name, date, time and the exact document version signed, stored with the journey. If anything is questioned later, there is a clear record of what the client approved and when.
+- Recommended tool: DocuSeal (Care Sync already has guidance for using it), connected to the Hub so signing happens without leaving the page.
+
+### 10.11 One-tap feedback at the end of each stage
+- When a stage finishes, the client is asked one question: "How did we do on this stage?" with three faces (happy, neutral, unhappy) and an optional comment.
+- An unhappy or neutral answer alerts the consultant and a director straight away, so problems are fixed weeks before they become complaints or poor reviews.
+- Scores appear on the director dashboard by stage and consultant.
+
+### 10.12 Light time tracking
+- Staff can start a timer on any client task, or add time afterwards in a few seconds.
+- Time is totalled per journey, track and package.
+- Directors see which packages are profitable, which are underpriced, and how long each stage really takes. This guides pricing and hiring as Care Sync grows.
+- Time is never shown to clients.
+
+### 10.13 Automatic Interview Preparation Hub accounts
+- When the interview stage starts (or when a director chooses), the Hub creates the client's account in the Interview Preparation Hub and emails the login details.
+- If the Interview Preparation Hub cannot accept automatic account creation, the Hub creates a task for a staff member to set it up, with the client's details ready to copy.
+
+### 10.14 The Registration File
+- When a client is registered, the Hub produces a neatly organised, Care Sync branded file of every final document: application evidence, Statement of Purpose, policies, training plan, business plan, insurance, signed approvals and the CQC registration confirmation.
+- Delivered as a single download (organised folders plus an index PDF) and kept in the document vault.
+- A professional finish that clients value and keep, and a natural starting point for inspection readiness.
+
+### 10.15 "Going quiet" alert
+- If a client has not logged in, uploaded or replied for a set number of days (for example 10) while the ball is with them, the consultant gets a prompt to phone them.
+- Catches clients who are stuck, overwhelmed or unhappy before the journey stalls.
+
+### 10.16 Holiday and absence cover
+- When a consultant is on leave, their clients and tasks are automatically routed to a named cover colleague, and clients see who is covering.
+- When the consultant returns, they get a short summary of everything that happened while they were away.
 
 ---
 
@@ -380,6 +444,26 @@ All journeys as cards in columns by stage, filterable by service, consultant and
 
 ### 11.4 Client record
 One page per client: company details, people, all journeys, the full timeline (emails, uploads, comments, milestones, sessions, notes), documents, and internal notes clients cannot see.
+
+### 11.5 Asking questions: staff
+
+Staff should never be stuck, and the answer to a question should only ever need to be given once.
+
+1. **Internal comments with @mentions.** On any client, document, draft or task, staff can leave an internal comment and @mention a colleague. Internal comments are clearly marked and never visible to clients.
+2. **"Ask a senior".** A staff member can raise a question to the senior team (for example "Client has a council tenancy for a home office: what evidence do we accept?"). Questions go into a shared queue with a reply time target, linked to the client item, so seniors see the full context.
+3. **The Care Sync Playbook.** Each stage in every template has a built-in "how we do this" guide for staff: the steps, the standards, examples of good work, and common mistakes. It appears right next to the work, not in a separate folder.
+4. **Answers become the Playbook.** When a senior answers a question that others will face, they tick "Add to Playbook". Over time the Playbook captures how Care Sync works, which makes new starters productive quickly and keeps quality consistent.
+5. **Staff Assistant.** An AI assistant for staff that answers from the Playbook, the templates and past answers ("How do we word a reminder for a missing lease?", "What does our training plan usually include for supported living?"). It shows where each answer came from and suggests "Ask a senior" when unsure.
+6. **"I'm stuck" flag.** One click on any journey tells a director that the consultant needs help, with a short note. Stuck journeys appear at the top of the director dashboard.
+
+### 11.6 Making it easier for staff
+
+- **Saved replies.** Approved replies for common client questions and situations, inserted with a couple of clicks and personalised automatically.
+- **Bulk actions.** For example, send the same reminder to every client waiting on a DBS, or move several journeys at once.
+- **Handover notes.** When a journey is reassigned, the Hub writes a summary of where it stands, what is outstanding and any client preferences, for the new consultant.
+- **Practice client.** A sandbox client where new starters can safely try every part of the journey before working with real clients.
+- **Works on mobile.** Staff can check documents, answer questions and approve drafts from their phone.
+- **Keyboard shortcuts** for staff who work in the Hub all day.
 
 ---
 
@@ -407,6 +491,9 @@ The Hub holds sensitive personal data, including identity documents and DBS cert
 - **Audit log:** every view, download, upload, approval and status change is recorded with who and when.
 - **Retention policy:** identity documents and DBS certificates are deleted or archived after a set period once the journey ends (period to be agreed with Care Sync's data protection lead). Clients are told what is kept and for how long.
 - **Secure sharing:** download links expire; no documents sent as email attachments from the Hub unless staff choose to.
+- **AI assistants:** the Sync Assistant only uses approved help content and the asking client's own journey status; it can never see other clients' data. The Staff Assistant only sees what that staff member is allowed to see. Conversations are logged.
+- **Voice notes** are deleted once transcribed and checked, unless the client asks to keep them.
+- **E-signature records** are kept for as long as the related journey records.
 - A data protection impact assessment is completed before launch.
 
 ---
@@ -425,12 +512,14 @@ This is a recommended outline; it will be confirmed in the implementation plan.
 | Email in | Inbound email processing for each journey's Hub address |
 | Calendar and video | Google Calendar or Microsoft 365 calendar connection, with automatic video links |
 | Background jobs | Scheduler for reminders, chasers, deadline alerts and weekly summaries |
-| AI | Claude, used through the existing Care Sync skills, for staff-side drafting and checks only |
+| AI | Claude, used through the existing Care Sync skills, for staff-side drafting and checks, the Sync Assistant (approved help content only) and the Staff Assistant (Playbook only) |
+| E-signatures | DocuSeal, connected to the Hub |
+| Voice notes | Speech-to-text transcription, with the client able to check the text |
 | Integrations | GoHighLevel (optional): new paid clients create a journey automatically |
 
 ### 14.1 Main records
 
-Organisation (client company), Person, Journey, Track, Stage, Requirement, Document (with versions and expiry), Deliverable (with versions, comments and decisions), Milestone, Deadline, Session, Task, Email and message threads, Template (journey, email, notification), Audit event.
+Organisation (client company) with its company profile, Person, Journey, Track, Stage, Requirement, Document (with versions and expiry), Deliverable (with versions, comments and decisions), Milestone, Deadline, Session, Task, Email and message threads, Question (client or staff, with status and linked item), Help article and Playbook entry, Signature, Stage feedback, Time entry, Template (journey, email, notification, saved reply), Audit event.
 
 ### 14.2 When things go wrong
 
@@ -461,12 +550,12 @@ Each phase gets its own implementation plan and delivers something usable.
 
 | Phase | Delivers |
 |---|---|
-| **1. Foundations** | Logins and roles, client records, journey templates (Dom Care and Supported Living), tracker, smart document checklist with checking, staff assignment, "My day", email notifications, client timeline |
-| **2. Review and email** | Review Room (comments, questions, approve, versions), quality gate, staff email sending with templates, inbound email capture, submission logging, CQC outcome centre with deadline handling |
-| **3. Sessions and interviews** | Booking with session counts, calendar and video links, interview date tracking and reminders, link to the Interview Preparation Hub |
-| **4. Tenders and full packages** | Tender template with back-scheduling, brand and website and business plan tracks, aftercare track, single-element templates |
-| **5. Intelligence** | AI drafting buttons, pack consistency check, expiry watch, learning loop, readiness score, director dashboard, weekly summaries |
-| **6. Extras** | SMS and WhatsApp alerts, GoHighLevel connection, payments for extra sessions, CIW / RQIA / Ofsted templates |
+| **1. Foundations** | Logins and roles, client records and company profile ("tell us once"), journey templates (Dom Care and Supported Living), tracker, smart document checklist with checking, staff assignment, "My day", email notifications, client timeline, "Ask about this" and "Ask your consultant", internal comments with @mentions, save and come back |
+| **2. Review and email** | Review Room (comments, questions, approve, versions), quality gate, e-signatures (engagement letter and final sign-off), staff email sending with templates and saved replies, inbound email capture and "reply to upload", submission logging, CQC outcome centre with deadline handling |
+| **3. Sessions and interviews** | Booking with session counts, call back requests, calendar and video links, interview date tracking and reminders, link to the Interview Preparation Hub with automatic account setup, stage feedback |
+| **4. Tenders and full packages** | Tender template with back-scheduling, brand and website and business plan tracks, aftercare track, single-element templates, Registration File |
+| **5. Intelligence** | AI drafting buttons, Sync Assistant, Staff Assistant, Playbook and "Ask a senior", pack consistency check, expiry watch, learning loop, readiness score, time tracking, going quiet alerts, director dashboard, weekly summaries |
+| **6. Extras** | SMS and WhatsApp alerts, voice answers, holiday cover routing, practice client, GoHighLevel connection, payments for extra sessions, CIW / RQIA / Ofsted templates |
 
 ---
 
@@ -479,3 +568,5 @@ Each phase gets its own implementation plan and delivers something usable.
 5. **Retention period:** How long should identity documents and DBS certificates be kept after a journey ends?
 6. **Payments:** Should clients pay (for example for extra sessions) inside the Hub, or does payment stay in your current system?
 7. **GoHighLevel:** Is it your current CRM for leads and sales, and should a paid client in GoHighLevel automatically start a journey in the Hub?
+8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
+9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
