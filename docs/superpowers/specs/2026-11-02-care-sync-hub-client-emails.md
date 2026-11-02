@@ -247,7 +247,25 @@ Your next steps for the first 30 days are in your Hub, and {{consultant_name}} w
 
 Button: Open my Registration File
 
+If you would like to share your experience, it helps other care providers find the right support: Review us on Google, or Review us on Trustpilot. You can also tell us privately in your Hub.
+
 Thank you for trusting us with this,
+{{consultant_name}}
+
+Note: every registered client receives this invitation, whatever their feedback score. No incentive is ever offered for a review.
+
+### 5.4 Review reminder (once, 7 days later, then stop)
+**Trigger:** 7 days after 5.1, only if neither review link has been opened
+**Subject:** Would you share your experience?
+
+Hi {{first_name}},
+
+If you have a couple of minutes, a short review of your experience with Care Sync helps other providers decide who to trust with their registration.
+
+Review us on Google, or Review us on Trustpilot. Whatever you write, thank you.
+
+This is the only reminder we will send.
+
 {{consultant_name}}
 
 ### 5.2 Notice of Proposal (calm plan)
@@ -390,7 +408,7 @@ One year ago today, {{company_name}} was registered with CQC.
 
 Your year: {{milestones}}.
 
-Thank you for working with us. If you have a moment, a short review helps other providers find the right support.
+Thank you for working with us. Here is to your second year.
 
 Button: See your year
 

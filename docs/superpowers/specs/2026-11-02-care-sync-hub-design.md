@@ -381,7 +381,7 @@ A deliverable cannot be published to the client until a second person (quality r
 The Hub chases missing documents and overdue reviews politely and automatically, then escalates to the consultant if there is still no response. Staff stop writing chaser emails by hand.
 
 ### 10.8 Aftercare that keeps clients
-After registration, the Aftercare track runs for the 12 months included in the package: monthly check-ins, policy review reminders, first inspection readiness, and a clear offer of next services (tenders, inspection readiness, marketing). At registration the Hub also asks happy clients for a Trustpilot review and a referral.
+After registration, the Aftercare track runs for the 12 months included in the package: monthly check-ins, policy review reminders, first inspection readiness, and a clear offer of next services (tenders, inspection readiness, marketing). At registration the Hub invites **every** registered client to leave a review on Google and Trustpilot (section 37, never only the happy ones) and, separately, asks about referrals.
 
 ### 10.9 Director dashboard
 - Clients by stage and by consultant
@@ -1158,7 +1158,100 @@ Client satisfaction per stage, Net Promoter Score at registration and anniversar
 
 ---
 
-## 34. Open questions for Care Sync
+## 34. Calm, person-centred client experience
+
+The Hub does a lot, but the client should only ever feel three things: "I know where I am", "I know what to do next", and "someone is looking after me".
+
+### 34.1 Never overwhelming
+- **Three things on the home screen, no more:** where you are, what you need to do (at most three items, most important first), and what we are doing for you. Everything else is one tap away.
+- **One task at a time.** "Next up" opens a focused screen for a single task with its time estimate ("About 5 minutes"). When it is done, the next one appears.
+- **We batch our asks.** Staff requests are grouped so the client gets one tidy list, not a stream of separate messages.
+- **Plain English everywhere**, with the glossary one tap away (section 29).
+- **Quiet by default.** Updates arrive when something matters, at times the client chose.
+
+### 34.2 Person-centred
+Asked once, during welcome, and changeable at any time:
+- The name they like to be called
+- How they want updates: email, text, WhatsApp, or in the Hub only
+- When to contact them (for example "not before 10am, I work nights") and when not to
+- How much detail they like: "just the headlines" or "tell me everything"
+- Accessibility needs: larger text, read aloud, simpler language, a language other than English
+- A "pause reminders until" option for holidays or difficult times, with the consultant told so deadlines are still protected
+
+The consultant sees these preferences on the client page and in every message they write, and the Hub follows them automatically.
+
+### 34.3 Everything in one place
+The client Hub holds everything they need: progress, tasks, documents to review and sign, messages, sessions, their team with photos and names, the CQC tracker, the Interview Preparation Hub link, their Registration File and, after registration, their aftercare plan.
+
+---
+
+## 35. Documents room: view, review, compare and approve
+
+Clients can see everything Care Sync has produced for them, as proper documents, and review them without downloading anything.
+
+### 35.1 What the client can do
+- **Open any document in the browser**, laid out as the real Word document with its pages and formatting. On a phone, a "reading view" reflows the text so it is comfortable to read.
+- **Read a one-line summary first:** what the document is for, how long it takes to read, and **what to check** in it ("Check your office address and the people you will support").
+- **Comment or ask a question** on any sentence (the Review Room, section 5.3).
+- **Suggest a change** directly in the text. It appears to staff as a tracked change they can accept or reject, like Word's track changes or Google Docs' suggesting mode.
+- **See what changed** between versions, with additions and deletions highlighted.
+- **Approve** each document, or approve a whole pack after each part has been reviewed.
+- **Download** as Word or PDF at any time.
+
+### 35.2 What staff can do
+- Upload a Word document or generate one from the client record; the Hub makes it viewable automatically.
+- Publish a new version with a short note ("Added learning disabilities to service user groups as you asked"). The client is told, and sees exactly what changed.
+- See every client comment and suggestion beside the text, accept or reject suggestions, and resolve comments.
+- Optionally open a document in Microsoft Word or Google Docs to edit, then bring it back as the next version. The Hub always holds the official version and its history.
+
+### 35.3 Document statuses
+Drafting, In our quality check, Ready for you, Changes in progress, Approved, Signed and locked. The client only sees a document once it has passed the quality check.
+
+---
+
+## 36. E-signatures
+
+### 36.1 What gets signed
+- Engagement letter and terms
+- Onboarding form declarations
+- Final pack approval before submission
+- Tender promises and price sign-off
+- Quotes and agreements for new services
+
+The client signs to confirm approval. CQC's own application declarations are still made by the applicant in CQC's process; the Hub records the client's approval of the content.
+
+### 36.2 How signing works
+- Built with DocuSeal (Care Sync's signature governance skill), embedded in the Hub so the client never leaves it.
+- Works on a phone: draw, type or adopt a signature.
+- The client reads the exact document they are signing, page by page, before the Sign button activates.
+- Identity is confirmed by the logged-in account and, for key documents such as the final pack, a one-time code sent by text.
+- Signing order where more than one person signs (for example a director, then the registered manager).
+- Reminders until signed, following the client's contact preferences.
+
+### 36.3 The record
+Each signature produces a signed PDF and an audit certificate: who signed, when, the verified email or phone, and a fingerprint of the exact document version. The signed document is locked; any change needs a new version and a new signature. Electronic signatures of this kind are widely used and accepted in England and Wales for business agreements of this type.
+
+---
+
+## 37. Reviews on Google and Trustpilot
+
+### 37.1 Yes, and the rules
+Clients can be invited to review Care Sync on **Google** (using the Google Business Profile review link) and **Trustpilot** (using Trustpilot's review invitations; the free plan allows 50 invitations a month, and higher volumes or API access need a paid plan). Three rules apply, and the Hub enforces them:
+1. **Invite everyone at the same moment, never only the happy ones.** Google and Trustpilot both prohibit selective inviting and steering unhappy clients away from public reviews.
+2. **No incentives of any kind for a review.** The referral thank-you (section 33) is never linked to reviews.
+3. **No fake or edited reviews.** Staff never write, suggest wording for, or post reviews for clients. Since 6 April 2025 UK law bans fake reviews and concealed incentivised reviews, with fines of up to 10% of turnover, and the CMA expects businesses to have a clear policy. Care Sync adopts a written reviews policy.
+
+### 37.2 When and how
+- **Moments:** registration issued; tender award letter received; a non-CQC service delivered and accepted (for example a website or a PIR).
+- **Where:** a "Share your experience" card on the celebration screen and in the celebration email, with two equal buttons, **Review us on Google** and **Review us on Trustpilot**. A separate "Tell us privately" option is also there for anyone who prefers it, but it never replaces or hides the public options.
+- **One reminder after 7 days, then stop.** No further chasing.
+- **Every client at that moment is invited**, whatever their stage feedback score. Stage feedback (section 10.11) is for fixing problems, never for deciding who is asked.
+- **Every review gets a reply** from Care Sync within 2 working days, thanking the client, or responding calmly and helpfully to criticism. A reply task appears in "My day".
+- **Reviews are displayed honestly** on the website through the platforms' own widgets, never edited or selected misleadingly.
+
+---
+
+## 38. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1175,5 +1268,7 @@ Client satisfaction per stage, Net Promoter Score at registration and anniversar
 15. **WhatsApp updates:** confirm whether client updates by WhatsApp are wanted, using the Care Sync business number.
 16. **Growth programme:** prices for the retained options, the referral thank-you, and whether to post a card on registration day.
 17. **Partner directory:** which partners to list, and any referral arrangements to disclose.
+18. **Reviews:** confirm the Google Business Profile review link and the Trustpilot plan (free, 50 invitations a month, or paid), and agree the written reviews policy.
+19. **Document editing:** do staff edit in Microsoft Word or Google Docs today, so the Hub can connect to the right one?
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
