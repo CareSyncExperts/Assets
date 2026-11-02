@@ -1090,7 +1090,7 @@ The client only ever sees questions for what they bought. A CQC registration cli
 ### 31.2 Rules
 - A client with two packages gets each module **once**. Answers are shared, never asked twice.
 - When a client buys something new later (for example the supported living add-on or a tender), only the **new** modules are sent, pre-filled from what is already known.
-- The opening screen says plainly: "Your form has 9 sections because you chose the Domiciliary Care Full Package. About 40 minutes. You can invite your manager to do her part."
+- The opening screen says plainly: "Your form has 9 sections because you chose CQC registration for home care. About 40 minutes. You can invite your manager to do her part." A full start-up client sees 12 sections; a supported living add-on client sees 4, with company details already filled in.
 - Each module has an owner role, so the right person gets the right section (for example section D goes to the registered manager).
 - Staff can add or remove a module for an individual client, with a reason recorded.
 - Packages and their modules are set in the form builder by directors, so new packages need no developer work.
