@@ -723,7 +723,7 @@ If the deadline is tighter, the Hub compresses the plan but keeps the order, and
 - **Meeting record:** whether note-taking consent was given, attendees, the single named decision maker, and the agreed draft turnaround time.
 - **Three accounts checklist:** Central Digital Platform registration and share code received; tender portal registered and opted in to this tender; Care Sync's bid lead added as a portal user (the preferred route); the named person who reads the portal inbox every working day.
 - **Lots decision:** for each lot, four checks (fit, area, evidence, capacity) and a recorded yes or no with the reason. A lot failing two checks is flagged "usually a no for now".
-- **Reusable tender profile:** the onboarding form (about 45 minutes the first time, 10 for later tenders) captures company, regulator, services, key people, contract examples, workforce, partnerships and documents once, for every future bid.
+- **Reusable tender profile:** captures company, regulator, services, key people, contract examples, workforce, partnerships and documents once, for every future bid. It is presented as small tasks (section 38), pre-filled from the client record and the CQC register, and much of it can be gathered during the onboarding meeting itself. Later tenders only ask what has changed.
 - **Evidence library per client:** contract examples from the last 3 years (who, what, how many people, hours, value, dates, outcomes), anonymised case studies, referees with permission recorded, and standard documents (accounts, organisation chart, CVs, CQC certificate and latest report, Statement of Purpose, insurance with levels and expiry dates, council quality monitoring reports, ICO number, Data Security and Protection Toolkit status, Cyber Essentials, ISO certificates). Expiry dates feed the expiry watch.
 - **Question-by-question drafting** in the Review Room, showing each question's word limit, weighting and the buyer's scoring bands, with a live word count. Every answer gets a second consultant review sign-off before the client sees it.
 - **Promise register:** every commitment written into the bid ("every new carer shadows for three shifts") is listed separately, and the client approves each one. If the bid wins, the promise register becomes the contract mobilisation and compliance checklist.
@@ -878,7 +878,7 @@ Replaces the Google Forms (CQC Registration Information Form, Tender Preparation
   - Gap detection on address history (5 years) and CV history (age 16 to present) with a prompt to explain each gap.
   - Uploads inline beside the question, with date checks (for example a bill within 3 months).
   - Format checks for phone numbers, emails, postcodes and professional registration numbers, with a gentle "Is this right?" rather than a hard block where a format can vary.
-- **Easy to finish.** Saves as you go on any device, shows time remaining, voice answers for long text, and a reminder if unfinished (target 2 working days for tenders). Reminders stop the moment it is submitted.
+- **Easy to finish.** Saves as you go on any device, shows progress as small tasks done (never a total time), voice answers for long text, and a reminder if unfinished (target 2 working days for tenders). Reminders stop the moment it is submitted. Section 38 replaces the single long form with a short start and small tasks.
 - **Signed properly.** The declaration and consent are e-signed, and the client gets a copy of their answers as a PDF.
 
 ### 26.3 What staff get (the main benefit)
@@ -1090,7 +1090,7 @@ The client only ever sees questions for what they bought. A CQC registration cli
 ### 31.2 Rules
 - A client with two packages gets each module **once**. Answers are shared, never asked twice.
 - When a client buys something new later (for example the supported living add-on or a tender), only the **new** modules are sent, pre-filled from what is already known.
-- The opening screen says plainly: "Your form has 9 sections because you chose CQC registration for home care. About 40 minutes. You can invite your manager to do her part." A full start-up client sees 12 sections; a supported living add-on client sees 4, with company details already filled in.
+- The client never sees a long form or a total time. They start with 3 questions, and the modules for their package arrive as small tasks over the following days (section 38). A full start-up client simply has more small tasks than a CQC registration client; a supported living add-on client has only a few, with company details already filled in.
 - Each module has an owner role, so the right person gets the right section (for example section D goes to the registered manager).
 - Staff can add or remove a module for an individual client, with a reason recorded.
 - Packages and their modules are set in the form builder by directors, so new packages need no developer work.
@@ -1114,8 +1114,8 @@ The full wording of every email is in `docs/superpowers/specs/2026-11-02-care-sy
 | Stage | Emails |
 |---|---|
 | Before signing | Enquiry reply within 15 minutes in staffed hours; quote; agreement reminder |
-| Welcome | Welcome and login; meet your team; your tailored form |
-| Onboarding | Form reminders (day 2 and 4); form received with what we checked; one quick question or fix list; all checks passed and your named team |
+| Welcome | Welcome and 3 quick questions; meet your team |
+| Onboarding | Your next few things; gentle reminders that open the exact task (day 2 and 4); everything received with what we checked; one quick question or fix list; all checks passed and your named team |
 | Delivery | Weekly update (nine-part); document accepted or needs re-upload; draft ready to review; review reminder; final pack ready to sign |
 | CQC | Submitted; CQC acknowledged; CQC asked for more information; interview booked (with the Interview Preparation Hub link); interview reminders; after the interview |
 | Outcome | You are registered (celebration, Registration File, next steps); Notice of Proposal (calm plan); application returned (recovery plan) |
@@ -1164,7 +1164,7 @@ The Hub does a lot, but the client should only ever feel three things: "I know w
 
 ### 34.1 Never overwhelming
 - **Three things on the home screen, no more:** where you are, what you need to do (at most three items, most important first), and what we are doing for you. Everything else is one tap away.
-- **One task at a time.** "Next up" opens a focused screen for a single task with its time estimate ("About 5 minutes"). When it is done, the next one appears.
+- **One task at a time.** "Next up" opens a focused screen for a single small task (one to three questions or one photo). When it is done, the next one appears. Long time estimates are never shown; small tasks may say "Quick" or "One photo".
 - **We batch our asks.** Staff requests are grouped so the client gets one tidy list, not a stream of separate messages.
 - **Plain English everywhere**, with the glossary one tap away (section 29).
 - **Quiet by default.** Updates arrive when something matters, at times the client chose.
@@ -1251,7 +1251,85 @@ Clients can be invited to review Care Sync on **Google** (using the Google Busin
 
 ---
 
-## 38. Open questions for Care Sync
+## 38. Effortless onboarding: no long forms
+
+Clients are busy and a long form gets abandoned. So the Hub never presents one. Instead it combines three things: **ask very little at the start, fill in everything it can find itself, and collect the rest in small pieces when each piece is actually needed.**
+
+### 38.1 The start: 3 questions
+At welcome the client answers only:
+1. **Your company number** (or "not formed yet"). The Hub fills in the company name, registered office, directors and owners from Companies House, and the client confirms with one tap.
+2. **Who will be your registered manager?** A name and email or mobile. The Hub invites that person to do their own part.
+3. **How would you like to do the rest?**
+   - **Snap and send:** take photos of your documents and we read them for you.
+   - **Do it on a call:** book a call and your onboarding lead fills everything in with you while you talk. You just check and sign.
+   - **Bit by bit myself:** small tasks arrive a few at a time.
+
+That is the whole first step. The client sees "Done. We'll take it from here." and a short list of what comes next.
+
+### 38.2 Photos instead of typing
+Most of the information Care Sync needs is already printed on documents the client has. The Hub reads it (section 27.4) and the client only confirms:
+
+| The client sends a photo or file of | The Hub fills in |
+|---|---|
+| Driving licence or passport | Full name, date of birth, address |
+| DBS certificate | Certificate number, issue date, name |
+| Utility bill or bank statement | Name, address, date |
+| Tenancy, lease or title register | Office address, parties, permitted use, whether a mortgage is registered |
+| CV (any format) | Employment history from age 16, with gaps highlighted to explain |
+| Insurance certificate | Insurer, cover levels, expiry date |
+| Professional registration card or letter | Body and registration number, ready to verify on the public register |
+
+Everything read from a document is shown back for a one-tap "That's right" or a quick correction. Staff confirm before anything is used.
+
+### 38.3 Small tasks, at the right time
+The package modules (section 31) are broken into small tasks of one to three questions or one photo. They arrive **when they are needed**, not all at once:
+- Week 1: identity, address and office evidence (photos), and the manager's CV (upload)
+- Week 2: the people you will support (tap to choose, no typing)
+- When the insurance quote is being prepared: a few insurance questions
+- When the business plan is being written: a few questions on finances, or "ask my accountant"
+- When an interview is booked: interview details
+
+At most three tasks are shown at a time. Each can be answered from a phone in the time it takes to make a cup of tea.
+
+### 38.4 Designed for busy people
+- **One question per screen**, with big tap answers instead of typing wherever possible.
+- **"Skip for now"** on anything that is not urgent. It moves to later and never blocks progress.
+- **"I don't know"** sends the question to the onboarding lead to help.
+- **"Same as before"** wherever an answer repeats (for example the manager's address when it matches the director's).
+- **Hand it to someone else:** any task can be passed to the manager, a director or the accountant with one tap.
+- **Voice answers** for anything long.
+- **Reminders that open the exact task.** A text, WhatsApp message or email contains a secure link that goes straight to that one question or camera upload. Documents are never sent inside a chat message.
+- **Progress shown as wins, not time:** "6 of 9 things done", with a tick and a short "Nice, that's your ID sorted" after each task.
+
+### 38.5 Done for you on a call
+For clients who prefer it, or who stall, the onboarding lead books a call and completes the information live in **assisted mode** (section 26.3), sharing their screen if helpful. The client receives a summary to check and e-sign. Staff can offer this at any time from the client page, and the Hub suggests it automatically if a client has not started their tasks after 3 days.
+
+### 38.6 What staff see
+- A **missing information list** per client, ordered by what blocks work soonest, with one-tap "remind", "book a call" or "fill in from my notes".
+- Everything read from documents is shown with its source, for quick confirmation.
+- The same onboarding gates (section 18.2) update automatically as each small task arrives.
+- A dashboard of where clients stall, so the questions or reminders causing it can be improved.
+
+---
+
+## 39. Simple for staff: big-company standards
+
+Staff should be able to use the Hub on day one without training.
+
+1. **One home screen per role.** "My day" shows only that person's work, in priority order. Nobody hunts through menus.
+2. **Every task has one obvious button** that does the next thing ("Send update", "Check documents", "Reply").
+3. **Search and jump anywhere** with the command bar: type a client, document or action.
+4. **Consistent everywhere.** The same layout, words and status badges on every screen, from the Care Sync Unified design system.
+5. **Help in place.** The Playbook guide sits beside each step; hovering any status explains it.
+6. **Safe to click.** Undo for most actions, a confirmation only for things that cannot be undone, and drafts saved automatically.
+7. **The Hub does the boring work:** filing, naming files, chasing, deadline maths, checks, update drafts, syncing to GoHighLevel.
+8. **Clear empty states.** When there is nothing to do, the screen says so ("All caught up. Next update due Tuesday.").
+9. **First-day tour.** A short guided tour for new staff, plus the practice client (section 11.6).
+10. **Measured and improved.** Time taken for common tasks is tracked, and the slowest are simplified first.
+
+---
+
+## 40. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?

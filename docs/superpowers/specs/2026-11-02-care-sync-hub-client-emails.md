@@ -31,9 +31,9 @@ Welcome to Care Sync. We are glad to be working with you on {{package_name}} for
 
 Everything now lives in your Care Sync Hub: where you are, what we need from you, and what we are doing for you. You never need to email us to ask for an update.
 
-Your first step is a short form tailored to your package. It takes about {{form_minutes}} minutes and saves as you go.
+Your first step is just 3 quick questions. After that, we fill in what we can ourselves and ask for the rest a little at a time, mostly as photos of documents you already have.
 
-Button: Open my Hub
+Button: Answer 3 quick questions
 
 Speak soon,
 {{consultant_name}}
@@ -62,32 +62,34 @@ Button: See your journey
 
 ## 2. Onboarding
 
-### 2.1 Your tailored form
-**Trigger:** welcome plus 0 days
-**Subject:** Your form has {{section_count}} sections, about {{form_minutes}} minutes
+### 2.1 Your next few things
+**Trigger:** the first small tasks are ready (after the 3 starting questions)
+**Subject:** {{task_count}} quick things for this week
 
 Hi {{first_name}},
 
-Your form only asks what we need for {{package_name}}, and anything we already know is filled in for you.
+Thank you, we have filled in your company details from Companies House.
 
-If your registered manager or a director should answer their own part, you can invite them from the form, and they will only see their section.
+This week we just need {{task_list_short}}. Most are a photo of a document you already have, and we read the details for you.
 
-Not sure of an answer? Tap "Not sure" and we will help.
+If your manager should do her part, you can pass it to her with one tap. Prefer to do it together? Book a call and we will fill it in with you.
 
-Button: Start my form
+Button: Do the first one
 
 {{consultant_name}}
 
-### 2.2 Form reminder (day 2 and day 4, stops when submitted)
-**Subject:** Your form is {{percent_complete}} per cent done
+### 2.2 Gentle reminder (after 2 days, then 4, stops when done)
+**Subject:** One quick thing: {{next_task}}
 
 Hi {{first_name}},
 
-You are {{percent_complete}} per cent of the way through your form. The next part is {{next_section}}, which takes about {{section_minutes}} minutes.
+Just one thing to keep your application moving: {{next_task}}.
 
-Everything you have entered is saved, on any device.
+Tap the button and it opens straight to it.
 
-Button: Carry on
+Button: Do it now
+
+Or reply "call me" and we will sort it out together.
 
 {{consultant_name}}
 
@@ -97,7 +99,7 @@ Button: Carry on
 
 Hi {{first_name}},
 
-Thank you for completing your form. We have already checked your company with Companies House and compared your details across your documents.
+Thank you, that is everything we need for now. We have already checked your company with Companies House and compared your details across your documents.
 
 {{if no issues}}Everything matches. There is nothing more you need to do right now.
 {{if issues}}We need {{issue_count}} small things from you. Each one is explained in your Hub and takes a minute or two.
@@ -151,7 +153,7 @@ Hi {{first_name}},
 
 Version {{version}} of your {{document_name}} is ready. It has been checked by a second consultant.
 
-You can highlight any sentence to comment or ask a question, then approve it or ask for changes. Most people take about {{review_minutes}} minutes.
+We have marked the few things to check first. You can tap any sentence to comment or ask a question, then approve it or ask for changes.
 
 Button: Review now
 
