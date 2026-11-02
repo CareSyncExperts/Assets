@@ -127,19 +127,25 @@ A **readiness score** (for example "Registration pack: 78% ready") shows overall
 
 The checklist adapts to the client's answers instead of showing every possible document to everyone.
 
-**Core identity and suitability (per person, for example the registered manager and nominated individual):**
-- Enhanced DBS certificate
-- 2 forms of photo or official ID
-- 1 proof of address (for example a utility bill dated within the last 3 months)
-- CV
+**Core identity and suitability (per person, for example the registered manager and nominated individual).** These follow Care Sync's existing onboarding gates (section 18.2):
+- Identity: enhanced DBS (number and issue date verified, certificate image received), **or** three valid IDs where there is no enhanced DBS
+- Proof of address (for example a utility bill dated within the last 3 months)
+- CV covering age 16 to the present, with every gap explained
+- Professional registration details, checked against the public register
+- References and GP details
 - Training certificates
 
-**Office evidence (branches on one question: "Where will your office be?"):**
+**Office evidence (branches on one question: "Where will your office be?"). The address evidence gate is a hard gate: no application work starts until it passes.**
 
 | Answer | Required |
 |---|---|
-| Commercial office | Lease or licence agreement for the premises |
-| Home office | Proof of legal occupancy (for example tenancy agreement, mortgage statement or title) **and** a letter of permission from the mortgage lender or landlord |
+| Commercial office | The office lease or licence agreement |
+| Home office, mortgaged | Lender's permission **and** the title deed |
+| Home office, rented | Tenancy agreement **and** the landlord's written permission for administrative office use |
+| Home office, owned outright | The title deed |
+| Virtual office or PO box | Not accepted. The client is told why and shown the options |
+
+The address on the evidence must match the address on the onboarding form. A mismatch fails the gate with the exact reason shown.
 
 **Business and compliance:**
 - Insurance quote
@@ -544,9 +550,9 @@ Organisation (client company) with its company profile, Person, Journey, Track, 
 
 ---
 
-## 16. Phases
+## 16. Phases (first draft, replaced by section 25)
 
-Each phase gets its own implementation plan and delivers something usable.
+Each phase gets its own implementation plan and delivers something usable. Section 25 replaces this table now that the current operation has been reviewed.
 
 | Phase | Delivers |
 |---|---|
@@ -559,7 +565,289 @@ Each phase gets its own implementation plan and delivers something usable.
 
 ---
 
-## 17. Open questions for Care Sync
+## 17. What we learnt from Care Sync's current operation
+
+Reviewed on 2 November 2026 from the Companies folder in Google Drive: the Client Control Register, the Client Folder Standard Template, the tender outreach folder and the Client Tender Onboarding deck. No client names or personal details are copied into this specification.
+
+**What already works and must be kept:**
+- Hard onboarding gates: nothing starts until form, address, identity or DBS, CV and professional registration checks pass.
+- A clear weekly rhythm: Monday review, Tuesday and Wednesday client updates by named owners, Thursday chasing, Friday manager QA.
+- Evidence rules: "Do not mark Sent without evidence", CQC dates and references only from the acknowledgement, never guessed.
+- Lifecycle rules: an interview pass is not completion; rejected applications stay active with a recovery plan; archiving needs manager approval; history is never deleted.
+- "No silent or unowned client": every client always has a named owner.
+- A strong tender delivery method: a structured onboarding meeting, a timeline planned back from the closing date, lot-by-lot decisions, an evidence-led approach and client sign-off of every promise.
+
+**What the current tools make hard:**
+- Status lives in several places: spreadsheet tabs, Drive folder colours ("not visually verified" appears often) and inboxes.
+- On the register snapshot of 19 July 2026: 17 client updates overdue, 26 submitted cases missing a submission date and CQC reference, 49 overdue next deadlines.
+- Free text drifts into status columns, so counts and dashboards become unreliable.
+- Tender provider research depends on a browser automation that often stops ("not run"), and results move to GoHighLevel by hand.
+- Client logins created by Care Sync are kept in a spreadsheet. This is a security risk that the Hub's secure vault replaces (section 21).
+
+The Hub keeps every good rule above and enforces it automatically, with structured fields instead of colours and free text.
+
+---
+
+## 18. Delivery operating model (built from Care Sync's rules)
+
+### 18.1 Roles in the Hub
+
+| Role | Current equivalent | Accountable for |
+|---|---|---|
+| **Onboarding lead** | Owns the Onboarding Queue and Form QA | Onboarding form, gate checks, chasing missing information, readiness for handover |
+| **Case owner** | Owns CQC delivery | Milestones, risk decisions, rejection and resubmission, interview readiness, closure evidence |
+| **Weekly update owner** | Updates assigned clients on a set weekday | The weekly client update and its evidence |
+| **Manager** | Friday review and approvals | Handover approval, QA before resubmission, overdue work, closure approval |
+| **Interview coach** | Interview coaching sessions | Mock interviews and preparation status |
+| **Tender writer and second reviewer** | Tender team | Drafting and the second consultant review |
+| **Sales rep and account owner** | Sales team | Outbound tender sales, inbound enquiries, growth (section 24) |
+
+One person can hold several roles. Every client always shows its case owner and weekly update owner; a client with either missing appears in red on the manager's dashboard.
+
+### 18.2 Onboarding gates (hard gates)
+
+Payment is complete before a client enters onboarding. The Hub creates the client record, client ID and onboarding checklist automatically.
+
+| Gate | What must be true |
+|---|---|
+| Form | Onboarding form received for the correct company branch and service type |
+| Company | Companies House record verified; every director listed |
+| CVs | CVs for every director, the registered manager and the nominated individual (if different), each covering age 16 to the present with gaps explained |
+| People | Registered manager and nominated individual confirmed, and whether they are the same person (flagged for a specialist check) |
+| Professional registration | Status, body and number recorded and verified on the public register |
+| Identity | Enhanced DBS verified, or three valid IDs |
+| References and GP | Complete |
+| Address evidence | Section 5.2 office rules pass and the address matches the form |
+
+How it behaves:
+- Each gate shows **Pass**, **Fail** with the exact issue, or **Not checked**.
+- A failure sets "Resubmission requested" with a recheck date. The client sees exactly what to fix, in plain English, on their checklist.
+- The onboarding lead is alerted **once** per new or materially changed failure, never repeatedly for an unchanged one.
+- When every gate passes, the onboarding lead marks it ready. Only a **manager** can approve handover, and handover requires a named case owner and weekly update owner.
+
+### 18.3 Application stages and rules
+
+| Stage | Moves on when (evidence required) |
+|---|---|
+| Onboarding and information collection | Manager approves handover |
+| In progress | Pack components reach client review |
+| Waiting for client information | Shown whenever the client holds the ball; the stage itself does not change |
+| Client review or approval | Client e-signs the final pack |
+| Submitted to CQC | Submission date and CQC reference entered **from the acknowledgement** (captured email or upload) |
+| Interview scheduled | Invitation saved with date, time and method |
+| Interview completed | Outcome, discussion and actions recorded the same day |
+| CQC registration decision pending | Formal decision received |
+| Registration issued | Final update sent, handover, finance and admin checks done |
+| Closure approved, then archived | Manager approval; history kept for ever |
+| Rejected or returned, resubmission required | Risk set to Critical automatically; recovery plan due within 2 working days |
+| Resubmission in progress | Corrections done; manager QA approval required before resubmitting |
+| Resubmitted to CQC | New submission date and evidence; original rejection history kept |
+
+Rules enforced by the Hub:
+- No stage moves on without its evidence. The button stays disabled and says what is missing.
+- An interview pass never completes a project.
+- A rejected client is never archived or left without an owner.
+- **Pack components** are tracked separately, each with its own status (Not started, Drafting, Ready for QA, With client, Complete): Policies, Provider form, Registered manager form, Statement of Purpose, CQC interview portal access.
+- **Deadline sequence:** every client has a current internal action and the following action, each with a due date. Ticking the current one done promotes the next automatically.
+- **Risk level:** Low, Medium, High or Critical, set by rules (for example rejection makes it Critical) and adjustable by the case owner with a reason.
+
+### 18.4 Service types (from the register)
+
+DOM, SL, DOM and SL, SL add-on to DOM, Interview preparation, Tender writing, Website, Website and DOM, Website and SL, Other. Each maps to a journey template (section 3.3). "To confirm" is allowed only during onboarding and blocks handover.
+
+### 18.5 The weekly update, built in
+
+The Hub runs Care Sync's weekly rhythm for staff:
+
+| Day | Who | What the Hub does |
+|---|---|---|
+| Monday | Weekly update owners | "Review" list of assigned clients with everything that changed since last week |
+| Tuesday and Wednesday | The owner for that day | "Updates to send today", each already drafted |
+| Thursday | Weekly update owners | Chase list: every client holding the ball, with promised dates |
+| Friday | Manager | QA list: overdue updates, high-risk clients, weak evidence, next week's queue |
+
+**The update composer** drafts each client's update from live Hub data, in Care Sync's nine-part standard:
+1. Current stage, in plain English
+2. Completed this week
+3. Policies progress
+4. Application forms progress (provider and registered manager)
+5. Statement of Purpose status
+6. CQC interview portal status
+7. What the client needs to do, and by when
+8. What Care Sync will do next, and the target date
+9. Date of the next update
+
+The owner checks and edits it, then sends it. It goes to the client by email and appears in their Hub timeline. The sent date, method and evidence are recorded automatically. An update can never be marked sent without that evidence. The manager's QA status (Approved or Needs changes) is recorded on Friday. Overdue updates turn red on the owner's "My day" and the manager's dashboard.
+
+### 18.6 Client document structure
+
+Each client's vault follows the existing Client Folder Standard Template, so staff find everything where they expect it:
+
+00 Client and agreement · 01 Onboarding information · 02 CQC application forms · 03 Statement of Purpose · 04 Policies and procedures · 05 Business plan and financials · 06 Premises and supporting evidence · 07 CQC interview preparation · 08 Quality assurance and final pack · 09 Submission evidence and CQC correspondence · 10 Weekly client updates
+
+During migration the Hub can mirror files into each client's existing Drive folder, so nothing changes for staff until they are ready.
+
+---
+
+## 19. Tenders: the complete system
+
+Tenders have two sides: **finding and selling** (sales, section 24) and **writing and winning** (delivery, this section). Both use one shared Tender Radar.
+
+### 19.1 Tender Radar (replaces the outreach spreadsheets)
+
+1. **Ingest:** new tenders arrive daily from BidSuite, Find a Tender and the council portals Care Sync uses (ProContract, In-Tend, Atamis, Adam, Delta eSourcing), plus Sell2Wales and eTendersNI.
+2. **Approve:** a staff member approves a tender for outreach with one click. The fields match the current Approved Tenders Queue: title, buyer and local authority, region, regulator, care setting, lots, closing date, clarification deadline, estimated value, link, eligibility notes.
+3. **Research providers, server side and reliable:** the Hub finds providers in and around each lot area using the official CQC register (CQC location ID, rating and date, services, service user bands, registered manager, listed phone number), then adds contact details from approved directories. No browser automation, so no "not run" days. Each provider gets a confidence level and a recorded data source.
+4. **Screen and check:** TPS and CTPS screening, the do-not-contact list, the conflict check (other clients on the same tender or lot, and whether Living Plus Care Services is bidding) and the green, amber and red triage.
+5. **Hand to sales automatically:** contacts and call tasks are created in the Hub and synced to GoHighLevel. Nothing is moved by hand. Existing clients in the area are shown first.
+
+### 19.2 The tender delivery journey
+
+Built from the Client Tender Onboarding deck. All timings are working days, planned back from the closing date taken from the portal itself (if two documents disagree, the earlier time is used).
+
+| When | Milestone | Who |
+|---|---|---|
+| Day 0 | Agreement signed and deposit paid; tender journey opens | Sales |
+| Day 0 to 1 | Onboarding meeting (about 75 minutes), using the six-part agenda | Bid lead, note taker, client decision maker, registered manager, finance |
+| Day 2 | Tender onboarding form complete | Client |
+| Day 5 | Documents, evidence and case studies with Care Sync | Client |
+| 10 days before close | First drafts to the client | Writer, after second review |
+| 8 days before close | Client comments back | Client |
+| 5 days before close | **Promises and price signed off** by the client | Client |
+| 2 days before close | Submitted. Never on the last day | Bid lead |
+
+If the deadline is tighter, the Hub compresses the plan but keeps the order, and flags anything under 15 working days for Collins.
+
+### 19.3 What the tender workspace holds
+
+- **Meeting record:** whether note-taking consent was given, attendees, the single named decision maker, and the agreed draft turnaround time.
+- **Three accounts checklist:** Central Digital Platform registration and share code received; tender portal registered and opted in to this tender; Care Sync's bid lead added as a portal user (the preferred route); the named person who reads the portal inbox every working day.
+- **Lots decision:** for each lot, four checks (fit, area, evidence, capacity) and a recorded yes or no with the reason. A lot failing two checks is flagged "usually a no for now".
+- **Reusable tender profile:** the onboarding form (about 45 minutes the first time, 10 for later tenders) captures company, regulator, services, key people, contract examples, workforce, partnerships and documents once, for every future bid.
+- **Evidence library per client:** contract examples from the last 3 years (who, what, how many people, hours, value, dates, outcomes), anonymised case studies, referees with permission recorded, and standard documents (accounts, organisation chart, CVs, CQC certificate and latest report, Statement of Purpose, insurance with levels and expiry dates, council quality monitoring reports, ICO number, Data Security and Protection Toolkit status, Cyber Essentials, ISO certificates). Expiry dates feed the expiry watch.
+- **Question-by-question drafting** in the Review Room, showing each question's word limit, weighting and the buyer's scoring bands, with a live word count. Every answer gets a second consultant review sign-off before the client sees it.
+- **Promise register:** every commitment written into the bid ("every new carer shadows for three shifts") is listed separately, and the client approves each one. If the bid wins, the promise register becomes the contract mobilisation and compliance checklist.
+- **Clarification log:** questions drafted with the client, submitted through the portal before the clarification deadline, and the buyer's answers recorded.
+- **Price support:** the price is always the client's decision. The Hub shows a lawful-wage check (National Living Wage £12.71 an hour from 1 April 2026 for workers aged 21 and over, including travel time, plus holiday pay, pension and National Insurance) and warns if a rate looks too low to deliver lawfully.
+- **Pre-submission compliance checklist** (every item must be ticked, with evidence where relevant), covering the eight ways to fail at the first gate:
+  1. Submitted before the deadline, with margin
+  2. Every mandatory document uploaded and every declaration signed by the client
+  3. Insurance at or above the required levels (employer's liability at least £5 million by law)
+  4. Financial check met, or the accepted alternative supplied
+  5. CQC registration covers the right regulated activity and service type
+  6. Word limits kept and the buyer's templates unchanged
+  7. No contact with buyer staff outside the portal
+  8. Every statement true and evidenced
+- **Submission evidence:** the portal confirmation is captured and the client is notified the same day.
+- **Outcome and learning:** the assessment summary or feedback, with scores per question, is stored. Wins trigger congratulations, mobilisation support, a case study permission request and a referral ask. Losses trigger a feedback review and a reminder for the next window (dynamic markets can be joined at any time; open frameworks reopen). Scores feed the learning loop.
+
+### 19.4 What the client sees for a tender
+
+A tender tracker with a countdown to the closing date and to **their** next deadline (form, documents, comments, sign-off), the lots they are bidding for, the documents still needed, drafts to review in the Review Room, the promise register to approve, and the outcome.
+
+---
+
+## 20. Ticks, sign-offs and signatures everywhere
+
+| Level | Used for | Recorded |
+|---|---|---|
+| **Tick** | Tasks and checklist items, by staff or client | Who, when, and evidence where required ("Do not mark sent without evidence") |
+| **Staff sign-off** | Gates, stages, pack components, drafts | The person signing; a second person verifies where required (QA, second review, manager approval) |
+| **Client e-signature** | Engagement letter, final pack approval, tender promises and price, quotes and agreements | Name, time and the exact version signed |
+
+Signed items are locked ("Signed and locked. This record is read-only."). Any change creates a new version. Every tick, sign-off and signature appears in the audit trail and, where relevant, on the client's tracker as a visible tick.
+
+---
+
+## 21. Secure vault for client logins
+
+Care Sync sometimes creates or holds accounts for clients (email accounts, the CQC provider portal, tender portals). These move out of spreadsheets into an encrypted vault:
+- Each login is stored against the client, visible only to named roles.
+- Viewing a password requires a stated reason, and every view is logged.
+- The preferred route is always to be added as a user (for example the bid lead on a tender portal) rather than to hold a password.
+- Reminders prompt the client to change passwords after a contract is awarded or the work ends.
+- Logins are never shown in notes, messages, emails or exports.
+
+**Recommended now:** move the existing logins spreadsheet into a password manager with restricted access until the Hub is live.
+
+---
+
+## 22. Moving from the current tools
+
+1. Import all clients from the Client Control Register, mapping each column to its Hub field (stage, owners, pack components, deadlines, CQC submission details, risk).
+2. Every free-text value that does not fit a field becomes a note for review, so nothing is lost.
+3. Clients with a missing CQC date or reference appear in a "fix the record" list, filled only from acknowledgement evidence.
+4. Drive folders are linked, and optionally mirrored, so files stay where staff know them.
+5. Run the Hub and the register side by side for 2 weeks, then switch.
+
+---
+
+## 23. Notification principles (from current practice)
+
+- Staff alerts fire once per new or materially changed issue, never repeatedly for an unchanged one.
+- No automatic client contact for internal issues. Clients are only contacted through approved templates or by a person.
+- A legal deadline or a Critical risk always alerts the case owner and the manager.
+
+---
+
+## 24. Growth and sales
+
+### 24.1 After registration
+At registration the client receives the Registration File, the journey moves to Aftercare, and an account owner joins the consultant. A growth plan call within 5 working days, part of launch support, agrees goals such as council work, supported living or new areas, and completes the growth profile (section 24.4).
+
+### 24.2 What can be offered (from the Care Sync price book)
+
+| Offer | Price | Trigger |
+|---|---|---|
+| Tender writing | From £1,500 + VAT, full quotation after review | Tender Radar match in their area and service |
+| Bid review | Around £500 (VAT to confirm) | Client writing their own bid |
+| Retained tender package | Pending | 2 tenders in 12 months, or more than one council area |
+| Policies for a tender | Extra fee, Pending | Gaps in tender readiness |
+| Supported living add-on | £1,500 including VAT; policies quoted separately | Home care client moving into supported living |
+| PIR writing | £750 + VAT per PIR | PIR received (logged by the client or captured from email) |
+| Variations (location, service, band) | Pending | New office or area |
+| CQC interview preparation | £750 including VAT | Interview booked |
+| Single services (policy refresh, business plan) | From £500 + VAT | Annual review due or a law change |
+| CIW or RQIA registration | £4,500 + VAT | Expansion into Wales or Northern Ireland |
+| Marketing (website, SEO, Google profile) | Quote | Registered but few referrals |
+
+Never offered: staff training or care monitoring systems (the Hub may recommend monitoring systems for clients to buy directly). Prices marked Pending cannot be quoted; the Hub shows "I'll confirm that for you today" and sends an approval request to Collins. Discounts require Collins's approval.
+
+### 24.3 Opportunity Engine
+Signals create tasks with an owner and a deadline: tender match (call within 2 working days), PIR received (urgent), registration (growth plan call, tender alert opt-in, review and referral asks), policy review due (60 days ahead), new office or area (variation), tender won (mobilisation, case study, referral), tender lost (feedback review, next window), unhappy stage feedback (**selling paused** and a save call to the consultant).
+
+### 24.4 Growth and tender readiness profile
+Rating and date per location, registration date, office location, insurance levels and expiry, policy currency, Central Digital Platform status, case studies, social value, and monthly spare capacity (one tap by the client). A readiness score shows gaps, and each gap links to the relevant service.
+
+### 24.5 Sales workspace
+- Sales tasks in "My day", ordered by urgency.
+- One-click call cards in the Care Sync format, filled from Hub data, including the conflict check, deadline maths, the opener variant, the likely blocker and the cold call questions.
+- A Sales Coach button for live "Say, Ask, Aim for" help.
+- The 60-second debrief after each call.
+- Follow-up sequences planned back from the deadline, stopping instantly on a no or an opt-out.
+- Quote, e-signed agreement and deposit invoice in one flow; a paid deposit opens the delivery journey automatically.
+- Compliance guardrails: TPS and CTPS screening within 28 days, do-not-contact on every channel, data source recorded, privacy footer added, conflict check before any contact.
+- GoHighLevel stages with entry evidence (Matched, Contacted, Conversation, Planning call booked, Planning call held, Agreement sent, Won, Onboarded, Closed). Won requires a signed agreement and a paid deposit.
+- Account plans, a weekly scorecard per rep, the call review rubric and the new starter sign-off.
+
+### 24.6 GoHighLevel
+Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLevel automatically, which remains the official sales record.
+
+---
+
+## 25. Revised phases
+
+| Phase | Delivers |
+|---|---|
+| **1. Foundations and migration** | Roles, client records, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
+| **2. Client experience** | Client Hub (Today, journey, documents, Review Room, CQC centre, Ask), notifications, e-signatures |
+| **3. Tenders** | Tender Radar, tender delivery journey and workspace, evidence library, promise register, compliance checklist |
+| **4. Sales and growth** | Opportunity Engine, sales workspace, call cards, GoHighLevel sync, price book controls |
+| **5. Intelligence** | AI drafting, Sync Assistant and Staff Assistant, consistency check, learning loop, dashboards |
+
+---
+
+## 26. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -567,6 +855,8 @@ Each phase gets its own implementation plan and delivers something usable.
 4. **Team size and volume:** Roughly how many staff, and how many active clients at once now and in 12 months?
 5. **Retention period:** How long should identity documents and DBS certificates be kept after a journey ends?
 6. **Payments:** Should clients pay (for example for extra sessions) inside the Hub, or does payment stay in your current system?
-7. **GoHighLevel:** Is it your current CRM for leads and sales, and should a paid client in GoHighLevel automatically start a journey in the Hub?
+7. **GoHighLevel:** Answered: it is the sales CRM. Confirm that a won deal (signed agreement and paid deposit) should start a Hub journey automatically.
+10. **Price book items marked Pending:** retained tender rate, policy fees, variation prices, bid review VAT, and mock inspection and marketing prices for registration-only clients.
+11. **Logins spreadsheet:** agree to move it into a password manager now, before the Hub is live.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
