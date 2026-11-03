@@ -1257,8 +1257,8 @@ Clients are busy and a long form gets abandoned. So the Hub never presents one. 
 
 ### 38.1 The start: 3 questions
 At welcome the client answers only:
-1. **Your company number** (or "not formed yet"). The Hub fills in the company name, registered office, directors and owners from Companies House, and the client confirms with one tap.
-2. **Who will be your registered manager?** A name and email or mobile. The Hub invites that person to do their own part.
+1. **Find your company:** type the company name or number and pick it from the Companies House results (or choose "not formed yet"). The Hub fills in the company name, registered office, directors and owners, and the client confirms with one tap (section 44).
+2. **Who will be your registered manager?** A name and email or mobile, and one tap for whether they will also be the nominated individual. The Hub invites that person to do their own part.
 3. **How would you like to do the rest?**
    - **Snap and send:** take photos of your documents and we read them for you.
    - **Do it on a call:** book a call and your onboarding lead fills everything in with you while you talk. You just check and sign.
@@ -1489,7 +1489,86 @@ No item in the reviewed sources was left without a home in this specification.
 
 ---
 
-## 44. Open questions for Care Sync
+## Appendix B. Google Forms compared with the Hub flow
+
+The questions stay the same; the flow changes. Every question in the current forms is kept (Appendix A). What changes is how and when it is asked, so clients do far less typing.
+
+### B.1 CQC Registration Information Form
+
+| Google Form section | In the Hub | How it is collected | When |
+|---|---|---|---|
+| Is your company registered with Companies House? | Start question 1: "Find your company" | Search by name or number (section 44) | Start |
+| Business name, number, registered office, legal entity | Filled from Companies House | Client confirms with one tap | Start |
+| Trading name, correspondence address, phone, company email, website | Company details task | Pre-filled where known, quick confirm | Week 1 |
+| Company formation: name choices, company type, shares, persons with significant control, identity verification code, authorisation to incorporate | Module B, only if not yet formed | Name ideas with an indicative check (section 44.2), taps for shares | Start, if not formed |
+| Regulated activities and service type | Known from the package | Client confirms | Start |
+| Service user bands | "Who you will support" task | Tap to choose | Week 2 |
+| Registered manager details | Start question 2 invites the manager | The manager completes their own section | Week 1 (manager) |
+| Registered manager address history (five free-text boxes) | Address timeline | Postcode lookup, month pickers, gap detection; current address read from an ID or bill photo | Week 1 (manager) |
+| Professional body and registration number | Professional registration task | Photo of the card or letter, or typed; public register link for staff | Week 1 (manager) |
+| GP and referee, with permission for CQC to contact them | References task | Short form for the manager | Week 1 to 2 |
+| Same person as manager and nominated individual? | Asked with start question 2 | One tap | Start |
+| Nominated individual details and address history | Nominated individual section, only if a different person | Same as the manager's section | Week 1 |
+| Enhanced DBS, or three forms of ID | Identity task | Photo of the DBS certificate or ID documents, read automatically | Week 1 |
+| Directors 1 to 4 | Filled from Companies House, unlimited | Only missing contact details are asked | Start to week 1 |
+| Signatory, position, signature, date | E-signature | One signature when everything is in | At the end |
+
+### B.2 Tender Preparation Questionnaire
+
+| Google Form section | In the Hub | How it is collected | When |
+|---|---|---|---|
+| 1. Tender details, portal link, closing date | Filled from Tender Radar and the agreement | Client confirms | Tender start |
+| 1. Portal username and password | **Removed from the form** | Bid lead added as a portal user, or login stored in the vault | Tender start |
+| 1. Authority to submit | E-signed authority | One signature | Tender start |
+| R. What has changed since last time | Only on repeat tenders | Previous answers shown with "still correct?" | Repeat tenders |
+| 2 to 6. Company, regulator, ratings, services, service user bands | Filled from the client record, Companies House and the CQC register | Client confirms | Tender start |
+| 7. Key people | Filled from people profiles | Client confirms or updates | Tender start |
+| F. Finance, insurance, accountant | Finance task | "Ask my accountant" hands it over with one tap; insurance read from the certificate photo | Week 1 |
+| 8. Contract examples and private clients | Evidence library | Gathered in the onboarding meeting, voice notes welcome, reused for future bids | Onboarding meeting |
+| 9. Workforce | Workforce task | Number taps and short answers | Week 1 |
+| 13. Partnerships and social value | Evidence library | Onboarding meeting | Onboarding meeting |
+| 14. Documents and policies | Evidence library check | The Hub shows what is already held and asks only for what is missing | Week 1 |
+| E. Standout evidence and concerns | Evidence library | Onboarding meeting, voice notes | Onboarding meeting |
+| L. Lots | Lots decision | Tap per lot, with the four checks | Onboarding meeting |
+| 11, 10, 12, C. Home care, supported living (including property), care home, community support | Only for the lot types being bid for | Short tasks; property details from photos and taps | Week 1 |
+| 16. Declaration and consent | E-signature | One signature | Before drafting starts |
+
+---
+
+## 44. Company search and smart lookups
+
+Google Forms can only offer empty boxes. The Hub searches official records as the client types.
+
+### 44.1 Find your company by name
+- The client (or a staff member starting a new client) types **a few letters of the company name or the company number**. Results from the Companies House register appear as they type.
+- Each result shows the company name, number, status (active or dissolved), date incorporated and the registered office town, so the right one is obvious. Dissolved companies are hidden unless asked for.
+- Choosing a company shows a confirmation card ("Is this your company?") with the directors listed. One tap fills in the company details, registered office, directors and persons with significant control, and starts the Companies House checks (section 27.5).
+
+### 44.2 Not formed yet
+- The client types name ideas. The Hub shows existing companies with the same or very similar names, as an **indicative check only**; Companies House makes the final decision on any name.
+- The three name choices, company type and shares are collected as small tasks (module B).
+
+### 44.3 Already registered with CQC
+- For supported living add-on, variation, PIR and tender clients, the client can search for their service by name on the **CQC register**. The Hub keeps a daily copy of CQC's published register data so the search is instant.
+- Choosing their service fills in the provider and location IDs, rating and date, regulated activities, service types and registered manager.
+
+### 44.4 Find a person's other companies
+- Typing a director's name searches Companies House officer records. Staff see that person's other appointments, which helps spot other care companies, dissolved companies, or the same person already linked to another Care Sync client.
+- The disqualified directors search runs for every director.
+
+### 44.5 No duplicates
+As soon as a company is chosen, the Hub checks existing Care Sync clients and GoHighLevel contacts and says, for example, "This company is already a client (tender journey, Daniel)", so records are never duplicated.
+
+### 44.6 Search everything (staff)
+The command bar searches every client, person, company number, CQC reference, document and email, and copes with spelling slips ("brite path" finds Bright Path Care Ltd).
+
+### 44.7 Other lookups
+- Postcode lookup for every address, with the local authority area worked out from it (useful for matching tenders).
+- Professional registration numbers checked for the right format for each body, with a direct link to that body's public register for staff to verify.
+
+---
+
+## 45. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
