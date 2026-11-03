@@ -810,6 +810,14 @@ At registration the client receives the Registration File, the journey moves to 
 | Single services (policy refresh, business plan) | From £500 + VAT | Annual review due or a law change |
 | CIW or RQIA registration | £4,500 + VAT | Expansion into Wales or Northern Ireland |
 | Marketing (website, SEO, Google profile) | Quote | Registered but few referrals |
+| Mock inspection and inspection readiness | Pending (included in first-year support of full start-up packages) | Month 4 to 6 after registration |
+| Training matrix and compliance management | Pending | After registration, as staff are recruited |
+| Policy rebrand, branding and business forms | From £500 + VAT (single service), confirm | Client rebrands or buys an existing service |
+| Statement of Purpose updates | Pending | Change of manager, address, bands or services |
+| Ofsted registration support | Pending | Children's services enquiries |
+| Temporary staffing and combined care agency packages | Pending | Staffing agency enquiries |
+
+Service names follow the staff induction catalogue (Get registered, Stay compliant, Win work and grow, Brand and market). See section 50 for one conflict to resolve before launch.
 
 Never offered: staff training or care monitoring systems (the Hub may recommend monitoring systems for clients to buy directly). Prices marked Pending cannot be quoted; the Hub shows "I'll confirm that for you today" and sends an approval request to Collins. Discounts require Collins's approval.
 
@@ -1484,8 +1492,11 @@ Checked on 3 November 2026 against the Companies folder, the onboarding forms an
 | CIW and RQIA Registration Information Forms | Responsible Individual, Welsh language Active Offer, regions or HSC Trust areas | Modules E and P (31.1), CIW and RQIA checklists (40.2) |
 | Tender outreach folder | Approved tenders queue, daily provider lists, research results, ready for GoHighLevel, archive | Tender Radar (19.1) |
 | Tender writing folder | Questionnaires, clarification log, sales playbook, client tender onboarding deck | Tender workspace (19.2, 19.3), sales (24) |
+| Company induction folder | Staff induction deck, facilitator guide, quiz answer sheet, CQC and policies training | **Added:** Care Sync Academy (48); brand voice guard (49.9); catalogue (24.2) |
+| CQC registration training deck | Eight-step journey, document pack per service type, terminology, real refusal grounds and the checks that catch them | **Added:** master record and Pack Doctor rules (47) |
+| CIW and RQIA Registration Information Forms | Question detail | **Not reviewed:** the forms cannot be read directly and no response sheets were found; covered at module level (31.1) until the questions are shared |
 
-No item in the reviewed sources was left without a home in this specification.
+Apart from the CIW and RQIA question detail noted above, no item in the reviewed sources was left without a home in this specification.
 
 ---
 
@@ -1637,7 +1648,137 @@ A branded app (starting as an installable web app) with push notifications, a do
 
 ---
 
-## 46. Open questions for Care Sync
+## 46. Super admin and system settings
+
+Care Sync needs two **super admins** (for example Collins and one other director) who control the whole system, separate from everyday staff roles. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
+
+### 46.1 What the super admin controls
+| Area | What they can do |
+|---|---|
+| **People and access** | Invite and remove staff; assign roles (onboarding lead, case owner, weekly update owner, manager, interview coach, tender writer, sales rep, account owner, finance); set which clients each person can see; enforce two-step login for all staff; set session time-outs |
+| **Permissions** | A clear grid of what each role can view, edit, approve, send and export, including who can reveal vault logins and who can approve discounts |
+| **Staff leaving** | One-click offboarding: access removed everywhere, clients and tasks reassigned with handover notes, vault access revoked, their mailbox connections handed to the new owner |
+| **Packages and price book** | Packages, deliverable checklists, prices, VAT treatment and instalment schedules; only the super admin changes a price, and every change is dated |
+| **Journey templates and forms** | Stages, small tasks, branching, reminder schedules, client wording and the form builder, with versions |
+| **Emails and messages** | The email library, saved replies, signatures, sending domains and quiet hours |
+| **Automation rules** | Every "when this happens, do that" rule, with an on and off switch and a log of every run; **failed automations are shown, never silent** |
+| **Integrations and keys** | Companies House, Ordnance Survey, CQC data, HM Land Registry, DocuSeal, GoHighLevel, Google or Microsoft, payment provider, Xero, text and WhatsApp, BidSuite and the Interview Preparation Hub, each with a health status |
+| **Branding** | Logo, colours and wording from the Care Sync Unified design system, for the Hub, emails and documents |
+| **Data and retention** | Retention periods per document type, scheduled deletion, legal holds, data export, and the data protection requests queue (section 49.6) |
+| **Security** | The full audit log (who saw, changed, downloaded, sent or revealed what, and when), unusual activity alerts, and **break-glass access** to a client's vault in an emergency, which needs a reason and alerts the other super admin |
+| **View as** | See the Hub exactly as a given client or staff member sees it, to check or support them. Read-only, logged, and the client can see it in their privacy page |
+| **System health** | Uptime, email delivery, failed syncs, broken mailbox connections and backup status in one place |
+| **Business dashboards** | All director dashboards (section 10.9), proof bank (section 49.5), and exports for the accountant |
+
+### 46.2 Safeguards on the super admin role
+- At least two super admins, so the business is never locked out, and no more than needed.
+- Two-step login is compulsory, with a hardware key or authenticator app recommended.
+- Price changes, permission changes, data deletion and break-glass access need a second super admin to approve.
+- A weekly summary of all super admin actions goes to both super admins.
+
+---
+
+## 47. The master record and Pack Doctor rules from real refusals
+
+Care Sync's own CQC training deck makes the point clearly: "every refusal we looked at came from documents telling different stories". The Hub turns Care Sync's training into automatic checks.
+
+### 47.1 One master record (the scope)
+Each client has one master record, fixed early and changed only on purpose:
+- Legal name exactly as at Companies House, company number, directors
+- Registered manager and nominated individual
+- Office location, with proof of the right to use it
+- Regulated activity (usually personal care)
+- Service type (domiciliary care, supported living or both)
+- Service user bands
+- Locations, and the registered manager's share of time at each
+
+Every document, form answer and application sheet is checked against it.
+
+### 47.2 Changing the scope shows its knock-on effects
+Changing the master record shows exactly what must change across the pack before anyone can save it. For example:
+- **Adding the learning disability or autism band:** CQC's additional form; positive behaviour support and restraint policies; a separate Mental Capacity and Best Interests policy; accessible (easy read) documents; specialist training in the training plan.
+- **Removing that band:** remove STOMP and any claim to support those groups.
+- **Adding supported living:** support-session wording, a supported living service user guide, housing separation evidence, and session monitoring instead of call monitoring.
+
+### 47.3 Pack Doctor rules (from real refusal grounds)
+| Check | What it catches |
+|---|---|
+| **Required document set** | The nine documents every service sends, the three home care and supported living add, and the two specialist services add; one policy per topic, with duplicates flagged |
+| **Wrong-setting words** | Care home words in home care or supported living packs (resident, admission, placement, patient, ward, home manager, clinical governance), and "visit" or "call" in supported living packs, each with a suggested replacement |
+| **Scope drift** | Activities, bands or claims in documents that were not applied for (for example STOMP without the learning disability band, or extra bands in the Statement of Purpose) |
+| **Clinical task exclusions** | Nursing tasks such as syringe drivers in a personal care only service, which would need a different regulated activity |
+| **Named people and numbers** | A real safeguarding lead with an out of hours contact; the local authority safeguarding team where the service is delivered, with its out of hours number; the complaints contact; the registered manager's contact details and address for notices in the Statement of Purpose |
+| **Roles written in full** | No "depending on the role" in recruitment: each role, its regulator and the check named |
+| **Overseas workers** | A written position on sponsoring and on employing overseas workers |
+| **Structure matches reality** | No "the board will review" for a sole director; the real independent challenge arrangement described instead |
+| **Complaints route** | Escalation to the Local Government and Social Care Ombudsman, not to CQC |
+| **Business plan detail** | A 12-month, month-by-month forecast with costs broken down every month, not a single total |
+| **Training plan detail** | Provider per topic, refresher dates, training by job role including managers, specialist training per band, the Care Certificate, support for overseas staff |
+| **Service user guide contents** | What the service does not provide, how needs are assessed, charges, how visits or sessions are monitored, complaints, safeguarding, contract terms, contacts |
+| **Supported living separation** | No house rules, curfews, signing-in books, staff master keys or tied housing; Deprivation of Liberty Safeguards never described as applying in someone's own home (the Court of Protection route instead); a landlord and provider with a shared director declared and managed as a conflict of interest |
+| **Links and references** | Every link in the final Word file opened on submission day (Care Sync's link-checking skill), and every law referenced as the current Act, not a Bill or an out-of-date version |
+
+Every rule shows the exact sentence, the reason and a suggested fix. Blockers stop submission; warnings need a person to confirm. New refusal grounds that CQC raises are added to the rules through the learning loop (section 10.4), so the Pack Doctor gets stronger with every case.
+
+---
+
+## 48. Care Sync Academy (staff learning)
+
+Care Sync already trains staff well: a first-day induction, team training sessions with presenters, judges and quizzes, a facilitator guide and an answer sheet. The Hub gives this a home:
+- **Learning paths by role.** Enquiry and sales; project delivery; tenders. Each has its first-week checklist ("what good looks like").
+- **Session library.** Recorded or live sessions (for example the CQC registration training), with slides, facilitator notes and the questions used.
+- **Quizzes with scores.** Questions from the induction and training sessions, the sales new starter sign-off (24 questions) and the call review rubric. Answers stay hidden until the person has answered.
+- **Sign-off before working alone.** A new starter works on the practice client (section 11.6) and must pass their path before taking a live client. A manager signs off.
+- **Refreshers.** Short quizzes repeat on a schedule and whenever a rule changes (for example a new CQC refusal ground).
+- **Feedback.** Each session ends with the three questions from the training deck (one thing you will check differently, one open question, a score), which shape the next session.
+
+---
+
+## 49. Closing the remaining gaps
+
+### 49.1 Invoicing, payments and accounts
+Invoices, deposits, instalments and receipts live on each client's record and sync with **Xero** (or the accounting software Care Sync uses), so nothing is typed twice. Credit control reminders follow the client's preferences, and refunds and credit notes need manager approval. The client sees what is paid and what is due, with no surprises (section 29).
+
+### 49.2 Complaints about Care Sync
+A simple, visible way for a client to raise a complaint about Care Sync's own service, with an acknowledgement within 1 working day, a named handler who is not the person complained about, a response target, and a record of lessons learned. Complaints are reviewed monthly by the directors.
+
+### 49.3 Partner access (for example AssuredBid)
+On joint packages, a partner organisation gets a limited partner login: only the clients and items they work on, only with the client's agreement, all activity logged, and access removed automatically when the work ends.
+
+### 49.4 Regulatory watch
+A staff feed of changes from CQC, CIW, RQIA, Ofsted, the Procurement Act guidance and relevant law. Each change is tagged with the templates, policies and clients it affects, so the Hub can flag "12 supported living clients need their safeguarding policy updated" and create the tasks.
+
+### 49.5 Proof bank
+Marketing and sales claims are worked out from the Hub's own records and kept in one approved list with their evidence: first-time registration approval rate, providers supported, tender outcomes, client reviews. Sales, the website and documents use only the approved wording, so every claim is substantiated (as advertising rules require) and the same everywhere.
+
+### 49.6 Data protection operations
+A queue for subject access requests, correction and deletion requests, with legal deadlines tracked; a breach log with the 72-hour reporting clock; the record of processing activities; and a data protection impact assessment kept up to date.
+
+### 49.7 Providers with several locations
+One client can have several locations, each with its own address, registered manager, service types and CQC location ID, and each checked against the master record.
+
+### 49.8 Closing a client
+When work ends, a closure checklist runs: final update and Registration File sent, invoices settled, vault logins handed back or deleted, access removed, closure approved by a manager, and records kept or deleted on the retention schedule. The client keeps their documents.
+
+### 49.9 Brand voice guard
+Client-facing messages and documents are checked against Care Sync's voice rules from the staff induction: words never used (patient, guaranteed, cheap or basic, reach out), care home words in the wrong setting, British English, and no dashes. Staff see a gentle suggestion before sending.
+
+### 49.10 Reliability
+UK hosting, daily backups with tested restores, an uptime target, a status page for staff, and alerts when email delivery or an integration fails.
+
+---
+
+## 50. Inconsistencies found in Care Sync's own materials
+
+These should be resolved before launch, because the Hub, the website and sales will all use one approved version (section 49.5):
+1. **Founding year:** the staff induction says Care Sync was founded in 2023; the sales playbook says Care Sync Experts Ltd was established in 2024.
+2. **Staff training:** the induction lists "Comprehensive Training" and "Training Matrix" as services; the sales playbook says Care Sync does not deliver staff training. Decide whether training is offered, and if so, what exactly.
+3. **"Former CQC senior inspector managers":** the induction calls this the biggest trust signal, but it is not in the sales playbook's confirmed proof list. It needs evidence on file before it is used in marketing.
+4. **CIW and RQIA forms:** these could not be reviewed in detail. Please share their question lists or response sheets.
+
+---
+
+## 51. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1646,6 +1787,8 @@ A branded app (starting as an installable web app) with push notifications, a do
 5. **Retention period:** How long should identity documents and DBS certificates be kept after a journey ends?
 6. **Payments:** Should clients pay (for example for extra sessions) inside the Hub, or does payment stay in your current system?
 7. **GoHighLevel:** Answered: it is the sales CRM. Confirm that a won deal (signed agreement and paid deposit) should start a Hub journey automatically.
+8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
+9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
 10. **Price book items marked Pending:** retained tender rate, policy fees, variation prices, bid review VAT, and mock inspection and marketing prices for registration-only clients.
 11. **Logins spreadsheet:** agree to move it into a password manager now, before the Hub is live.
 12. **Tender form passwords:** agree to remove the portal username and password questions from the Google Form now.
@@ -1662,5 +1805,9 @@ A branded app (starting as an installable web app) with push notifications, a do
 23. **Payments:** which payment provider (for example Stripe or GoCardless) and the standard instalment schedule, so "accept, sign and pay" can be built.
 24. **Third-party links:** agree the wording clients approve before the Hub contacts their landlord, lender, referee or accountant.
 25. **Call recording:** agree the consent wording for recording and summarising calls.
-8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
-9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
+26. **Super admins:** confirm who holds the two super admin accounts (section 46), and who approves a break-glass request when one of them is away.
+27. **Accounting software:** do you invoice in Xero, QuickBooks or another system, so invoices, deposits and instalments can sync (section 49.1)?
+28. **Partner access:** confirm that AssuredBid and any other partners should get limited partner logins, and what each partner may see (section 49.3).
+29. **Inconsistencies:** agree the correct founding year, whether "Comprehensive Training" stays on the website, and the evidence behind the "former CQC senior inspector" wording (section 50), so the Hub, emails and sales scripts all say the same thing.
+30. **CIW and RQIA onboarding forms:** please share the question list or the response sheet for each form. Google Forms cannot be read from Drive, so these two have not been checked line by line yet.
+31. **Refusal library:** confirm we may turn the anonymised reasons from past CQC refusals into Pack Doctor rules (section 47), with no client names kept.
