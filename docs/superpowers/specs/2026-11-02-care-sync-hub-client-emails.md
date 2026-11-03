@@ -122,6 +122,34 @@ Button: Answer the question
 
 {{consultant_name}}
 
+### 2.5 Your manager's invite (sent to the manager)
+**Trigger:** the client names someone else as registered manager (question 2)
+**Subject:** {{client_first_name}} has asked you to do your part
+
+Hi {{manager_first_name}},
+
+{{client_first_name}} has named you as registered manager for {{company_name}}, and Care Sync Experts is helping with the CQC registration.
+
+Your part is a few short questions and a couple of photos. You can do it on your phone, a little at a time, and only you and Care Sync can see your answers.
+
+Button: Start my part
+
+{{consultant_name}}
+
+### 2.6 Business email connected
+**Trigger:** the client's business email is connected and its login stored in the vault
+**Subject:** We are now watching for CQC emails for you
+
+Hi {{first_name}},
+
+Your business email, {{business_email}}, is now connected. We file only emails from CQC, CIW, RQIA and tender portals, and your other emails are never copied.
+
+You can see every time we sign in, and why, on your privacy page. You can withdraw this at any time.
+
+Button: See your privacy page
+
+{{consultant_name}}
+
 ---
 
 ## 3. Delivery
@@ -172,6 +200,20 @@ Button: Review and sign
 
 {{consultant_name}}
 
+### 3.4 Session booked
+**Trigger:** the client books one of their 3 sessions (reminders follow the day before and an hour before)
+**Subject:** Your session with {{coach_name}} is booked
+
+Hi {{first_name}},
+
+Your session {{session_number}} of 3 with {{coach_name}} is booked for {{session_date}} at {{session_time}}, by video.
+
+The link is below and on your Today page. If anything comes up, you can change the time in your Hub.
+
+Button: Add to my calendar
+
+{{consultant_name}}
+
 ---
 
 ## 4. With CQC
@@ -183,7 +225,7 @@ Hi {{first_name}},
 
 We submitted your application to CQC today, {{submission_date}}.
 
-What happens next: CQC confirms they have received it, then may ask for more information or invite your manager to an interview. CQC sets its own timetable, so we cannot give you a date, but we check every week and tell you the moment anything arrives.
+What happens next: CQC confirms they have received it, then may ask for more information or invite your manager to an interview. CQC sets its own timetable, so we cannot give you a date. We watch your business email for CQC and tell you the same day anything arrives, and you still get your update every Friday.
 
 Nothing is needed from you right now.
 
@@ -256,20 +298,6 @@ Thank you for trusting us with this,
 
 Note: every registered client receives this invitation, whatever their feedback score. No incentive is ever offered for a review.
 
-### 5.4 Review reminder (once, 7 days later, then stop)
-**Trigger:** 7 days after 5.1, only if neither review link has been opened
-**Subject:** Would you share your experience?
-
-Hi {{first_name}},
-
-If you have a couple of minutes, a short review of your experience with Care Sync helps other providers decide who to trust with their registration.
-
-Review us on Google, or Review us on Trustpilot. Whatever you write, thank you.
-
-This is the only reminder we will send.
-
-{{consultant_name}}
-
 ### 5.2 Notice of Proposal (calm plan)
 **Subject:** CQC has written to you, and we have a plan
 
@@ -295,6 +323,20 @@ CQC has returned your application and explained what it needs. We have read thei
 You will get an update every week until it is back with CQC.
 
 Button: See the recovery plan
+
+{{consultant_name}}
+
+### 5.4 Review reminder (once, 7 days later, then stop)
+**Trigger:** 7 days after 5.1, only if neither review link has been opened
+**Subject:** Would you share your experience?
+
+Hi {{first_name}},
+
+If you have a couple of minutes, a short review of your experience with Care Sync helps other providers decide who to trust with their registration.
+
+Review us on Google, or Review us on Trustpilot. Whatever you write, thank you.
+
+This is the only reminder we will send.
 
 {{consultant_name}}
 
@@ -420,6 +462,20 @@ Button: See your year
 
 ## 7. Tenders
 
+### 7.0 Tender submitted
+**Trigger:** the bid is submitted on the buyer's portal
+**Subject:** Your {{tender_name}} bid has been submitted
+
+Hi {{first_name}},
+
+We submitted your bid for {{tender_name}} today, ahead of the buyer's deadline. The portal receipt is attached and saved in your Hub.
+
+The buyer expects to announce results around {{award_date}}. We will tell you as soon as we hear.
+
+Button: See your tender
+
+{{consultant_name}}
+
 ### 7.1 Tender won
 **Subject:** You have won a place on {{tender_name}}
 
@@ -464,6 +520,38 @@ If there is anything we can help with, reply to this email. If now is not the ri
 Button: Open my Hub
 
 {{consultant_name}}
+
+---
+
+## 9. Account and care
+
+### 9.1 Emergency access to your account
+**Trigger:** a super admin approves break-glass access to the client's vault (section 46.2)
+**Subject:** We used emergency access to your account today
+
+Hi {{first_name}},
+
+Today at {{time}}, {{staff_name}} used emergency access to your {{account_name}}, because {{reason}}. A Care Sync director approved it, and access ended automatically after {{hours}} hours.
+
+You can see exactly what happened on your privacy page. If you have any questions, reply to this email.
+
+Button: See your privacy page
+
+{{director_name}}, Director
+
+### 9.2 We have received your concern
+**Trigger:** the client raises a concern in their Hub
+**Subject:** We have received your concern
+
+Hi {{first_name}},
+
+Thank you for telling us. Your concern has gone to {{director_name}}, a director who is not involved in your day-to-day work.
+
+{{director_first_name}} will be in touch by {{response_date}}. Your work carries on as normal in the meantime.
+
+Button: See your concern
+
+{{director_name}}, Director
 
 ---
 

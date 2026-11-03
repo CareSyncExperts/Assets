@@ -1778,7 +1778,80 @@ These should be resolved before launch, because the Hub, the website and sales w
 
 ---
 
-## 51. Open questions for Care Sync
+## 51. Client side, start to finish (audit and super admin alignment)
+
+Every client screen was checked one by one, against each other, against the email library and against the super admin (section 46). This section records what was fixed, what was added, the full journey, and the rules that keep the client experience calm whatever is changed in settings.
+
+### 51.1 What the audit found and fixed
+| Found | Fixed |
+|---|---|
+| Two different client companies across the screens (one company on some, another on the rest) | One client story everywhere: Harbour Lane Care Ltd, director Amara Okafor, registered manager Ruth Bennett, consultant Daniel, coach Millicent, onboarding lead Grace |
+| Today said policies were still being drafted, while other screens showed them approved | Today now shows the business plan in final checks, matching the checklist and the documents room |
+| The 3 sessions were credited to Daniel on some screens and Millicent on others | All 3 sessions are with Millicent (kick-off, document review, interview practice), as the Drive offer says |
+| Wrong weekdays (a Thursday that was a Friday, a Friday that was a Saturday) and a Notice of Proposal served on the day of submission | Every date checked; the CQC screen follows one believable timeline |
+| "About 10 minutes" and "About 2 minutes" on documents and signing | Removed. No time estimates anywhere (section 38) |
+| Two separate "Your documents" screens that did not link | One Documents tab with two parts: **From you** (evidence) and **Written for you** (the pack) |
+| The invited manager's form read like a long form ("Section 4 of 9") | It is now the manager's own short task: "Hi Ruth, 3 of 5 done, 2 quick questions left" |
+| The registered office did not match the flat in the address question | Companies House, tenancy and question now tell one story (Flat 3 is right, the form said Flat 2) |
+| No way to see what Care Sync had done from Today or Journey | Both now link to the done-for-you checklist |
+| Gendered pronouns for people in mockups | Neutral wording throughout |
+
+### 51.2 The ten steps
+| Step | The client sees (board) | The client does | We do | Emails | Super admin controls |
+|---|---|---|---|---|---|
+| 1. Won and welcomed | 25 Welcome | Nothing to type | Hub opens from the won deal; team assigned | 1.1, 1.2 | Packages, team rules, welcome wording and video |
+| 2. Three questions | 23, 26, 16 | Three taps and one name | Companies House fill-in; manager invited | 2.1, 2.5 | Question sets per package; Companies House key |
+| 3. Documents and email | 3, 12, 15, 27 | Photos and one-tap answers | Photos read; address checked; email login into the vault | 2.2, 2.4, 2.6 | Reminder timings, quiet hours, vault roles, retention |
+| 4. Writing and review | 1, 2, 21, 18, 4, 28 | Comments, approves, books session 2 | Pack written; Pack Doctor checks; Friday update | 3.1, 3.2, 3.4 | Pack Doctor rules, update template, reply-time promise |
+| 5. Sign | 19 | Signs once | Second consultant check; consistency check | 3.3 | E-signature settings; who can approve a pack |
+| 6. Sent to CQC | 5 (Before we send) | Nothing | Sent from the client's own email | 4.1 | Email connection health; CQC email rules |
+| 7. With CQC | 5, 6, Interview Preparation Hub link | Answers with us; interview practice | Replies drafted; interview prepared | 4.2, 4.3, 4.4 | Watch rules, reminder timings, Interview Hub link |
+| 8. Decision | 20, 17, 5 (Notice of Proposal) | Celebrates, or reviews a calm plan | Registration File; or written response within 28 days | 5.1 to 5.4 | Review links and reviews policy |
+| 9. Aftercare | 30, 29 | Monthly check-in; readiness list | Check-ins, policy review reminders, inspection readiness | 6.1, 6.2, 6.4, 6.7, 6.8 | Aftercare length per package; check-in rhythm |
+| 10. Grow, then hand back | 30, 31 | Chooses what fits, if anything | Tender matches, supported living, PIR; logins handed back | 6.3, 6.5, 6.6, 7.0 to 7.2, 8.1 | Price book, offer rules, hand-back checklist, deletion |
+
+Always on at every step: Ask Care Sync (6), Account and privacy (29), the Friday update, the CQC watch and the done-for-you checklist (21). Board 32 shows this map on the canvas.
+
+### 51.3 Client screens added
+- **25 Welcome:** the first moment after the deal is won. Agreement and deposit already ticked, the team introduced with what each person does, a hello video from the consultant, "how it works" in three lines, one button to start question 1, and the kick-off booking. Magic-link sign-in, no password.
+- **26 Question 2, your manager:** "It will be me" or "Someone else" (name and mobile or email), then the nominated individual in one tap, using the directors found at Companies House. The manager gets their own invite, so the client never chases.
+- **27 Your business email:** the CQC channel. Either the email Care Sync set up (in the client's name) or the client's own email and password, straight into the vault. Four plain promises (only regulator and tender emails filed; sent from your address; every sign-in visible; withdraw any time) and a link to the signed authority.
+- **28 Sessions:** the 3 sessions with Millicent. Session 1 done with notes, session 2 booked by tapping a day and time (only free times shown), session 3 unlocks when CQC sets the interview date. Extra sessions through Ask, never pushed.
+- **29 Account and privacy:** who can see the client's information and why, every time anyone looked (the same audit log the super admin sees, in plain words), the business email connection, contact preferences and quiet hours, download everything, correct something, how long things are kept, and "Raise a concern" that goes to a director.
+- **30 Aftercare:** the post-registration home. Aftercare month counter, the next monthly check-in, a "ready for your first inspection" checklist, three growth options picked for this client with confirmed prices and a gentle "Tell me more", and the Registration File.
+- **31 Your tender:** for tender clients. Internal submission date ahead of the buyer's deadline, at most 3 things waiting on the client (a voice note story, approving prices), each answer with its share of the score and status, and buyer clarifications already read for them.
+- **5 CQC centre** gains a third state, **Before we send**, so the CQC tab is useful from day one: pack readiness, the business email connection, and what happens after submission, with no promises about CQC's timescales.
+
+### 51.4 Client rules the super admin cannot switch off
+These protect the calm, person-centred experience (section 34) and Care Sync's reputation. Settings can change wording and timings, but not these:
+1. At most **3 tasks** shown to a client at once, each one photo, one tap or a few words.
+2. **No time estimates** on forms, tasks or documents.
+3. **Every look is logged and shown** to the client on their privacy page, including "view as" and emergency (break-glass) access. Break-glass also sends the client an email the same day.
+4. **Quiet hours** apply to texts and messages, except for a CQC or tender deadline.
+5. **Reviews:** every registered client is invited, once, with one reminder; no incentives; no filtering of unhappy clients.
+6. **Growth offers:** only confirmed prices from the price book, no false urgency, no "free", no guarantees, never more than one new suggestion a month, and none before registration except the services the client already chose.
+7. **Complaints** always go to a director, never to the person complained about, with acknowledgement within 1 working day (section 49.2).
+8. **Logins** never appear in messages, emails, exports or AI tools, and are handed back when the work ends.
+
+### 51.5 Super admin settings that shape the client experience
+| Super admin area (section 46.1) | What the client notices |
+|---|---|
+| Packages and price book | Which tracks appear in Journey, the done-for-you list, and the prices shown in Aftercare |
+| Journey templates and forms | The 3 questions, small tasks and their wording, and when each task arrives |
+| Emails and messages | Every email in the library, signatures, quiet hours |
+| Automation rules | Reminders, the Friday update, CQC email alerts; failures go to staff, never to the client as an error |
+| Integrations | Company search, address checks, the business email connection, signing and the interview link |
+| Branding | Logo, colours and wording in the Hub, emails and documents |
+| Data and retention | "How long we keep things" and "Download everything" on the privacy page |
+| Security and audit | The "Every time we looked" list on the privacy page |
+| View as | Staff can see exactly what the client sees; the client sees that it happened |
+
+### 51.6 Emails added to the library
+2.5 Your manager's invite (sent to the manager), 2.6 Business email connected, 3.4 Session booked and reminders, 7.0 Tender submitted (with the portal receipt), 9.1 Emergency access to your account, and 9.2 We have received your concern.
+
+---
+
+## 52. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1811,3 +1884,7 @@ These should be resolved before launch, because the Hub, the website and sales w
 29. **Inconsistencies:** agree the correct founding year, whether "Comprehensive Training" stays on the website, and the evidence behind the "former CQC senior inspector" wording (section 50), so the Hub, emails and sales scripts all say the same thing.
 30. **CIW and RQIA onboarding forms:** please share the question list or the response sheet for each form. Google Forms cannot be read from Drive, so these two have not been checked line by line yet.
 31. **Refusal library:** confirm we may turn the anonymised reasons from past CQC refusals into Pack Doctor rules (section 47), with no client names kept.
+32. **Sessions:** confirm Millicent runs all 3 sessions, including the kick-off, and whether extra sessions can be bought (and the price).
+33. **Aftercare rhythm:** confirm a monthly check-in for the 12 months of aftercare, and who leads it.
+34. **Complaints:** agree the full response target after the 1 working day acknowledgement, and which director handles complaints.
+35. **Default quiet hours:** confirm 8pm to 8am as the default for texts and messages.
