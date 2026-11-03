@@ -1915,7 +1915,71 @@ Default caller (Divine) and backup callers, the target time after payment, worki
 
 ---
 
-## 53. Open questions for Care Sync
+## 53. Tenders as a service of their own (what real bids taught us)
+
+Tender writing is a separate service. Many tender clients are established providers who never buy a registration, and some buy both. This section was written after reviewing the Tender and Tender Writing folders in Drive (a live Procurement Act 2023 framework bid with its technical and social value drafts, the buyer's published clarification log, selection and method statement questionnaires, evidence packs, the Client Tender Onboarding deck, the tender sales playbook and the staff tender writing course) and every question header of the Tender Preparation Questionnaire. No client details were copied.
+
+### 53.1 Three kinds of tender client, one Hub
+| Client | What they see | How it starts |
+|---|---|---|
+| **Tender only** (established provider) | A tender home (board 49): live bids, tenders matched for them, results, and their tender profile. Navigation is Today, Profile, Documents, Ask | Payment and the introduction call (section 52), then the tender profile pre-filled from Companies House and the CQC register |
+| **Registration plus tender** | One Hub with two tracks. Journey shows Registration and Tender side by side, and every answer is shared, never asked twice | The tender profile is pre-filled from the registration record |
+| **Retained** (several bids a year) | The same tender home, with bids used this year and the matches from the Tender Radar | Each new bid only asks what has changed |
+
+### 53.2 Eligibility comes first (board 47)
+Real buyers set conditions that reject a bid before any answer is read. The Hub checks them at the bid decision and again after every clarification, per lot:
+- **CQC registration** covering the regulated activity and client groups for that lot. A provider that is not yet registered can still bid for lots that are **not regulated** (for example community support), and join regulated lots later where the market stays open.
+- **Operational presence**, for example an office in the county when the bid is submitted. Buyers have said in writing that a promise to open one after the award does not count.
+- **Delivery history**, for example 3 years, judged at service level, not on one person's past jobs. New providers are steered to markets that accept new suppliers, and to **private client examples** as evidence.
+- **Financial standing**, insurance levels, Central Digital Platform registration and share code, and any partners or subcontractors declared.
+
+### 53.3 Should we bid? (board 50)
+The client decides, lot by lot, with Care Sync's view beside each lot: which conditions are met, which are not, and why. For a registration plus tender client the Hub shows plainly which lots must wait for registration, and sets the reminder to join when they are registered. Declined matches are remembered, so they are not shown again.
+
+### 53.4 The tender profile (board 48)
+The Tender Preparation Questionnaire has 21 sections. The Hub keeps them as one reusable profile, filled once in small tasks and checked before every bid:
+1. Tender details: portal link, reference and deadline read from the portal; authority to submit. **Portal usernames and passwords are never asked for**; Care Sync's bid lead is added as a portal user.
+2. Company: legal and trading names, addresses, numbers, VAT, ICO, Central Digital Platform share code, trading status.
+3. Regulator and registration: CQC, CIW or RQIA details, rating, inspection date, conditions, regulated activities and service types.
+4. Who you support: bands, ages, criteria and specialisms.
+5. Key people: contact, registered manager, nominated individual, directors or trustees.
+6. Money: turnover for 2 years, accounts filed, what a new company can offer instead, insurance with expiry dates, the accountant.
+7. Contract examples, with referee consent recorded.
+8. **Private client examples** (initials only, with the family contact's permission), which matter most for new providers.
+9. Your team: numbers, turnover, vacancies, Oliver McGowan training, **visa sponsorship**, drivers, languages, the lowest hourly rate (checked against the lawful wage), training, wellbeing, HR and care planning systems.
+10. Partners and community, and what the client could commit to every year (social value).
+11. Documents and policies held, who writes them, and a one-tap request for a policy quote.
+12. Proof and stories: what makes the service different, outcomes, figures for the last 12 months, accreditations, praise, 4 to 6 case studies (by voice note), and any concerns about the tender.
+13. Lots and capacity: which lots, hours they could take if they won everything, staff, and who leads the start-up.
+14. How you deliver, shown only for the settings in the lots: home care (areas, travel time, shortest visit, double-handed visits, nights, scheduling); supported living (model, nights, and the property, who provides it and its features); care home (beds, rooms, specialisms); community support (types, personal care, areas, hours).
+15. Declaration and consent.
+
+### 53.5 Every answer planned to score (board 46)
+For each question the answer planner holds:
+- the **lettered parts** the buyer asked for (a, b, c and so on), each ticked when covered;
+- the **specification sections** the buyer expects to see addressed;
+- the **word limit, weighting and minimum score**. Buyers can reject the whole bid if any question scores below the minimum, so a question at risk turns red;
+- the **scoring bands**, including what earns the top mark (often "material added value" at no extra cost);
+- **required attachments** (for example a training matrix, without which the score is reduced);
+- the **evidence used** from the client's library (figures, ratings, anonymised case studies, dated reviews with their source);
+- **added value commitments** and other promises, each sent to the promise register for the client to approve.
+
+### 53.6 Buyer clarifications and the return checklist (board 47)
+- **Clarification watch:** the Hub reads every clarification the buyer publishes, not only Care Sync's own questions. The bid lead marks each one "affects us" or "no change", and the Hub shows what was done (for example "social value goes inside the technical upload"). The client is told about anything that changes their bid.
+- **Return checklist from the buyer's own documents:** for example the online selection questionnaire and a Word version, each scored questionnaire, social value, required attachments, fixed price acceptance (often pass or fail rather than scored), TUPE information and declarations. This sits alongside the 8 standard checks in section 19.3.
+
+### 53.7 After submission
+Questions during evaluation (answered within the buyer's deadline), presentations or interviews (with a practice session first), the intention to award and the standstill period, and the **assessment summary** with scores for each question, which feeds the answer bank. A win turns the promise register into the start-up checklist. A loss gives three improved answers and a reminder when the framework or market reopens.
+
+### 53.8 Staff tender writing course
+The Week 1 and Week 2 course in Drive (what a tender is, questionnaire and method statement masterclasses, practice questions with marked feedback rounds) becomes a track in the Care Sync Academy (section 48). A new writer drafts practice answers against real scoring bands, gets marked feedback in rounds, and is signed off before writing for a client.
+
+### 53.9 Emails added
+7.3 Should we bid (your decision needed), 7.4 The buyer changed something that affects your bid, and 7.5 A framework or market you can join is open again.
+
+---
+
+## 54. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1955,3 +2019,6 @@ Default caller (Divine) and backup callers, the target time after payment, worki
 36. **Introduction calls:** confirm Divine as the default caller, who the backup callers are, and the target time after payment (suggested: within 2 working hours, or by 10:00 the next working morning).
 37. **Phone system:** should introduction calls be made through GoHighLevel's phone system (so they are logged automatically) or from staff mobiles?
 38. **Deposits:** which payment methods are accepted for the deposit, and who marks bank transfers as paid.
+39. **Tender prices:** confirm the retained tender package price, whether bid review is plus VAT, and the price for joining a dynamic market or framework application (often shorter than a full tender).
+40. **Visa sponsorship questions:** confirm the tender profile should ask how many staff are sponsored and the licence status, since buyers increasingly ask about workforce stability.
+41. **Tender writing course:** confirm the Week 1 and Week 2 course should become the Academy track, and who marks practice answers.

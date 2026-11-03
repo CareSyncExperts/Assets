@@ -529,6 +529,48 @@ Button: Book a feedback review
 
 {{bid_lead}}
 
+### 7.3 Should we bid?
+**Trigger:** a tender is matched to the client, or a new tender needs a lot-by-lot decision
+**Subject:** A tender that could suit {{company_name}}
+
+Hi {{first_name}},
+
+{{tender_name}} has opened, and it looks like a fit for {{company_name}}. We have checked each lot against what the buyer asks for, so you can see straight away where you can bid and where you would need to wait.
+
+The decision is yours. It takes a minute in your Hub, and we are happy to talk it through.
+
+Button: See the lots
+
+{{consultant_name}}
+
+### 7.4 The buyer changed something
+**Trigger:** a published clarification is marked "affects us"
+**Subject:** An update from the buyer on {{tender_name}}
+
+Hi {{first_name}},
+
+The buyer has answered a question from bidders, and it affects your bid: {{clarification_summary}}.
+
+What we have done: {{our_action}}. {{client_action_sentence}}
+
+Button: See your tender
+
+{{consultant_name}}
+
+### 7.5 A framework you can join is open again
+**Trigger:** a framework reopens or a dynamic market you were waiting for becomes available to you (for example after registration)
+**Subject:** You can now join {{market_name}}
+
+Hi {{first_name}},
+
+{{market_name}} is open to new providers again{{after_registration_clause}}. Last time we agreed to come back to it when this happened.
+
+Your tender profile is already {{profile_percent}}% ready, so only a few new questions would come to you.
+
+Button: Decide in your Hub
+
+{{consultant_name}}
+
 ---
 
 ## 8. Win-back
