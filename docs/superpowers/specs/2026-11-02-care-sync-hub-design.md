@@ -1650,7 +1650,7 @@ A branded app (starting as an installable web app) with push notifications, a do
 
 ## 46. Super admin and system settings
 
-Care Sync needs two **super admins** (for example Collins and one other director) who control the whole system, separate from everyday staff roles. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
+Care Sync needs two **super admins** (for example Collins and one other senior person) who control the whole system, separate from everyday staff roles. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
 
 ### 46.1 What the super admin controls
 | Area | What they can do |
