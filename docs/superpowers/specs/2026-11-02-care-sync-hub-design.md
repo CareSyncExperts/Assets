@@ -726,9 +726,9 @@ If the deadline is tighter, the Hub compresses the plan but keeps the order, and
 - **Lots decision:** for each lot, four checks (fit, area, evidence, capacity) and a recorded yes or no with the reason. A lot failing two checks is flagged "usually a no for now".
 - **Reusable tender profile:** captures company, regulator, services, key people, contract examples, workforce, partnerships and documents once, for every future bid. It is presented as small tasks (section 38), pre-filled from the client record and the CQC register, and much of it can be gathered during the onboarding meeting itself. Later tenders only ask what has changed.
 - **Evidence library per client:** contract examples from the last 3 years (who, what, how many people, hours, value, dates, outcomes), anonymised case studies, referees with permission recorded, and standard documents (accounts, organisation chart, CVs, CQC certificate and latest report, Statement of Purpose, insurance with levels and expiry dates, council quality monitoring reports, ICO number, Data Security and Protection Toolkit status, Cyber Essentials, ISO certificates). Expiry dates feed the expiry watch.
-- **Question-by-question drafting** in the Review Room, showing each question's word limit, weighting and the buyer's scoring bands, with a live word count. Every answer gets a second consultant review sign-off before the client sees it.
-- **Promise register:** every commitment written into the bid ("every new carer shadows for three shifts") is listed separately, and the client approves each one. If the bid wins, the promise register becomes the contract mobilisation and compliance checklist.
-- **Clarification log:** questions drafted with the client, submitted through the portal before the clarification deadline, and the buyer's answers recorded.
+- **Drafts as files:** the bid is written in Word by the bid team, outside the Hub, and submitted on the buyer's portal. Each draft version is uploaded to the tender record, shared with the client to comment on and approve, and a second consultant's check is recorded as a task.
+- **Commitments noted:** any commitment the client agrees to in the bid (for example "every new carer shadows for three shifts") is noted on the tender record, so that if the bid wins it becomes part of the start-up checklist.
+- **Clarifications noted:** questions sent to the buyer and any buyer answers that affect the bid are recorded as notes on the tender record, and the client is told.
 - **Price support:** the price is always the client's decision. The Hub shows a lawful-wage check (National Living Wage £12.71 an hour from 1 April 2026 for workers aged 21 and over, including travel time, plus holiday pay, pension and National Insurance) and warns if a rate looks too low to deliver lawfully.
 - **Pre-submission compliance checklist** (every item must be ticked, with evidence where relevant), covering the eight ways to fail at the first gate:
   1. Submitted before the deadline, with margin
@@ -744,7 +744,7 @@ If the deadline is tighter, the Hub compresses the plan but keeps the order, and
 
 ### 19.4 What the client sees for a tender
 
-A tender tracker with a countdown to the closing date and to **their** next deadline (form, documents, comments, sign-off), the lots they are bidding for, the documents still needed, drafts to review in the Review Room, the promise register to approve, and the outcome.
+A tender tracker with a countdown to the closing date and to **their** next deadline (form, documents, comments, sign-off), the lots they are bidding for, the documents still needed, drafts to review (Word documents shared from the tender record), and the outcome.
 
 ---
 
@@ -850,7 +850,7 @@ Staff work in the Hub; calls, notes, stages, tasks and opt-outs sync to GoHighLe
 |---|---|
 | **1. Foundations and migration** | Roles, client records, address lookup with UPRNs, Companies House checks, the address matching engine and consistency matrix, smart onboarding forms with automatic gate checks and downloads, onboarding gates, stages and evidence rules, pack components, deadline sequence, weekly update composer, document vault, secure vault, register import |
 | **2. Client experience** | Client Hub (Today, journey, documents, Review Room, CQC centre, Ask), notifications, e-signatures |
-| **3. Tenders** | Tender Radar, tender delivery journey and workspace, evidence library, promise register, compliance checklist |
+| **3. Tenders** | Tender Radar, the tender record (CRM: tender details, dates, tasks, files, notes, result), evidence library, submission checklist |
 | **4. Sales and growth** | Opportunity Engine, sales workspace, call cards, GoHighLevel sync, price book controls |
 | **5. Intelligence** | AI drafting, Sync Assistant and Staff Assistant, consistency check, learning loop, dashboards |
 
@@ -1016,7 +1016,7 @@ How a consultant doing CQC applications and tenders would want the system to wor
 5. **CQC correspondence assistant.** When a CQC email is captured, the Hub extracts the request and the deadline, finds the relevant documents and drafts a reply for the consultant to edit and send.
 6. **Command bar.** Press one shortcut and type to jump to any client, document or action ("Bright Path SoP", "send update", "new tender").
 7. **Generated documents.** Statement of Purpose, policy headers, business plan and tender facts generated from the single client record, so a change made once updates everywhere at the next version.
-8. **Everything for tenders in one place.** Tender Radar, evidence library, question drafting with word counts and weightings, the promise register and the compliance checklist (section 19).
+8. **Everything for tenders in one place.** Tender Radar, the tender record, the evidence library and the submission checklist (section 19).
 9. **Four-eyes quality.** Second-person sign-off on packs, bids and anything sent to CQC.
 10. **Playbook at hand.** The "how we do this" guide beside every step, and the Staff Assistant for quick answers.
 
@@ -1444,7 +1444,7 @@ Good service is mostly communication. The Hub makes it automatic and makes silen
 | Doing the work | Templates and skills, document generation, Review Room with tracked suggestions, quality gate, Pack Doctor, consistency matrix (sections 5.3, 28, 30, 35) |
 | Keeping clients informed | Weekly update composer, work log, stage receipts, email library, promise tracking, communication health (sections 18.5, 32, 40, 42) |
 | CQC | Submission bundle sent from the client's email, automatic CQC email capture, outcome centre, deadline countdowns, correspondence assistant (sections 7, 27, 28, 41) |
-| Tenders | Tender Radar, call cards, tender workspace, evidence library, promise register, compliance checklist (sections 19, 24) |
+| Tenders | Tender Radar, call cards, tender record, evidence library, submission checklist (sections 19, 24, 53) |
 | Selling and growth | Opportunity Engine, price book, quotes and e-signed agreements, GoHighLevel sync, next-best-offer map (sections 24, 33) |
 | Signing and approvals | E-signatures, sign-offs, version locking (sections 20, 36) |
 | Security | Secure vault with client email logins, hand-back checklist, audit log (sections 13, 21, 41) |
@@ -1926,7 +1926,7 @@ Tender writing is a separate service. Many tender clients are established provid
 | **Registration plus tender** | One Hub with two tracks. Journey shows Registration and Tender side by side, and every answer is shared, never asked twice | The tender profile is pre-filled from the registration record |
 | **Retained** (several bids a year) | The same tender home, with bids used this year and the matches from the Tender Radar | Each new bid only asks what has changed |
 
-### 53.2 Eligibility comes first (board 47)
+### 53.2 Eligibility comes first
 Real buyers set conditions that reject a bid before any answer is read. The Hub checks them at the bid decision and again after every clarification, per lot:
 - **CQC registration** covering the regulated activity and client groups for that lot. A provider that is not yet registered can still bid for lots that are **not regulated** (for example community support), and join regulated lots later where the market stays open.
 - **Operational presence**, for example an office in the county when the bid is submitted. Buyers have said in writing that a promise to open one after the award does not count.
@@ -1954,22 +1954,21 @@ The Tender Preparation Questionnaire has 21 sections. The Hub keeps them as one 
 14. How you deliver, shown only for the settings in the lots: home care (areas, travel time, shortest visit, double-handed visits, nights, scheduling); supported living (model, nights, and the property, who provides it and its features); care home (beds, rooms, specialisms); community support (types, personal care, areas, hours).
 15. Declaration and consent.
 
-### 53.5 Every answer planned to score (board 46)
-For each question the answer planner holds:
-- the **lettered parts** the buyer asked for (a, b, c and so on), each ticked when covered;
-- the **specification sections** the buyer expects to see addressed;
-- the **word limit, weighting and minimum score**. Buyers can reject the whole bid if any question scores below the minimum, so a question at risk turns red;
-- the **scoring bands**, including what earns the top mark (often "material added value" at no extra cost);
-- **required attachments** (for example a training matrix, without which the score is reduced);
-- the **evidence used** from the client's library (figures, ratings, anonymised case studies, dated reviews with their source);
-- **added value commitments** and other promises, each sent to the promise register for the client to approve.
+### 53.5 The Hub is the CRM, not the writing tool
+Bids are written in Word by the bid team and submitted on the buyer's portal. The Hub keeps the **tender record** (board 11) so everyone knows exactly what is happening:
+- **Which tender:** buyer, reference, portal link, lots (bidding or not, and why), estimated value, clarification deadline, buyer's deadline, Care Sync's own submission date and when the result is expected.
+- **Stage:** found, bid decision, onboarding, writing, client review, submitted, result.
+- **Tasks and deadlines** with an owner each, planned back from the buyer's deadline (section 19.2), including the client's own tasks.
+- **Files:** the tender pack from the portal, each draft version (Word), the client's documents, the final submitted copy and the portal receipt.
+- **Notes and messages:** every client conversation, eligibility decisions, and buyer clarifications that affect the bid.
+- **People:** bid lead, second reviewer, the client's decision maker and who reads the portal inbox.
+- **Result:** won or not, the score, the feedback file, and when the framework or market reopens.
 
-### 53.6 Buyer clarifications and the return checklist (board 47)
-- **Clarification watch:** the Hub reads every clarification the buyer publishes, not only Care Sync's own questions. The bid lead marks each one "affects us" or "no change", and the Hub shows what was done (for example "social value goes inside the technical upload"). The client is told about anything that changes their bid.
-- **Return checklist from the buyer's own documents:** for example the online selection questionnaire and a Word version, each scored questionnaire, social value, required attachments, fixed price acceptance (often pass or fail rather than scored), TUPE information and declarations. This sits alongside the 8 standard checks in section 19.3.
+### 53.6 What the client sees
+The client's tender home (board 49) and tender detail (board 31) show the deadline countdown, what is waiting on them, drafts to review as Word documents, the files they have sent, and the result. Comments on drafts can be left in the Hub or on a call.
 
 ### 53.7 After submission
-Questions during evaluation (answered within the buyer's deadline), presentations or interviews (with a practice session first), the intention to award and the standstill period, and the **assessment summary** with scores for each question, which feeds the answer bank. A win turns the promise register into the start-up checklist. A loss gives three improved answers and a reminder when the framework or market reopens.
+Questions during evaluation (answered within the buyer's deadline), presentations or interviews (with a practice session first), the intention to award and the standstill period, and the **assessment summary** with scores for each question, which is stored on the tender record. A win turns the commitments noted on the tender record into the start-up checklist. A loss gives three improved answers and a reminder when the framework or market reopens.
 
 ### 53.8 Staff tender writing course
 The Week 1 and Week 2 course in Drive (what a tender is, questionnaire and method statement masterclasses, practice questions with marked feedback rounds) becomes a track in the Care Sync Academy (section 48). A new writer drafts practice answers against real scoring bands, gets marked feedback in rounds, and is signed off before writing for a client.
@@ -1979,7 +1978,38 @@ The Week 1 and Week 2 course in Drive (what a tender is, questionnaire and metho
 
 ---
 
-## 54. Open questions for Care Sync
+## 54. Complete onboarding: every question, stop and come back
+
+The Hub asks **every** question on Care Sync's CQC and tender forms, nothing less (Appendix C and Appendix D), but never as one long form. Clients can do it all in one sitting, a little at a time, or with us on a call, and always pick up exactly where they stopped.
+
+### 54.1 One home for the whole form (board 46)
+"Your registration details" lists the eight sections of the CQC form: your company; setting up your company (only if not formed); directors; what you will provide; registered manager; nominated individual; office and premises; declaration and signature. Each section shows its status in plain words:
+- **Done**, with what was filled in for the client ("Filled in from Companies House");
+- **In progress**, with the exact step ("Ruth: 5 of 8 steps. Stopped at 'Your GP'");
+- **Waiting for** a named person ("Waiting for Peter");
+- **Not needed**, with the reason ("Your company is already formed");
+- **Opens later** ("Last of all. Opens when the rest is done").
+
+Tapping a section shows every question in it, ticked or not, so nothing is hidden. The tender profile (board 48) works the same way for the 15 sections of the tender form.
+
+### 54.2 Save and resume rules
+1. **Every answer saves the moment it is given**, on the server, not in the browser. There is no "save" button to forget and nothing is lost if the phone dies.
+2. **Resume point:** the first unanswered question in the section the person last used. It appears as "Carry on where you left off" on Today, on the section list and in the reminder email.
+3. **Welcome back:** returning to a section shows what is already saved and how many steps are left, with "Carry on" and "Look over my answers first" (board 47).
+4. **Save and finish later** is always one tap away. The Hub confirms it is saved, says where they will pick up, and sends one gentle reminder outside quiet hours.
+5. **Any device:** the same magic link works on a phone, tablet or computer.
+6. **Each person has their own resume point:** the registered manager, nominated individual, each director, the landlord and the accountant each see only their own part and carry on from their own place.
+7. **Never asked twice:** answers already known (Companies House, the sale, the introduction call, photos read, earlier sections, earlier tenders) are filled in for the person to check.
+8. **Branching:** company already formed hides the formation section; the same person as manager and nominated individual completes the nominated individual section in one tap; "DBS not done yet" hands the task to Care Sync; "no professional registration" skips that step; tender settings appear only for the lots chosen.
+9. **Checks as you go:** UK date format, no impossible dates (such as a DBS issue date in the future), 12-digit DBS numbers, postcode lookup with UPRNs, a 5-year address timeline with gap detection, three accepted ID types, documents dated within 3 months where required, unlimited directors and examples.
+10. **Do it on a call:** a staff member can complete any section with the client on the phone, in the same fields, and the client just checks and signs.
+11. **Staff see exactly where everyone stopped,** and the onboarding gate (board 8) shows what is still missing.
+12. **The declaration opens last,** only when every other section is complete, and is signed electronically.
+13. **Download:** a PDF of all answers can be produced at any time (section 26.4), for the client and for the file.
+
+---
+
+## 55. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -2022,3 +2052,83 @@ The Week 1 and Week 2 course in Drive (what a tender is, questionnaire and metho
 39. **Tender prices:** confirm the retained tender package price, whether bid review is plus VAT, and the price for joining a dynamic market or framework application (often shorter than a full tender).
 40. **Visa sponsorship questions:** confirm the tender profile should ask how many staff are sponsored and the licence status, since buyers increasingly ask about workforce stability.
 41. **Tender writing course:** confirm the Week 1 and Week 2 course should become the Academy track, and who marks practice answers.
+42. **Questions beyond the form:** CQC's own registered manager application also covers employment history, qualifications and other roles held. Should the Hub collect these too (for example from the CV photo), or does Care Sync gather them separately today?
+43. **More than one referee:** the form asks for one referee for the manager. Confirm whether a second referee should be asked for.
+
+---
+
+## Appendix C. The CQC Registration Information Form, question by question
+
+Every question in the current CQC Registration Information Form (October 2026 version, columns A to DP of its response sheet) and where it lives in the Hub. Reviewed from the question labels only; no answers were copied. Board numbers refer to the mockup canvas.
+
+| # | Hub section | Who answers | Form question | How it is answered in the Hub | Checks |
+|---|---|---|---|---|---|
+| 1 | Your company | You | Is your limited company already registered with Companies House? | One tap. Yes: the formation questions are hidden. No: section 2 opens | Required |
+| 2 | Your company | You | Registered business name | Pre-filled from Companies House (company search) | Must match Companies House |
+| 3 | Your company | You | Trading name (if different) | Type, optional | Checked against the name used in every document |
+| 4 | Your company | You | Company registration number | Pre-filled from Companies House | 8 characters, checked live |
+| 5 | Your company | You | Registered office address | Pre-filled from Companies House | UPRN matched (section 27) |
+| 6 | Your company | You | Correspondence address (if different) | Postcode lookup, optional | UPRN matched |
+| 7 | Your company | You | Business telephone number | Pre-filled from the sale, check | UK number format |
+| 8 | Your company | You | Company email address | Pre-filled from the business email step | Email format |
+| 9 | Your company | You | Website (if applicable) | Type, optional | Link checked |
+| 10 | Your company | You | Type of legal entity | Pre-filled from Companies House | From the register |
+| 11 | Your company | You | Partners or owners who are not directors | Pre-filled from the persons with significant control list, add if missing | Matched to Companies House |
+| 12 | Your company | You | What care service type are you registering for? | Set from the package, check | Matches section 4 |
+| 13 | Setting up your company (only if not formed) | You | 1st, 2nd and 3rd choice company names | Type; availability checked live | Name availability check |
+| 14 | Setting up your company (only if not formed) | You | Trading name preference | Type, optional |  |
+| 15 | Setting up your company (only if not formed) | You | Type of company | Tap (for example private limited by shares) |  |
+| 16 | Setting up your company (only if not formed) | You | Registered office address | Postcode lookup | UPRN matched |
+| 17 | Setting up your company (only if not formed) | Each director | Full legal name, date of birth, nationality, country of residence, service address, occupation | Each director by their own link; ID photo fills name and date of birth | Date of birth not in the future; repeat for every director, unlimited |
+| 18 | Setting up your company (only if not formed) | Each director | Companies House identity verification (personal code) | Type the 11-character code, or a text link explaining how to get it | 11 characters |
+| 19 | Setting up your company (only if not formed) | You | Are the directors also the persons with significant control? PSC details if different | One tap, then add people | Ownership adds up to 100% |
+| 20 | Setting up your company (only if not formed) | You | Number of shares, value per share, single owner or share split | Tap and type | Splits add up to 100% |
+| 21 | Setting up your company (only if not formed) | You | Email for Companies House notices; lead director's mobile | Pre-filled, check | Formats |
+| 22 | Setting up your company (only if not formed) | You | Authorisation for Care Sync to incorporate; confirmation of accuracy | E-signature (section 36) | Name, time and version kept |
+| 23 | Directors | Each director | Full name, date of birth, mobile and email (Director 1 to 4, then 'more than four?') | Pre-filled from Companies House; each director confirms by their own link | Unlimited directors (no fixed 4 blocks) |
+| 24 | What you will provide | You | Which CQC regulated activities will you provide? | Tap to choose, set from the package | Matches Statement of Purpose (Pack Doctor) |
+| 25 | What you will provide | You | Service user bands you intend to support | Tap to choose with live preview (board 35) | Knock-on documents updated |
+| 26 | Registered manager | Manager | Title | Tap |  |
+| 27 | Registered manager | Manager | Full name | From the invite, check against ID | Must match ID |
+| 28 | Registered manager | Manager | Date of birth | Date, UK format; or read from ID | Real date, not in the future |
+| 29 | Registered manager | Manager | Email address; mobile number | From the invite, check | Formats |
+| 30 | Registered manager | Manager | Current address | Postcode lookup | UPRN matched; must match proof of address |
+| 31 | Registered manager | Manager | Addresses 1 to 5 for the last 5 years, and 'more than 5 addresses?' | Address timeline with postcode lookup and from and to months (board 47, step 2) | Full 5 years covered; gaps must be explained; no dates typed into address boxes |
+| 32 | Registered manager | Manager | Three forms of identification | Choose any three from the accepted list, then photograph each (board 34) | Bills and statements from the last 3 months |
+| 33 | Registered manager | Manager | Enhanced DBS completed? Certificate number, issue date, upload | Yes: number, date and photo (read from the photo). No: Care Sync arranges it | 12 digits; issue date real and not in the future |
+| 34 | Registered manager | Manager | Registered with a professional body? Body and registration number | Tap, then choose the body and type the number | Checked on the public register |
+| 35 | Registered manager | Manager | GP name, surgery name and address, permission for CQC to contact the GP | Search by surgery name or postcode; address filled in; GP name optional | Permission recorded |
+| 36 | Registered manager | Manager | Referee: title, first and last name, address, email, phone, permission for CQC to contact them | Type; Care Sync asks the referee first | Email and phone formats; permission recorded |
+| 37 | Nominated individual | You | Will the same person serve as both registered manager and nominated individual? | One tap. Yes: the nominated individual section is completed from the manager's answers | Required |
+| 38 | Nominated individual | Nominated individual | Full name, date of birth, email, mobile, current address | Pre-filled from the director record, check | As for the manager |
+| 39 | Nominated individual | Nominated individual | Addresses 1 to 5 for the last 5 years | Address timeline | Full 5 years, gaps explained |
+| 40 | Nominated individual | Nominated individual | Professional body and registration number | Tap, then type | Checked on the public register |
+| 41 | Nominated individual | Nominated individual | Three forms of identification | Choose three, photograph each | As for the manager |
+| 42 | Nominated individual | Nominated individual | Enhanced DBS completed? Certificate number, issue date, upload | As for the manager | 12 digits; real issue date |
+| 43 | Office and premises (from the Documents checklist) | You and your landlord | Commercial or home office; proof of legal occupation; landlord or lender permission; lease | Tap, photos, and a one-task link for the landlord (board 37) | Addresses matched across documents (board 14) |
+| 44 | Declaration and signature | A director | Signatory full name, position, signature, date | E-signature, last of all | Opens only when every other section is complete |
+
+What the live answers taught us (fixed by design): a DBS issue date was entered in the year 3026; address history boxes held dates such as "11/2010" and "Present" instead of addresses; a postcode was missing characters; directors were limited to four fixed blocks; signatures were typed names.
+
+## Appendix D. The Tender Preparation Questionnaire, section by section
+
+Every question in the Tender Preparation Questionnaire (about 236 questions, columns A to IB of its response sheet), grouped into the 15 sections of the reusable tender profile (section 53.4, board 48).
+
+| Section | Form questions | How it is answered in the Hub |
+|---|---|---|
+| 1. This tender | Portal link, tender name or reference, closing date and time, registered on the portal, PDF copies saved, authority to submit, completed this form before, what has changed since | Portal link pasted or matched from the Tender Radar; deadline read from the portal; returning clients answer only 'what has changed'. **Portal username and password are removed**: the bid lead is added as a portal user |
+| 2. Company | Legal and trading name, registered office, service delivery address, phone, email, website, date registered, company number, charity number, VAT number, ICO number, Central Digital Platform registration and share code, DUNS number, trading status | Pre-filled from Companies House and the client record; share code typed once and reused |
+| 3. Regulator and registration | Which regulator; more than one regulator; CQC provider ID, location IDs, web page, last inspection date, overall rating, conditions; CIW provider ID, web page, inspection date, Regional Partnership Board areas, Welsh Active Offer; RQIA number, web page, inspection date, HSC Trust areas; regulated activities and service types; non-regulated services | Pre-filled from the CQC register for CQC clients; only the regulator's own questions are shown |
+| 4. Who you support | Service user bands (CQC), range of needs (CIW), service user groups (RQIA), youngest and oldest age, inclusion and exclusion criteria, specialisms | Tap to choose; pre-filled from registration |
+| 5. Key people | Main contact (name, role, phone, email), registered manager (name, title, phone, email), nominated or responsible individual (name, qualification, phone, email), other senior staff, directors or trustees | Pre-filled from the client record |
+| 6. Money | Turnover last year and the year before, accounts filed, what a new company can offer instead, insurance cover and expiry dates, accountant's name and email | Accounts status from Companies House; insurance from the certificate photo; one-task link for the accountant |
+| 7. Contract examples | Up to 3 (repeat as needed): commissioner, service type, contact name, job title, email, referee agreed, what you delivered, people and hours a week, start and end dates, annual value | Repeating group with no limit; referee consent recorded |
+| 8. Private clients | Up to 3 (repeat as needed): initials only, service type, point of contact name, relationship, email, referee agreed, care delivered, hours a week, start and end dates, weekly or annual value | Repeating group; initials only, never full names |
+| 9. Your team | Total staff, size band, care workers, seniors, nurses, office staff, turnover, vacancies, Oliver McGowan training, sponsored work visas, drivers, languages, lowest hourly rate, who trains, training provider, who looks after wellbeing, HR system, care planning system | Taps and numbers; lowest hourly rate checked against the lawful wage |
+| 10. Partners and community | Types of partnerships, most important partners, what you already do for your community, what you could commit to every year | Type or voice note |
+| 11. Documents and policies | Company documents you can send, policies you already have, who writes your policies, a quote for writing or updating them, anything missing | Upload checklist; a policy quote request goes to sales |
+| 12. Proof and stories | What makes you different, outcomes you are proudest of, figures for the last 12 months, accreditations and memberships, awards and praise, 4 to 6 case studies, concerns about this tender | Voice notes welcome; case studies anonymised |
+| 13. Lots and capacity | Lots to bid for, hours you could take if you won every lot, staff on these lots, who leads the start-up | Tap lots from the tender record |
+| 14. How you deliver (only for the settings in the lots) | Home care: areas, towns or postcodes, maximum travel time, shortest visit, double-handed visits, waking nights or sleep-ins, scheduling and monitoring, services. Supported living: areas, support model, night support, who provides the property, and for each property its name, location, type, bedrooms, bathrooms, communal areas, kitchens, size, accessibility, safety, outside areas, amenities, landlord, managing company. Care home: name, address, type, specialist provision, registered beds, residents, single rooms, en-suite rooms, specialisms. Community support: types, personal care, areas, hours a week | Each block shown only if a lot includes that setting; properties are a repeating group |
+| 15. Declaration | Full name, job title, date, declaration, consent | E-signature |
+
