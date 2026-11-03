@@ -1568,7 +1568,76 @@ The command bar searches every client, person, company number, CQC reference, do
 
 ---
 
-## 45. Open questions for Care Sync
+## 45. Lessons from leading tools
+
+Researched on 3 November 2026: Teamwork.com, Rocketlane, GuideCX, monday.com, TaxDome, Karbon, Canopy, Clio, SuiteDash, Assembly (formerly Copilot), Moxo, Content Snare and HoneyBook. Findings come from search summaries of official help centres, release notes and reviews (the vendor sites themselves could not be opened from this session), so details should be confirmed before building. Only ideas that are new to this specification, or clearly better than it, are listed.
+
+### 45.1 Money and starting work
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Accept, sign and pay in one step** | HoneyBook, Canopy, TaxDome, SuiteDash | The client opens one proposal page, chooses a package, e-signs the engagement letter and pays the deposit. Payment is only possible after signing. The journey, welcome email, first tasks and invoice then start automatically, with no staff action |
+| **Good, better, best packages** | Canopy | One proposal shows, for example, registration only, registration plus tenders, and the full package, with prices from the price book. The client chooses which, not whether |
+| **Instalments with automatic payment and reminders** | HoneyBook, TaxDome | Fees split by stage are charged on the due date if the client opts in, with polite reminders before and after. Pricing and schedules follow the price book (the standard instalment schedule is still Pending) |
+| **Buy add-ons in the portal** | Assembly | Clients can buy an extra coaching session, a policy refresh or PIR help from a short list of services, without a call |
+
+### 45.2 Workflows that run themselves
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Stages that move on by themselves** | TaxDome | When the client finishes every item, signs or pays, the journey moves to the next stage automatically. Milestones that need evidence from CQC still need a person (section 18.3) |
+| **Client wording separate from staff stages** | TaxDome | Staff can use detailed internal stages while the client sees calm, plain wording such as "With CQC" |
+| **One template that branches** | TaxDome, Moxo | Tags such as domiciliary care, supported living, variation or Wales switch steps on or off, so one template covers many cases and steps only appear when relevant |
+| **Roles in templates, names later** | Teamwork | Templates assign "Tender writer" or "Case owner"; the manager picks a person later from a list showing who has capacity |
+| **Steps that wait for each other, with a predicted date** | GuideCX, Moxo | If an earlier step slips, later dates move too, and the Hub shows an honest expected submission date for the stages Care Sync controls |
+| **Simple automation rules** | Karbon, SuiteDash, HoneyBook | Directors set "when this happens, do that" rules (for example "when all tasks are done, mark the stage complete"), and can describe a rule in plain English for the Hub to set up |
+
+### 45.3 Less chasing, more doing
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Do it from the email or text** | GuideCX, Assembly, Teamwork | Clients reply, approve or upload straight from the message without logging in. Replies land on the right task |
+| **One-task links for other people** | Moxo, Teamwork Proofs | With the client's agreement, the Hub sends a secure link to a **landlord or mortgage lender** to upload the permission letter, a **referee** to confirm details, or an **accountant** to send figures. No account needed; the link expires |
+| **Reviewers and approvers** | Teamwork Proofs | A co-director can be invited to comment only, or to approve, on a document without a full login |
+| **Named reminder schedules** | Content Snare, Karbon | Staff pick a schedule when sending a request (gentle, standard, urgent), can preview every reminder, and reminders show the client's progress. After the last reminder, the task changes to "needs a call" and the owner is alerted |
+| **Not started by alerts** | GuideCX | Warns staff when an important task has not been started by a set date, before it becomes overdue |
+| **Bulk and repeating requests** | Content Snare, SuiteDash | One request sent to many clients at once (for example every supported living client after a law change), or repeated yearly for aftercare evidence. Client groups make this easy |
+| **Read receipts** | Clio | Staff see when a client opened a message or document, which ends "we never got it" confusion |
+
+### 45.4 One team inbox
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Shared inbox with labels** | Karbon, Teamwork Desk | All client and CQC email in one team inbox, synced with Gmail or Outlook, labelled automatically (CQC request, client question, document, urgent). One click turns an email into a task or attaches it to a journey |
+| **Collision warning** | Teamwork Desk | Warns when two staff start replying to the same email |
+| **Aftercare support requests** | Teamwork Desk | Aftercare questions become support requests with a reply target and a one-tap "How did we do?" |
+
+### 45.5 AI that saves staff time
+Every AI output is a draft for a person to check (section 30).
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Call notes to actions** | Rocketlane, Care Sync's own Google Meet practice | With consent, an onboarding or planning call becomes a summary, a draft follow-up email and a list of actions, risks and promised dates on the client's record |
+| **Morning brief** | HoneyBook | At 8am each person gets a short summary of today's priorities, clients going quiet and promises due |
+| **Meeting brief** | Assembly | Before any call, a one-page summary of the client's stage, recent messages, open questions and documents |
+| **Uploads checked and filed automatically** | Canopy, TaxDome, Moxo | Each upload is matched to the request it answers, renamed, filed and checked for completeness before staff look at it |
+| **Pre-filled repeat requests** | TaxDome, Canopy | Variation, PIR and aftercare requests are pre-filled from the original application |
+
+### 45.6 Insight and improvement
+| Idea | Learned from | What it does for Care Sync |
+|---|---|---|
+| **Health colour and "request an update"** | Teamwork | Each journey shows green, amber or red, and a manager can ask the owner for an update with one click |
+| **Warnings with suggested actions** | GuideCX | Low engagement, late tasks, missing owners or no recent activity raise a warning with a suggested next step |
+| **Which steps run late** | GuideCX | A report shows which template steps are usually late, so the slowest stages get fixed first |
+
+### 45.7 A Care Sync app
+A branded app (starting as an installable web app) with push notifications, a document scanner, Face ID or fingerprint login, and **switching between companies** for owners who run more than one provider (TaxDome, Moxo, SuiteDash). Staff get the same app filtered by "Due today", "In progress" and "Overdue".
+
+### 45.8 Where these fit in the phases
+- **Phase 1:** stages that move on by themselves, client wording, branching templates, roles in templates, reminder schedules, read receipts.
+- **Phase 2:** do it from the email, one-task links for landlords, referees and accountants, reviewers and approvers, accept sign and pay, instalments.
+- **Phase 4:** add-ons in the portal, bulk and repeating requests.
+- **Phase 5:** shared inbox with labels, AI call notes, morning and meeting briefs, upload matching, warnings, lateness report, automation rules in plain English.
+- **Phase 6:** the Care Sync app.
+
+---
+
+## 46. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1590,5 +1659,8 @@ The command bar searches every client, person, company number, CQC reference, do
 20. **Email accounts:** which email services do clients' accounts use (Gmail, Google Workspace, Microsoft 365, other)? This decides how the mailbox connection is built.
 21. **Written authority:** agree the engagement letter wording that authorises Care Sync to hold the client's email login and to send and receive CQC emails on their behalf.
 22. **Password manager now:** choose a business password manager for the interim vault.
+23. **Payments:** which payment provider (for example Stripe or GoCardless) and the standard instalment schedule, so "accept, sign and pay" can be built.
+24. **Third-party links:** agree the wording clients approve before the Hub contacts their landlord, lender, referee or accountant.
+25. **Call recording:** agree the consent wording for recording and summarising calls.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
