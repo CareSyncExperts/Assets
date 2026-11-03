@@ -1329,7 +1329,158 @@ Staff should be able to use the Hub on day one without training.
 
 ---
 
-## 40. Open questions for Care Sync
+## 40. "Done for you": showing clients everything we have done
+
+Clients should be able to see, at any moment, everything Care Sync has done for them, crossed off like a finished list in Apple Reminders or Google Tasks, with proof.
+
+### 40.1 The checklist (client view)
+One list for the whole package, in three groups:
+- **Done:** ticked and crossed out, with the date, who did it, and a link to the document or evidence. Collapsed by default ("Done: 24"), so it never overwhelms.
+- **In progress:** what Care Sync is working on now, with the expected date.
+- **Coming up:** what happens next, greyed out.
+
+Client tasks and Care Sync tasks sit side by side, so the client sees that the work is shared and moving.
+
+### 40.2 The package deliverables list
+Each package comes with its own checklist of everything it includes, taken from the price book, so the client can watch every promise being crossed off. For example:
+
+| Package | Items on the checklist |
+|---|---|
+| Domiciliary care registration | Every policy and document CQC asks for; help with the provider and registered manager forms; insurance quote obtained; consistency check across the pack; Interview Preparation Hub access; three coaching sessions with Millicent; all CQC correspondence handled; launch support |
+| Supported living registration | As above, plus the easy read service user guide; financial viability statement signed by the in-house accountant; financial forecast; organisation structure chart; service user contract; CQC's additional form for services for autistic people and people with a learning disability, where it applies; pre-application engagement form, where it applies |
+| Supported living add-on | Route check; new Statement of Purpose with changes highlighted; service user bands; CQC notification; the dom care to supported living transition guide; Interview Preparation Hub access; CQC correspondence |
+| CIW registration | The ten CIW policies; Statement of Purpose; two-year business plan; cash flow; organisation structural plan; Responsible Individual questionnaire answers; Welsh language Active Offer in every document; insurance quote; coaching; correspondence |
+| RQIA registration | The ten core policies; Statement of Purpose; Service User Guide; business plan; cash flow; financial viability statement; Responsible Individual and manager application guidance; insurance quote; coaching; correspondence |
+| Full start-up | Company formation where needed; branding; website; business plan; registration items; first-year support including a mock inspection, help with council approved provider lists, and policy updates |
+| Tender | Pack breakdown and rules; timeline and document checklist; each quality answer drafted and reviewed; questionnaire completed; compliance check; submission evidence |
+
+Directors maintain these lists in the template builder, so they always match what is sold.
+
+### 40.3 The work log ("what we have done for you")
+A running record, like an order history, of every meaningful thing done for the client, written in plain English:
+- "Wrote your 30 policies" (with the documents)
+- "Checked your company with Companies House"
+- "Compared your address across 6 documents"
+- "Answered CQC's request for your recruitment policy, 12 November"
+- "Checked for news from CQC, Thursday 14:10. Nothing new yet."
+
+Most entries are created automatically from what staff already do, so communicating costs staff no extra effort.
+
+### 40.4 Stage receipts
+When a stage finishes, the client gets a short receipt: "Stage 4 done. Here is everything we did", as a crossed-off list with links. The weekly update's "Done this week" uses the same ticked list.
+
+---
+
+## 41. CQC and tender news: portal watch and secure access
+
+Staff need to know the moment CQC or a buyer replies, without logging in to dozens of client accounts by hand.
+
+### 41.1 The access ladder (safest first)
+1. **Be added as a user** wherever the system allows it: Care Sync's bid lead on tender portals; manager access on Google Business Profile; partner access on social media business accounts; a user on the client's website and domain accounts.
+2. **Watch the client's inbox for official emails**, with the client's written consent: a read-only connection to their mailbox (Google or Microsoft), filtered to messages from CQC, CIW, RQIA and named tender portals only. No password is held, and the client can disconnect at any time.
+3. **A forwarding rule** from the client's mailbox to their Hub address for those senders, set up with the client in a minute.
+4. **A stored login in the secure vault**, only as a last resort and only where the system's own terms allow it.
+
+**CQC's portal:** since its new provider portal launched on 11 March 2024, CQC requires each user to have their own email address and does not allow shared logins; nominated individuals can delegate access to others in their organisation. The Hub therefore relies on steps 2 and 3 for CQC news, records each client's portal account status, and asks Care Sync to confirm with CQC whether a consultant may hold delegated access (open question 20).
+
+### 41.2 Watch schedule
+- Inbox watching runs continuously; a CQC or portal email creates an alert and a suggested milestone for a person to confirm (section 7.2).
+- For any client in "With CQC" or with a live tender where watching is not possible, the Hub schedules a **portal check task** (for example Monday and Thursday). The staff member ticks "Checked, nothing new" or logs what they found.
+- Every check appears on the client's work log ("We checked for news from CQC on Thursday"), so clients know someone is watching even when there is no news.
+- A client in "With CQC" with no check or watch for 7 days turns red on the manager's dashboard.
+
+### 41.3 The secure vault (extends section 21)
+- One place per client for every account Care Sync needs: CQC-related email, tender portals, Find a Tender, website hosting, domain, Google Business Profile, social media, insurance portals.
+- Each entry records the system, the account owner (always the client), how access was given (user added, inbox connection, or stored login), the consent date and the review date.
+- Stored logins are encrypted, visible only to named roles, revealed only with a stated reason, hidden again after 30 seconds, and copyable without being shown. Every view is logged, and the client can see the log in their privacy dashboard.
+- **Two-step codes:** where a system sends a code to the client's phone, the Hub sends the client a one-tap request ("Care Sync needs your code to check CQC news. Tap to send it"), so nobody waits on calls or texts.
+- Reminders to change passwords after a contract is awarded or the work ends, and a **hand-back checklist** at the end of every engagement: access removed, stored logins deleted, client told.
+- Logins never appear in notes, messages, emails, exports or AI tools.
+
+**Do now:** move the existing logins spreadsheet into a business password manager with a shared vault per client and restricted access, until the Hub is live.
+
+### 41.4 Email accounts Care Sync creates for clients
+Where Care Sync sets up a business email account for a client, the account is created in the client's name and ownership from day one, with the client holding the recovery details and two-step verification. Care Sync's access is given by delegation where the email service supports it, and handed back at the end of the work.
+
+---
+
+## 42. Always communicating
+
+Good service is mostly communication. The Hub makes it automatic and makes silence impossible to miss.
+
+1. **No silent client.** Every client hears from Care Sync at least weekly (section 18.5). A client with no outbound contact for 7 days, or a client message unanswered for 1 working day, turns red on the owner's "My day" and the manager's dashboard.
+2. **Work becomes updates by itself.** Staff actions feed the work log and stage receipts (section 40), so clients see progress without staff writing extra messages.
+3. **Promise tracking.** Every date promised to a client is recorded as a promise. If it is at risk, the owner is prompted to tell the client before it is missed, with a new date and the reason.
+4. **One timeline per client.** Emails, calls, WhatsApp messages, meetings, documents and decisions in one place. Logging a call takes one tap and a line of notes; meeting notes (with consent) can be summarised and shared with the client.
+5. **Communication health.** Each client shows a simple health signal (on track, needs attention, at risk) based on contact frequency, response times, open questions and promises, so managers see problems early.
+6. **Their way.** Every message follows the client's preferences for channel, timing and detail (section 34.2).
+7. **Cover without gaps.** Leave and absence routing (section 10.16) means no client goes quiet because someone is away.
+
+---
+
+## 43. The staff toolkit (everything in one place)
+
+| Job | Tools in the Hub |
+|---|---|
+| Starting a client | 3-question start, photo capture, Companies House and address checks, onboarding gates, assisted mode, missing information list (sections 26, 27, 38) |
+| Doing the work | Templates and skills, document generation, Review Room with tracked suggestions, quality gate, Pack Doctor, consistency matrix (sections 5.3, 28, 30, 35) |
+| Keeping clients informed | Weekly update composer, work log, stage receipts, email library, promise tracking, communication health (sections 18.5, 32, 40, 42) |
+| CQC | Submission bundle, inbox and portal watch, outcome centre, deadline countdowns, correspondence assistant (sections 7, 27, 28, 41) |
+| Tenders | Tender Radar, call cards, tender workspace, evidence library, promise register, compliance checklist (sections 19, 24) |
+| Selling and growth | Opportunity Engine, price book, quotes and e-signed agreements, GoHighLevel sync, next-best-offer map (sections 24, 33) |
+| Signing and approvals | E-signatures, sign-offs, version locking (sections 20, 36) |
+| Security | Secure vault, access ladder, hand-back checklist, audit log (sections 13, 21, 41) |
+| Help and quality | Playbook, Staff Assistant, "Ask a senior", practice client, keyboard shortcuts and command bar (sections 11.5, 11.6, 28, 39) |
+
+---
+
+## Appendix A. Coverage audit: Drive and forms against this specification
+
+Checked on 3 November 2026 against the Companies folder, the onboarding forms and the tender folders. Items marked "Added" were found in this audit and added to the sections shown.
+
+| Source | Item | Where it is covered |
+|---|---|---|
+| Client Control Register: Dashboard | Totals, owners, overdue updates, missing CQC references | Director dashboard (10.9), manager views (18.5), migration (22) |
+| Client Control Register: Client Register | Stage, owners, update day, pack components, deadlines, CQC submission date and reference, risk | 18.1 to 18.3 |
+| Client Control Register: Weekly Updates | Nine-part update, evidence, QA status, next promised date | 18.5 |
+| Client Control Register: Onboarding Queue and Form QA | Gates, recheck dates, one alert per change, handover approval | 18.2, 26.3, 38.6 |
+| Client Control Register: Interviews and Closure | Interview status, preparation, outcome, closure approval, archive | 18.3, 8 |
+| Client Control Register: Operating Guide | Weekly rhythm, rejection and resubmission, submitted control, deadline sequence, ownership model | 18 |
+| Client Control Register: Drive Audit | Folder classification and colours | Replaced by structured stages (17, 22) |
+| Client Folder Standard Template | Folders 00 to 10 | Vault structure (18.6) |
+| Templates: CQC application forms | CQC provider forms and the add a regulated activity form | CQC application sheet (26.3), variations (24.2) |
+| Templates: Supported living | Additional form for services for autistic people and people with a learning disability; pre-application engagement form; financial forecast; business plan prompts; transition guide; organisation chart; service user contract | **Added:** package checklist (40.2); module I (31.1) |
+| Templates: Care Sync Pro prompts | Mock inspection and audit modules | Inspection readiness (24.2, 33.1) |
+| Training folder and provider training guides | Domiciliary care and supported living provider guides | **Added:** aftercare resources on the launch checklist (40.2, email 6.1); Care Sync does not deliver staff training |
+| Filing review | Service agreements, office licence agreements, invoices | Engagement letter e-signature (36); office evidence rules (5.2, 27.4) |
+| Logins spreadsheet | Client logins and email accounts created by Care Sync | Secure vault and access ladder (21, 41); client email accounts (**Added:** 41.4) |
+| CQC Registration Information Form | Company details, trading name, correspondence address, partners who are not directors, legal entity | Modules A and F (31.1) |
+| | Company formation: name choices, shares, persons with significant control, Companies House identity verification code, authorisation to incorporate | Module B (31.1), Companies House checks (27.5) |
+| | Regulated activities and service user bands | Modules C and H |
+| | Registered manager and nominated individual details, address history, professional registration | Modules D and E, address timeline (26.2) |
+| | GP and referee, with permission for CQC to contact them | Gate "References and GP" (18.2); permissions recorded in module D |
+| | Enhanced DBS or three IDs | Identity gate (18.2), photo capture (38.2) |
+| | Directors 1 to 4 | Repeating groups (26.1) |
+| | Signatory and declaration | E-signature (36) |
+| Tender Preparation Questionnaire | Tender, portal, authority to submit, what has changed | Tender workspace (19.3); passwords removed (26.1) |
+| | Company, Central Digital Platform, regulator, ratings | Tender profile (19.3), CQC checks (27.6) |
+| | People, finance, insurance, accountant | Tender profile, evidence library (19.3) |
+| | Contract examples and private clients | Evidence library (19.3) |
+| | Workforce: numbers, turnover, vacancies, mandatory training completion, languages, drivers, pay, HR and care systems | Tender profile (19.3); price lawful-wage check |
+| | Partnerships and social value | Tender profile (19.3) |
+| | Documents and policies, quote for missing policies | Evidence library; policies for tenders (24.2) |
+| | Standout evidence and concerns | Evidence library; onboarding meeting (19.3) |
+| | Lots, and home care, supported living (including property details), care home and community sections | Lots decision and module N branching (19.3, 31.1) |
+| | Declaration and consent | E-signature (36) |
+| CIW and RQIA Registration Information Forms | Responsible Individual, Welsh language Active Offer, regions or HSC Trust areas | Modules E and P (31.1), CIW and RQIA checklists (40.2) |
+| Tender outreach folder | Approved tenders queue, daily provider lists, research results, ready for GoHighLevel, archive | Tender Radar (19.1) |
+| Tender writing folder | Questionnaires, clarification log, sales playbook, client tender onboarding deck | Tender workspace (19.2, 19.3), sales (24) |
+
+No item in the reviewed sources was left without a home in this specification.
+
+---
+
+## 44. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1348,5 +1499,8 @@ Staff should be able to use the Hub on day one without training.
 17. **Partner directory:** which partners to list, and any referral arrangements to disclose.
 18. **Reviews:** confirm the Google Business Profile review link and the Trustpilot plan (free, 50 invitations a month, or paid), and agree the written reviews policy.
 19. **Document editing:** do staff edit in Microsoft Word or Google Docs today, so the Hub can connect to the right one?
+20. **CQC portal access:** confirm with CQC whether a consultant may hold delegated access to a client's provider portal account, given that shared logins are not allowed.
+21. **Client inbox watching:** agree the consent wording for connecting to a client's mailbox read-only for CQC and tender emails.
+22. **Password manager now:** choose a business password manager for the interim vault.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
