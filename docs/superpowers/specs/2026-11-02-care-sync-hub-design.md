@@ -303,11 +303,11 @@ Each journey has its own private Hub email address (for example `brightpath-dom-
 Because the Hub never submits to CQC itself:
 
 1. When the pack is signed off, the Hub builds a **submission bundle**: the final approved documents named and ordered consistently, plus a checklist of what must be included.
-2. The consultant sends the submission from their own mailbox, CC'ing the journey's Hub address.
-3. The Hub captures the sent email as evidence, and the consultant confirms "Submitted" with one click (the date fills in from the email).
+2. The consultant sends the submission to CQC **from the client's own email account**, through the client mailbox connection (section 41). The email is composed and sent inside the Hub, with the bundle attached.
+3. The Hub keeps a copy of the sent email as evidence, and the consultant confirms "Submitted" with one click (the date fills in from the email).
 4. The client is told immediately, and the stage moves to "With CQC".
 
-If the Hub address was not CC'd, the consultant can log the submission manually and attach the sent email or a screenshot.
+If the email was sent outside the Hub, the consultant logs the submission manually and attaches the sent email or a screenshot.
 
 The same approach works for tenders submitted through council portals: the consultant or client uploads the portal confirmation as evidence.
 
@@ -1371,27 +1371,36 @@ When a stage finishes, the client gets a short receipt: "Stage 4 done. Here is e
 
 ---
 
-## 41. CQC and tender news: portal watch and secure access
+## 41. CQC and tender news: client email access and the secure vault
 
 Staff need to know the moment CQC or a buyer replies, without logging in to dozens of client accounts by hand.
 
-### 41.1 The access ladder (safest first)
-1. **Be added as a user** wherever the system allows it: Care Sync's bid lead on tender portals; manager access on Google Business Profile; partner access on social media business accounts; a user on the client's website and domain accounts.
-2. **Watch the client's inbox for official emails**, with the client's written consent: a read-only connection to their mailbox (Google or Microsoft), filtered to messages from CQC, CIW, RQIA and named tender portals only. No password is held, and the client can disconnect at any time.
-3. **A forwarding rule** from the client's mailbox to their Hub address for those senders, set up with the client in a minute.
-4. **A stored login in the secure vault**, only as a last resort and only where the system's own terms allow it.
+### 41.1 The client's email account is the CQC channel
+CQC registration applications are sent to CQC by email, and CQC replies to the applicant's email address. So for every registration client, Care Sync holds the **client's email address and password** in the secure vault, with the client's written authority in their e-signed engagement letter. Often this is an account Care Sync created for the client (section 41.4).
 
-**CQC's portal:** since its new provider portal launched on 11 March 2024, CQC requires each user to have their own email address and does not allow shared logins; nominated individuals can delegate access to others in their organisation. The Hub therefore relies on steps 2 and 3 for CQC news, records each client's portal account status, and asks Care Sync to confirm with CQC whether a consultant may hold delegated access (open question 20).
+With the login stored, the Hub does more than let staff log in by hand:
+- **Mailbox connection.** The Hub connects to the client's mailbox (Google, Microsoft or standard email settings) and **pulls in every email from CQC automatically**, filed on the client's timeline with an alert to the case owner and a suggested milestone to confirm (section 7.2). Staff do not need to log in to check for news.
+- **Send as the client.** Submissions and replies to CQC are written and sent from the client's own address inside the Hub, so CQC always hears from the applicant's email, and a copy is kept on the timeline.
+- **Only what is needed.** The Hub files CQC, CIW, RQIA and tender portal emails. Other personal or business emails in the client's inbox are not copied into the Hub.
+- **Manual login when needed.** Staff can still open the mailbox directly, using the vault's copy button, for anything the connection cannot do.
+- **Two-step verification.** Where the email service asks for a code, the vault can hold the authenticator for that account with the client's consent, or the Hub sends the client a one-tap request for the code (section 41.3).
 
-### 41.2 Watch schedule
-- Inbox watching runs continuously; a CQC or portal email creates an alert and a suggested milestone for a person to confirm (section 7.2).
-- For any client in "With CQC" or with a live tender where watching is not possible, the Hub schedules a **portal check task** (for example Monday and Thursday). The staff member ticks "Checked, nothing new" or logs what they found.
+### 41.2 Other accounts
+- **Tender portals:** Care Sync's bid lead is added as a user wherever the portal allows it; otherwise the portal login is stored in the vault. Portal notification emails also arrive through the client's mailbox connection.
+- **Website, domain, Google Business Profile and social media:** manager or user access where offered, otherwise a stored login.
+- **CQC provider portal after registration:** CQC asks each portal user to have their own email address, so the client's registered manager or nominated individual keeps their own portal account. The client's email connection still brings in CQC's emails.
+
+### 41.2a Watch schedule
+- The mailbox connection runs continuously; a CQC or portal email creates an alert and a suggested milestone for a person to confirm (section 7.2).
+- If a mailbox connection breaks (for example after a password change), the case owner is alerted the same day and asked to update the login.
+- For any client in "With CQC" or with a live tender where the connection is not working, the Hub schedules a **manual check task** (for example Monday and Thursday). The staff member ticks "Checked, nothing new" or logs what they found.
 - Every check appears on the client's work log ("We checked for news from CQC on Thursday"), so clients know someone is watching even when there is no news.
 - A client in "With CQC" with no check or watch for 7 days turns red on the manager's dashboard.
 
 ### 41.3 The secure vault (extends section 21)
-- One place per client for every account Care Sync needs: CQC-related email, tender portals, Find a Tender, website hosting, domain, Google Business Profile, social media, insurance portals.
-- Each entry records the system, the account owner (always the client), how access was given (user added, inbox connection, or stored login), the consent date and the review date.
+- One place per client for every account Care Sync needs: **the client's email account (the CQC channel)**, tender portals, Find a Tender, website hosting, domain, Google Business Profile, social media, insurance portals.
+- Each entry records the system, the account owner (always the client), how access was given (stored login, mailbox connection, or user added), the client's written authority and date, and the review date.
+- Staff can update a login in seconds when a client changes a password, and the mailbox connection reconnects automatically.
 - Stored logins are encrypted, visible only to named roles, revealed only with a stated reason, hidden again after 30 seconds, and copyable without being shown. Every view is logged, and the client can see the log in their privacy dashboard.
 - **Two-step codes:** where a system sends a code to the client's phone, the Hub sends the client a one-tap request ("Care Sync needs your code to check CQC news. Tap to send it"), so nobody waits on calls or texts.
 - Reminders to change passwords after a contract is awarded or the work ends, and a **hand-back checklist** at the end of every engagement: access removed, stored logins deleted, client told.
@@ -1425,11 +1434,11 @@ Good service is mostly communication. The Hub makes it automatic and makes silen
 | Starting a client | 3-question start, photo capture, Companies House and address checks, onboarding gates, assisted mode, missing information list (sections 26, 27, 38) |
 | Doing the work | Templates and skills, document generation, Review Room with tracked suggestions, quality gate, Pack Doctor, consistency matrix (sections 5.3, 28, 30, 35) |
 | Keeping clients informed | Weekly update composer, work log, stage receipts, email library, promise tracking, communication health (sections 18.5, 32, 40, 42) |
-| CQC | Submission bundle, inbox and portal watch, outcome centre, deadline countdowns, correspondence assistant (sections 7, 27, 28, 41) |
+| CQC | Submission bundle sent from the client's email, automatic CQC email capture, outcome centre, deadline countdowns, correspondence assistant (sections 7, 27, 28, 41) |
 | Tenders | Tender Radar, call cards, tender workspace, evidence library, promise register, compliance checklist (sections 19, 24) |
 | Selling and growth | Opportunity Engine, price book, quotes and e-signed agreements, GoHighLevel sync, next-best-offer map (sections 24, 33) |
 | Signing and approvals | E-signatures, sign-offs, version locking (sections 20, 36) |
-| Security | Secure vault, access ladder, hand-back checklist, audit log (sections 13, 21, 41) |
+| Security | Secure vault with client email logins, hand-back checklist, audit log (sections 13, 21, 41) |
 | Help and quality | Playbook, Staff Assistant, "Ask a senior", practice client, keyboard shortcuts and command bar (sections 11.5, 11.6, 28, 39) |
 
 ---
@@ -1453,7 +1462,7 @@ Checked on 3 November 2026 against the Companies folder, the onboarding forms an
 | Templates: Care Sync Pro prompts | Mock inspection and audit modules | Inspection readiness (24.2, 33.1) |
 | Training folder and provider training guides | Domiciliary care and supported living provider guides | **Added:** aftercare resources on the launch checklist (40.2, email 6.1); Care Sync does not deliver staff training |
 | Filing review | Service agreements, office licence agreements, invoices | Engagement letter e-signature (36); office evidence rules (5.2, 27.4) |
-| Logins spreadsheet | Client logins and email accounts created by Care Sync | Secure vault and access ladder (21, 41); client email accounts (**Added:** 41.4) |
+| Logins spreadsheet | Client logins and email accounts created by Care Sync | Secure vault holding client email logins (21, 41); client email accounts (**Added:** 41.4) |
 | CQC Registration Information Form | Company details, trading name, correspondence address, partners who are not directors, legal entity | Modules A and F (31.1) |
 | | Company formation: name choices, shares, persons with significant control, Companies House identity verification code, authorisation to incorporate | Module B (31.1), Companies House checks (27.5) |
 | | Regulated activities and service user bands | Modules C and H |
@@ -1499,8 +1508,8 @@ No item in the reviewed sources was left without a home in this specification.
 17. **Partner directory:** which partners to list, and any referral arrangements to disclose.
 18. **Reviews:** confirm the Google Business Profile review link and the Trustpilot plan (free, 50 invitations a month, or paid), and agree the written reviews policy.
 19. **Document editing:** do staff edit in Microsoft Word or Google Docs today, so the Hub can connect to the right one?
-20. **CQC portal access:** confirm with CQC whether a consultant may hold delegated access to a client's provider portal account, given that shared logins are not allowed.
-21. **Client inbox watching:** agree the consent wording for connecting to a client's mailbox read-only for CQC and tender emails.
+20. **Email accounts:** which email services do clients' accounts use (Gmail, Google Workspace, Microsoft 365, other)? This decides how the mailbox connection is built.
+21. **Written authority:** agree the engagement letter wording that authorises Care Sync to hold the client's email login and to send and receive CQC emails on their behalf.
 22. **Password manager now:** choose a business password manager for the interim vault.
 8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
