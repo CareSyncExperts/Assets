@@ -39,7 +39,32 @@ Speak soon,
 {{consultant_name}}
 Care Sync Experts
 
-### 1.2 Meet your team
+### 1.2 Lovely to speak to you
+**Trigger:** the introduction call is saved as "Spoke to the client" (the caller can edit it before it goes)
+**Subject:** Lovely to speak to you today
+
+Hi {{first_name}},
+
+Thank you for your time today. It was lovely to speak to you.
+
+As we said on the call, here are your next three things:
+{{next_three_things}}
+
+None of them take long, and you can do them on your phone. If anything comes to mind later, tap "Ask" in your Hub and it comes straight to us.
+
+Button: Open my Hub
+
+{{caller_name}}
+Care Sync Experts
+
+### 1.3 Introduction call texts
+**Sorry we missed you (sent straight after an unanswered call):** Hi {{first_name}}, it is {{caller_first_name}} from Care Sync. Sorry we missed you. We will try again at {{next_try}}, or pick a time that suits you: {{link}}
+
+**Call back confirmed:** Hi {{first_name}}, it is {{caller_first_name}} from Care Sync. Thank you, we will call you on {{call_time}}. Need a different time? {{link}}
+
+At most 3 calls and 2 texts are ever sent for an introduction call. Texts follow quiet hours.
+
+### 1.4 Meet your team
 **Trigger:** handover approved
 **Subject:** Your Care Sync team
 
@@ -50,7 +75,7 @@ All your onboarding checks have passed, so your application work starts today.
 Your team:
 {{case_owner}} leads your application.
 {{weekly_owner}} sends your update every {{update_day}}.
-Millicent coaches you for your CQC interview when the time comes.
+Millicent, your coach, runs your 3 sessions, including interview practice.
 
 Your first update arrives on {{first_update_date}}. If you have a question before then, tap "Ask" in your Hub and it comes straight to us.
 
@@ -552,6 +577,20 @@ Thank you for telling us. Your concern has gone to {{director_name}}, a director
 Button: See your concern
 
 {{director_name}}, Director
+
+### 9.3 Your new consultant
+**Trigger:** a journey is reassigned to a new consultant
+**Subject:** Your new Care Sync consultant
+
+Hi {{first_name}},
+
+From today, I am your consultant, taking over from {{previous_consultant}}. I have read everything so far, including your notes and how you like to be kept in touch, so you will not need to repeat anything.
+
+Your work carries on exactly where it was, and your next update is on {{next_update_date}}. I would love to say hello properly, so I will give you a quick call this week.
+
+Button: See where things stand
+
+{{consultant_name}}
 
 ---
 

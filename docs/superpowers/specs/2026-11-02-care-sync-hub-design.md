@@ -594,6 +594,7 @@ The Hub keeps every good rule above and enforces it automatically, with structur
 
 | Role | Current equivalent | Accountable for |
 |---|---|---|
+| **Client care** | Usually Divine, for introduction calls | The introduction call after payment, relationship check-ins and the client's contact preferences (section 52) |
 | **Onboarding lead** | Owns the Onboarding Queue and Form QA | Onboarding form, gate checks, chasing missing information, readiness for handover |
 | **Case owner** | Owns CQC delivery | Milestones, risk decisions, rejection and resubmission, interview readiness, closure evidence |
 | **Weekly update owner** | Updates assigned clients on a set weekday | The weekly client update and its evidence |
@@ -1655,7 +1656,7 @@ Care Sync needs two **super admins** (for example Collins and one other senior p
 ### 46.1 What the super admin controls
 | Area | What they can do |
 |---|---|
-| **People and access** | Invite and remove staff; assign roles (onboarding lead, case owner, weekly update owner, manager, interview coach, tender writer, sales rep, account owner, finance); set which clients each person can see; enforce two-step login for all staff; set session time-outs |
+| **People and access** | Invite and remove staff; assign roles (client care, onboarding lead, case owner, weekly update owner, manager, interview coach, tender writer, sales rep, account owner, finance); set which clients each person can see; enforce two-step login for all staff; set session time-outs |
 | **Permissions** | A clear grid of what each role can view, edit, approve, send and export, including who can reveal vault logins and who can approve discounts |
 | **Staff leaving** | One-click offboarding: access removed everywhere, clients and tasks reassigned with handover notes, vault access revoked, their mailbox connections handed to the new owner |
 | **Packages and price book** | Packages, deliverable checklists, prices, VAT treatment and instalment schedules; only the super admin changes a price, and every change is dated |
@@ -1799,7 +1800,7 @@ Every client screen was checked one by one, against each other, against the emai
 ### 51.2 The ten steps
 | Step | The client sees (board) | The client does | We do | Emails | Super admin controls |
 |---|---|---|---|---|---|
-| 1. Won and welcomed | 25 Welcome | Nothing to type | Hub opens from the won deal; team assigned | 1.1, 1.2 | Packages, team rules, welcome wording and video |
+| 1. Paid and welcomed | 25 Welcome, 33 Introduction call | Takes a friendly call; nothing to type | Introduction call task created at payment (Divine by default); sales notes carried over; team assigned | 1.1, 1.2, 1.3, 1.4 | Who calls, how fast, retries, call guide, welcome wording |
 | 2. Three questions | 23, 26, 16 | Three taps and one name | Companies House fill-in; manager invited | 2.1, 2.5 | Question sets per package; Companies House key |
 | 3. Documents and email | 3, 12, 15, 27 | Photos and one-tap answers | Photos read; address checked; email login into the vault | 2.2, 2.4, 2.6 | Reminder timings, quiet hours, vault roles, retention |
 | 4. Writing and review | 1, 2, 21, 18, 4, 28 | Comments, approves, books session 2 | Pack written; Pack Doctor checks; Friday update | 3.1, 3.2, 3.4 | Pack Doctor rules, update template, reply-time promise |
@@ -1847,11 +1848,58 @@ These protect the calm, person-centred experience (section 34) and Care Sync's r
 | View as | Staff can see exactly what the client sees; the client sees that it happened |
 
 ### 51.6 Emails added to the library
-2.5 Your manager's invite (sent to the manager), 2.6 Business email connected, 3.4 Session booked and reminders, 7.0 Tender submitted (with the portal receipt), 9.1 Emergency access to your account, and 9.2 We have received your concern.
+1.2 Lovely to speak to you (after the introduction call), 1.3 the introduction call texts (sorry we missed you, call back confirmed), 2.5 Your manager's invite (sent to the manager), 2.6 Business email connected, 3.4 Session booked and reminders, 7.0 Tender submitted (with the portal receipt), 9.1 Emergency access to your account, 9.2 We have received your concern, and 9.3 Your new consultant.
 
 ---
 
-## 52. Open questions for Care Sync
+## 52. Payment, the introduction call and the relationship signal
+
+The first human moment matters most. As soon as a client pays, someone from Care Sync rings to say hello. It is an introduction, not a sales call. Today that is usually Divine, but it is built as a **task** so anyone can take it.
+
+### 52.1 The moment payment lands
+In this order, automatically:
+1. **Payment confirmed.** Card or Direct Debit payments confirm themselves. A bank transfer is marked paid by finance with one click, which counts as the same event.
+2. **Client set up.** The client record, Hub account and journey are created from the won deal (section 51.2, step 1), and the welcome email (1.1) goes with a magic link.
+3. **Introduction call task created**, assigned to the default caller (Divine), due within the target time set by the super admin (suggested: within 2 working hours; if payment lands out of hours, by 10:00 the next working morning).
+4. **Sales notes attached** to the task from GoHighLevel (section 52.5).
+5. **Counted** on the manager's dashboard: calls due, calls overdue, and the time from payment to first conversation.
+
+### 52.2 The introduction call task (board 33)
+- **Owner:** Divine by default. Anyone can take it with one tap ("Who is calling"), and the previous owner is told. If the default caller is away, it goes to the backup callers set by the super admin, in turn.
+- **On the task:** the client's name, role, number, best time to call, package, whether they have opened the welcome email and signed in, and the sales notes.
+- **Call guide (8 steps, ticked as you go):** welcome by name and say thank you; introduce the team and what each person does; confirm what is included; do question 1 together in the Hub; ask about the office (the usual hold-up); explain that CQC works by email and the business email step; set honest expectations (CQC sets its own timescales, an update every Friday, the same day when CQC writes); book the kick-off with Millicent and ask how they like to be contacted. The guide never includes selling, and never promises a date or an outcome.
+- **What the caller captures:** preferred contact method and times, anything about access needs (for example voice notes instead of reading), and a short note. These fill the client record, so the client is never asked twice.
+- **Outcomes:**
+  - **Spoke to the client:** a "lovely to speak to you" email (1.2) with the next 3 things, which the caller can edit before it goes; the caller records how the client sounded (happy, unsure or worried).
+  - **No answer:** a friendly text goes straight away with a link to pick a time, and the next try becomes a task (suggested: later the same day, then the next working morning). **Never more than 3 calls.** After the third, an email is sent instead and the manager is told.
+  - **Call back later:** the client picks or agrees a time, gets a text confirming it, and the task moves to that time with the notes kept.
+  - **Something is wrong** (for example the client is unhappy or wants to change the package): the manager is told the same day and takes it from there.
+- **Recording:** calls are only recorded or summarised with the client's consent (open question 25).
+
+### 52.3 What the client sees
+On the Welcome screen (board 25): "Divine will call you this morning. Just to say hello, answer any questions and help with question 1 if you like", the number we will ring, and "Pick a better time". Out of hours it says when the call will happen ("Divine will call you on Monday morning"). Divine also appears in "Your team" and on the privacy page, so the client knows who is calling and why.
+
+### 52.4 The relationship signal
+Care Sync should always know how each client feels, not just where their work is.
+- **Where it comes from:** the introduction call (happy, unsure or worried), later calls and sessions, and a one-tap "How are we doing?" at three moments: after the kick-off, after submission and after the decision.
+- **What it does:** unsure prompts the consultant to check in; **worried** tells the manager the same day, offers a call with a director, and **switches off all growth messages** for that client until it is resolved.
+- **What it never does:** it is never used to decide who gets a review invitation. Every registered client is invited, exactly as section 37 says, so there is no review gating.
+
+### 52.5 Sales to delivery handover
+When a deal is won in GoHighLevel, the sales notes come with it: what the client wants and by when, any worries, deadlines (for example a lease date or a commissioner's timetable) and exactly what was promised. These appear on the introduction call and on the consultant's client page. Anything promised that is outside the package is flagged to the manager before work starts, so the client's expectations and the work always match.
+
+### 52.6 Other client gaps closed
+- **Payments visible to the client** (board 29): deposit paid with receipt, the next payment and when it is due, a reminder a week before, and every invoice and receipt to download (section 49.1).
+- **People on the account** (board 29): the owner sees who else has access and what they can see, and can add a director or the accountant, who only see what is shared.
+- **Consultant changes:** if the consultant changes, the client is told the same day by the new consultant (email 9.3), with the handover notes (section 11) so nothing has to be repeated.
+- **How the client likes to work:** a short profile on every client record (contact method, best times, access needs, language preferences), filled from the introduction call and shown to everyone who works with them.
+
+### 52.7 Super admin settings for the introduction call
+Default caller (Divine) and backup callers, the target time after payment, working hours, the retry pattern (never more than 3 calls), the call guide and its versions, the summary email wording, and the recording consent wording. A new staff role, **Client care**, covers introduction calls and relationship check-ins.
+
+---
+
+## 53. Open questions for Care Sync
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
@@ -1888,3 +1936,6 @@ These protect the calm, person-centred experience (section 34) and Care Sync's r
 33. **Aftercare rhythm:** confirm a monthly check-in for the 12 months of aftercare, and who leads it.
 34. **Complaints:** agree the full response target after the 1 working day acknowledgement, and which director handles complaints.
 35. **Default quiet hours:** confirm 8pm to 8am as the default for texts and messages.
+36. **Introduction calls:** confirm Divine as the default caller, who the backup callers are, and the target time after payment (suggested: within 2 working hours, or by 10:00 the next working morning).
+37. **Phone system:** should introduction calls be made through GoHighLevel's phone system (so they are logged automatically) or from staff mobiles?
+38. **Deposits:** which payment methods are accepted for the deposit, and who marks bank transfers as paid.
