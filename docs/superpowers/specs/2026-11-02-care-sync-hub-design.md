@@ -1265,6 +1265,8 @@ Clients can be invited to review Care Sync on **Google** (using the Google Busin
 Clients are busy and a long form gets abandoned. So the Hub never presents one. Instead it combines three things: **ask very little at the start, fill in everything it can find itself, and collect the rest in small pieces when each piece is actually needed.**
 
 ### 38.1 The start: 3 questions
+These three questions are the opening of the onboarding form (section 54), done together on the introduction call where possible. The rest of the form follows in the same place, tailored to the package.
+
 At welcome the client answers only:
 1. **Find your company:** type the company name or number and pick it from the Companies House results (or choose "not formed yet"). The Hub fills in the company name, registered office, directors and owners, and the client confirms with one tap (section 44).
 2. **Who will be your registered manager?** A name and email or mobile, and one tap for whether they will also be the nominated individual. The Hub invites that person to do their own part.
@@ -1982,8 +1984,19 @@ The Week 1 and Week 2 course in Drive (what a tender is, questionnaire and metho
 
 The Hub asks **every** question on Care Sync's CQC and tender forms, nothing less (Appendix C and Appendix D), but never as one long form. Clients can do it all in one sitting, a little at a time, or with us on a call, and always pick up exactly where they stopped.
 
+### 54.0 When it is sent, and why it matters
+The onboarding form is what the whole project runs on. **No CQC writing, and no project work, starts until it is complete** and the onboarding gate is passed (section 18).
+1. **The client is added with their package.** Most clients arrive from a won deal in GoHighLevel with the details filled in; a super admin (or staff with permission) can also add one by hand (board 51). The package or packages chosen decide exactly which sections the onboarding form contains (section 31.1). Shared sections appear once even across two packages, and "setting up your company" appears only if the company is not formed yet.
+2. **Payment lands** and the introduction call task is created (section 52).
+3. **On the introduction call** the caller starts the onboarding form with the client and does section 1 together.
+4. **Straight after the call**, the tailored onboarding form is sent (email 2.1). If the call cannot happen, it is sent the next working morning so nothing waits.
+5. **The client and their people complete it** at their own pace, with gentle reminders. Parts for the manager, nominated individual, directors, landlord and accountant go to them by their own link.
+6. **The onboarding lead checks it.** When every required section is complete and the gate checks pass, the project starts and the client sees "We have started your CQC pack". Sections that only make sense later (for example interview details, or business plan money questions) are marked "opens later" and never hold up the start.
+
+If the package changes later (for example a supported living add-on or a tender), only the new sections are added to the same form, pre-filled from what is already known.
+
 ### 54.1 One home for the whole form (board 46)
-"Your registration details" lists the eight sections of the CQC form: your company; setting up your company (only if not formed); directors; what you will provide; registered manager; nominated individual; office and premises; declaration and signature. Each section shows its status in plain words:
+"Your onboarding form" lists the sections for the client's package. For the domiciliary care full start-up package these are: your company and contacts; setting up your company (only if not formed); what you will provide; registered manager; nominated individual; directors and owners; office and premises; who you will support; business plan and money (opens later); insurance details; interview details (opens later); brand and website; declaration and signature. A tender-only client sees their company, the 15-section tender profile and the declaration; an interview-only client sees their company, interview details and the declaration. Each section shows its status in plain words:
 - **Done**, with what was filled in for the client ("Filled in from Companies House");
 - **In progress**, with the exact step ("Ruth: 5 of 8 steps. Stopped at 'Your GP'");
 - **Waiting for** a named person ("Waiting for Peter");

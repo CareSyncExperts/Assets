@@ -87,19 +87,19 @@ Button: See your journey
 
 ## 2. Onboarding
 
-### 2.1 Your next few things
-**Trigger:** the first small tasks are ready (after the 3 starting questions)
-**Subject:** {{task_count}} quick things for this week
+### 2.1 Your onboarding form
+**Trigger:** straight after the introduction call (or the next morning if the call could not happen), tailored to the package chosen when the client was added
+**Subject:** Your onboarding form, made for {{package_name}}
 
 Hi {{first_name}},
 
-Thank you, we have filled in your company details from Companies House.
+Thank you for your time today. As we said on the call, your onboarding form is ready. It has only the sections for {{package_name}}, and we have already filled in what we know, such as your company details from Companies House.
 
-This week we just need {{task_list_short}}. Most are a photo of a document you already have, and we read the details for you.
+We start your project as soon as it is complete. It saves as you go, so you can stop and come back any time, on any device. Parts for your manager or your landlord go to them by their own link, so you do not need to chase.
 
-If your manager should do her part, you can pass it to her with one tap. Prefer to do it together? Book a call and we will fill it in with you.
+Prefer to do it together? Reply and we will go through it with you on a call.
 
-Button: Do the first one
+Button: Open my onboarding form
 
 {{consultant_name}}
 
