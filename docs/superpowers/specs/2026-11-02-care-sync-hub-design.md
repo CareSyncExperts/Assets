@@ -1850,6 +1850,22 @@ These protect the calm, person-centred experience (section 34) and Care Sync's r
 ### 51.6 Emails added to the library
 1.2 Lovely to speak to you (after the introduction call), 1.3 the introduction call texts (sorry we missed you, call back confirmed), 2.5 Your manager's invite (sent to the manager), 2.6 Business email connected, 3.4 Session booked and reminders, 7.0 Tender submitted (with the portal receipt), 9.1 Emergency access to your account, 9.2 We have received your concern, and 9.3 Your new consultant.
 
+### 51.7 Screens added for forms, outside links and staff tools
+| Board | Screen | What it shows |
+|---|---|---|
+| 34 | Snap and send | Camera with edge detection, then "Is this right?" with the details read from the photo, then done. Address cross-checked against the company record and tenancy. Nothing is used until staff confirm |
+| 35 | Who you will support | Tap-to-choose groups with a live preview of the Statement of Purpose sentence and the documents that update with it (scope knock-on, section 47.2). Choosing children triggers a call with the consultant |
+| 36 | Directors and owners | Directors from Companies House with their identity verification status, the 25% ownership question, and a text link for any director still to verify |
+| 37 | One-task links | What a landlord, referee or accountant sees: no account, one ready-made letter or three questions, sign or answer, done. Link expires in 14 days |
+| 38 | Tender in small pieces | Choose lots (with the consultant's suggestion), tell a story by voice note, and add our bid lead to the portal with no password shared |
+| 39 | Brand and website | Logo, colours and tone as three choices, with a live preview of the home page |
+| 40 | Sign in | Magic link by email or a code by text. No password |
+| 41 | Notifications | "Needs you" and "Everything", matching the client's real tasks and news |
+| 42 | Client page (staff) | One client in one place: waiting on client, waiting on us, Pack Doctor, timeline, how the client likes to work, people, access and money, sales notes, and "View as" |
+| 43 | Manager dashboard | What needs a manager today, payment-to-first-call time, submissions and registrations, how clients feel, clients by stage, team load and money |
+| 44 | Form builder (super admin) | Packages and the sections each one gets, who answers, when each arrives, the questions, and the guardrails. Drafts need the other super admin to publish |
+| 45 | Small tasks | Insurance, business plan money (or send to the accountant), interview details read from CQC's email, "not formed yet", and the declaration |
+
 ---
 
 ## 52. Payment, the introduction call and the relationship signal
