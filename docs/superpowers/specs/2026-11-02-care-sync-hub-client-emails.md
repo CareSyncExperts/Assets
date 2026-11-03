@@ -95,7 +95,7 @@ Hi {{first_name}},
 
 Thank you for your time today. As we said on the call, your onboarding form is ready. It has only the sections for {{package_name}}, and we have already filled in what we know, such as your company details from Companies House.
 
-We start your project as soon as it is complete. It saves as you go, so you can stop and come back any time, on any device. Parts for your manager or your landlord go to them by their own link, so you do not need to chase.
+It has the same questions as the form you may have seen from us before, and we start your project as soon as it is complete. It saves as you go, so you can stop and come back any time, on any device.
 
 Prefer to do it together? Reply and we will go through it with you on a call.
 

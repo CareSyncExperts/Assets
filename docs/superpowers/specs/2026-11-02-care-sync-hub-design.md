@@ -1990,13 +1990,13 @@ The onboarding form is what the whole project runs on. **No CQC writing, and no 
 2. **Payment lands** and the introduction call task is created (section 52).
 3. **On the introduction call** the caller starts the onboarding form with the client and does section 1 together.
 4. **Straight after the call**, the tailored onboarding form is sent (email 2.1). If the call cannot happen, it is sent the next working morning so nothing waits.
-5. **The client and their people complete it** at their own pace, with gentle reminders. Parts for the manager, nominated individual, directors, landlord and accountant go to them by their own link.
+5. **The client completes it**, just like the Google Form they fill in today: the same sections, the same questions, the same wording and the same branching (board 47). They can stop and come back any time, with gentle reminders. If they prefer, they can send a section to someone else to fill in (for example their manager), but by default the client fills in everything.
 6. **The onboarding lead checks it.** When every required section is complete and the gate checks pass, the project starts and the client sees "We have started your CQC pack". Sections that only make sense later (for example interview details, or business plan money questions) are marked "opens later" and never hold up the start.
 
 If the package changes later (for example a supported living add-on or a tender), only the new sections are added to the same form, pre-filled from what is already known.
 
 ### 54.1 One home for the whole form (board 46)
-"Your onboarding form" lists the sections for the client's package. For the domiciliary care full start-up package these are: your company and contacts; setting up your company (only if not formed); what you will provide; registered manager; nominated individual; directors and owners; office and premises; who you will support; business plan and money (opens later); insurance details; interview details (opens later); brand and website; declaration and signature. A tender-only client sees their company, the 15-section tender profile and the declaration; an interview-only client sees their company, interview details and the declaration. Each section shows its status in plain words:
+"Your onboarding form" lists the sections of the client's form. For CQC registrations these are the sections of the CQC Registration Information Form: 1 your company; 2 company details (or setting up your company, if not formed); 3 directors; 4 your service; 5 Registered Manager; 6 Registered Manager addresses; 7 Registered Manager GP; 8 Registered Manager referee; 9 Registered Manager ID and DBS; 10 Nominated Individual; 11 Nominated Individual addresses, ID and DBS (only if a different person); 12 declaration and signature. A tender client gets the Tender Preparation Questionnaire. CIW and RQIA clients get their own forms once their questions are mapped. Anything a package needs that is not on the current forms (for example brand and website for the full start-up package) is shown as an extra, to confirm. Each section shows its status in plain words:
 - **Done**, with what was filled in for the client ("Filled in from Companies House");
 - **In progress**, with the exact step ("Ruth: 5 of 8 steps. Stopped at 'Your GP'");
 - **Waiting for** a named person ("Waiting for Peter");
@@ -2011,7 +2011,7 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 3. **Welcome back:** returning to a section shows what is already saved and how many steps are left, with "Carry on" and "Look over my answers first" (board 47).
 4. **Save and finish later** is always one tap away. The Hub confirms it is saved, says where they will pick up, and sends one gentle reminder outside quiet hours.
 5. **Any device:** the same magic link works on a phone, tablet or computer.
-6. **Each person has their own resume point:** the registered manager, nominated individual, each director, the landlord and the accountant each see only their own part and carry on from their own place.
+6. **The client fills in the whole form**, as on the Google Form. If they choose to send a section to someone else (for example their manager or landlord), that person gets their own link and their own resume point.
 7. **Never asked twice:** answers already known (Companies House, the sale, the introduction call, photos read, earlier sections, earlier tenders) are filled in for the person to check.
 8. **Branching:** company already formed hides the formation section; the same person as manager and nominated individual completes the nominated individual section in one tap; "DBS not done yet" hands the task to Care Sync; "no professional registration" skips that step; tender settings appear only for the lots chosen.
 9. **Checks as you go:** UK date format, no impossible dates (such as a DBS issue date in the future), 12-digit DBS numbers, postcode lookup with UPRNs, a 5-year address timeline with gap detection, three accepted ID types, documents dated within 3 months where required, unlimited directors and examples.
@@ -2072,54 +2072,53 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 ## Appendix C. The CQC Registration Information Form, question by question
 
-Every question in the current CQC Registration Information Form (October 2026 version, columns A to DP of its response sheet) and where it lives in the Hub. Reviewed from the question labels only; no answers were copied. Board numbers refer to the mockup canvas.
+Every question in the current CQC Registration Information Form (the version created on 7 October 2026 in the hello@caresyncexperts.co.uk account, columns A to DP of its response sheet). The Hub onboarding form uses the same questions, wording and branching, in the same sections, and the client fills it in just like the Google Form (board 47). Reviewed from the question labels only; no answers were copied. An older version of the form (caresyncexperts@gmail.com, first created May 2025) exists but its responses sheet is not available to check.
 
 | # | Hub section | Who answers | Form question | How it is answered in the Hub | Checks |
 |---|---|---|---|---|---|
-| 1 | Your company | You | Is your limited company already registered with Companies House? | One tap. Yes: the formation questions are hidden. No: section 2 opens | Required |
-| 2 | Your company | You | Registered business name | Pre-filled from Companies House (company search) | Must match Companies House |
-| 3 | Your company | You | Trading name (if different) | Type, optional | Checked against the name used in every document |
-| 4 | Your company | You | Company registration number | Pre-filled from Companies House | 8 characters, checked live |
-| 5 | Your company | You | Registered office address | Pre-filled from Companies House | UPRN matched (section 27) |
-| 6 | Your company | You | Correspondence address (if different) | Postcode lookup, optional | UPRN matched |
-| 7 | Your company | You | Business telephone number | Pre-filled from the sale, check | UK number format |
-| 8 | Your company | You | Company email address | Pre-filled from the business email step | Email format |
-| 9 | Your company | You | Website (if applicable) | Type, optional | Link checked |
-| 10 | Your company | You | Type of legal entity | Pre-filled from Companies House | From the register |
-| 11 | Your company | You | Partners or owners who are not directors | Pre-filled from the persons with significant control list, add if missing | Matched to Companies House |
-| 12 | Your company | You | What care service type are you registering for? | Set from the package, check | Matches section 4 |
-| 13 | Setting up your company (only if not formed) | You | 1st, 2nd and 3rd choice company names | Type; availability checked live | Name availability check |
-| 14 | Setting up your company (only if not formed) | You | Trading name preference | Type, optional |  |
-| 15 | Setting up your company (only if not formed) | You | Type of company | Tap (for example private limited by shares) |  |
-| 16 | Setting up your company (only if not formed) | You | Registered office address | Postcode lookup | UPRN matched |
-| 17 | Setting up your company (only if not formed) | Each director | Full legal name, date of birth, nationality, country of residence, service address, occupation | Each director by their own link; ID photo fills name and date of birth | Date of birth not in the future; repeat for every director, unlimited |
-| 18 | Setting up your company (only if not formed) | Each director | Companies House identity verification (personal code) | Type the 11-character code, or a text link explaining how to get it | 11 characters |
-| 19 | Setting up your company (only if not formed) | You | Are the directors also the persons with significant control? PSC details if different | One tap, then add people | Ownership adds up to 100% |
-| 20 | Setting up your company (only if not formed) | You | Number of shares, value per share, single owner or share split | Tap and type | Splits add up to 100% |
-| 21 | Setting up your company (only if not formed) | You | Email for Companies House notices; lead director's mobile | Pre-filled, check | Formats |
-| 22 | Setting up your company (only if not formed) | You | Authorisation for Care Sync to incorporate; confirmation of accuracy | E-signature (section 36) | Name, time and version kept |
-| 23 | Directors | Each director | Full name, date of birth, mobile and email (Director 1 to 4, then 'more than four?') | Pre-filled from Companies House; each director confirms by their own link | Unlimited directors (no fixed 4 blocks) |
-| 24 | What you will provide | You | Which CQC regulated activities will you provide? | Tap to choose, set from the package | Matches Statement of Purpose (Pack Doctor) |
-| 25 | What you will provide | You | Service user bands you intend to support | Tap to choose with live preview (board 35) | Knock-on documents updated |
-| 26 | Registered manager | Manager | Title | Tap |  |
-| 27 | Registered manager | Manager | Full name | From the invite, check against ID | Must match ID |
-| 28 | Registered manager | Manager | Date of birth | Date, UK format; or read from ID | Real date, not in the future |
-| 29 | Registered manager | Manager | Email address; mobile number | From the invite, check | Formats |
-| 30 | Registered manager | Manager | Current address | Postcode lookup | UPRN matched; must match proof of address |
-| 31 | Registered manager | Manager | Addresses 1 to 5 for the last 5 years, and 'more than 5 addresses?' | Address timeline with postcode lookup and from and to months (board 47, step 2) | Full 5 years covered; gaps must be explained; no dates typed into address boxes |
-| 32 | Registered manager | Manager | Three forms of identification | Choose any three from the accepted list, then photograph each (board 34) | Bills and statements from the last 3 months |
-| 33 | Registered manager | Manager | Enhanced DBS completed? Certificate number, issue date, upload | Yes: number, date and photo (read from the photo). No: Care Sync arranges it | 12 digits; issue date real and not in the future |
-| 34 | Registered manager | Manager | Registered with a professional body? Body and registration number | Tap, then choose the body and type the number | Checked on the public register |
-| 35 | Registered manager | Manager | GP name, surgery name and address, permission for CQC to contact the GP | Search by surgery name or postcode; address filled in; GP name optional | Permission recorded |
-| 36 | Registered manager | Manager | Referee: title, first and last name, address, email, phone, permission for CQC to contact them | Type; Care Sync asks the referee first | Email and phone formats; permission recorded |
-| 37 | Nominated individual | You | Will the same person serve as both registered manager and nominated individual? | One tap. Yes: the nominated individual section is completed from the manager's answers | Required |
-| 38 | Nominated individual | Nominated individual | Full name, date of birth, email, mobile, current address | Pre-filled from the director record, check | As for the manager |
-| 39 | Nominated individual | Nominated individual | Addresses 1 to 5 for the last 5 years | Address timeline | Full 5 years, gaps explained |
-| 40 | Nominated individual | Nominated individual | Professional body and registration number | Tap, then type | Checked on the public register |
-| 41 | Nominated individual | Nominated individual | Three forms of identification | Choose three, photograph each | As for the manager |
-| 42 | Nominated individual | Nominated individual | Enhanced DBS completed? Certificate number, issue date, upload | As for the manager | 12 digits; real issue date |
-| 43 | Office and premises (from the Documents checklist) | You and your landlord | Commercial or home office; proof of legal occupation; landlord or lender permission; lease | Tap, photos, and a one-task link for the landlord (board 37) | Addresses matched across documents (board 14) |
-| 44 | Declaration and signature | A director | Signatory full name, position, signature, date | E-signature, last of all | Opens only when every other section is complete |
+| 1 | 1. Your company | You | Is your limited company already registered with Companies House? | One tap. Yes: the formation questions are hidden. No: section 2 opens | Required |
+| 2 | 2. Company details | You | Registered business name | Pre-filled from Companies House (company search) | Must match Companies House |
+| 3 | 2. Company details | You | Trading name (if different) | Type, optional | Checked against the name used in every document |
+| 4 | 2. Company details | You | Company registration number | Pre-filled from Companies House | 8 characters, checked live |
+| 5 | 2. Company details | You | Registered office address | Pre-filled from Companies House | UPRN matched (section 27) |
+| 6 | 2. Company details | You | Correspondence address (if different) | Postcode lookup, optional | UPRN matched |
+| 7 | 2. Company details | You | Business telephone number | Pre-filled from the sale, check | UK number format |
+| 8 | 2. Company details | You | Company email address | Pre-filled from the business email step | Email format |
+| 9 | 2. Company details | You | Website (if applicable) | Type, optional | Link checked |
+| 10 | 2. Company details | You | Type of legal entity | Pre-filled from Companies House | From the register |
+| 11 | 2. Company details | You | Partners or owners who are not directors | Pre-filled from the persons with significant control list, add if missing | Matched to Companies House |
+| 12 | 2. Company details | You | What care service type are you registering for? | Set from the package, check | Matches section 4 |
+| 13 | 2. Setting up your company (instead of section 2, if not formed) | You | 1st, 2nd and 3rd choice company names | Type; availability checked live | Name availability check |
+| 14 | 2. Setting up your company (instead of section 2, if not formed) | You | Trading name preference | Type, optional |  |
+| 15 | 2. Setting up your company (instead of section 2, if not formed) | You | Type of company | Tap (for example private limited by shares) |  |
+| 16 | 2. Setting up your company (instead of section 2, if not formed) | You | Registered office address | Postcode lookup | UPRN matched |
+| 17 | 2. Setting up your company (instead of section 2, if not formed) | You | Full legal name, date of birth, nationality, country of residence, service address, occupation | Each director by their own link; ID photo fills name and date of birth | Date of birth not in the future; repeat for every director, unlimited |
+| 18 | 2. Setting up your company (instead of section 2, if not formed) | You | Companies House identity verification (personal code) | Type the 11-character code, or a text link explaining how to get it | 11 characters |
+| 19 | 2. Setting up your company (instead of section 2, if not formed) | You | Are the directors also the persons with significant control? PSC details if different | One tap, then add people | Ownership adds up to 100% |
+| 20 | 2. Setting up your company (instead of section 2, if not formed) | You | Number of shares, value per share, single owner or share split | Tap and type | Splits add up to 100% |
+| 21 | 2. Setting up your company (instead of section 2, if not formed) | You | Email for Companies House notices; lead director's mobile | Pre-filled, check | Formats |
+| 22 | 2. Setting up your company (instead of section 2, if not formed) | You | Authorisation for Care Sync to incorporate; confirmation of accuracy | E-signature (section 36) | Name, time and version kept |
+| 23 | 3. Directors | You | Full name, date of birth, mobile and email (Director 1 to 4, then 'more than four?') | Pre-filled from Companies House; each director confirms by their own link | Unlimited directors (no fixed 4 blocks) |
+| 24 | 4. Your service | You | Which CQC regulated activities will you provide? | Tap to choose, set from the package | Matches Statement of Purpose (Pack Doctor) |
+| 25 | 4. Your service | You | Service user bands you intend to support | Tap to choose with live preview (board 35) | Knock-on documents updated |
+| 26 | 5 to 9. Registered Manager | You, for your manager | Title | Tap |  |
+| 27 | 5 to 9. Registered Manager | You, for your manager | Full name | From the invite, check against ID | Must match ID |
+| 28 | 5 to 9. Registered Manager | You, for your manager | Date of birth | Date, UK format; or read from ID | Real date, not in the future |
+| 29 | 5 to 9. Registered Manager | You, for your manager | Email address; mobile number | From the invite, check | Formats |
+| 30 | 5 to 9. Registered Manager | You, for your manager | Current address | Postcode lookup | UPRN matched; must match proof of address |
+| 31 | 5 to 9. Registered Manager | You, for your manager | Addresses 1 to 5 for the last 5 years, and 'more than 5 addresses?' | Address timeline with postcode lookup and from and to months (board 47, step 2) | Full 5 years covered; gaps must be explained; no dates typed into address boxes |
+| 32 | 5 to 9. Registered Manager | You, for your manager | Three forms of identification | Choose any three from the accepted list, then photograph each (board 34) | Bills and statements from the last 3 months |
+| 33 | 5 to 9. Registered Manager | You, for your manager | Enhanced DBS completed? Certificate number, issue date, upload | Yes: number, date and photo (read from the photo). No: Care Sync arranges it | 12 digits; issue date real and not in the future |
+| 34 | 5 to 9. Registered Manager | You, for your manager | Registered with a professional body? Body and registration number | Tap, then choose the body and type the number | Checked on the public register |
+| 35 | 5 to 9. Registered Manager | You, for your manager | GP's name, surgery (practice name), surgery address lines 1 and 2, town/city, county, postcode, permission for CQC to contact the doctor | Typed as on the form; searching the surgery name or postcode can fill the address | Permission recorded |
+| 36 | 5 to 9. Registered Manager | You, for your manager | Referee: title, first and last name, address, email, phone, permission for CQC to contact them | Type; Care Sync asks the referee first | Email and phone formats; permission recorded |
+| 37 | 10. Nominated Individual | You | Will the same person serve as both registered manager and nominated individual? | One tap. Yes: the nominated individual section is completed from the manager's answers | Required |
+| 38 | 10 and 11. Nominated Individual | You | Full name, date of birth, email, mobile, current address | Pre-filled from the director record, check | As for the manager |
+| 39 | 10 and 11. Nominated Individual | You | Addresses 1 to 5 for the last 5 years | Address timeline | Full 5 years, gaps explained |
+| 40 | 10 and 11. Nominated Individual | You | Professional body and registration number | Tap, then type | Checked on the public register |
+| 41 | 10 and 11. Nominated Individual | You | Three forms of identification | Choose three, photograph each | As for the manager |
+| 42 | 10 and 11. Nominated Individual | You | Enhanced DBS completed? Certificate number, issue date, upload | As for the manager | 12 digits; real issue date |
+| 43 | 12. Declaration and signature | A director | Signatory full name, position, signature, date | E-signature, last of all | Opens only when every other section is complete |
 
 What the live answers taught us (fixed by design): a DBS issue date was entered in the year 3026; address history boxes held dates such as "11/2010" and "Present" instead of addresses; a postcode was missing characters; directors were limited to four fixed blocks; signatures were typed names.
 
