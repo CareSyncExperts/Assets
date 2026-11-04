@@ -810,6 +810,8 @@ At registration the client receives the Registration File, the journey moves to 
 | CQC interview preparation | £750 including VAT | Interview booked |
 | Single services (policy refresh, business plan) | From £500 + VAT | Annual review due or a law change |
 | CIW or RQIA registration | £4,500 + VAT | Expansion into Wales or Northern Ireland |
+| CQC registration, domiciliary care | £4,000 + VAT (confirmed 4 November 2026) | Second service or new company |
+| CQC registration, supported living | £5,000 + VAT (confirmed 4 November 2026) | Second service or new company |
 | Marketing (website, SEO, Google profile) | Quote | Registered but few referrals |
 | Mock inspection and inspection readiness | Pending (included in first-year support of full start-up packages) | Month 4 to 6 after registration |
 | Training matrix and compliance management | Pending | After registration, as staff are recruited |
@@ -1653,7 +1655,7 @@ A branded app (starting as an installable web app) with push notifications, a do
 
 ## 46. Super admin and system settings
 
-Care Sync needs two **super admins** (for example Collins and one other senior person) who control the whole system, separate from everyday staff roles. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
+Care Sync needs at least two **super admins**. Super admins control the whole system, separate from everyday staff roles. Decided 4 November 2026: managers hold the super admin accounts. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
 
 ### 46.1 What the super admin controls
 | Area | What they can do |
@@ -2027,14 +2029,16 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 ### 55.0 What Care Sync still needs to answer (4 November 2026)
 
-Three were answered on 4 November:
+Answered on 4 November:
 - the RQIA price is £4,500 (shown with VAT added, as in the price book)
+- CQC registration is £4,000 + VAT for domiciliary care and £5,000 + VAT for supported living
 - if CQC refuses, Care Sync resubmits as part of the package (section 58)
 - the same applies to CIW and RQIA
+- super admins: managers hold the super admin accounts (question 26). A manager approves price, form and permission changes, and break-glass requests when the other super admin is away. Nobody approves their own request.
 
-Seven questions are still open, all on the decision sheet:
-- Prices and payments: 10 and 23.
-- Facts only Care Sync knows: 1, 8, 26, 49 and 58.
+Six questions are still open, all on the decision sheet:
+- Prices and payments: 10 (the remaining prices) and 23 (how clients pay).
+- Facts only Care Sync knows: 1, 8, 49 and 58.
 
 Every other question below now has a default, listed here. Each default can be changed at any time.
 
@@ -2108,7 +2112,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
 23. **Payments:** which payment provider (for example Stripe or GoCardless) and the standard instalment schedule, so "accept, sign and pay" can be built.
 24. **Third-party links:** agree the wording clients approve before the Hub contacts their landlord, lender, referee or accountant.
 25. **Call recording:** agree the consent wording for recording and summarising calls.
-26. **Super admins:** confirm who holds the two super admin accounts (section 46), and who approves a break-glass request when one of them is away.
+26. **Answered: super admins.** Managers hold the super admin accounts (section 46). Another manager approves a break-glass request when one is away; nobody approves their own request.
 27. **Accounting software:** do you invoice in Xero, QuickBooks or another system, so invoices, deposits and instalments can sync (section 49.1)?
 28. **Partner access:** confirm that AssuredBid and any other partners should get limited partner logins, and what each partner may see (section 49.3).
 29. **Inconsistencies:** agree the correct founding year, whether "Comprehensive Training" stays on the website, and the evidence behind the "former CQC senior inspector" wording (section 50), so the Hub, emails and sales scripts all say the same thing.
@@ -2519,9 +2523,8 @@ Also added as staff screens: Clients (68), Sessions and interview practice (69),
 
 ### 60.5 For Care Sync to confirm
 
-- The price book shows CQC domiciliary care at £4,000 + VAT and supported living at £5,000 + VAT. These come from the existing client screens, not from a confirmed price list in this spec. Please confirm them, or they will show "Price to set".
+- **Confirmed 4 November:** CQC domiciliary care £4,000 + VAT and supported living £5,000 + VAT, live in the price book. Managers hold the super admin accounts; the screens show "Manager, super admin 2".
 - The instalment split is shown as an example until question 23 (how clients pay) is answered.
-- Who holds the second super admin account (question 26) is still to confirm.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 

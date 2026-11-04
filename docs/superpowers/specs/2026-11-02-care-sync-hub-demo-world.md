@@ -10,7 +10,7 @@ Write "Stage N of 11: name". **No application work (stages 2 to 6) starts until 
 
 ## Team (staff)
 - **Collins**: director, super admin 1. Approves prices, handovers, bid or no bid, break-glass.
-- **Second super admin**: "to confirm" (open decision 26). Do not invent a name.
+- **Second super admin**: a manager (decided 4 November: managers hold the super admin accounts). Shown as "Manager, super admin 2".
 - **Daniel Mensah**: consultant (case owner). CQC, CIW and tenders.
 - **Olu**: consultant. **On leave Mon 2 to Fri 6 November. Daniel covers Olu's clients this week.**
 - **Sam Patel**: consultant, **leaving Friday 6 November**. 6 clients being reassigned (none of them are in Daniel's list).
