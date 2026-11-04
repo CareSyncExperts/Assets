@@ -2075,6 +2075,11 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 48. **ID documents:** the CQC form asks for three, the CIW form for three and the RQIA form for two. Public RQIA guidance mentions three for AccessNI. Please confirm the right number for each.
 49. **RQIA PIN:** is 497850 still the PIN to give for new AccessNI checks?
 50. **RQIA price:** the RQIA package document says £3,500, while the Hub's price book shows £4,500 + VAT. Which is current?
+51. **Other officers in Wales:** which checks does CIW Online need for an officer who is not the RI (DBS, GP medical reference, references)? The form asks the basics until this is confirmed.
+52. **AccessNI for RQIA:** does RQIA accept an existing Enhanced AccessNI certificate for the RI and manager, or does it always run a new check with PIN 497850?
+53. **RQIA referee rule:** the form says one referee must be the current or most recent employer. Public guidance may describe this as the last job of at least 3 months working with children or adults at risk. Which wording should the Hub use?
+54. **Sole traders and partnerships:** confirm how CIW and RQIA treat the RI role when the provider is a sole trader or a partnership, so the form can explain it exactly.
+55. **ID lists:** biometric residence permits have been replaced by eVisas. Confirm the DBS and AccessNI ID lists to use.
 
 ---
 
@@ -2264,7 +2269,40 @@ Smart rules:
 
 The address history stays on the RI page whatever the DBS answer, because it belongs to the RI's fitness checks and not only to the DBS. This is a difference from the CQC form.
 
-Tested: 16 pages in every path, with 141 to 159 questions depending on the answers.
+Tested: 16 to 21 pages depending on the answers (sole trader, an RI who is not an officer, a manager who is a different person, and more).
+
+### E.4 Second review, the same day
+
+The form was printed page by page as a client sees it and checked again, then reviewed independently against the CIW skill. Changes:
+
+- **Dates of birth:** Companies House shows only the month and year, so the form asks the client to add the day instead of claiming the full date came from Companies House.
+- **Officers:** position is now a choice, and the form explains what a sole trader enters.
+- **Choosing the RI:** the picker lists only officers who exist, plus "someone else, who is not an officer" (CIW Online allows this). Each person is told CIW will email them an invitation to complete their own part.
+- **New page, Other Officers: Checks:** for every officer who is not the RI (place of birth, previous surnames, DBS, history), because CIW Online keeps a record for every officer.
+- **Registered Manager, when a different person:** their own DBS, two references, GP medical reference, registration history, professional body, place of birth, previous surnames, NI number and interview language. These are three extra pages, skipped when the RI is the manager.
+- **New page, Your CIW Choices:** decisions CIW Online asks the client to make, not Care Sync:
+  - legal notices by email
+  - sharing their email with Social Care Wales and Data Cymru (Dewis Cymru)
+  - the areas and the RI becoming conditions of registration, with a warning that saying No delays the application
+  - a note that each person ticks their own declarations at submission
+- **Languages:** the language the service is provided in, the inspection language and each person's interview language, as CIW Online asks. The Welsh speakers question now suits a start-up with no team yet.
+- **Prices and funding:** a rough hourly rate and who will pay, because CIW asks for a scale of charges.
+- **More CIW Online questions:**
+  - a branch office
+  - the service telephone and email (the organisation's can be reused)
+  - taking over a service
+  - shared premises
+  - the councils within the chosen areas
+- **Checks that catch contradictions:** children ticked with an adult age range; 65+ with adults under 65; a children-only DBS for an adult service.
+- **Referees:** a relative is a CIW rule; a company director is Care Sync advice. These are now separate questions. The "unless not possible" route for the 3-month employer rule is explained.
+- **Wording:**
+  - Internal notes such as "Added by the Hub" are no longer shown to clients; they are kept here for Care Sync.
+  - "Checked" messages now say what will be checked, not that a check has happened.
+  - The DBS age is counted to the day of submission.
+  - The Update Service ID is optional.
+  - Biometric residence permits now read "or eVisa".
+  - No personal care is flagged for the consultant to check.
+- **Declaration:** a fourth statement lets Care Sync act as the client's agent.
 
 ## Appendix F. RQIA Registration Information Form: every page, question and rule
 
@@ -2301,4 +2339,19 @@ Smart rules:
 - RI is also the manager: only the registration number, Level 5 and qualifications are asked.
 - Manager is a different person: their details, address history and AccessNI are asked, and the same "done already, no ID" rule applies to them.
 
-Tested: 12 pages in every path, with 109 to 124 questions.
+Tested: 14 to 17 pages depending on the answers.
+
+### F.4 Second review, the same day
+
+- **Dates of birth:** the same Companies House fix as Appendix E.
+- **RI picker:** lists only existing officers. There are notes for sole traders and partnerships, where the partners are the registered provider.
+- **Agency type:** conventional or supported living, as RQIA registers them separately.
+- **New pages:**
+  - How You Will Work: personal care, medicines, money, starting staff numbers, hourly rate and who pays (for the Service User Guide and staffing plan)
+  - RI Qualifications and Experience
+- **AccessNI:**
+  - An existing certificate is no longer treated as enough. RQIA may run its own check using its PIN, so ID documents are still collected, as optional, in case a new check is needed.
+  - The RI's NI number is asked.
+- **Registered Manager, when a different person:** their own AccessNI, two references (one from the current or most recent job), GP, registration history, place of birth, previous surnames and NI number. These are three extra pages, skipped when the RI is the manager. The manager is told they also apply to RQIA to be registered as manager.
+- **Registration history:** prompts the client to include other regulators.
+- **Wording:** the same fixes as Appendix E, including the eVisa wording, hidden internal notes and the agent consent in the declaration.
