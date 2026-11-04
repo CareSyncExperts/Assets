@@ -2027,8 +2027,8 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 ### 55.0 What Care Sync still needs to answer (4 November 2026)
 
-Only 9 questions are still open, all on the decision sheet:
-- Prices and payments: 10, 23, 50 and 56.
+Two were answered on 4 November: the RQIA price is £4,500 (shown with VAT added, as in the price book), and if CQC refuses, Care Sync resubmits as part of the package (section 58). Seven questions are still open, all on the decision sheet:
+- Prices and payments: 10 and 23.
 - Facts only Care Sync knows: 1, 8, 26, 49 and 58.
 
 Every other question below now has a default, listed here. Each default can be changed at any time.
@@ -2127,7 +2127,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
 47. **Address history length:** both forms ask for 5 years. Care Sync's CIW guidance mentions 10 years for some people. Which should the Hub ask for?
 48. **Answered: ID documents.** Three for all three regulators, including at least one photo ID and one proof of current address (see question 55).
 49. **RQIA PIN:** is 497850 still the PIN to give for new AccessNI checks?
-50. **RQIA price:** the RQIA package document says £3,500, while the Hub's price book shows £4,500 + VAT. Which is current?
+50. **Answered: RQIA price.** £4,500. The old package document saying £3,500 is out of date.
 51. **Answered: other officers in Wales.** CIW Online keeps a full People record for every officer, with the same nine sections as the RI (personal information, qualifications, employment history, registration history, references, DBS, declarations, suitability questions, submission declarations). The officer list asks the applicant to confirm all officers are fit and proper under section 9. The form now has two pages for each officer who is not the RI. Source: Care Sync's CIW form-filler skill, references 06f and 06h (walked on the live portal).
 52. **Answered, to confirm once with RQIA: AccessNI.** RQIA checks the owners and senior managers it registers through its own AccessNI application, hence the PIN. AccessNI has no update service, so a certificate does not move with the person. The form now always collects three ID documents, and certificate details are optional. RQIA's own guidance could not be opened from here, so ask the registration team to confirm once (registration@rqia.org.uk, 028 9051 7500).
 53. **Answered: RQIA referee rule.** Schedule 2 of the Domiciliary Care Agencies Regulations (Northern Ireland) 2007 asks for "two written references relating to the person, including a reference from the person's present or most recent employer, if any". The form uses this wording and offers "there is no previous employer". The "last period of employment of not less than three months" wording is from the Nursing Agencies Regulations (Northern Ireland) 2005, not the domiciliary care rules.
@@ -2142,7 +2142,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
     - The CIW and RQIA lists now say this, and RQIA's "two" is now three. This also answers question 48 for RQIA.
     - The CQC form's list now uses the same wording.
 
-56. **What the package includes if CQC pushes back.** Are answering CQC's questions, resending a returned application, writing representations to a notice of proposal, and supporting an appeal included in the package, or priced separately?
+56. **Answered: if CQC refuses, Care Sync resubmits, as part of the package** (section 58). Still to confirm: is the same true for CIW and RQIA?
 57. **Hosting.** Confirm the Hub must store client data in the UK (the security page says so).
 58. **Care Sync's ICO registration.** Confirm the registration number to show on the privacy notice and security page.
 
@@ -2328,6 +2328,46 @@ This is not a replacement for real clients (question 46), but it found real prob
 
 - Language help (read aloud, translation) and WhatsApp updates, in a later phase.
 - A test with 3 real clients before building starts.
+
+## 58. If CQC refuses: we resubmit (decided 4 November 2026)
+
+Care Sync's promise: if CQC refuses an application, Care Sync resubmits it as part of the package. The Hub carries this promise through every stage, not just one screen.
+
+### 58.1 Before a refusal: prevent it
+
+- **Questions and returned applications** are not refusals. Care Sync answers questions and resends returned applications as part of the work.
+- **Withdraw early when that is safer.** If a serious problem appears while CQC is still checking, a senior consultant decides whether to withdraw and resubmit before any notice is served, so no refusal goes on the client's record. Once CQC serves a notice of proposal, the application can no longer be withdrawn. The staff resubmission screen says so.
+- **Notice of proposal:** the best chance to stop a refusal. There is a 28-day countdown, and a written reply is drafted by Care Sync and reviewed by the client (CQC screen, email 5.2). The client is told at that moment that a refusal would be followed by a resubmission.
+
+### 58.2 When CQC refuses (boards 65 and 66)
+
+- **Same day:**
+  - The resubmission project opens automatically.
+  - The consultant calls the client.
+  - The client sees each of CQC's reasons in plain English, with the fix for each (board 65, email 5.3a).
+- **Every reason closes only on evidence.** A reason is closed only when the evidence is in the pack. Each one has a root cause, a fix, an owner and a status (board 66).
+- **Check everything again, not only the reasons.** Time has passed, so the Hub checks everything that ages:
+  - **DBS:** CQC expects it within 12 months on the date of the new application.
+  - **References:** confirmed again.
+  - **Statement of Purpose, business plan and policies:** updated and re-dated.
+  - **Insurance:** must be in date on the target date.
+  - **Manager:** if the refusal concerned the manager's fitness, whether a different manager is needed.
+
+  The example on board 66 shows why this matters: the DBS and the insurance both run out before the target date.
+- **The earlier refusal is declared openly** on the new application, with what has changed. The Hub fills this in automatically.
+- **Interview practice again** for everyone CQC will interview, through the interview portal and with Millicent.
+- **A second consultant reviews** the whole pack against CQC's reasons before anything is sent.
+- **The client reviews only the changed parts**, marked for them, then signs.
+- **Resubmission gate.** The pack cannot be sent until all six items are ticked: every reason evidenced, everything aged refreshed, the refusal declared, interview practice done, the senior review done, and the client signed.
+- **Appeal as the alternative.** The client is told on day one that an appeal must reach the tribunal within 28 days of the decision. The appeal discussion is booked before that deadline. Care Sync's usual advice is to resubmit when the reasons are fair and fixable, and to consider an appeal when CQC got the facts wrong or did not follow its process.
+- **Learning for every client.** Each reason becomes an anonymised Pack Doctor rule (question 31 default), so every future pack is checked against it.
+- **Client updates:** a call on the day, a written plan in the Hub, the resubmit or appeal discussion, then a Friday update until the new decision. Emails 5.3a and 5.3b.
+
+### 58.3 Where the promise appears
+
+- Plan and costs (board 60), "If CQC says no": resubmission is step 5, and the costs line says it is part of the package.
+- The CQC screen's notice of proposal state (board 5).
+- Emails 5.2, 5.3a and 5.3b.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 

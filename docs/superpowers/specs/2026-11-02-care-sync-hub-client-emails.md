@@ -332,6 +332,8 @@ CQC has sent a Notice of Proposal. It is not a final decision, and you have time
 
 You have until {{deadline}} to send written representations, which is 28 days from the date on the notice. We have already started drafting your response, and the plan with dates is in your Hub.
 
+If CQC still refuses after reading your response, we resubmit your application for you, as part of your package. You are not on your own with this.
+
 {{consultant_name}} will call you today to talk it through.
 
 Button: See the plan
@@ -348,6 +350,41 @@ CQC has returned your application and explained what it needs. We have read thei
 You will get an update every week until it is back with CQC.
 
 Button: See the recovery plan
+
+{{consultant_name}}
+
+### 5.3a CQC has refused the application
+**Subject:** CQC's decision, and how we resubmit for you
+
+Hi {{first_name}},
+
+CQC has refused the application. We know this is hard to read, so here is the most important part first: we resubmit for you, as part of your package.
+
+{{consultant_name}} has read CQC's decision and will call you today. In your Hub you can see each reason CQC gave, in plain English, with what we will do about it.
+
+Our plan:
+- fix every reason CQC gave
+- check everything again, including anything that has aged since the first application
+- practise the interview again
+- a second consultant reviews the whole pack
+- you check the changes and sign, then we send it
+
+Your target date to resubmit is {{target_date}}. If you think CQC got the facts wrong, you can also appeal to an independent tribunal within 28 days of the decision. We will talk through both routes on the call and tell you honestly which is better for you.
+
+Button: See your resubmission plan
+
+{{consultant_name}}
+
+### 5.3b Your application is back with CQC
+**Subject:** Resubmitted: your application is back with CQC
+
+Hi {{first_name}},
+
+Your new application went to CQC today, {{date}}. It answers every reason CQC gave last time, and tells CQC openly what has changed.
+
+CQC's receipt is saved in your Hub. We will update you every Friday until the decision.
+
+Button: See it in your Hub
 
 {{consultant_name}}
 
