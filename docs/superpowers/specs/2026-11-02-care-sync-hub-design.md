@@ -804,10 +804,10 @@ At registration the client receives the Registration File, the journey moves to 
 | Bid review | Around £500 (VAT to confirm) | Client writing their own bid |
 | Retained tender package | Pending | 2 tenders in 12 months, or more than one council area |
 | Policies for a tender | Extra fee, Pending | Gaps in tender readiness |
-| Supported living add-on | £1,500 including VAT; policies quoted separately | Home care client moving into supported living |
-| PIR writing | £750 + VAT per PIR | PIR received (logged by the client or captured from email) |
+| Supported living add-on | £1,500 including VAT (confirmed 4 November 2026); policies quoted separately | Home care client moving into supported living |
+| PIR writing | £750 + VAT per PIR (confirmed 4 November 2026) | PIR received (logged by the client or captured from email) |
 | Variations (location, service, band) | Pending | New office or area |
-| CQC interview preparation | £750 including VAT | Interview booked |
+| CQC interview preparation | £750 including VAT (confirmed 4 November 2026) | Interview booked |
 | Single services (policy refresh, business plan) | From £500 + VAT | Annual review due or a law change |
 | CIW or RQIA registration | £4,500 + VAT | Expansion into Wales or Northern Ireland |
 | CQC registration, domiciliary care | £4,000 + VAT (confirmed 4 November 2026) | Second service or new company |
@@ -2040,7 +2040,7 @@ Answered on 4 November:
 Also answered later on 4 November: payments through Stripe with 2 or 3 instalments (23), Google Workspace (1), the Interview Preparation Hub's system (8), the full start-up package price (£8,500 + VAT, to check against £8,000) and tender writing from £1,500 + VAT (section 61).
 
 Three questions are still open, all on the decision sheet:
-- Prices: 10 (the remaining prices: retained tender rate, policy fees, variations, bid review VAT, and some add-ons).
+- Prices: 10 (the remaining prices: retained tender rate, framework or dynamic purchasing applications, policy writing for tenders, variations, mock inspection for registration-only clients, and VAT on bid review). The supported living add-on (£1,500), interview preparation (£750) and PIR writing (£750 + VAT) were confirmed on 4 November.
 - Facts only Care Sync knows: 49 (RQIA PIN) and 58 (ICO registration number).
 
 Every other question below now has a default, listed here. Each default can be changed at any time.
@@ -2544,6 +2544,9 @@ Also added as staff screens: Clients (68), Sessions and interview practice (69),
 | Full start-up package | £8,500 + VAT (to check: £8,500 or £8,000) | 3: a third at accept, sign and pay; a third at final pack sign-off; a third at submission |
 | CIW or RQIA registration | £4,500 + VAT | 2: as for domiciliary care (default, to confirm) |
 | Tender writing | From £1,500 + VAT, quoted after review | 2: half at signing, half before submission |
+| Supported living add-on | £1,500 including VAT | 1: in full when the client accepts, signs and pays (default) |
+| CQC interview preparation | £750 including VAT | 1: in full (default) |
+| PIR writing | £750 + VAT per PIR | 1: in full (default) |
 
 Where a third does not divide exactly, the last instalment takes the pennies, so the total is always exact.
 
