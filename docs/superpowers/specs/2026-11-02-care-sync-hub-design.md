@@ -2068,9 +2068,13 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 41. **Tender writing course:** confirm the Week 1 and Week 2 course should become the Academy track, and who marks practice answers.
 42. **Questions beyond the form:** CQC's own registered manager application also covers employment history, qualifications and other roles held. Should the Hub collect these too (for example from the CV photo), or does Care Sync gather them separately today?
 43. **More than one referee:** the form asks for one referee for the manager. Confirm whether a second referee should be asked for.
-44. **CIW and RQIA forms:** please share the onboarding forms used for Wales and Northern Ireland, so they can be mapped page by page like the CQC form.
-45. **Welsh language:** should the client side be offered in Welsh for CIW clients, and from Phase 1 or later?
+44. **CIW and RQIA forms (done, Appendices E and F):** confirm the changes: the full 12-digit DBS number, CIW Online's hours bands, the Wales client groups, and the questions marked "Added by the Hub".
+45. **Decided: the Hub stays in English for CIW clients.** The CIW form still asks the client's preferred language for CIW's own calls and letters.
 46. **Testing with clients:** which three clients (one CQC, one tender, one with both) could try the boards before building starts?
+47. **Address history length:** both forms ask for 5 years. Care Sync's CIW guidance mentions 10 years for some people. Which should the Hub ask for?
+48. **ID documents:** the CQC form asks for three, the CIW form for three and the RQIA form for two. Public RQIA guidance mentions three for AccessNI. Please confirm the right number for each.
+49. **RQIA PIN:** is 497850 still the PIN to give for new AccessNI checks?
+50. **RQIA price:** the RQIA package document says £3,500, while the Hub's price book shows £4,500 + VAT. Which is current?
 
 ---
 
@@ -2087,7 +2091,7 @@ Done on 4 November 2026, board by board, against the client's whole life with Ca
 | First sign-in | Privacy consent, then the welcome moment and the team | 53, 25 |
 | Introduction call | Staff task (Divine by default, anyone can take it); client gets the confirmation text | 33, email 1.3 |
 | Onboarding form sent | Form home tailored to the package, with the sections listed | 46 |
-| Filling in the form | The real CQC form or tender questionnaire, every question and rule, save and come back, check your answers | 47, 38, 54 (computer) |
+| Filling in the form | The real CQC, CIW or RQIA form, or the tender questionnaire: every question and rule, save and come back, check your answers | 47, 55, 56, 38, 54 (computer) |
 | Form helpers | Company search, snap and send, who you will support, directors | 23, 34, 35, 36 (inside the form) |
 | Form sent | Being checked, something to fix, project started | 52 |
 | Every day | Today, with what is waiting on you and what we did | 1, 54 (computer) |
@@ -2138,8 +2142,7 @@ A screen is ready to build only when it passes all of these:
 
 ### 56.5 Still open before the client side is truly finished
 
-- The CIW and RQIA onboarding forms, once Care Sync shares them (question 44).
-- Welsh: clients registering with CIW may want the Hub in Welsh (question 45).
+- The CIW and RQIA forms are now done (boards 55 and 56, Appendices E and F). Confirm the changes (questions 44 and 47 to 50).
 - Test the boards with three real clients before building: one CQC, one tender and one with both (question 46).
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
@@ -2205,3 +2208,97 @@ Source: the live Google Form "Care Sync Experts, Tender Preparation Questionnair
 | Sign-off | Always, last | 16.1 to 16.5, all * | |
 
 A returning client sees 6 pages: this tender, what has changed, lots, services, the pages for their settings, and sign-off. A first-time client sees between 17 and 21 pages, depending on their regulator, examples and lots.
+
+## Appendix E. CIW Registration Information Form: every page, question and rule
+
+Rebuilt on 4 November 2026 from the live Google Form ("CIW Registration Information Form, Domiciliary Support Service, Wales"), then checked against what CIW Online actually asks for, using Care Sync's CIW form-filler skill (portal sections 1 to 9, the new client intake list and the rejection patterns). Board 55 shows it working. Every question on the live form is kept; a coverage check found all 108 questions and options in the board. The Hub, like CIW, is in English only.
+
+### E.1 Problems found in the live form
+
+| Problem | Fix in the Hub |
+| --- | --- |
+| DBS asks for the last 4 digits only. CIW checks the DBS online through the Update Service, so it needs the full 12-digit number | Full number, checked for 12 digits |
+| "Update Service ID (if yes)" is a Yes or No question, so nobody can type the ID | A text box, shown only when the person is on the Update Service |
+| Every DBS question is required even when the answer is "No DBS" | Certificate details only when Yes; three ID documents only when No |
+| Regional Partnership Board "Area(s)" lets you pick only one | Tick boxes. The Hub explains each area is its own service with its own Statement of Purpose |
+| Service Details says "the person who will be in day-to-day charge" (copied from the manager section) | Correct description |
+| Trading name and company number are required although marked "if different" and "if applicable" | Optional |
+| Dates use the American order (MM/DD/YYYY) | dd/mm/yyyy throughout |
+| RI full name is not required while the date of birth is | Both required, and copied from the officers page |
+| The RI is retyped although they must be one of the officers | Pick the officer; their details are copied |
+| "If Yes, complete qualifications only" is an instruction, not logic | The manager's personal details appear only when the manager is a different person |
+| Address history is one box with no dates check | Address rows with a gap check over 5 years |
+| A Yes in registration history asks for nothing more | A short "tell us more" box appears |
+| Weekly hours bands differ from CIW Online (for example 501 to 1000) | CIW Online's 8 bands |
+| Client groups are not the Wales groups (no adults under 65, no criminal justice) | The 12 groups used in Wales |
+| One upload box for every person's CV, and the signature is a file upload | One upload per person; sign on screen; the three declaration statements become ticks |
+| "Organization" in US spelling | British English |
+
+### E.2 Gaps against CIW Online, now asked (each marked "Added by the Hub" on the board)
+
+- Who is filling it in, whether they are authorised, and whether the client has a CIW Online account.
+- An office in Wales if the registered office is elsewhere (CIW asks for the principal office).
+- Organisation history with any regulator, and whether a parent company owns 50% or more.
+- Each officer's home address (CIW wants it, not the company address).
+- Range of needs, using CIW Online's names; start date (at least 14 weeks ahead); office ownership.
+- How you will work: personal care, help with medicines, help with money, Welsh speakers on the team (the Active Offer). Learning disability or autism experience appears only when those groups are ticked, because CIW checks it.
+- RI: National Insurance number, qualifications, professional body, any investigation by a professional regulator, and why they are the right person (CIW asks how the RI is eligible).
+- Registration history: other business interests in the UK or overseas.
+- Referees: did they employ you for at least 3 months, and is either a relative or a director. Warnings appear before CIW would reject.
+- GP: the Hub sends CIW's medical reference form early, because CIW needs all 3 pages signed and stamped and GPs can be slow.
+- Manager: chosen yet (CIW allows applying without one, but will not register until a Social Care Wales registered manager is named), Social Care Wales status and number, Level 5.
+- Documents: which ones the client already has, so the documents list is right first time. This includes the bank reference on CIW's own form and an insurance certificate (not a quote or schedule), which are common reasons for return.
+
+### E.3 Pages and rules
+
+1. Before You Start. 2. Organisation Information (filled from Companies House for a company or LLP). 3. Organisation History and Group. 4. Organisation Officers (another officer adds the next, up to three, then "more than three"). 5. Service Details. 6. How You Will Work. 7. RI Details (copied from the chosen officer). 8. DBS Information. 9. RI Qualifications and Experience. 10. Registration History. 11. RI References. 12. RI GP Details. 13. Registered Manager Details. 14. Required Documents. 15. Check your answers. 16. Declaration.
+
+Smart rules:
+
+- DBS done and on the Update Service: no ID documents.
+- DBS done but not on the Update Service: a prompt to join, as there is a time limit after issue.
+- DBS not done: three ID documents.
+- DBS issue date: warning as it nears 3 months old, because CIW Online warns that older certificates may be rejected.
+- RI is also the manager: only qualifications and Social Care Wales details are asked.
+- CV checks: gaps of 4 weeks or more, and "present" as an end date, are flagged.
+
+The address history stays on the RI page whatever the DBS answer, because it belongs to the RI's fitness checks and not only to the DBS. This is a difference from the CQC form.
+
+Tested: 16 pages in every path, with 141 to 159 questions depending on the answers.
+
+## Appendix F. RQIA Registration Information Form: every page, question and rule
+
+Rebuilt on 4 November 2026 from the live Google Form ("RQIA Registration Information Form, Northern Ireland"). RQIA's own website is blocked in this session, so it was checked against Care Sync's RQIA guide and package in Drive, and public summaries of RQIA guidance. Board 56 shows it working. All 95 questions and options from the live form are in the board.
+
+### F.1 Problems found in the live form
+
+| Problem | Fix in the Hub |
+| --- | --- |
+| HSC Trust "Area(s)" lets you pick only one | Tick boxes |
+| Service Details says "the person who will be in day-to-day charge" | Correct description |
+| AccessNI questions are not required and have no logic | Certificate details when Yes; two ID documents and the RQIA PIN when No |
+| "If applying new, note RQIA PIN: 497850" is a question box | A note, shown only when a new AccessNI check is needed |
+| The documents ask for AccessNI ID for the manager, but there are no manager AccessNI questions | Manager AccessNI asked when the manager is a different person |
+| Referee 2 has no "Relationship to you" | Added |
+| Manager address history "if different from RI" is an instruction | Shown only when the manager is a different person |
+| Dates in MM/DD/YYYY; signature as a file upload; one CV box for everyone | dd/mm/yyyy; sign on screen; one CV upload per person |
+
+### F.2 Gaps, now asked (each marked "Added by the Hub")
+
+- ICO registration and an RQIA Web Portal login (RQIA issues logins after checking identity, so this starts early).
+- Start date. A short "tell us more" box after any Yes in registration history.
+- Whether either referee is a relative (Care Sync's own guide lists weak or family references as a top reason for delay).
+- Level 5 qualification status; NISCC registration (the manager must be NISCC registered).
+- Which documents the client already has: Statement of Purpose, Service User Guide, policies, staffing and training plan, business plan, bank letter, insurance, office. These come from Care Sync's RQIA guide.
+
+### F.3 Pages and rules
+
+1. Organisation Information (filled from Companies House for a company or LLP). 2. Organisation Officers. 3. Service Details. 4. RI Details (copied from the chosen officer). 5. AccessNI Information. 6. Registration History. 7. RI References. 8. RI GP Details. 9. Registered Manager Details. 10. Required Documents. 11. Check your answers. 12. Declaration.
+
+Smart rules:
+
+- AccessNI done: no ID documents.
+- RI is also the manager: only the registration number, Level 5 and qualifications are asked.
+- Manager is a different person: their details, address history and AccessNI are asked, and the same "done already, no ID" rule applies to them.
+
+Tested: 12 pages in every path, with 109 to 124 questions.
