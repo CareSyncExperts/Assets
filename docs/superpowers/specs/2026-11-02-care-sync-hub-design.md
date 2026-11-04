@@ -2072,14 +2072,22 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 45. **Decided: the Hub stays in English for CIW clients.** The CIW form still asks the client's preferred language for CIW's own calls and letters.
 46. **Testing with clients:** which three clients (one CQC, one tender, one with both) could try the boards before building starts?
 47. **Address history length:** both forms ask for 5 years. Care Sync's CIW guidance mentions 10 years for some people. Which should the Hub ask for?
-48. **ID documents:** the CQC form asks for three, the CIW form for three and the RQIA form for two. Public RQIA guidance mentions three for AccessNI. Please confirm the right number for each.
+48. **Answered: ID documents.** Three for all three regulators, including at least one photo ID and one proof of current address (see question 55).
 49. **RQIA PIN:** is 497850 still the PIN to give for new AccessNI checks?
 50. **RQIA price:** the RQIA package document says £3,500, while the Hub's price book shows £4,500 + VAT. Which is current?
-51. **Other officers in Wales:** which checks does CIW Online need for an officer who is not the RI (DBS, GP medical reference, references)? The form asks the basics until this is confirmed.
-52. **AccessNI for RQIA:** does RQIA accept an existing Enhanced AccessNI certificate for the RI and manager, or does it always run a new check with PIN 497850?
-53. **RQIA referee rule:** the form says one referee must be the current or most recent employer. Public guidance may describe this as the last job of at least 3 months working with children or adults at risk. Which wording should the Hub use?
-54. **Sole traders and partnerships:** confirm how CIW and RQIA treat the RI role when the provider is a sole trader or a partnership, so the form can explain it exactly.
-55. **ID lists:** biometric residence permits have been replaced by eVisas. Confirm the DBS and AccessNI ID lists to use.
+51. **Answered: other officers in Wales.** CIW Online keeps a full People record for every officer, with the same nine sections as the RI (personal information, qualifications, employment history, registration history, references, DBS, declarations, suitability questions, submission declarations). The officer list asks the applicant to confirm all officers are fit and proper under section 9. The form now has two pages for each officer who is not the RI. Source: Care Sync's CIW form-filler skill, references 06f and 06h (walked on the live portal).
+52. **Answered, to confirm once with RQIA: AccessNI.** RQIA checks the owners and senior managers it registers through its own AccessNI application, hence the PIN. AccessNI has no update service, so a certificate does not move with the person. The form now always collects three ID documents, and certificate details are optional. RQIA's own guidance could not be opened from here, so ask the registration team to confirm once (registration@rqia.org.uk, 028 9051 7500).
+53. **Answered: RQIA referee rule.** Schedule 2 of the Domiciliary Care Agencies Regulations (Northern Ireland) 2007 asks for "two written references relating to the person, including a reference from the person's present or most recent employer, if any". The form uses this wording and offers "there is no previous employer". The "last period of employment of not less than three months" wording is from the Nursing Agencies Regulations (Northern Ireland) 2005, not the domiciliary care rules.
+54. **Answered: sole traders and partnerships.**
+    - **Wales:** where the provider is an individual, they are the RI (CIW guidance on section 21). In a partnership, the RI must be one of the partners. For a company, the RI is normally a director or similar officer. CIW Online also allows a non-officer RI to be added to the officers list.
+    - **Northern Ireland (regulation 8):** a sole trader carries on the agency and must be fit themselves. An organisation's RI must be a director, manager, secretary or other officer, which is wider than the old form's "director, partner, or trustee". In a partnership, the partners carry on the agency and one partner takes the lead, for example on training.
+    - The forms now say this for each type.
+55. **Answered: ID documents.** The DBS rules changed on 22 April 2025, and the transition ended on 1 November 2025.
+    - eVisas are accepted, checked online with a share code.
+    - An expired biometric residence permit showing indefinite leave can still be used for ID for up to 18 months after its expiry.
+    - DBS and AccessNI both need three documents, including at least one photo ID and at least one showing the current address.
+    - The CIW and RQIA lists now say this, and RQIA's "two" is now three. This also answers question 48 for RQIA.
+    - The CQC form's list should get the same eVisa wording when it is next updated.
 
 ---
 
