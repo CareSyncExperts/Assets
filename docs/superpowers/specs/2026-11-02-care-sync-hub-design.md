@@ -2301,12 +2301,33 @@ This is not a replacement for real clients (question 46), but it found real prob
 
    A warning explains that CQC looks for housing and care to be separate, so people can change care provider without losing their home.
 
-### 57.3 Still open
+### 57.3 Finished the same day (boards 63 and 64, and changes across the forms)
 
-- Past bids: scores, feedback, reusable answers, win rate and contract renewal dates.
-- An "I am not sure, ask us" link on every form question, and a time estimate for each section.
-- Language help (read aloud, translation) and WhatsApp updates (question 15).
-- A short start-up route through the tender form for new companies.
+1. **Wales and Northern Ireland after the form.**
+   - **Today and the journey** switch between CQC, CIW and RQIA: the client name, service type, regulator wording and the bottom menu.
+   - **Board 63 is the regulator screen for CIW and RQIA.** It covers five moments: before we submit, submitted, questions, interview, and registered.
+   - **CIW:** CIW Online and its invitations to each person, references emailed by CIW, declarations that open when every record is complete, the suitability interview, then regulation 73 visits, the regulation 80 review and the annual return.
+   - **RQIA:** the Web Portal applications, AccessNI run by RQIA, the manager's NISCC registration, fit person interviews for the RI and the manager, then monthly quality monitoring and inspections against the Minimum Standards.
+   - **Both:** the client submits with their consultant on a call. Care Sync never submits without them.
+2. **Other people on the account (board 64).**
+   - **Co-director:** sees everything and has their own tasks: Companies House identity, ID photos, their signature, and checking their details.
+   - **Registered manager:** sees only their own tasks: CV, DBS, reading the policies and interview practice. They do not see payments or other people's details.
+   - **Signing together:** each signer's status and a reminder button. The pack is only sent when everyone has signed.
+3. **Smaller items:**
+   - **Past bids:** a tab on the tender workspace with bids won, contract value, average score, each result with its score and feedback, and contracts coming up for renewal.
+   - **Every form question** has "Not sure? Ask us", and Grace replies in the Hub within 1 working day. **Every page** shows a time estimate.
+   - **A short tender route for new companies:** "Is your company already providing care?" If No, the track record and private client pages are replaced by one page on the team's experience and plans.
+   - **Tender screens:** the bottom menu now goes to the tender workspace, not the CQC documents room. The pricing schedule shows "To approve", matching the to-do list.
+   - **The CQC interview** stays in Care Sync's interview portal, linked from the regulator screens.
+4. **Visual check.**
+   - **What was checked:** every screen was rendered in a real browser with the canvas runtime, in light and dark mode (128 checks), looking for script errors, content cut off at the bottom, sideways overflow, and dark text on a dark background.
+   - **What was found:** 12 screens had content taller than their frame, so their bottoms were hidden. Each frame now fits its content, and the canvas rows were moved down so nothing overlaps.
+   - **Result:** after the fix, all 128 checks passed. Each screen was checked in its opening state; the other tabs share the same layout.
+
+### 57.4 Still open
+
+- Language help (read aloud, translation) and WhatsApp updates, in a later phase.
+- A test with 3 real clients before building starts.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
