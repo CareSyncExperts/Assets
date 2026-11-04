@@ -10,7 +10,8 @@ Write "Stage N of 11: name". **No application work (stages 2 to 6) starts until 
 
 ## Team (staff)
 - **Collins**: director, super admin 1. Approves prices, handovers, bid or no bid, break-glass.
-- **Second super admin**: a manager (decided 4 November: managers hold the super admin accounts). Shown as "Manager, super admin 2".
+- **Rachel Turner**: operations manager, **super admin 2** and **data protection lead** (decided 4 November: managers hold the super admin accounts).
+- **Femi Ade**: finance, part time.
 - **Daniel Mensah**: consultant (case owner). CQC, CIW and tenders.
 - **Olu**: consultant. **On leave Mon 2 to Fri 6 November. Daniel covers Olu's clients this week.**
 - **Sam Patel**: consultant, **leaving Friday 6 November**. 6 clients being reassigned (none of them are in Daniel's list).
@@ -27,7 +28,7 @@ Write "Stage N of 11: name". **No application work (stages 2 to 6) starts until 
 | **Harbour Lane Care Ltd** | Amara Okafor (director and nominated individual); Kwame Okafor (second director, on Companies House); **Ruth Bennett** (proposed registered manager, a different person from Amara) | CQC, domiciliary care, Full start-up package | **Stage 1 of 11: onboarding checks.** Paid and introduction call Mon 19 Oct. Form sent 19 Oct, form arrived **Thu 29 Oct**. Gates: **5 of 8 passed, 3 to pass** (see below). | Proposed: Daniel. Manager approves at handover. Grace owns it until then. |
 | **Bright Path Care Ltd** | Joy Adeyemi (director) | CQC, domiciliary care, Full start-up | Stage 4 of 11: drafting. Session 2 of 3 **today 10:00** with Millicent, Daniel joins. Provider form check due Wed 11 Nov. | Daniel |
 | **Sunrise Homecare Ltd** | Priya Shah | CQC, domiciliary care | Stage 10 of 11: **Notice of Proposal**. Served (received) **Wed 21 Oct**. Legal deadline for written representations: **Tue 17 Nov** (28 days). Our target to send: **Tue 10 Nov**. Today: 15 days to the legal deadline, 8 to our target. Reply drafted by Daniel, senior review by Collins Mon 9 Nov. | Daniel |
-| **Westbrook Care Ltd** | Sade Johnson (director); Leon Grant (manager) | CQC, domiciliary care | Stage 10 of 11: **refused, we resubmit**. CQC notice of decision received **Mon 26 Oct**. Appeal window to the tribunal closes **Mon 23 Nov**; client chose to resubmit (recorded 28 Oct). Senior review of the new pack **Thu 12 Nov**. Resubmit target **Mon 30 Nov**. Resubmission is free (Care Sync promise). | Daniel |
+| **Westbrook Care Ltd** | Sade Johnson (director); Leon Grant (manager) | CQC, domiciliary care | Stage 10 of 11: **refused, we resubmit**. CQC notice of decision received **Mon 26 Oct**. Appeal window to the tribunal closes **Sun 22 Nov** (28 days worked out the safe way: the day of service counts as day 1); client chose to resubmit (recorded 28 Oct). Senior review of the new pack **Thu 12 Nov**. Resubmit target **Mon 30 Nov**. Resubmission is free (Care Sync promise). | Daniel |
 | **Elm Tree Care Ltd** | Femi Adebayo (director); Claire Hughes (manager) | CQC, domiciliary care | Stage 9 of 11: **CQC interview Tue 24 Nov** (Claire). Interview portal 40% done. | Daniel |
 | **Afon Care Ltd** | Rhian Example | CIW, domiciliary support service | Stage 8 of 11: with CIW. Submitted on CIW Online **Wed 14 Oct**. CIW is waiting for a reference from referee Sarah Jones (asked 3 days ago, nudge today). Suitability interview **Thu 26 Nov**. | Daniel |
 | **Oakleaf Living Ltd** | Kemi Adebola (director) | Tender client (CRM). Registered with CQC already | Two bids: **Northshire County Council home care framework, Lot 1 North** and **Eastford Borough Council supported living** (see tenders). | Daniel |
@@ -47,14 +48,14 @@ Onboarding gates (8). These are the FormStaff checks grouped; the same results a
 3. Office address evidence: **Waiting**. Office: Flat 2, 14 Harbour Road (rented). Landlord **Tom Reid**; landlord letter link sent to Tom on Fri 30 Oct (already requested, so it is never added to Amara's fix list again).
 4. Registered manager: **Pass**. Ruth Bennett, CV received.
 5. Employment history: **Fail**. Ruth's CV has an unexplained gap, March to November 2019. Fix: one line explaining it.
-6. References: **Pass** for referee 1 (Ruth's last employer). (Referee 2 is due later from the client, not a gate.)
+6. References: **Pass** for the referee (Ruth's last employer).
 7. DBS: **Pass**. Ruth: Enhanced DBS with adult barred list, issued 14 Feb 2026, photo uploaded 30 Oct, checked by Grace 30 Oct. Amara (nominated individual) has no DBS yet: Care Sync starts her application, ID done.
 8. Professional registers: **Pass**. Ruth is not on a register that applies (checked 30 Oct, recorded with date).
 So: **5 of 8 passed; 1 waiting (address, on the landlord); 2 to fix by the client.** The client's fix list has **exactly 2 items**: (1) Kwame Okafor's details as second director; (2) one line about the gap March to November 2019 on Ruth's CV. Button: "Send fix list (2)".
 
 ## Tenders: the single truth
-- **Northshire County Council home care framework 2027, Lot 1 North.** Client: Oakleaf Living. Clarification questions close **Fri 13 Nov 17:00**. Bid deadline **Tue 1 Dec 12:00**. Care Sync submits **Mon 30 Nov**.
-  Tasks (identical on staff Tender and client TenderWork): case study from Kemi **Wed 11 Nov**; staff numbers and turnover from Kemi **Mon 16 Nov**; Care Sync draft to Kemi **Fri 20 Nov**; Kemi approves the final bid **Wed 25 Nov**; Care Sync submits Mon 30 Nov.
+- **Northshire County Council home care framework 2027, Lot 1 North.** Client: Oakleaf Living. Clarification questions close **Fri 13 Nov 17:00**. Bid deadline **Tue 1 Dec 12:00**. Care Sync submits **Fri 27 Nov** (2 working days spare).
+  Tasks (identical on staff Tender and client TenderWork): case study from Kemi **Wed 11 Nov**; staff numbers and turnover from Kemi **Mon 16 Nov**; Care Sync draft to Kemi **Tue 17 Nov** (10 working days before the deadline); Kemi approves the final bid **Tue 24 Nov** (5 working days before); Care Sync submits **Fri 27 Nov** (2 working days before).
   Radar must say "1 client already bidding on this tender: Oakleaf Living (Lot 1 North)". Bid or no bid for another client on Lot 2 needs Collins's approval on the manager dashboard.
 - **Eastford Borough Council supported living (dynamic purchasing system).** Client: Oakleaf Living. Application deadline **Fri 4 Dec**. Status: deciding scope, profile check under way. Must exist on the staff Tender record too.
 - Existing clients found on the Radar are never contacted by sales directly: the case owner approves first.
@@ -95,3 +96,9 @@ Only these icon names exist in the component library: archive bell building-2 ca
 ## Payments and systems (decided 4 November 2026)
 - Payments through Stripe. Domiciliary care £4,000 + VAT and supported living £5,000 + VAT: 2 instalments (half at accept, sign and pay; half at submission). Full start-up package £8,500 + VAT (to check against £8,000): 3 instalments (thirds at accept, sign and pay; final pack sign-off; submission). CIW and RQIA £4,500 + VAT: 2 instalments (default). Tender writing from £1,500 + VAT: half at signing, half before submission. Splits are defaults the super admin can change.
 - Care Sync uses Google Workspace. The Interview Preparation Hub is Care Sync's own system (Next.js, Express API, PostgreSQL); the Hub creates accounts through its API.
+
+## Super admin facts (4 November 2026; full list in SP/superadmin/ia.md)
+- 7 decisions wait for a super admin (badge 7). Open incident: Sam Patel's export (awareness Mon 2 Nov 06:00; 72-hour window ends Thu 5 Nov 06:00). Olu's cover is a delegation approved by Rachel (vault reveal included for the 4 covered clients), not break-glass. 10 people with access.
+- Aftercare (12 months) is in the full start-up package only; others can buy it as an add-on. Brookside, Maple Court, Bryn Glas, Foyle and Ashby are full start-up clients (or bought the aftercare add-on).
+- Review invitations: every registered client, once, at registration, Google and Trustpilot (the client chooses), one reminder after 7 days. Never held back for worried clients.
+- Notice of Proposal: draft by day 14, senior review and client approval by day 20, send by day 21; legal deadline worked out the safe way.

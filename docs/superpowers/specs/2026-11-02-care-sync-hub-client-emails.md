@@ -312,7 +312,7 @@ Hi {{first_name}},
 
 Your Registration File is ready: every final document in one place, neatly organised for your first inspection.
 
-Your next steps for the first 30 days are in your Hub, and {{consultant_name}} would like to book a short call to plan your launch and goals.
+Your next steps for the first 30 days are in your Hub, and {{consultant_name}} would like to book a short call to plan your launch and goals. {{aftercare_line}}
 
 Button: Open my Registration File
 
@@ -705,18 +705,18 @@ Button: Open my Hub
 ## 9. Account and care
 
 ### 9.1 Emergency access to your account
-**Trigger:** a super admin approves break-glass access to the client's vault (section 46.2)
+**Trigger:** emergency (break-glass) access to the client's vault is used: approved by a super admin who is not the requester, or self-authorised with a written reason when no super admin can be reached (section 62). Planned leave cover never uses this; it uses cover delegation and shows on the privacy page.
 **Subject:** We used emergency access to your account today
 
 Hi {{first_name}},
 
-Today at {{time}}, {{staff_name}} used emergency access to your {{account_name}}, because {{reason}}. A Care Sync director approved it, and access ended automatically after {{hours}} hours.
+Today at {{time}}, {{staff_name}} used emergency access to your {{account_name}}, because {{reason}}. A senior member of the Care Sync team approved it, and access ended automatically after {{hours}} hours.
 
 You can see exactly what happened on your privacy page. If you have any questions, reply to this email.
 
 Button: See your privacy page
 
-{{director_name}}, Director
+{{approver_name}}, {{approver_role}}
 
 ### 9.2 We have received your concern
 **Trigger:** the client raises a concern in their Hub
@@ -839,7 +839,7 @@ Hi {{first_name}},
 
 {{company_name}} is now registered with Care Inspectorate Wales. This is a big moment, and it is yours.
 
-Your certificate and conditions are in your Registration File. Your first duties are in your Hub too: the RI's visit every three months, the quality of care review every six months, and the annual return. Your 12 months of aftercare start today.
+Your certificate and conditions are in your Registration File. Your first duties are in your Hub too: the RI's visit every three months, the quality of care review every six months, and the annual return. {{aftercare_line}}
 
 Button: Open my Registration File
 
@@ -943,7 +943,7 @@ Hi {{first_name}},
 
 {{company_name}} is now registered with RQIA. This is a big moment, and it is yours.
 
-Your certificate is in your Registration File. Your first duties are in your Hub too, including the monthly quality monitoring report and getting ready for your first inspection. Your 12 months of aftercare start today.
+Your certificate is in your Registration File. Your first duties are in your Hub too, including the monthly quality monitoring report and getting ready for your first inspection. {{aftercare_line}}
 
 Button: Open my Registration File
 
@@ -994,3 +994,14 @@ Use email 5.3b, with CIW or RQIA in place of CQC.
 - **Peak-end rule:** every email ends on reassurance and a clear next step; registration and anniversary emails are designed as peaks.
 - **Ethics and legal gates:** no fear, no fake urgency, no invented proof, prices only from the price book, opt-out on every growth email, consent rules for sole traders.
 - **Claims still needing evidence before use:** any case study or review quoted must be confirmed and permitted by the client.
+
+---
+
+## 12. Rules every email follows (from the super admin registry, 4 November 2026)
+
+- Timings come from **Rules and promises** (board 80), never typed into a template: the weekly update day and time ({{update_day}}, default Friday by 16:00), reminders (onboarding form after 2 and 4 days; documents after 3 days then weekly; landlord and referee after 3 working days), the review reminder (once, 7 days after 5.1), quiet hours (8pm to 8am; legal deadline and tender deadline alerts within 24 hours still go).
+- **{{aftercare_line}}** (10.7, 11.5 and 5.1) reads: "Your 12 months of aftercare start today." for full start-up clients and clients who bought aftercare; otherwise: "Your Registration File has everything you need, and we will call you this week to hand over. If you would like us beside you for the first year, ask about aftercare."
+- Review invitations (5.1 and 5.4) offer Google and Trustpilot, and the client chooses. Every registered client is invited once, whatever their feedback (a locked rule).
+- Emails never promise how long a regulator, buyer or decision will take, and never use the word "free".
+- Templates with legal wording (for example 5.2 Notice of Proposal) need the other super admin's approval before a new version goes live (board 82).
+

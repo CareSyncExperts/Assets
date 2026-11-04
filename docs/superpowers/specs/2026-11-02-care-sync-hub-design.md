@@ -76,7 +76,7 @@ Directors can create or change a template inside the Hub: add a stage, add a req
 |---|---|
 | **Domiciliary Care: Full Package** | Registration, Business plan, Policies, Brand and website, Interview, Aftercare (12 months) |
 | **Supported Living: Start Up Package** | Registration, Business plan, Policies, Brand and website, Interview, Aftercare (12 months) |
-| **CQC Registration only** (Dom Care or Supported Living) | Registration, Policies, Interview |
+| **CQC Registration only** (Dom Care or Supported Living) | Registration, Policies, Interview. No aftercare included; aftercare (12 months) can be added (decided 4 November 2026: aftercare is in the full start-up package only) |
 | **Single element** | One track only, for example Policies only, Interview coaching only, Business plan only, CV review only |
 | **Tender** | Tender (see section 9) |
 | **Aftercare / ongoing support** | Monthly check-ins, inspection readiness |
@@ -240,7 +240,8 @@ Clients should never feel stuck or unsure who to ask. There are four ways to ask
 
 - **In the Hub** (always)
 - **Email** (always, from a recognisable Care Sync address)
-- **SMS or WhatsApp** (later phase, for urgent items only: deadlines, interview reminders, CQC decisions)
+- **Texts** (Phase 1, only for the introduction call and urgent legal deadlines)
+- **WhatsApp** (later phase, off until switched on in super admin)
 
 ### 6.2 Events that notify the client
 
@@ -270,8 +271,8 @@ Clients can choose quiet hours and whether they want the weekly summary. They ca
 
 When staff log a **Notice of Proposal** or **Notice of Decision**, they enter the **date of service** shown on the notice. The Hub then:
 
-1. Calculates the 28-day deadline from that date and shows it to client and staff.
-2. Creates internal tasks back-scheduled from the deadline (for example draft representations by day 14, client review by day 21, send by day 25).
+1. Calculates the 28-day deadline from that date the safe way (the day of service counts as day 1, so the deadline is 27 days after service; if the service date is unclear, the earliest possible date is used) and shows it to client and staff, labelled "worked out the safe way; confirm with a legal adviser".
+2. Creates internal tasks back-scheduled from the deadline: draft representations by day 14, senior review and client approval by day 20, send by day 21 (a week before the legal deadline). These are rules in Rules and promises (board 80).
 3. Alerts the assigned consultant and a director at day 7, 14, 21 and 25, and every day in the final 3 days.
 4. Escalates to a director if any internal task is overdue.
 
@@ -1831,12 +1832,12 @@ Always on at every step: Ask Care Sync (6), Account and privacy (29), the Friday
 ### 51.4 Client rules the super admin cannot switch off
 These protect the calm, person-centred experience (section 34) and Care Sync's reputation. Settings can change wording and timings, but not these:
 1. At most **3 tasks** shown to a client at once, each one photo, one tap or a few words.
-2. **No time estimates** on forms, tasks or documents.
+2. **No promises about time we do not control**: never how long a regulator, buyer or decision will take, and never "most people finish in N days". A form page may say how long the page takes to fill in.
 3. **Every look is logged and shown** to the client on their privacy page, including "view as" and emergency (break-glass) access. Break-glass also sends the client an email the same day.
-4. **Quiet hours** apply to texts and messages, except for a CQC or tender deadline.
-5. **Reviews:** every registered client is invited, once, with one reminder; no incentives; no filtering of unhappy clients.
+4. **Quiet hours** (8pm to 8am) apply to automated emails and texts, except legal deadline alerts (CQC, CIW, RQIA) and tender deadlines within 24 hours.
+5. **Reviews:** every registered client is invited, once, at registration, with one reminder after 7 days; Google and Trustpilot, the client chooses; no incentives; no filtering of unhappy or worried clients (worried clients receive no sales or growth messages, but the review invitation is never held back).
 6. **Growth offers:** only confirmed prices from the price book, no false urgency, no "free", no guarantees, never more than one new suggestion a month, and none before registration except the services the client already chose.
-7. **Complaints** always go to a director, never to the person complained about, with acknowledgement within 1 working day (section 49.2).
+7. **Complaints** always go to a manager or director (never the person complained about), with acknowledgement within 1 working day (section 49.2).
 8. **Logins** never appear in messages, emails, exports or AI tools, and are handed back when the work ends.
 
 ### 51.5 Super admin settings that shape the client experience
