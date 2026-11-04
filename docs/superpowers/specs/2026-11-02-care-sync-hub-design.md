@@ -2068,8 +2068,79 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 41. **Tender writing course:** confirm the Week 1 and Week 2 course should become the Academy track, and who marks practice answers.
 42. **Questions beyond the form:** CQC's own registered manager application also covers employment history, qualifications and other roles held. Should the Hub collect these too (for example from the CV photo), or does Care Sync gather them separately today?
 43. **More than one referee:** the form asks for one referee for the manager. Confirm whether a second referee should be asked for.
+44. **CIW and RQIA forms:** please share the onboarding forms used for Wales and Northern Ireland, so they can be mapped page by page like the CQC form.
+45. **Welsh language:** should the client side be offered in Welsh for CIW clients, and from Phase 1 or later?
+46. **Testing with clients:** which three clients (one CQC, one tender, one with both) could try the boards before building starts?
 
 ---
+
+## 56. Client design audit: is everything there before we build?
+
+Done on 4 November 2026, board by board, against the client's whole life with Care Sync. The question each time: could a developer build this screen from the board and this spec without guessing?
+
+### 56.1 Every client moment and the board that shows it
+
+| When | What the client does or sees | Board |
+| --- | --- | --- |
+| Before payment | Nothing in the Hub. Sales stays in GoHighLevel | None needed |
+| Payment made | Welcome email, then sign in with a link (no password) | Email 1.1, 40 |
+| First sign-in | Privacy consent, then the welcome moment and the team | 53, 25 |
+| Introduction call | Staff task (Divine by default, anyone can take it); client gets the confirmation text | 33, email 1.3 |
+| Onboarding form sent | Form home tailored to the package, with the sections listed | 46 |
+| Filling in the form | The real CQC form or tender questionnaire, every question and rule, save and come back, check your answers | 47, 38, 54 (computer) |
+| Form helpers | Company search, snap and send, who you will support, directors | 23, 34, 35, 36 (inside the form) |
+| Form sent | Being checked, something to fix, project started | 52 |
+| Every day | Today, with what is waiting on you and what we did | 1, 54 (computer) |
+| Two services | Project switcher for a registration plus tenders | 1, 54 |
+| The journey | All 11 stages and where they are | 2 |
+| Evidence | Documents, the documents room, one quick question about an address | 3, 18, 15 |
+| Other people | One-task links for landlord, referee and accountant; invited manager | 37 |
+| Business email | Connect the CQC channel | 27 |
+| Drafts | Review Room, then sign once | 4, 19 |
+| Sessions | Book and move sessions with Millicent | 28 |
+| Questions | Ask Care Sync; the bell | 6, 41 |
+| CQC | Before, question asked, returned, interview, registered | 5 |
+| Registered | Celebration, the email, share your experience | 20, 17 |
+| After | Aftercare and growing; done for you checklist | 30, 21 |
+| Tenders | Tender home, tender profile, should we bid, a tender's page | 49, 48, 50, 31 |
+| Money, insurance, interview | Small tasks | 45 |
+| Brand and website | Three choices (full package only) | 39 |
+| Account | Account, privacy, the audit log in plain words | 29 |
+| Anything going wrong | Link expired, empty, no news from CQC, upload problems, offline, error | 53 |
+| Payments and feedback | Second payment, payment received, how are we doing, raise a concern, pause reminders, help, refer someone | 53 |
+
+### 56.2 Boards kept only as history
+
+Board titles on the canvas now say this too.
+
+- 12 (manager's own part), 16 (easy start) and 26 (manager question) were early ideas. They split the form per person and changed the questions. The real form (47) replaces them, because everyone is onboarded with the same form.
+- 23, 34, 35 and 36 are helpers inside a form question, not extra steps.
+- 45 keeps insurance, money and interview. "Not formed yet" and the declaration are now pages of 47.
+
+### 56.3 Devices
+
+- Phone first (390 wide) for every client screen.
+- Computer (1440 wide): the side menu, a two-column Today, and the form with the page list on the left and "why we ask" on the right (board 54). Every other screen uses the same parts at the wider width. No extra boards are needed.
+- One web app that works on both, added to the home screen. No app store app in Phase 1.
+
+### 56.4 Handoff checklist for every client screen
+
+A screen is ready to build only when it passes all of these:
+
+1. **Words.** British English, no dashes, plain words a carer would use, they/them for anyone whose pronouns we do not know, and no promise we cannot keep (times, prices, outcomes).
+2. **States.** Loading, empty, error, offline and "done" are shown on the board or in 53.
+3. **Touch.** Every button and link is at least 44 by 44, with a visible focus ring.
+4. **Accessibility.** WCAG 2.2 AA: contrast, labels on every field, errors said in words and not only colour, works with a screen reader and a keyboard, nothing moves on its own.
+5. **Dark mode.** Uses only the Care Sync tokens, so the theme switch works. Check each board with the theme property set to dark.
+6. **Super admin.** Anything the client sees has a matching control or record on the staff side (51, 42, 24).
+7. **Data.** Mockups use made-up people only. No real client details anywhere.
+8. **Save.** Anything the client types is saved as they go and is still there when they come back.
+
+### 56.5 Still open before the client side is truly finished
+
+- The CIW and RQIA onboarding forms, once Care Sync shares them (question 44).
+- Welsh: clients registering with CIW may want the Hub in Welsh (question 45).
+- Test the boards with three real clients before building: one CQC, one tender and one with both (question 46).
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
