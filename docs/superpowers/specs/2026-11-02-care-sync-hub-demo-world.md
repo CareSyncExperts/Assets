@@ -91,3 +91,7 @@ nav: [{ items: [
 Items a person's role cannot use are hidden in the real product (spec); the boards show the full list so screens look the same.
 
 Only these icon names exist in the component library: archive bell building-2 calendar calendar-check check chevron-* circle-alert circle-check circle-help circle-x clipboard-list clock download eye file-check file-clock file-text funnel git-compare graduation-cap history inbox info layout-dashboard link list-checks lock pencil-line plus refresh-cw rotate-ccw save search settings shield-alert shield-check signature trash-2 trending-down trending-up triangle-alert upload user users x.
+
+## Payments and systems (decided 4 November 2026)
+- Payments through Stripe. Domiciliary care £4,000 + VAT and supported living £5,000 + VAT: 2 instalments (half at accept, sign and pay; half at submission). Full start-up package £8,500 + VAT (to check against £8,000): 3 instalments (thirds at accept, sign and pay; final pack sign-off; submission). CIW and RQIA £4,500 + VAT: 2 instalments (default). Tender writing from £1,500 + VAT: half at signing, half before submission. Splits are defaults the super admin can change.
+- Care Sync uses Google Workspace. The Interview Preparation Hub is Care Sync's own system (Next.js, Express API, PostgreSQL); the Hub creates accounts through its API.

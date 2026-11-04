@@ -321,7 +321,7 @@ What Care Sync Hub does:
 
 - Shows a clear **"Go to Interview Preparation Hub"** button that opens the Interview Preparation Hub's login page in a new tab.
 - Shows the button only to clients whose package includes interview preparation.
-- Sets up the client's Interview Preparation Hub account automatically when the interview stage starts, and emails their login details, so no one on the team has to do it by hand (section 10.13).
+- Sets up the client's Interview Preparation Hub account automatically when the interview stage starts, and emails their login details, so no one on the team has to do it by hand (section 10.13). The Interview Preparation Hub is Care Sync's own system (Next.js admin portal, Express API, PostgreSQL). The Hub calls its API with the client's regulator (CQC, CIW or RQIA), service type and role (registered manager, nominated individual or both), so the right question bank shows from the first login.
 - Makes the button prominent when an interview date is logged, and includes it in the interview confirmation and reminder emails (7 days, 1 day and the morning of).
 - Keeps the interview date, time and format on the client's tracker and in the CQC outcome centre.
 - Lets the client book one of their included sessions with a consultant if they want help before the interview (section 5.6).
@@ -812,6 +812,7 @@ At registration the client receives the Registration File, the journey moves to 
 | CIW or RQIA registration | £4,500 + VAT | Expansion into Wales or Northern Ireland |
 | CQC registration, domiciliary care | £4,000 + VAT (confirmed 4 November 2026) | Second service or new company |
 | CQC registration, supported living | £5,000 + VAT (confirmed 4 November 2026) | Second service or new company |
+| Full start-up package | £8,500 + VAT (to check: £8,500 or £8,000; the super admin can change it) | New company starting from scratch |
 | Marketing (website, SEO, Google profile) | Quote | Registered but few referrals |
 | Mock inspection and inspection readiness | Pending (included in first-year support of full start-up packages) | Month 4 to 6 after registration |
 | Training matrix and compliance management | Pending | After registration, as staff are recruited |
@@ -2036,9 +2037,11 @@ Answered on 4 November:
 - the same applies to CIW and RQIA
 - super admins: managers hold the super admin accounts (question 26). A manager approves price, form and permission changes, and break-glass requests when the other super admin is away. Nobody approves their own request.
 
-Six questions are still open, all on the decision sheet:
-- Prices and payments: 10 (the remaining prices) and 23 (how clients pay).
-- Facts only Care Sync knows: 1, 8, 49 and 58.
+Also answered later on 4 November: payments through Stripe with 2 or 3 instalments (23), Google Workspace (1), the Interview Preparation Hub's system (8), the full start-up package price (£8,500 + VAT, to check against £8,000) and tender writing from £1,500 + VAT (section 61).
+
+Three questions are still open, all on the decision sheet:
+- Prices: 10 (the remaining prices: retained tender rate, policy fees, variations, bid review VAT, and some add-ons).
+- Facts only Care Sync knows: 49 (RQIA PIN) and 58 (ICO registration number).
 
 Every other question below now has a default, listed here. Each default can be changed at any time.
 
@@ -2087,14 +2090,14 @@ Every other question below now has a default, listed here. Each default can be c
 The CQC interview stays in Care Sync's own interview portal. The Hub links to it and does not rebuild it.
 
 
-1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
+1. **Answered: email system.** Care Sync uses Google Workspace. Care Sync's own mailboxes, calendars and sign-in connect to Google; clients' own mailboxes can still be Google or Microsoft (question 20).
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
 3. **Other regulators (partly answered):** CIW and RQIA are now covered (Appendices E and F). Do you also deliver Ofsted work?
 4. **Team size and volume:** Roughly how many staff, and how many active clients at once now and in 12 months?
 5. **Retention period:** How long should identity documents and DBS certificates be kept after a journey ends?
 6. **Payments:** Should clients pay (for example for extra sessions) inside the Hub, or does payment stay in your current system?
 7. **GoHighLevel:** Answered: it is the sales CRM. Confirm that a won deal (signed agreement and paid deposit) should start a Hub journey automatically.
-8. **Interview Preparation Hub:** What system does it run on, and can new client accounts be created automatically (for example through an API or an invite link)?
+8. **Answered: Interview Preparation Hub.** It is Care Sync's own system: a Next.js admin portal with Google sign-in, an Express REST API with JWT, and a PostgreSQL database. Questions are tagged by regulator, service type and role (registered manager, nominated individual). The Hub creates client accounts through that API (section 8); if an account endpoint is not there yet, Care Sync adds one, because it owns the system.
 9. **Reply times:** What reply time should the Hub promise clients for questions (for example 1 working day), and for staff "Ask a senior" questions?
 10. **Price book items marked Pending:** retained tender rate, policy fees, variation prices, bid review VAT, and mock inspection and marketing prices for registration-only clients.
 11. **Logins spreadsheet:** agree to move it into a password manager now, before the Hub is live.
@@ -2109,7 +2112,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
 20. **Email accounts:** which email services do clients' accounts use (Gmail, Google Workspace, Microsoft 365, other)? This decides how the mailbox connection is built.
 21. **Written authority:** agree the engagement letter wording that authorises Care Sync to hold the client's email login and to send and receive CQC emails on their behalf.
 22. **Password manager now:** choose a business password manager for the interim vault.
-23. **Payments:** which payment provider (for example Stripe or GoCardless) and the standard instalment schedule, so "accept, sign and pay" can be built.
+23. **Answered: payments.** Stripe. CQC domiciliary care and supported living are paid in 2 instalments; the full start-up package in 3. The split is a default the super admin can change in the price book (section 61).
 24. **Third-party links:** agree the wording clients approve before the Hub contacts their landlord, lender, referee or accountant.
 25. **Call recording:** agree the consent wording for recording and summarising calls.
 26. **Answered: super admins.** Managers hold the super admin accounts (section 46). Another manager approves a break-glass request when one is away; nobody approves their own request.
@@ -2524,7 +2527,29 @@ Also added as staff screens: Clients (68), Sessions and interview practice (69),
 ### 60.5 For Care Sync to confirm
 
 - **Confirmed 4 November:** CQC domiciliary care £4,000 + VAT and supported living £5,000 + VAT, live in the price book. Managers hold the super admin accounts; the screens show "Manager, super admin 2".
-- The instalment split is shown as an example until question 23 (how clients pay) is answered.
+- **Decided later on 4 November:** Stripe, with 2 instalments for domiciliary care and supported living and 3 for the full start-up package (section 61).
+
+## 61. Payments, prices and systems decided (4 November 2026)
+
+**Payments.**
+- Clients pay through **Stripe**: card, or another Stripe method if Care Sync turns it on. "Accept, sign and pay" takes the first instalment, and later instalments are charged or invoiced when their stage is reached.
+- Finance sees every payment in Xero, matched automatically.
+
+**Instalments.** These are defaults; a super admin can change them in the price book (board 77). A change applies to new clients only.
+
+| Package | Price | Instalments (default split) |
+|---|---|---|
+| CQC registration, domiciliary care | £4,000 + VAT | 2: half when the client accepts, signs and pays; half when the application is submitted |
+| CQC registration, supported living | £5,000 + VAT | 2: as above |
+| Full start-up package | £8,500 + VAT (to check: £8,500 or £8,000) | 3: a third at accept, sign and pay; a third at final pack sign-off; a third at submission |
+| CIW or RQIA registration | £4,500 + VAT | 2: as for domiciliary care (default, to confirm) |
+| Tender writing | From £1,500 + VAT, quoted after review | 2: half at signing, half before submission |
+
+Where a third does not divide exactly, the last instalment takes the pennies, so the total is always exact.
+
+**Systems.**
+- **Google Workspace** runs Care Sync's mailboxes, calendars and staff sign-in.
+- **The Interview Preparation Hub** is Care Sync's own system (Next.js, Express API, PostgreSQL). The Hub creates accounts in it and passes the regulator, service type and role (section 8).
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
