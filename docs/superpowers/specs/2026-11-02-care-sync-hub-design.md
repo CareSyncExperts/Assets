@@ -2027,7 +2027,7 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
-3. **Other regulators:** Do you currently deliver CIW, RQIA or Ofsted work that should be included in the first phases?
+3. **Other regulators (partly answered):** CIW and RQIA are now covered (Appendices E and F). Do you also deliver Ofsted work?
 4. **Team size and volume:** Roughly how many staff, and how many active clients at once now and in 12 months?
 5. **Retention period:** How long should identity documents and DBS certificates be kept after a journey ends?
 6. **Payments:** Should clients pay (for example for extra sessions) inside the Hub, or does payment stay in your current system?
@@ -2054,7 +2054,7 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 27. **Accounting software:** do you invoice in Xero, QuickBooks or another system, so invoices, deposits and instalments can sync (section 49.1)?
 28. **Partner access:** confirm that AssuredBid and any other partners should get limited partner logins, and what each partner may see (section 49.3).
 29. **Inconsistencies:** agree the correct founding year, whether "Comprehensive Training" stays on the website, and the evidence behind the "former CQC senior inspector" wording (section 50), so the Hub, emails and sales scripts all say the same thing.
-30. **CIW and RQIA onboarding forms:** please share the question list or the response sheet for each form. Google Forms cannot be read from Drive, so these two have not been checked line by line yet.
+30. **Answered: CIW and RQIA onboarding forms.** Both were exported from Drive and rebuilt (Appendices E and F).
 31. **Refusal library:** confirm we may turn the anonymised reasons from past CQC refusals into Pack Doctor rules (section 47), with no client names kept.
 32. **Sessions:** confirm Millicent runs all 3 sessions, including the kick-off, and whether extra sessions can be bought (and the price).
 33. **Aftercare rhythm:** confirm a monthly check-in for the 12 months of aftercare, and who leads it.
@@ -2087,7 +2087,7 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
     - An expired biometric residence permit showing indefinite leave can still be used for ID for up to 18 months after its expiry.
     - DBS and AccessNI both need three documents, including at least one photo ID and at least one showing the current address.
     - The CIW and RQIA lists now say this, and RQIA's "two" is now three. This also answers question 48 for RQIA.
-    - The CQC form's list should get the same eVisa wording when it is next updated.
+    - The CQC form's list now uses the same wording.
 
 ---
 
@@ -2157,6 +2157,74 @@ A screen is ready to build only when it passes all of these:
 
 - The CIW and RQIA forms are now done (boards 55 and 56, Appendices E and F). Confirm the changes (questions 44 and 47 to 50).
 - Test the boards with three real clients before building: one CQC, one tender and one with both (question 46).
+
+## 57. Client tests, 4 November 2026
+
+Three example clients were walked through the screens by independent reviewers, each playing one person honestly:
+- **Amara:** a first-time CQC applicant, using only her phone, with English as her second language.
+- **Kemi:** an established provider who buys tenders only.
+- **David:** a co-director with both a CQC registration and tenders, on a computer.
+
+This is not a replacement for real clients (question 46), but it found real problems.
+
+### 57.1 Fixed straight away
+
+- **Staff notes hidden from clients:**
+  - "our Google Form" and "(not on the current form, to confirm)"
+  - "creates a quote task for sales"
+  - CQC form reference numbers
+  - "Added by the Hub"
+- **Welcome depends on the package:** registration, tenders only, or both. A tender-only client no longer sees CQC wording, coaching sessions or the registration team, and meets their bid lead instead. The "never more than 3 at a time" promise now says the form comes first.
+- **CQC form:**
+  - The Companies House identity code no longer blocks the form. It explains how to get the code and that it is needed before the company is registered, not before the form is finished.
+  - Second and third company names are optional.
+  - A reassurance box for anyone worried about asking their current employer for a reference.
+  - A plain-words DBS check ("had a DBS for a care job in the last 12 months? Send a photo").
+  - Plain explanations of Registered Manager and Nominated Individual, and "(who you will support)" on the service user bands.
+- **All forms:**
+  - The last button says "Send to Care Sync".
+  - The thank-you screen no longer sounds like the regulator has it.
+  - "1 page" in the singular.
+  - Returning tender clients see "kept from last time" instead of "did not apply".
+- **Tender form:**
+  - "Have you done this before?" is answered for signed-in clients.
+  - New companies can say they are not trading yet.
+- **Form home:** clean tender section names (no "6. 6D."), a description for each, the right resume point, and a banner that matches the package.
+- **Today:**
+  - One measure, not four: "3 small things need you" and the stage.
+  - Tenders show "Opens after registration" for a client who has both.
+- **Consistency across screens:**
+  - Policies are "written, ready for your review" everywhere, not "approved" in one place and "being written" in another.
+  - Session 2 shows the same date everywhere.
+  - The onboarding form shows the same completion date everywhere.
+  - The team lists match.
+  - The computer view's tender card counts the tender tasks.
+  - "We send your application to CQC", not "email".
+- **Money:** the account shows the package total, what is paid, what is left and when, and that extras are always priced first. The amounts are examples until the price book and the instalment schedule are confirmed (questions 10 and 23).
+- **People:** a co-director gets their own sign-in, sees everything and has their own tasks.
+- **Help:** a phone number at the top of Ask.
+- **Documents:** "Proof this is your home" replaces "Proof you can live there legally".
+
+### 57.2 Still to design (in priority order)
+
+1. **Tender-only screens:**
+   - A tender document store, with expiry dates and where each document was used.
+   - A tender draft review and a single "approve for submission" step, instead of the CQC Review and Sign screens.
+   - One list of "what we need from you this week" across all bids, with dates.
+2. **One tender profile.** The form home, the questionnaire and the tender profile should be one source of truth. Each new tender asks only for what is missing. Show held answers to confirm, not an empty "what has changed" box.
+3. **A joined-up timeline for clients with both services.** Which tenders open up after registration, with target dates. The bid decision screen already explains this well.
+4. **Timelines and money in one place:**
+   - a target submission date and a typical range for the regulator's decision
+   - the earliest realistic date for a first tender
+   - what happens and what it costs if CQC refuses (notice of decision, appeal)
+5. **Address history as cards** with postcode lookup, month and year pickers, "add another address" and gap warnings. This is a build requirement for every form.
+6. **An "I am not sure, ask us" link on every form question**, and a time estimate for each section.
+7. **Security page:** where data is stored, Care Sync's ICO registration, two-step sign-in for directors, and when ID copies are deleted. On the email connection screen, lead with "we set one up for you".
+8. **Supported living:**
+   - the CQC supported living package needs questions about the properties, the landlord and how housing and care are kept separate
+   - the tender form needs a short start-up route that reuses onboarding answers
+9. **Past bids:** scores, feedback and reusable answers, win rate and contract renewal dates, so a client is warned before a re-tender.
+10. **Language help** (read aloud, translation) and WhatsApp updates, once question 15 is decided.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
