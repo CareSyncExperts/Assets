@@ -2089,6 +2089,10 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
     - The CIW and RQIA lists now say this, and RQIA's "two" is now three. This also answers question 48 for RQIA.
     - The CQC form's list now uses the same wording.
 
+56. **What the package includes if CQC pushes back.** Are answering CQC's questions, resending a returned application, writing representations to a notice of proposal, and supporting an appeal included in the package, or priced separately?
+57. **Hosting.** Confirm the Hub must store client data in the UK (the security page says so).
+58. **Care Sync's ICO registration.** Confirm the registration number to show on the privacy notice and security page.
+
 ---
 
 ## 56. Client design audit: is everything there before we build?
@@ -2205,26 +2209,51 @@ This is not a replacement for real clients (question 46), but it found real prob
 - **Help:** a phone number at the top of Ask.
 - **Documents:** "Proof this is your home" replaces "Proof you can live there legally".
 
-### 57.2 Still to design (in priority order)
+### 57.2 Designed the same day (boards 57 to 62)
 
-1. **Tender-only screens:**
-   - A tender document store, with expiry dates and where each document was used.
-   - A tender draft review and a single "approve for submission" step, instead of the CQC Review and Sign screens.
-   - One list of "what we need from you this week" across all bids, with dates.
-2. **One tender profile.** The form home, the questionnaire and the tender profile should be one source of truth. Each new tender asks only for what is missing. Show held answers to confirm, not an empty "what has changed" box.
-3. **A joined-up timeline for clients with both services.** Which tenders open up after registration, with target dates. The bid decision screen already explains this well.
-4. **Timelines and money in one place:**
-   - a target submission date and a typical range for the regulator's decision
-   - the earliest realistic date for a first tender
-   - what happens and what it costs if CQC refuses (notice of decision, appeal)
-5. **Address history as cards** with postcode lookup, month and year pickers, "add another address" and gap warnings. This is a build requirement for every form.
-6. **An "I am not sure, ask us" link on every form question**, and a time estimate for each section.
-7. **Security page:** where data is stored, Care Sync's ICO registration, two-step sign-in for directors, and when ID copies are deleted. On the email connection screen, lead with "we set one up for you".
-8. **Supported living:**
-   - the CQC supported living package needs questions about the properties, the landlord and how housing and care are kept separate
-   - the tender form needs a short start-up route that reuses onboarding answers
-9. **Past bids:** scores, feedback and reusable answers, win rate and contract renewal dates, so a client is warned before a re-tender.
-10. **Language help** (read aloud, translation) and WhatsApp updates, once question 15 is decided.
+1. **Tender workspace (57).** A tender client's home for the work. It has three tabs:
+   - **This week:** everything Care Sync needs across all bids, in date order, with a time estimate. A "pass to someone in your team" link lets a director hand workforce figures to an HR lead.
+   - **Documents:** one store for every bid, showing each document's expiry or review date, which bids used it, and warnings a month before anything goes out of date. Missing items show which bid needs them.
+   - **Review and sign-off:** each draft answer shows its weighting and status, and prices are approved here. One "approve for submission" step needs four ticks: answers read, prices approved, the buyer's declarations checked, and authority to submit. It shows the submission date with two working days spare before the buyer's deadline. Care Sync never submits without this approval.
+
+   This replaces the CQC Review and Sign screens for tender work.
+2. **One tender profile (58).** The tender questionnaire is how a first-time client builds the profile. The profile is the record. Every new tender opens on "check what we hold":
+   - parts read from Companies House and the CQC register are checked automatically
+   - the client confirms or changes the other parts, with a nudge on anything older than a few months (for example staff numbers)
+   - then only the questions that are new for that tender, each saying why the buyer asks
+
+   This replaces the empty "what has changed" box. The form home, questionnaire and profile all show the same sections.
+3. **Joined-up timeline (59).** For a client with registration and tenders. The registration stages carry target dates. The tender profile is built in parallel, so the client can bid the day CQC registers them. First tenders and dynamic markets follow after registration. Dates are targets, checked every Friday. The Today switcher's "Opens after registration" links here.
+4. **Plan and costs (60).** Three tabs:
+   - **Key dates:** what can make the plan take longer. CQC sets its own pace, and the Hub reports what it is seeing at the time rather than promising a number.
+   - **Costs:** the package total, every instalment and its trigger, and extras from the price book. Nothing is added without agreement.
+   - **If CQC says no:** questions, returned application, notice of proposal (28 days to send representations), notice of decision, and appeal to the tribunal (within 28 days).
+
+   What is included at each step depends on question 56.
+5. **Address history as cards (61).** Postcode lookup, month pickers, a bar showing how much of the 5 years is covered, a gap warning ("Were you living somewhere else, or between homes? Either is fine") with "add an address" or "tell us why", and "add another address". This is the build pattern for every person on every form, and it replaces the single text boxes.
+6. **Security page (62).** Linked from Account. It covers:
+   - where files are kept and that they are encrypted
+   - who can see them, and that every look is recorded
+   - that passwords stay in the vault
+   - when ID copies are deleted (question 5)
+   - ICO registration (question 58)
+   - two-step sign-in, recommended for directors
+   - downloading all your data, and telling a director about a concern
+
+   UK hosting is a build requirement (question 57).
+7. **Supported living properties (CQC form).** A new page that appears only for supported living. It asks:
+   - whether the properties are found yet
+   - for each property: the address, number of people, landlord, whether the landlord is connected to the provider, and the tenancy type
+   - whether the care agreement is separate from the tenancy
+
+   A warning explains that CQC looks for housing and care to be separate, so people can change care provider without losing their home.
+
+### 57.3 Still open
+
+- Past bids: scores, feedback, reusable answers, win rate and contract renewal dates.
+- An "I am not sure, ask us" link on every form question, and a time estimate for each section.
+- Language help (read aloud, translation) and WhatsApp updates (question 15).
+- A short start-up route through the tender form for new companies.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
