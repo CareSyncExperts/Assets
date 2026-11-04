@@ -2039,9 +2039,9 @@ Answered on 4 November:
 
 Also answered later on 4 November: payments through Stripe with 2 or 3 instalments (23), Google Workspace (1), the Interview Preparation Hub's system (8), the full start-up package price (£8,500 + VAT, to check against £8,000) and tender writing from £1,500 + VAT (section 61).
 
-Three questions are still open, all on the decision sheet:
+Two questions are still open, both on the decision sheet (the RQIA PIN, question 49, was confirmed as 497850):
 - Prices: 10 (the remaining prices: retained tender rate, framework or dynamic purchasing applications, policy writing for tenders, variations, mock inspection for registration-only clients, and VAT on bid review). The supported living add-on (£1,500), interview preparation (£750) and PIR writing (£750 + VAT) were confirmed on 4 November.
-- Facts only Care Sync knows: 49 (RQIA PIN) and 58 (ICO registration number).
+- Facts only Care Sync knows: 58 (ICO registration number).
 
 Every other question below now has a default, listed here. Each default can be changed at any time.
 
@@ -2138,7 +2138,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
 46. **Testing with clients:** which three clients (one CQC, one tender, one with both) could try the boards before building starts?
 47. **Address history length:** both forms ask for 5 years. Care Sync's CIW guidance mentions 10 years for some people. Which should the Hub ask for?
 48. **Answered: ID documents.** Three for all three regulators, including at least one photo ID and one proof of current address (see question 55).
-49. **RQIA PIN:** is 497850 still the PIN to give for new AccessNI checks?
+49. **Answered: RQIA PIN.** 497850 is still the PIN to give for new AccessNI checks (confirmed 4 November 2026).
 50. **Answered: RQIA price.** £4,500. The old package document saying £3,500 is out of date.
 51. **Answered: other officers in Wales.** CIW Online keeps a full People record for every officer, with the same nine sections as the RI (personal information, qualifications, employment history, registration history, references, DBS, declarations, suitability questions, submission declarations). The officer list asks the applicant to confirm all officers are fit and proper under section 9. The form now has two pages for each officer who is not the RI. Source: Care Sync's CIW form-filler skill, references 06f and 06h (walked on the live portal).
 52. **Answered, to confirm once with RQIA: AccessNI.** RQIA checks the owners and senior managers it registers through its own AccessNI application, hence the PIN. AccessNI has no update service, so a certificate does not move with the person. The form now always collects three ID documents, and certificate details are optional. RQIA's own guidance could not be opened from here, so ask the registration team to confirm once (registration@rqia.org.uk, 028 9051 7500).
