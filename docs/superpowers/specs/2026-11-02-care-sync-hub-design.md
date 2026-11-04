@@ -2418,6 +2418,111 @@ All 16 staff screens were read as a member of staff would see them, against ever
 
 Rendering the new inbox showed "[object Object]" in a text box. The same fault affected every longer-answer box in all four onboarding forms: a box filled in this way could not show its text. The shared form engine was fixed and all four forms regenerated. A new check now scans every rendered screen for leftover code text ("[object Object]", "undefined", "NaN", unfilled placeholders). All 64 screens are clear, and the light and dark checks still pass (128 checks, no issues).
 
+## 60. Staff side in use: three staff tests, one demo day, and the screens added (4 November 2026)
+
+Three simulated members of staff used the staff screens as if it were their working day: **Daniel** (consultant and case owner), **Grace** (onboarding lead) and **Collins** (director and super admin). Each reported what they could and could not do, every contradiction they found, what was missing, and what they would keep. All three said the same thing first: they could not trust the screens, because the same client was in different states on different screens.
+
+### 60.1 One demo day for every staff screen
+
+The full demo world (people, clients, dates and the staff menu) is in the companion file 2026-11-02-care-sync-hub-demo-world.md, which can also seed test data when the Hub is built. Every staff screen now shows the same moment, **Monday 2 November 2026**, with one true state for every client. Nothing is dated after today as if it already happened, and every count on a screen equals the list under it. Client screens still show Amara at different stages, because they demonstrate each state a client can be in.
+
+| Client | Today | Case owner |
+|---|---|---|
+| Harbour Lane Care Ltd (CQC) | Stage 1: onboarding checks, 5 of 8 gates passed. Waiting on the landlord's letter; 2 things for the client to fix | Grace, then Daniel after manager approval |
+| Bright Path Care Ltd (CQC) | Stage 4: drafting. Session 2 today | Daniel |
+| Sunrise Homecare Ltd (CQC) | Notice of Proposal served 21 October. Legal deadline 17 November; our target 10 November | Daniel |
+| Westbrook Care Ltd (CQC) | Refused 26 October; we resubmit by 30 November. Appeal window closes 23 November | Daniel |
+| Elm Tree Care Ltd (CQC) | Interview 24 November; CQC's questions to answer by 12 November | Daniel |
+| Afon Care Ltd (CIW) | With CIW since 14 October; interview 26 November | Daniel |
+| Oakleaf Living Ltd (tenders) | Northshire Lot 1 North (bid deadline 1 December) and Eastford supported living (4 December) | Daniel |
+| Riverside, Greenway, Lagan View, Willow Bank | Olu's clients; Olu is on leave this week, so Daniel covers them | Olu |
+| Meadow View Care Ltd (CQC) | Paid today; introduction call due within 2 working hours | Divine, then Grace |
+
+Other fixed facts: Ruth Bennett is Harbour Lane's registered manager and Amara is the nominated individual (different people); the landlord is Tom Reid, not a member of staff; Sam Patel is a consultant leaving on Friday; the Questions badge is 5 on every screen; every staff screen has the same menu (items a role cannot use are hidden in the product).
+
+### 60.2 What each person needed, and what changed
+
+**Daniel (consultant).**
+- **My day (board 7):**
+  - One queue for registration and tender work, grouped today, later this week, next week and later. Every count is a filter that matches its list.
+  - Clients Daniel covers while a colleague is on leave are shown, with the worried client and the missing CQC email login in red.
+  - A Notice of Proposal shows the date served, the legal deadline and our own target, all worked out from the date served.
+- **Client page (board 42):** "Log a call" and "Log a WhatsApp" in one tap, and pack drafting with versions and the pack check inline.
+- **Weekly updates (board 9):** a queue of every update due on Friday, with bounced emails flagged as overdue.
+- **New Deadlines screen (board 75):** every legal, regulator, expiry, aftercare and tender date across all clients, as a list or a month, with days left and both the legal date and our target.
+- **New Answer the regulator screen (board 76):** a workspace for Notice of Proposal representations (each ground, our response and evidence) and for a regulator's request for more information. Nothing can be sent to the client until every point is ready and the senior review is done. The date sent, the method and a copy are kept as evidence.
+
+**Grace (onboarding lead).**
+- **Gates and checks are one set.** The onboarding gates (board 8) are the form checks (board 13) grouped, so the gates, the checks and the client's fix list (board 52) always agree. Harbour Lane has exactly 2 things to fix on every screen.
+- **Every check can be decided:** Accept, Fail with a reason, or Assign (to whom, by when). Each decision records who and when.
+- **The fix list can be edited:**
+  - Grace can change the wording, add an item, set a due date and preview it as the client sees it.
+  - Items already requested from someone else (for example, the landlord's letter) are tracked from sent to accepted, and never asked of the client again.
+- **Handover:** "Request manager approval", with the proposed case owner and their workload. Application work and sessions stay locked until a manager approves.
+- **Questions inbox (board 67):**
+  - Filters for "Assigned to me" and "Waiting on a senior", plus an "Ask a senior" step.
+  - Routing by form: Grace answers onboarding forms; the case owner answers after handover.
+  - Suggested replies follow the form's own help text.
+- **The CQC form gains a short "Your office" step** (address, owned or rented, tenancy, landlord), because the Google Form never asks for the office, yet the address gate needs it.
+- **New screens:**
+  - **Onboarding queue (board 73):** every client in onboarding, waiting on whom, days in onboarding, and a one-click nudge.
+  - **Handover (board 74):** a summary for the consultant. The manager approves, and only then is the client told and do sessions unlock.
+
+**Collins (director and super admin).**
+- **Manager dashboard (board 43):**
+  - **Money:** invoiced, collected, overdue by age, instalments due and revenue by package.
+  - **Team workload:** clients as case owner, updates owned, overdue tasks, legal deadlines, leave and cover. A client with no owner shows red.
+  - **Refusal and Notice of Proposal risk:** by regulator, with the hours spent on free resubmissions.
+  - **Regulator email watch gaps:** red after 7 days.
+  - **Bid or no bid approvals:** each needs a reason.
+  - **Stage counts:** across the 11 stages.
+- **Super admin (board 24):**
+  - A reason is required before any approval, and it goes into the audit log.
+  - Deletions list each document and check for a legal hold.
+  - Permission changes show before and after.
+  - All 12 connections are listed.
+  - The audit log is searchable, with unusual activity alerts and the weekly summary.
+- **Form builder (board 44):**
+  - Drafts and versions, with a change view.
+  - The second super admin approves before a version goes live.
+  - Clients halfway through a form stay on their version.
+  - Draft forms exist for the add-ons that had none.
+- **New Price book (board 77):** price, VAT, payment stages, status, effective date and history. A change needs the second super admin. Prices apply to new clients only, and anything not yet decided shows "Price to set".
+- **New Team and cover (board 78):**
+  - Leave cover and reassignment.
+  - A leaver's checklist: clients reassigned with a note, vault access removed, account closed on the last day.
+  - Invites, and a roles and permissions grid.
+
+**Tenders (boards 10, 11, 31, 48 to 50, 57, 58).**
+- The staff tender record and the client's tender workspace show the same tasks, wording and dates.
+- The Radar shows which clients are already bidding, so there is no conflict on the same lot.
+- Tender eligibility comes from real registration status.
+- **An existing client is never contacted by sales until their case owner agrees.** If the case owner is on leave and it is not urgent, it waits for them.
+
+Also added as staff screens: Clients (68), Sessions and interview practice (69), Client care (70), Aftercare by regulator (71) and Reports (72). Reports covers promises kept, days per stage, outcomes by regulator, tender win rate and value, feedback by consultant, and free resubmissions.
+
+### 60.3 Kept, because staff said it saves them time
+
+- "Changed since submission" on the form screen, with checks rerun and copy straight into CQC, CIW Online or the RQIA Web Portal.
+- The weekly update drafted from the week's changes, with the date, method and a copy kept as evidence.
+- The secure vault: copy without showing, reveal with a reason, and every use logged.
+- Super admin approvals: nobody approves their own request, and break-glass access ends automatically after 4 hours.
+
+### 60.4 Checks
+
+- **Canvas:** 75 boards, of which 11 are new staff screens (68 to 78).
+- **Light and dark:** all 150 checks passed, with no errors, clipping, horizontal scroll or dark-on-dark text.
+- **Leftover code text:** none on any themed screen.
+- **Writing:** no dashes and no American spellings.
+- **Interactive screens:** clicked through, including Done and Undo on My day, failing and accepting gates, sending the fix list, requesting and approving a handover, approving a price change, reassigning a leaver's clients and approving a bid.
+- **Consistency:** a search for the old contradictions finds none.
+
+### 60.5 For Care Sync to confirm
+
+- The price book shows CQC domiciliary care at £4,000 + VAT and supported living at £5,000 + VAT. These come from the existing client screens, not from a confirmed price list in this spec. Please confirm them, or they will show "Price to set".
+- The instalment split is shown as an example until question 23 (how clients pay) is answered.
+- Who holds the second super admin account (question 26) is still to confirm.
+
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
 Source: the live Google Form "CQC Registration Information Form, for Domiciliary Care / Supported Living CQC Applications" (hello@caresyncexperts.co.uk), exported from Google Drive on 4 November 2026. The Hub form (board 47) uses the same pages, questions, wording, options and rules, and the client fills it in just like the Google Form. No answers were copied. Required questions are marked *.
