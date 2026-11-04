@@ -2383,6 +2383,41 @@ Care Sync's promise: if CQC, CIW or RQIA refuses an application, Care Sync resub
 - The CQC screen's notice of proposal state (board 5).
 - Emails 5.2, 5.3a and 5.3b.
 
+## 59. Staff side review, 4 November 2026
+
+All 16 staff screens were read as a member of staff would see them, against every decision made since they were drawn: CIW and RQIA, tenders as a CRM, the onboarding form gate, resubmission, the co-director and manager views, and the defaults in section 55.0.
+
+### 59.1 Contradictions fixed
+
+- **Weekly updates (board 9).** The update now goes out on Friday, matching what clients are promised. The cadence is: Monday review, Wednesday chase, Thursday quality check, Friday send. The example update was addressed to another client's director; it now goes to the right person.
+- **Onboarding gates (board 8).** "Two references" now reads "referee and GP details", because the CQC form asks for one referee.
+- **Client page (board 42).** The timeline no longer says the client "approved 30 policies". They were sent to the client to review, as on the client side.
+- **Client journey map (board 32).** Removed the links to the screens taken off the canvas. It now shows CIW and RQIA (boards 55, 56 and 63), "sent to the regulator", "decision, or we resubmit" (board 65), and the tender workspace and profile check (boards 57 and 58).
+
+### 59.2 Wales and Northern Ireland on the staff side
+
+- **My day (board 7) and the manager dashboard (board 43)** say "with a regulator", not "with CQC". The dashboard shows how many clients are with each regulator, and My day includes a CIW client waiting on a reference.
+- **The watch screen (board 22)** is now the "regulator and tender watch":
+  - CQC clients: their email is connected.
+  - CIW: CIW Online is checked every working day.
+  - RQIA: the Web Portal and client email are checked every working day.
+  - The consultant is alerted the same hour something new appears. The menu name changed on every staff screen.
+
+### 59.3 Added
+
+- **Questions inbox (board 67).**
+  - Every "Not sure? Ask us" from a form question and every Ask screen question, in one list.
+  - Each item shows where it was asked (form, page and question), who it is assigned to, and the time left on the 1 working day promise.
+  - Selecting a question shows the client's current answer, a suggested reply and what it is based on. From there staff can send the reply, pass it on, or book a 10 minute call. The reply appears under the question in the client's Hub, and by email.
+  - Questions go to the consultant, or to Grace for onboarding forms. A question not answered within 6 working hours alerts the team lead.
+  - **Learning loop:** questions asked often prompt "improve the help text", which links to the form builder, so the form answers the next client before they ask.
+- **Tender record (board 11)** now shows the client's profile check ("6 of 6 parts still right") and the approval step ("client approves for submission, 4 checks in the Hub"), matching the client's tender workspace.
+- **Resubmission on the manager dashboard:** "Assign a senior reviewer" appears as a manager task, because the resubmission gate cannot pass without one.
+
+### 59.4 A bug found and fixed
+
+Rendering the new inbox showed "[object Object]" in a text box. The same fault affected every longer-answer box in all four onboarding forms: a box filled in this way could not show its text. The shared form engine was fixed and all four forms regenerated. A new check now scans every rendered screen for leftover code text ("[object Object]", "undefined", "NaN", unfilled placeholders). All 64 screens are clear, and the light and dark checks still pass (128 checks, no issues).
+
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 
 Source: the live Google Form "CQC Registration Information Form, for Domiciliary Care / Supported Living CQC Applications" (hello@caresyncexperts.co.uk), exported from Google Drive on 4 November 2026. The Hub form (board 47) uses the same pages, questions, wording, options and rules, and the client fills it in just like the Google Form. No answers were copied. Required questions are marked *.
