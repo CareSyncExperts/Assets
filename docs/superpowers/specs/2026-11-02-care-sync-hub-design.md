@@ -2025,6 +2025,59 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 ## 55. Open questions for Care Sync
 
+### 55.0 What Care Sync still needs to answer (4 November 2026)
+
+Only 9 questions are still open, all on the decision sheet:
+- Prices and payments: 10, 23, 50 and 56.
+- Facts only Care Sync knows: 1, 8, 26, 49 and 58.
+
+Every other question below now has a default, listed here. Each default can be changed at any time.
+
+- **Ways of working:**
+  - The consultant sends the application, and the Hub records it (2).
+  - No Ofsted work in Phase 1 (3).
+  - A won deal in GoHighLevel starts the client's journey automatically (7).
+  - Staff edit in whichever of Word or Google Docs they use today; this is confirmed at build time (19).
+  - Clients' email accounts are a mix, so both Google and Microsoft connections are built (20).
+- **Clients and service promises:**
+  - Reply within 1 working day for clients, and within 2 hours for senior staff questions (9).
+  - Quiet hours from 8pm to 8am (35).
+  - Introduction call by Divine within 2 working hours, or by 10:00 the next working day (36).
+  - Millicent runs the 3 sessions; extra sessions are priced first (32).
+  - Monthly aftercare check-in led by the consultant (33).
+  - Complaints acknowledged in 1 working day, with a full reply within 20 working days (34).
+  - Clients can pay for extras in the Hub (6).
+  - Deposits by card or bank transfer, with finance marking transfers as paid (38).
+- **Data and security:**
+  - ID and DBS copies are kept until the 12 months of aftercare end (5).
+  - A business password manager (1Password suggested) replaces the logins spreadsheet now (11, 22).
+  - Portal passwords are removed from the tender Google Form now (12).
+  - The Companies House API is used from day one (14).
+  - Calls are made through GoHighLevel so they are logged (37).
+  - Care Sync drafts the engagement letter wording, third-party contact wording and call recording consent for approval (21, 24, 25).
+  - Anonymised refusal reasons become checking rules (31).
+  - Client data is stored in the UK (57).
+- **Later phases, not Phase 1:**
+  - WhatsApp updates (15)
+  - the growth programme (16)
+  - the partner directory (17)
+  - partner logins (28)
+  - the tender writing course as an Academy track (41)
+  - reviews: the Google review link only at first (18)
+- **Forms:**
+  - The CQC form keeps one referee for the manager (43) and adds the CV-based employment history check (42).
+  - Address history is 5 years (47).
+  - The CIW and RQIA changes in Appendices E and F are accepted (44).
+  - The tender profile asks about visa sponsorship (40).
+- **Still to fill in when known:**
+  - team size (4)
+  - accounting software (27)
+  - the inconsistencies in Care Sync's materials (29)
+  - a test with 3 real clients before launch (46)
+
+The CQC interview stays in Care Sync's own interview portal. The Hub links to it and does not rebuild it.
+
+
 1. **Email system:** Does the team use Google Workspace or Microsoft 365 for Care Sync mailboxes?
 2. **Submission by email:** Is it correct that the consultant sends the application by email and the Hub only records it? Are there any other parts of the process that must stay on email?
 3. **Other regulators (partly answered):** CIW and RQIA are now covered (Appendices E and F). Do you also deliver Ofsted work?
