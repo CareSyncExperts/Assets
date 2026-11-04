@@ -2027,7 +2027,12 @@ Tapping a section shows every question in it, ticked or not, so nothing is hidde
 
 ### 55.0 What Care Sync still needs to answer (4 November 2026)
 
-Two were answered on 4 November: the RQIA price is £4,500 (shown with VAT added, as in the price book), and if CQC refuses, Care Sync resubmits as part of the package (section 58). Seven questions are still open, all on the decision sheet:
+Three were answered on 4 November:
+- the RQIA price is £4,500 (shown with VAT added, as in the price book)
+- if CQC refuses, Care Sync resubmits as part of the package (section 58)
+- the same applies to CIW and RQIA
+
+Seven questions are still open, all on the decision sheet:
 - Prices and payments: 10 and 23.
 - Facts only Care Sync knows: 1, 8, 26, 49 and 58.
 
@@ -2142,7 +2147,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
     - The CIW and RQIA lists now say this, and RQIA's "two" is now three. This also answers question 48 for RQIA.
     - The CQC form's list now uses the same wording.
 
-56. **Answered: if CQC refuses, Care Sync resubmits, as part of the package** (section 58). Still to confirm: is the same true for CIW and RQIA?
+56. **Answered: if CQC, CIW or RQIA refuses, Care Sync resubmits, as part of the package** (section 58).
 57. **Hosting.** Confirm the Hub must store client data in the UK (the security page says so).
 58. **Care Sync's ICO registration.** Confirm the registration number to show on the privacy notice and security page.
 
@@ -2187,7 +2192,7 @@ Done on 4 November 2026, board by board, against the client's whole life with Ca
 
 Board titles on the canvas now say this too.
 
-- 12 (manager's own part), 16 (easy start) and 26 (manager question) were early ideas. They split the form per person and changed the questions. The real form (47) replaces them, because everyone is onboarded with the same form.
+- 12 (manager's own part), 16 (easy start) and 26 (manager question) were early ideas that split the form per person. They were removed from the canvas on 4 November. The real form (47) replaces them, because everyone is onboarded with the same form.
 - 23, 34, 35 and 36 are helpers inside a form question, not extra steps.
 - 45 keeps insurance, money and interview. "Not formed yet" and the declaration are now pages of 47.
 
@@ -2324,6 +2329,15 @@ This is not a replacement for real clients (question 46), but it found real prob
    - **What was found:** 12 screens had content taller than their frame, so their bottoms were hidden. Each frame now fits its content, and the canvas rows were moved down so nothing overlaps.
    - **Result:** after the fix, all 128 checks passed. Each screen was checked in its opening state; the other tabs share the same layout.
 
+### 57.4 Client emails for Wales, Northern Ireland and tenders
+
+The client email library now has its own sets, written the same way as the CQC emails:
+- **Section 10, Wales (CIW):** CIW Online invitations, referees, ready to submit, submitted, more information, suitability interview, registered, notice of proposal, and refused with resubmission.
+- **Section 11, Northern Ireland (RQIA):** Web Portal login, submitted, more information, fit person interviews, registered, notice of proposal, and refused with resubmission.
+- **Tenders, emails 7.6 to 7.10:** what we need this week, please approve your bid, check what we hold for a new tender, a document runs out soon, and a contract coming up for renewal.
+
+The library now has 64 emails.
+
 ### 57.4 Still open
 
 - Language help (read aloud, translation) and WhatsApp updates, in a later phase.
@@ -2331,7 +2345,7 @@ This is not a replacement for real clients (question 46), but it found real prob
 
 ## 58. If CQC refuses: we resubmit (decided 4 November 2026)
 
-Care Sync's promise: if CQC refuses an application, Care Sync resubmits it as part of the package. The Hub carries this promise through every stage, not just one screen.
+Care Sync's promise: if CQC, CIW or RQIA refuses an application, Care Sync resubmits it as part of the package (CIW and RQIA confirmed the same day). The Hub carries this promise through every stage, not just one screen. Boards 65 and 66 show CQC. The same plan, gate and refresh check apply to CIW and RQIA, using each regulator's own steps, deadlines and portal. The CIW and RQIA screen (board 63) carries the promise, and so do emails 10.8, 10.9, 11.6 and 11.7.
 
 ### 58.1 Before a refusal: prevent it
 

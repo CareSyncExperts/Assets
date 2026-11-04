@@ -610,6 +610,81 @@ Button: Decide in your Hub
 
 ---
 
+### 7.6 This week: what we need from you
+**Subject:** {{count}} things for your bids this week
+
+Hi {{first_name}},
+
+Here is everything we need from you across your bids, in date order:
+
+{{this_week_list}}
+
+The first one is due on {{first_due_date}}. Each one says roughly how long it takes, and you can pass a task to someone in your team from your Hub.
+
+If anything is a problem, reply to this email and we will work around it.
+
+Button: Open your tender workspace
+
+{{bid_lead_name}}
+
+Note: sent on Monday mornings only when something needs the client that week.
+
+### 7.7 Please approve your bid
+**Subject:** Your {{tender_name}} bid is ready for your approval
+
+Hi {{first_name}},
+
+Your bid for {{tender_name}} is ready. Please read the answers, approve the prices and check the declarations the buyer asks for. Then tap approve, and we submit it.
+
+We need your approval by {{approval_date}}, so we can submit by {{our_submit_date}}. That leaves two working days before the buyer's deadline of {{buyer_deadline}}, in case the portal has problems.
+
+We never submit without your approval.
+
+Button: Review and approve
+
+{{bid_lead_name}}
+
+### 7.8 A new tender: check what we hold
+**Subject:** Before we start on {{tender_name}}, a quick check
+
+Hi {{first_name}},
+
+We are starting on {{tender_name}}. Your tender profile is kept for every bid, so you do not need to retype anything.
+
+Please check the parts we hold and tap "still right", or change anything that is out of date. There are also {{new_question_count}} questions that are new for this tender. It takes about 10 minutes.
+
+Button: Check your profile
+
+{{bid_lead_name}}
+
+### 7.9 A document runs out soon
+**Subject:** Your {{document_name}} runs out on {{expiry_date}}
+
+Hi {{first_name}},
+
+Your {{document_name}} runs out on {{expiry_date}}. Buyers check it, so we would like the new one before {{needed_by}}{{if bid}}, when we use it in your {{tender_name}} bid{{end}}.
+
+Upload it once in your tender workspace and we use it in every bid from then on.
+
+Button: Upload the new one
+
+{{bid_lead_name}}
+
+### 7.10 A contract is coming up for renewal
+**Subject:** {{contract_name}} ends in {{months}} months
+
+Hi {{first_name}},
+
+Your {{contract_name}} contract ends on {{end_date}}. Councils often re-tender around six months before a contract ends, so we are watching for the new tender now.
+
+When it appears, we will tell you the same day and check it against your profile. Your scores and feedback from the last bid are kept, so the new bid starts from your best answers.
+
+Button: See your past bids
+
+{{bid_lead_name}}
+
+---
+
 ## 8. Win-back
 
 ### 8.1 Six months without activity
@@ -670,6 +745,243 @@ Your work carries on exactly where it was, and your next update is on {{next_upd
 Button: See where things stand
 
 {{consultant_name}}
+
+---
+
+## 10. Wales: with CIW
+
+Sent instead of sections 4 and 5 for clients registering with Care Inspectorate Wales. Written in English. CIW's own letters go to the client in the language they chose for CIW.
+
+### 10.1 Your CIW Online invitations
+**Subject:** CIW Online will email each person in your application
+
+Hi {{first_name}},
+
+Your application is set up in CIW Online. CIW now emails each person named in it, such as your RI, your manager and your other directors, an invitation to fill in their own part.
+
+Please let them know to look out for it, and to check their spam folder. We help each person with their part, and you can see who has finished in your Hub.
+
+Button: See who has finished
+
+{{consultant_name}}
+
+### 10.2 CIW will contact your referees
+**Subject:** CIW is asking your referees for references
+
+Hi {{first_name}},
+
+CIW emails each referee directly for their reference. These emails sometimes land in spam, so a short message from you to each referee helps a lot.
+
+Your application cannot be submitted until every reference is back. You can see which ones are still waiting in your Hub.
+
+Button: See your references
+
+{{consultant_name}}
+
+### 10.3 Ready to submit in CIW Online
+**Subject:** Your CIW application is ready to submit
+
+Hi {{first_name}},
+
+Every part of your CIW application is complete. The last step is the declarations: the applicant, the RI and the manager each tick their own in CIW Online, and then you submit.
+
+{{consultant_name}} will be with you on a call while you do it, on {{call_date}} at {{call_time}}. It takes about 20 minutes.
+
+Button: See what to expect
+
+{{consultant_name}}
+
+### 10.4 Submitted in CIW Online
+**Subject:** Your application has gone to CIW
+
+Hi {{first_name}},
+
+Your application went to CIW in CIW Online today, {{submission_date}}. Your CIW reference is saved in your Hub.
+
+What happens next: CIW reads everything, checks the references and DBS, and may ask for more information or invite your RI to an interview. CIW sets its own timetable. We check CIW Online every day, and you still get your update every Friday.
+
+Nothing is needed from you right now.
+
+Button: See your CIW tracker
+
+{{consultant_name}}
+
+### 10.5 CIW asked for more information
+**Subject:** CIW has asked for some extra information
+
+Hi {{first_name}},
+
+CIW has asked for {{request_summary}} in CIW Online. This is a normal part of the process.
+
+We are handling it. {{if client action}}We need {{client_action}} from you by {{client_action_date}} so we can reply well before CIW's deadline of {{ciw_deadline}}.
+
+Button: See the request
+
+{{consultant_name}}
+
+### 10.6 Suitability interview booked
+**Subject:** Your CIW interview is booked for {{interview_date}}
+
+Hi {{first_name}},
+
+CIW has invited {{interviewee_name}} to a suitability interview on {{interview_date}} at {{interview_time}}, by {{interview_method}}, in {{interview_language}}.
+
+Your Interview Preparation Hub is ready, and you can book a practice session with Millicent. We will remind you 7 days, 1 day and the morning before.
+
+Button: Go to Interview Preparation Hub
+
+{{consultant_name}}
+
+### 10.7 You are registered with CIW
+**Subject:** You are registered with CIW
+
+Hi {{first_name}},
+
+{{company_name}} is now registered with Care Inspectorate Wales. This is a big moment, and it is yours.
+
+Your certificate and conditions are in your Registration File. Your first duties are in your Hub too: the RI's visit every three months, the quality of care review every six months, and the annual return. Your 12 months of aftercare start today.
+
+Button: Open my Registration File
+
+Thank you for trusting us with this,
+{{consultant_name}}
+
+### 10.8 Notice of proposal from CIW
+**Subject:** CIW has written to you, and we have a plan
+
+Hi {{first_name}},
+
+CIW has sent a notice of proposal. It is not a final decision, and you have time to respond: your written response must reach CIW by {{deadline}}, as set out in the notice.
+
+We have already started drafting it, and the plan with dates is in your Hub. If CIW still refuses after reading it, we resubmit your application for you, as part of your package.
+
+{{consultant_name}} will call you today to talk it through.
+
+Button: See the plan
+
+{{consultant_name}}
+
+### 10.9 CIW has refused the application
+**Subject:** CIW's decision, and how we resubmit for you
+
+Hi {{first_name}},
+
+CIW has refused the application. We know this is hard to read, so here is the most important part first: we resubmit for you, as part of your package.
+
+{{consultant_name}} will call you today. In your Hub you can see each reason CIW gave, in plain English, with what we will do about it, and your target date to resubmit, {{target_date}}.
+
+If you think CIW got the facts wrong, you can also appeal, within the time limit set out in the decision. We will talk through both routes on the call.
+
+Button: See your resubmission plan
+
+{{consultant_name}}
+
+---
+
+## 11. Northern Ireland: with RQIA
+
+Sent instead of sections 4 and 5 for clients registering with the Regulation and Quality Improvement Authority.
+
+### 11.1 Your RQIA Web Portal login
+**Subject:** Your RQIA Web Portal login is on its way
+
+Hi {{first_name}},
+
+We have asked RQIA for your Web Portal login. RQIA checks who you are first, then sends the login details to you.
+
+When they arrive, please forward them to us through your Hub, or set them up with {{consultant_name}} on a short call. Never send a password by email.
+
+Button: Book the call
+
+{{consultant_name}}
+
+### 11.2 Submitted on the RQIA Web Portal
+**Subject:** Your application has gone to RQIA
+
+Hi {{first_name}},
+
+Your application went to RQIA on the Web Portal today, {{submission_date}}. Your RQIA reference is saved in your Hub.
+
+What happens next: RQIA reads everything, runs the AccessNI checks for your RI and manager, and may ask for more information or invite them to fit person interviews. RQIA sets its own timetable. You still get your update every Friday.
+
+Nothing is needed from you right now.
+
+Button: See your RQIA tracker
+
+{{consultant_name}}
+
+### 11.3 RQIA asked for more information
+**Subject:** RQIA has asked for some extra information
+
+Hi {{first_name}},
+
+RQIA has asked for {{request_summary}}. This is a normal part of the process.
+
+We are handling it. {{if client action}}We need {{client_action}} from you by {{client_action_date}} so we can reply well before RQIA's deadline of {{rqia_deadline}}.
+
+Button: See the request
+
+{{consultant_name}}
+
+### 11.4 Fit person interviews booked
+**Subject:** Your RQIA interviews are booked for {{interview_date}}
+
+Hi {{first_name}},
+
+RQIA has invited {{interviewee_names}} to fit person interviews on {{interview_date}}, at {{interview_times}}.
+
+Your Interview Preparation Hub is ready, with the Minimum Standards for domiciliary care agencies and practice scenarios. You can also book a session with Millicent. We will remind you 7 days, 1 day and the morning before.
+
+Button: Go to Interview Preparation Hub
+
+{{consultant_name}}
+
+### 11.5 You are registered with RQIA
+**Subject:** You are registered with RQIA
+
+Hi {{first_name}},
+
+{{company_name}} is now registered with RQIA. This is a big moment, and it is yours.
+
+Your certificate is in your Registration File. Your first duties are in your Hub too, including the monthly quality monitoring report and getting ready for your first inspection. Your 12 months of aftercare start today.
+
+Button: Open my Registration File
+
+Thank you for trusting us with this,
+{{consultant_name}}
+
+### 11.6 Notice of proposal from RQIA
+**Subject:** RQIA has written to you, and we have a plan
+
+Hi {{first_name}},
+
+RQIA has sent a notice of proposal. It is not a final decision, and you have time to respond: your written response must reach RQIA by {{deadline}}, as set out in the notice.
+
+We have already started drafting it, and the plan with dates is in your Hub. If RQIA still refuses after reading it, we resubmit your application for you, as part of your package.
+
+{{consultant_name}} will call you today to talk it through.
+
+Button: See the plan
+
+{{consultant_name}}
+
+### 11.7 RQIA has refused the application
+**Subject:** RQIA's decision, and how we resubmit for you
+
+Hi {{first_name}},
+
+RQIA has refused the application. We know this is hard to read, so here is the most important part first: we resubmit for you, as part of your package.
+
+{{consultant_name}} will call you today. In your Hub you can see each reason RQIA gave, in plain English, with what we will do about it, and your target date to resubmit, {{target_date}}.
+
+If you think RQIA got the facts wrong, you can also appeal, within the time limit set out in the decision. We will talk through both routes on the call.
+
+Button: See your resubmission plan
+
+{{consultant_name}}
+
+### 11.8 Your application is back with the regulator
+Use email 5.3b, with CIW or RQIA in place of CQC.
 
 ---
 
