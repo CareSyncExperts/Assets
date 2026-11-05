@@ -1659,6 +1659,8 @@ A branded app (starting as an installable web app) with push notifications, a do
 
 Care Sync needs at least two **super admins**. Super admins control the whole system, separate from everyday staff roles. Decided 4 November 2026: managers hold the super admin accounts. Every super admin action is logged, and the most sensitive ones need a second super admin to approve.
 
+Section 62 (5 November 2026) turns this list into the super admin console: one registry for every rule, the screens that hold each area, and who approves what. Where the two differ, section 62 wins.
+
 ### 46.1 What the super admin controls
 | Area | What they can do |
 |---|---|
@@ -2554,6 +2556,99 @@ Where a third does not divide exactly, the last instalment takes the pennies, so
 **Systems.**
 - **Google Workspace** runs Care Sync's mailboxes, calendars and staff sign-in.
 - **The Interview Preparation Hub** is Care Sync's own system (Next.js, Express API, PostgreSQL). The Hub creates accounts in it and passes the regulator, service type and role (section 8).
+
+## 62. Super admin: one registry, and how it all works together (5 November 2026)
+
+The super admin was tested the way the rest of the Hub was:
+- **A month of real work** by Collins and the second super admin, across 16 situations. These included launch day, moving the weekly update day, a new package, a form change mid-flight, a lost laptop, a request for someone's data, failed syncs, a regulator changing a rule, and a complaint.
+- **A security and data protection review.**
+- **An inventory of every rule, promise, timing, price and threshold** stated anywhere in the spec, the emails and all 75 screens. It found 228 rules, 70 of which said different things in different places.
+
+The finding was clear. Approvals were strong, but settings had no home: "Friday" was typed into 32 screens, and many controls existed only as words.
+
+### 62.1 The principle
+1. **Every rule is defined once,** in **Rules and promises** (board 80). Every client screen, staff screen, email and automation reads it from there. In the design boards this is the shared file `registry.js`, and a "Try it" switch on board 80 changes the weekly update day or the reply promise across the other screens.
+2. **Every setting shows where it is used** (screens, emails, automations, reports) and how many clients a change affects today.
+3. **Every change is previewed, approved and dated.** You choose new clients only, or everyone from a date. Legal values are shown with their source and a lock, and are never edited. Rules Care Sync has promised (for example, every registered client is invited to review once, and no promises about how long a regulator takes) are locked too, with the reason.
+4. **Nothing fails silently.** Every failed connection, automation, delivery or watch shows on **System health** with what it affects and who is told.
+5. **One decisions inbox.** The super admin **Home** lists every decision waiting for a super admin, and the menu badge equals that count. Manager decisions (handovers, accepting bid work) stay on the manager dashboard.
+
+### 62.2 Who approves what
+- Managers hold the super admin accounts. There are always at least two, and nobody approves their own request.
+- **The other super admin approves:**
+  - price changes and discounts;
+  - permission changes and super admin invites;
+  - form versions;
+  - email versions with legal wording;
+  - retention schedule changes, and early or unscheduled deletions.
+- **Routine deletions** inside the approved schedule run on their own, with 7 days' notice and a legal hold check.
+- **Setup mode:** before go-live, the first super admin may set things up alone. Go-live needs two active, named super admins, and dual control is on from then.
+- **Leave cover is a delegation,** approved when leave is booked. It covers named clients and dates, including vault access for those clients, and ends automatically.
+- **Break-glass is for emergencies only.** It is approved by a super admin who is not the requester, or self-authorised with a written reason when nobody can be reached. It lasts 4 hours, alerts both super admins and the client the same day, and is reviewed within 1 working day.
+
+### 62.3 The super admin console (its own menu, with "Back to the Hub")
+| # | Screen | What it does |
+|---|---|---|
+| 24 | Home | Decisions inbox, the open incident and its 72-hour clock, system health, go-live readiness, unusual activity, weekly summary |
+| 79 | Go-live readiness | The setup checklist by area, with setup mode explained. The ICO number and review links are entered here |
+| 80 | Rules and promises | 229 rules: value, why, owner, approval, where used, clients affected, versions; change, impact preview, approval. Regulator requirements tab with a change plan when a regulator changes something |
+| 81 | Packages and journeys | Each package end to end: price, instalments, form, stages, gates by regulator, documents, sessions, aftercare, emails, whether it is offered. A package cannot be offered until every part is ready |
+| 77 | Price book | Prices, VAT, editable instalments, "used in", discounts; changes need the other super admin |
+| 44 | Forms | Versions with a change view, question editor with a data category tag, preview as the client, impact on gates, checks and the application sheet, message to clients moved to a new version |
+| 82 | Messages and automations | All 65 client messages with previews as a real client, version compare and approval, brand voice check. Every automation with on and off, what depends on it, failures and retry. Sending addresses, signatures, quiet hours, channels |
+| 83 | People and access | Roles and permissions grid (super admin is a flag on a role), joiners with checks and set-up per system, leavers per system with "Suspend now", quarterly access review, cover |
+| 84 | Security | Incidents and breaches with the 72-hour window and recorded decisions, audit log with integrity check and alert rules, vault controls, elevated access, sign-in and devices, backups and restore tests, runbook |
+| 85 | Data and privacy | Retention schedule, deletions and legal holds, rights requests with their one-month clock, record of processing and impact assessments, suppliers, exports register |
+| 86 | System health | 15 connections, each with what depends on it, failed items and retry, regulator watch by client, email delivery, backups, uptime |
+| 87 | Money and exports | Month close, accountant export with the VAT split, Stripe payouts and fees, Xero, unmatched payments, refunds, how a discount flows through |
+| 88 | View as | See what a client or staff member saw, now or on a past date, with a reason. The full communication history per client, and the complaints register |
+| 89 | How it fits together | A diagram of each setting, its approval, and every screen, email and outside system that reads it |
+
+The staff menu keeps Manager dashboard, Team and cover, Reports and Super admin.
+
+### 62.4 Conflicts settled (the registry holds the answer)
+- **Decided by Care Sync:**
+  - aftercare (12 months) is in the full start-up package only; others can buy it;
+  - review invitations offer Google and Trustpilot, and the client chooses.
+- **Tenders:** submitted 2 working days before the buyer's deadline. Draft to the client 10 working days before, and client approval 5 working days before.
+- **Notice of Proposal:**
+  - the 28 days are worked out the safe way (the day of service is day 1);
+  - draft by day 14, senior review and client approval by day 20, send by day 21;
+  - an internal target on a weekend moves to the working day before, but legal deadlines never move.
+- **Reminders:**
+  - onboarding form after 2 and 4 days, with a call on day 6;
+  - documents after 3 days, then weekly;
+  - landlord and referee after 3 working days.
+- **Weekly update:** Friday by 16:00 for every client, and the client chooses the channel, not whether it comes.
+- **Kick-off and sessions** start only after handover approval.
+- **Worried clients** get no sales or growth messages, but the review invitation is never held back.
+- **Texts** go only for the introduction call and urgent legal deadlines. WhatsApp is a later phase.
+- **The word "free"** is never used. Resubmission is "at no charge to the client".
+- **Client sign-in:** where Care Sync holds the login to a client's sign-in mailbox, a code to the client's mobile is needed on new devices and before signing, approving, downloading everything or changing contact details. The mailbox connection never reads sign-in or e-signature emails.
+- The full list is in the decisions file used to build the registry. Each rule records its source, owner and versions.
+
+### 62.5 Security and data protection
+Legal time limits are shown with their source:
+- a report to the ICO, where required, without undue delay and within 72 hours of becoming aware (UK GDPR Article 33);
+- telling people affected where the risk is high (Article 34; email 9.4);
+- answering rights requests within one month (Article 12).
+
+Anything uncertain is marked "check":
+- the Data (Use and Access) Act 2025 commencement points;
+- each supplier's data location and transfer safeguard;
+- which Schedule 1 condition applies to DBS data.
+
+Proposed values are labelled "proposed, for the data protection lead". Examples are the identity and DBS image retention, the vault reveal threshold and backup retention.
+
+### 62.6 Still for Care Sync to decide
+- **Super admin 2:** the second super admin's real name, and whether they are also the data protection lead. The design uses "Rachel Turner" as a stand-in.
+- **Retention:** confirm the proposed rule for identity and DBS images, and the rest of the schedule.
+- **Care Sync's ICO registration number.** The client Security page shows the line only once it is entered.
+- **Prices:**
+  - the full start-up price (£8,500 or £8,000);
+  - the aftercare add-on and extra sessions;
+  - the other prices still to set.
+- **Suppliers:** check each supplier's location, contract and transfer safeguard before go-live.
 
 ## Appendix C. CQC Registration Information Form: every page, question and rule
 

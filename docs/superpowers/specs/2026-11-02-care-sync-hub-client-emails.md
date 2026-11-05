@@ -748,6 +748,28 @@ Button: See where things stand
 
 ---
 
+### 9.4 We need to tell you about a data incident
+**Trigger:** the data protection lead decides, on the incident record (Security, board 84), that the people affected must be told, because the incident is likely to put them at high risk (UK GDPR Article 34). Approved by a super admin before it is sent. Never sent automatically.
+**Subject:** Something has happened to some of your information
+
+Hi {{first_name}},
+
+We need to tell you about something that happened to some of the information we hold for {{company_name}}.
+
+What happened: {{what_happened}}.
+What information was involved: {{data_involved}}.
+What this could mean for you: {{likely_effect}}.
+What we have done: {{actions_taken}}.
+What we suggest you do: {{what_to_do}}.
+
+We are sorry. If you have any questions, {{contact_name}}, our data protection lead, will answer them personally: reply to this email or call {{contact_phone}}. You also have the right to complain to the Information Commissioner's Office.
+
+{{contact_name}}, Data protection lead
+
+Note: plain words, no blame on the client, no guesses. Every field is filled from the incident record, and the record keeps a copy and the time it was sent.
+
+---
+
 ## 10. Wales: with CIW
 
 Sent instead of sections 4 and 5 for clients registering with Care Inspectorate Wales. Written in English. CIW's own letters go to the client in the language they chose for CIW.
