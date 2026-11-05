@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>You are registered</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 900px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <section aria-labelledby="hero-h" style="position: relative; background: var(--cs-surface-inverse); color: #FFFFFF; padding: 40px 24px 32px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; overflow: hidden;">
+    <span aria-hidden="true" style="position: absolute; top: 22px; left: 30px; width: 10px; height: 10px; border-radius: 999px; background: #AEFFEF;"></span>
+    <span aria-hidden="true" style="position: absolute; top: 60px; right: 40px; width: 14px; height: 14px; border-radius: 4px; background: #7DE2E0; transform: rotate(20deg);"></span>
+    <span aria-hidden="true" style="position: absolute; top: 120px; left: 56px; width: 8px; height: 8px; border-radius: 2px; background: #FFFFFF; transform: rotate(35deg);"></span>
+    <span aria-hidden="true" style="position: absolute; top: 34px; right: 110px; width: 6px; height: 6px; border-radius: 999px; background: #FFFFFF;"></span>
+    <span aria-hidden="true" style="position: absolute; bottom: 30px; right: 28px; width: 10px; height: 10px; border-radius: 999px; background: #AEFFEF;"></span>
+    <span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 999px; background: #AEFFEF; color: #004558; display: flex; align-items: center; justify-content: center;">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+    </span>
+    <h1 id="hero-h" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600;">You are registered</h1>
+    <span style="font-size: 15px; line-height: 22px; color: #D0D5DD;">Harbour Lane Care Ltd is registered with CQC. This moment is yours, Amara.</span>
+  </section>
+
+  <main style="padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+    <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="download">Open my Registration File</x-import>
+
+    <section aria-labelledby="share-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-1); padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h2 id="share-h" style="margin: 0; font-size: 17px; line-height: 24px; font-weight: 500;">Share your experience</h2>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Your review helps other care providers decide who to trust. Choose Google or Trustpilot, whichever you prefer. We ask once, now, with one reminder in 7 days. Whatever you write, thank you.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <a href="#" style="min-height: 48px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 500; text-decoration: none;"><x-import component-from-global-scope="CareSync.Icon" name="link" size="{{n16}}"></x-import>Review on Google</a>
+        <a href="#" style="min-height: 48px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 500; text-decoration: none;"><x-import component-from-global-scope="CareSync.Icon" name="link" size="{{n16}}"></x-import>Review on Trustpilot</a>
+      </div>
+      <a href="Ask.dc.html" style="align-self: center; min-height: 36px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; text-decoration: none;">Or tell us privately</a>
+    </section>
+
+    <section aria-labelledby="next-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+      <h2 id="next-h" style="margin: 0; padding: 14px 16px 6px; font-size: 16px; line-height: 24px; font-weight: 500;">Your first 30 days</h2>
+      <a href="Aftercare.dc.html" style="text-decoration: none; color: var(--cs-text-primary); min-height: 52px; padding: 8px 16px; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--cs-border-subtle);"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n20}}"></x-import></span><span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Your aftercare and launch checklist</span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></a>
+      <div style="min-height: 52px; padding: 8px 16px; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--cs-border-subtle);"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="calendar" size="{{n20}}"></x-import></span><span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Book your launch call with Daniel</span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></div>
+      <div style="min-height: 52px; padding: 8px 16px; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--cs-border-subtle);"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="eye" size="{{n20}}"></x-import></span><span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Watch Daniel's message, 1 minute</span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'light', yes: true, n16: 16, n20: 20 };
+  }
+}
+</script>
+</body>
+</html>

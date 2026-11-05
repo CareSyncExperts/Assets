@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Sign your pack</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <header style="background: var(--cs-surface-raised); border-bottom: 1px solid var(--cs-border-subtle); padding: 12px 8px 12px 4px; display: flex; align-items: center; gap: 4px;">
+    <a href="DocRoom.dc.html" aria-label="Back to documents" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="chevron-left" size="{{n24}}"></x-import></a>
+    <div style="display: flex; flex-direction: column;">
+      <h1 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 500;">Sign your application pack</h1>
+      <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Step 2 of 2</span>
+    </div>
+  </header>
+
+  <main style="padding: 16px 20px 140px; display: flex; flex-direction: column; gap: 14px;">
+    <section aria-labelledby="what-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="what-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">What you are approving</h2>
+      <div style="display: flex; align-items: center; gap: 10px;"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Done"></x-import></span><span style="font-size: 14px; line-height: 20px;">32 documents, each approved by you</span></div>
+      <div style="display: flex; align-items: center; gap: 10px;"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Done"></x-import></span><span style="font-size: 14px; line-height: 20px;">Names, addresses and services match everywhere</span></div>
+      <div style="display: flex; align-items: center; gap: 10px;"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Done"></x-import></span><span style="font-size: 14px; line-height: 20px;">You read the pack summary (step 1)</span></div>
+    </section>
+
+    <section aria-labelledby="sig-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="sig-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Your signature</h2>
+        <div role="tablist" aria-label="Signature type" style="display: flex; gap: 2px; padding: 3px; border-radius: 8px; background: var(--cs-surface-subtle);">
+          <button role="tab" aria-selected="true" style="min-height: 30px; padding: 0 10px; border: 0; border-radius: 6px; background: var(--cs-surface-raised); font: inherit; font-size: 12px; font-weight: 500; color: var(--cs-text-primary);">Draw</button>
+          <button role="tab" aria-selected="false" style="min-height: 30px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; font: inherit; font-size: 12px; color: var(--cs-text-secondary);">Type</button>
+        </div>
+      </div>
+      <div style="height: 120px; border-radius: 10px; border: 1px dashed var(--cs-border-control); background: var(--cs-surface-page); position: relative; display: flex; align-items: center; justify-content: center;">
+        <svg width="220" height="70" viewBox="0 0 220 70" role="img" aria-label="Drawn signature">
+          <path d="M8 48 C 20 10, 32 10, 30 40 S 44 62, 56 30 S 70 8, 76 38 C 80 54, 92 54, 100 34 C 108 18, 116 22, 118 40 C 120 52, 134 50, 146 30 C 156 16, 166 26, 172 38 C 178 48, 196 44, 212 30" fill="none" stroke="#101828" stroke-width="2.4" stroke-linecap="round"></path>
+        </svg>
+        <span style="position: absolute; left: 14px; right: 14px; bottom: 10px; border-top: 1px solid var(--cs-border-default);"></span>
+      </div>
+      <span style="font-size: 14px; line-height: 20px;">Amara Okafor, Director, Harbour Lane Care Ltd</span>
+    </section>
+
+    <section aria-labelledby="code-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="code-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Confirm it is you</h2>
+      <label for="otp" style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Care Sync holds the login to your business email, so before you sign we check it is you. We sent a 6-digit code to your mobile ending 456.</label>
+      <input id="otp" value="482 913" inputmode="numeric" style="min-height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--cs-border-control); font: inherit; font-size: 20px; letter-spacing: 4px; background: var(--cs-surface-raised); color: var(--cs-text-primary);">
+    </section>
+  </main>
+
+  <footer style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); padding: 12px 20px 26px; display: flex; flex-direction: column; gap: 8px;">
+    <x-import component-from-global-scope="CareSync.Checkbox" label="I confirm this pack is correct and ready to go to CQC" checked="{{yes}}"></x-import>
+    <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="signature">Sign and approve</x-import>
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">You get a signed copy with a certificate. We submit within 2 working days and tell you the same day.</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'light', yes: true, n16: 16, n20: 20, n24: 24 };
+  }
+}
+</script>
+</body>
+</html>

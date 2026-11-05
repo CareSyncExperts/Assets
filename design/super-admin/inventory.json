@@ -1,0 +1,6611 @@
+[
+ {
+  "id": "client-question-reply-time",
+  "area": "Promises and timings",
+  "rule": "Client questions (Ask, Ask about this, Not sure? Ask us on any form question) are answered within the promised reply time, shown to the client and counted down for staff.",
+  "values_found": [
+   "1 working day"
+  ],
+  "where": [
+   {
+    "src": "spec 5.9",
+    "says": "We reply within 1 working day"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Reply within 1 working day for clients"
+   },
+   {
+    "src": "spec 59.3",
+    "says": "time left on the 1 working day promise"
+   },
+   {
+    "src": "spec 51.2",
+    "says": "Super admin controls: reply-time promise"
+   },
+   {
+    "src": "board Ask.dc.html (6)",
+    "says": "Daniel usually replies within 1 working day"
+   },
+   {
+    "src": "board Review.dc.html (4)",
+    "says": "Daniel replies within 1 working day"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "We reply within 1 working day"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "Grace replies here within 1 working day"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "Grace replies here within 1 working day"
+   },
+   {
+    "src": "board RqiaForm.dc.html (56)",
+    "says": "Grace replies here within 1 working day"
+   },
+   {
+    "src": "board TenderOnboard.dc.html (38)",
+    "says": "Grace replies here within 1 working day"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Reply to client questions within 1 working day"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "reply-time promise (set by the super admin)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "question-escalation-team-lead",
+  "area": "Promises and timings",
+  "rule": "A client question not answered within a set time alerts the team lead, well before the client promise runs out.",
+  "values_found": [
+   "6 working hours"
+  ],
+  "where": [
+   {
+    "src": "spec 59.3",
+    "says": "A question not answered within 6 working hours alerts the team lead"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "A question not answered within 6 working hours alerts the team lead"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "unanswered-message-red",
+  "area": "Promises and timings",
+  "rule": "A client message left unanswered turns red on the owner's My day and the manager dashboard.",
+  "values_found": [
+   "1 working day"
+  ],
+  "where": [
+   {
+    "src": "spec 42",
+    "says": "a client message unanswered for 1 working day, turns red"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Not shown as a red rule on any board; Questions (67) shows time left instead. Should be the same value as client-question-reply-time.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "senior-question-reply-time",
+  "area": "Promises and timings",
+  "rule": "Ask a senior questions from staff go to a shared queue with a reply time target.",
+  "values_found": [
+   "2 hours",
+   "2 working hours"
+  ],
+  "where": [
+   {
+    "src": "spec 11.5",
+    "says": "a reply time target"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "within 2 hours for senior staff questions"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "With Collins ... Target: 2 working hours"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 55.0 says 2 hours; the Questions board says 2 working hours. Decide clock hours or working hours.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "introduction-call-target",
+  "area": "Promises and timings",
+  "rule": "After payment an introduction call task is created for the default caller, due within a target time; payment out of hours means a call by a set time the next working morning.",
+  "values_found": [
+   "2 working hours",
+   "by 10:00 the next working morning",
+   "by 10:00 the next working day"
+  ],
+  "where": [
+   {
+    "src": "spec 52.1",
+    "says": "suggested: within 2 working hours; if payment lands out of hours, by 10:00 the next working morning"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "within 2 working hours, or by 10:00 the next working day"
+   },
+   {
+    "src": "spec 60.1",
+    "says": "introduction call due within 2 working hours"
+   },
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "Paid today at 10:02. Target: within 2 working hours"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "created this call for Divine, to be made by 12:02"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "due within 2 working hours"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Introduction call within 2 working hours"
+   },
+   {
+    "src": "board Welcome.dc.html (25)",
+    "says": "Divine will call you this morning"
+   },
+   {
+    "src": "demo world",
+    "says": "Introduction call target: within 2 working hours"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Values agree. Depends on a working hours definition that no source sets (see working-hours).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "working-hours",
+  "area": "Promises and timings",
+  "rule": "Care Sync's working hours and working days define every 'working day', 'working hours' and 'out of hours' timer in the system.",
+  "values_found": [
+   "not stated"
+  ],
+  "where": [
+   {
+    "src": "spec 52.7",
+    "says": "working hours (super admin setting for the introduction call)"
+   },
+   {
+    "src": "spec 32.2",
+    "says": "Enquiry reply within 15 minutes in staffed hours"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Many promises are in working days or working hours but no source defines the hours, days or bank holidays (England, Wales and Northern Ireland differ). Needed before any timer can work.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "enquiry-reply-time",
+  "area": "Promises and timings",
+  "rule": "New enquiries get a reply within a short time during staffed hours.",
+  "values_found": [
+   "15 minutes in staffed hours"
+  ],
+  "where": [
+   {
+    "src": "spec 32.2",
+    "says": "Enquiry reply within 15 minutes in staffed hours"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Spec only; sales sits in GoHighLevel and no board shows it.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "regulator-news-same-day",
+  "area": "Promises and timings",
+  "rule": "The client is told the same day a regulator writes; staff are alerted within the hour a new regulator message appears.",
+  "values_found": [
+   "same day (client)",
+   "same hour (staff)"
+  ],
+  "where": [
+   {
+    "src": "spec 59.2",
+    "says": "The consultant is alerted the same hour something new appears"
+   },
+   {
+    "src": "spec 52.2",
+    "says": "an update every Friday, the same day when CQC writes"
+   },
+   {
+    "src": "email 4.1",
+    "says": "tell you the same day anything arrives"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "the same day CQC writes"
+   },
+   {
+    "src": "board Welcome.dc.html (25)",
+    "says": "the same day whenever CQC writes"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Tell the client the same day the regulator writes"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "you will hear the same day anything arrives"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "promise-at-risk-warning",
+  "area": "Promises and timings",
+  "rule": "Every date promised to a client is tracked; if it is at risk the owner is prompted to tell the client before it is missed, with the new date and reason.",
+  "values_found": [
+   "before the date"
+  ],
+  "where": [
+   {
+    "src": "spec 29",
+    "says": "the client is told before the date, with the new date and the reason"
+   },
+   {
+    "src": "spec 42",
+    "says": "Promise tracking"
+   },
+   {
+    "src": "board TwoServices.dc.html (59)",
+    "says": "tell you straight away if one moves, and why"
+   },
+   {
+    "src": "board Resubmit.dc.html (65)",
+    "says": "tell you if it moves"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Spec does not say how far ahead 'at risk' is detected.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "no-regulator-dates-promised",
+  "area": "Promises and timings",
+  "rule": "No date is ever promised for a regulator's own decision; the client sees time since submission and what normally happens next.",
+  "values_found": [
+   "no date"
+  ],
+  "where": [
+   {
+    "src": "spec 29",
+    "says": "No dates are ever promised for CQC's own decisions"
+   },
+   {
+    "src": "email 4.1",
+    "says": "CQC sets its own timetable, so we cannot give you a date"
+   },
+   {
+    "src": "board PlanCosts.dc.html (60)",
+    "says": "CQC does not promise a time for its decision"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "CQC sets its own timescales"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "CIW sets its own pace"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "target-dates-checked-weekly",
+  "area": "Promises and timings",
+  "rule": "Target dates for stages Care Sync controls are rechecked weekly and the client is told if one moves.",
+  "values_found": [
+   "every Friday"
+  ],
+  "where": [
+   {
+    "src": "spec 57.2",
+    "says": "Dates are targets, checked every Friday"
+   },
+   {
+    "src": "board TwoServices.dc.html (59)",
+    "says": "We check them every Friday"
+   },
+   {
+    "src": "board PlanCosts.dc.html (60)",
+    "says": "Targets we work to, checked every Friday"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "Shown to the client and checked every Friday"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "submit-after-final-signature",
+  "area": "Promises and timings",
+  "rule": "Once the client signs the final pack, Care Sync sends it to the regulator within a set number of working days and tells the client the same day.",
+  "values_found": [
+   "{{send_days}} working days",
+   "2 working days"
+  ],
+  "where": [
+   {
+    "src": "email 3.3",
+    "says": "we send it within {{send_days}} working days and tell you the same day"
+   },
+   {
+    "src": "board Sign.dc.html (19)",
+    "says": "We submit within 2 working days and tell you the same day"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The email uses a placeholder and only the Sign board gives 2 working days; the spec never sets this promise.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "consultant-change-notice",
+  "area": "Promises and timings",
+  "rule": "If the consultant changes, the new consultant tells the client the same day and calls within the week.",
+  "values_found": [
+   "same day",
+   "this week"
+  ],
+  "where": [
+   {
+    "src": "spec 52.6",
+    "says": "the client is told the same day by the new consultant"
+   },
+   {
+    "src": "email 9.3",
+    "says": "I will give you a quick call this week"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "growth-plan-call",
+  "area": "Promises and timings",
+  "rule": "After registration a growth plan or launch call is held within a set time.",
+  "values_found": [
+   "5 working days"
+  ],
+  "where": [
+   {
+    "src": "spec 24.1",
+    "says": "A growth plan call within 5 working days"
+   },
+   {
+    "src": "email 5.1",
+    "says": "would like to book a short call to plan your launch"
+   },
+   {
+    "src": "board Celebrate.dc.html (20)",
+    "says": "Book your launch call with Daniel"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Only the spec gives a number.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "morning-brief",
+  "area": "Promises and timings",
+  "rule": "Each staff member gets a morning summary of priorities, clients going quiet and promises due.",
+  "values_found": [
+   "8am"
+  ],
+  "where": [
+   {
+    "src": "spec 45.5",
+    "says": "At 8am each person gets a short summary"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows the morning brief.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "onboarding-gates-list",
+  "area": "Journey and gates",
+  "rule": "Onboarding gates that must all pass before handover.",
+  "values_found": [
+   "8 gates"
+  ],
+  "where": [
+   {
+    "src": "spec 18.2",
+    "says": "Form, Company, CVs, People, Professional registration, Identity, References and GP, Address evidence"
+   },
+   {
+    "src": "demo world",
+    "says": "Company and directors, Identity, Office address evidence, Registered manager, Employment history, References, DBS, Professional registers"
+   },
+   {
+    "src": "board Onboarding.dc.html (8)",
+    "says": "Collins can approve only when all 8 gates pass"
+   },
+   {
+    "src": "board FormStaff.dc.html (13)",
+    "says": "form checks grouped into the gates"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 18.2 has a Form gate and one Identity gate (DBS or three IDs); the boards and demo world have no Form gate and split Identity and DBS, and rename CVs as Employment history. The gate list must be one list.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "no-work-before-handover",
+  "area": "Journey and gates",
+  "rule": "No application work and no sessions start until every gate passes and a manager approves the handover.",
+  "values_found": [
+   "all gates passed",
+   "manager approval"
+  ],
+  "where": [
+   {
+    "src": "spec 54.0",
+    "says": "No CQC writing, and no project work, starts until it is complete"
+   },
+   {
+    "src": "demo world",
+    "says": "Sessions (3 included) start after handover"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "Application work and sessions start only when every onboarding gate passes"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "The kick-off session is booked only after the onboarding checks pass"
+   },
+   {
+    "src": "board Handover.dc.html (74)",
+    "says": "unlocked the 3 included sessions"
+   },
+   {
+    "src": "spec 4",
+    "says": "Kick-off session booked (session 1 of 3)"
+   },
+   {
+    "src": "spec 51.3",
+    "says": "25 Welcome: ... and the kick-off booking"
+   },
+   {
+    "src": "board Welcome.dc.html (25)",
+    "says": "Book your kick-off with Millicent"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 4 (stage 1 Welcome) and spec 51.3 put the kick-off booking on the Welcome screen, and board 25 shows 'Book your kick-off with Millicent', while spec 54.0, the demo world and boards 33, 51, 74 lock sessions until handover.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "handover-approver",
+  "area": "Journey and gates",
+  "rule": "Handover from onboarding to the case owner needs approval by a named role, and needs a named case owner and weekly update owner.",
+  "values_found": [
+   "manager",
+   "Collins (director)"
+  ],
+  "where": [
+   {
+    "src": "spec 18.2",
+    "says": "Only a manager can approve handover"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Managers see every client and the money, and approve handovers"
+   },
+   {
+    "src": "board Handover.dc.html (74)",
+    "says": "Grace hands over; Collins approves"
+   },
+   {
+    "src": "board Onboarding.dc.html (8)",
+    "says": "Collins can approve only when all 8 gates pass"
+   },
+   {
+    "src": "board OnboardingQueue.dc.html (73)",
+    "says": "Waiting for Collins to approve"
+   },
+   {
+    "src": "demo world",
+    "says": "Collins: director ... Approves prices, handovers"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The spec gives handover approval to the Manager role; boards and the demo world give it to Collins, who is the director and super admin 1. Define it as a role, not a person.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "unowned-client-red",
+  "area": "Journey and gates",
+  "rule": "Every client always has a named case owner and weekly update owner; a client missing either shows red to the manager.",
+  "values_found": [
+   "always red"
+  ],
+  "where": [
+   {
+    "src": "spec 18.1",
+    "says": "a client with either missing appears in red"
+   },
+   {
+    "src": "spec 17",
+    "says": "No silent or unowned client"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "A client with no case owner always shows red"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "still have no owner after Friday"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "stage-model",
+  "area": "Journey and gates",
+  "rule": "The client journey stages, their names and the evidence each needs to move on.",
+  "values_found": [
+   "11 stages (spec 4)",
+   "13 staff stages (spec 18.3)"
+  ],
+  "where": [
+   {
+    "src": "spec 4",
+    "says": "11 stages, Welcome to Aftercare"
+   },
+   {
+    "src": "spec 18.3",
+    "says": "Onboarding ... Resubmitted to CQC (13 rows)"
+   },
+   {
+    "src": "demo world",
+    "says": "Stage model (spec section 4): 11 stages"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Stage counts across the 11 stages"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 18.3 keeps a second, staff stage list that does not map one to one to the 11 stages used by every board. Pick one model and map the other as internal sub-stages.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "stage-evidence-required",
+  "area": "Journey and gates",
+  "rule": "No stage moves on without its evidence; Sent is never marked without evidence; regulator dates and references come only from the acknowledgement.",
+  "values_found": [
+   "evidence required"
+  ],
+  "where": [
+   {
+    "src": "spec 17",
+    "says": "Do not mark Sent without evidence"
+   },
+   {
+    "src": "spec 18.3",
+    "says": "No stage moves on without its evidence"
+   },
+   {
+    "src": "spec 18.5",
+    "says": "An update can never be marked sent without that evidence"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Each send is logged with the date, method and a copy"
+   },
+   {
+    "src": "board Deadlines.dc.html (75)",
+    "says": "recorded with evidence"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "returned-application-recovery",
+  "area": "Journey and gates",
+  "rule": "A returned or rejected application sets risk to Critical and needs a recovery plan within a set time.",
+  "values_found": [
+   "2 working days",
+   "resubmit the day it arrives"
+  ],
+  "where": [
+   {
+    "src": "spec 18.3",
+    "says": "Risk set to Critical automatically; recovery plan due within 2 working days"
+   },
+   {
+    "src": "email 5.3",
+    "says": "a target date to resubmit"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "We resubmit the day it arrives"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Recovery plan time is only in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "critical-risk-alerts",
+  "area": "Journey and gates",
+  "rule": "A legal deadline or a Critical risk always alerts the case owner and the manager; overdue deadline tasks escalate to a director.",
+  "values_found": [
+   "case owner and manager",
+   "director"
+  ],
+  "where": [
+   {
+    "src": "spec 23",
+    "says": "always alerts the case owner and the manager"
+   },
+   {
+    "src": "spec 6.3",
+    "says": "Escalates to a director if any internal task is overdue"
+   },
+   {
+    "src": "spec 14.2",
+    "says": "Escalated to a director automatically"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 23 says manager, spec 6.3 and 14.2 say director. Decide the escalation role.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "closure-and-archive",
+  "area": "Journey and gates",
+  "rule": "Closing and archiving a client needs manager approval and a closure checklist; history is kept for ever while documents follow the retention schedule.",
+  "values_found": [
+   "manager approval",
+   "history kept for ever"
+  ],
+  "where": [
+   {
+    "src": "spec 17",
+    "says": "archiving needs manager approval; history is never deleted"
+   },
+   {
+    "src": "spec 18.3",
+    "says": "Manager approval; history kept for ever"
+   },
+   {
+    "src": "spec 49.8",
+    "says": "records kept or deleted on the retention schedule"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "'History kept for ever' and scheduled deletion sit together; the super admin board keeps 'a record of the decision, never the documents'.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "interview-pass-not-completion",
+  "area": "Journey and gates",
+  "rule": "An interview pass never completes a project, and interview outcomes are recorded the same day.",
+  "values_found": [
+   "same day"
+  ],
+  "where": [
+   {
+    "src": "spec 17",
+    "says": "an interview pass is not completion"
+   },
+   {
+    "src": "spec 18.3",
+    "says": "recorded the same day"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "gate-failure-alerts-once",
+  "area": "Journey and gates",
+  "rule": "Staff are alerted once per new or materially changed issue, never repeatedly for an unchanged one.",
+  "values_found": [
+   "once"
+  ],
+  "where": [
+   {
+    "src": "spec 18.2",
+    "says": "alerted once per new or materially changed failure"
+   },
+   {
+    "src": "spec 23",
+    "says": "Staff alerts fire once"
+   },
+   {
+    "src": "spec 26.3",
+    "says": "The onboarding lead is alerted once"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "fix-list-rules",
+  "area": "Journey and gates",
+  "rule": "Failed checks become a plain English fix list that staff can edit and send; items already requested from someone else are never asked of the client again.",
+  "values_found": [
+   "sent only when staff press Send"
+  ],
+  "where": [
+   {
+    "src": "spec 26.3",
+    "says": "sent only when staff press Send"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "never asked of the client again"
+   },
+   {
+    "src": "board Onboarding.dc.html (8)",
+    "says": "Send fix list (2)"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "It is never added to Ade's fix list again"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "office-evidence-rules",
+  "area": "Journey and gates",
+  "rule": "Office evidence required per office type; virtual offices and PO boxes are refused; a registered charge on the title means lender permission is needed; the address must match the form.",
+  "values_found": [
+   "commercial lease",
+   "mortgaged home: lender permission and title",
+   "rented home: tenancy and landlord permission",
+   "owned: title",
+   "virtual office not accepted"
+  ],
+  "where": [
+   {
+    "src": "spec 5.2",
+    "says": "Virtual office or PO box: Not accepted"
+   },
+   {
+    "src": "spec 27.4",
+    "says": "a registered charge means lender permission is required"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "Council tenancies usually need the council's written permission"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "address-match-strictness",
+  "area": "Journey and gates",
+  "rule": "Address matching runs strongest test first; a different flat in the same building is always a mismatch; postcode only needs a person.",
+  "values_found": [
+   "same building, different unit = mismatch"
+  ],
+  "where": [
+   {
+    "src": "spec 27.3",
+    "says": "Always a mismatch"
+   },
+   {
+    "src": "board AddressClient.dc.html (15)",
+    "says": "One quick question"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "pack-doctor-rules",
+  "area": "Journey and gates",
+  "rule": "Pre-submission Pack Doctor checks: blockers lock submission, warnings need a person; new refusal grounds become rules.",
+  "values_found": [
+   "9 core documents + 3 + 2",
+   "12-month month-by-month forecast",
+   "links opened on submission day"
+  ],
+  "where": [
+   {
+    "src": "spec 28",
+    "says": "Submission stays locked while any blocker remains"
+   },
+   {
+    "src": "spec 47.3",
+    "says": "Blockers stop submission; warnings need a person to confirm"
+   },
+   {
+    "src": "spec 58.2",
+    "says": "Each reason becomes an anonymised Pack Doctor rule"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "2 new Pack check rules added"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "quality-gate-second-person",
+  "area": "Journey and gates",
+  "rule": "Nothing reaches a client, regulator or buyer until a second person approves it.",
+  "values_found": [
+   "second person always",
+   "relaxable per staff member"
+  ],
+  "where": [
+   {
+    "src": "spec 10.6",
+    "says": "Directors can relax this per staff member once they are trusted"
+   },
+   {
+    "src": "spec 28",
+    "says": "Second-person sign-off on packs, bids and anything sent to CQC"
+   },
+   {
+    "src": "spec 30",
+    "says": "A second person signs off anything going to a client, CQC or a buyer"
+   },
+   {
+    "src": "email 3.2",
+    "says": "checked by a second consultant"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Thursday: a second consultant reads every draft"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 10.6 lets directors switch off the second check per person; spec 28 and 30 make it absolute. Decide whether it can be relaxed.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "signing-together",
+  "area": "Journey and gates",
+  "rule": "Where several people sign, each signs in order and the pack is only sent when everyone has signed; key documents need a one-time code by text.",
+  "values_found": [
+   "all signers",
+   "one-time code for final pack"
+  ],
+  "where": [
+   {
+    "src": "spec 36.2",
+    "says": "a one-time code sent by text"
+   },
+   {
+    "src": "spec 57.3",
+    "says": "The pack is only sent when everyone has signed"
+   },
+   {
+    "src": "board TeamViews.dc.html (64)",
+    "says": "Send Kwame a reminder"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "regulator-submission-with-client",
+  "area": "Journey and gates",
+  "rule": "For CIW and RQIA the client submits with their consultant on a call; Care Sync never submits without them.",
+  "values_found": [
+   "on a call"
+  ],
+  "where": [
+   {
+    "src": "spec 57.3",
+    "says": "Care Sync never submits without them"
+   },
+   {
+    "src": "email 10.3",
+    "says": "will be with you on a call while you do it"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "We never submit anything without your approval"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "stage-waiting-colours",
+  "area": "Journey and gates",
+  "rule": "Pipeline cards and client 'waiting on' times turn amber, then red, when a stage or wait runs longer than its target.",
+  "values_found": [
+   "amber after 5 days",
+   "red after 10 days",
+   "stage target times (not set)"
+  ],
+  "where": [
+   {
+    "src": "spec 11.2",
+    "says": "Cards turn amber or red when a stage has run longer than its target time"
+   },
+   {
+    "src": "board ClientsList.dc.html (68)",
+    "says": "\"Waiting on\" turns amber after 5 days and red after 10"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The spec has per-stage targets with no values; the Clients board uses one 5 and 10 day rule for every wait. Decide per stage or one rule.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "gone-quiet",
+  "area": "Journey and gates",
+  "rule": "If a client has not signed in, uploaded or replied while the ball is with them, the owner is prompted to call.",
+  "values_found": [
+   "10 days"
+  ],
+  "where": [
+   {
+    "src": "spec 10.15",
+    "says": "a set number of days (for example 10)"
+   },
+   {
+    "src": "board Staff.dc.html (7)",
+    "says": "Gone quiet for 10 days: call Tunde"
+   },
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "No reply or upload for 10 days"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Greenway Support: gone quiet"
+   },
+   {
+    "src": "demo world",
+    "says": "Gone quiet 10 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "no-outbound-contact-red",
+  "area": "Journey and gates",
+  "rule": "A client with no outbound contact from Care Sync for a set time turns red.",
+  "values_found": [
+   "7 days"
+  ],
+  "where": [
+   {
+    "src": "spec 42",
+    "says": "A client with no outbound contact for 7 days ... turns red"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows this rule.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "regulator-watch-cadence",
+  "area": "Journey and gates",
+  "rule": "How often each regulator channel is watched: CQC client mailbox automatically, CIW Online and the RQIA Web Portal daily, broken or missing connections by manual check.",
+  "values_found": [
+   "CQC email every few minutes",
+   "continuously",
+   "CIW Online every working day",
+   "RQIA Web Portal every working day",
+   "manual check Monday and Thursday"
+  ],
+  "where": [
+   {
+    "src": "spec 41.2a",
+    "says": "The mailbox connection runs continuously ... manual check task (for example Monday and Thursday)"
+   },
+   {
+    "src": "spec 59.2",
+    "says": "CIW Online is checked every working day"
+   },
+   {
+    "src": "email 10.4",
+    "says": "We check CIW Online every day"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "checks your business email for CQC every few minutes"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "Their email checked every few minutes"
+   },
+   {
+    "src": "board PortalWatch.dc.html (22)",
+    "says": "Portal check, Mon and Thu"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "We check CIW Online every day"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 59.2 says every working day; email 10.4 and board 63 say every day (weekends implied).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "watch-gap-red",
+  "area": "Journey and gates",
+  "rule": "A client with the regulator and no working watch or check (for example the CQC email login missing) turns red on My day and the manager dashboard after a set time; a broken mailbox alerts the case owner the same day.",
+  "values_found": [
+   "7 days",
+   "same day"
+  ],
+  "where": [
+   {
+    "src": "spec 41.2a",
+    "says": "no check or watch for 7 days turns red ... alerted the same day"
+   },
+   {
+    "src": "board PortalWatch.dc.html (22)",
+    "says": "A missing login turns red after 7 days"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Watch gaps. Red after 7 days"
+   },
+   {
+    "src": "board Staff.dc.html (7)",
+    "says": "CQC email login not in the vault: 10 days"
+   },
+   {
+    "src": "demo world",
+    "says": "red after 7 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "sessions-included",
+  "area": "Sessions and coaching",
+  "rule": "Coaching sessions included per package, who runs them and what each is for.",
+  "values_found": [
+   "3 sessions",
+   "kick-off, documents, interview practice",
+   "Millicent runs all 3"
+  ],
+  "where": [
+   {
+    "src": "spec 5.6",
+    "says": "You have 2 of 3 sessions left. The number comes from the package"
+   },
+   {
+    "src": "spec 51.1",
+    "says": "All 3 sessions are with Millicent"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Millicent runs the 3 sessions"
+   },
+   {
+    "src": "spec 40.2",
+    "says": "three coaching sessions with Millicent"
+   },
+   {
+    "src": "email 3.4",
+    "says": "session {{session_number}} of 3"
+   },
+   {
+    "src": "board Sessions.dc.html (28)",
+    "says": "Your 3 sessions"
+   },
+   {
+    "src": "board CoachSessions.dc.html (69)",
+    "says": "Each client has 3 sessions included"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "CQC interview preparation: 3 sessions with Millicent and the interview portal"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The count per package is not defined anywhere except 3 for registration; board 77 also gives 3 sessions to the £750 interview preparation add-on, which the spec never says. Tender-only clients have none. Needs a per-package value.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "session-unlock-rules",
+  "area": "Sessions and coaching",
+  "rule": "When sessions unlock: all after handover; session 3 (interview practice) only when the regulator sets the interview date.",
+  "values_found": [
+   "after handover",
+   "session 3 when interview date set"
+  ],
+  "where": [
+   {
+    "src": "spec 51.3",
+    "says": "session 3 unlocks when CQC sets the interview date"
+   },
+   {
+    "src": "board Sessions.dc.html (28)",
+    "says": "Opens when CQC sets your interview date"
+   },
+   {
+    "src": "board Handover.dc.html (74)",
+    "says": "unlocked the 3 included sessions"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "session-reminders",
+  "area": "Sessions and coaching",
+  "rule": "Session confirmation and reminders.",
+  "values_found": [
+   "on booking",
+   "1 day before",
+   "1 hour before"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "On booking, 1 day before, 1 hour before"
+   },
+   {
+    "src": "email 3.4",
+    "says": "reminders follow the day before and an hour before"
+   },
+   {
+    "src": "board Sessions.dc.html (28)",
+    "says": "We will remind you the day before and an hour before"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "session-length",
+  "area": "Sessions and coaching",
+  "rule": "Length of an included session.",
+  "values_found": [
+   "one hour"
+  ],
+  "where": [
+   {
+    "src": "board Sessions.dc.html (28)",
+    "says": "One hour"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Only on board 28; not in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "extra-sessions",
+  "area": "Sessions and coaching",
+  "rule": "Extra sessions are offered only through Ask, never pushed, and always priced first.",
+  "values_found": [
+   "priced first",
+   "price not set"
+  ],
+  "where": [
+   {
+    "src": "spec 5.6",
+    "says": "Extra sessions can be offered for purchase"
+   },
+   {
+    "src": "spec 51.3",
+    "says": "Extra sessions through Ask, never pushed"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "extra sessions are priced first"
+   },
+   {
+    "src": "board Sessions.dc.html (28)",
+    "says": "Ask Daniel about extra sessions"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "No price for an extra session exists in the price book (spec 24.2, board 77), yet clients can buy one in the portal (spec 45.1).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "callbacks-and-sessions",
+  "area": "Sessions and coaching",
+  "rule": "Call backs do not use up included sessions unless staff decide.",
+  "values_found": [
+   "not counted by default"
+  ],
+  "where": [
+   {
+    "src": "spec 5.9",
+    "says": "Call backs do not use up the included sessions unless staff decide they should"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows the call back request.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "case-owner-joins-session-2",
+  "area": "Sessions and coaching",
+  "rule": "The case owner joins session 2 (going through documents).",
+  "values_found": [
+   "session 2"
+  ],
+  "where": [
+   {
+    "src": "demo world",
+    "says": "The case owner joins session 2"
+   },
+   {
+    "src": "board Staff.dc.html (7)",
+    "says": "Millicent runs it and you join as case owner"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board and demo world rule; not in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "session-notes-visibility",
+  "area": "Sessions and coaching",
+  "rule": "After a session the coach adds a summary and actions the client sees; private notes stay internal.",
+  "values_found": [
+   "summary visible",
+   "private notes hidden"
+  ],
+  "where": [
+   {
+    "src": "spec 5.6",
+    "says": "the consultant adds a short summary and actions"
+   },
+   {
+    "src": "board CoachSessions.dc.html (69)",
+    "says": "The client sees the summary and next steps, never the private notes"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "interview-reminders",
+  "area": "Sessions and coaching",
+  "rule": "Interview reminders to the client before a regulator interview.",
+  "values_found": [
+   "7 days",
+   "1 day",
+   "morning of"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "7 days, 1 day and morning of"
+   },
+   {
+    "src": "spec 8",
+    "says": "7 days, 1 day and the morning of"
+   },
+   {
+    "src": "email 4.3",
+    "says": "We will remind you 7 days, 1 day and the morning before"
+   },
+   {
+    "src": "email 10.6",
+    "says": "7 days, 1 day and the morning before"
+   },
+   {
+    "src": "email 11.4",
+    "says": "7 days, 1 day and the morning before"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "We will remind you 7 days, 1 day and the morning before"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "interview-hub-account",
+  "area": "Sessions and coaching",
+  "rule": "The Interview Preparation Hub account is created automatically when the interview stage starts, with regulator, service type and role; if that fails a staff task is made. The link is set once in settings.",
+  "values_found": [
+   "at interview stage start"
+  ],
+  "where": [
+   {
+    "src": "spec 8",
+    "says": "The link address is set once by a director"
+   },
+   {
+    "src": "spec 10.13",
+    "says": "When the interview stage starts (or when a director chooses)"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Creates the client's account when the interview stage starts"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "We create your account when the interview stage starts"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Spec 8 says a director sets the link; spec 46.1 lists it under super admin integrations.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "resubmission-interview-practice",
+  "area": "Sessions and coaching",
+  "rule": "After a refusal everyone CQC will interview gets interview practice again, at no charge.",
+  "values_found": [
+   "extra session, no charge"
+  ],
+  "where": [
+   {
+    "src": "spec 58.2",
+    "says": "Interview practice again for everyone CQC will interview"
+   },
+   {
+    "src": "board CoachSessions.dc.html (69)",
+    "says": "Extra session: interview practice for Leon. Part of the free resubmission"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "nop-representation-deadline",
+  "area": "Regulators",
+  "rule": "A Notice of Proposal allows written representations within 28 days; the Hub works the deadline out from the date of service entered by staff.",
+  "values_found": [
+   "28 days",
+   "served 21 Oct, deadline 17 Nov",
+   "served 2 Feb, deadline 2 March"
+  ],
+  "where": [
+   {
+    "src": "spec 1.1",
+    "says": "the 28 days to respond to a CQC Notice of Proposal"
+   },
+   {
+    "src": "spec 6.3",
+    "says": "Calculates the 28-day deadline from that date"
+   },
+   {
+    "src": "email 5.2",
+    "says": "28 days from the date on the notice"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "28 days from the day the notice was served, 2 February 2027 ... by 2 March"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Served (received) Wed 21 Oct. Written representations by Tue 17 Nov (28 days)"
+   },
+   {
+    "src": "demo world",
+    "says": "Served (received) Wed 21 Oct. Legal deadline ... Tue 17 Nov (28 days)"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Day counting differs: board 5 counts 28 days after service (2 Feb to 2 March) while the demo world and boards 7, 43, 75 count 28 days beginning with the day of service (21 Oct to 17 Nov). Also 'served (received)' treats receipt as service. The counting rule must be fixed once.",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "nop-internal-targets",
+  "area": "Regulators",
+  "rule": "Internal back-scheduled targets for Notice of Proposal representations: draft, client review and send dates before the legal deadline.",
+  "values_found": [
+   "draft by day 14, client review by day 21, send by day 25",
+   "draft day 13, client day 17, send day 21",
+   "send 7 days before the legal deadline"
+  ],
+  "where": [
+   {
+    "src": "spec 6.3",
+    "says": "draft representations by day 14, client review by day 21, send by day 25"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "Daniel, by Monday 15 February ... You, by Friday 19 February ... By Tuesday 23 February"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Our target to send: Tue 10 Nov"
+   },
+   {
+    "src": "demo world",
+    "says": "Our target to send: Tue 10 Nov"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.3 sends on day 25 (3 days before the deadline); boards send 7 days before (day 21 on the demo timeline) with drafting and client review earlier too.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "nop-alert-schedule",
+  "area": "Regulators",
+  "rule": "Alerts to the consultant and a director as a legal deadline approaches.",
+  "values_found": [
+   "day 7, 14, 21 and 25",
+   "every day in the final 3 days"
+  ],
+  "where": [
+   {
+    "src": "spec 6.3",
+    "says": "Alerts the assigned consultant and a director at day 7, 14, 21 and 25, and every day in the final 3 days"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "13 of 28 days used"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows the alert schedule itself.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "appeal-deadline",
+  "area": "Regulators",
+  "rule": "An appeal against a Notice of Decision must reach the tribunal within 28 days; the client is told on day one and the discussion is booked before the deadline. CIW and RQIA use the time limit in their decision.",
+  "values_found": [
+   "28 days",
+   "decision 26 Oct, window closes 23 Nov",
+   "as set out in the decision (CIW, RQIA)"
+  ],
+  "where": [
+   {
+    "src": "spec 5.4",
+    "says": "the 28-day window to appeal to the First-tier Tribunal"
+   },
+   {
+    "src": "spec 58.2",
+    "says": "an appeal must reach the tribunal within 28 days of the decision"
+   },
+   {
+    "src": "email 5.3a",
+    "says": "appeal to an independent tribunal within 28 days"
+   },
+   {
+    "src": "email 10.9",
+    "says": "within the time limit set out in the decision"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "28 days from the decision"
+   },
+   {
+    "src": "board Resubmit.dc.html (65)",
+    "says": "within 28 days of CQC's decision"
+   },
+   {
+    "src": "demo world",
+    "says": "Appeal window to the tribunal closes Mon 23 Nov"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Westbrook counts 28 days after the decision (26 Oct to 23 Nov), the opposite counting method from the Notice of Proposal example (21 Oct to 17 Nov).",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "legal-alerts-always-on",
+  "area": "Regulators",
+  "rule": "Clients cannot switch off legal deadline alerts; pausing reminders or quiet hours never stops them.",
+  "values_found": [
+   "always on"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "They cannot switch off legal deadline alerts"
+   },
+   {
+    "src": "spec 34.2",
+    "says": "with the consultant told so deadlines are still protected"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "Daniel is told, so any CQC deadlines are still looked after"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "resubmission-promise",
+  "area": "Regulators",
+  "rule": "If CQC, CIW or RQIA refuses, Care Sync resubmits as part of the package; answering questions and resending returned applications are part of the work.",
+  "values_found": [
+   "included in the package"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0",
+    "says": "if CQC refuses, Care Sync resubmits as part of the package"
+   },
+   {
+    "src": "spec 58",
+    "says": "Care Sync resubmits it as part of the package"
+   },
+   {
+    "src": "email 5.2",
+    "says": "we resubmit your application for you, as part of your package"
+   },
+   {
+    "src": "board PlanCosts.dc.html (60)",
+    "says": "If CQC refuses, we resubmit as part of your package"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "if CIW ever refuses, we resubmit for you"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Our promise if a regulator refuses"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "resubmission-gate",
+  "area": "Regulators",
+  "rule": "A resubmission cannot be sent until every gate item is ticked.",
+  "values_found": [
+   "6 items",
+   "7 items"
+  ],
+  "where": [
+   {
+    "src": "spec 58.2",
+    "says": "until all six items are ticked"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "adds 'Copy of the pack and the date sent kept as evidence'"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Gate before sending: 1 of 7 ticked"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 58.2 lists six items; boards 66 and 43 have seven (adding the evidence of what was sent).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "resubmission-refresh-ages",
+  "area": "Regulators",
+  "rule": "Before resubmitting, everything that ages is checked against the resubmit date: DBS age, references, insurance, re-dated documents.",
+  "values_found": [
+   "DBS within 12 months on the new application date",
+   "references confirmed again",
+   "references under 6 months old",
+   "insurance in date on the target date"
+  ],
+  "where": [
+   {
+    "src": "spec 58.2",
+    "says": "DBS: CQC expects it within 12 months ... References: confirmed again"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "Our rules: DBS under 12 months old, references under 6 months old, insurance in force"
+   },
+   {
+    "src": "board Deadlines.dc.html (75)",
+    "says": "Leon's reference 1 passes 6 months old"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The 6 month reference age exists only on boards 66 and 75; the spec only says 'confirmed again'.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "refusal-same-day-actions",
+  "area": "Regulators",
+  "rule": "On a refusal the resubmission project opens automatically and the consultant calls the client the same day.",
+  "values_found": [
+   "same day"
+  ],
+  "where": [
+   {
+    "src": "spec 58.2",
+    "says": "Same day: The resubmission project opens automatically. The consultant calls the client"
+   },
+   {
+    "src": "email 5.3a",
+    "says": "will call you today"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "Resubmission project opened the same day"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "refusal-kind-check-in",
+  "area": "Regulators",
+  "rule": "A kind check-in about how the client is, not the paperwork, a set time after a refusal.",
+  "values_found": [
+   "a week after the decision"
+  ],
+  "where": [
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "A kind check-in a week after the decision"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "Kind check-in a week after the decision"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Boards only; not in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "resubmission-target",
+  "area": "Regulators",
+  "rule": "Target date to resubmit after a refusal.",
+  "values_found": [
+   "about 5 weeks",
+   "Mon 30 Nov for a 26 Oct decision"
+  ],
+  "where": [
+   {
+    "src": "email 5.3a",
+    "says": "Your target date to resubmit is {{target_date}}"
+   },
+   {
+    "src": "board Resubmit.dc.html (65)",
+    "says": "About 5 weeks"
+   },
+   {
+    "src": "demo world",
+    "says": "Resubmit target Mon 30 Nov"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No default in the spec.",
+  "who_should_own": "manager",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "withdraw-before-notice",
+  "area": "Regulators",
+  "rule": "If a serious problem appears while the regulator is checking, a senior consultant decides whether to withdraw and resubmit before any notice is served.",
+  "values_found": [
+   "before a notice is served"
+  ],
+  "where": [
+   {
+    "src": "spec 58.1",
+    "says": "a senior consultant decides whether to withdraw"
+   },
+   {
+    "src": "board ResubmitStaff.dc.html (66)",
+    "says": "talk to a senior consultant early"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "rfi-reply-targets",
+  "area": "Regulators",
+  "rule": "A regulator's request for more information shows the regulator's deadline and Care Sync's own earlier target, with senior review before sending.",
+  "values_found": [
+   "regulator deadline from the letter (14 days in examples)",
+   "our target 2 days after receipt",
+   "our target 6 working days before CQC's date"
+  ],
+  "where": [
+   {
+    "src": "email 4.2",
+    "says": "so we can reply well before CQC's deadline"
+   },
+   {
+    "src": "board Cqc.dc.html (5)",
+    "says": "Reply by Tuesday 19 January ... Daniel, by Thursday 7 January"
+   },
+   {
+    "src": "board Staff.dc.html (7)",
+    "says": "Our target Fri 6 Nov. CQC reply by Thu 12 Nov"
+   },
+   {
+    "src": "board RegReply.dc.html (76)",
+    "says": "senior check, the client's approval"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "No rule sets how far ahead of the regulator's date our target sits; examples use different gaps.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "dbs-age-rules",
+  "area": "Regulators",
+  "rule": "How old a DBS certificate may be: CQC within 12 months (counted to the new application date on a resubmission); CIW warns as it nears 3 months, counted to the day of submission.",
+  "values_found": [
+   "12 months (CQC)",
+   "3 months warning (CIW)"
+  ],
+  "where": [
+   {
+    "src": "spec 54.2",
+    "says": "a DBS older than 12 months is flagged"
+   },
+   {
+    "src": "spec 58.2",
+    "says": "within 12 months on the date of the new application"
+   },
+   {
+    "src": "spec E.3",
+    "says": "DBS issue date: warning as it nears 3 months old"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "must be dated within the last 12 months"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "more than 3 months old on the day we submit may be rejected"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Issue date, warn at 3 months"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "issued within the last 12 months"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "identity-documents",
+  "area": "Regulators",
+  "rule": "Identity documents needed where there is no DBS or AccessNI certificate.",
+  "values_found": [
+   "three documents, one photo ID, one current address",
+   "two ID documents and the RQIA PIN"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q55",
+    "says": "DBS and AccessNI both need three documents"
+   },
+   {
+    "src": "spec 55.0 q48",
+    "says": "Three for all three regulators"
+   },
+   {
+    "src": "spec F.1",
+    "says": "two ID documents and the RQIA PIN when No"
+   },
+   {
+    "src": "board RqiaForm.dc.html (56)",
+    "says": "Always three IDs"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "Select the three forms of identification"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Appendix F.1 still says two ID documents for RQIA, contradicting 55.0 q48 and q55 and board 56.",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "brp-expiry-allowance",
+  "area": "Regulators",
+  "rule": "An expired biometric residence permit showing indefinite leave is accepted for a period after expiry; eVisas accepted with a share code.",
+  "values_found": [
+   "18 months",
+   "may still be accepted"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q55",
+    "says": "up to 18 months after its expiry"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "accepted for up to 18 months after expiry"
+   },
+   {
+    "src": "board RqiaForm.dc.html (56)",
+    "says": "may still be accepted"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 56 drops the 18 month limit.",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "proof-of-address-age",
+  "area": "Regulators",
+  "rule": "How recent proof of address documents must be.",
+  "values_found": [
+   "3 months (utility bill, bank statement)",
+   "12 months (council tax statement)"
+  ],
+  "where": [
+   {
+    "src": "spec 3.1",
+    "says": "utility bill dated within the last 3 months"
+   },
+   {
+    "src": "spec 27.4",
+    "says": "dated within 3 months"
+   },
+   {
+    "src": "board Main.dc.html (1)",
+    "says": "Your bill needs to be from the last 3 months"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "Council tax statement (within last 12 months)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "address-history-length",
+  "area": "Regulators",
+  "rule": "Length of address history asked for each person.",
+  "values_found": [
+   "5 years",
+   "10 years for some people (CIW guidance)"
+  ],
+  "where": [
+   {
+    "src": "spec 26.2",
+    "says": "address history (5 years)"
+   },
+   {
+    "src": "spec 55.0 q47",
+    "says": "Care Sync's CIW guidance mentions 10 years for some people"
+   },
+   {
+    "src": "board AddressCards.dc.html (61)",
+    "says": "Where have you lived in the last 5 years?"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Open question 47: 5 years everywhere on boards, but CIW guidance may need 10 years for some people.",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "cv-gap-rules",
+  "area": "Regulators",
+  "rule": "CV must cover age 16 to the present with every gap explained; what counts as a gap.",
+  "values_found": [
+   "every gap",
+   "4 weeks or more (CIW)",
+   "more than 3 months"
+  ],
+  "where": [
+   {
+    "src": "spec 5.2",
+    "says": "CV covering age 16 to the present, with every gap explained"
+   },
+   {
+    "src": "spec E.3",
+    "says": "gaps of 4 weeks or more ... are flagged"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "any gap of 4 weeks or more"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Any gap in work of more than 3 months?"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 44 uses a 3 month gap threshold, the CIW form 4 weeks, the spec every gap.",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "referee-rules",
+  "area": "Regulators",
+  "rule": "Referee rules per regulator.",
+  "values_found": [
+   "CQC: one referee, last employer",
+   "CIW: employed at least 3 months, not a relative",
+   "RQIA: two written references including present or most recent employer"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q43",
+    "says": "The CQC form keeps one referee"
+   },
+   {
+    "src": "spec 55.0 q53",
+    "says": "two written references ... present or most recent employer"
+   },
+   {
+    "src": "spec E.2",
+    "says": "did they employ you for at least 3 months"
+   },
+   {
+    "src": "board RegDetails.dc.html (46)",
+    "says": "Employed you 3 months? Related to you?"
+   },
+   {
+    "src": "demo world",
+    "says": "Referee 2 is due later from the client, not a gate"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The demo world asks a CQC client for a second referee later although the spec keeps one referee for CQC.",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "format-checks",
+  "area": "Regulators",
+  "rule": "Fixed format checks on official numbers.",
+  "values_found": [
+   "DBS number 12 digits",
+   "Companies House identity code 11 characters",
+   "UK dates, no impossible future dates"
+  ],
+  "where": [
+   {
+    "src": "spec 26.1",
+    "says": "DBS certificate numbers checked for 12 digits"
+   },
+   {
+    "src": "spec 27.5",
+    "says": "11-character Companies House personal code"
+   },
+   {
+    "src": "spec C",
+    "says": "Identity code checked for 11 characters"
+   },
+   {
+    "src": "board OnbCheck.dc.html (52)",
+    "says": "DBS number has 12 digits"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "psc-threshold",
+  "area": "Regulators",
+  "rule": "Persons with significant control are asked for at the legal ownership threshold.",
+  "values_found": [
+   "25%"
+  ],
+  "where": [
+   {
+    "src": "spec 51.7",
+    "says": "the 25% ownership question"
+   },
+   {
+    "src": "board Directors.dc.html (36)",
+    "says": "Is this everyone who owns or controls 25% or more?"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "anyone who owns more than 25%"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "ciw-start-date",
+  "area": "Regulators",
+  "rule": "CIW applications allow a minimum lead time from a complete application to the service start date.",
+  "values_found": [
+   "at least 14 weeks"
+  ],
+  "where": [
+   {
+    "src": "spec E.2",
+    "says": "start date (at least 14 weeks ahead)"
+   },
+   {
+    "src": "board CiwForm.dc.html (55)",
+    "says": "Allow at least 14 weeks from a complete application"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Start date (at least 14 weeks)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "ciw-post-registration-duties",
+  "area": "Regulators",
+  "rule": "CIW duties after registration: RI visit and report (regulation 73), quality of care review (regulation 80), annual return.",
+  "values_found": [
+   "RI visit every 3 months",
+   "quality of care review every 6 months",
+   "annual return"
+  ],
+  "where": [
+   {
+    "src": "spec 57.3",
+    "says": "regulation 73 visits, the regulation 80 review and the annual return"
+   },
+   {
+    "src": "email 10.7",
+    "says": "the RI's visit every three months, the quality of care review every six months"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "RI visit and report (regulation 73), every 3 months"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "Quality of care review every 6 months"
+   },
+   {
+    "src": "board Deadlines.dc.html (75)",
+    "says": "Responsible individual visit, every 3 months"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "rqia-post-registration-duties",
+  "area": "Regulators",
+  "rule": "RQIA duty after registration: monthly quality monitoring report by the registered person, and inspections against the Minimum Standards.",
+  "values_found": [
+   "monthly"
+  ],
+  "where": [
+   {
+    "src": "spec 57.3",
+    "says": "monthly quality monitoring and inspections against the Minimum Standards"
+   },
+   {
+    "src": "email 11.5",
+    "says": "the monthly quality monitoring report"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Monthly quality monitoring report by the registered person"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "reviews quality every month"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "regulator-fixed-facts",
+  "area": "Regulators",
+  "rule": "Regulator facts shown to clients and staff that only change when the regulator changes them.",
+  "values_found": [
+   "RQIA PIN 497850",
+   "CIW: 7 Regional Partnership Boards, 8 hours bands, 12 Wales client groups",
+   "RQIA: 5 HSC Trusts",
+   "manager registered with Social Care Wales or NISCC, Level 5"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q49",
+    "says": "497850 is still the PIN"
+   },
+   {
+    "src": "spec E.1",
+    "says": "CIW Online's 8 bands ... The 12 groups used in Wales"
+   },
+   {
+    "src": "spec F.2",
+    "says": "the manager must be NISCC registered"
+   },
+   {
+    "src": "spec D",
+    "says": "the 7 Regional Partnership Boards ... 5 HSC Trusts"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by regulator)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "tender-submit-margin",
+  "area": "Tenders",
+  "rule": "Care Sync submits a bid a set time before the buyer's deadline, never on the last day.",
+  "values_found": [
+   "2 days before close",
+   "two working days spare",
+   "1 working day (spare day)"
+  ],
+  "where": [
+   {
+    "src": "spec 19.2",
+    "says": "2 days before close: Submitted. Never on the last day"
+   },
+   {
+    "src": "spec 57.2",
+    "says": "two working days spare before the buyer's deadline"
+   },
+   {
+    "src": "email 7.7",
+    "says": "That leaves two working days before the buyer's deadline"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "Care Sync submits Mon 30 Nov. The buyer's deadline is Tue 1 Dec, 12:00, so a spare day is kept"
+   },
+   {
+    "src": "board Tender.dc.html (11)",
+    "says": "Care Sync submits Mon 30 Nov"
+   },
+   {
+    "src": "demo world",
+    "says": "Bid deadline Tue 1 Dec 12:00. Care Sync submits Mon 30 Nov"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec and email 7.7 promise two working days spare; the demo bid on every board submits one working day early.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-timeline",
+  "area": "Tenders",
+  "rule": "Tender plan back-scheduled from the closing date in working days: onboarding meeting, form, documents, first drafts, client comments, promises and price sign-off, submission.",
+  "values_found": [
+   "meeting day 0 to 1 (about 75 minutes)",
+   "form day 2",
+   "documents day 5",
+   "first drafts 10 days before close",
+   "comments 8 days before",
+   "promises and price 5 days before",
+   "submit 2 days before"
+  ],
+  "where": [
+   {
+    "src": "spec 19.2",
+    "says": "10 days before close: First drafts ... 5 days before close: Promises and price signed off"
+   },
+   {
+    "src": "spec 9",
+    "says": "with a safety margin before the portal closes"
+   },
+   {
+    "src": "demo world",
+    "says": "Care Sync draft to Kemi Fri 20 Nov; Kemi approves the final bid Wed 25 Nov"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "Kemi approves the final bid by Wed 25 Nov"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "The Northshire demo bid sends drafts 7 working days before close and gets approval 4 working days before, not 10 and 5.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-tight-deadline-flag",
+  "area": "Tenders",
+  "rule": "A tender with less than a set number of working days is compressed in order and flagged to Collins.",
+  "values_found": [
+   "15 working days"
+  ],
+  "where": [
+   {
+    "src": "spec 19.2",
+    "says": "flags anything under 15 working days for Collins"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "13 working days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board 10 shows a tender with 13 working days left but no flag.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-earlier-deadline-wins",
+  "area": "Tenders",
+  "rule": "If two tender documents disagree on the closing time, the earlier one is used.",
+  "values_found": [
+   "earlier time"
+  ],
+  "where": [
+   {
+    "src": "spec 19.2",
+    "says": "if two documents disagree, the earlier time is used"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "bid-no-bid-approval",
+  "area": "Tenders",
+  "rule": "Who decides whether to bid: the client decides lot by lot, and an internal bid or no bid approval with a reason is recorded.",
+  "values_found": [
+   "client decides",
+   "Collins approves on the manager dashboard"
+  ],
+  "where": [
+   {
+    "src": "spec 53.3",
+    "says": "The client decides, lot by lot"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "Bid or no bid approvals: each needs a reason"
+   },
+   {
+    "src": "demo world",
+    "says": "Bid or no bid for another client on Lot 2 needs Collins's approval"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "Bid or no bid is approved by Collins on the manager dashboard"
+   },
+   {
+    "src": "board Tender.dc.html (11)",
+    "says": "Kemi chose to bid. Collins approved the bid"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Write a reason first. Every bid decision keeps its reason"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 53.3 says the client decides; the boards add a director approval for every bid. Who approves (Collins by name, a director, a manager) and when it is needed is not defined.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "case-owner-approval-before-outreach",
+  "area": "Tenders",
+  "rule": "An existing client found on the Radar is never contacted by sales until their case owner agrees; if the owner is on leave and it is not urgent, it waits; a declined match is asked again later.",
+  "values_found": [
+   "case owner agrees first",
+   "asked again at month 3"
+  ],
+  "where": [
+   {
+    "src": "spec 60.2",
+    "says": "An existing client is never contacted by sales until their case owner agrees"
+   },
+   {
+    "src": "demo world",
+    "says": "the case owner approves first"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "sales waits until the case owner agrees ... The Radar asks Olu again at month 3"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Existing clients only once the case owner agrees"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Daniel (case owner) agreed it first"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Month 3 re-ask is board only.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "same-lot-conflict",
+  "area": "Tenders",
+  "rule": "A client already bidding on a lot blocks offering that lot to other clients or providers; conflict checks also cover other clients on the same tender and a named competitor.",
+  "values_found": [
+   "same lot = conflict, not offered",
+   "Living Plus Care Services check"
+  ],
+  "where": [
+   {
+    "src": "spec 19.1",
+    "says": "the conflict check (other clients on the same tender or lot, and whether Living Plus Care Services is bidding)"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "no conflict on the same lot"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "flagged as a conflict and not offered"
+   },
+   {
+    "src": "email 6.3",
+    "says": "conflict check passed"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tps-ctps-screening",
+  "area": "Tenders",
+  "rule": "Every outbound sales contact is screened against TPS and CTPS within a set period and the do-not-contact list.",
+  "values_found": [
+   "28 days"
+  ],
+  "where": [
+   {
+    "src": "spec 24.5",
+    "says": "TPS and CTPS screening within 28 days"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "All screened against TPS and CTPS in the last 28 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "lot-decision-checks",
+  "area": "Tenders",
+  "rule": "Each lot is checked for fit, area, evidence and capacity; a lot failing two checks is flagged usually a no.",
+  "values_found": [
+   "4 checks",
+   "2 fails = usually no"
+  ],
+  "where": [
+   {
+    "src": "spec 19.3",
+    "says": "A lot failing two checks is flagged \"usually a no for now\""
+   },
+   {
+    "src": "board BidDecision.dc.html (50)",
+    "says": "Should we bid?"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-eligibility",
+  "area": "Tenders",
+  "rule": "Eligibility is checked at the bid decision and after every clarification: registration covering the lot, office presence, delivery history, financial standing, insurance and Central Digital Platform.",
+  "values_found": [
+   "delivery history for example 3 years",
+   "registered and rated Good or not yet rated (buyer pack)"
+  ],
+  "where": [
+   {
+    "src": "spec 53.2",
+    "says": "Delivery history, for example 3 years"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "Rated Good, or newly registered and not yet rated. Office within the county"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (set by each buyer)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "lawful-wage-check",
+  "area": "Tenders",
+  "rule": "The client's price is checked against the lawful minimum wage including travel time, holiday pay, pension and National Insurance, with a warning when too low.",
+  "values_found": [
+   "National Living Wage £12.71 an hour from 1 April 2026, aged 21 and over"
+  ],
+  "where": [
+   {
+    "src": "spec 19.3",
+    "says": "National Living Wage £12.71 an hour from 1 April 2026"
+   },
+   {
+    "src": "spec 53.4",
+    "says": "the lowest hourly rate (checked against the lawful wage)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "The value changes every April; it should be one setting updated from law.",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "tender-insurance-minimums",
+  "area": "Tenders",
+  "rule": "Insurance at or above required levels; employer's liability has a legal minimum; buyers may ask for more.",
+  "values_found": [
+   "£5 million by law",
+   "£10m (example buyer)"
+  ],
+  "where": [
+   {
+    "src": "spec 19.3",
+    "says": "employer's liability at least £5 million by law"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "Employer's liability £10m"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "tender-document-expiry-warning",
+  "area": "Tenders",
+  "rule": "Clients are warned before a tender document or insurance expires.",
+  "values_found": [
+   "a month before",
+   "6 weeks before (suggested)"
+  ],
+  "where": [
+   {
+    "src": "spec 57.2",
+    "says": "warnings a month before anything goes out of date"
+   },
+   {
+    "src": "spec 10.2",
+    "says": "The Hub warns before something goes out of date"
+   },
+   {
+    "src": "email 7.9",
+    "says": "Your {{document_name}} runs out on {{expiry_date}}"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "tell you a month before anything expires"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "a reminder 6 weeks before they end"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "A month on board 57 and spec 57.2; board 67 suggests 6 weeks for insurance; spec 10.2 gives no value.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "contract-renewal-watch",
+  "area": "Tenders",
+  "rule": "Contracts are watched for re-tender a set time before they end.",
+  "values_found": [
+   "about 6 months before"
+  ],
+  "where": [
+   {
+    "src": "email 7.10",
+    "says": "Councils often re-tender around six months before a contract ends"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "The council usually re-tenders 6 months before"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-profile-freshness",
+  "area": "Tenders",
+  "rule": "Tender profile answers older than a set age get a nudge to recheck; policies should have been reviewed recently.",
+  "values_found": [
+   "older than a few months",
+   "5 months flagged, 2 months not",
+   "policies reviewed in last 12 months"
+  ],
+  "where": [
+   {
+    "src": "spec 57.2",
+    "says": "with a nudge on anything older than a few months"
+   },
+   {
+    "src": "board TenderConfirm.dc.html (58)",
+    "says": "You confirmed this 5 months ago. Buyers want recent figures"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "Buyers usually want one reviewed in the last 12 months"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "'A few months' has no value; board 58 implies somewhere between 2 and 5 months.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-weekly-client-email",
+  "area": "Tenders",
+  "rule": "Tender clients get a weekly list of what is needed, only when something is due that week.",
+  "values_found": [
+   "Monday mornings"
+  ],
+  "where": [
+   {
+    "src": "email 7.6",
+    "says": "sent on Monday mornings only when something needs the client that week"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-client-approval",
+  "area": "Tenders",
+  "rule": "Care Sync never submits a bid without the client's single approval of answers, prices, declarations and authority to submit.",
+  "values_found": [
+   "4 ticks"
+  ],
+  "where": [
+   {
+    "src": "spec 57.2",
+    "says": "One 'approve for submission' step needs four ticks"
+   },
+   {
+    "src": "spec 19.2",
+    "says": "Promises and price signed off by the client"
+   },
+   {
+    "src": "email 7.7",
+    "says": "We never submit without your approval"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "I approve. Please submit this bid"
+   },
+   {
+    "src": "board Tender.dc.html (11)",
+    "says": "Kemi approves the final bid"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-submission-evidence",
+  "area": "Tenders",
+  "rule": "The portal receipt is captured and the client told the same day.",
+  "values_found": [
+   "same day"
+  ],
+  "where": [
+   {
+    "src": "spec 19.3",
+    "says": "the client is notified the same day"
+   },
+   {
+    "src": "email 7.0",
+    "says": "The portal receipt is attached"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "sends you the portal receipt the same day"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-portal-access",
+  "area": "Tenders",
+  "rule": "Care Sync's bid lead is added as a portal user; portal passwords are never asked for, or if unavoidable go straight into the vault.",
+  "values_found": [
+   "never asked",
+   "stored in vault if unavoidable"
+  ],
+  "where": [
+   {
+    "src": "spec 53.4",
+    "says": "Portal usernames and passwords are never asked for"
+   },
+   {
+    "src": "spec 26.1",
+    "says": "if a password is unavoidable it goes straight into the secure vault"
+   },
+   {
+    "src": "spec D",
+    "says": "1.5 goes straight into the encrypted vault"
+   },
+   {
+    "src": "board PortalWatch.dc.html (22)",
+    "says": "Daniel is a user on Kemi's account ... No password held"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 53.4 says never asked; Appendix D keeps questions 1.4 and 1.5 (username and password) on the form, routed to the vault.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-outcome-follow-up",
+  "area": "Tenders",
+  "rule": "Wins trigger mobilisation, case study permission and a referral ask; losses trigger a feedback review and a reminder when the market reopens.",
+  "values_found": [
+   "reminder when reopens"
+  ],
+  "where": [
+   {
+    "src": "spec 19.3",
+    "says": "Losses trigger a feedback review and a reminder for the next window"
+   },
+   {
+    "src": "email 7.2",
+    "says": "Book a feedback review"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "The framework reopens in April 2027 and we will remind you"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "modern-slavery-threshold",
+  "area": "Tenders",
+  "rule": "A modern slavery statement is asked for only above the legal turnover threshold.",
+  "values_found": [
+   "£36 million"
+  ],
+  "where": [
+   {
+    "src": "board TenderOnboard.dc.html (38)",
+    "says": "Modern slavery statement (if turnover is £36 million or more)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "price-cqc-domiciliary",
+  "area": "Money",
+  "rule": "Price of CQC registration, domiciliary care.",
+  "values_found": [
+   "£4,000 + VAT"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£4,000 + VAT (confirmed 4 November 2026)"
+   },
+   {
+    "src": "spec 61",
+    "says": "£4,000 + VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "£4,000 + VAT, confirmed by Collins"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "£4,000 + VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-cqc-supported-living",
+  "area": "Money",
+  "rule": "Price of CQC registration, supported living.",
+  "values_found": [
+   "£5,000 + VAT"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£5,000 + VAT"
+   },
+   {
+    "src": "spec 61",
+    "says": "£5,000 + VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "£5,000 + VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-full-start-up",
+  "area": "Money",
+  "rule": "Price of the full start-up package.",
+  "values_found": [
+   "£8,500 + VAT",
+   "£8,000 + VAT (to check)"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£8,500 + VAT (to check: £8,500 or £8,000)"
+   },
+   {
+    "src": "spec 61",
+    "says": "to check: £8,500 or £8,000"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Still to check: £8,500 or £8,000"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "Check £8,500 or £8,000"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "£8,500 + VAT"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Open: £8,500 or £8,000. Client screens show £8,500 + VAT and instalments of £2,833.33 as if confirmed.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-ciw-rqia",
+  "area": "Money",
+  "rule": "Price of CIW or RQIA registration.",
+  "values_found": [
+   "£4,500 + VAT",
+   "£4,500 shown with VAT added",
+   "£3,500 (old, out of date)"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£4,500 + VAT"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "the RQIA price is £4,500 (shown with VAT added, as in the price book)"
+   },
+   {
+    "src": "spec 61",
+    "says": "£4,500 + VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "£4,500 + VAT, confirmed by Collins ... Before: £3,500"
+   },
+   {
+    "src": "demo world",
+    "says": "RQIA price £4,500 + VAT"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 55.0 can be read as £4,500 including VAT; everywhere else says £4,500 + VAT.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-sl-add-on",
+  "area": "Money",
+  "rule": "Price of the supported living add-on.",
+  "values_found": [
+   "£1,500 including VAT"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£1,500 including VAT"
+   },
+   {
+    "src": "email 6.6",
+    "says": "£1,500 including VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "£1,500 including VAT"
+   },
+   {
+    "src": "board Aftercare.dc.html (30)",
+    "says": "£1,500 including VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-interview-prep",
+  "area": "Money",
+  "rule": "Price of CQC interview preparation.",
+  "values_found": [
+   "£750 including VAT"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£750 including VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "£750 including VAT"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "£750 incl. VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-pir",
+  "area": "Money",
+  "rule": "Price of PIR writing.",
+  "values_found": [
+   "£750 + VAT per PIR",
+   "one PIR per service type"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "£750 + VAT per PIR"
+   },
+   {
+    "src": "email 6.5",
+    "says": "£750 plus VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Per PIR, one PIR per service type"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "one PIR per service type ... For new clients from 1 Nov"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "'One PIR per service type' exists only on boards 24 and 77.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-tender-writing",
+  "area": "Money",
+  "rule": "Price of tender writing.",
+  "values_found": [
+   "from £1,500 + VAT, quoted after review"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "From £1,500 + VAT, full quotation after review"
+   },
+   {
+    "src": "spec 33.1",
+    "says": "tender writing from £1,500 + VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "From £1,500"
+   },
+   {
+    "src": "board Aftercare.dc.html (30)",
+    "says": "Tender writing from £1,500 + VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-single-services",
+  "area": "Money",
+  "rule": "Price of single services such as a policy refresh or business plan, and policy rebrand.",
+  "values_found": [
+   "from £500 + VAT"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "From £500 + VAT"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "From £500 ... To set"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec gives from £500 + VAT; board 77 shows 'To set' and 'still to confirm with Collins'.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-bid-review",
+  "area": "Money",
+  "rule": "Price of bid review.",
+  "values_found": [
+   "around £500",
+   "VAT to confirm"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "Around £500 (VAT to confirm)"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Around £500. VAT still to confirm"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "pending-prices",
+  "area": "Money",
+  "rule": "Prices not yet set cannot be quoted; staff say they will confirm and an approval request goes to the price owner.",
+  "values_found": [
+   "Pending",
+   "Price to set",
+   "I'll confirm that for you today"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "Prices marked Pending cannot be quoted; the Hub shows \"I'll confirm that for you today\" and sends an approval request to Collins"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Anything not confirmed yet says \"Price to set\"; nobody quotes it"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "Collins sets it before the invoice goes out"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec routes pending prices to Collins; board 77 says a super admin sets it and the other approves. Pending items: retained tender, variations, mock inspection, framework applications, policies for tenders, Statement of Purpose updates, training matrix, Ofsted, staffing.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "price-change-approval",
+  "area": "Money",
+  "rule": "Only a super admin changes a price; the other super admin approves with a reason; every change is dated and applies to new clients only from its effective date.",
+  "values_found": [
+   "second super admin",
+   "new clients only"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "only the super admin changes a price, and every change is dated"
+   },
+   {
+    "src": "spec 46.2",
+    "says": "Price changes ... need a second super admin to approve"
+   },
+   {
+    "src": "spec 61",
+    "says": "A change applies to new clients only"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "A new price applies only to new clients from its effective date"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Requested by Grace, approved by Collins"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 24 shows Grace (onboarding lead, not a super admin) requesting a price change, while spec 46.1 says only a super admin changes a price.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "discount-approval",
+  "area": "Money",
+  "rule": "Discounts are never offered by sales; scope is traded first; a named approver decides with a reason.",
+  "values_found": [
+   "Collins approves",
+   "a super admin decides"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "Discounts require Collins's approval"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "who can approve discounts"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Sales never offers a discount. Trade scope first; a super admin decides, with a reason"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Asks for discounts"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec names Collins; board 77 says any super admin. No limit is set (for example a maximum discount without approval).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "instalment-splits",
+  "area": "Money",
+  "rule": "Default instalment schedule per package, changeable by a super admin in the price book for new clients.",
+  "values_found": [
+   "2 x 50% (accept, sign and pay; submission) for CQC dom care, SL, CIW, RQIA",
+   "3 x one third (accept; final pack sign-off; submission) for full start-up",
+   "tender 50% at signing, 50% before submission",
+   "add-ons 1 payment in full"
+  ],
+  "where": [
+   {
+    "src": "spec 61",
+    "says": "2: half when the client accepts, signs and pays; half when the application is submitted"
+   },
+   {
+    "src": "spec 55.0 q23",
+    "says": "paid in 2 instalments; the full start-up package in 3"
+   },
+   {
+    "src": "spec 45.1",
+    "says": "the standard instalment schedule is still Pending"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "2 instalments of 50%"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "50% at signing, 50% before submission"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "£2,833.33 when you sign off your final pack, and £2,833.34 when we submit"
+   },
+   {
+    "src": "demo world",
+    "says": "2 instalments ... 3 instalments"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 45.1 still says the instalment schedule is Pending; CIW and RQIA splits are marked 'default, to confirm'.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "instalment-rounding",
+  "area": "Money",
+  "rule": "Where a split does not divide exactly the last instalment takes the pennies.",
+  "values_found": [
+   "last instalment takes the rounding"
+  ],
+  "where": [
+   {
+    "src": "spec 61",
+    "says": "the last instalment takes the pennies"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "The last instalment takes any rounding"
+   },
+   {
+    "src": "board PlanCosts.dc.html (60)",
+    "says": "£2,833.34 + VAT"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "pay-after-sign",
+  "area": "Money",
+  "rule": "Payment is only possible after the engagement letter is signed; a paid first instalment opens the journey; GoHighLevel Won needs a signed agreement and paid deposit.",
+  "values_found": [
+   "sign then pay"
+  ],
+  "where": [
+   {
+    "src": "spec 45.1",
+    "says": "Payment is only possible after signing"
+   },
+   {
+    "src": "spec 18.2",
+    "says": "Payment is complete before a client enters onboarding"
+   },
+   {
+    "src": "spec 24.5",
+    "says": "Won requires a signed agreement and a paid deposit"
+   },
+   {
+    "src": "email 1.1",
+    "says": "Trigger: agreement signed and deposit paid"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "payment-methods",
+  "area": "Money",
+  "rule": "Accepted payment methods and who marks bank transfers as paid.",
+  "values_found": [
+   "Stripe card",
+   "other Stripe methods if turned on",
+   "bank transfer marked paid by finance"
+  ],
+  "where": [
+   {
+    "src": "spec 52.1",
+    "says": "A bank transfer is marked paid by finance"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Deposits by card or bank transfer"
+   },
+   {
+    "src": "spec 61",
+    "says": "card, or another Stripe method if Care Sync turns it on"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "by card or another method Stripe supports"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 52.1 and 55.0 allow bank transfer; spec 61 and the boards mention only Stripe methods.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "payment-reminders",
+  "area": "Money",
+  "rule": "Clients are reminded before each instalment is due; overdue invoices are chased in stages and an old debt needs a manager decision.",
+  "values_found": [
+   "a week before",
+   "0 to 30, 31 to 60, over 60 days",
+   "over 60 days: payment plan or pause work"
+  ],
+  "where": [
+   {
+    "src": "spec 52.6",
+    "says": "a reminder a week before"
+   },
+   {
+    "src": "spec 45.1",
+    "says": "polite reminders before and after"
+   },
+   {
+    "src": "spec 49.1",
+    "says": "Credit control reminders follow the client's preferences"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "We remind you a week before"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Over 60 days ... Needs your decision: payment plan or pause work"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Overdue stages and the 60 day decision are board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "refunds-credit-notes",
+  "area": "Money",
+  "rule": "Refunds and credit notes need manager approval.",
+  "values_found": [
+   "manager approval"
+  ],
+  "where": [
+   {
+    "src": "spec 49.1",
+    "says": "refunds and credit notes need manager approval"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows refunds.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "extras-priced-first",
+  "area": "Money",
+  "rule": "Nothing is added to the client's bill without agreement; extras are always priced first.",
+  "values_found": [
+   "agreed before work"
+  ],
+  "where": [
+   {
+    "src": "spec 57.1",
+    "says": "extras are always priced first"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "we always tell you the price first"
+   },
+   {
+    "src": "board PlanCosts.dc.html (60)",
+    "says": "If anything ever costs extra, we agree it with you before we start"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "vat-treatment",
+  "area": "Money",
+  "rule": "VAT treatment is set per price (plus VAT or including VAT); dashboards show amounts excluding VAT.",
+  "values_found": [
+   "+ VAT",
+   "including VAT",
+   "VAT to confirm"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "VAT treatment"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "+ VAT ... incl. VAT ... VAT to confirm"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Amounts exclude VAT"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "No VAT rate is stored anywhere; supported living add-on and interview preparation are 'including VAT' while similar items are '+ VAT'.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "accounting-sync",
+  "area": "Money",
+  "rule": "Invoices, deposits and instalments sync to the accounting system.",
+  "values_found": [
+   "Xero",
+   "synced every hour",
+   "accounting software still open"
+  ],
+  "where": [
+   {
+    "src": "spec 49.1",
+    "says": "sync with Xero (or the accounting software Care Sync uses)"
+   },
+   {
+    "src": "spec 55.0 q27",
+    "says": "accounting software (still to fill in)"
+   },
+   {
+    "src": "demo world",
+    "says": "Xero, connected, synced hourly"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Synced 08:00, every hour"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Syncs every hour"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec still lists the accounting software as unknown; boards and demo world show Xero connected.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "referral-thank-you",
+  "area": "Money",
+  "rule": "A refer-a-provider thank-you agreed by Collins, asked at natural high points, never linked to reviews.",
+  "values_found": [
+   "value not set"
+  ],
+  "where": [
+   {
+    "src": "spec 33",
+    "says": "with a thank-you agreed by Collins"
+   },
+   {
+    "src": "spec 37.1",
+    "says": "never linked to reviews"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "Refer someone"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "out-of-package-promises",
+  "area": "Money",
+  "rule": "Anything sales promised outside the package is flagged to the manager before work starts.",
+  "values_found": [
+   "flag to manager"
+  ],
+  "where": [
+   {
+    "src": "spec 52.5",
+    "says": "flagged to the manager before work starts"
+   },
+   {
+    "src": "board ClientPage.dc.html (42)",
+    "says": "Nothing outside the package"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "roles-and-permissions",
+  "area": "People and access",
+  "rule": "Staff roles and a grid of what each role can view, edit, approve, send and export.",
+  "values_found": [
+   "client care, onboarding lead, case owner, weekly update owner, manager, interview coach, tender writer, sales rep, account owner, finance"
+  ],
+  "where": [
+   {
+    "src": "spec 18.1",
+    "says": "Roles in the Hub"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "A clear grid of what each role can view, edit, approve, send and export"
+   },
+   {
+    "src": "spec 13",
+    "says": "staff see only clients they are assigned to unless they are directors"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Managers see every client ... Client care ... never the vault. Coaches see sessions only"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 13 lets directors see every client; board 78 gives that to managers. The finance role in spec 46.1 has no row on board 78.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "super-admin-holders",
+  "area": "People and access",
+  "rule": "At least two super admins, and no more than needed; decided that managers hold them.",
+  "values_found": [
+   "at least 2",
+   "Collins (director) super admin 1, a manager super admin 2"
+  ],
+  "where": [
+   {
+    "src": "spec 46",
+    "says": "at least two super admins ... managers hold the super admin accounts"
+   },
+   {
+    "src": "demo world",
+    "says": "Collins: director, super admin 1 ... Second super admin: a manager"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Second super admin: Not set up"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 46 says managers hold the accounts, but super admin 1 everywhere is Collins, a director.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "second-super-admin-approvals",
+  "area": "People and access",
+  "rule": "Sensitive actions need the other super admin's approval with a reason; nobody approves their own request.",
+  "values_found": [
+   "price changes",
+   "permission and role changes",
+   "data deletion",
+   "break-glass",
+   "form versions",
+   "super admin invites"
+  ],
+  "where": [
+   {
+    "src": "spec 46.2",
+    "says": "Price changes, permission changes, data deletion and break-glass access need a second super admin"
+   },
+   {
+    "src": "spec 51.7",
+    "says": "Drafts need the other super admin to publish"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Nobody approves their own request"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "A reason is required before any approval"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Nobody can approve their own request"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "A super admin invite needs the other super admin's approval"
+   },
+   {
+    "src": "email 9.1",
+    "says": "A Care Sync director approved it"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Email 9.1 says a director approved break-glass; spec 55.0 says a manager approves when the other super admin is away. Spec 46.2 omits form versions and invites, which boards add.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "cover-and-leave",
+  "area": "People and access",
+  "rule": "When someone is on leave their clients route to a named cover colleague, who gets pages, tasks and updates but not vault reveals; non-urgent items wait for the owner; the owner gets a summary on return.",
+  "values_found": [
+   "cover sees pages, tasks, updates",
+   "vault needs break-glass",
+   "urgent only"
+  ],
+  "where": [
+   {
+    "src": "spec 10.16",
+    "says": "automatically routed to a named cover colleague"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Vault logins need break-glass ... not urgent, so it waits for Olu"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "cover access ... not reveal their logins"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Vault limit for cover and 'urgent only' are board rules not in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "leaver-offboarding",
+  "area": "People and access",
+  "rule": "A leaver's checklist: clients reassigned with handover notes, tasks moved, vault access removed, account disabled on the last day, mailbox connections handed over, emails forwarded for a period.",
+  "values_found": [
+   "access ends 17:30 on the last day",
+   "emails forwarded 90 days"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "One-click offboarding"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Sign-in stops Fri 6 Nov at 17:30. Sam's emails forward to Collins for 90 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "90 day forwarding and the cut-off time are board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "staff-invites",
+  "area": "People and access",
+  "rule": "New staff are invited with two-step login required; invites expire; a super admin invite needs the other super admin.",
+  "values_found": [
+   "invite ends after 7 days"
+  ],
+  "where": [
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Two-step login is required. The invite ends after 7 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "client-account-people",
+  "area": "People and access",
+  "rule": "Who on the client side sees what: owner and co-directors see everything with their own sign-in; the registered manager sees own tasks only, no payments; the accountant sees only what is shared.",
+  "values_found": [
+   "co-director: everything",
+   "manager: own tasks",
+   "accountant: shared only"
+  ],
+  "where": [
+   {
+    "src": "spec 2",
+    "says": "Only what the owner shares"
+   },
+   {
+    "src": "spec 57.3",
+    "says": "Registered manager: sees only their own tasks ... They do not see payments"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "A co-director (sees everything ...), or your accountant (only what you share)"
+   },
+   {
+    "src": "board TeamViews.dc.html (64)",
+    "says": "Co-director and registered manager views"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "partner-access",
+  "area": "People and access",
+  "rule": "Partner organisations (for example AssuredBid) get a limited login only with client agreement, all logged, removed automatically when the work ends.",
+  "values_found": [
+   "later phase"
+  ],
+  "where": [
+   {
+    "src": "spec 49.3",
+    "says": "access removed automatically when the work ends"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "partner logins (later phases)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "view-as",
+  "area": "People and access",
+  "rule": "Staff can view the Hub as a client sees it: read only, logged, and shown to the client.",
+  "values_found": [
+   "read only, logged, visible to client"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "Read-only, logged, and the client can see it"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "including \"view as\""
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "saw your Hub as you see it"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "workload-capacity",
+  "area": "People and access",
+  "rule": "Assignment shows each person's workload and capacity against a normal week before giving them a client.",
+  "values_found": [
+   "% of a normal week"
+  ],
+  "where": [
+   {
+    "src": "spec 11.3",
+    "says": "The workload view shows how many active journeys"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Capacity is this week's planned work against a normal week"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No capacity limit is defined (board shows Daniel 'at capacity').",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "staff-two-step-login",
+  "area": "Security",
+  "rule": "Two-step login is compulsory for every staff account; hardware key or authenticator recommended for super admins.",
+  "values_found": [
+   "compulsory"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "Multi-factor authentication for all staff accounts"
+   },
+   {
+    "src": "spec 46.2",
+    "says": "Two-step login is compulsory"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "All use two-step login"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "client-two-step-login",
+  "area": "Security",
+  "rule": "Clients can turn on two-step sign-in (a code on a new device), recommended for directors; key signatures need a one-time code by text.",
+  "values_found": [
+   "optional",
+   "recommended for directors"
+  ],
+  "where": [
+   {
+    "src": "spec 57.2",
+    "says": "two-step sign-in, recommended for directors"
+   },
+   {
+    "src": "spec 36.2",
+    "says": "a one-time code sent by text"
+   },
+   {
+    "src": "board Security.dc.html (62)",
+    "says": "Recommended for directors"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "client-sign-in",
+  "area": "Security",
+  "rule": "Clients sign in with a magic link or a text code, no password; links are short lived and single use; a device stays signed in for a period.",
+  "values_found": [
+   "no password",
+   "phone signed in for 30 days",
+   "links work once, for a short time"
+  ],
+  "where": [
+   {
+    "src": "spec 12",
+    "says": "Magic-link login by email, with an optional password or passkey"
+   },
+   {
+    "src": "board SignIn.dc.html (40)",
+    "says": "Your phone stays signed in for 30 days"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "sign-in links only work for a short time and only once"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 12 offers an optional password or passkey; board 40 says no password. Link lifetime and the 30 day device session are not in the spec.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "staff-session-timeout",
+  "area": "Security",
+  "rule": "Staff session time-outs are set by the super admin.",
+  "values_found": [
+   "not set"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "set session time-outs"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No value anywhere; no board shows it.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "break-glass",
+  "area": "Security",
+  "rule": "Emergency access to a client's vault entry needs a reason and the other super admin's approval, ends automatically, and the client is emailed the same day and sees it on the privacy page.",
+  "values_found": [
+   "4 hours",
+   "client emailed same day"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "needs a reason and alerts the other super admin"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "Break-glass also sends the client an email the same day"
+   },
+   {
+    "src": "spec 60.3",
+    "says": "break-glass access ends automatically after 4 hours"
+   },
+   {
+    "src": "email 9.1",
+    "says": "access ended automatically after {{hours}} hours"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Ends automatically after 4 hours"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "vault-reveal",
+  "area": "Security",
+  "rule": "Stored logins are visible only to named roles, revealed only with a reason, hidden again after a short time, copyable without showing, and every use is logged and shown to the client.",
+  "values_found": [
+   "30 seconds"
+  ],
+  "where": [
+   {
+    "src": "spec 41.3",
+    "says": "hidden again after 30 seconds"
+   },
+   {
+    "src": "spec 21",
+    "says": "Viewing a password requires a stated reason"
+   },
+   {
+    "src": "board PortalWatch.dc.html (22)",
+    "says": "Reveal for 30 seconds"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "used your business email login, reason"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "logins-never-shared",
+  "area": "Security",
+  "rule": "Logins never appear in notes, messages, emails, exports or AI tools; documents are never sent inside a chat message.",
+  "values_found": [
+   "never"
+  ],
+  "where": [
+   {
+    "src": "spec 41.3",
+    "says": "Logins never appear in notes, messages, emails, exports or AI tools"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "Logins never appear in messages"
+   },
+   {
+    "src": "spec 38.4",
+    "says": "Documents are never sent inside a chat message"
+   },
+   {
+    "src": "email 11.1",
+    "says": "Never send a password by email"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "vault-hand-back",
+  "area": "Security",
+  "rule": "At the end of work a hand-back checklist runs (access removed, logins deleted, client told) and clients are reminded to change passwords after a contract is awarded or work ends.",
+  "values_found": [
+   "at end of engagement"
+  ],
+  "where": [
+   {
+    "src": "spec 41.3",
+    "says": "a hand-back checklist at the end of every engagement"
+   },
+   {
+    "src": "spec 49.8",
+    "says": "vault logins handed back or deleted"
+   },
+   {
+    "src": "board PortalWatch.dc.html (22)",
+    "says": "Change it after the website work ends"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "client-mailbox-authority",
+  "area": "Security",
+  "rule": "Care Sync holds the client's email login only with written authority in the engagement letter, and files only regulator and tender portal emails.",
+  "values_found": [
+   "written authority",
+   "CQC, CIW, RQIA and tender portal emails only"
+  ],
+  "where": [
+   {
+    "src": "spec 41.1",
+    "says": "with the client's written authority in their e-signed engagement letter"
+   },
+   {
+    "src": "email 2.6",
+    "says": "We file only emails from CQC, CIW, RQIA and tender portals"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "We only file emails from CQC, CIW, RQIA and tender portals"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "audit-log",
+  "area": "Security",
+  "rule": "Every view, download, upload, approval, reveal and status change is logged; entries cannot be edited or deleted; automatic checks are summarised for the client.",
+  "values_found": [
+   "all actions",
+   "immutable"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "every view, download, upload, approval and status change is recorded"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Entries cannot be edited or deleted"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "Those automatic checks are summed up"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "unusual-activity-alerts",
+  "area": "Security",
+  "rule": "Unusual staff activity (for example bulk exports) raises an alert in the super admin console.",
+  "values_found": [
+   "usual: under 5 exports a day"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "unusual activity alerts"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "exported 38 client documents (usual: under 5 a day)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Thresholds are board examples only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "super-admin-weekly-summary",
+  "area": "Security",
+  "rule": "A weekly summary of all super admin actions goes to both super admins.",
+  "values_found": [
+   "weekly",
+   "Monday 07:00"
+  ],
+  "where": [
+   {
+    "src": "spec 46.2",
+    "says": "A weekly summary of all super admin actions goes to both super admins"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Sent to both super admins every Monday at 07:00"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "link-expiry",
+  "area": "Security",
+  "rule": "Secure links expire: one-task links for landlords, referees and accountants, and download links.",
+  "values_found": [
+   "14 days (one-task links)",
+   "download links expire (no value)"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "download links expire"
+   },
+   {
+    "src": "spec 51.7",
+    "says": "Link expires in 14 days"
+   },
+   {
+    "src": "board ThirdParty.dc.html (37)",
+    "says": "expires in 14 days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "hosting-and-backups",
+  "area": "Security",
+  "rule": "Client data is stored and backed up in the UK, encrypted, with daily backups and tested restores.",
+  "values_found": [
+   "UK only",
+   "daily backup"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "UK hosting"
+   },
+   {
+    "src": "spec 49.10",
+    "says": "daily backups with tested restores"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Nightly backup done 02:00"
+   },
+   {
+    "src": "board Security.dc.html (62)",
+    "says": "Stored in the UK, encrypted"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "upload-limits",
+  "area": "Security",
+  "rule": "Upload file types and size limit, with virus scanning.",
+  "values_found": [
+   "PDF, JPG or PNG",
+   "up to 20 MB"
+  ],
+  "where": [
+   {
+    "src": "spec 14",
+    "says": "virus scanning on upload"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "PDF, JPG or PNG, up to 20 MB"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Size and type limits are board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "sensitive-fields-masked",
+  "area": "Security",
+  "rule": "Sensitive fields are masked for staff by default and revealing one is logged.",
+  "values_found": [
+   "masked by default"
+  ],
+  "where": [
+   {
+    "src": "spec 26.3",
+    "says": "Sensitive fields are masked by default for staff, revealing one is logged"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "id-dbs-retention",
+  "area": "Data and privacy",
+  "rule": "How long passport, ID and DBS copies are kept before scheduled deletion.",
+  "values_found": [
+   "a set period (to agree)",
+   "until the 12 months of aftercare end",
+   "after our work ends"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "after a set period once the journey ends (period to be agreed)"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "ID and DBS copies are kept until the 12 months of aftercare end"
+   },
+   {
+    "src": "spec 55.0 q5",
+    "says": "How long should identity documents ... be kept"
+   },
+   {
+    "src": "board Security.dc.html (62)",
+    "says": "deleted when your 12 months of aftercare end, unless the law says"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "deleted after our work ends"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 29 says 'after our work ends', board 62 says 'when your 12 months of aftercare end'; clients without aftercare (tender only, single services) have no defined period.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "scheduled-deletion",
+  "area": "Data and privacy",
+  "rule": "Deletions are prepared by the Hub, checked for legal holds, approved by the other super admin and run after a delay so they can be stopped; a record of the decision is kept, never the documents.",
+  "values_found": [
+   "deleted 7 days after approval",
+   "legal hold, open complaint, regulator query or payment dispute blocks deletion"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "scheduled deletion, legal holds"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "Deletions list each document and check for a legal hold"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Deleted 7 days after approval, so it can still be stopped"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "7 day delay and hold reasons are board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "retention-per-document-type",
+  "area": "Data and privacy",
+  "rule": "Retention periods per document type (beyond ID and DBS) set in the super admin.",
+  "values_found": [
+   "not set"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "Retention periods per document type"
+   },
+   {
+    "src": "spec 13",
+    "says": "E-signature records are kept for as long as the related journey records"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "How long we keep things"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Only ID and DBS have a proposed period.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "voice-note-deletion",
+  "area": "Data and privacy",
+  "rule": "Voice notes are deleted once transcribed and checked unless the client asks to keep them.",
+  "values_found": [
+   "after transcription"
+  ],
+  "where": [
+   {
+    "src": "spec 13",
+    "says": "Voice notes are deleted once transcribed and checked"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "data-protection-requests",
+  "area": "Data and privacy",
+  "rule": "Subject access, correction and deletion requests are tracked against legal deadlines.",
+  "values_found": [
+   "legal deadline (not stated; one calendar month under UK GDPR)"
+  ],
+  "where": [
+   {
+    "src": "spec 49.6",
+    "says": "with legal deadlines tracked"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "Download everything ... Correct something we hold"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Spec does not state the deadline.",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "breach-reporting",
+  "area": "Data and privacy",
+  "rule": "A personal data breach is logged with a reporting clock.",
+  "values_found": [
+   "72 hours"
+  ],
+  "where": [
+   {
+    "src": "spec 49.6",
+    "says": "a breach log with the 72-hour reporting clock"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows the breach log.",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "privacy-page-every-look",
+  "area": "Data and privacy",
+  "rule": "Every look at the client's documents or email, including view as and break-glass, is shown to the client on their privacy page.",
+  "values_found": [
+   "every look"
+  ],
+  "where": [
+   {
+    "src": "spec 51.4",
+    "says": "Every look is logged and shown to the client"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "Every time we looked"
+   },
+   {
+    "src": "board Security.dc.html (62)",
+    "says": "Every look is recorded"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "consent-wordings",
+  "area": "Data and privacy",
+  "rule": "Client-approved wordings for third-party contact (landlord, lender, referee, accountant), call recording and summaries, and the engagement letter authority.",
+  "values_found": [
+   "drafted, awaiting approval"
+  ],
+  "where": [
+   {
+    "src": "spec 52.2",
+    "says": "calls are only recorded or summarised with the client's consent"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Care Sync drafts the engagement letter wording, third-party contact wording and call recording consent"
+   },
+   {
+    "src": "board ThirdParty.dc.html (37)",
+    "says": "One-task links"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "ico-registration",
+  "area": "Data and privacy",
+  "rule": "Care Sync's ICO registration number shown on the privacy notice and security page.",
+  "values_found": [
+   "not known yet"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q58",
+    "says": "ICO registration number"
+   },
+   {
+    "src": "board Security.dc.html (62)",
+    "says": "Our registration number is on our privacy notice"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "marketing-consent-sole-traders",
+  "area": "Data and privacy",
+  "rule": "Sole traders get marketing only with consent; every marketing email has an opt-out.",
+  "values_found": [
+   "consent required"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "Sole traders get marketing only with consent"
+   },
+   {
+    "src": "email principles",
+    "says": "consent rules for sole traders"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "weekly-update-day",
+  "area": "Messages and notifications",
+  "rule": "Every client gets a weekly update on a set day, even when there is no news.",
+  "values_found": [
+   "Friday",
+   "{{update_day}} per client",
+   "Tuesday or Wednesday (owner's day)"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "Weekly progress summary: Every Friday"
+   },
+   {
+    "src": "spec 18.1",
+    "says": "Weekly update owner: Updates assigned clients on a set weekday"
+   },
+   {
+    "src": "spec 18.5",
+    "says": "Tuesday and Wednesday: Updates to send today"
+   },
+   {
+    "src": "spec 59.1",
+    "says": "The update now goes out on Friday"
+   },
+   {
+    "src": "email 1.4",
+    "says": "sends your update every {{update_day}}"
+   },
+   {
+    "src": "email 4.1",
+    "says": "you still get your update every Friday"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Friday: send all 10 by 16:00"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "Friday update. Every week, even when there is no news"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Weekly update every Friday"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 18.1 and 18.5 send updates on the owner's set weekday (Tuesday or Wednesday) and email 1.4 has a per-client {{update_day}}; spec 59.1, other emails and every board say Friday.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "weekly-update-rhythm",
+  "area": "Messages and notifications",
+  "rule": "The staff weekly rhythm behind the update.",
+  "values_found": [
+   "Mon review, Tue and Wed send, Thu chase, Fri manager QA",
+   "Mon review, Wed chase, Thu quality check, Fri send"
+  ],
+  "where": [
+   {
+    "src": "spec 17",
+    "says": "Monday review, Tuesday and Wednesday client updates ... Thursday chasing, Friday manager QA"
+   },
+   {
+    "src": "spec 18.5",
+    "says": "Thursday: Chase list ... Friday: Manager QA list"
+   },
+   {
+    "src": "spec 59.1",
+    "says": "Monday review, Wednesday chase, Thursday quality check, Friday send"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Mon review ... Wed chase ... Thu QA ... Fri send"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 17 and 18.5 still describe the old rhythm; spec 59.1 and board 9 use the new one. Board 9 makes Thursday QA a second consultant check while 18.5 makes it a manager check on Friday.",
+  "who_should_own": "manager",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "weekly-update-opt-out",
+  "area": "Messages and notifications",
+  "rule": "Whether a client can switch off the weekly update.",
+  "values_found": [
+   "client can choose",
+   "always on"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "Clients can choose quiet hours and whether they want the weekly summary"
+   },
+   {
+    "src": "spec 42",
+    "says": "Every client hears from Care Sync at least weekly"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "Always on, at every step ... Friday update"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.2 lets clients opt out; spec 42 and board 32 make it always on.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "weekly-update-send-time",
+  "area": "Messages and notifications",
+  "rule": "Time the Friday updates go out.",
+  "values_found": [
+   "by 16:00"
+  ],
+  "where": [
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Friday: send all 10 by 16:00"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "weekly-update-template",
+  "area": "Messages and notifications",
+  "rule": "The weekly update uses the nine-part standard and cannot be marked sent without evidence; manager QA status is recorded.",
+  "values_found": [
+   "9 parts"
+  ],
+  "where": [
+   {
+    "src": "spec 18.5",
+    "says": "Care Sync's nine-part standard"
+   },
+   {
+    "src": "email 3.1",
+    "says": "Where you are ... Next update"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "1. Where you are ... 9. Next update"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "notification-channels",
+  "area": "Messages and notifications",
+  "rule": "Channels used to reach clients and when texts or WhatsApp are allowed.",
+  "values_found": [
+   "Hub always",
+   "email always",
+   "SMS or WhatsApp later phase, urgent only",
+   "text, WhatsApp by client choice"
+  ],
+  "where": [
+   {
+    "src": "spec 6.1",
+    "says": "SMS or WhatsApp (later phase, for urgent items only: deadlines, interview reminders, CQC decisions)"
+   },
+   {
+    "src": "spec 34.2",
+    "says": "email, text, WhatsApp, or in the Hub only"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "WhatsApp updates (later phases)"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "Reminders and CQC news on the day ... From the Care Sync business number"
+   },
+   {
+    "src": "board Notifications.dc.html (41)",
+    "says": "Important news also comes by email and text"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "SMS and WhatsApp: Reminders and nudges"
+   },
+   {
+    "src": "email 1.3",
+    "says": "Introduction call texts"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.1 limits texts and WhatsApp to urgent items in a later phase; spec 34.2, the intro call texts, and boards 24 and 29 use them now for reminders and nudges.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "quiet-hours",
+  "area": "Messages and notifications",
+  "rule": "Default quiet hours, the client's own choice, and what may break through.",
+  "values_found": [
+   "8pm to 8am",
+   "except CQC or tender deadline",
+   "except CQC deadlines"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0",
+    "says": "Quiet hours from 8pm to 8am"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "Quiet hours apply to texts and messages, except for a CQC or tender deadline"
+   },
+   {
+    "src": "spec 6.2",
+    "says": "Clients can choose quiet hours"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "quiet hours (super admin)"
+   },
+   {
+    "src": "email 1.3",
+    "says": "Texts follow quiet hours"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "8pm to 8am ... No texts or messages, except CQC deadlines"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "outside their quiet hours"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 29 drops the tender deadline exception; no source says whether quiet hours cover emails, or how CIW and RQIA deadlines are treated.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "onboarding-form-reminders",
+  "area": "Messages and notifications",
+  "rule": "Reminders while the onboarding form is unfinished, and when staff step in with a call.",
+  "values_found": [
+   "after 2 days, then 4",
+   "day 2 and 4",
+   "one gentle reminder outside quiet hours",
+   "one reminder after 3 days, call after 6",
+   "suggest a call after 3 days",
+   "target 2 working days (tenders)"
+  ],
+  "where": [
+   {
+    "src": "email 2.2",
+    "says": "Gentle reminder (after 2 days, then 4, stops when done)"
+   },
+   {
+    "src": "spec 32.2",
+    "says": "gentle reminders that open the exact task (day 2 and 4)"
+   },
+   {
+    "src": "spec 54.2",
+    "says": "sends one gentle reminder outside quiet hours"
+   },
+   {
+    "src": "spec 38.5",
+    "says": "if a client has not started their tasks after 3 days"
+   },
+   {
+    "src": "spec 26.2",
+    "says": "a reminder if unfinished (target 2 working days for tenders)"
+   },
+   {
+    "src": "board OnboardingQueue.dc.html (73)",
+    "says": "one friendly reminder after 3 days, then Grace or Divine calls after 6"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "We will send one gentle reminder, outside quiet hours"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Five different patterns: email 2.2 and spec 32.2 (day 2 and 4), spec 54.2 and the forms (one reminder), board 73 (day 3 then call on day 6), spec 38.5 (call suggested after 3 days), spec 26.2 (2 working days for tenders).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "document-request-reminders",
+  "area": "Messages and notifications",
+  "rule": "Reminders for requested documents, using named schedules, stopping on upload, then 'needs a call'.",
+  "values_found": [
+   "after 3 days, then weekly",
+   "gentle nudge after 5 days",
+   "gentle, standard, urgent schedules"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "After 3 days, then weekly (configurable), stops as soon as uploaded"
+   },
+   {
+    "src": "spec 45.3",
+    "says": "Staff pick a schedule ... (gentle, standard, urgent) ... After the last reminder, the task changes to \"needs a call\""
+   },
+   {
+    "src": "spec 10.7",
+    "says": "then escalates to the consultant"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Document waiting 5 days, gentle nudge"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.2 says 3 days then weekly; the live automation on board 24 says 5 days.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "draft-review-reminder",
+  "area": "Messages and notifications",
+  "rule": "Reminder when a draft waits for the client's review.",
+  "values_found": [
+   "after 3 days"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "Review reminder: After 3 days without a response"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board or email gives the timing (email 3.2 has no reminder).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "signature-reminders",
+  "area": "Messages and notifications",
+  "rule": "Reminders while a document waits for signature.",
+  "values_found": [
+   "after 2 days",
+   "until signed"
+  ],
+  "where": [
+   {
+    "src": "spec 6.2",
+    "says": "with a reminder after 2 days"
+   },
+   {
+    "src": "spec 36.2",
+    "says": "Reminders until signed, following the client's contact preferences"
+   },
+   {
+    "src": "board TeamViews.dc.html (64)",
+    "says": "Send Kwame a reminder"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.2 gives one reminder after 2 days; spec 36.2 says reminders until signed; board 64 shows a manual button.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "third-party-reminders",
+  "area": "Messages and notifications",
+  "rule": "Reminders to landlords, referees and accountants on one-task links.",
+  "values_found": [
+   "about 3 working days (example)"
+  ],
+  "where": [
+   {
+    "src": "board Onboarding.dc.html (8)",
+    "says": "A gentle reminder goes to Tom automatically on Wed 4 Nov"
+   },
+   {
+    "src": "board AddressClient.dc.html (15)",
+    "says": "A gentle reminder goes to Tom on Wed 4 Nov"
+   },
+   {
+    "src": "board Staff.dc.html (7)",
+    "says": "CIW is waiting for Sarah's reference. Asked 3 days ago"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No rule in the spec; board timings only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "pause-reminders",
+  "area": "Messages and notifications",
+  "rule": "A client can pause reminders for holidays or hard times; the consultant is told and deadlines stay protected.",
+  "values_found": [
+   "until a date"
+  ],
+  "where": [
+   {
+    "src": "spec 34.2",
+    "says": "A \"pause reminders until\" option"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "We will stop reminders until you are back"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "worried-client-no-nudges",
+  "area": "Messages and notifications",
+  "rule": "Clients marked worried get no automated nudges or sales messages until resolved.",
+  "values_found": [
+   "no nudges",
+   "no growth messages"
+  ],
+  "where": [
+   {
+    "src": "spec 52.4",
+    "says": "switches off all growth messages"
+   },
+   {
+    "src": "board OnboardingQueue.dc.html (73)",
+    "says": "never sent to a client marked worried"
+   },
+   {
+    "src": "board ClientsList.dc.html (68)",
+    "says": "get no sales messages until a director has spoken to them"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board 73 also stops onboarding nudges, which the spec does not say.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "staff-alert-principles",
+  "area": "Messages and notifications",
+  "rule": "No automatic client contact for internal issues; failed automations go to staff, never to the client as an error, and are never silent.",
+  "values_found": [
+   "never silent"
+  ],
+  "where": [
+   {
+    "src": "spec 23",
+    "says": "No automatic client contact for internal issues"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "failed automations are shown, never silent"
+   },
+   {
+    "src": "spec 51.5",
+    "says": "failures go to staff, never to the client as an error"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Nothing fails silently"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "bounced-email-handling",
+  "area": "Messages and notifications",
+  "rule": "A bounced client email alerts the owner, counts the update as overdue and holds the resend until the address is confirmed.",
+  "values_found": [
+   "alert owner"
+  ],
+  "where": [
+   {
+    "src": "spec 14.2",
+    "says": "Consultant alerted"
+   },
+   {
+    "src": "board Weekly.dc.html (9)",
+    "says": "Overdue: Friday's update bounced"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "resend waits for Daniel to confirm it with Tunde"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "marketing-frequency-caps",
+  "area": "Messages and notifications",
+  "rule": "Limits on marketing and growth messages; service emails are combined where several happen on one day.",
+  "values_found": [
+   "at most one marketing email a week",
+   "never more than one new suggestion a month"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "At most one marketing email a week per client; service emails are not capped but are combined"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "never more than one new suggestion a month"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Two different caps (weekly emails versus monthly new suggestions) with no rule for how they combine.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "win-back",
+  "area": "Messages and notifications",
+  "rule": "After a period without activity, one useful update with a way to say not now, then silence unless asked.",
+  "values_found": [
+   "6 months"
+  ],
+  "where": [
+   {
+    "src": "spec 32.2",
+    "says": "No activity for 6 months"
+   },
+   {
+    "src": "email 8.1",
+    "says": "we will not get in touch again unless you ask"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-alert-opt-in",
+  "area": "Messages and notifications",
+  "rule": "Tender match emails go only to clients who opted in and whose conflict check passed.",
+  "values_found": [
+   "opt-in"
+  ],
+  "where": [
+   {
+    "src": "email 6.3",
+    "says": "client opted in to tender alerts"
+   },
+   {
+    "src": "spec 24.3",
+    "says": "tender alert opt-in"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "notification-bell",
+  "area": "Messages and notifications",
+  "rule": "The in-Hub bell shows 'Needs you' and 'Everything', matching real tasks and news.",
+  "values_found": [
+   "2 views"
+  ],
+  "where": [
+   {
+    "src": "spec 51.7",
+    "says": "\"Needs you\" and \"Everything\""
+   },
+   {
+    "src": "board Notifications.dc.html (41)",
+    "says": "Needs you (2)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "template-versioning",
+  "area": "Forms and templates",
+  "rule": "Journey, form and template changes apply to new journeys only; live clients keep their version unless a director moves them.",
+  "values_found": [
+   "new journeys only"
+  ],
+  "where": [
+   {
+    "src": "spec 3.2",
+    "says": "Changes only apply to new journeys"
+   },
+   {
+    "src": "spec 14.2",
+    "says": "Live journeys keep their template version"
+   },
+   {
+    "src": "spec 26.3",
+    "says": "live clients stay on the version they started"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Clients halfway through a form stay on their version"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "form-version-approval",
+  "area": "Forms and templates",
+  "rule": "Who edits form drafts and who publishes a new version.",
+  "values_found": [
+   "onboarding lead drafts, second super admin approves",
+   "directors edit (form builder for directors)"
+  ],
+  "where": [
+   {
+    "src": "spec 26.3",
+    "says": "Form builder for directors"
+   },
+   {
+    "src": "spec 31.2",
+    "says": "Packages and their modules are set in the form builder by directors"
+   },
+   {
+    "src": "spec 51.7",
+    "says": "Drafts need the other super admin to publish"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Grace edits drafts. A new version goes live only when the second super admin approves it"
+   },
+   {
+    "src": "board TeamCover.dc.html (78)",
+    "says": "Onboarding leads ... edit form drafts"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 26.3 and 31.2 give the form builder to directors; boards give drafting to the onboarding lead and approval to the second super admin.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "package-modules",
+  "area": "Forms and templates",
+  "rule": "Which form modules each package gets; each module asked once across packages; new purchases add only new modules; staff can add or remove a module with a reason.",
+  "values_found": [
+   "17 modules (A to Q)"
+  ],
+  "where": [
+   {
+    "src": "spec 31.1",
+    "says": "Form modules by package"
+   },
+   {
+    "src": "spec 31.2",
+    "says": "A client with two packages gets each module once"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "the onboarding form tailors itself"
+   },
+   {
+    "src": "board RegDetails.dc.html (46)",
+    "says": "tailored by package"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "max-tasks-shown",
+  "area": "Forms and templates",
+  "rule": "At most a set number of small tasks shown to a client at once; the onboarding form comes first.",
+  "values_found": [
+   "3"
+  ],
+  "where": [
+   {
+    "src": "spec 34.1",
+    "says": "at most three items"
+   },
+   {
+    "src": "spec 38.3",
+    "says": "At most three tasks are shown at a time"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "At most 3 tasks shown to a client at once"
+   },
+   {
+    "src": "board Welcome.dc.html (25)",
+    "says": "usually no more than 3 at a time"
+   },
+   {
+    "src": "spec 51.3",
+    "says": "31 Your tender: ... at most 3 things waiting on the client"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "no-time-estimates",
+  "area": "Forms and templates",
+  "rule": "No time estimates on forms, tasks or documents (cannot be switched off).",
+  "values_found": [
+   "none",
+   "about an hour",
+   "about 40 minutes",
+   "about 10 minutes",
+   "about 15 minutes to read",
+   "1 minute per page",
+   "5 days per stage",
+   "about 20 minutes"
+  ],
+  "where": [
+   {
+    "src": "spec 51.4",
+    "says": "No time estimates on forms, tasks or documents"
+   },
+   {
+    "src": "spec 38.4",
+    "says": "Progress shown as wins, not time"
+   },
+   {
+    "src": "spec 35.1",
+    "says": "how long it takes to read"
+   },
+   {
+    "src": "spec 57.2",
+    "says": "with a time estimate"
+   },
+   {
+    "src": "spec 57.3",
+    "says": "Every page shows a time estimate"
+   },
+   {
+    "src": "email 7.8",
+    "says": "It takes about 10 minutes"
+   },
+   {
+    "src": "email 10.3",
+    "says": "It takes about 20 minutes"
+   },
+   {
+    "src": "email 2.3",
+    "says": "takes a minute or two"
+   },
+   {
+    "src": "board Welcome.dc.html (25)",
+    "says": "about an hour in total ... about 40 minutes"
+   },
+   {
+    "src": "board ClientDesktop.dc.html (54)",
+    "says": "about 10 minutes ... about 15 minutes to read"
+   },
+   {
+    "src": "board TenderWork.dc.html (57)",
+    "says": "About 10 minutes"
+   },
+   {
+    "src": "board TenderClient.dc.html (31)",
+    "says": "For the workforce answer. About 10 minutes"
+   },
+   {
+    "src": "board TwoServices.dc.html (59)",
+    "says": "About 40 minutes, once"
+   },
+   {
+    "src": "board Journey.dc.html (2)",
+    "says": "Most people finish this stage in 5 days"
+   },
+   {
+    "src": "board ManagerFlow.dc.html (47)",
+    "says": "1 minute"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "A rule the super admin 'cannot switch off' (51.4) is broken by spec 35.1, 57.2 and 57.3, by emails 2.3, 7.6, 7.8 and 10.3, and by boards 2, 25, 31, 38, 47, 54, 55, 56, 57, 58 and 59.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "save-and-resume",
+  "area": "Forms and templates",
+  "rule": "Every answer saves on the server the moment it is given; resume at the first unanswered question; any device.",
+  "values_found": [
+   "instant save"
+  ],
+  "where": [
+   {
+    "src": "spec 54.2",
+    "says": "Every answer saves the moment it is given, on the server"
+   },
+   {
+    "src": "board RegDetails.dc.html (46)",
+    "says": "Saved on every answer, on any phone or computer"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "saved on this phone and will send automatically"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 53 (offline) saves answers on the phone, while spec 54.2 says on the server, not in the browser.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "declaration-last",
+  "area": "Forms and templates",
+  "rule": "The declaration opens only when every other section is complete and is e-signed.",
+  "values_found": [
+   "last"
+  ],
+  "where": [
+   {
+    "src": "spec 54.2",
+    "says": "The declaration opens last"
+   },
+   {
+    "src": "board FormBuilder.dc.html (44)",
+    "says": "Always last, after Check your answers"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "onboarding-complete-before-project",
+  "area": "Forms and templates",
+  "rule": "The project starts only when every required onboarding section is complete; sections marked 'opens later' never hold it up.",
+  "values_found": [
+   "required sections complete"
+  ],
+  "where": [
+   {
+    "src": "spec 54.0",
+    "says": "No CQC writing, and no project work, starts until it is complete"
+   },
+   {
+    "src": "email 2.1",
+    "says": "we start your project as soon as it is complete"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "The project starts only when it is complete"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-form-sections",
+  "area": "Forms and templates",
+  "rule": "Number of sections in the tender questionnaire and profile.",
+  "values_found": [
+   "21 sections",
+   "15 sections",
+   "17 to 21 pages"
+  ],
+  "where": [
+   {
+    "src": "spec 53.4",
+    "says": "The Tender Preparation Questionnaire has 21 sections"
+   },
+   {
+    "src": "spec 54.1",
+    "says": "the 15 sections of the tender form"
+   },
+   {
+    "src": "spec D",
+    "says": "between 17 and 21 pages"
+   },
+   {
+    "src": "board TenderProfile.dc.html (48)",
+    "says": "all 15 sections of the tender form"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 53.4 says 21 sections, spec 54.1 and board 48 say 15.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "not-sure-button",
+  "area": "Forms and templates",
+  "rule": "Every question has 'Not sure? Ask us', which creates a question for the onboarding lead instead of a blank.",
+  "values_found": [
+   "every question"
+  ],
+  "where": [
+   {
+    "src": "spec 26.1",
+    "says": "A \"Not sure\" button on every question"
+   },
+   {
+    "src": "spec 57.3",
+    "says": "Every form question has \"Not sure? Ask us\""
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "From \"Not sure? Ask us\" on every form question"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "question-routing",
+  "area": "Forms and templates",
+  "rule": "Questions from onboarding forms go to the onboarding lead; after handover to the case owner or the person covering.",
+  "values_found": [
+   "onboarding lead before handover",
+   "case owner after"
+  ],
+  "where": [
+   {
+    "src": "spec 59.3",
+    "says": "Questions go to the consultant, or to Grace for onboarding forms"
+   },
+   {
+    "src": "board Questions.dc.html (67)",
+    "says": "questions from onboarding forms ... go to Grace"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "email-library-versions",
+  "area": "Forms and templates",
+  "rule": "The client email library and its templates, with versions.",
+  "values_found": [
+   "64 emails"
+  ],
+  "where": [
+   {
+    "src": "spec 57.4",
+    "says": "The library now has 64 emails"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "The email library, saved replies, signatures"
+   },
+   {
+    "src": "spec 14.1",
+    "says": "Template (journey, email, notification, saved reply)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No version or approval rule is stated for email templates (unlike forms and prices).",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "call-guide",
+  "area": "Forms and templates",
+  "rule": "The introduction call guide (8 steps, no selling, no promised dates) and its versions.",
+  "values_found": [
+   "8 steps"
+  ],
+  "where": [
+   {
+    "src": "spec 52.2",
+    "says": "Call guide (8 steps, ticked as you go) ... never includes selling"
+   },
+   {
+    "src": "spec 52.7",
+    "says": "the call guide and its versions"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "Call guide"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "automation-rules",
+  "area": "Forms and templates",
+  "rule": "'When this happens, do that' rules with on and off switches and a run log.",
+  "values_found": [
+   "46 rules on (board)"
+  ],
+  "where": [
+   {
+    "src": "spec 45.2",
+    "says": "Directors set \"when this happens, do that\" rules"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "with an on and off switch and a log of every run"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "46 rules on"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "relationship-check-moments",
+  "area": "Forms and templates",
+  "rule": "When the client is asked how things are going and on what scale.",
+  "values_found": [
+   "end of each stage, three faces",
+   "after kick-off, after submission, after decision",
+   "scores out of 5"
+  ],
+  "where": [
+   {
+    "src": "spec 10.11",
+    "says": "When a stage finishes ... three faces (happy, neutral, unhappy)"
+   },
+   {
+    "src": "spec 52.4",
+    "says": "at three moments: after the kick-off, after submission and after the decision"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "How are we doing?"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "4.8 of 5 ... From check-ins after each stage"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Every stage (10.11) versus three moments (52.4); three faces versus scores out of 5 on board 72.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "british-english-no-dashes",
+  "area": "Branding and wording",
+  "rule": "British English, plain English, no dashes, everywhere the client reads.",
+  "values_found": [
+   "British English",
+   "no em or en dashes"
+  ],
+  "where": [
+   {
+    "src": "spec 1.2",
+    "says": "British English throughout, plain English for clients"
+   },
+   {
+    "src": "spec 32.1",
+    "says": "British English, no dashes"
+   },
+   {
+    "src": "spec 49.9",
+    "says": "British English, and no dashes"
+   },
+   {
+    "src": "spec 56.4",
+    "says": "British English, no dashes"
+   },
+   {
+    "src": "email intro",
+    "says": "British English. No dashes"
+   },
+   {
+    "src": "demo world",
+    "says": "Never use em dashes or en dashes"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "email-style",
+  "area": "Branding and wording",
+  "rule": "Email style: one job and one button, under about 120 words, no bold, no exclamation marks, calm, ending on reassurance and the next step.",
+  "values_found": [
+   "about 120 words",
+   "no bold",
+   "no exclamation marks"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "One email, one job, one button ... no bold in email bodies"
+   },
+   {
+    "src": "email intro",
+    "says": "No bold in the body. No exclamation marks ... Under about 120 words"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "banned-words",
+  "area": "Branding and wording",
+  "rule": "Words and claims never used with clients: free, guarantees, invented proof or urgency, patient, cheap or basic, reach out, care home words in other settings.",
+  "values_found": [
+   "free",
+   "guaranteed",
+   "patient",
+   "cheap or basic",
+   "reach out"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "no \"free\", no guarantees"
+   },
+   {
+    "src": "spec 49.9",
+    "says": "words never used (patient, guaranteed, cheap or basic, reach out)"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "no false urgency, no \"free\", no guarantees"
+   },
+   {
+    "src": "email intro",
+    "says": "Never \"free\""
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Resubmission is always free for the client"
+   },
+   {
+    "src": "board RegReply.dc.html (76)",
+    "says": "we resubmit for free"
+   },
+   {
+    "src": "demo world",
+    "says": "Resubmission is free (Care Sync promise)"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Staff boards 43, 66, 69, 72 and 76 and the demo world call it a 'free resubmission'; clients must only see 'as part of your package'. Any staff wording copied into client text breaks the rule.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "email-signatures",
+  "area": "Branding and wording",
+  "rule": "Every email is signed by a real person, the client's consultant (or bid lead, account owner or director where relevant), with replies going to them and into the Hub.",
+  "values_found": [
+   "consultant",
+   "bid lead",
+   "account owner",
+   "director"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "Signed by a real person, the client's consultant"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "signatures"
+   },
+   {
+    "src": "email 6.3",
+    "says": "{{account_owner}}"
+   },
+   {
+    "src": "email 9.1",
+    "says": "{{director_name}}, Director"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "sending-addresses",
+  "area": "Branding and wording",
+  "rule": "Which address client emails come from and which domain catches replies and forwarded mail.",
+  "values_found": [
+   "recognisable Care Sync address",
+   "staff member's own mailbox",
+   "client's own email (to regulators)",
+   "journey address @in.caresynchub.co.uk"
+  ],
+  "where": [
+   {
+    "src": "spec 6.1",
+    "says": "Email (always, from a recognisable Care Sync address)"
+   },
+   {
+    "src": "spec 7.1",
+    "says": "sent from the staff member's own Care Sync mailbox"
+   },
+   {
+    "src": "spec 7.2",
+    "says": "brightpath-dom-2611@in.caresynchub.co.uk"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "sending domains"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 6.1 (Care Sync address) and 7.1 (staff mailbox) differ for notifications; no sending domain is fixed for transactional email.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "brand-assets",
+  "area": "Branding and wording",
+  "rule": "Logo, colours and wording from the Care Sync Unified design system for the Hub, emails and documents, with light and dark themes.",
+  "values_found": [
+   "Care Sync Unified tokens"
+  ],
+  "where": [
+   {
+    "src": "spec 12",
+    "says": "Uses the existing Care Sync logo, colours and assets"
+   },
+   {
+    "src": "spec 46.1",
+    "says": "Logo, colours and wording from the Care Sync Unified design system"
+   },
+   {
+    "src": "spec 56.4",
+    "says": "Uses only the Care Sync tokens"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "accessibility-standard",
+  "area": "Branding and wording",
+  "rule": "Accessibility standard and touch target size.",
+  "values_found": [
+   "WCAG 2.2 AA",
+   "44 by 44"
+  ],
+  "where": [
+   {
+    "src": "spec 12",
+    "says": "Meets WCAG 2.2 AA"
+   },
+   {
+    "src": "spec 56.4",
+    "says": "at least 44 by 44, with a visible focus ring"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "neutral-pronouns",
+  "area": "Branding and wording",
+  "rule": "They/them for anyone whose pronouns are not known.",
+  "values_found": [
+   "they/them"
+  ],
+  "where": [
+   {
+    "src": "spec 51.1",
+    "says": "Neutral wording throughout"
+   },
+   {
+    "src": "spec 56.4",
+    "says": "they/them for anyone whose pronouns we do not know"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "growth-email-footer",
+  "area": "Branding and wording",
+  "rule": "Growth emails end with a fixed opt-out sentence.",
+  "values_found": [
+   "fixed footer"
+  ],
+  "where": [
+   {
+    "src": "email intro",
+    "says": "You are receiving this because you are a Care Sync client ... or reply 'stop'."
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "hub-language",
+  "area": "Branding and wording",
+  "rule": "The Hub stays in English for CIW clients; CIW's own letters use the client's chosen language.",
+  "values_found": [
+   "English only"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0 q45",
+    "says": "the Hub stays in English for CIW clients"
+   },
+   {
+    "src": "email 10",
+    "says": "Written in English"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "approved-claims",
+  "area": "Branding and wording",
+  "rule": "Marketing and sales claims come only from the approved proof bank; unresolved facts (founding year, training, former inspectors) are not used.",
+  "values_found": [
+   "approved list only"
+  ],
+  "where": [
+   {
+    "src": "spec 49.5",
+    "says": "Sales, the website and documents use only the approved wording"
+   },
+   {
+    "src": "spec 50",
+    "says": "Founding year ... Staff training ... Former CQC senior inspector managers"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "date-format",
+  "area": "Branding and wording",
+  "rule": "UK date format everywhere (dd/mm/yyyy), and dates in the interface as 'Mon 2 Nov' or '2 November'.",
+  "values_found": [
+   "dd/mm/yyyy",
+   "Mon 2 Nov"
+  ],
+  "where": [
+   {
+    "src": "spec 26.1",
+    "says": "UK format"
+   },
+   {
+    "src": "spec E.1",
+    "says": "dd/mm/yyyy throughout"
+   },
+   {
+    "src": "demo world",
+    "says": "Dates in UI as \"Mon 2 Nov\", \"2 November\" or \"02/11\""
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "connections-and-health",
+  "area": "Integrations",
+  "rule": "Every external connection with its keys and a health status in the super admin.",
+  "values_found": [
+   "12 connections"
+  ],
+  "where": [
+   {
+    "src": "spec 46.1",
+    "says": "Companies House, Ordnance Survey, CQC data, HM Land Registry, DocuSeal, GoHighLevel, Google or Microsoft, payment provider, Xero, text and WhatsApp, BidSuite and the Interview Preparation Hub, each with a health status"
+   },
+   {
+    "src": "spec 60.2",
+    "says": "All 12 connections are listed"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Connections: 11 of 12 healthy"
+   },
+   {
+    "src": "demo world",
+    "says": "list all 12, 11 healthy, 1 needs attention"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 24's list of 12 includes CQC email, CIW Online and RQIA Web Portal watches and file storage, but not Ordnance Survey, CQC data, HM Land Registry or BidSuite from spec 46.1.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "gohighlevel-won-deal",
+  "area": "Integrations",
+  "rule": "A won deal in GoHighLevel (signed agreement and paid deposit) starts the Hub journey automatically and brings the sales notes; calls, notes and opt-outs sync back.",
+  "values_found": [
+   "automatic"
+  ],
+  "where": [
+   {
+    "src": "spec 24.6",
+    "says": "calls, notes, stages, tasks and opt-outs sync to GoHighLevel automatically"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "A won deal in GoHighLevel starts the client's journey automatically"
+   },
+   {
+    "src": "board AddClient.dc.html (51)",
+    "says": "Deal won in GoHighLevel"
+   },
+   {
+    "src": "board SuperAdmin.dc.html (24)",
+    "says": "Sales CRM. Won deals start journeys"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "companies-house-checks",
+  "area": "Integrations",
+  "rule": "Companies House checks when the number is entered, before submission and continuously; changes alert the case owner; dissolved companies hidden unless asked.",
+  "values_found": [
+   "continuous monitoring"
+  ],
+  "where": [
+   {
+    "src": "spec 27.5",
+    "says": "Run when the company number is entered, again before submission, and continuously afterwards"
+   },
+   {
+    "src": "spec 44.1",
+    "says": "Dissolved companies are hidden unless asked for"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "cqc-register-copy",
+  "area": "Integrations",
+  "rule": "A daily copy of CQC's published register is kept for instant search and eligibility.",
+  "values_found": [
+   "daily"
+  ],
+  "where": [
+   {
+    "src": "spec 44.3",
+    "says": "keeps a daily copy of CQC's published register data"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "Eligibility comes from each provider's real registration status on the CQC register"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "tender-sources",
+  "area": "Integrations",
+  "rule": "Tenders arrive daily from BidSuite, Find a Tender, council portals, Sell2Wales and eTendersNI.",
+  "values_found": [
+   "daily"
+  ],
+  "where": [
+   {
+    "src": "spec 19.1",
+    "says": "new tenders arrive daily from BidSuite, Find a Tender and the council portals"
+   },
+   {
+    "src": "board Radar.dc.html (10)",
+    "says": "12 new today from BidSuite, Find a Tender and council portals"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "calls-through-gohighlevel",
+  "area": "Integrations",
+  "rule": "Introduction and sales calls are made through GoHighLevel so they are logged.",
+  "values_found": [
+   "GoHighLevel phone"
+  ],
+  "where": [
+   {
+    "src": "spec 55.0",
+    "says": "Calls are made through GoHighLevel so they are logged"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "aftercare-length",
+  "area": "Aftercare and growth",
+  "rule": "How long aftercare lasts and which packages include it.",
+  "values_found": [
+   "12 months",
+   "full packages only (spec 3.3)",
+   "every registered client (boards)"
+  ],
+  "where": [
+   {
+    "src": "spec 3.3",
+    "says": "Aftercare (12 months) for Domiciliary Care Full Package and Supported Living Start Up; CQC Registration only has none"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "the 12 months of aftercare"
+   },
+   {
+    "src": "email 10.7",
+    "says": "Your 12 months of aftercare start today"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Every registered client in their 12 months of aftercare"
+   },
+   {
+    "src": "board RegCentre.dc.html (63)",
+    "says": "Your 12 months of aftercare start today"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "Aftercare length per package"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 3.3 gives aftercare only to full packages; boards 63, 71 and emails 10.7, 11.5 give 12 months to every registered client, including registration-only and CIW or RQIA. Retention of ID copies hangs on this date.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "aftercare-check-in-rhythm",
+  "area": "Aftercare and growth",
+  "rule": "Aftercare check-in frequency and who leads it.",
+  "values_found": [
+   "monthly",
+   "led by the consultant"
+  ],
+  "where": [
+   {
+    "src": "spec 4",
+    "says": "monthly check-ins"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "Monthly aftercare check-in led by the consultant"
+   },
+   {
+    "src": "board Aftercare.dc.html (30)",
+    "says": "Monthly check-in with Daniel"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Monthly check-in"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "aftercare-message-schedule",
+  "area": "Aftercare and growth",
+  "rule": "Aftercare messages after registration.",
+  "values_found": [
+   "day 7 launch checklist",
+   "day 30 check-in",
+   "month 4 first inspection readiness",
+   "policy review 60 days before anniversary",
+   "registration anniversary"
+  ],
+  "where": [
+   {
+    "src": "spec 32.2",
+    "says": "Day 7 launch checklist; day 30 check-in ... month 4 first inspection readiness; policy review 60 days before the anniversary"
+   },
+   {
+    "src": "email 6.1",
+    "says": "Day 7"
+   },
+   {
+    "src": "email 6.2",
+    "says": "Day 30"
+   },
+   {
+    "src": "email 6.7",
+    "says": "60 days before the policy anniversary"
+   },
+   {
+    "src": "email 6.8",
+    "says": "registration anniversary"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "inspection-readiness-timing",
+  "area": "Aftercare and growth",
+  "rule": "When first inspection readiness is raised.",
+  "values_found": [
+   "month 4",
+   "month 4 to 6",
+   "readiness check at month 3"
+  ],
+  "where": [
+   {
+    "src": "email 6.4",
+    "says": "Trigger: month 4 after registration"
+   },
+   {
+    "src": "spec 24.2",
+    "says": "Month 4 to 6 after registration"
+   },
+   {
+    "src": "spec 33.1",
+    "says": "Month 4 to 6 after registration"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Readiness check at month 3"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Email 6.4 month 4, spec month 4 to 6, board 71 month 3.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "policy-review-reminder",
+  "area": "Aftercare and growth",
+  "rule": "Policy review reminder before the yearly anniversary.",
+  "values_found": [
+   "60 days ahead"
+  ],
+  "where": [
+   {
+    "src": "spec 24.3",
+    "says": "policy review due (60 days ahead)"
+   },
+   {
+    "src": "email 6.7",
+    "says": "60 days before the policy anniversary"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "aftercare-month-12-handover",
+  "area": "Aftercare and growth",
+  "rule": "At month 12 the consultant hands over with a summary of everything done and what is due next.",
+  "values_found": [
+   "month 12"
+  ],
+  "where": [
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "At month 12 the consultant hands over with a summary"
+   },
+   {
+    "src": "board Deadlines.dc.html (75)",
+    "says": "Summary of everything done and what is due next"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "Board only.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "growth-offer-rules",
+  "area": "Aftercare and growth",
+  "rule": "Growth offers: only to happy clients with no open problem, only confirmed prices, no false urgency, a limited number at a time, none before registration except what the client chose, never in delivery emails.",
+  "values_found": [
+   "one suggestion at a time",
+   "never more than one new suggestion a month",
+   "three growth options on the aftercare home"
+  ],
+  "where": [
+   {
+    "src": "spec 32.1",
+    "says": "Delivery emails never contain sales offers ... never when the client is unhappy, has a Critical risk, or is dealing with a refusal"
+   },
+   {
+    "src": "spec 33.1",
+    "says": "One relevant suggestion, at the right moment"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "never more than one new suggestion a month, and none before registration"
+   },
+   {
+    "src": "spec 51.3",
+    "says": "three growth options picked for this client"
+   },
+   {
+    "src": "board Aftercare.dc.html (30)",
+    "says": "3 council tenders ... Add supported living ... When CQC asks for your PIR"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Growth ideas only show for happy clients"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 51.3 and board 30 show three growth options at once in month 1; spec 33.1 and 51.4 allow one suggestion, and no more than one new one a month.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "worried-client-rules",
+  "area": "Aftercare and growth",
+  "rule": "A worried or unhappy client: manager told the same day, director call offered, growth messages off until resolved, selling paused.",
+  "values_found": [
+   "manager told same day",
+   "director call within 1 working day",
+   "no sales or review messages"
+  ],
+  "where": [
+   {
+    "src": "spec 52.4",
+    "says": "worried tells the manager the same day, offers a call with a director, and switches off all growth messages"
+   },
+   {
+    "src": "spec 24.3",
+    "says": "unhappy stage feedback (selling paused and a save call to the consultant)"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "Worried clients get a director call within 1 working day, and no sales or review messages"
+   },
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "no sales or review messages until it is resolved"
+   },
+   {
+    "src": "board IntroCall.dc.html (33)",
+    "says": "Worried: Collins and Grace are told today"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "A worried client gets a director, not an offer"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Boards add a 1 working day director call and also stop review messages (see review-no-gating). Board 33 tells Collins and Grace, not the manager; for 'unsure' it nudges Grace, while spec 52.4 prompts the consultant.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "retained-package",
+  "area": "Aftercare and growth",
+  "rule": "Retained tender package offered when a client bids often; price pending; never promise a lower rate; offered once in aftercare.",
+  "values_found": [
+   "2 tenders in 12 months or more than one council area",
+   "offered once"
+  ],
+  "where": [
+   {
+    "src": "spec 24.2",
+    "says": "2 tenders in 12 months, or more than one council area"
+   },
+   {
+    "src": "spec 33.1",
+    "says": "Second tender in 12 months"
+   },
+   {
+    "src": "board PriceBook.dc.html (77)",
+    "says": "Never promise a lower rate"
+   },
+   {
+    "src": "board AftercareStaff.dc.html (71)",
+    "says": "Retained support, offered once"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "referral-asks",
+  "area": "Aftercare and growth",
+  "rule": "Referrals are asked for at natural high points, separately from reviews.",
+  "values_found": [
+   "registration, award letter, paid deposit"
+  ],
+  "where": [
+   {
+    "src": "spec 33",
+    "says": "asked for at natural high points (registration, award letter, paid deposit)"
+   },
+   {
+    "src": "spec 10.8",
+    "says": "separately, asks about referrals"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "Know someone starting a care business?"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "anniversary-year-review",
+  "area": "Aftercare and growth",
+  "rule": "'Your year with Care Sync' on the registration anniversary; Net Promoter Score at registration and anniversary.",
+  "values_found": [
+   "anniversary"
+  ],
+  "where": [
+   {
+    "src": "spec 33",
+    "says": "on the registration anniversary"
+   },
+   {
+    "src": "spec 33.2",
+    "says": "Net Promoter Score at registration and anniversary"
+   },
+   {
+    "src": "email 6.8",
+    "says": "Your first year with Care Sync"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "review-invitation-moment",
+  "area": "Reviews and feedback",
+  "rule": "Public review invitations go to every client at set moments: registration issued, tender award letter, a non-regulator service delivered.",
+  "values_found": [
+   "at registration",
+   "2 weeks after registration"
+  ],
+  "where": [
+   {
+    "src": "spec 37.2",
+    "says": "Moments: registration issued; tender award letter received; a non-CQC service delivered"
+   },
+   {
+    "src": "spec 10.8",
+    "says": "At registration the Hub invites every registered client"
+   },
+   {
+    "src": "email 5.1",
+    "says": "If you would like to share your experience"
+   },
+   {
+    "src": "board Celebrate.dc.html (20)",
+    "says": "Share your experience"
+   },
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "Registered 2 weeks ago and happy. The review invitation goes out automatically tomorrow"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Board 70 sends the invitation about two weeks after registration and frames it around a happy client; spec 37.2 sends it at the registration moment to everyone.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "review-reminder",
+  "area": "Reviews and feedback",
+  "rule": "One review reminder only, then stop.",
+  "values_found": [
+   "once, 7 days later",
+   "only if neither link opened"
+  ],
+  "where": [
+   {
+    "src": "spec 37.2",
+    "says": "One reminder after 7 days, then stop"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "invited, once, with one reminder"
+   },
+   {
+    "src": "email 5.4",
+    "says": "7 days after 5.1, only if neither review link has been opened"
+   },
+   {
+    "src": "board ClientMap.dc.html (32)",
+    "says": "5.4 Review reminder (once)"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "review-no-gating",
+  "area": "Reviews and feedback",
+  "rule": "Every client at the moment is invited whatever their feedback or mood; feedback and the relationship signal are never used to decide who is asked.",
+  "values_found": [
+   "no gating"
+  ],
+  "where": [
+   {
+    "src": "spec 37.1",
+    "says": "Invite everyone at the same moment, never only the happy ones"
+   },
+   {
+    "src": "spec 52.4",
+    "says": "it is never used to decide who gets a review invitation"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "no filtering of unhappy clients"
+   },
+   {
+    "src": "email 5.1",
+    "says": "every registered client receives this invitation, whatever their feedback score"
+   },
+   {
+    "src": "board ManagerDash.dc.html (43)",
+    "says": "no sales or review messages until it is resolved"
+   },
+   {
+    "src": "board ClientCare.dc.html (70)",
+    "says": "no sales or review messages until it is resolved"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Boards 43 and 70 stop review messages for worried clients, which is review gating under spec 37.1, 51.4 and 52.4 (and the platforms' rules).",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "review-platforms",
+  "area": "Reviews and feedback",
+  "rule": "Which review platforms are offered and how.",
+  "values_found": [
+   "Google and Trustpilot, equal buttons, plus tell us privately",
+   "Google link only at first",
+   "Trustpilot free plan 50 invitations a month"
+  ],
+  "where": [
+   {
+    "src": "spec 37.2",
+    "says": "two equal buttons, Review us on Google and Review us on Trustpilot"
+   },
+   {
+    "src": "spec 37.1",
+    "says": "the free plan allows 50 invitations a month"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "reviews: the Google review link only at first"
+   },
+   {
+    "src": "board Celebrate.dc.html (20)",
+    "says": "Review on Google ... Review on Trustpilot ... Or tell us privately"
+   },
+   {
+    "src": "email 5.1",
+    "says": "Review us on Google, or Review us on Trustpilot"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec 55.0 defaults to Google only at first; spec 37.2, email 5.1 and board 20 show both.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "review-integrity",
+  "area": "Reviews and feedback",
+  "rule": "No incentives for reviews; staff never write, suggest wording for or post reviews; reviews shown honestly via platform widgets; a written reviews policy.",
+  "values_found": [
+   "no incentives",
+   "fines up to 10% of turnover"
+  ],
+  "where": [
+   {
+    "src": "spec 37.1",
+    "says": "Since 6 April 2025 UK law bans fake reviews and concealed incentivised reviews, with fines of up to 10% of turnover"
+   },
+   {
+    "src": "email 5.1",
+    "says": "No incentive is ever offered for a review"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "",
+  "who_should_own": "nobody (fixed by law)",
+  "is_legal_fixed": true
+ },
+ {
+  "id": "review-reply-time",
+  "area": "Reviews and feedback",
+  "rule": "Every public review gets a reply within a set time, with a reply task in My day.",
+  "values_found": [
+   "2 working days"
+  ],
+  "where": [
+   {
+    "src": "spec 37.2",
+    "says": "within 2 working days"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "No board shows the reply task.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "unhappy-feedback-routing",
+  "area": "Reviews and feedback",
+  "rule": "An unhappy or neutral answer alerts people straight away; who sees the comment.",
+  "values_found": [
+   "consultant and director straight away",
+   "director calls; consultant does not see the comment unless the client wants"
+  ],
+  "where": [
+   {
+    "src": "spec 10.11",
+    "says": "An unhappy or neutral answer alerts the consultant and a director straight away"
+   },
+   {
+    "src": "board ClientStates.dc.html (53)",
+    "says": "If you are not happy, a director calls you. Your consultant does not see your comment unless you want them to"
+   }
+  ],
+  "conflict": true,
+  "conflict_note": "Spec alerts the consultant; board 53 hides the comment from the consultant by default.",
+  "who_should_own": "super admin",
+  "is_legal_fixed": false
+ },
+ {
+  "id": "complaints-handling",
+  "area": "Reviews and feedback",
+  "rule": "Complaints about Care Sync go to a director not involved, are acknowledged within 1 working day, get a full reply within a target, and are reviewed monthly.",
+  "values_found": [
+   "acknowledge 1 working day",
+   "full reply 20 working days",
+   "monthly director review"
+  ],
+  "where": [
+   {
+    "src": "spec 49.2",
+    "says": "acknowledgement within 1 working day, a named handler who is not the person complained about ... reviewed monthly"
+   },
+   {
+    "src": "spec 51.4",
+    "says": "always go to a director"
+   },
+   {
+    "src": "spec 55.0",
+    "says": "with a full reply within 20 working days"
+   },
+   {
+    "src": "email 9.2",
+    "says": "will be in touch by {{response_date}}"
+   },
+   {
+    "src": "board Account.dc.html (29)",
+    "says": "We confirm we have it within 1 working day"
+   },
+   {
+    "src": "board Reports.dc.html (72)",
+    "says": "Concerns acknowledged within 1 working day"
+   }
+  ],
+  "conflict": false,
+  "conflict_note": "The 20 working day full reply is not shown on any board or email.",
+  "who_should_own": "nobody (fixed rule)",
+  "is_legal_fixed": false
+ }
+]

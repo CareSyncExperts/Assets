@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Price book</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:12px;font-weight:600}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.bz-bar{display:grid;grid-template-columns:170px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-bar2{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-gh{padding:10px 20px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600;letter-spacing:0;border-top:1px solid var(--cs-border-subtle)}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 3460px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Price book" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 800px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Price book</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Every package and add-on, with VAT, instalments, where each price is used, and its history. Anyone may suggest a price; only a super admin enters it, and the other super admin approves it. Anything not set says "Price to set" and nobody quotes it.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
+          <span class="bz-lbl">You are acting as</span>
+          <div role="tablist" aria-label="Acting as" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{asTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <div class="bz-box" style="flex-direction: row; gap: 10px; align-items: flex-start;"><x-import component-from-global-scope="CareSync.Icon" name="info" size="{{n20}}"></x-import><span>{{infoText}} <a href="SuperAdmin.dc.html" style="color: var(--cs-text-brand); font-weight: 500;">Open super admin Home</a></span></div>
+
+      <section class="sb-card" aria-labelledby="pr-h">
+        <div class="sb-head"><h2 id="pr-h" class="sb-h2">Packages and add-ons</h2><span class="sb-sub">Try it: change a price and its instalments, then approve it as the other super admin</span></div>
+        <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 2 1 250px;">Package or add-on</span><span class="sb-th" style="flex: 0 0 100px;">Price</span><span class="sb-th" style="flex: 0 0 76px;">VAT</span><span class="sb-th" style="flex: 1 1 250px;">Instalments</span><span class="sb-th" style="flex: 0 0 136px;">Status</span><span class="sb-th" style="flex: 0 0 246px;"></span></div>
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+          <div class="bz-gh">{{g.label}}</div>
+          <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="5">
+            <div style="border-top: 1px solid var(--cs-border-subtle);">
+              <div class="sb-row" style="border-top: 0; align-items: flex-start;">
+                <span style="flex: 2 1 250px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{r.name}}</span><span class="sb-muted">{{r.what}}</span></span>
+                <span style="flex: 0 0 100px;" class="{{r.priceCls}}">{{r.price}}</span>
+                <span style="flex: 0 0 76px;" class="sb-sub">{{r.vat}}</span>
+                <span style="flex: 1 1 250px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sb-sub">{{r.stages}}</span><sc-for list="{{r.parts}}" as="pt" hint-placeholder-count="2"><span class="sb-sub">{{pt}}</span></sc-for></span>
+                <span style="flex: 0 0 136px; display: flex; flex-direction: column; gap: 4px;"><span class="{{r.stCls}}" style="white-space: normal; align-self: flex-start;">{{r.status}}</span><span class="sb-muted">{{r.eff}}</span></span>
+                <span style="flex: 0 0 246px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap;"><sc-if value="{{r.canEdit}}" hint-placeholder-val="{{ true }}"><button class="sb-btn b-sec" onClick="{{r.edit}}" aria-label="{{r.editAria}}">{{r.editLabel}}</button></sc-if><button class="sb-btn b-gh" onClick="{{r.used}}" aria-label="{{r.usedAria}}" aria-expanded="{{r.usedExp}}">Used in</button><button class="sb-btn b-gh" onClick="{{r.hist}}" aria-label="{{r.histAria}}" aria-expanded="{{r.histExp}}">History</button></span>
+              </div>
+              <sc-if value="{{r.editing}}" hint-placeholder-val="{{ false }}">
+                <div style="margin: 0 20px 14px; padding: 14px; border-radius: 10px; border: 2px solid var(--cs-action-primary); display: flex; flex-direction: column; gap: 12px;">
+                  <span class="bz-b">{{r.editTitle}}</span>
+                  <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end;">
+                    <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">New price in pounds</span><input class="bz-in" style="width: 150px;" value="{{fPrice}}" onChange="{{onPrice}}" placeholder="{{r.pricePh}}"></label>
+                    <span style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">VAT</span><div role="tablist" aria-label="VAT" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{vatTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></span>
+                    <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Effective from (new clients only)</span><input class="bz-in" style="width: 190px;" value="{{fEff}}" onChange="{{onEff}}"></label>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 10px; background: var(--cs-surface-subtle);">
+                    <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-b">Instalments</span><span style="display: flex; gap: 6px; align-items: center;"><span class="bz-lbl">How many</span><div role="tablist" aria-label="Number of instalments" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{nTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></span></div>
+                    <sc-for list="{{inst}}" as="it" hint-placeholder-count="2">
+                      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 6px 0; border-top: 1px solid var(--cs-border-subtle);">
+                        <span class="bz-b" style="flex: 0 0 52px;">{{it.n}}</span>
+                        <label style="display: flex; gap: 6px; align-items: center;"><input class="bz-in" style="width: 84px;" value="{{it.pct}}" onChange="{{it.onPct}}" aria-label="{{it.pctAria}}"><span class="sb-sub">%</span></label>
+                        <span style="display: flex; gap: 6px; flex-wrap: wrap; flex: 1 1 420px;"><sc-for list="{{it.whens}}" as="w" hint-placeholder-count="5"><sc-if value="{{w.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" aria-pressed="true" onClick="{{w.pick}}">{{w.label}}</button></sc-if><sc-if value="{{w.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" aria-pressed="false" onClick="{{w.pick}}">{{w.label}}</button></sc-if></sc-for></span>
+                        <span class="bz-b" style="flex: 0 0 150px; text-align: right;">{{it.amt}}</span>
+                      </div>
+                    </sc-for>
+                    <span class="{{instCheckCls}}">{{instCheck}}</span>
+                    <button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{equalise}}">Split equally</button>
+                  </div>
+                  <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Reason (written to the audit log)</span><textarea class="bz-ta" value="{{fReason}}" onChange="{{onReason}}" placeholder="For example: more policies now included"></textarea></label>
+                  <sc-if value="{{fErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">{{fErrText}}</span></sc-if>
+                  <div style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{submit}}">Send to the other super admin</button><button class="sb-btn b-gh" onClick="{{cancel}}">Cancel</button></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{r.pending}}" hint-placeholder-val="{{ false }}">
+                <div class="bz-amb" style="margin: 0 20px 14px;">
+                  <span class="bz-b">{{r.pendText}}</span>
+                  <span class="sb-sub">{{r.pendPlan}}</span>
+                  <span class="sb-sub">{{r.pendReason}}</span>
+                  <sc-if value="{{r.mine}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">{{r.mineText}}</span></sc-if>
+                  <sc-if value="{{r.canApprove}}" hint-placeholder-val="{{ false }}">
+                    <textarea class="bz-ta" aria-label="Reason for your decision" value="{{r.apReason}}" onChange="{{r.onApReason}}" placeholder="Your reason (written to the audit log)"></textarea>
+                    <sc-if value="{{r.apErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a reason first.</span></sc-if>
+                    <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{r.approve}}">{{r.approveLabel}}</button><button class="sb-btn b-gh" onClick="{{r.decline}}">Decline</button></span>
+                  </sc-if>
+                </div>
+              </sc-if>
+              <sc-if value="{{r.showUsed}}" hint-placeholder-val="{{ false }}">
+                <div class="bz-box" style="margin: 0 20px 14px; gap: 4px;">
+                  <span class="bz-lbl">Where this price is used</span>
+                  <sc-for list="{{r.usedIn}}" as="u" hint-placeholder-count="9"><div style="display: flex; gap: 12px; font-size: 13px; line-height: 18px; padding: 3px 0;"><span class="bz-b" style="flex: 0 0 230px;">{{u.where}}</span><span class="sb-sub" style="flex: 1; min-width: 0;">{{u.what}}</span></div></sc-for>
+                  <span class="sb-sub" style="padding-top: 4px;">{{r.affected}}</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{r.showHist}}" hint-placeholder-val="{{ false }}">
+                <div class="bz-box" style="margin: 0 20px 14px;">
+                  <span class="bz-lbl">History</span>
+                  <sc-for list="{{r.history}}" as="h" hint-placeholder-count="2"><span style="font-size: 13px; line-height: 18px;">{{h}}</span></sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </sc-for>
+      </section>
+
+      <section class="sb-card" aria-labelledby="dc-h">
+        <div class="sb-head"><h2 id="dc-h" class="sb-h2">{{discLeft}}</h2><span class="sb-sub">Asked from Add a client or a client record, with an amount and a reason. A super admin who did not ask decides</span></div>
+        <sc-for list="{{discounts}}" as="d" hint-placeholder-count="2">
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-b">{{d.title}}</span><span style="display: flex; gap: 8px; align-items: center;"><span class="sb-chip c-neutral">{{d.num}}</span><span class="{{d.chipCls}}">{{d.chip}}</span></span></div>
+            <span>{{d.ask}}</span>
+            <span class="sb-sub">{{d.why}}</span>
+            <sc-if value="{{d.open}}" hint-placeholder-val="{{ true }}">
+              <textarea class="bz-ta" aria-label="{{d.taLabel}}" value="{{d.reason}}" onChange="{{d.onReason}}" placeholder="Your reason (written to the audit log)"></textarea>
+              <sc-if value="{{d.err}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a reason first.</span></sc-if>
+              <span style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{d.approve}}">Approve the discount</button><button class="sb-btn b-gh" onClick="{{d.decline}}">Decline</button></span>
+            </sc-if>
+            <sc-if value="{{d.done}}" hint-placeholder-val="{{ false }}"><div class="{{d.doneBox}}"><span class="bz-b">{{d.doneText}}</span><span class="sb-sub">{{d.doneNote}}</span><button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{d.undo}}">Change my decision</button></div></sc-if>
+            <div style="display: flex; flex-direction: column; gap: 0; border-radius: 10px; border: 1px solid var(--cs-border-subtle);">
+              <div class="bz-gh" style="border-top: 0;">{{d.flowTitle}}</div>
+              <sc-for list="{{d.flow}}" as="f" hint-placeholder-count="5"><div style="display: flex; gap: 12px; padding: 6px 20px; font-size: 13px; line-height: 18px; border-top: 1px solid var(--cs-border-subtle);"><span class="bz-b" style="flex: 0 0 230px;">{{f.where}}</span><span class="sb-sub" style="flex: 1; min-width: 0;">{{f.what}}</span></div></sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div class="sb-row"><span class="sb-muted">The price book itself never changes for a discount. Discounts given are listed in Money and exports (board 87) for the accountant.</span></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":3460}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { as: 'me', edit: '', fPrice: '', fVat: '+ VAT', fEff: 'Mon 16 Nov 2026', fReason: '', fErr: '', fN: 2, fPct: ['50', '50'], fWhen: [0, 3], fEqual: true,
+      pend: { full: { price: 850000, vat: '+ VAT', eff: 'Mon 2 Nov 2026', reason: 'Checked price for the full start-up package. Rachel to confirm £8,500 rather than £8,000 before it is approved', by: 'Collins', n: 3, pct: null, when: [0, 2, 3] } },
+      upd: {}, hist: {}, used: {}, apReason: {}, apErr: {}, disc: {}, dReason: {}, dErr: {} };
+  }
+  renderVals() {
+    const s = this.state;
+    const C = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const VAT = Number(C('vat-rate', 20));
+    const WHEN = ['At accept, sign and pay', 'At handover approval', 'At final pack sign-off', 'When the application is submitted', 'At signing', 'Before submission'];
+    const PLAN = { two: [2, [0, 3]], three: [3, [0, 2, 3]], tender: [2, [4, 5]], one: [1, [0]] };
+    const pounds = (p, dec) => '£' + (p / 100).toLocaleString('en-GB', { minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 });
+    const split = (total, n, pct) => {
+      if (!pct) { const base = Math.floor(total / n); return Array.from({ length: n }, (x, i) => i < n - 1 ? base : total - base * (n - 1)); }
+      let used = 0; return pct.map((p, i) => { if (i === n - 1) return total - used; const a = Math.floor(total * Number(p) / 100); used += a; return a; });
+    };
+    const amtsText = (total, n, pct, when, vat, from, short) => { const a = split(total, n, pct); const dec = a.some(x => x % 100 !== 0); return a.map((x, i) => (short ? '' : (i + 1) + ' of ' + n + ': ') + (from ? 'from ' : '') + pounds(x, dec) + (vat === '+ VAT' ? ' + VAT' : '') + ', ' + WHEN[when[i]].toLowerCase()); };
+    const P = id => Math.round(Number(C(id, 0)) * 100);
+    // [id, name, what, pence or null, vat, plan, status, eff, history, extra used, signed this year]
+    const R = [
+      ['reg', 'Registration packages', [
+        ['dom', 'CQC registration: domiciliary care', 'England. Every policy and document, 3 sessions with Millicent, every CQC letter answered', P('price-dom'), '+ VAT', 'two', 'live', '1 Oct 2026', ['1 Oct 2026: £4,000 + VAT, set in setup mode by Collins before go-live'], 18],
+        ['sl', 'CQC registration: supported living', 'England. Includes the easy read guide and the financial viability statement', P('price-sl'), '+ VAT', 'two', 'live', '1 Oct 2026', ['1 Oct 2026: £5,000 + VAT, set in setup mode by Collins before go-live'], 7],
+        ['ciw', 'CIW registration (Wales)', 'The ten CIW Online policies, Statement of Purpose, Active Offer in every document', P('price-ciw'), '+ VAT', 'two', 'live', '1 Oct 2026', ['1 Oct 2026: £4,500 + VAT, set in setup mode by Collins before go-live'], 4],
+        ['rqia', 'RQIA registration (Northern Ireland)', 'Ten core policies mapped to the Minimum Standards', P('price-rqia'), '+ VAT', 'two', 'live', '1 Oct 2026', ['1 Oct 2026: £4,500 + VAT, set in setup mode by Collins before go-live', 'Before: £3,500 in the old package document, now out of date'], 3],
+        ['full', 'Full start-up package', 'Company set-up, branding, website, business plan, registration, and 12 months of aftercare (the only package that includes aftercare)', P('price-full'), '+ VAT', 'three', 'check', '1 Oct 2026', ['2 Nov 2026: £8,500 + VAT entered by Collins as the checked price. Waiting for Rachel Turner', '1 Oct 2026: £8,500 + VAT, set in setup mode by Collins, marked "to check against £8,000"'], 6]
+      ]],
+      ['add', 'Add-ons and single services', [
+        ['sladd', 'Supported living add-on', 'Adding supported living to a CQC registration. Policies quoted separately', P('price-sl-addon'), 'incl. VAT', 'one', 'live', '1 Oct 2026', ['1 Oct 2026: £1,500 including VAT, set in setup mode by Collins'], 0],
+        ['int', 'CQC interview preparation', 'Practice sessions with Millicent (number set on the package) and the Interview Preparation Hub', P('price-interview'), 'incl. VAT', 'one', 'live', '1 Oct 2026', ['1 Oct 2026: £750 including VAT, set in setup mode by Collins'], 0],
+        ['pir', 'PIR writing', 'Per PIR, one PIR per service type', P('price-pir'), '+ VAT', 'one', 'live', '1 Nov 2026', ['30 Oct 2026: wording now "per PIR, one PIR per service type". Suggested by Grace, entered by Collins, approved by Rachel Turner. From 1 Nov, new clients only', '1 Oct 2026: £750 + VAT, set in setup mode by Collins'], 0],
+        ['after', 'Aftercare, 12 months', 'For registration-only clients. Included in the full start-up package', null, '', 'one', 'set', '', ['No price set yet. Decided 4 Nov: registration-only clients can buy aftercare as an add-on'], 0],
+        ['extra', 'Extra sessions', 'Sessions beyond those included in a package', null, '', 'one', 'set', '', ['No price set yet'], 0],
+        ['single', 'Single services', 'For example a policy refresh or a business plan', 50000, '+ VAT', 'one', 'from', '1 Oct 2026', ['1 Oct 2026: from £500 + VAT, 1 payment in full'], 0],
+        ['rebrand', 'Policy rebrand, branding and business forms', 'Single service', 50000, '+ VAT', 'one', 'confirm', '1 Oct 2026', ['1 Oct 2026: from £500 + VAT, still to confirm. Not quoted above "from £500" until confirmed'], 0],
+        ['var', 'Registration variation', 'Adding a location, a service or a band. Its form is still a draft', null, '', 'one', 'set', '', ['No price set yet'], 0],
+        ['mock', 'Mock inspection', 'For registration-only clients. Included in the full start-up package', null, '', 'one', 'set', '', ['No price set yet'], 0],
+        ['web', 'Website or marketing', 'Website, search and Google profile', null, '', 'one', 'quote', '', ['Quoted for each client'], 0]
+      ]],
+      ['ten', 'Tenders', [
+        ['tender', 'Tender writing', 'Full quotation after we review the tender', P('price-tender-from'), '+ VAT', 'tender', 'from', '1 Oct 2026', ['1 Oct 2026: from £1,500 + VAT, set in setup mode by Collins'], 0],
+        ['bid', 'Bid review', 'For a bid the client wrote. Around £500', 50000, 'To confirm', 'one', 'vat', '', ['Around £500. VAT still to confirm'], 0],
+        ['ret', 'Retained tender package', 'Several bids a year. Never promise a lower rate', null, '', 'one', 'set', '', ['No price set yet'], 0],
+        ['fw', 'Framework or dynamic purchasing application', 'Often shorter than a full tender', null, '', 'one', 'set', '', ['No price set yet'], 0],
+        ['pol', 'Policy writing for a tender', 'Extra to the tender fee. Quoted for each tender', null, '', 'one', 'quote', '', ['Quoted for each tender'], 0]
+      ]]
+    ];
+    const who = s.as === 'me' ? 'Collins' : 'Rachel Turner';
+    const other = s.as === 'me' ? 'Rachel Turner' : 'Collins';
+    const ST = { live: ['Live', 'c-ok'], from: ['Live, from price', 'c-ok'], check: ['Check: £8,500 or £8,000', 'c-warn'], set: ['Price to set', 'c-warn'], quote: ['Quote per client', 'c-neutral'], vat: ['VAT to confirm', 'c-warn'], confirm: ['To confirm', 'c-warn'] };
+    const USED = [
+      ['Add a client (board 51)', 'Package list, total and instalments'],
+      ['Plan and costs (board 60, client Hub)', 'The client\'s price and payment stages'],
+      ['Account (board 29, client Hub)', 'Invoices and receipts'],
+      ['Packages and journeys (board 81)', 'The package record'],
+      ['Manager dashboard (board 43)', 'Revenue by package, instalments due'],
+      ['Money and exports (board 87)', 'VAT split, accountant export, discounts given'],
+      ['Agreement (DocuSeal)', 'Price and payment stages the client signs'],
+      ['Stripe instalments', 'Each amount and the moment it is taken'],
+      ['Xero invoice', 'Invoice lines and VAT, synced every hour']
+    ];
+    let live = 0, toSet = 0;
+    const groups = R.map(([gk, label, rows]) => ({ label, rows: rows.map(([id, name, what, pence0, vat0, plan0, st0, eff0, h0, signed]) => {
+      const u = s.upd[id] || {}; const p = s.pend[id];
+      const pence = u.price !== undefined ? u.price : pence0, vat = u.vat || vat0, eff = u.eff || eff0;
+      const st = u.price !== undefined ? 'live' : st0;
+      const n = u.n || PLAN[plan0][0], when = u.when || PLAN[plan0][1], pct = u.n ? u.pct : null;
+      if (['live', 'from', 'check'].indexOf(st) >= 0) live++; if (st === 'set') toSet++;
+      const from = st === 'from' || st === 'confirm' || st0 === 'from';
+      const priced = pence !== null && st !== 'quote';
+      const history = (u.hist || []).concat(h0);
+      const price = priced ? (from ? 'From ' : (st === 'vat' ? 'Around ' : '')) + pounds(pence, pence % 100 !== 0) : (st === 'quote' ? 'Quote' : 'Price to set');
+      const parts = priced && st !== 'vat' ? amtsText(pence, n, pct, when, vat, from, true).map(t => t.charAt(0).toUpperCase() + t.slice(1)) : [];
+      const stages = !priced ? (st === 'quote' ? 'Agreed with each quote' : 'Set with the price') : (st === 'vat' ? 'To set with the VAT' : (n === 1 ? '1 payment in full' : n + ' instalments' + (pct ? ' (custom split)' : '')));
+      const pendText = !p ? '' : (id === 'full' && priced && p.price === pence && p.vat === vat ? 'Waiting for ' + (p.by === 'Collins' ? 'Rachel Turner' : 'Collins') + ' to confirm ' + price + ' ' + vat + ' as the checked price (rather than £8,000), from ' + p.eff + '. Entered by ' + p.by + '.' : 'Waiting for ' + (p.by === 'Collins' ? 'Rachel Turner' : 'Collins') + ': ' + (priced ? price + ' ' + vat : 'no price') + ' to ' + pounds(p.price, p.price % 100 !== 0) + ' ' + p.vat + ', from ' + p.eff + '. Entered by ' + p.by + '.');
+      const affected = signed ? 'Clients affected today: none. A new price applies to new clients only, from its date. The ' + signed + ' clients who signed this year keep the price in their agreement.' : 'Clients affected today: none. A new price applies to new clients only, from its date. Anyone who already bought it keeps their price.';
+      const usedIn = USED.concat(id === 'full' ? [['Aftercare (board 30)', '12 months included'], ['Go-live readiness (board 79)', 'Full start-up price check']] : (id === 'tender' ? [['Tender record', 'The quote for each bid']] : [])).map(([where, w]) => ({ where, what: w }));
+      return { name, what, price, priceCls: priced ? 'bz-b' : 'sb-sub', vat: priced ? vat : ' ', stages, parts,
+        status: p ? 'Waiting for ' + (p.by === 'Collins' ? 'Rachel Turner' : 'Collins') : ST[st][0], stCls: 'sb-chip ' + (p ? 'c-warn' : ST[st][1]), eff: eff ? 'From ' + eff : (st === 'quote' ? 'Quoted each time' : 'Not set'),
+        canEdit: !p && s.edit !== id && st !== 'quote', editLabel: priced && st !== 'vat' ? 'Change' : 'Set a price', editAria: (priced ? 'Change the price of ' : 'Set a price for ') + name,
+        edit: () => { const ww = when.slice(); this.setState({ edit: id, fPrice: '', fVat: vat0 && vat0 !== 'To confirm' ? vat0 : '+ VAT', fEff: 'Mon 16 Nov 2026', fReason: '', fErr: '', fN: n, fWhen: ww, fPct: pct ? pct.slice() : Array.from({ length: n }, () => (100 / n).toFixed(2).replace(/\.00$/, '')), fEqual: !pct, editBase: pence || 0 }); },
+        editing: s.edit === id, editTitle: (priced ? 'Change ' + name + '. Now: ' + price + ' ' + vat + '.' : 'Set a price for ' + name + '.') + ' You enter it; ' + other + ' approves it.',
+        pricePh: priced ? 'Now ' + (pence / 100) : 'For example 1200',
+        used: () => this.setState({ used: Object.assign({}, s.used, { [id]: !s.used[id] }) }), usedAria: 'Where the price of ' + name + ' is used', usedExp: String(!!s.used[id]), showUsed: !!s.used[id], usedIn, affected,
+        hist: () => this.setState({ hist: Object.assign({}, s.hist, { [id]: !s.hist[id] }) }), histAria: 'History of ' + name, histExp: String(!!s.hist[id]), showHist: !!s.hist[id], history,
+        pending: !!p, pendText, pendPlan: p ? 'Instalments: ' + amtsText(p.price, p.n, p.pct, p.when, p.vat, false).join('; ') : '', pendReason: p ? 'Reason: "' + p.reason + '"' : '',
+        mine: !!p && p.by === who, mineText: 'You entered this, so you cannot approve it. Only ' + other + ' can. Switch at the top to try.', canApprove: !!p && p.by !== who,
+        approveLabel: p ? 'Approve ' + pounds(p.price, p.price % 100 !== 0) + ' ' + p.vat : '',
+        apReason: s.apReason[id] || '', apErr: !!s.apErr[id], onApReason: e => this.setState({ apReason: Object.assign({}, s.apReason, { [id]: e.target.value }), apErr: Object.assign({}, s.apErr, { [id]: false }) }),
+        approve: () => {
+          const r = (s.apReason[id] || '').trim(); if (!r) { this.setState({ apErr: Object.assign({}, s.apErr, { [id]: true }) }); return; }
+          const line = 'Just now: ' + pounds(p.price, p.price % 100 !== 0) + ' ' + p.vat + ' from ' + p.eff + '. Entered by ' + p.by + ', approved by ' + who + '. Reason: "' + r + '"';
+          const np = Object.assign({}, s.pend); delete np[id];
+          this.setState({ pend: np, upd: Object.assign({}, s.upd, { [id]: { price: p.price, vat: p.vat, eff: p.eff, n: p.n, pct: p.pct, when: p.when, hist: [line].concat(u.hist || []) } }), hist: Object.assign({}, s.hist, { [id]: true }) });
+        },
+        decline: () => {
+          const r = (s.apReason[id] || '').trim(); if (!r) { this.setState({ apErr: Object.assign({}, s.apErr, { [id]: true }) }); return; }
+          const line = 'Just now: ' + pounds(p.price, p.price % 100 !== 0) + ' ' + p.vat + ' declined by ' + who + '. Entered by ' + p.by + '. Reason: "' + r + '"';
+          const np = Object.assign({}, s.pend); delete np[id];
+          this.setState({ pend: np, upd: Object.assign({}, s.upd, { [id]: Object.assign({}, u, { hist: [line].concat(u.hist || []) }) }), hist: Object.assign({}, s.hist, { [id]: true }) });
+        }
+      };
+    }) }));
+    // Edit form: instalments with exact penny rounding.
+    const fTotal = (() => { const v = parseFloat(String(s.fPrice).replace(/[^0-9.]/g, '')); return isNaN(v) ? (s.editBase || 0) : Math.round(v * 100); })();
+    const pctNums = s.fPct.map(x => parseFloat(String(x).replace(/[^0-9.]/g, '')));
+    const pctSum = Math.round(pctNums.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0) * 1000) / 1000;
+    const pctOk = s.fEqual || (pctNums.every(x => !isNaN(x) && x > 0) && Math.abs(pctSum - 100) < 0.001);
+    const fAm = pctOk ? split(fTotal, s.fN, s.fEqual ? null : pctNums) : [];
+    const dec = fAm.some(x => x % 100 !== 0);
+    const vx = s.fVat === '+ VAT' ? ' + VAT' : (s.fVat === 'incl. VAT' ? ' incl. VAT' : '');
+    const inst = Array.from({ length: s.fN }, (x, i) => ({ n: (i + 1) + ' of ' + s.fN, pct: s.fEqual ? (100 / s.fN).toFixed(2).replace(/\.00$/, '') : s.fPct[i], pctAria: 'Instalment ' + (i + 1) + ' percentage',
+      onPct: e => { const fp = (s.fEqual ? Array.from({ length: s.fN }, () => (100 / s.fN).toFixed(2).replace(/\.00$/, '')) : s.fPct.slice()); fp[i] = e.target.value; this.setState({ fPct: fp, fEqual: false, fErr: '' }); },
+      whens: WHEN.map((w, k) => ({ label: w, on: s.fWhen[i] === k, off: s.fWhen[i] !== k, pick: () => { const fw = s.fWhen.slice(); fw[i] = k; this.setState({ fWhen: fw }); } })),
+      amt: pctOk && fTotal ? pounds(fAm[i], dec) + vx : 'Not worked out' }));
+    const setN = n => { const base = [[0], [0, 3], [0, 2, 3], [0, 1, 2, 3]][n - 1]; this.setState({ fN: n, fWhen: base, fEqual: true, fPct: Array.from({ length: n }, () => (100 / n).toFixed(2).replace(/\.00$/, '')) }); };
+    const instCheck = !fTotal ? 'Enter a price to see the amounts.' : (!pctOk ? 'The percentages add up to ' + pctSum + '%. They must add up to 100%.' : 'Adds up to ' + pounds(fTotal, true) + vx + ' exactly. Each amount is rounded down to the penny and the last instalment takes the rounding.' + (s.fVat === '+ VAT' ? ' VAT at ' + VAT + '% is added to each.' : ''));
+    const submit = () => {
+      const v = parseFloat(String(s.fPrice).replace(/[^0-9.]/g, ''));
+      if (isNaN(v) || v <= 0) { this.setState({ fErr: 'Enter the new price in pounds.' }); return; }
+      if (!pctOk) { this.setState({ fErr: 'The instalment percentages must add up to 100%.' }); return; }
+      if (!s.fReason.trim()) { this.setState({ fErr: 'Write a reason first.' }); return; }
+      this.setState({ pend: Object.assign({}, s.pend, { [s.edit]: { price: Math.round(v * 100), vat: s.fVat, eff: s.fEff.trim() || 'Mon 16 Nov 2026', reason: s.fReason.trim(), by: who, n: s.fN, pct: s.fEqual ? null : pctNums, when: s.fWhen.slice() } }), edit: '', fErr: '' });
+    };
+    // Discounts (decisions 2 and 3 on super admin Home)
+    const vatOf = p => Math.round(p * VAT / 100);
+    const DS = [
+      ['lind', '2', 'Lindenfield Care Ltd: CQC registration: domiciliary care', P('price-dom'), 380000, 2, [0, 3], 'Asked by Jo Martin from Add a client, today 08:05.', 'Ready to sign today and price is the last blocker. Jo offered to trade scope first; the client wants the full package.', 'Jo Martin'],
+      ['ashby', '3', 'Ashby Care: PIR writing for 2 service types', P('price-pir') * 2, 135000, 1, [0], 'Asked by Daniel Mensah from the client record, Fri 30 Oct.', 'Aftercare client, month 12, handover 18 Nov, happy. Both PIRs share most of the same evidence.', 'Daniel']
+    ];
+    const discounts = DS.map(([id, num, title, list, ask, n, when, by, why, asker]) => {
+      const v = s.disc[id]; const r = s.dReason[id] || '';
+      const off = list - ask;
+      const go = val => { if (!r.trim()) { this.setState({ dErr: Object.assign({}, s.dErr, { [id]: true }) }); return; } this.setState({ disc: Object.assign({}, s.disc, { [id]: val }) }); };
+      const am = split(ask, n, null); const dec = am.some(x => x % 100 !== 0) || true;
+      const yes = v === 'yes';
+      const flow = [
+        ['Agreement (DocuSeal)', 'List price ' + pounds(list) + ' + VAT. Discount ' + pounds(off) + '. Agreed price ' + pounds(ask) + ' + VAT, with the approver\'s name and date.'],
+        ['Stripe instalments', am.map((x, i) => (i + 1) + ' of ' + n + ': ' + pounds(x, dec) + ' + VAT ' + pounds(vatOf(x), true) + ' = ' + pounds(x + vatOf(x), true) + ', ' + WHEN[when[i]].toLowerCase()).join('. ')],
+        ['Xero invoice', 'Line at the list price ' + pounds(list, true) + ', then "Discount agreed by Care Sync" ' + pounds(off, true) + ' off. VAT at ' + VAT + '% on ' + pounds(ask, true) + ': ' + pounds(vatOf(ask), true) + '. Total ' + pounds(ask + vatOf(ask), true) + '.'],
+        ['Plan and costs (board 60)', 'The client sees "Your price: ' + pounds(ask) + ' + VAT. This includes a ' + pounds(off) + ' discount agreed by Care Sync."'],
+        ['Money and exports (board 87)', 'Listed under discounts given: amount, client, who asked, who approved, reason.']
+      ].map(([where, w]) => ({ where, what: w }));
+      return { title, num: 'Decision ' + num + ' on Home', ask: 'Asks for ' + pounds(ask) + ' + VAT instead of ' + pounds(list) + ' + VAT (' + pounds(off) + ' off).', why: by + ' ' + why,
+        open: !v, done: !!v, reason: r, err: !!s.dErr[id], taLabel: 'Reason for your decision on ' + title,
+        onReason: e => this.setState({ dReason: Object.assign({}, s.dReason, { [id]: e.target.value }), dErr: Object.assign({}, s.dErr, { [id]: false }) }),
+        approve: () => go('yes'), decline: () => go('no'), undo: () => { const d = Object.assign({}, s.disc); delete d[id]; this.setState({ disc: d }); },
+        chip: !v ? 'Waiting' : (yes ? 'Approved' : 'Declined'), chipCls: 'sb-chip ' + (!v ? 'c-warn' : (yes ? 'c-ok' : 'c-neutral')),
+        doneBox: yes ? 'bz-ok' : 'bz-box',
+        doneText: (yes ? 'Approved' : 'Declined') + ' by ' + who + ', just now. ' + asker + ' is told, and decision ' + num + ' leaves super admin Home.',
+        doneNote: 'Reason: "' + r.trim() + '". Written to the audit log.' + (yes ? ' The changes below are made now.' : ' The client is quoted the price book price.'),
+        flowTitle: yes ? 'What changed when it was approved' : (v ? 'Nothing changes: the price book price stands' : 'If approved, this is what changes'), flow };
+    });
+    const nPend = Object.keys(s.pend).length;
+    const nDisc = DS.filter(d => !s.disc[d[0]]).length;
+    const vatOpts = ['+ VAT', 'incl. VAT'];
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n20: 20, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check', current: true },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      user: s.as === 'me' ? { name: 'Collins', initials: 'C' } : { name: 'Rachel Turner', initials: 'RT' },
+      asTabs: [['me', 'Collins'], ['second', 'Rachel Turner (super admin 2)']].map(([k, label]) => ({ label, on: s.as === k, off: s.as !== k, pick: () => this.setState({ as: k, edit: '' }) })),
+      kpis: [['Live prices', String(live), 'Quoted by sales from here'], ['Price to set', String(toSet), 'Never quoted until set'], ['Price changes waiting', String(nPend), nPend ? 'The other super admin decides' : 'Nothing waiting'], ['Discount requests', String(nDisc), nDisc ? 'A super admin who did not ask decides' : 'All decided']].map(([k, v, note]) => ({ k, v, note })),
+      infoText: (nPend + nDisc) + ' of the 7 decisions on super admin Home are here: the full start-up price (decision 1) and two discounts (decisions 2 and 3). A new price applies only to new clients from its date; clients who have signed keep the price in their agreement. Payments go through Stripe; bank transfer only by agreement, marked paid by finance. VAT is ' + VAT + '%, a setting in Rules and promises.',
+      groups, fPrice: s.fPrice, fEff: s.fEff, fReason: s.fReason, fErr: !!s.fErr, fErrText: s.fErr,
+      onPrice: e => this.setState({ fPrice: e.target.value, fErr: '' }), onEff: e => this.setState({ fEff: e.target.value }), onReason: e => this.setState({ fReason: e.target.value, fErr: '' }),
+      vatTabs: vatOpts.map(k => ({ label: k, on: s.fVat === k, off: s.fVat !== k, pick: () => this.setState({ fVat: k }) })),
+      nTabs: [1, 2, 3, 4].map(k => ({ label: String(k), on: s.fN === k, off: s.fN !== k, pick: () => setN(k) })),
+      inst, instCheck, instCheckCls: pctOk ? 'sb-sub' : 'bz-err', equalise: () => setN(s.fN),
+      submit, cancel: () => this.setState({ edit: '', fErr: '' }), discounts, discLeft: 'Discount requests: ' + nDisc
+    };
+  }
+}
+</script>
+</body>
+</html>

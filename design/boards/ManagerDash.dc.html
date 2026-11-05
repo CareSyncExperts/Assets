@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Manager dashboard</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:12px;font-weight:600}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.bz-bar{display:grid;grid-template-columns:170px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-bar2{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-gh{padding:10px 20px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600;letter-spacing:0;border-top:1px solid var(--cs-border-subtle)}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 3920px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Manager dashboard" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Monday 2 November</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Good morning, Collins. 52 active clients. Money, the team, refusal risk and tenders, all in one place.</span>
+        </div>
+        <a class="sb-btn b-pri bz-link" href="SuperAdmin.dc.html">Super admin decisions <span class="bz-pill">7</span><span class="sr-only"> waiting on super admin Home</span></a>
+      </div>
+
+      <div class="bz-cols">
+        <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+        <section class="sb-card" style="padding-bottom: 6px;" aria-labelledby="nd-h">
+          <div class="sb-head"><h2 id="nd-h" class="sb-h2">Needs you today</h2><span class="sb-sub">{{todoLeft}}</span></div>
+          <sc-for list="{{todo}}" as="t" hint-placeholder-count="5">
+            <div class="sb-row" style="align-items: flex-start;">
+              <span class="{{t.cls}}" style="width: 92px; justify-content: center; flex-shrink: 0;">{{t.kind}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{t.title}}</span><span class="sb-sub">{{t.why}}</span></span>
+              <sc-if value="{{t.open}}" hint-placeholder-val="{{ true }}"><button class="sb-btn b-sec" onClick="{{t.act}}">{{t.cta}}</button></sc-if>
+              <sc-if value="{{t.done}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-ok">{{t.doneText}}</span></sc-if>
+            </div>
+          </sc-for>
+        </section>
+          <section class="sb-card" style="padding: 0 20px 18px;" aria-labelledby="wg-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="wg-h" class="sb-h2">Watch gaps</h2><span class="sb-sub">Red after 7 days</span></div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="bz-red">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Riverside Homecare: CQC email login missing</span><span class="sb-chip c-bad">10 days</span></div>
+                <span class="sb-sub">Submitted to CQC on Fri 23 Oct. Without the login the Hub cannot watch for CQC emails. Olu's client, Daniel covering. Ask Mark Evans for it on your call today.</span>
+              </div>
+              <div class="bz-amb">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Greenway Support: gone quiet</span><span class="sb-chip c-warn">10 days</span></div>
+                <span class="sb-sub">Likely reason: the Friday 30 Oct weekly update bounced at 17:02, so Tunde Bello may not know 3 documents are waiting. Fix the email address first, then Daniel calls.</span>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" aria-labelledby="ap-h">
+            <div class="sb-head"><h2 id="ap-h" class="sb-h2">{{mgrLeft}}</h2><span class="sb-sub">Yours as a manager. Directors count as managers</span></div>
+            <sc-for list="{{mgr}}" as="a" hint-placeholder-count="2">
+              <div class="sb-row" style="align-items: flex-start;"><span class="{{a.cls}}" style="flex-shrink: 0;">{{a.state}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{a.title}}</span><span class="sb-sub">{{a.text}}</span></span><a class="sb-btn b-gh bz-link" href="{{a.href}}">{{a.cta}}</a></div>
+            </sc-for>
+            <div class="bz-gh" style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><span>Super admin decisions: 7</span><a class="bz-link" href="SuperAdmin.dc.html" style="font-size: 13px; color: var(--cs-text-brand); font-weight: 500; min-height: 36px;">Open super admin Home</a></div>
+            <sc-for list="{{approvals}}" as="a" hint-placeholder-count="7">
+              <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-chip c-warn" style="flex: 0 0 96px; justify-content: center;">{{a.kind}}</span><span style="flex: 1; min-width: 0;" class="sb-sub">{{a.text}}</span></div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">These need Collins or Rachel Turner, and never the person who asked. They are decided on super admin Home, not here.</span></div>
+          </section>
+        </div>
+      </div>
+
+      <section class="sb-card" aria-labelledby="mn-h">
+        <div class="sb-head"><h2 id="mn-h" class="sb-h2">Money</h2><span style="display: flex; gap: 8px; align-items: center;"><span class="sb-chip c-ok">Xero: synced 09:00</span><span class="sb-sub">Syncs every hour. Amounts exclude VAT. </span><a class="bz-link" href="MoneyExports.dc.html" style="font-size: 13px; color: var(--cs-text-brand); font-weight: 500; min-height: 36px;">Open Money and exports</a></span></div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+          <sc-for list="{{money}}" as="m" hint-placeholder-count="4">
+            <div class="sb-kpi"><span class="sb-muted">{{m.k}}</span><span class="sb-kv">{{m.v}}</span><span class="sb-sub">{{m.note}}</span></div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; border-top: 1px solid var(--cs-border-subtle);">
+          <div style="flex: 1 1 300px; min-width: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <span class="bz-lbl">Overdue by age</span>
+            <sc-for list="{{aged}}" as="g" hint-placeholder-count="3">
+              <div class="bz-bar2"><span>{{g.k}}</span><span class="{{g.barCls}}" aria-hidden="true"><span class="{{g.w}}"></span></span><span style="text-align: right; font-weight: 500;">{{g.v}}</span></div>
+              <span class="sb-muted">{{g.who}}</span>
+            </sc-for>
+          </div>
+          <div style="flex: 1 1 300px; min-width: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--cs-border-subtle);">
+            <span class="bz-lbl">Instalments due in the next 90 days</span>
+            <sc-for list="{{inst}}" as="g" hint-placeholder-count="3">
+              <div class="bz-bar2"><span>{{g.k}}</span><span class="bar" aria-hidden="true"><span class="{{g.w}}"></span></span><span style="text-align: right; font-weight: 500;">{{g.v}}</span></div>
+            </sc-for>
+            <span class="sb-muted">14 instalments, £31,916.67 in all, paid through Stripe. Reminders go a week before each one.</span>
+          </div>
+          <div style="flex: 1.3 1 360px; min-width: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; border-left: 1px solid var(--cs-border-subtle);">
+            <span class="bz-lbl">Revenue by package, this year so far</span>
+            <sc-for list="{{rev}}" as="g" hint-placeholder-count="7">
+              <div class="bz-bar"><span>{{g.k}}</span><span class="bar" aria-hidden="true"><span class="{{g.w}}"></span></span><span style="text-align: right; font-weight: 500;">{{g.v}}</span></div>
+            </sc-for>
+            <div class="bz-bar" style="border-top: 1px solid var(--cs-border-subtle); padding-top: 8px;"><span class="bz-b">Total</span><span></span><span style="text-align: right; font-weight: 600;">£220,850</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sb-card" aria-labelledby="tw-h">
+        <div class="sb-head"><h2 id="tw-h" class="sb-h2">Team workload this week</h2><a class="bz-link" href="TeamCover.dc.html" style="font-size: 13px; color: var(--cs-text-brand); font-weight: 500; min-height: 36px;">Open Team and cover</a></div>
+        <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 0 0 150px;">Person</span><span class="sb-th" style="flex: 1 1 170px;">Clients as case owner</span><span class="sb-th" style="flex: 0 0 130px;">Weekly updates</span><span class="sb-th" style="flex: 0 0 110px;">Overdue tasks</span><span class="sb-th" style="flex: 0 0 150px;">Legal deadlines, next 14 days</span><span class="sb-th" style="flex: 1 1 220px;">Leave and cover</span></div>
+        <sc-for list="{{team}}" as="p" hint-placeholder-count="7">
+          <div class="sb-row" style="align-items: flex-start;">
+            <span style="flex: 0 0 150px; display: flex; flex-direction: column;"><span class="bz-b">{{p.name}}</span><span class="sb-muted">{{p.role}}</span></span>
+            <span style="flex: 1 1 170px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span>{{p.clients}}</span><sc-if value="{{p.hasGap}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-bad" style="white-space: normal; align-self: flex-start;">{{p.gap}}</span></sc-if></span>
+            <span style="flex: 0 0 130px;"><span class="{{p.updCls}}">{{p.upd}}</span></span>
+            <span style="flex: 0 0 110px;"><span class="{{p.odCls}}">{{p.od}}</span></span>
+            <span style="flex: 0 0 150px;" class="sb-sub">{{p.legal}}</span>
+            <span style="flex: 1 1 220px; min-width: 0;"><span class="{{p.leaveCls}}" style="white-space: normal;">{{p.leave}}</span></span>
+          </div>
+        </sc-for>
+        <div class="sb-row"><span class="sb-muted">A client with no case owner always shows red. Sam's clients need a new owner and a handover note before Friday.</span></div>
+      </section>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 1 1 520px; min-width: 0;" aria-labelledby="rk-h">
+          <div class="sb-head"><h2 id="rk-h" class="sb-h2">Refusal risk</h2><div role="tablist" aria-label="Regulator" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{regTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <sc-for list="{{risks}}" as="r" hint-placeholder-count="2">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="display: flex; gap: 8px; align-items: center;"><span class="{{r.cls}}">{{r.kind}}</span><span class="bz-b">{{r.client}}</span><span class="sb-chip c-brand">{{r.reg}}</span></span><span class="{{r.daysCls}}">{{r.days}}</span></div>
+              <span class="sb-sub">{{r.text}}</span>
+              <div class="bar" aria-hidden="true"><span class="{{r.w}}"></span></div>
+              <span class="sb-muted">{{r.barNote}}</span>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{r.gates}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></sc-for></div>
+            </div>
+          </sc-for>
+          <sc-if value="{{noRisk}}" hint-placeholder-val="{{ false }}"><div class="sb-row"><span class="sb-sub">{{noRiskText}}</span></div></sc-if>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+            <sc-for list="{{split}}" as="x" hint-placeholder-count="3">
+              <div class="sb-kpi"><span class="bz-b">{{x.r}}</span><span class="sb-sub">{{x.t}}</span></div>
+            </sc-for>
+          </div>
+          <div class="sb-row"><span class="bz-big" style="white-space: nowrap;">45 hours</span><span class="sb-sub">spent on resubmissions at no charge to the client this year: Westbrook so far 14 hours, and 1 earlier client, 31 hours (registered on resubmission in July). A resubmission is always at no charge to the client.</span></div>
+        </section>
+
+        <section class="sb-card" style="flex: 1 1 460px; min-width: 0;" aria-labelledby="td-h">
+          <div class="sb-head"><h2 id="td-h" class="sb-h2">Tenders</h2><span class="sb-sub">2 live bids. Bids are written in Word by the bid team</span></div>
+          <sc-for list="{{bids}}" as="b" hint-placeholder-count="2">
+            <div class="sb-row" style="align-items: flex-start;">
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{b.name}}</span><span class="sb-sub">{{b.detail}}</span></span>
+              <span class="{{b.cls}}">{{b.due}}</span>
+            </div>
+          </sc-for>
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 10px; background: var(--cs-surface-subtle);">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Accept the bid work: Maple Court Care</span><span class="{{bidChipCls}}">{{bidChip}}</span></div>
+            <span>Maple Court Care has decided to bid for the Northshire home care framework, <span class="bz-b">Lot 2 South</span>. Bid deadline Tue 1 Dec 12:00. Care Sync would submit Fri 27 Nov.</span>
+            <span class="sb-sub">The client decides whether to bid; Care Sync decides whether to accept the work. Found on the Radar by Jo Martin. Maple Court is an existing client, so Daniel (case owner) spoke to them first; sales has not contacted them. Same tender check: Oakleaf Living bids Lot 1 North only, so the lots do not clash. Capacity check: the bid team has room after Oakleaf's draft goes to Kemi on Tue 17 Nov.</span>
+            <sc-if value="{{bidOpen}}" hint-placeholder-val="{{ true }}">
+              <label class="bz-lbl" for="bid-r">Your reason (goes to the audit log, Daniel and Jo Martin)</label>
+              <textarea id="bid-r" class="bz-ta" value="{{bidReason}}" onChange="{{onBidReason}}" placeholder="For example: good fit for Lot 2, the bid team has room after Tue 17 Nov"></textarea>
+              <sc-if value="{{bidErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a reason first. Every bid decision keeps its reason.</span></sc-if>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{bidYes}}">Accept the bid work</button><button class="sb-btn b-gh" onClick="{{bidNo}}">Do not accept</button></div>
+            </sc-if>
+            <sc-if value="{{bidDone}}" hint-placeholder-val="{{ false }}">
+              <div class="{{bidBoxCls}}"><span class="bz-b">{{bidResult}}</span><span class="sb-sub">{{bidResultNote}}</span><button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{bidUndo}}">Change my decision</button></div>
+            </sc-if>
+          </div>
+        </section>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 3 1 560px; min-width: 0; padding-bottom: 10px;" aria-labelledby="st-h">
+          <div class="sb-head"><h2 id="st-h" class="sb-h2">Active clients by stage</h2><span class="sb-sub">48 registration clients in the 11 stages, plus 4 tender only clients: 52</span></div>
+          <sc-for list="{{stageGroups}}" as="sg" hint-placeholder-count="5">
+            <div class="bz-gh">{{sg.label}}</div>
+            <div style="padding: 4px 20px 8px; display: flex; flex-direction: column; gap: 6px;">
+              <sc-for list="{{sg.rows}}" as="s" hint-placeholder-count="3">
+                <div class="bz-bar" title="{{s.title}}"><span>{{s.k}}</span><span class="bar" aria-hidden="true"><span class="{{s.w}}"></span></span><span style="text-align: right; font-weight: 500;">{{s.v}}</span></div>
+                <sc-if value="{{s.hasNote}}" hint-placeholder-val="{{ false }}"><span class="sb-muted" style="padding-left: 180px;">{{s.note}}</span></sc-if>
+              </sc-for>
+            </div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 2 1 340px; min-width: 0; padding-bottom: 8px;" aria-labelledby="fl-h">
+          <div class="sb-head"><h2 id="fl-h" class="sb-h2">How clients feel</h2><span class="sb-sub">From calls, sessions and check-ins</span></div>
+          <sc-for list="{{feel}}" as="f" hint-placeholder-count="3">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;"><div style="display: flex; justify-content: space-between;"><span class="bz-b">{{f.k}}</span><span>{{f.v}}</span></div><div class="bar" aria-hidden="true"><span class="{{f.bar}}"></span></div></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-sub">The 1 worried client is Riverside Homecare. A worried client gets a call from a manager within 1 working day (a director if the manager is involved). No sales or growth messages until it is resolved. The review invitation at registration is never held back.</span></div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":3920}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { done: {}, reg: 'all', bid: '', bidReason: '', bidErr: false }; }
+  renderVals() {
+    const s = this.state;
+    const T = [
+      ['call', 'Worried', 'bad', 'A worried client: Riverside Homecare', 'Mark Evans felt rushed on Friday\'s call. You are calling him today. No sales or growth messages until it is resolved; the review invitation is never held back. Ask for the CQC email login too.', 'Log the call', 'Call logged, 1 follow-up set'],
+      ['sam', 'Leaver', 'bad', 'Sam Patel leaves on Friday: 4 clients have no new owner yet', '2 of 6 handed over with a note: Kingsway and Cedar Lodge go to Olu from Mon 9 Nov once a super admin approves the permission change. Rosehill Homecare, Thornbury Living, Hollybush Care and Bramley Support still need an owner.', 'Remind me Thursday', 'Reminder set for Thu 5 Nov'],
+      ['nop', 'Review', 'warn', 'Your senior review: Sunrise Homecare reply to the Notice of Proposal', 'Daniel has drafted the written representations. Your review is Mon 9 Nov, our target to send is Tue 10 Nov, the legal deadline is Tue 17 Nov.', 'Add to my calendar', 'On your calendar, Mon 9 Nov'],
+      ['wb', 'Assign', 'warn', 'Name a senior reviewer: Westbrook Care resubmission pack', 'CQC refused on Mon 26 Oct and the client chose to resubmit. The senior review on Thu 12 Nov needs a name.', 'Assign to me', 'Assigned to you, Thu 12 Nov'],
+      ['ho', 'Handover', 'warn', 'Approve the handover: Binnian Care Ltd (RQIA)', 'All 8 onboarding gates passed Fri 30 Oct. Grace asked you to approve. Proposed case owner: Olu, back Mon 9 Nov. No application work starts before you approve.', 'Mark as approved', 'Approved by you, just now'],
+      ['bid', 'Tender', 'info', 'Accept the bid work: Maple Court Care, Northshire Lot 2 South', 'Maple Court decided to bid. Waiting on you to accept the work. See Tenders below.', 'Go to the decision', 'Decision made']
+    ];
+    const bidDecided = !!s.bid;
+    const todo = T.map(([id, kind, k, title, why, cta, doneText]) => {
+      const done = id === 'bid' ? bidDecided : !!s.done[id];
+      return { kind, cls: 'sb-chip c-' + k, title, why, cta, doneText, open: !done, done,
+        act: () => { if (id === 'bid') { const el = document.getElementById('bid-r'); if (el) { el.scrollIntoView({ block: 'center' }); el.focus(); } return; } this.setState({ done: Object.assign({}, s.done, { [id]: true }) }); } };
+    });
+    const left = todo.filter(t => t.open).length;
+    const approvals = [
+      ['Price', 'Full start-up package £8,500 + VAT, entered by Collins 2 Nov. Waiting for Rachel Turner'],
+      ['Discount', 'Lindenfield Care Ltd: £3,800 + VAT instead of £4,000 + VAT. Asked by Jo Martin'],
+      ['Discount', 'Ashby Care: PIR writing for 2 service types, £1,350 + VAT instead of £1,500 + VAT. Asked by Daniel'],
+      ['Form', 'CQC onboarding form v8, drafted by Grace Thu 29 Oct. 3 clients on v7 have not finished'],
+      ['Permission', 'Olu takes Kingsway and Cedar Lodge from Sam Patel, from Mon 9 Nov. Asked by Grace, Fri 30 Oct 16:10'],
+      ['Email', '5.2 Notice of Proposal v3, drafted by Daniel'],
+      ['Retention', 'Schedule v2: identity and DBS images deleted once the regulator decides. Proposed by Collins as data protection lead. Waiting for Rachel Turner']
+    ].map(([kind, text]) => ({ kind, text }));
+    const mgrDone = { ho: !!s.done.ho, bid: !!s.bid };
+    const mgr = [
+      ['ho', 'Handover: Binnian Care Ltd', 'RQIA. All 8 gates passed. Grace asked you on Fri 30 Oct', 'Handover.dc.html', 'Open'],
+      ['bid', 'Accept the bid work: Maple Court Care', 'Northshire Lot 2 South. The client has decided to bid', '#bid-r', 'Go to it']
+    ].map(([id, title, text, href, cta]) => ({ title, text, href, cta, state: mgrDone[id] ? 'Decided' : 'Waiting', cls: 'sb-chip ' + (mgrDone[id] ? 'c-ok' : 'c-warn') }));
+    const mgrLeft = mgr.filter(m => m.state === 'Waiting').length;
+    const money = [
+      ['Invoiced this month', '£9,600', '5 invoices on 1 and 2 Nov'],
+      ['Collected this month', '£4,150', '3 payments through Stripe. Payments after 09:00 show at 10:00'],
+      ['Overdue', '£5,300', '4 invoices. Reminders running'],
+      ['Instalments due, next 90 days', '£31,916.67', '14 instalments to 31 Jan']
+    ].map(([k, v, note]) => ({ k, v, note }));
+    const aged = [
+      ['0 to 30 days', '£3,050', 'w60', 'amb', '2 invoices. Reminder 2 sent'],
+      ['31 to 60 days', '£1,500', 'w30', 'amb', '1 invoice. Case owner has called'],
+      ['Over 60 days', '£750', 'w15', 'red', '1 invoice. Needs your decision: payment plan or pause work']
+    ].map(([k, v, w, c, who]) => ({ k, v, w, barCls: 'bar ' + c, who }));
+    const inst = [['November', '£11,583.33', 'w100'], ['December', '£10,666.67', 'w90'], ['January', '£9,666.67', 'w85']].map(([k, v, w]) => ({ k, v, w }));
+    const rev = [
+      ['CQC domiciliary care', '£72,000', 'w100'], ['Full start-up', '£51,000', 'w70'], ['CQC supported living', '£35,000', 'w50'],
+      ['Tender writing', '£21,600', 'w30'], ['CIW registration', '£18,000', 'w25'], ['RQIA registration', '£13,500', 'w20'], ['Add-ons and single services', '£9,750', 'w15']
+    ].map(([k, v, w]) => ({ k, v, w }));
+    const team = [
+      ['Rachel Turner', 'Operations manager, super admin 2', 'None as owner. Reviews the decisions on the Sam Patel export (Collins leads it as data protection lead). The window for an ICO report, if one is needed, ends Thu 5 Nov 06:00', '', 'None', 'neutral', 'None', 'ok', 'None', 'In all week', 'ok'],
+      ['Daniel Mensah', 'Consultant', '6 active and 2 in aftercare, plus 4 covering for Olu', '', '10 due Fri 6 Nov', 'warn', '1 overdue', 'bad', 'None. Next: Sunrise, 17 Nov (day 15)', 'Covering Olu: Riverside, Greenway, Lagan View, Willow Bank, with vault reveal. Approved by Rachel Turner Fri 30 Oct', 'info'],
+      ['Olu', 'Consultant', '5: 4 covered by Daniel, and Brookside (aftercare) waits for Olu', '', '4 moved to Daniel', 'neutral', '1 in outbox', 'warn', 'None', 'On leave Mon 2 to Fri 6 Nov. Back Mon 9 Nov', 'warn'],
+      ['Sam Patel', 'Consultant', '6, being reassigned', 'No owner after Friday: Rosehill, Thornbury, Hollybush, Bramley', '6 due Fri 6 Nov', 'neutral', '2', 'bad', 'None', 'Leaving Fri 6 Nov. Downloads paused while the export is checked', 'bad'],
+      ['Grace', 'Onboarding lead', '6 in onboarding, until each handover', '', 'None', 'neutral', 'None', 'ok', 'None', 'In all week', 'ok'],
+      ['Divine', 'Client care', 'None as owner. 3 calls today', '', 'None', 'neutral', 'None', 'ok', 'None', 'In all week', 'ok'],
+      ['Millicent', 'Coach', 'None as owner. 7 sessions this week', '', 'None', 'neutral', 'None', 'ok', 'None', 'In all week', 'ok'],
+      ['Jo Martin', 'Sales', 'None as owner. 12 Radar matches today', '', 'None', 'neutral', 'None', 'ok', 'None', 'In all week', 'ok'],
+      ['Femi Ade', 'Finance, part time', 'None as owner. Closing October; 4 overdue invoices, 1 refund for a manager', '', 'None', 'neutral', 'None', 'ok', 'None', 'Works Mon, Wed and Thu', 'ok']
+    ].map(([name, role, clients, gap, upd, uc, od, oc, legal, leave, lc]) => ({ name, role, clients, gap, hasGap: !!gap, upd, updCls: 'sb-chip c-' + uc, od, odCls: 'sb-chip c-' + oc, legal, leave, leaveCls: 'sb-chip c-' + lc }));
+    const R = [
+      { reg: 'CQC', kind: 'Notice of Proposal', cls: 'sb-chip c-bad', client: 'Sunrise Homecare Ltd', days: '15 days to the legal deadline', daysCls: 'sb-chip c-warn',
+        text: 'Served (received) Wed 21 Oct. Written representations by Tue 17 Nov (28 days). Our target to send: Tue 10 Nov, 8 days. Reply drafted by Daniel; your senior review Mon 9 Nov.',
+        w: 'w45', barNote: '13 of 28 days used', gates: [['Reply drafted', 'ok'], ['Senior review Mon 9 Nov', 'warn'], ['Sent by Tue 10 Nov', 'neutral']] },
+      { reg: 'CQC', kind: 'Refused, we resubmit', cls: 'sb-chip c-warn', client: 'Westbrook Care Ltd', days: 'Appeal window closes Sun 22 Nov', daysCls: 'sb-chip c-info',
+        text: 'Notice of decision received Mon 26 Oct. Appeal window worked out the safe way (confirm with a legal adviser). Client chose to resubmit (recorded 28 Oct), so no appeal. Senior review of the new pack Thu 12 Nov. Resubmit target Mon 30 Nov. At no charge to the client.',
+        w: 'w50', barNote: 'Steps: 3 of 6 done. Gate before sending: 1 of 7 ticked', gates: [['Reasons mapped', 'ok'], ['Client choice recorded', 'ok'], ['Fix plan agreed', 'ok'], ['New pack drafted', 'warn'], ['Senior review Thu 12 Nov', 'neutral'], ['Resubmit Mon 30 Nov', 'neutral']] }
+    ];
+    const risks = R.filter(r => s.reg === 'all' || r.reg === s.reg).map(r => Object.assign({}, r, { gates: r.gates.map(([t, k]) => ({ t, cls: 'sb-chip c-' + k })) }));
+    const bids = [
+      ['Northshire County Council home care framework 2027, Lot 1 North', 'Oakleaf Living. Clarification questions close Fri 13 Nov 17:00. Next: case study from Kemi, Wed 11 Nov. Draft to Kemi Tue 17 Nov, Kemi approves Tue 24 Nov, we submit Fri 27 Nov.', 'Bid deadline Tue 1 Dec', 'warn'],
+      ['Eastford Borough Council supported living (dynamic purchasing system)', 'Oakleaf Living. Deciding scope, profile check under way.', 'Deadline Fri 4 Dec', 'info']
+    ].map(([name, detail, due, k]) => ({ name, detail, due, cls: 'sb-chip c-' + k }));
+    const decide = v => { if (!s.bidReason.trim()) { this.setState({ bidErr: true }); return; } this.setState({ bid: v, bidErr: false }); };
+    const reason = s.bidReason.trim();
+    const G = [
+      ['Onboarding', [['1 Welcome', 6, 'w60', 'Includes the onboarding form and gates. Harbour Lane: 5 of 8 gates passed']]],
+      ['Building the application (no work starts before handover)', [['2 CV review', 2, 'w20'], ['3 Your documents', 7, 'w70'], ['4 Drafting', 6, 'w60'], ['5 Your review', 3, 'w30'], ['6 Final pack sign-off', 2, 'w20']]],
+      ['With the regulator', [['7 Submitted', 1, 'w10'], ['8 With the regulator', 7, 'w70', '5 CQC, 1 CIW, 1 RQIA'], ['9 Interview', 2, 'w20']]],
+      ['Outcome (stage 10)', [['10 Notice of Proposal', 1, 'w10', 'Sunrise Homecare'], ['10 Refused, we resubmit', 1, 'w10', 'Westbrook Care'], ['10 Registered this week', 0, 'w0']]],
+      ['After registration', [['11 Aftercare', 10, 'w100']]],
+      ['Not in the 11 stages', [['Tender only clients', 4, 'w40', 'Oakleaf Living and 3 others']]]
+    ];
+    const stageGroups = G.map(([label, rows]) => ({ label, rows: rows.map(([k, v, w, note]) => ({ k, v: String(v), w, note: note || '', hasNote: !!note, title: k + ': ' + v + ' clients' })) }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2', current: true },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      todo, todoLeft: left === 0 ? 'All done for now' : left + ' to do',
+      approvals, mgr, mgrLeft: 'Manager decisions: ' + mgrLeft, money, aged, inst, rev, team,
+      regTabs: [['all', 'All'], ['CQC', 'CQC'], ['CIW', 'CIW'], ['RQIA', 'RQIA']].map(([k, label]) => ({ label, on: s.reg === k, off: s.reg !== k, pick: () => this.setState({ reg: k }) })),
+      risks, noRisk: risks.length === 0, noRiskText: 'No Notices of Proposal or refusals open with ' + s.reg + '.',
+      split: [['CQC', '1 Notice of Proposal, 1 refusal'], ['CIW', 'None open'], ['RQIA', 'None open']].map(([r, t]) => ({ r, t })),
+      bids, bidOpen: !bidDecided, bidDone: bidDecided, bidErr: s.bidErr, bidReason: s.bidReason,
+      onBidReason: e => this.setState({ bidReason: e.target.value, bidErr: false }),
+      bidYes: () => decide('yes'), bidNo: () => decide('no'), bidUndo: () => this.setState({ bid: '' }),
+      bidChip: !bidDecided ? 'Waiting on you' : (s.bid === 'yes' ? 'Accepted' : 'Not accepted'),
+      bidChipCls: 'sb-chip ' + (!bidDecided ? 'c-warn' : (s.bid === 'yes' ? 'c-ok' : 'c-neutral')),
+      bidBoxCls: s.bid === 'yes' ? 'bz-ok' : 'bz-box',
+      bidResult: s.bid === 'yes' ? 'Bid work accepted by Collins, just now. Daniel tells Maple Court today and the bid team plans Lot 2 South.' : 'Not accepted by Collins, just now. Daniel explains to Maple Court today and offers a bid review instead.',
+      bidResultNote: 'Reason: "' + reason + '". Written to the audit log. Daniel and Jo Martin are told.',
+      stageGroups,
+      feel: [['Happy', '46', 'w90'], ['Unsure', '5', 'w10'], ['Worried', '1', 'w5']].map(([k, v, bar]) => ({ k, v, bar }))
+    };
+  }
+}
+</script>
+</body>
+</html>

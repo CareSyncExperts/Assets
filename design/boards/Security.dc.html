@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Keeping your information safe</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.pb-tab{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.pb-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.pb-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.pb-tab:focus-visible,.pb-btn:focus-visible,.pb-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.pb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.pb-row{padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.pb-row:first-child{border-top:0}
+.pb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.pb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.pb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.pb-btn{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap}
+.pb-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.pb-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.pb-ghost{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.pb-dis{border:0;background:var(--cs-surface-subtle);color:var(--cs-text-muted);cursor:not-allowed}
+.pb-link{border:0;background:transparent;color:var(--cs-text-brand);font:inherit;font-size:14px;font-weight:500;cursor:pointer;min-height:40px;padding:0}
+.pb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.pb-note{padding:12px 14px;border-radius:12px;font-size:13px;line-height:19px}
+.n-info{background:var(--cs-status-info-bg)}
+.n-ok{background:var(--cs-status-success-bg)}
+.n-warn{background:var(--cs-status-warning-bg)}
+.dot{width:14px;height:14px;border-radius:999px;flex-shrink:0;margin-top:3px;box-sizing:border-box}
+.d-done{background:var(--cs-action-primary)}
+.d-now{border:3px solid var(--cs-action-primary);background:var(--cs-surface-raised)}
+.d-next{border:2px solid var(--cs-border-default);background:var(--cs-surface-raised)}
+.d-ten{border:3px solid var(--cs-status-info-text);background:var(--cs-surface-raised)}
+.w0{width:0}.w10{width:10%}.w20{width:20%}.w30{width:30%}.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1300px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span class="pb-sub">Your account</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">How we keep your information safe</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Your Hub holds passports, DBS details and business documents. Here is exactly how we look after them.</span>
+    </header>
+    <div class="pb-card">
+      <sc-for list="{{facts}}" as="f" hint-placeholder-count="8">
+        <div class="pb-row"><span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 8px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="CareSync.Icon" name="{{f.icon}}" size="{{n16}}"></x-import></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{f.title}}</span><span class="pb-sub">{{f.text}}</span></span></div>
+      </sc-for>
+    </div>
+    <div class="pb-card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+      <span style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><span style="font-weight: 500;">Signing in</span><span class="pb-chip c-ok">Code to your mobile: on</span></span>
+      <span class="pb-sub">{{signText}}</span>
+      <span class="pb-sub">{{codeText}}</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="Account.dc.html" class="pb-btn pb-sec" style="min-height: 48px;">See every time we looked at your file</a>
+      <button class="pb-btn pb-ghost" style="min-height: 48px;">Download everything we hold about you</button>
+      <button class="pb-link" style="align-self: center;">Something worries you? Tell a manager</button>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const get = (k, f) => (window.CSR ? CSR.get(k, f) : f);
+    const ico = get('ico-number', '');
+    const facts = [
+      ['building-2', 'Where your information is kept', "Your Hub's database and files are in the UK, and encrypted. Some trusted suppliers process data elsewhere under UK safeguards."],
+      ['users', 'Who can see it', 'Your consultant, the onboarding lead before your handover, your coach for session notes, client care for your contact details, and managers. If your consultant is on leave, a colleague covers for dates a manager approves.'],
+      ['shield-alert', 'Emergencies only', 'If anyone else ever needs to look, it is for an emergency only. A senior member of the Care Sync team approved it first. It lasts ' + get('break-glass-hours', 4) + ' hours at most and we tell you the same day.'],
+      ['history', 'Every look is recorded', 'Who opened what, when and why. You can see the list any time.'],
+      ['lock', 'Passwords stay hidden', 'If you give us a login, it goes into an encrypted vault. Nobody can see it in the Hub or in emails.'],
+      ['trash-2', 'ID and DBS images are deleted', 'Once the regulator has made its decision. We keep a short record: who checked them, when, the type of document, and the DBS number and issue date. Everything else follows our retention schedule.'],
+      ['file-check', 'Registered with the Information Commissioner', ico ? 'Care Sync Experts is registered with the ICO. Our registration number is ' + ico + '.' : 'Our ICO registration number will be shown here.']
+    ].map(([icon, title, text]) => ({ icon, title, text }));
+    return { theme: this.props.theme ?? 'light', n16: 16, facts,
+      signText: 'We email you a sign-in link, so there is no password. A phone or computer you have used before stays signed in for ' + get('client-device-days', 30) + ' days.',
+      codeText: 'Because Care Sync holds the login to the email you sign in with, we text a code to your mobile on a new device, and before you sign, approve, download everything or change your contact details. This stays on while we hold that login.' };
+  }
+}
+</script>
+</body>
+</html>

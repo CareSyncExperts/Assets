@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Staff, My day</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.dk{border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;cursor:pointer;background:var(--cs-surface-raised);color:var(--cs-text-primary);box-shadow:var(--cs-elevation-1);min-height:96px}
+.dk-on{border:2px solid var(--cs-action-primary)}
+.dk-off{border:2px solid transparent}
+.dk:focus-visible,.qf:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.dk-v{font-size:28px;line-height:34px;font-weight:600}
+.dk-l{font-size:14px;line-height:20px;font-weight:500}
+.ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.i-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.i-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.i-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.i-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.i-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.grp{padding:12px 20px 6px;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px;font-weight:600;color:var(--cs-text-secondary);display:flex;justify-content:space-between}
+.qrow{padding:10px 20px;display:flex;gap:12px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px;flex-wrap:wrap}
+.cl{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--cs-surface-page);font-size:14px;line-height:20px}
+.cg{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:6px}
+.cg-h{font-size:14px;line-height:20px;font-weight:600}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2230px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="My day" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Good morning, Daniel</h1>
+          <span style="font-size: 16px; line-height: 24px; color: var(--cs-text-secondary);">{{headline}}</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="sb-btn b-gh">Find a client</button>
+          <button class="sb-btn b-sec">All deadlines</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;" aria-label="Counts. Each one shows its list">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+          <button class="{{k.cls}}" onClick="{{k.pick}}" aria-pressed="{{k.pressed}}">
+            <span class="dk-v">{{k.v}}</span>
+            <span class="dk-l">{{k.label}}</span>
+            <span class="sb-muted">{{k.note}}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <x-import component-from-global-scope="CareSync.Alert" status="warning" title="You are covering for Olu until Friday 6 November">Olu is on leave. Under the cover delegation Rachel approved on Fri 30 Oct, you look after Riverside Homecare, Greenway Support, Lagan View Care and Willow Bank Supported Living, including vault reveal for these 4 clients, until Fri 6 Nov 17:30. Riverside is worried, and Collins calls Mark today.</x-import>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+        <section class="sb-card" aria-labelledby="q-h" style="flex: 3 1 660px; min-width: 0;">
+          <div class="sb-head" style="padding-bottom: 6px;"><h2 id="q-h" class="sb-h2">{{qTitle}}</h2><span class="sb-sub">{{qSub}}</span></div>
+          <div role="tablist" aria-label="Filter the queue" style="display: flex; gap: 6px; flex-wrap: wrap; padding: 4px 20px 14px;">
+            <sc-for list="{{filters}}" as="f" hint-placeholder-count="7">
+              <sc-if value="{{f.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on qf" role="tab" aria-selected="true" onClick="{{f.pick}}">{{f.label}}</button></sc-if>
+              <sc-if value="{{f.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off qf" role="tab" aria-selected="false" onClick="{{f.pick}}">{{f.label}}</button></sc-if>
+            </sc-for>
+          </div>
+          <sc-if value="{{showTasks}}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+              <div class="grp"><span>{{g.label}}</span><span>{{g.count}}</span></div>
+              <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+                <div class="qrow">
+                  <span class="{{r.icCls}}"><x-import component-from-global-scope="CareSync.Icon" name="{{r.icon}}" size="{{n18}}"></x-import></span>
+                  <span style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                    <span style="font-weight: 500;">{{r.title}}</span>
+                    <span class="sb-sub"><span style="font-weight: 500; color: var(--cs-text-primary);">{{r.client}}</span>. {{r.detail}}</span>
+                  </span>
+                  <span style="width: 176px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;"><span class="{{r.whenCls}}" style="white-space: normal;">{{r.when}}</span><span style="display: flex; gap: 4px; flex-wrap: wrap;"><sc-for list="{{r.tags}}" as="t" hint-placeholder-count="1"><span class="{{t.cls}}">{{t.label}}</span></sc-for></span></span>
+                  <span style="display: flex; gap: 6px;">
+                    <button class="sb-btn b-sec">{{r.cta}}</button>
+                    <button class="sb-btn b-gh" onClick="{{r.done}}" aria-label="{{r.doneLabel}}">Done</button>
+                  </span>
+                </div>
+              </sc-for>
+            </sc-for>
+            <sc-if value="{{hasDone}}" hint-placeholder-val="{{ false }}">
+              <div class="qrow" style="background: var(--cs-status-success-bg);"><span style="flex: 1; min-width: 0;">{{doneText}}</span><button class="sb-btn b-gh" onClick="{{undo}}">Undo</button></div>
+            </sc-if>
+            <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+              <div class="qrow"><span class="sb-sub">Nothing left in this list. Well done.</span></div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{showUpdates}}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{updates}}" as="u" hint-placeholder-count="10">
+              <div class="qrow">
+                <span style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{u.client}}</span><span class="sb-sub">{{u.stage}}</span></span>
+                <span class="sb-sub" style="width: 120px;">{{u.owner}}</span>
+                <span class="{{u.cls}}" style="white-space: normal; max-width: 260px;">{{u.state}}</span>
+                <button class="sb-btn b-sec">Open</button>
+              </div>
+            </sc-for>
+            <div class="qrow"><span class="sb-sub">{{updNote}}</span></div>
+          </sc-if>
+        </section>
+
+        <section class="sb-card" aria-labelledby="c-h" style="flex: 1 1 300px; min-width: 0; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 8px;">
+          <div class="sb-head" style="padding: 18px 4px 4px;"><h2 id="c-h" class="sb-h2">My clients</h2><span class="sb-sub">{{clientTotal}}</span></div>
+          <sc-for list="{{cgroups}}" as="c" hint-placeholder-count="4">
+            <div class="cg"><span class="cg-h">{{c.label}}</span><span class="sb-sub">{{c.count}}</span></div>
+            <sc-for list="{{c.rows}}" as="r" hint-placeholder-count="3">
+              <div class="cl"><span style="min-width: 0; display: flex; flex-direction: column;"><span style="font-weight: 500;">{{r.name}}</span><span class="sb-muted">{{r.stage}}</span></span><sc-if value="{{r.hasFlag}}" hint-placeholder-val="{{ false }}"><span class="{{r.flagCls}}">{{r.flag}}</span></sc-if></div>
+            </sc-for>
+          </sc-for>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2230}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 'all', done: [] }; }
+  renderVals() {
+    const f = this.state.f, done = this.state.done;
+    const T = [
+      { id: 'bp', g: 'today', icon: 'calendar', k: 'info', title: 'Session 2 of 3: going through documents', client: 'Bright Path Care Ltd', detail: 'With Joy Adeyemi by video. Millicent runs it and you join as case owner', when: 'Today 10:00', wk: 'info', cta: 'Join', tags: ['reg'] },
+      { id: 'afon', g: 'today', icon: 'refresh-cw', k: 'warn', title: 'Nudge referee Sarah Jones', client: 'Afon Care Ltd', detail: 'CIW is waiting for Sarah\'s reference. Asked 3 days ago', when: 'Today', wk: 'warn', cta: 'Send nudge', tags: ['reg'] },
+      { id: 'rlogin', g: 'today', icon: 'lock', k: 'bad', title: 'CQC email login not in the vault: 10 days', client: 'Riverside Homecare Ltd', detail: 'Submitted to CQC on 23 Oct. Without the login we cannot see CQC emails. Ask Mark for it today. You can add it under Olu\'s cover delegation', when: '10 days', wk: 'bad', cta: 'Add it now', tags: ['reg', 'cover'] },
+      { id: 'rworry', g: 'today', icon: 'triangle-alert', k: 'bad', title: 'Worried client: Collins calls Mark today', client: 'Riverside Homecare Ltd', detail: 'Mark felt rushed on Friday\'s call. Send Collins a short note on what happened before the call', when: 'Today', wk: 'bad', cta: 'Write the note', tags: ['cover'] },
+      { id: 'gquiet', g: 'today', icon: 'clock', k: 'warn', title: 'Gone quiet for 10 days: call Tunde', client: 'Greenway Support Ltd', detail: '3 documents are waiting. Friday\'s update bounced, which is the likely cause', when: 'Today', wk: 'warn', cta: 'Call', tags: ['reg', 'cover'] },
+      { id: 'gbounce', g: 'today', icon: 'inbox', k: 'bad', title: 'Fix the email address and resend Friday\'s update', client: 'Greenway Support Ltd', detail: 'The update of Fri 30 Oct bounced at 17:02. Check the address with Tunde on the call', when: 'Overdue', wk: 'bad', cta: 'Fix address', tags: ['cover'] },
+      { id: 'qdavid', g: 'week', icon: 'circle-help', k: 'neutral', title: 'Answer David: when can we start bidding for contracts?', client: 'Willow Bank Supported Living Ltd', detail: 'From the Ask screen. Olu\'s client', when: 'Tue 3 Nov, 11:00', wk: 'neutral', cta: 'Reply', tags: ['q', 'cover'] },
+      { id: 'wbsess', g: 'week', icon: 'calendar', k: 'info', title: 'Session 2 of 3: going through documents', client: 'Willow Bank Supported Living Ltd', detail: 'With David Clarke by video. Millicent runs it and you join, covering for Olu', when: 'Tue 3 Nov, 14:00', wk: 'neutral', cta: 'Prepare', tags: ['reg', 'cover'] },
+      { id: 'qkemi', g: 'week', icon: 'circle-help', k: 'neutral', title: 'Answer Kemi: can the HR lead fill in the staff numbers?', client: 'Oakleaf Living Ltd', detail: 'From the Ask screen, about the Northshire bid', when: 'Tue 3 Nov, 16:00', wk: 'neutral', cta: 'Reply', tags: ['q', 'tender'] },
+      { id: 'elmrfi', g: 'week', icon: 'file-text', k: 'info', title: 'Answer CQC\'s request for more information', client: 'Elm Tree Care Ltd', detail: '3 questions, received Thu 29 Oct. Femi approves the answers first', when: 'Our target Fri 6 Nov. CQC reply by Thu 12 Nov', wk: 'info', cta: 'Open answers', tags: ['reg', 'dl'] },
+      { id: 'sunrise', g: 'next', icon: 'shield-alert', k: 'bad', title: 'Written representations to the Notice of Proposal', client: 'Sunrise Homecare Ltd', detail: 'Served Wed 21 Oct (day 1). Draft by day 14, Tue 3 Nov. Senior review by Collins and Priya\'s approval by day 20, Mon 9 Nov. Send by day 21, Tue 10 Nov. Legal deadline Tue 17 Nov, worked out the safe way', when: '15 days to the legal deadline, 8 to our target', wk: 'bad', cta: 'Open reply', tags: ['reg', 'dl', 'legal'] },
+      { id: 'oakcase', g: 'next', icon: 'clipboard-list', k: 'brand', title: 'Case study due from Kemi', client: 'Oakleaf Living Ltd', detail: 'Northshire home care framework, Lot 1 North', when: 'Wed 11 Nov', wk: 'neutral', cta: 'Open bid', tags: ['tender'] },
+      { id: 'west', g: 'next', icon: 'git-compare', k: 'warn', title: 'Senior review of the new pack', client: 'Westbrook Care Ltd', detail: 'Resubmitting after the refusal received 26 Oct. Appeal window closes Sun 22 Nov (Sade chose to resubmit). Resubmit target Mon 30 Nov', when: 'Thu 12 Nov', wk: 'neutral', cta: 'Open project', tags: ['reg'] },
+      { id: 'north', g: 'next', icon: 'clipboard-list', k: 'brand', title: 'Northshire clarification questions close', client: 'Oakleaf Living Ltd', detail: 'Send any questions to the buyer before 17:00. Bid deadline Tue 1 Dec 12:00. Care Sync submits Fri 27 Nov', when: 'Fri 13 Nov, 17:00', wk: 'neutral', cta: 'Log a question', tags: ['tender'] },
+      { id: 'northdraft', g: 'later', icon: 'file-text', k: 'brand', title: 'Care Sync draft to Kemi: Northshire bid', client: 'Oakleaf Living Ltd', detail: 'Word version uploaded to the Hub, 10 working days before the deadline. Kemi approves Tue 24 Nov. Care Sync submits Fri 27 Nov', when: 'Tue 17 Nov', wk: 'neutral', cta: 'Open bid', tags: ['tender'] },
+      { id: 'elmint', g: 'later', icon: 'calendar-check', k: 'info', title: 'CQC interview for Claire Hughes', client: 'Elm Tree Care Ltd', detail: 'Interview portal 40% done. Practice with Millicent on Thu 5 Nov', when: 'Tue 24 Nov', wk: 'neutral', cta: 'Open portal', tags: ['reg'] }
+    ];
+    const TAG = { reg: ['Registration', 'c-brand'], tender: ['Tender', 'c-info'], cover: ['Covering for Olu', 'c-warn'], q: ['Question', 'c-neutral'], dl: ['Regulator deadline', 'c-bad'], legal: ['Legal deadline', 'c-bad'] };
+    const open = T.filter(t => done.indexOf(t.id) < 0);
+    const test = { all: () => true, today: t => t.g === 'today', dl: t => t.tags.indexOf('dl') >= 0, tender: t => t.tags.indexOf('tender') >= 0, cover: t => t.tags.indexOf('cover') >= 0, q: t => t.tags.indexOf('q') >= 0 };
+    const U = [
+      ['Bright Path Care Ltd', 'Stage 4 of 11: drafting', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Sunrise Homecare Ltd', 'Stage 10 of 11: Notice of Proposal', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Westbrook Care Ltd', 'Stage 10 of 11: refused, we resubmit', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Elm Tree Care Ltd', 'Stage 9 of 11: interview Tue 24 Nov', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Afon Care Ltd', 'Stage 8 of 11: with CIW', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Oakleaf Living Ltd', 'Tenders: Northshire and Eastford', 'Yours', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Greenway Support Ltd', 'Stage 3 of 11: your documents', 'Olu\'s, you cover', 'Overdue: Friday\'s update bounced at 17:02, fix the email address', 'bad'],
+      ['Riverside Homecare Ltd', 'Stage 8 of 11: with CQC', 'Olu\'s, you cover', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Lagan View Care Ltd', 'Stage 8 of 11: with RQIA', 'Olu\'s, you cover', 'Drafting, due Fri 6 Nov', 'neutral'],
+      ['Willow Bank Supported Living Ltd', 'Stage 3 of 11: your documents', 'Olu\'s, you cover', 'Drafting, due Fri 6 Nov', 'neutral']
+    ].map(([client, stage, owner, state, k]) => ({ client, stage, owner, state, cls: 'sb-chip c-' + k }));
+    const n = k => open.filter(test[k]).length;
+    const nToday = n('today');
+    const F = [['all', 'All tasks'], ['today', 'Today'], ['dl', 'Regulator deadlines'], ['tender', 'Tenders'], ['cover', 'Covering for Olu'], ['q', 'Questions'], ['upd', 'Weekly updates']];
+    const count = k => k === 'upd' ? U.length : n(k);
+    const pick = k => () => this.setState({ f: k });
+    const K = [
+      ['today', 'Today', nToday === 1 ? '1 task due today' : nToday + ' tasks due today'],
+      ['dl', 'Regulator deadlines', 'Elm Tree Fri 6 Nov, Sunrise Tue 10 Nov'],
+      ['tender', 'Tender tasks', 'All for Oakleaf Living'],
+      ['cover', 'Covering for Olu', 'Tasks for 4 clients, until Fri 6 Nov'],
+      ['upd', 'Weekly updates', 'Due Fri 6 Nov. 1 overdue']
+    ];
+    const kpis = K.map(([k, label, note]) => ({ v: String(count(k)), label, note, cls: 'dk ' + (f === k ? 'dk-on' : 'dk-off'), pressed: f === k ? 'true' : 'false', pick: pick(k) }));
+    const filters = F.map(([k, label]) => ({ label: label + ' (' + count(k) + ')', on: f === k, off: f !== k, pick: pick(k) }));
+    const shown = f === 'upd' ? [] : open.filter(test[f]);
+    const G = [['today', 'Today, Monday 2 November'], ['week', 'Later this week'], ['next', 'Next week'], ['later', 'Later']];
+    const groups = G.map(([g, label]) => {
+      const rows = shown.filter(t => t.g === g).map(t => ({
+        title: t.title, client: t.client, detail: t.detail, icon: t.icon, icCls: 'ic i-' + t.k, when: t.when, whenCls: 'sb-chip c-' + t.wk, cta: t.cta,
+        tags: t.tags.filter(x => !(x === 'dl' && t.tags.indexOf('legal') >= 0)).map(x => ({ label: TAG[x][0], cls: 'sb-chip ' + TAG[x][1] })),
+        doneLabel: 'Mark done: ' + t.title,
+        done: () => this.setState({ done: done.concat([t.id]) })
+      }));
+      return { label, count: rows.length === 1 ? '1 task' : rows.length + ' tasks', rows };
+    }).filter(g => g.rows.length > 0);
+    const label = F.find(x => x[0] === f)[1];
+    const cg = [
+      ['Your clients', [['Bright Path Care Ltd', 'Stage 4 of 11: drafting', '', ''], ['Sunrise Homecare Ltd', 'Stage 10 of 11: Notice of Proposal', 'Legal deadline 17 Nov', 'bad'], ['Westbrook Care Ltd', 'Stage 10 of 11: refused, we resubmit', '', ''], ['Elm Tree Care Ltd', 'Stage 9 of 11: interview Tue 24 Nov', '', ''], ['Afon Care Ltd', 'Stage 8 of 11: with CIW', '', ''], ['Oakleaf Living Ltd', 'Tender client: 2 bids', 'Tender', 'info']]],
+      ['Aftercare', [['Maple Court Care', 'CQC, month 6 of 12', '', ''], ['Ashby Care', 'CQC, month 12 of 12. Handover Wed 18 Nov', '', '']]],
+      ['Covering for Olu this week', [['Riverside Homecare Ltd', 'Stage 8 of 11: with CQC', 'Worried', 'bad'], ['Greenway Support Ltd', 'Stage 3 of 11: your documents', 'Gone quiet', 'warn'], ['Lagan View Care Ltd', 'Stage 8 of 11: with RQIA', '', ''], ['Willow Bank Supported Living Ltd', 'Stage 3 of 11: your documents', '', '']]],
+      ['Coming to you from onboarding', [['Harbour Lane Care Ltd', 'Coming to you from onboarding, waiting for manager approval. Grace owns it until then', '', '']]]
+    ];
+    const cgroups = cg.map(([label, rows]) => ({ label, count: String(rows.length), rows: rows.map(([name, stage, flag, k]) => ({ name, stage, flag, hasFlag: !!flag, flagCls: 'sb-chip c-' + k })) }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n18: 18, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard', current: true },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      headline: 'Monday 2 November. ' + nToday + ' tasks today and ' + open.length + ' in your queue. 6 clients of your own, 2 in aftercare, and 4 you cover for Olu.',
+      kpis, filters, groups,
+      showTasks: f !== 'upd', showUpdates: f === 'upd', updates: U,
+      qTitle: f === 'upd' ? 'Weekly updates due Friday 6 November' : (f === 'all' ? 'Your queue: registration and tenders together' : label),
+      qSub: f === 'upd' ? '10 updates: your 6 and Olu\'s 4. 1 overdue' : (shown.length === 1 ? '1 task' : shown.length + ' tasks') + ', most urgent first',
+      empty: f !== 'upd' && shown.length === 0,
+      hasDone: done.length > 0, doneText: (done.length === 1 ? '1 task' : done.length + ' tasks') + ' marked done today. The counts above have updated.',
+      undo: () => this.setState({ done: [] }),
+      cgroups, clientTotal: '13: 6 yours, 2 in aftercare, 4 covering, 1 coming',
+      updNote: 'Every update goes on ' + (window.CSR ? window.CSR.get('weekly-update-day', 'Friday') : 'Friday') + ' by ' + (window.CSR ? window.CSR.get('weekly-update-time', '16:00') : '16:00') + '. The next ones after these are due Friday 13 November.'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Tender workspace</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.pb-tab{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.pb-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.pb-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.pb-tab:focus-visible,.pb-btn:focus-visible,.pb-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.pb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.pb-row{padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.pb-row:first-child{border-top:0}
+.pb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.pb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.pb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.pb-btn{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap}
+.pb-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.pb-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.pb-ghost{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.pb-dis{border:0;background:var(--cs-surface-subtle);color:var(--cs-text-muted);cursor:not-allowed}
+.pb-link{border:0;background:transparent;color:var(--cs-text-brand);font:inherit;font-size:14px;font-weight:500;cursor:pointer;min-height:40px;padding:0}
+.pb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.pb-note{padding:12px 14px;border-radius:12px;font-size:13px;line-height:19px}
+.n-info{background:var(--cs-status-info-bg)}
+.n-ok{background:var(--cs-status-success-bg)}
+.n-warn{background:var(--cs-status-warning-bg)}
+.dot{width:14px;height:14px;border-radius:999px;flex-shrink:0;margin-top:3px;box-sizing:border-box}
+.d-done{background:var(--cs-action-primary)}
+.d-now{border:3px solid var(--cs-action-primary);background:var(--cs-surface-raised)}
+.d-next{border:2px solid var(--cs-border-default);background:var(--cs-surface-raised)}
+.d-ten{border:3px solid var(--cs-status-info-text);background:var(--cs-surface-raised)}
+.w0{width:0}.w10{width:10%}.w20{width:20%}.w30{width:30%}.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1500px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 10px 12px; background: var(--cs-surface-subtle);">
+    <span style="display: block; font-size: 11px; line-height: 14px; color: var(--cs-text-muted); margin-bottom: 6px;">Demo: the four parts of your tender workspace</span>
+    <div role="tablist" aria-label="Tender workspace" style="display: flex; flex-wrap: wrap; gap: 6px;">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+        <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="pb-tab pb-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="pb-tab pb-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; flex-direction: column; gap: 2px;">
+      <span class="pb-sub">Oakleaf Living Ltd. Your bid lead: Daniel</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">{{heading}}</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{intro}}</span>
+    </header>
+
+    <sc-if value="{{isWeek}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="pb-card">
+          <sc-for list="{{week}}" as="w" hint-placeholder-count="5">
+            <div class="pb-row">
+              <span style="width: 58px; flex-shrink: 0; display: flex; flex-direction: column;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{w.dow}}</span><span style="font-size: 16px; line-height: 22px; font-weight: 600;">{{w.date}}</span></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{w.text}}</span><span class="pb-muted">{{w.bid}}. {{w.time}}</span>
+                <sc-if value="{{w.canPass}}" hint-placeholder-val="{{ false }}"><button class="pb-link" style="align-self: flex-start; min-height: 32px; font-size: 13px;">Pass to someone in your team</button></sc-if>
+              </span>
+              <sc-if value="{{w.yours}}" hint-placeholder-val="{{ true }}"><button class="pb-btn pb-sec">{{w.cta}}</button></sc-if>
+              <sc-if value="{{w.ours}}" hint-placeholder-val="{{ false }}"><span class="pb-chip c-brand">{{w.cta}}</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div class="pb-note n-info">Everything across both bids, in date order. Northshire: clarification questions close Fri 13 Nov, 17:00, and the buyer's deadline is Tue 1 Dec, 12:00. Eastford: application deadline Fri 4 Dec. Our dates leave time before each deadline.</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isDocs}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="pb-note n-ok">Upload each document once. We use the latest version in every bid, and tell you 6 weeks before anything expires or goes out of date.</div>
+        <div class="pb-card">
+          <sc-for list="{{docs}}" as="d" hint-placeholder-count="8">
+            <div class="pb-row">
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{d.name}}</span><span class="pb-muted">{{d.meta}}</span></span>
+              <span class="{{d.cls}}">{{d.state}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <button class="pb-btn pb-pri" style="min-height: 48px;">Upload a document</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isSign}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="pb-card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+          <span class="pb-muted">Northshire home care framework, Lot 1 North</span>
+          <span style="font-size: 16px; line-height: 24px; font-weight: 500;">Kemi approves the final bid by Tue 24 Nov</span>
+          <span class="pb-sub">Care Sync submits Fri 27 Nov. The buyer's deadline is Tue 1 Dec, 12:00, so we keep 2 working days spare in case the portal has problems.</span>
+          <span class="pb-muted">Demo: how this looks once the Care Sync draft reaches you on Tue 17 Nov.</span>
+        </div>
+        <h2 class="pb-h2">1. Read the drafts</h2>
+        <div class="pb-card">
+          <sc-for list="{{drafts}}" as="q" hint-placeholder-count="5">
+            <div class="pb-row">
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{q.name}}</span><span class="pb-muted">{{q.meta}}</span></span>
+              <span class="{{q.cls}}">{{q.state}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <h2 class="pb-h2">2. Approve for submission</h2>
+        <div class="pb-card" style="padding: 6px 0;">
+          <sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+            <sc-if value="{{c.on}}" hint-placeholder-val="{{ false }}"><button role="checkbox" aria-checked="true" onClick="{{c.flip}}" style="width: 100%; min-height: 48px; padding: 8px 16px; border: 0; background: transparent; font: inherit; font-size: 14px; line-height: 20px; text-align: left; display: flex; gap: 12px; align-items: center; color: var(--cs-text-primary); cursor: pointer;"><span aria-hidden="true" style="width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; font-size: 13px;">✓</span>{{c.text}}</button></sc-if>
+            <sc-if value="{{c.off}}" hint-placeholder-val="{{ true }}"><button role="checkbox" aria-checked="false" onClick="{{c.flip}}" style="width: 100%; min-height: 48px; padding: 8px 16px; border: 0; background: transparent; font: inherit; font-size: 14px; line-height: 20px; text-align: left; display: flex; gap: 12px; align-items: center; color: var(--cs-text-primary); cursor: pointer;"><span aria-hidden="true" style="width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; border: 2px solid var(--cs-border-control); box-sizing: border-box;"></span>{{c.text}}</button></sc-if>
+          </sc-for>
+        </div>
+        <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}"><button class="pb-btn pb-pri" style="min-height: 52px; font-size: 16px;" onClick="{{approve}}">I approve. Please submit this bid</button></sc-if>
+        <sc-if value="{{notReady}}" hint-placeholder-val="{{ true }}"><button class="pb-btn pb-dis" style="min-height: 52px; font-size: 16px;" aria-disabled="true">Tick each item to approve</button></sc-if>
+        <sc-if value="{{approved}}" hint-placeholder-val="{{ false }}"><div class="pb-note n-ok">Approved by Kemi at 16:42. Daniel submits on Fri 27 Nov and sends you the portal receipt the same day.</div></sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{isPast}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+          <sc-for list="{{stats}}" as="st" hint-placeholder-count="3">
+            <div class="pb-card" style="padding: 12px; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 20px; line-height: 28px; font-weight: 600;">{{st.v}}</span><span class="pb-muted">{{st.k}}</span></div>
+          </sc-for>
+        </div>
+        <div class="pb-card">
+          <sc-for list="{{past}}" as="b" hint-placeholder-count="4">
+            <div class="pb-row" style="flex-direction: column; gap: 6px;">
+              <div style="display: flex; gap: 10px; width: 100%;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{b.name}}</span><span class="pb-muted">{{b.meta}}</span></span><span class="{{b.cls}}">{{b.result}}</span></div>
+              <span class="pb-sub">{{b.note}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <h2 class="pb-h2">Contracts coming up for renewal</h2>
+        <div class="pb-card">
+          <sc-for list="{{renew}}" as="n" hint-placeholder-count="2">
+            <div class="pb-row"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{n.name}}</span><span class="pb-muted">{{n.meta}}</span></span><span class="pb-chip c-info">{{n.when}}</span></div>
+          </sc-for>
+        </div>
+        <div class="pb-note n-ok">Every answer you have submitted is kept, with the buyer's scores and feedback, so your best answers are reused and improved for the next bid.</div>
+      </div>
+    </sc-if>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'week', c: [true, true, false, false], approved: false }; }
+  renderVals() {
+    const { tab, c, approved } = this.state;
+    const T = [['week', 'Coming up'], ['docs', 'Documents'], ['sign', 'Review and sign-off'], ['past', 'Past bids']];
+    const heads = { week: ['What we need from you', '6 things across 2 bids, and when we submit. The next one is due this Friday, 6 Nov.'], docs: ['Your tender documents', 'One store for every bid.'], sign: ['Review and sign-off', 'Read the drafts, then approve once. We never submit without your approval.'], past: ['Your past bids', 'Results, scores and feedback, and what is coming up for renewal.'] };
+    const week = [
+      ['Fri', '6 Nov', 'Check your tender profile: confirm what we hold, then 3 new questions', 'Eastford supported living', 'About 10 minutes', 'Check', false, true],
+      ['Wed', '11 Nov', 'Case study from Kemi', 'Northshire, Lot 1 North', 'One story about a hospital discharge. About 15 minutes', 'Add it', false, true],
+      ['Mon', '16 Nov', 'Staff numbers and turnover from Kemi', 'Northshire, Lot 1 North', 'For the workforce answer. About 10 minutes', 'Add them', true, true],
+      ['Tue', '17 Nov', 'Decide the scope: which categories to apply for', 'Eastford supported living', 'Read our advice first', 'Decide', false, true],
+      ['Tue', '17 Nov', 'Care Sync draft to Kemi', 'Northshire, Lot 1 North', 'Read and comment. About 40 minutes', 'Open', false, true],
+      ['Tue', '24 Nov', 'Kemi approves the final bid', 'Northshire, Lot 1 North', 'Prices included. About 10 minutes', 'Review', false, true],
+      ['Fri', '27 Nov', 'Care Sync submits', 'Northshire, Lot 1 North', 'Nothing for you to do. You get the portal receipt the same day', 'We do this', false, false]
+    ].map(([dow, date, text, bid, time, cta, canPass, yours]) => ({ dow, date, text, bid, time, cta, canPass, yours, ours: !yours }));
+    const docs = [
+      ['Employer\'s liability insurance', 'Expires 31 March 2027. Used in 3 bids', 'In date', 'ok'],
+      ['Public liability insurance', 'Expires 31 March 2027. Used in 3 bids', 'In date', 'ok'],
+      ['Accounts for 2024 to 2025', 'Used in 4 bids', 'In date', 'ok'],
+      ['Safeguarding policy', 'Reviewed January 2026', 'In date', 'ok'],
+      ['Business continuity plan', 'Last reviewed 2023. Buyers usually want one reviewed in the last 12 months', 'Review due', 'warn'],
+      ['Training matrix', 'Northshire asks for it', 'Missing', 'bad'],
+      ['Modern slavery statement', 'Used in 2 bids', 'In date', 'ok'],
+      ['Social value plan', 'We draft this with you for each bid', 'Per bid', 'neutral']
+    ].map(([name, meta, state, k]) => ({ name, meta, state, cls: 'pb-chip c-' + k }));
+    const drafts = [
+      ['Quality and person-centred care (40% of the marks)', 'Draft ready. You left 2 comments, both answered', 'Read', 'ok'],
+      ['Safeguarding (15%)', 'Draft ready', 'To read', 'warn'],
+      ['Workforce (20%)', 'Draft ready, with your staff figures from 16 November', 'To read', 'warn'],
+      ['Social value (10%)', 'Draft ready', 'To read', 'warn'],
+      ['Pricing schedule (15%)', 'Hourly rates worked out with you on 29 October', 'To approve', 'warn']
+    ].map(([name, meta, state, k]) => ({ name, meta, state, cls: 'pb-chip c-' + k }));
+    const ct = ['I have read every answer', 'I approve the prices', 'I have checked the declarations the buyer asks for', 'I authorise Care Sync Experts to submit this bid for us'];
+    const checks = ct.map((text, i) => ({ text, on: !!c[i], off: !c[i], flip: () => { const n = c.slice(); n[i] = !n[i]; this.setState({ c: n, approved: false }); } }));
+    const ready = c.every(Boolean) && !approved;
+    return {
+      theme: this.props.theme ?? 'light',
+      tabs: T.map(([k, label]) => ({ label, on: tab === k, off: tab !== k, pick: () => this.setState({ tab: k }) })),
+      heading: heads[tab][0], intro: heads[tab][1],
+      isWeek: tab === 'week', isDocs: tab === 'docs', isSign: tab === 'sign', isPast: tab === 'past',
+      stats: [['2 of 4', 'bids won'], ['£1.1m', 'contracts won'], ['74%', 'average score']].map(([v, k]) => ({ v, k })),
+      past: [['Hollinvale home care', 'Submitted November 2025. Lot 1', 'Won', 'ok', 'Scored 81%. Highest marks for safeguarding. Contract started March 2026.'], ['Riverbank home care, lot 2', 'Submitted October 2025', 'Not this time', 'neutral', 'Scored 68%. Feedback used to improve 3 answers. The framework reopens in April 2027 and we will remind you.'], ['Westvale community support', 'Submitted April 2026', 'Not this time', 'neutral', 'Scored 76%. Close to the winning score. Feedback used in the Northshire answers.'], ['Thornbury reablement', 'Submitted June 2025', 'Won', 'ok', 'Scored 72%. Two-year contract with an option to extend.']].map(([name, meta, result, k, note]) => ({ name, meta, result, note, cls: 'pb-chip c-' + k })),
+      renew: [['Thornbury reablement', 'Ends June 2027. The council usually re-tenders 6 months before', 'Re-tender likely Dec 2026'], ['Hollinvale home care', 'Ends March 2029, option to extend 1 year', '2028']].map(([name, meta, when]) => ({ name, meta, when })),
+      week, docs, drafts, checks, ready, notReady: !c.every(Boolean) && !approved, approved,
+      approve: () => this.setState({ approved: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

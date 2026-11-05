@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>System health</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible,.bz-a:focus-visible,.bz-tile:focus-visible,.bz-rowbtn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px;min-width:0}
+.bz-red{padding:14px 16px;border-radius:12px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-inf{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-info-border);background:var(--cs-status-info-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-h3{margin:0;font-size:16px;line-height:22px;font-weight:600}
+.bz-t15{font-size:15px;line-height:22px;font-weight:500}
+.bz-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-a{color:var(--cs-text-brand);font-weight:500;font-size:14px;line-height:20px;text-decoration:underline;text-underline-offset:3px;border-radius:4px}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.bz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bz-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bz-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.bz-g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.bz-item{padding:16px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:10px}
+.bz-ico{width:36px;height:36px;flex-shrink:0;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-secondary);display:flex;align-items:center;justify-content:center}
+.bz-tile{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:12px;background:var(--cs-surface-raised);box-shadow:var(--cs-elevation-1);text-decoration:none;color:var(--cs-text-primary);min-width:0}
+.bz-tile:hover{box-shadow:var(--cs-elevation-2)}
+.bz-num{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.bz-dot{width:8px;height:8px;border-radius:999px;flex-shrink:0;display:inline-block}
+.d-ok{background:var(--cs-status-success-text)}.d-warn{background:var(--cs-status-warning-text)}.d-bad{background:var(--cs-status-error-text)}.d-off{background:var(--cs-text-muted)}
+.bz-rowbtn{width:100%;border:0;background:transparent;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:12px 20px;display:flex;gap:14px;align-items:center;min-height:56px;box-sizing:border-box}
+.bz-rowbtn:hover{background:var(--cs-action-ghost-hover)}
+.bz-sel{background:var(--cs-surface-page)}
+.bz-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.bz-step{display:flex;gap:12px;align-items:flex-start}
+.bz-stepn{width:28px;height:28px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.bz-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;letter-spacing:0}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+.bar.ok span{background:var(--cs-status-success-text)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 3400px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="System health" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 560px; min-width: 0;">
+          <span class="sb-muted">Super admin. Monday 2 November, 09:20</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">System health</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{headline}}</span>
+        </div>
+      </div>
+
+      <div class="bz-g5">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="{{k.cls}}" style="align-self: flex-start;">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <section aria-labelledby="na-h" style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 id="na-h" class="sb-h2">{{attnTitle}}</h2>
+        <div class="bz-g2" style="gap: 18px; align-items: start;">
+          <div class="{{rvCls}}" style="gap: 8px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">CQC email watch: Riverside Homecare Ltd</span><span class="{{rvChipCls}}">{{rvChip}}</span></div>
+            <span class="sb-sub">Submitted to CQC on Fri 23 Oct. The CQC email login is not in the vault: 10 days without a watch, red after {{gapDays}} days. A CQC letter to Mark Evans could be missed. On My day and the manager dashboard since day {{gapDays}}. Olu is the case owner; Daniel is covering.</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{rvAsk}}">Ask Mark to connect his email</button><a class="sb-btn b-gh bz-link" href="PortalWatch.dc.html">Open the watch (board 22)</a></div>
+            <sc-if value="{{rvAsked}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">Sent just now: Mark gets the "Your business email" link (board 27) by email, and Daniel has a task to call him today. Until it is connected, Mark can forward any CQC email to his Hub.</span></sc-if>
+          </div>
+          <div class="{{gwCls}}" style="gap: 8px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Email delivery: weekly update to Greenway Support</span><span class="{{gwChipCls}}">{{gwChip}}</span></div>
+            <span class="sb-sub">The Friday 30 Oct update bounced at 17:02: the mailbox does not exist. It is waiting in Olu's outbox. Olu is on leave, so Daniel is covering and has been told.</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" aria-expanded="{{fixExp}}" onClick="{{toggleFix}}">Fix email address</button><button class="sb-btn b-gh" aria-expanded="{{logExp}}" onClick="{{toggleLog}}">See run log</button><button class="sb-btn b-gh" onClick="{{retry}}">{{retryLabel}}</button></div>
+            <sc-if value="{{retryErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err" role="alert">{{retryErrText}}</span></sc-if>
+            <sc-if value="{{showFix}}" hint-placeholder-val="{{ false }}">
+              <label class="bz-lbl" for="fx-in2">Tunde Bello's email address</label>
+              <input id="fx-in2" class="bz-in" value="{{fixVal}}" onChange="{{onFix}}">
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{saveFix}}">Save</button><span class="sb-muted" style="flex: 1 1 200px;">{{fixNote}}</span></div>
+            </sc-if>
+            <sc-if value="{{showLog}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 6px; border-top: 1px solid var(--cs-border-default);">
+                <sc-for list="{{runLog}}" as="l" hint-placeholder-count="5"><span style="font-size: 13px; line-height: 18px;"><span class="bz-b">{{l.t}}</span> {{l.x}}</span></sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </section>
+
+      <section class="sb-card" aria-labelledby="cn-h">
+        <div class="sb-head"><h2 id="cn-h" class="sb-h2">Connections: {{okCount}} of 15 healthy</h2><span class="sb-sub">Open a connection to see what depends on it and what happens if it fails</span></div>
+        <div style="padding: 0 20px 12px;"><div role="tablist" aria-label="Filter connections" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{cTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+        <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 0 0 8px;"></span><span class="sb-th" style="flex: 1;">Connection</span><span class="sb-th" style="flex: 0 0 210px;">Last success</span><span class="sb-th" style="flex: 0 0 150px;">Checked</span><span class="sb-th" style="flex: 0 0 132px; text-align: center;">Status</span></div>
+        <sc-for list="{{conns}}" as="c" hint-placeholder-count="15">
+          <div style="border-top: 1px solid var(--cs-border-subtle);">
+            <button class="{{c.rowCls}}" aria-expanded="{{c.exp}}" onClick="{{c.toggle}}">
+              <span class="{{c.dot}}" aria-hidden="true"></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b" style="font-size: 15px; line-height: 22px;">{{c.name}}</span><span class="sb-sub">{{c.purpose}}</span></span>
+              <span class="sb-sub" style="flex: 0 0 210px;">{{c.last}}</span>
+              <span class="sb-muted" style="flex: 0 0 150px;">{{c.every}}</span>
+              <span class="{{c.chipCls}}" style="width: 132px; justify-content: center;">{{c.chip}}</span>
+            </button>
+            <sc-if value="{{c.isOpen}}" hint-placeholder-val="{{ false }}">
+              <div style="padding: 0 20px 18px 42px; display: flex; flex-direction: column; gap: 10px;">
+                <div class="bz-g3">
+                  <div class="bz-box"><span class="bz-lbl">Screens that depend on it</span><sc-for list="{{c.depends}}" as="x" hint-placeholder-count="3"><span>{{x}}</span></sc-for></div>
+                  <div class="bz-box"><span class="bz-lbl">Automations that use it</span><sc-for list="{{c.autos}}" as="x" hint-placeholder-count="2"><span>{{x}}</span></sc-for></div>
+                  <div class="bz-amb"><span class="bz-lbl">If it fails</span><span>{{c.fails}}</span><span class="sb-sub">Who is told: {{c.told}}</span></div>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                  <span class="sb-sub" style="flex: 1 1 380px;"><span class="bz-lbl">Key or access: </span><span>{{c.key}}</span></span>
+                  <span class="sb-muted">Owner: {{c.owner}}</span>
+                  <button class="sb-btn b-gh" onClick="{{c.test}}">Test now</button>
+                  <button class="sb-btn b-gh" onClick="{{c.reconnect}}">Reconnect</button>
+                </div>
+                <sc-if value="{{c.hasMsg}}" hint-placeholder-val="{{ false }}"><div class="{{c.msgCls}}"><span class="bz-b">{{c.msg}}</span></div></sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div class="sb-row" style="align-items: flex-start;">
+          <span class="bz-dot d-off" style="margin-top: 7px;" aria-hidden="true"></span>
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">WhatsApp</span><span class="sb-sub">A later phase. Not connected and not offered to clients. Not counted in the 15.</span></span>
+          <span class="sb-chip c-neutral" style="width: 132px; justify-content: center;">Later, off</span>
+        </div>
+        <div class="sb-row"><span class="sb-muted">Keys are never shown in full. Changing a key is written to the audit log and both super admins are told.</span></div>
+        <div class="sb-row" style="align-items: flex-start; background: var(--cs-surface-subtle);">
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="bz-b">Connections and suppliers are two different lists</span>
+          <span class="sb-sub">The 15 connections here are the systems the Hub talks to. Data and privacy (board 85) lists 16 suppliers that process our data. 7 of those suppliers are connections here: Google Workspace, Stripe, Xero, DocuSeal, GoHighLevel, email sending and texts. The other 9 have no connection on this page: the hosting provider runs the Hub itself, so its health is the uptime and backups below; 5 are services the Hub uses inside its own work (the AI provider, the prompt log, speech to text, virus scanning and the automations tool), and their failures show under Failed items; 1Password is interim and ends by Fri 13 Nov; WhatsApp and AssuredBid are not live. The 4 look-ups, 3 regulator watches and the Interview Preparation Hub here are not suppliers that process our data.</span></span>
+          <a class="sb-btn b-gh bz-link" href="DataPrivacy.dc.html">Open suppliers (board 85)</a>
+        </div>
+      </section>
+
+      <div class="bz-cols">
+        <div style="flex: 3 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" aria-labelledby="fq-h">
+            <div class="sb-head"><h2 id="fq-h" class="sb-h2">Failed items</h2><span class="sb-sub">{{failSub}}</span></div>
+            <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 0 0 112px;">When</span><span class="sb-th" style="flex: 1;">What</span><span class="sb-th" style="flex: 0 0 118px;">Owner</span><span class="sb-th" style="flex: 0 0 130px; text-align: center;">State</span></div>
+            <sc-for list="{{fails}}" as="f" hint-placeholder-count="3">
+              <div class="sb-row" style="align-items: flex-start;"><span class="sb-sub" style="flex: 0 0 112px;">{{f.at}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{f.t}}</span><span class="sb-sub">{{f.x}}</span></span><span class="sb-sub" style="flex: 0 0 118px;">{{f.owner}}</span><span style="flex: 0 0 130px; display: flex; justify-content: center;"><span class="{{f.cls}}">{{f.state}}</span></span></div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">Automations: 46 on. The full list, with on and off and "what depends on this", is in Messages and automations (board 82). Every failure shows here and to its owner. Nothing fails silently.</span></div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="mw-h">
+            <div class="sb-head"><h2 id="mw-h" class="sb-h2">Regulator watch by client</h2><span class="sb-sub">Clients waiting on CQC, CIW or RQIA</span></div>
+            <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 1;">Client</span><span class="sb-th" style="flex: 0 0 190px;">How we watch</span><span class="sb-th" style="flex: 0 0 100px;">Last checked</span><span class="sb-th" style="flex: 0 0 120px; text-align: center;">State</span></div>
+            <sc-for list="{{watch}}" as="w" hint-placeholder-count="6">
+              <div class="sb-row"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span class="bz-b">{{w.c}}</span><span class="sb-muted">{{w.r}}</span></span><span class="sb-sub" style="flex: 0 0 190px;">{{w.how}}</span><span class="sb-sub" style="flex: 0 0 100px;">{{w.last}}</span><span style="flex: 0 0 120px; display: flex; justify-content: center;"><span class="{{w.cls}}">{{w.state}}</span></span></div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">CQC email every few minutes. CIW Online and the RQIA Web Portal every working day. The watch never files Hub sign-in or e-signature emails.</span></div>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="ed-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="ed-h" class="sb-h2">Email delivery</h2><span class="sb-chip c-ok">Domain checks passed</span></div>
+            <span class="sb-sub">Automated Hub emails go from hello@caresyncexperts.co.uk. Personal messages go from each person's Google Workspace mailbox.</span>
+            <sc-for list="{{domain}}" as="d" hint-placeholder-count="3">
+              <div style="display: flex; justify-content: space-between; gap: 10px; align-items: center; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);"><span style="display: flex; flex-direction: column;"><span class="bz-b">{{d.k}}</span><span class="sb-muted">{{d.x}}</span></span><span class="sb-chip c-ok">Pass</span></div>
+            </sc-for>
+            <div style="display: flex; justify-content: space-between; gap: 10px; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle); font-size: 14px; line-height: 20px;"><span class="sb-sub">Weekly updates, Fri 30 Oct</span><span class="bz-b">{{weeklyDelivered}}</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px; line-height: 20px;"><span class="sb-sub">Bounces this week</span><span class="bz-b">{{bounces}}</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px; line-height: 20px;"><span class="sb-sub">Quiet hours</span><span class="bz-b" style="text-align: right;">{{quiet}}</span></div>
+            <span class="sb-muted">Legal deadline alerts and tender deadlines within 24 hours still go in quiet hours.</span>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="tx-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="tx-h" class="sb-h2">Texts and WhatsApp</h2></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; align-items: flex-start;"><span style="display: flex; flex-direction: column;"><span class="bz-b">Texts: urgent only</span><span class="sb-sub">The introduction call, urgent legal deadlines, and the sign-in code to a client's mobile when Care Sync holds their sign-in mailbox.</span></span><span class="sb-chip c-ok">On</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);"><span style="display: flex; flex-direction: column;"><span class="bz-b">WhatsApp</span><span class="sb-sub">A later phase. Clients are not offered it yet.</span></span><span class="sb-chip c-neutral">Later, off</span></div>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="bk-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="bk-h" class="sb-h2">Backups and restore tests</h2><span class="sb-chip c-ok">On time</span></div>
+            <sc-for list="{{backups}}" as="b" hint-placeholder-count="4">
+              <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px; line-height: 20px; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);"><span class="sb-sub" style="flex: 0 0 130px;">{{b.k}}</span><span style="flex: 1; min-width: 0; text-align: right;">{{b.v}}</span></div>
+            </sc-for>
+            <a class="bz-a" href="SecurityCentre.dc.html">Resilience and keys (Security, board 84)</a>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="up-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="up-h" class="sb-h2">Uptime</h2><span class="sb-sub">Last 30 days</span></div>
+            <div style="display: flex; align-items: baseline; gap: 10px;"><span class="sb-kv">99.98%</span><span class="sb-sub">The Hub, for clients and staff</span></div>
+            <span class="sb-sub">One planned update, Sun 25 Oct 06:00 to 06:09, announced on the Friday. No unplanned outages.</span>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: 'all', open: { cqcmail: true }, msgs: {}, rvAsked: false, showFix: false, showLog: false, fix: 'tunde@greenwaysupport.example', fixSaved: false, confirmed: false, resent: false, retryErr: '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const R = (window.CSR && typeof window.CSR.get === 'function') ? window.CSR : { get: (k, f) => f };
+    const money = n => { const v = Number(n); return '£' + v.toLocaleString('en-GB', { minimumFractionDigits: (Math.round(v * 100) % 100) ? 2 : 0, maximumFractionDigits: 2 }); };
+    const day = R.get('weekly-update-day', 'Friday');
+    const gapDays = R.get('watch-gap-red-days', 7);
+    const sig = R.get('signature-reminders', 'after 2 days, then the consultant calls');
+    const C = [
+      ['google', 'Google Workspace', 'biz', 'Staff sign-in with two-step login, staff mailboxes, calendars and Drive.', 'ok', 'Today 09:19', 'Every 5 minutes',
+        ['Staff sign-in, for every staff screen', 'Personal emails from staff mailboxes', 'Session invites: Sessions (board 28) and Coach sessions (board 69)', 'People and access (board 83): joiners and leavers'],
+        ['Session booked: add it to both calendars', 'Leaver: suspend the Google account on the last day'],
+        'Staff cannot sign in. Anyone already signed in keeps working until their session ends. Session invites wait, and the coach gets a task instead.', 'Both super admins', 'Service account key ••••••••7Q2c, added Thu 1 Oct', 'Collins'],
+      ['stripe', 'Stripe', 'biz', 'Every instalment, by card or another method Stripe supports.', 'ok', 'Today 09:02', 'Live, with each payment',
+        ['Sign your pack (board 19): accept, sign and pay', 'Plan and costs (board 60) and Your account (board 29)', 'Add a client (board 51)', 'Manager dashboard money (board 43) and Money and exports (board 87)'],
+        ['Payment received: introduction call for Divine', 'Payment received: start the stage that waits for it', 'Instalment due: remind the client'],
+        'Clients see "Payment could not start; we have been told", and nobody is charged twice. Stages that wait for a payment stay where they are. Finance can mark a bank transfer paid where one was agreed.', 'Femi Ade (finance) and both super admins', 'Secret key sk_live_••••••••4f2a', 'Femi Ade'],
+      ['xero', 'Xero', 'biz', 'Invoices and payments, synced every hour.', 'ok', 'Today 09:00', 'Every hour',
+        ['Manager dashboard money (board 43)', 'Money and exports (board 87): month close and the accountant export', 'Reports (board 72)'],
+        ['Payment received: mark the invoice paid', 'Discount approved: add the discount line to the invoice'],
+        'Payments are still taken in Stripe. Invoices wait in a queue and sync when Xero is back; nothing is lost.', 'Femi Ade (finance)', 'Connected account, renewed Mon 26 Oct', 'Femi Ade'],
+      ['docuseal', 'DocuSeal', 'biz', 'E-signatures: agreements, pack sign-off and signing together.', 'ok', 'Today 08:45', 'Every 15 minutes',
+        ['Sign your pack (board 19)', 'Signing together (board 64)', 'Add a client (board 51): the agreement', 'Stage 6 of 11: final pack sign-off'],
+        ['Signed: move to the next stage', 'Signature reminders: ' + sig],
+        'Clients cannot sign. The Sign page says signing is paused for a moment and that we will tell them when it is back. No stage moves without a signature.', 'The case owner and both super admins', 'API key ••••••••k9Lw', 'Collins'],
+      ['ghl', 'GoHighLevel', 'biz', 'Sales CRM: calls, enquiries and won deals.', 'ok', 'Today 09:10', 'Every 5 minutes',
+        ['Add a client (board 51): won deals arrive here', 'Introduction call (board 33): calls through GoHighLevel', 'Tender Radar (board 10): outreach'],
+        ['Won deal: prepare Add a client for the salesperson', 'Call ended: log it on the client page'],
+        'Won deals do not arrive in Add a client, so Jo adds the client by hand. Calls are logged when it is back.', 'Jo Martin and Collins', 'API key ••••••••Hc31', 'Jo Martin'],
+      ['ch', 'Companies House', 'look', 'Company and officer checks.', 'ok', 'Today 08:55', 'On each look-up',
+        ['Find your company (board 23) and Directors and owners (board 36)', 'Onboarding gates (board 8): Company and directors', 'Form received checks (board 13)', 'Address and identity check (board 14)'],
+        ['Form arrived: check the directors against Companies House'],
+        'Gate 1 shows "Waiting for Companies House". Grace can check the Companies House website and record it; the check runs again when it is back.', 'Grace', 'API key ••••••••2bE8', 'Grace'],
+      ['os', 'Ordnance Survey', 'look', 'Postcode and address look-up.', 'ok', 'Today 08:31', 'On each look-up',
+        ['Address history cards (board 61)', 'The "Your office" step of the onboarding form (board 46)', 'Address and identity check (board 14)'],
+        ['Address entered: match it to an official address'],
+        'Clients type the address by hand. Grace sees "not matched" on the check and confirms it.', 'Grace', 'API key ••••••••Vx70', 'Grace'],
+      ['lr', 'HM Land Registry', 'look', 'Who owns an office address, for the office address evidence.', 'ok', 'Fri 30 Oct 11:20', 'On each look-up',
+        ['Onboarding gates (board 8): Office address evidence', 'Address and identity check (board 14)', 'One-task link for the landlord (board 37)'],
+        ['Office address entered: look up the registered owner'],
+        'The office address gate waits. Grace can order the title by hand and upload it.', 'Grace', 'Business account ••••••••0193', 'Grace'],
+      ['cqcdata', 'CQC data', 'look', 'Public CQC register: providers, locations and ratings.', 'ok', 'Today 06:00', 'Every night',
+        ['Tender Radar (board 10): who already provides care', 'Tender profile (board 48) and Confirm what we hold (board 58)', 'Aftercare (board 71): the register entry after registration'],
+        ['New registration: copy the register entry to the client page'],
+        'Screens show the last copy with its date. Nothing is sent to clients from it.', 'Jo Martin', 'Subscription key ••••••••d4Ra', 'Jo Martin'],
+      ['cqcmail', 'CQC email watch', 'watch', 'Reads CQC emails in each CQC client\'s business mailbox. Never Hub sign-in or e-signature emails.', 'bad', 'Today 09:18, except Riverside', 'Every few minutes',
+        ['Regulator and tender watch (board 22)', 'The client\'s CQC centre (board 5)', 'My day (board 7) and Deadlines (board 75)', 'Notice of Proposal and interview alerts'],
+        ['CQC email received: tell the case owner and the client', 'Legal deadline found: add it to Deadlines'],
+        'A CQC letter could be missed, including one with a legal deadline. A gap turns red after ' + gapDays + ' days and shows on My day and the manager dashboard.', 'The case owner, the manager and both super admins', 'One connection per client mailbox. No shared key.', 'Each case owner'],
+      ['ciw', 'CIW Online watch', 'watch', 'Checks CIW Online for Afon Care Ltd.', 'ok', 'Today 07:30', 'Every working day',
+        ['Your regulator (board 63)', 'Regulator and tender watch (board 22)', 'My day (board 7)'],
+        ['New CIW message: alert the consultant the same hour'],
+        'Daniel checks CIW Online by hand each working day until it is back.', 'Daniel Mensah', 'Daniel is a user on the client\'s account. No password held.', 'Daniel Mensah'],
+      ['rqia', 'RQIA Web Portal watch', 'watch', 'Checks the RQIA Web Portal for Lagan View Care Ltd.', 'ok', 'Today 08:05', 'Every working day',
+        ['Your regulator (board 63)', 'Regulator and tender watch (board 22)', 'My day (board 7)'],
+        ['New RQIA message: alert the consultant the same hour'],
+        'The consultant checks the Web Portal by hand each working day until it is back.', 'Daniel Mensah (covering for Olu)', 'Portal access for the case owner. No password held.', 'Olu (Daniel covering)'],
+      ['iph', 'Interview Preparation Hub API', 'biz', 'Creates the client\'s account when the interview stage starts, with regulator, service type and role.', 'ok', 'Today 09:00', 'Every 15 minutes',
+        ['The interview portal link on the CQC centre (board 5) and Your regulator (board 63)', 'Coach sessions (board 69)', 'People and access (board 83): staff accounts'],
+        ['Interview stage starts: create the client\'s account'],
+        'A staff task appears with the details to copy into the Interview Preparation Hub by hand.', 'Millicent and the case owner', 'API key ••••••••Pq5m', 'Collins'],
+      ['email', 'Email sending', 'msg', 'Automated Hub emails from hello@caresyncexperts.co.uk: sign-in links, weekly updates and every email in the library.', 'bad', 'Today 09:17', 'Live, with each email',
+        ['Sign in, no password (board 40): the sign-in link', 'Weekly update composer (board 9)', 'Messages and automations (board 82): every email', 'Notifications (board 41)'],
+        ['Weekly updates every ' + day, 'Every reminder and nudge'],
+        'Clients cannot get a sign-in link and emails queue until it is back. A bounce goes to the sender\'s outbox and is never sent again to the same address.', 'The sender and both super admins', 'Sending key ••••••••mT8e. Domain checks: SPF, DKIM, DMARC', 'Collins'],
+      ['sms', 'Texts (urgent only)', 'msg', 'Texts for the introduction call, urgent legal deadlines and sign-in codes.', 'ok', 'Today 08:00', 'Every hour',
+        ['Introduction call (board 33): the text before the call', 'Deadlines (board 75): urgent legal deadline alerts', 'Sign in (board 40): the code to the client\'s mobile when Care Sync holds their sign-in mailbox'],
+        ['Payment received: text before the introduction call', 'Legal deadline within 24 hours: text the client'],
+        'Texts and codes cannot be sent. The message goes by email instead, and the consultant phones about urgent legal deadlines.', 'Both super admins', 'API key ••••••••Za62', 'Collins']
+    ];
+    const greenwayOk = s.resent;
+    const set = (k, id, v) => this.setState({ [k]: Object.assign({}, s[k], { [id]: v }) });
+    const statusOf = id => { if (id === 'email' && greenwayOk) return 'ok'; return null; };
+    const all = C.map(([id, name, grp, purpose, st, last, every, depends, autos, fails, told, key, owner]) => {
+      const state = statusOf(id) || st;
+      const isOpen = !!s.open[id];
+      const m = s.msgs[id] || '';
+      const msgText = m === 'test' ? (state === 'ok' ? 'Tested just now: working.' : (id === 'cqcmail' ? 'Tested just now: 4 mailboxes working. Riverside Homecare is still not connected.' : 'Tested just now: sending works. The Greenway bounce still needs a new address.')) : (m === 're' ? (id === 'cqcmail' ? 'Reconnect needs the client: ask Mark to connect his email (above).' : 'Reconnected just now. Written to the audit log, and both super admins are told.') : '');
+      return { id, name, grp, purpose, state, last: (id === 'email' && greenwayOk) ? 'Today 09:20' : last, every, depends, autos, fails, told, key, owner, isOpen,
+        exp: isOpen ? 'true' : 'false', toggle: () => set('open', id, !isOpen), rowCls: 'bz-rowbtn' + (isOpen ? ' bz-sel' : ''),
+        dot: 'bz-dot ' + (state === 'ok' ? 'd-ok' : 'd-bad'), chip: state === 'ok' ? 'Healthy' : 'Needs attention', chipCls: 'sb-chip ' + (state === 'ok' ? 'c-ok' : 'c-bad'),
+        test: () => set('msgs', id, 'test'), reconnect: () => set('msgs', id, 're'), hasMsg: !!msgText, msg: msgText,
+        msgCls: (state === 'ok' || m === 're') && id !== 'cqcmail' ? 'bz-ok' : 'bz-amb' };
+    });
+    const okCount = all.filter(c => c.state === 'ok').length;
+    const bad = 15 - okCount;
+    const G = { all: () => true, attn: c => c.state !== 'ok', biz: c => c.grp === 'biz', look: c => c.grp === 'look', watch: c => c.grp === 'watch', msg: c => c.grp === 'msg' };
+    const cnt = k => all.filter(G[k]).length;
+    const conns = all.filter(G[s.f]);
+    const retry = () => {
+      if (s.resent) return;
+      if (!s.fixSaved) { this.setState({ retryErr: 'Retrying now would bounce again. Fix the address first.' }); return; }
+      if (!s.confirmed) { this.setState({ confirmed: true, retryErr: '' }); return; }
+      this.setState({ resent: true, retryErr: '' });
+    };
+    const gwState = s.resent ? 'Delivered' : (s.fixSaved ? (s.confirmed ? 'Ready to resend' : 'Waiting for Daniel') : 'Failed');
+    return {
+      theme: this.props.theme ?? 'light', nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw', current: true },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }], user: { name: 'Collins', initials: 'C' }, three: 7,
+      headline: okCount + ' of 15 connections healthy' + (bad ? ', ' + bad + (bad === 1 ? ' needs' : ' need') + ' attention' : '') + '. Every connection shows what depends on it, what happens when it fails, and who is told.',
+      gapDays,
+      kpis: [
+        ['Connections', okCount + ' of 15', bad ? bad + (bad === 1 ? ' needs' : ' need') + ' attention' : 'All healthy', bad ? 'warn' : 'ok'],
+        ['Automations', '46 on', '1 failed this week', 'bad'],
+        ['Waiting to retry', '0', s.resent ? 'Greenway resent' : '1 needs a person first', s.resent ? 'ok' : 'warn'],
+        ['Last backup', '02:00', 'Nightly, done today', 'ok'],
+        ['Restore test', 'Tue 13 Oct', 'Passed. Next by Mon 11 Jan', 'ok']
+      ].map(([k, v, note, c]) => ({ k, v, note, cls: 'sb-chip c-' + c })),
+      attnTitle: 'Needs attention now: ' + bad,
+      rvCls: s.rvAsked ? 'bz-amb' : 'bz-red', rvChip: s.rvAsked ? 'Client asked' : 'Red, 10 days', rvChipCls: 'sb-chip ' + (s.rvAsked ? 'c-warn' : 'c-bad'),
+      rvAsked: s.rvAsked, rvAsk: () => this.setState({ rvAsked: true }),
+      gwCls: s.resent ? 'bz-ok' : 'bz-red', gwChip: gwState, gwChipCls: 'sb-chip ' + (s.resent ? 'c-ok' : (s.fixSaved ? 'c-warn' : 'c-bad')),
+      showFix: s.showFix, showLog: s.showLog, fixExp: s.showFix ? 'true' : 'false', logExp: s.showLog ? 'true' : 'false',
+      toggleFix: () => this.setState({ showFix: !s.showFix }), toggleLog: () => this.setState({ showLog: !s.showLog }),
+      fixVal: s.fix, onFix: e => this.setState({ fix: e.target.value, fixSaved: false, confirmed: false }), saveFix: () => this.setState({ fixSaved: true, retryErr: '' }),
+      fixNote: s.fixSaved ? 'Saved. The resend waits until Daniel confirms the address with Tunde by phone.' : 'The current address bounced. Check it with the client first.',
+      retry, retryLabel: s.resent ? 'Resent' : (s.fixSaved && s.confirmed ? 'Resend now' : (s.fixSaved ? 'Daniel confirmed it' : 'Retry')),
+      retryErr: !!s.retryErr, retryErrText: s.retryErr,
+      runLog: [['Fri 30 Oct 17:00', 'weekly update built from the week\'s progress'], ['17:01', 'sent to tunde@greenwaysupport.example'], ['17:02', 'bounced: the mailbox does not exist'], ['17:02', 'moved to Olu\'s outbox; Olu and Daniel told'], ['Mon 2 Nov 07:00', 'still waiting; Daniel covering this week']].concat(s.fixSaved ? [['09:20', 'address changed to ' + s.fix + ' by Collins']] : [], s.confirmed ? [['09:20', 'Daniel confirmed the address with Tunde by phone']] : [], s.resent ? [['09:20', 'resent and delivered']] : []).map(([t, x]) => ({ t, x })),
+      okCount,
+      cTabs: [['all', 'All'], ['attn', 'Needs attention'], ['biz', 'Business systems'], ['look', 'Look-ups'], ['watch', 'Regulator watches'], ['msg', 'Emails and texts']].map(([k, label]) => ({ label: label + ' ' + cnt(k), on: s.f === k, off: s.f !== k, pick: () => this.setState({ f: k }) })),
+      conns,
+      failSub: s.resent ? 'Nothing waiting. 3 fixed this week' : '1 waiting for a person. 2 fixed automatically this week',
+      fails: [
+        ['Fri 30 Oct 17:02', 'Weekly update to Greenway Support', 'Bounced: the mailbox does not exist. Not retried automatically, because it would bounce again.', 'Olu (Daniel covering)', s.resent ? 'Resent 09:20' : 'Waiting for a fix', s.resent ? 'c-ok' : 'c-bad'],
+        ['Wed 28 Oct 10:12', 'Companies House look-up for a new form', 'Slow reply. Retried automatically at 10:13 and worked.', 'Grace', 'Fixed', 'c-ok'],
+        ['Tue 27 Oct 14:00', 'Xero sync', 'Timed out. Retried automatically at 14:05; every invoice synced.', 'Femi Ade', 'Fixed', 'c-ok']
+      ].map(([at, t, x, owner, state, c]) => ({ at, t, x, owner, state, cls: 'sb-chip ' + c })),
+      watch: [
+        ['Sunrise Homecare Ltd', 'CQC: Notice of Proposal', 'Client email connected', '09:18', 'Watched', 'c-ok'],
+        ['Elm Tree Care Ltd', 'CQC: interview Tue 24 Nov', 'Client email connected', '09:12', 'Watched', 'c-ok'],
+        ['Westbrook Care Ltd', 'CQC: refused, we resubmit', 'Client email connected', '09:12', 'Watched', 'c-ok'],
+        ['Afon Care Ltd', 'CIW: with CIW since Wed 14 Oct', 'CIW Online, every working day', '07:30', 'Watched', 'c-ok'],
+        ['Lagan View Care Ltd', 'RQIA: submitted Wed 30 Sep', 'Web Portal and client email', '08:05', 'Watched', 'c-ok'],
+        ['Riverside Homecare Ltd', 'CQC: submitted Fri 23 Oct', 'Login not in the vault', '10 days ago', s.rvAsked ? 'Client asked' : 'Not watched', s.rvAsked ? 'c-warn' : 'c-bad']
+      ].map(([c, r, how, last, state, k]) => ({ c, r, how, last, state, cls: 'sb-chip ' + k })),
+      domain: [['SPF', 'Who may send for caresyncexperts.co.uk'], ['DKIM', 'Each email is signed'], ['DMARC', 'Receivers know what to do with fakes']].map(([k, x]) => ({ k, x })),
+      weeklyDelivered: s.resent ? '42 of 42 delivered' : '41 of 42 delivered',
+      bounces: s.resent ? '1, now fixed' : '1 (Greenway Support)',
+      quiet: R.get('quiet-hours', '8pm to 8am') + ', automated emails and texts',
+      backups: [['Nightly backup', 'Today 02:00, done'], ['Kept', 'Encrypted, apart from the live Hub'], ['Last restore test', 'Tue 13 Oct, passed'], ['Next restore test', 'Due by Mon 11 Jan']].map(([k, v]) => ({ k, v }))
+    };
+  }
+}
+</script>
+</body>
+</html>

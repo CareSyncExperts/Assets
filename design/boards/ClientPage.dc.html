@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Client page</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.cp-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.cp-h{margin:0;font-size:16px;line-height:24px;font-weight:500}
+.cp-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;line-height:20px}
+.cp-tab{min-height:40px;padding:0 14px;border:0;border-radius:8px;font:inherit;font-size:14px;cursor:pointer}
+.cp-tab:focus-visible,.cp-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.cp-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.cp-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.cp-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.cp-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.cp-doc{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.cp-ta{min-height:64px;padding:10px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;resize:vertical;box-sizing:border-box;width:100%}
+.cp-check{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-text-primary);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1610px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Bright Path Care Ltd" notifications="{{three}}" user="{{user}}"></x-import>
+
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <h1 style="margin: 0; font-size: 30px; line-height: 38px; font-weight: 600;">Bright Path Care Ltd</h1>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="brand" icon="shield-check">CQC, domiciliary care, full start-up</x-import>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="list-checks">Stage 4 of 11: drafting</x-import>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">Feeling: happy</x-import>
+            <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Case owner Daniel. Client since 14 September. Session 2 of 3 today 10:00</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="cp-btn b-gh" onClick="{{logCall}}">Log a call</button>
+          <button class="cp-btn b-gh" onClick="{{logWa}}">Log a WhatsApp</button>
+          <button class="cp-btn b-sec">View as Joy</button>
+          <button class="cp-btn b-pri">Message</button>
+        </div>
+      </div>
+
+      <sc-if value="{{logging}}" hint-placeholder-val="{{ false }}">
+        <section class="cp-card" aria-labelledby="lg-h" style="border: 2px solid var(--cs-action-primary);">
+          <div class="cp-row"><h2 id="lg-h" class="cp-h">{{logTitle}}</h2><span class="cp-muted">Saved to the timeline as Daniel, today</span></div>
+          <textarea class="cp-ta" aria-label="Short note" placeholder="{{logHint}}" value="{{note}}" onChange="{{onNote}}"></textarea>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"><button class="cp-btn b-pri" onClick="{{saveLog}}">Save to the timeline</button><button class="cp-btn b-gh" onClick="{{cancelLog}}">Cancel</button><span class="cp-muted">{{logNote}}</span></div>
+        </section>
+      </sc-if>
+      <sc-if value="{{justSaved}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 10px 14px; border-radius: 10px; background: var(--cs-status-success-bg); color: var(--cs-status-success-text); font-size: 14px; line-height: 20px;">{{savedText}}</div>
+      </sc-if>
+
+      <div role="tablist" aria-label="Client sections" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle); align-self: flex-start; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="6">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}">
+            <button class="cp-tab" role="tab" aria-selected="true" onClick="{{tb.pick}}" style="background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); color: var(--cs-text-primary); font-weight: 500;">{{tb.label}}</button>
+          </sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}">
+            <button class="cp-tab" role="tab" aria-selected="false" onClick="{{tb.pick}}" style="background: transparent; color: var(--cs-text-secondary);">{{tb.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+
+          <sc-if value="{{s.waiting}}" hint-placeholder-val="{{ true }}">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+            <section aria-labelledby="wc-h" class="cp-card">
+              <div class="cp-row"><h2 id="wc-h" class="cp-h">Waiting on Joy</h2><x-import component-from-global-scope="CareSync.StatusBadge" status="warning">2</x-import></div>
+              <div class="cp-row"><span>Check the provider form</span><span style="color: var(--cs-text-muted);">By Wed 11 Nov</span></div>
+              <div class="cp-row"><span>Re-upload the utility bill (too blurry to read)</span><span style="color: var(--cs-text-muted);">By Wed 11 Nov</span></div>
+              <span class="cp-muted">{{remindNote}}</span>
+            </section>
+            <section aria-labelledby="wu-h" class="cp-card">
+              <div class="cp-row"><h2 id="wu-h" class="cp-h">Waiting on us</h2><x-import component-from-global-scope="CareSync.StatusBadge" status="info">3</x-import></div>
+              <div class="cp-row"><span>Session 2: going through documents</span><span style="color: var(--cs-text-muted);">Millicent and Daniel, today 10:00</span></div>
+              <div class="cp-row"><span>Statement of Purpose v2 quality check</span><span style="color: var(--cs-text-muted);">Daniel, Thu 5 Nov</span></div>
+              <div class="cp-row"><span>Manager form draft to Joy</span><span style="color: var(--cs-text-muted);">Daniel, Mon 9 Nov</span></div>
+              <span class="cp-muted">18 of 26 done-for-you items ticked off.</span>
+            </section>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{s.pack}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="pd-h" class="cp-card">
+            <div class="cp-row"><h2 id="pd-h" class="cp-h">Pack drafting</h2><span class="cp-chip c-warn">Pack check: 1 to fix</span></div>
+            <sc-for list="{{docs}}" as="d" hint-placeholder-count="5">
+              <div class="cp-doc">
+                <span style="flex: 0 0 190px; min-width: 0;"><span style="font-weight: 500;">{{d.name}}</span> <span class="cp-muted">{{d.ver}}</span></span><span class="cp-sub" style="flex: 1; min-width: 0;">{{d.note}}</span>
+                <span class="{{d.cls}}">{{d.state}}</span>
+              </div>
+            </sc-for>
+            <div class="cp-doc" style="flex-direction: column; gap: 8px;">
+              <div class="cp-row" style="width: 100%;"><span style="font-weight: 500;">Statement of Purpose: what changed in v2</span><button class="cp-btn b-gh" onClick="{{toggleV}}">{{vLabel}}</button></div>
+              <span class="cp-sub">Daniel, Fri 30 Oct 15:10. Service users now adults aged 18 and over only. Office hours 08:00 to 20:00, with on-call after that. Patience Okoro named as registered manager throughout. Version 1 was Daniel, Thu 22 Oct.</span>
+              <sc-if value="{{showV1}}" hint-placeholder-val="{{ false }}"><span class="cp-sub" style="padding: 8px 10px; border-radius: 8px; background: var(--cs-surface-page);">v1 said: "adults and young people aged 16 and over", "office open 09:00 to 17:00", manager "to be confirmed".</span></sc-if>
+              <div class="cp-check"><span style="font-weight: 500;">Pack check on v2, today 08:40: 1 to fix</span><span>Statement of Purpose says up to 40 people. The business plan says up to 30 in the first year. Ask Joy which is right before the quality check.</span><span class="cp-sub">Passed: manager named the same in every document. No clinical tasks listed for a personal care service.</span></div>
+            </div>
+          </section>
+          </sc-if>
+
+          <sc-if value="{{s.timeline}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="tl-h" class="cp-card">
+            <div class="cp-row"><h2 id="tl-h" class="cp-h">Timeline</h2><span style="display: flex; gap: 6px;"><button class="cp-btn b-gh" onClick="{{logCall}}">Log a call</button><button class="cp-btn b-gh" onClick="{{logWa}}">Log a WhatsApp</button></span></div>
+            <x-import component-from-global-scope="CareSync.AuditTimeline" events="{{log}}" label="Client timeline"></x-import>
+          </section>
+          </sc-if>
+        </div>
+
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <sc-if value="{{s.notes}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="hw-h" class="cp-card" style="background: var(--cs-selection-bg);">
+            <h2 id="hw-h" class="cp-h">How Joy likes to work</h2>
+            <span style="font-size: 14px; line-height: 20px;">Email for documents, WhatsApp for quick questions. Best after 18:00 on weekdays because Joy works shifts. Likes things explained once, clearly, in writing.</span>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">From Divine's introduction call, 14 September</span>
+          </section>
+          </sc-if>
+
+          <sc-if value="{{s.people}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="pe-h" class="cp-card">
+            <h2 id="pe-h" class="cp-h">People</h2>
+            <div class="cp-row"><span><span style="font-weight: 500;">Joy Adeyemi</span>, director, nominated individual</span><span style="color: var(--cs-text-muted);">07700 900612</span></div>
+            <div class="cp-row"><span><span style="font-weight: 500;">Patience Okoro</span>, proposed registered manager</span><span style="color: var(--cs-text-muted);">CV and DBS checked</span></div>
+            <div class="cp-row"><span><span style="font-weight: 500;">Martin Hollis</span>, landlord</span><span style="color: var(--cs-text-muted);">Letter received 2 Oct</span></div>
+          </section>
+          </sc-if>
+
+          <sc-if value="{{s.access}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="ac-h" class="cp-card">
+            <h2 id="ac-h" class="cp-h">Access and money</h2>
+            <div class="cp-row"><span>Business email (CQC channel)</span><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="inbox">Connected</x-import></div>
+            <div class="cp-row"><span>Vault logins</span><span style="color: var(--cs-text-muted);">2 stored, 1 view this month</span></div>
+            <div class="cp-row"><span>First instalment of 3 (Stripe)</span><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">Paid 14/09</x-import></div>
+            <div class="cp-row"><span>Next instalment</span><span style="color: var(--cs-text-muted);">£2,833.33 + VAT at final pack sign-off</span></div>
+          </section>
+          </sc-if>
+
+          <sc-if value="{{s.notes}}" hint-placeholder-val="{{ true }}">
+          <section aria-labelledby="sn-h" class="cp-card">
+            <h2 id="sn-h" class="cp-h">From sales</h2>
+            <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Wants to start taking clients in the spring. Promised: Friday updates, 3 sessions with Millicent, help finding insurance quotes. Nothing outside the package.</span>
+          </section>
+          </sc-if>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1610}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 0, logKind: '', note: '', added: [], saved: '', v1: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const T = ['Overview', 'Timeline', 'Documents', 'People', 'Vault', 'Payments', 'Notes'];
+    const tabs = T.map((label, i) => ({ label, on: st.tab === i, off: st.tab !== i, pick: () => this.setState({ tab: i }) }));
+    const t = st.tab;
+    const s = { waiting: t === 0, pack: t === 0 || t === 2, timeline: t === 0 || t === 1, notes: t === 0 || t === 6, people: t === 0 || t === 3, access: t === 0 || t === 4 || t === 5 };
+    const base = [
+      { type: 'viewed', actor: 'Daniel Mensah', action: 'ran Pack check on Statement of Purpose v2: 1 thing to fix', at: 'Today, 08:40' },
+      { type: 'signed', actor: 'Daniel Mensah', action: 'sent the weekly update by email and in the Hub', at: '30/10, 16:00' },
+      { type: 'edited', actor: 'Daniel Mensah', action: 'wrote Statement of Purpose version 2', at: '30/10, 15:10' },
+      { type: 'uploaded', actor: 'Joy Adeyemi', action: 'uploaded a utility bill. Too blurry to read, so we asked for it again', at: '29/10, 18:20' },
+      { type: 'created', actor: 'Daniel Mensah', action: 'sent the provider form to Joy to check', at: '28/10, 11:00' },
+      { type: 'created', actor: 'Millicent', action: 'ran session 1: kick-off and your plan', at: '13/10, 10:00' }
+    ];
+    const kindName = st.logKind === 'wa' ? 'WhatsApp' : 'call';
+    const docs = [
+      ['Statement of Purpose', 'v2', 'Written Fri 30 Oct. Our quality check Thu 5 Nov, then to Joy', 'In our quality check', 'info'],
+      ['Policies (30)', 'v1', 'Second consultant check done Thu 29 Oct', 'Complete', 'ok'],
+      ['Provider form', 'v1', 'Sent to Joy Wed 28 Oct to check', 'With Joy, by Wed 11 Nov', 'warn'],
+      ['Manager form', 'draft', 'For Patience. To Joy by Mon 9 Nov', 'Drafting', 'brand'],
+      ['Business plan', 'v1', 'Figures to match the Statement of Purpose (see Pack check)', 'Drafting', 'brand']
+    ].map(([name, ver, note, state, k]) => ({ name, ver, note, state, cls: 'cp-chip c-' + k }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n20: 20,
+      user: { name: 'Daniel Mensah', initials: 'DM' },
+      tabs, s, docs,
+      remindNote: 'Gentle reminders are on: documents after 3 days, then weekly; a draft to check after 3 days. Next one Wed 4 Nov at 18:00, as Joy prefers. Never in quiet hours (' + (window.CSR ? window.CSR.get('quiet-hours', '8pm to 8am') : '8pm to 8am') + ').',
+      log: st.added.concat(base),
+      logging: !!st.logKind,
+      logTitle: st.logKind === 'wa' ? 'Log a WhatsApp with Joy' : 'Log a call with Joy',
+      logHint: st.logKind === 'wa' ? 'For example: Joy will re-upload the utility bill tonight' : 'For example: talked through the provider form, Joy happy with it',
+      note: st.note, onNote: (e) => this.setState({ note: e.target.value }),
+      logNote: st.note.trim() ? 'Joy does not see this note. It shows on the timeline for the team.' : 'Add a short note, then save.',
+      logCall: () => this.setState({ logKind: 'call', saved: '' }),
+      logWa: () => this.setState({ logKind: 'wa', saved: '' }),
+      cancelLog: () => this.setState({ logKind: '', note: '' }),
+      saveLog: () => {
+        const n = st.note.trim();
+        if (!n) return;
+        const ev = { type: st.logKind === 'wa' ? 'wa' : 'call', actor: 'Daniel Mensah', action: 'logged a ' + kindName + ' with Joy: "' + n + '"', at: 'Today, 09:05' };
+        this.setState({ added: [ev].concat(st.added), note: '', logKind: '', saved: kindName });
+      },
+      justSaved: !!st.saved && !st.logKind,
+      savedText: 'Saved. The ' + (st.saved || 'call') + ' is at the top of the timeline.',
+      showV1: st.v1, vLabel: st.v1 ? 'Hide v1' : 'Compare with v1', toggleV: () => this.setState({ v1: !st.v1 }),
+      nav: [{ items: [
+        { label: 'My day', icon: 'layout-dashboard' },
+        { label: 'Clients', icon: 'users', current: true },
+        { label: 'Onboarding', icon: 'list-checks' },
+        { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+        { label: 'Deadlines', icon: 'clock' },
+        { label: 'Sessions', icon: 'calendar' },
+        { label: 'Client care', icon: 'user' },
+        { label: 'Aftercare', icon: 'shield-check' },
+        { label: 'Regulator and tender watch', icon: 'eye' },
+        { label: 'Tenders', icon: 'clipboard-list' }
+      ] }, { heading: 'Manage', items: [
+        { label: 'Manager dashboard', icon: 'building-2' },
+        { label: 'Team and cover', icon: 'users' },
+        { label: 'Reports', icon: 'trending-up' },
+        { label: 'Super admin', icon: 'settings' }
+      ] }]
+    };
+  }
+}
+</script>
+</body>
+</html>

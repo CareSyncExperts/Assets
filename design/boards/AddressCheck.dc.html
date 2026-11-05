@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Address and identity check</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1580px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Onboarding" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a class="ob-link" href="Onboarding.dc.html">Harbour Lane Care Ltd: onboarding gates</a>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Address and identity check</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Every fact from the onboarding form compared with Companies House and the uploads. Each line belongs to one of the 8 onboarding gates. Last run Mon 2 Nov, 08:15.</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;"><span class="sb-chip c-ok">{{nMatch}}</span><span class="sb-chip c-bad">{{nDiff}}</span><span class="sb-chip c-warn">{{nWait}}</span></div>
+      </div>
+      <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="ch-h">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;"><h2 id="ch-h" class="sb-h2">Companies House (gate 1, Company and directors)</h2><span class="sb-sub">Watching for changes</span></div>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px;">
+          <sc-for list="{{ch}}" as="c" hint-placeholder-count="6"><div class="ob-box" style="gap: 2px;"><span class="ob-k">{{c.k}}</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{c.v}}</span></div></sc-for>
+        </div>
+        <span class="sb-muted">Personal codes are the Companies House identity verification codes for each director. They belong to gate 1, not gate 2: Kwame's code comes with his director details, which are already on the fix list. Gate 2 (Identity) covers Amara's own identity documents.</span>
+      </section>
+      <div role="tablist" aria-label="Which form" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      <section class="sb-card" aria-labelledby="mx-h">
+        <div class="sb-head"><h2 id="mx-h" class="sb-h2">Every fact, by gate</h2><span class="sb-sub">The Statement of Purpose, policies and insurance are not written yet. They are checked against these facts at stage 4.</span></div>
+        <div class="sb-row" style="border-top: 0;"><span class="sb-th" style="flex: 0 0 70px;">Gate</span><span class="sb-th" style="flex: 2 1 200px;">Fact</span><span class="sb-th" style="flex: 2 1 190px;">Onboarding form</span><span class="sb-th" style="flex: 2 1 190px;">Companies House</span><span class="sb-th" style="flex: 2 1 210px;">Evidence uploaded</span><span class="sb-th" style="flex: 0 0 150px;">Result</span></div>
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+          <div class="sb-row" style="align-items: flex-start;">
+            <span style="flex: 0 0 70px;"><span class="sb-chip c-brand">{{r.gate}}</span></span>
+            <span style="flex: 2 1 200px; min-width: 0; font-weight: 500;">{{r.fact}}</span>
+            <span style="flex: 2 1 190px; min-width: 0;" class="sb-sub">{{r.form}}</span>
+            <span style="flex: 2 1 190px; min-width: 0;" class="sb-sub">{{r.ch}}</span>
+            <span style="flex: 2 1 210px; min-width: 0;" class="sb-sub">{{r.ev}}</span>
+            <span style="flex: 0 0 150px;"><span class="{{r.cls}}">{{r.res}}</span></span>
+          </div>
+        </sc-for>
+      </section>
+      <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="of-h">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;"><h2 id="of-h" class="sb-h2">Office address (gate 3): form, tenancy and landlord letter</h2><span class="sb-chip c-warn">Waiting on Tom Reid</span></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+          <div class="ob-box"><span class="ob-k">Onboarding form, chosen by postcode lookup</span><span style="font-size: 15px; line-height: 22px;">Flat 2, 14 Harbour Road, Stevenage SG1 2AB</span><span class="sb-chip c-ok" style="align-self: flex-start;">Source</span></div>
+          <div class="ob-box"><span class="ob-k">Tenancy agreement, page 1, read automatically</span><span style="font-size: 15px; line-height: 22px;">Flat 2, 14 Harbour Road, Stevenage SG1 2AB</span><span class="sb-chip c-ok" style="align-self: flex-start;">Matches</span></div>
+          <div class="ob-box"><span class="ob-k">Landlord letter from Tom Reid</span><span style="font-size: 15px; line-height: 22px;">Link sent Fri 30 Oct 15:12. Opened Sat 31 Oct 09:14. Not uploaded yet.</span><span class="sb-chip c-warn" style="align-self: flex-start;">Recheck Thu 5 Nov</span></div>
+        </div>
+        <span class="sb-sub">Found in the tenancy: it is in Amara's personal name, so Tom's letter must allow the flat to be used as the office of Harbour Lane Care Ltd. The letter we sent him already says this.</span>
+        <span class="sb-muted">{{remindNote}}</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <button class="sb-btn b-sec" onClick="{{nudge}}">{{nudgeLabel}}</button>
+          <a class="ob-link" href="ThirdParty.dc.html">See what Tom sees</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1580}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 'all', nudged: false }; }
+  renderVals() {
+    const st = this.state;
+    const R = [
+      ['Gate 1', 'Company name and number', 'Harbour Lane Care Ltd, 99000101', 'Same', 'Not needed', 'Match', 'ok'],
+      ['Gate 1', 'Registered office', 'Flat 2, 14 Harbour Road', 'Same', 'Not needed', 'Match', 'ok'],
+      ['Gate 1', 'Directors', '1 listed: Amara Okafor', '2: Amara Okafor and Kwame Okafor', 'Not needed', 'Differs: on fix list', 'bad'],
+      ['Gate 1', "Directors' personal codes", "Amara's code given", 'Amara verified. Kwame not yet', 'Not needed', "Comes with Kwame's details", 'warn'],
+      ['Gate 2', 'Amara: name, date of birth, address', 'Amara Okafor, 14/03/1986, Flat 2, 14 Harbour Road', 'Name and month of birth match', 'Passport, driving licence photocard, council tax bill', 'Match, checked 30 Oct', 'ok'],
+      ['Gate 3', 'Office address', 'Flat 2, 14 Harbour Road (rented)', 'Not applicable', 'Tenancy matches. Landlord letter not yet', 'Waiting on Tom Reid', 'warn'],
+      ['Gate 4', 'Ruth Bennett: name and date of birth', 'Ruth Anne Bennett, 09/07/1979', 'Not applicable', 'CV and DBS certificate match', 'Match', 'ok'],
+      ['Gate 5', "Ruth's employment dates", 'CV received', 'Not applicable', 'Gap March to November 2019', 'Differs: on fix list', 'bad'],
+      ['Gate 6', 'Referee 1 is the last employer', 'Referee details given', 'Not applicable', "Matches the last role on Ruth's CV", 'Match', 'ok'],
+      ['Gate 7', "Ruth's DBS", 'Number and issue date given', 'Not applicable', 'Photo: Enhanced, adult barred list, 14/02/2026', 'Match', 'ok'],
+      ['Gate 8', "Ruth's professional registers", 'Not on a register', 'Not applicable', 'Register check recorded 30 Oct', 'Match', 'ok']
+    ];
+    const rows = R.filter(r => st.t === 'all' || r[6] !== 'ok').map(r => ({ gate: r[0], fact: r[1], form: r[2], ch: r[3], ev: r[4], res: r[5], cls: 'sb-chip c-' + r[6] }));
+    const c = k => R.filter(r => r[6] === k).length;
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Grace Whitfield', initials: 'GW' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks', current: true },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: [['all', 'All facts (' + R.length + ')'], ['act', 'Needs action (' + (R.length - c('ok')) + ')']].map(([k, label]) => ({ label, on: st.t === k, off: st.t !== k, pick: () => this.setState({ t: k }) })),
+      rows, nMatch: c('ok') + ' match', nDiff: c('bad') + ' differ, on the fix list', nWait: c('warn') + ' waiting',
+      ch: [['Status', 'Active'], ['Incorporated', '12/03/2025'], ['Nature of business', '88100, fits home care'], ['Filings', 'None overdue'], ['Disqualified directors', 'None found'], ['Directors', '2: Amara and Kwame Okafor'], ['Personal codes', '1 of 2 verified']].map(([k, v]) => ({ k, v })),
+      nudge: () => this.setState({ nudged: true }), nudgeLabel: st.nudged ? 'Nudge sent to Tom Reid, 09:40' : 'Nudge Tom Reid',
+      remindNote: 'Landlord and referee reminders go ' + (window.CSR ? window.CSR.get('third-party-reminders', 'after 3 working days, then weekly') : 'after 3 working days, then weekly') + '. Tom\'s first reminder goes automatically on Wed 4 Nov, 3 working days after the link. The client is never asked for it.'
+    };
+  }
+}
+</script>
+</body>
+</html>

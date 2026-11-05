@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Packages and journeys</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.pk-item:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{color:var(--cs-text-link);text-decoration:underline;text-underline-offset:2px;font-weight:500;font-size:13px}
+.pk-cols{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.pk-list{display:flex;flex-direction:column;padding:6px 8px 10px}
+.pk-gh{padding:12px 10px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600}
+.pk-item{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;border:0;background:transparent;color:var(--cs-text-primary);font:inherit;text-align:left;cursor:pointer;min-height:44px}
+.pk-item.on{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.pk-item .t{font-size:14px;line-height:19px;font-weight:500}
+.pk-item .m{font-size:12px;line-height:16px;color:var(--cs-text-secondary)}
+.pk-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--cs-border-subtle)}
+.pk-fact{padding:14px 20px;display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.pk-fact:first-child{border-left:0}
+.pk-k{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600}
+.pk-big{font-size:20px;line-height:26px;font-weight:600}
+.pk-track{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:6px;padding:4px 20px 6px}
+.pk-st{padding:8px 6px;border-radius:8px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:15px;min-height:56px}
+.pk-st.g{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.pk-st b{font-weight:600}
+.pk-steps{display:flex;gap:6px;flex-wrap:wrap;padding:4px 20px 6px}
+.pk-steps span{padding:8px 10px;border-radius:8px;background:var(--cs-surface-subtle);font-size:13px;line-height:18px}
+.pk-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--cs-border-subtle)}
+.pk-two > div{padding:14px 20px;display:flex;flex-direction:column;gap:6px}
+.pk-two > div + div{border-left:1px solid var(--cs-border-subtle)}
+.pk-li{font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.pk-dot{width:6px;height:6px;border-radius:999px;background:var(--cs-action-primary);margin-top:6px;flex-shrink:0}
+.pk-em{display:flex;flex-wrap:wrap;gap:6px}
+.pk-ver{display:grid;grid-template-columns:44px 120px minmax(0,1fr) 110px 220px;gap:10px;padding:10px 20px;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px;align-items:start}
+.pk-ready{display:grid;grid-template-columns:150px 120px minmax(0,1fr) 190px;gap:10px;padding:10px 20px;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px;align-items:center}
+.pk-ready .sb-chip{justify-self:start}
+.pk-pick{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-brand);color:var(--cs-text-brand);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.pk-add{border:2px solid var(--cs-action-primary);border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px;background:var(--cs-surface-raised)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1980px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Packages and journeys" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Packages and journeys</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">One record for each package: its price, form, stages and gates, documents, sessions, aftercare and emails, and whether Add a client offers it. A package can be offered only when every part is ready.</span>
+        </div>
+        <button class="sb-btn b-pri" onClick="{{openAdd}}">Add a package</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{addOpen}}" hint-placeholder-val="{{ false }}">
+        <section class="pk-add" aria-labelledby="add-h">
+          <div style="display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;"><h2 id="add-h" class="sb-h2">Add a package</h2><button class="sb-btn b-gh" onClick="{{closeAdd}}">Close</button></div>
+          <span class="sb-sub">A new package starts as a draft. It is not offered in Add a client until its form, price, journey and emails are ready, and the other super admin approves it.</span>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px;">
+            <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Package name</span><input class="bz-in" value="{{addName}}" onChange="{{onAddName}}"></label>
+            <div style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Start from</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;"><sc-for list="{{bases}}" as="b" hint-placeholder-count="3"><button class="{{b.cls}}" aria-pressed="{{b.pressed}}" onClick="{{b.pick}}">{{b.label}}</button></sc-for></div>
+            </div>
+          </div>
+          <div class="bz-box"><span class="sb-sub">Children's services: check which regulator applies before the first client (for example CQC for personal care at home, Ofsted for a children's home in England). This draft copies the CQC journey.</span></div>
+          <sc-if value="{{addErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Give the package a name first.</span></sc-if>
+          <button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{createDraft}}">Create the draft</button>
+        </section>
+      </sc-if>
+
+      <div class="pk-cols">
+        <nav class="sb-card pk-list" aria-label="Packages">
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+            <span class="pk-gh">{{g.label}}</span>
+            <sc-for list="{{g.items}}" as="i" hint-placeholder-count="5">
+              <button class="{{i.cls}}" aria-pressed="{{i.pressed}}" onClick="{{i.pick}}"><span class="t">{{i.name}}</span><span class="m">{{i.meta}}</span></button>
+            </sc-for>
+          </sc-for>
+        </nav>
+
+        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+          <section class="sb-card" aria-labelledby="pk-h">
+            <div class="sb-head" style="align-items: flex-start;">
+              <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 420px; min-width: 0;">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"><h2 id="pk-h" class="sb-h2">{{p.name}}</h2><span class="{{p.offCls}}">{{p.offChip}}</span><span class="sb-chip c-neutral">{{p.liveChip}}</span></div>
+                <span class="sb-sub">{{p.what}}</span>
+                <span class="sb-muted">Regulator: {{p.regs}}</span>
+              </div>
+              <sc-if value="{{p.notDraft}}" hint-placeholder-val="{{ true }}"><button class="sb-btn b-gh" onClick="{{p.toggle}}">{{p.toggleLabel}}</button></sc-if>
+            </div>
+            <sc-if value="{{p.hasMsg}}" hint-placeholder-val="{{ false }}"><div style="padding: 0 20px 14px;"><div class="{{p.msgCls}}" role="status"><span>{{p.msg}}</span></div></div></sc-if>
+            <div class="pk-facts">
+              <div class="pk-fact"><span class="pk-k">Price</span><span class="pk-big">{{p.price}}</span><span class="sb-sub">{{p.priceNote}}</span><a class="bz-link" href="PriceBook.dc.html">Price book (board 77)</a></div>
+              <div class="pk-fact"><span class="pk-k">Instalments</span><sc-for list="{{p.inst}}" as="x" hint-placeholder-count="2"><span>{{x.t}}</span></sc-for><a class="bz-link" href="PriceBook.dc.html">Change the split (board 77)</a></div>
+              <div class="pk-fact"><span class="pk-k">Form and live version</span><span class="bz-b">{{p.form}}</span><span class="{{p.formCls}}" style="align-self: flex-start;">{{p.formChip}}</span><a class="bz-link" href="FormBuilder.dc.html">Forms (board 44)</a></div>
+              <div class="pk-fact"><span class="pk-k">Sessions and aftercare</span><span><span class="bz-b">Sessions: </span>{{p.sess}}</span><span><span class="bz-b">Aftercare: </span>{{p.after}}</span><a class="bz-link" href="Rules.dc.html">Rules and promises (board 80)</a></div>
+            </div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="jr-h">
+            <div class="sb-head"><h2 id="jr-h" class="sb-h2">Journey and gates</h2><span class="sb-sub">{{p.journeyNote}}</span></div>
+            <sc-if value="{{p.isReg}}" hint-placeholder-val="{{ true }}">
+              <div class="pk-track">
+                <sc-for list="{{p.stages}}" as="st" hint-placeholder-count="11"><div class="{{st.cls}}"><b>{{st.n}}</b><span>{{st.name}}</span></div></sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{p.isSteps}}" hint-placeholder-val="{{ false }}">
+              <div class="pk-steps"><sc-for list="{{p.steps}}" as="st" hint-placeholder-count="5"><span>{{st.t}}</span></sc-for></div>
+            </sc-if>
+            <div class="pk-two">
+              <div><span class="pk-k">{{p.gatesTitle}}</span><sc-for list="{{p.gates}}" as="g" hint-placeholder-count="8"><span class="pk-li"><span class="pk-dot"></span><span>{{g.t}}</span></span></sc-for></div>
+              <div><span class="pk-k">Documents checklist ({{p.docCount}})</span><sc-for list="{{p.docs}}" as="d" hint-placeholder-count="6"><span class="pk-li"><span class="pk-dot"></span><span>{{d.t}}</span></span></sc-for></div>
+            </div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="em-h">
+            <div class="sb-head"><h2 id="em-h" class="sb-h2">Emails used</h2><span class="sb-sub">{{p.emailNote}}</span></div>
+            <div style="padding: 0 20px 16px; display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{p.emailGroups}}" as="eg" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 10px; align-items: start;"><span class="pk-k" style="padding-top: 3px;">{{eg.label}}</span><span class="pk-em"><sc-for list="{{eg.items}}" as="e" hint-placeholder-count="4"><span class="sb-chip c-neutral" title="{{e.title}}">{{e.t}}</span></sc-for></span></div>
+              </sc-for>
+              <a class="bz-link" href="Messages.dc.html">Open the email library (board 82)</a>
+            </div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="rd-h">
+            <div class="sb-head"><h2 id="rd-h" class="sb-h2">Ready to offer?</h2><span class="sb-sub">{{p.readySum}}</span></div>
+            <sc-for list="{{p.ready}}" as="r" hint-placeholder-count="5">
+              <div class="pk-ready"><span class="bz-b">{{r.k}}</span><span class="{{r.cls}}">{{r.state}}</span><span class="sb-sub">{{r.note}}</span><span><sc-if value="{{r.canMark}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" onClick="{{r.mark}}">{{r.markLabel}}</button></sc-if></span></div>
+            </sc-for>
+            <sc-if value="{{p.isDraft}}" hint-placeholder-val="{{ false }}">
+              <div style="padding: 12px 20px 18px;"><div class="{{dr.cls}}" role="status">
+                <span class="bz-b">{{dr.title}}</span><span class="sb-sub">{{dr.text}}</span>
+                <sc-if value="{{dr.canSend}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{dr.send}}">Send to Rachel Turner to offer it</button></sc-if>
+                <sc-if value="{{dr.canDecide}}" hint-placeholder-val="{{ false }}">
+                  <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Demo: Rachel Turner's note (needed)</span><textarea class="bz-ta" value="{{drNote}}" onChange="{{onDrNote}}" placeholder="For example: agreed, price and form approved"></textarea></label>
+                  <sc-if value="{{drErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a note first.</span></sc-if>
+                  <span style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{dr.approve}}">Approve as Rachel Turner</button><button class="sb-btn b-gh" onClick="{{dr.decline}}">Decline</button></span>
+                </sc-if>
+              </div></div>
+            </sc-if>
+          </section>
+
+          <section class="sb-card" aria-labelledby="vs-h">
+            <div class="sb-head"><h2 id="vs-h" class="sb-h2">Versions</h2><span class="sb-sub">A new version is for new clients. Clients keep the version they signed, unless they are moved with their answers kept.</span></div>
+            <div class="pk-ver" style="border-top: 0; padding-top: 0;"><span class="sb-th">Version</span><span class="sb-th">From</span><span class="sb-th">What it is</span><span class="sb-th">Live clients</span><span class="sb-th">State</span></div>
+            <sc-for list="{{p.vers}}" as="v" hint-placeholder-count="2">
+              <div class="pk-ver"><span class="bz-b">v{{v.v}}</span><span class="sb-sub">{{v.date}}</span><span>{{v.what}}</span><span class="bz-b">{{v.n}}</span><span class="sb-sub">{{v.st}}</span></div>
+            </sc-for>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1980}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.D = {"pk":[{"id":"dom","g":"Registration packages","name":"CQC registration: domiciliary care","what":"England. Every policy and document, 3 sessions with Millicent, every CQC letter answered","key":"price-dom","fb":4000,"pence":null,"vat":"+ VAT","plan":"two","st":"live","eff":"1 Oct 2026","regs":["CQC"],"gates":"CQC","form":["CQC Registration Information Form","v7","live"],"journey":"reg","docs":["Pack Doctor: 9 core documents, 3 supporting, 2 for the manager","Identity: 3 documents for each person","Enhanced DBS with adult barred list, issued within 12 months","CVs with every gap over 4 weeks explained","A reference from the last employer in care","Office evidence: lease, title or landlord letter","Insurance and a 12-month forecast, month by month"],"sess":"S","after":"N","emails":[["1.1","Welcome to Care Sync"],["1.2","Lovely to speak to you"],["1.3","Introduction call texts"],["1.4","Meet your team"],["2.1","Your onboarding form"],["2.2","Gentle reminder"],["2.3","Form received"],["2.4","One quick question"],["2.5","Your manager's invite"],["2.6","Business email connected"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"],["3.4","Session booked"],["4.1","Submitted"],["4.2","CQC asked for more information"],["4.3","Interview booked"],["4.4","After the interview"],["5.1","You are registered"],["5.2","Notice of Proposal"],["5.3","Application returned"],["5.3a","CQC has refused the application"],["5.3b","Your application is back with CQC"],["5.4","Review reminder"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 11 stages, 8 gates, CQC form v7",19,"Live. 2 clients are halfway through the v7 form"],["2","Draft","CQC form v8: adds the \"Your office\" step, rewords 1 question, removes \"Type of Legal Entity\"",0,"Waiting for approval (decision 4 on Home)"]],"live":19},{"id":"sl","g":"Registration packages","name":"CQC registration: supported living","what":"England. Includes the easy read guide and the financial viability statement","key":"price-sl","fb":5000,"pence":null,"vat":"+ VAT","plan":"two","st":"live","eff":"1 Oct 2026","regs":["CQC"],"gates":"CQC","form":["CQC Registration Information Form with the supported living pages","v7","live"],"journey":"reg","docs":["Pack Doctor: 9 core documents, 3 supporting, 2 for the manager","Identity: 3 documents for each person","Enhanced DBS with adult barred list, issued within 12 months","CVs with every gap over 4 weeks explained","A reference from the last employer in care","Office evidence: lease, title or landlord letter","Insurance and a 12-month forecast, month by month","Easy read guide","Financial viability statement","Housing provider and tenancy details"],"sess":"S","after":"N","emails":[["1.1","Welcome to Care Sync"],["1.2","Lovely to speak to you"],["1.3","Introduction call texts"],["1.4","Meet your team"],["2.1","Your onboarding form"],["2.2","Gentle reminder"],["2.3","Form received"],["2.4","One quick question"],["2.5","Your manager's invite"],["2.6","Business email connected"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"],["3.4","Session booked"],["4.1","Submitted"],["4.2","CQC asked for more information"],["4.3","Interview booked"],["4.4","After the interview"],["5.1","You are registered"],["5.2","Notice of Proposal"],["5.3","Application returned"],["5.3a","CQC has refused the application"],["5.3b","Your application is back with CQC"],["5.4","Review reminder"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 11 stages, 8 gates, CQC form v7",8,"Live. 1 client is halfway through the v7 form"],["2","Draft","CQC form v8: adds the \"Your office\" step, rewords 1 question, removes \"Type of Legal Entity\"",0,"Waiting for approval (decision 4 on Home)"]],"live":8},{"id":"full","g":"Registration packages","name":"Full start-up package","what":"Company set-up, branding, website, business plan, registration, and 12 months of aftercare (the only package that includes aftercare)","key":"price-full","fb":8500,"pence":null,"vat":"+ VAT","plan":"three","st":"check","eff":"1 Oct 2026","regs":["CQC"],"gates":"CQC","form":["CQC Registration Information Form, then Brand and website","v7","live"],"journey":"reg","docs":["Company formation documents","Brand, website and business plan","Pack Doctor: 9 core documents, 3 supporting, 2 for the manager","Identity: 3 documents for each person","Enhanced DBS with adult barred list, issued within 12 months","CVs with every gap over 4 weeks explained","A reference from the last employer in care","Office evidence: lease, title or landlord letter","Insurance and a 12-month forecast, month by month"],"sess":"S","after":"Y","emails":[["1.1","Welcome to Care Sync"],["1.2","Lovely to speak to you"],["1.3","Introduction call texts"],["1.4","Meet your team"],["2.1","Your onboarding form"],["2.2","Gentle reminder"],["2.3","Form received"],["2.4","One quick question"],["2.5","Your manager's invite"],["2.6","Business email connected"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"],["3.4","Session booked"],["4.1","Submitted"],["4.2","CQC asked for more information"],["4.3","Interview booked"],["4.4","After the interview"],["5.1","You are registered"],["5.2","Notice of Proposal"],["5.3","Application returned"],["5.3a","CQC has refused the application"],["5.3b","Your application is back with CQC"],["5.4","Review reminder"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"],["6.1","Day 7: your launch checklist"],["6.2","Day 30: check-in"],["6.3","Growth: a tender in your area"],["6.4","Growth: first inspection readiness"],["6.5","PIR received"],["6.6","Growth: supported living add-on"],["6.7","Policy review due"],["6.8","Your year with Care Sync"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 11 stages, 8 gates, CQC form v7, 12 months of aftercare",11,"Live. Price check waiting (decision 1 on Home)"],["2","Draft","CQC form v8: adds the \"Your office\" step, rewords 1 question, removes \"Type of Legal Entity\"",0,"Waiting for approval (decision 4 on Home)"]],"live":11},{"id":"ciw","g":"Registration packages","name":"CIW registration (Wales)","what":"The ten CIW Online policies, Statement of Purpose, Active Offer in every document","key":"price-ciw","fb":4500,"pence":null,"vat":"+ VAT","plan":"two","st":"live","eff":"1 Oct 2026","regs":["CIW"],"gates":"CIW","form":["CIW Registration Information Form","v3","live"],"journey":"reg","docs":["The ten CIW Online policies","Statement of Purpose with the Active Offer","Identity, DBS and references for the RI and the manager","Social Care Wales registration for the manager, or applied","GP details for each person","Office in Wales and the areas served"],"sess":"S","after":"N","emails":[["1.1","Welcome to Care Sync"],["1.2","Lovely to speak to you"],["1.3","Introduction call texts"],["1.4","Meet your team"],["2.1","Your onboarding form"],["2.2","Gentle reminder"],["2.3","Form received"],["2.4","One quick question"],["2.5","Your manager's invite"],["2.6","Business email connected"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"],["3.4","Session booked"],["10.1","Your CIW Online invitations"],["10.2","CIW will contact your referees"],["10.3","Ready to submit in CIW Online"],["10.4","Submitted in CIW Online"],["10.5","CIW asked for more information"],["10.6","Suitability interview booked"],["10.7","You are registered with CIW"],["10.8","Notice of proposal from CIW"],["10.9","CIW has refused the application"],["5.4","Review reminder"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 11 stages, CIW gates, CIW form v3",5,"Live"]],"live":5},{"id":"rqia","g":"Registration packages","name":"RQIA registration (Northern Ireland)","what":"Ten core policies mapped to the Minimum Standards","key":"price-rqia","fb":4500,"pence":null,"vat":"+ VAT","plan":"two","st":"live","eff":"1 Oct 2026","regs":["RQIA"],"gates":"RQIA","form":["RQIA Registration Information Form","v2","live"],"journey":"reg","docs":["Ten core policies mapped to the Minimum Standards","3 ID documents each, for AccessNI","NISCC registration for the manager, or underway","A reference from the most recent employer","Office lease and staffing plan","GP details for each person"],"sess":"S","after":"N","emails":[["1.1","Welcome to Care Sync"],["1.2","Lovely to speak to you"],["1.3","Introduction call texts"],["1.4","Meet your team"],["2.1","Your onboarding form"],["2.2","Gentle reminder"],["2.3","Form received"],["2.4","One quick question"],["2.5","Your manager's invite"],["2.6","Business email connected"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"],["3.4","Session booked"],["11.1","Your RQIA Web Portal login"],["11.2","Submitted on the RQIA Web Portal"],["11.3","RQIA asked for more information"],["11.4","Fit person interviews booked"],["11.5","You are registered with RQIA"],["11.6","Notice of proposal from RQIA"],["11.7","RQIA has refused the application"],["11.8","Your application is back with the regulator"],["5.4","Review reminder"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 11 stages, RQIA gates, RQIA form v2",5,"Live"]],"live":5},{"id":"tender","g":"Tenders","name":"Tender writing","what":"Full quotation after we review the tender","key":"price-tender-from","fb":1500,"pence":null,"vat":"+ VAT","plan":"tender","st":"from","eff":"1 Oct 2026","regs":["Any council"],"gates":"Tender","form":["Tender Preparation Questionnaire","v5, 15 sections","live"],"journey":"tender","docs":["Tender profile, 15 sections","Policies reviewed in the last 12 months","Insurance in date","Case studies and references","Staff numbers and turnover","Registration certificate where the tender needs it"],"sess":"Planning meeting, then the bid team. No coaching sessions","after":"N","emails":[["1.1","Welcome to Care Sync"],["1.4","Meet your team"],["7.0","Tender submitted"],["7.1","Tender won"],["7.2","Tender not successful"],["7.3","Should we bid?"],["7.4","The buyer changed something"],["7.5","A framework you can join is open again"],["7.6","This week: what we need from you"],["7.7","Please approve your bid"],["7.8","A new tender: check what we hold"],["7.9","A document runs out soon"],["7.10","A contract is coming up for renewal"],["9.1","Emergency access to your account"],["9.2","We have received your concern"],["9.3","Your new consultant"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: tender form v5 (15 sections), back-scheduled timeline",5,"Live"]],"live":5},{"id":"ret","g":"Tenders","name":"Retained tender package","what":"Several bids a year. Never promise a lower rate","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["Any council"],"gates":"Tender","form":["Tender Preparation Questionnaire","v5, 15 sections","live"],"journey":"tender","docs":["Tender profile, kept up to date"],"sess":"Planning meeting for each bid","after":"N","emails":[["7.0","Tender submitted"],["7.1","Tender won"],["7.2","Tender not successful"],["7.3","Should we bid?"],["7.4","The buyer changed something"],["7.5","A framework you can join is open again"],["7.6","This week: what we need from you"],["7.7","Please approve your bid"],["7.8","A new tender: check what we hold"],["7.9","A document runs out soon"],["7.10","A contract is coming up for renewal"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Price to set. Offered once, never with a lower rate promised",0,"Not offered"]],"live":0},{"id":"fw","g":"Tenders","name":"Framework or dynamic purchasing application","what":"Often shorter than a full tender","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["Any council"],"gates":"Tender","form":["Tender Preparation Questionnaire","v5, 15 sections","live"],"journey":"tender","docs":["Tender profile","Framework questions"],"sess":"Planning meeting","after":"N","emails":[["7.0","Tender submitted"],["7.5","A framework you can join is open again"],["7.6","This week: what we need from you"],["7.7","Please approve your bid"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Price to set",0,"Not offered"]],"live":0},{"id":"pol","g":"Tenders","name":"Policy writing for a tender","what":"Extra to the tender fee. Quoted for each tender","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"quote","eff":"","regs":["Any council"],"gates":null,"form":["No form: from the tender","not needed","live"],"journey":["Policies listed from the tender","Quote agreed","Written","Client approves"],"docs":["The buyer's policy list"],"sess":"None included","after":"N","emails":[["7.6","This week: what we need from you"],["7.7","Please approve your bid"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: quoted for each tender",1,"Live"]],"live":1},{"id":"bid","g":"Tenders","name":"Bid review","what":"For a bid the client wrote. Around £500","key":"","fb":0,"pence":50000,"vat":"To confirm","plan":"one","st":"vat","eff":"","regs":["Any council"],"gates":null,"form":["No form: the client sends their bid","not needed","live"],"journey":["Bid received","Review","Comments returned"],"docs":["The client's draft bid and the buyer pack"],"sess":"None included","after":"N","emails":[["7.7","Please approve your bid"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Around £500, VAT to confirm",0,"Not offered until VAT is confirmed"]],"live":0},{"id":"sladd","g":"Add-ons and single services","name":"Supported living add-on","what":"Adding supported living to a CQC registration. Policies quoted separately","key":"price-sl-addon","fb":1500,"pence":null,"vat":"incl. VAT","plan":"one","st":"live","eff":"1 Oct 2026","regs":["CQC"],"gates":null,"form":["Supported living add-on form","draft","call"],"journey":["Your registration","Who you will support","Housing and care","Policies and the easy read guide","Variation sent to CQC"],"docs":["Current registration certificate","Housing provider and tenancy details","Easy read guide"],"sess":"None included","after":"N","emails":[["6.6","Growth: supported living add-on"],["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live",2,"Live"]],"live":2},{"id":"int","g":"Add-ons and single services","name":"CQC interview preparation","what":"Practice sessions with Millicent (number set on the package) and the Interview Preparation Hub","key":"price-interview","fb":750,"pence":null,"vat":"incl. VAT","plan":"one","st":"live","eff":"1 Oct 2026","regs":["CQC","CIW","RQIA"],"gates":null,"form":["Interview preparation form","draft","call"],"journey":["Interview date","Interview Preparation Hub account","Practice sessions","The interview"],"docs":["Statement of Purpose","Who is being interviewed, and their role"],"sess":"P","after":"N","emails":[["3.4","Session booked"],["4.3","Interview booked"],["4.4","After the interview"],["10.6","Suitability interview booked"],["11.4","Fit person interviews booked"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: 3 practice sessions",3,"Live"]],"live":3},{"id":"pir","g":"Add-ons and single services","name":"PIR writing","what":"Per PIR, one PIR per service type","key":"price-pir","fb":750,"pence":null,"vat":"+ VAT","plan":"one","st":"live","eff":"1 Nov 2026","regs":["CQC"],"gates":null,"form":["PIR form","draft","call"],"journey":["PIR request arrives","Briefing call","Draft","Client confirms","Submitted by the deadline"],"docs":["The PIR request and deadline","Service numbers for the last 12 months"],"sess":"A 60 to 90 minute briefing","after":"N","emails":[["6.5","PIR received"],["3.2","Draft ready to review"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: £750 + VAT",0,"Replaced"],["2","Sun 1 Nov 2026","Wording: per PIR, one PIR per service type (new clients only)",1,"Live"]],"live":1},{"id":"after","g":"Add-ons and single services","name":"Aftercare, 12 months","what":"For registration-only clients. Included in the full start-up package","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["CQC","CIW","RQIA"],"gates":null,"form":["No form: starts at registration","not needed","live"],"journey":["Registration File and handover call","Day 7 launch checklist","Monthly check-ins","Month 4 inspection readiness","Policy review","Month 12 handover"],"docs":["Registration File","Launch checklist"],"sess":"Monthly check-ins with the consultant","after":"Y","emails":[["6.1","Day 7: your launch checklist"],["6.2","Day 30: check-in"],["6.3","Growth: a tender in your area"],["6.4","Growth: first inspection readiness"],["6.7","Policy review due"],["6.8","Your year with Care Sync"]],"offered":false,"vers":[["1","Wed 4 Nov 2026","Decided 4 Nov: registration-only clients can buy aftercare as an add-on",4,"Clients on the terms in their agreements, including Bryn Glas Care and Foyle Home Care. New sales wait for a price"]],"live":4},{"id":"extra","g":"Add-ons and single services","name":"Extra sessions","what":"Sessions beyond those included in a package","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["CQC","CIW","RQIA"],"gates":null,"form":["No form","not needed","live"],"journey":["Agreed and priced first","Session booked","Session held"],"docs":[],"sess":"One extra session each time","after":"N","emails":[["3.4","Session booked"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Go-live: price to set",0,"Not sold yet"]],"live":0},{"id":"mock","g":"Add-ons and single services","name":"Mock inspection","what":"For registration-only clients. Included in the full start-up package","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["CQC","CIW","RQIA"],"gates":null,"form":["No form","not needed","live"],"journey":["Date agreed","Mock inspection","Report and actions"],"docs":["Policies and records on the day"],"sess":"One visit","after":"N","emails":[["6.4","Growth: first inspection readiness"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Included in full start-up aftercare; sold alone once priced",0,"Not sold alone yet"]],"live":0},{"id":"var","g":"Add-ons and single services","name":"Registration variation","what":"Adding a location, a service or a band. Its form is still a draft","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"set","eff":"","regs":["CQC"],"gates":null,"form":["Registration variation form","draft","draft"],"journey":["What is changing","Evidence","Variation drafted","Client signs","Sent to the regulator"],"docs":["Current certificate","New location or service evidence"],"sess":"None included","after":"N","emails":[["3.1","Weekly update"],["3.2","Draft ready to review"],["3.3","Final pack ready to sign"]],"offered":false,"vers":[["1","Draft","Form and price still to finish",0,"Not offered"]],"live":0},{"id":"single","g":"Add-ons and single services","name":"Single services","what":"For example a policy refresh or a business plan","key":"","fb":0,"pence":50000,"vat":"+ VAT","plan":"one","st":"from","eff":"1 Oct 2026","regs":["Any"],"gates":null,"form":["Short request form","v1","live"],"journey":["Request","Quote agreed","Work","Client review","Delivered"],"docs":["Whatever the service needs, listed in the quote"],"sess":"None included","after":"N","emails":[["3.2","Draft ready to review"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: from £500 + VAT",3,"Live"]],"live":3},{"id":"rebrand","g":"Add-ons and single services","name":"Policy rebrand, branding and business forms","what":"Single service","key":"","fb":0,"pence":50000,"vat":"+ VAT","plan":"one","st":"confirm","eff":"1 Oct 2026","regs":["Any"],"gates":null,"form":["Short request form","v1","live"],"journey":["Request","Quote agreed","Work","Client review","Delivered"],"docs":["Current policies and brand files"],"sess":"None included","after":"N","emails":[["3.2","Draft ready to review"]],"offered":false,"vers":[["1","Thu 1 Oct 2026","Go-live: from £500 + VAT, still to confirm",0,"Not sold until the price is confirmed"]],"live":0},{"id":"web","g":"Add-ons and single services","name":"Website or marketing","what":"Website, search and Google profile","key":"","fb":0,"pence":null,"vat":"","plan":"one","st":"quote","eff":"","regs":["Any"],"gates":null,"form":["Website or marketing form","draft","call"],"journey":["Brief","Quote agreed","Design","Client review","Live"],"docs":["Logo, photos with permission, services and areas"],"sess":"None included","after":"N","emails":[["3.2","Draft ready to review"]],"offered":true,"vers":[["1","Thu 1 Oct 2026","Go-live: quoted for each client",2,"Live"]],"live":2}],"stages":["Welcome","CV review","Your documents","Drafting","Your review","Final pack sign-off","Submitted","With the regulator","Interview","Outcome","Aftercare"],"gates":{"CQC":["Company and directors","Identity","Office address evidence","Registered manager","Employment history","References","DBS","Professional registers"],"CIW":["Company and officers","Identity","Office in Wales and the areas served","Responsible Individual","Manager with Social Care Wales, or applied","Employment history","References and GP details","DBS for the RI and the manager"],"RQIA":["Company and directors","Identity for AccessNI","Office address evidence","Responsible Individual","Manager and NISCC","Employment history","References","Professional registers"],"Tender":["Tender profile complete","Policies in date","Insurance in place and in date","Registration in place where the tender needs it","Case studies and references ready","Client decided to bid; Care Sync accepted the bid work"]}};
+    this.state = { sel: 'dom', offered: {}, msg: {}, addOpen: false, addName: "Children's services", base: 'dom', addErr: false, draft: null, drNote: '', drErr: false };
+  }
+  renderVals() {
+    const s = this.state, D = this.D;
+    const get = (k, fb) => { try { return window.CSR ? window.CSR.get(k, fb) : fb; } catch (e) { return fb; } };
+    const money = n => '£' + Number(n).toLocaleString('en-GB');
+    const pounds = (p, dec) => '£' + (p / 100).toLocaleString('en-GB', { minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 });
+    const WHEN = { two: ['at accept, sign and pay', 'when the application is submitted'], three: ['at accept, sign and pay', 'at final pack sign-off', 'when the application is submitted'], tender: ['at signing', 'before submission'], one: ['when the client accepts, signs and pays'] };
+    const sessions = Number(get('sessions-included', 3)), afterM = Number(get('aftercare-months', 12));
+    const pk = D.pk.slice();
+    const dft = s.draft;
+    if (dft) pk.push(Object.assign({}, D.pk.find(x => x.id === dft.base), { id: 'draft', g: 'Drafts', name: dft.name, what: (dft.state === 'live' ? 'New package, started from ' : 'Draft package, started from ') + D.pk.find(x => x.id === dft.base).name + (dft.state === 'live' ? '. Offered to new clients.' : '. Not offered yet.'), key: '', pence: null, vat: '', st: dft.ready.price ? 'quote' : 'set', priceSetText: dft.ready.price, offered: false, live: 0, vers: [['1', dft.state === 'live' ? 'Just now' : 'Draft', 'Started just now by Collins', 0, dft.state === 'live' ? 'Live for new clients' : 'Draft']], form: [dft.name + ' form', dft.ready.form ? 'v1' : 'not started', dft.ready.form ? 'live' : 'none'], isDraft: true }));
+    const isOff = x => Object.prototype.hasOwnProperty.call(s.offered, x.id) ? s.offered[x.id] : (x.isDraft ? (dft.state === 'live') : x.offered);
+    const priceOf = x => {
+      const pence = x.key ? Math.round(Number(get(x.key, x.fb)) * 100) : x.pence;
+      if (x.priceSetText) return { p: null, text: 'Set in the price book', note: 'Entered by Collins, approved by Rachel Turner', ok: true };
+      if (x.st === 'quote') return { p: null, text: 'Quoted per client', note: 'Quoted for each client in the price book', ok: true };
+      if (pence === null || pence === undefined || x.st === 'set') return { p: null, text: 'Price to set', note: 'Nobody quotes it until the price book has a price', ok: false };
+      const from = x.st === 'from' || x.st === 'confirm' || x.id === 'tender';
+      const text = (x.st === 'vat' ? 'Around ' : '') + (from ? 'From ' : '') + pounds(pence) + ' ' + (x.vat === 'To confirm' ? '' : x.vat);
+      const notes = { check: 'Still to check: £8,500 or £8,000 (decision 1 on Home)', confirm: 'Still to confirm: not sold until confirmed', vat: 'VAT still to confirm', from: 'A starting price; the quote is set for each client', live: 'Live in the price book from ' + x.eff };
+      return { p: pence, text: text.trim(), note: notes[x.st] || '', ok: x.st !== 'confirm' && x.st !== 'vat', from };
+    };
+    const inst = (x, pr) => {
+      const w = WHEN[x.plan] || WHEN.one;
+      if (!pr.p) return w.map((t, i) => ({ t: (w.length > 1 ? (i + 1) + ' of ' + w.length + ', ' : '1 payment, ') + t }));
+      const n = w.length, base = Math.floor(pr.p / n), amts = w.map((t, i) => i < n - 1 ? base : pr.p - base * (n - 1));
+      const dec = amts.some(a => a % 100 !== 0);
+      return amts.map((a, i) => ({ t: (pr.from ? 'from ' : '') + pounds(a, dec) + (x.vat === '+ VAT' ? ' + VAT' : '') + ', ' + w[i] }));
+    };
+    const readyOf = x => {
+      const pr = priceOf(x);
+      if (x.isDraft) {
+        const r = dft.ready;
+        return [
+          ['Form', r.form, r.form ? 'Children\'s services form v1, approved by the other super admin' : 'No form yet. Grace drafts it in Forms (board 44): ages supported, safeguarding lead, parental consent', 'form'],
+          ['Price', r.price, r.price ? 'Price set in the price book and approved by the other super admin' : 'Price to set in the price book (board 77). The other super admin approves it', 'price'],
+          ['Journey', r.journey, r.journey ? '11 stages and 9 gates, including a named and trained children\'s safeguarding lead' : '11 stages copied. Add a gate: a named and trained children\'s safeguarding lead', 'journey'],
+          ['Emails', r.emails, r.emails ? 'Wording checked for parents and young people (Messages, board 82)' : '6 emails need wording for parents and young people: 1.1, 1.4, 2.1, 3.1, 5.1, 9.2', 'emails'],
+          ['Add a client', dft.state === 'live', dft.state === 'live' ? 'Offered from just now' : 'Off. It cannot be offered until the 4 above are ready', '']
+        ];
+      }
+      const f = x.form[2];
+      return [
+        ['Form', f === 'live' || f === 'call', f === 'live' ? (x.form[1] === 'not needed' ? 'No form needed' : x.form[0] + ' ' + x.form[1] + ' is live') : (f === 'call' ? 'Form is a draft: intake on a call until it is live' : 'Form is a draft. Finish it in Forms (board 44)'), ''],
+        ['Price', pr.ok, pr.ok ? pr.text : pr.note, ''],
+        ['Journey', true, x.journey === 'reg' ? '11 stages, ' + (D.gates[x.gates] || []).length + ' gates' : (x.journey === 'tender' ? 'Tender timeline, back-scheduled from the deadline' : x.journey.length + ' steps'), ''],
+        ['Emails', true, x.emails.length + ' emails, all live in the library', ''],
+        ['Add a client', isOff(x), isOff(x) ? 'Offered' : 'Not offered', '']
+      ];
+    };
+    const allReady = x => readyOf(x).slice(0, 4).every(r => r[1]);
+    const groupsL = ['Registration packages', 'Tenders', 'Add-ons and single services'].concat(dft ? ['Drafts'] : []);
+    const groups = groupsL.map(label => ({ label, items: pk.filter(x => x.g === label).map(x => ({ name: x.name, meta: priceOf(x).text + '. ' + (x.isDraft ? 'Draft, not offered' : (isOff(x) ? 'Offered' : 'Not offered')) + (x.live ? ', ' + x.live + ' live' : ''),
+      cls: 'pk-item' + (s.sel === x.id ? ' on' : ''), pressed: String(s.sel === x.id), pick: () => this.setState({ sel: x.id }) })) }));
+    const x = pk.find(y => y.id === s.sel) || pk[0];
+    const pr = priceOf(x);
+    const egLabel = n => ({ '1': 'Welcome', '2': 'Onboarding', '3': 'Delivery', '4': 'With CQC', '5': 'Outcome and review', '6': 'Aftercare and growth', '7': 'Tenders', '9': 'Account and care', '10': 'Wales: with CIW', '11': 'Northern Ireland: with RQIA' })[n.split('.')[0]];
+    const egs = [];
+    x.emails.forEach(([n, t]) => { const l = egLabel(n); let g = egs.find(e => e.label === l); if (!g) { g = { label: l, items: [] }; egs.push(g); } g.items.push({ t: n + ' ' + t, title: 'Email ' + n + ': ' + t }); });
+    const ready = readyOf(x);
+    const nReady = ready.slice(0, 4).filter(r => r[1]).length;
+    const gates = x.gates ? D.gates[x.gates] : [];
+    const draftGates = x.isDraft ? gates.concat(['Children\'s safeguarding lead named and trained']) : gates;
+    const toggle = () => {
+      const on = isOff(x);
+      if (!on && !allReady(x)) { this.setState({ msg: Object.assign({}, s.msg, { [x.id]: ['amb', 'Not offered: ' + readyOf(x).slice(0, 4).filter(r => !r[1]).map(r => r[0].toLowerCase() + ' (' + r[2] + ')').join('; ') + '.'] }) }); return; }
+      this.setState({ offered: Object.assign({}, s.offered, { [x.id]: !on }), msg: Object.assign({}, s.msg, { [x.id]: ['ok', (on ? 'Turned off in Add a client by Collins, just now. The ' + x.live + ' clients already on it carry on.' : 'Offered in Add a client from just now, by Collins.') + ' Rachel Turner is told. Written to the audit log.'] }) });
+    };
+    const m = s.msg[x.id];
+    const offeredN = pk.filter(y => !y.isDraft && isOff(y)).length;
+    const notReady = pk.filter(y => !allReady(y)).length;
+    const liveReg = D.pk.filter(y => y.g === 'Registration packages').reduce((a, y) => a + y.live, 0);
+    // draft flow
+    let dr = { cls: 'bz-amb', title: '', text: '', canSend: false, canDecide: false };
+    if (dft) {
+      const all = ['form', 'price', 'journey', 'emails'].every(k => dft.ready[k]);
+      if (dft.state === 'draft') dr = { cls: 'bz-amb', title: all ? 'Ready to offer' : 'Cannot be offered yet', text: all ? 'Every part is ready. Offering a new package needs the other super admin.' : (4 - ['form', 'price', 'journey', 'emails'].filter(k => dft.ready[k]).length) + ' of 4 parts still to finish. Add a client keeps it hidden until then.', canSend: all, canDecide: false };
+      else if (dft.state === 'waiting') dr = { cls: 'bz-amb', title: 'Waiting for Rachel Turner', text: 'Sent by Collins just now. Nothing is offered until it is approved.', canSend: false, canDecide: true };
+      else if (dft.state === 'live') dr = { cls: 'bz-ok', title: 'Offered in Add a client', text: 'Approved by Rachel Turner: "' + dft.note + '". v1 is live for new clients. Written to the audit log.', canSend: false, canDecide: false };
+      else dr = { cls: 'bz-amb', title: 'Declined by Rachel Turner', text: 'Note: "' + dft.note + '". It stays a draft.', canSend: true, canDecide: false };
+      const setD = o => this.setState({ draft: Object.assign({}, dft, o) });
+      dr.send = () => setD({ state: 'waiting' });
+      const decide = ok => () => { if (!s.drNote.trim()) { this.setState({ drErr: true }); return; } this.setState({ drErr: false, drNote: '', draft: Object.assign({}, dft, { state: ok ? 'live' : 'declined', note: s.drNote.trim() }) }); };
+      dr.approve = decide(true); dr.decline = decide(false);
+    }
+    const tdays = [get('tender-draft-days-before', 10), get('tender-approve-days-before', 5), get('tender-submit-days-before', 2)];
+    const tenderSteps = ['Tender profile (15 sections)', 'Bid decision: the client decides', 'Questions and documents', 'Draft to the client: ' + tdays[0] + ' working days before', 'Client approves: ' + tdays[1] + ' working days before', 'We submit: ' + tdays[2] + ' working days before', 'Outcome'];
+    return {
+      theme: this.props.theme ?? 'light', three: 7, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list', current: true },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      kpis: [['Packages and add-ons', String(D.pk.length), 'Every row in the price book'], ['Offered in Add a client', String(offeredN), 'Only when every part is ready'], ['Live clients on a package', String(liveReg), 'Registration clients in the 11 stages. Tender writing has 5 more'], ['Not ready to offer', String(notReady), 'Mostly a price still to set']].map(([k, v, note]) => ({ k, v, note })),
+      groups,
+      p: {
+        name: x.name, what: x.what, regs: x.regs.join(', '),
+        offChip: x.isDraft ? (dft.state === 'live' ? 'Offered in Add a client' : 'Draft, not offered') : (isOff(x) ? 'Offered in Add a client' : 'Not offered in Add a client'), offCls: 'sb-chip ' + (isOff(x) ? 'c-ok' : 'c-warn'),
+        liveChip: x.live + (x.live === 1 ? ' live client' : ' live clients'), notDraft: !x.isDraft, toggle, toggleLabel: isOff(x) ? 'Turn off in Add a client' : 'Offer in Add a client',
+        hasMsg: !!m, msg: m ? m[1] : '', msgCls: m && m[0] === 'ok' ? 'bz-ok' : 'bz-amb',
+        price: pr.text, priceNote: pr.note, inst: inst(x, pr),
+        form: x.form[0], formChip: x.form[2] === 'live' ? (x.form[1] === 'not needed' ? 'Not needed' : 'Live ' + x.form[1]) : (x.form[2] === 'call' ? 'Draft: intake on a call' : (x.form[2] === 'none' ? 'Not started' : 'Draft, not live')), formCls: 'sb-chip ' + (x.form[2] === 'live' ? 'c-ok' : 'c-warn'),
+        sess: x.sess === 'S' ? sessions + ' included: kick-off, documents, interview practice. Booked after handover' : (x.sess === 'P' ? '3 practice sessions, set on this package' : x.sess),
+        after: x.after === 'Y' ? (x.id === 'after' ? afterM + ' months, bought as an add-on' : afterM + ' months included (the only package that includes it)') : 'Not included. Can buy "Aftercare, 12 months" as an add-on (price to set)',
+        journeyNote: x.journey === 'reg' ? 'The 11 stages. No application work before every gate passes and a manager approves the handover' : (x.journey === 'tender' ? 'Back-scheduled from the buyer\'s deadline (Rules and promises, board 80)' : 'A short journey, not the 11 stages'),
+        isReg: x.journey === 'reg', isSteps: x.journey !== 'reg',
+        stages: D.stages.map((n, i) => ({ n: String(i + 1), name: n + (i === 0 ? ': gates' : ''), cls: 'pk-st' + (i === 0 ? ' g' : '') })),
+        steps: (x.journey === 'tender' ? tenderSteps : (Array.isArray(x.journey) ? x.journey : [])).map(t => ({ t })),
+        gatesTitle: x.gates ? (x.gates === 'Tender' ? 'Tender gates before writing starts' : x.gates + ' gates before handover (' + draftGates.length + ')') : 'Gates', gates: (draftGates.length ? draftGates : ['No onboarding gates: the work is short and starts once paid']).map(t => ({ t })),
+        docCount: x.docs.length + (x.docs.length === 1 ? ' item' : ' items'), docs: (x.docs.length ? x.docs : ['Agreed with the client in the quote']).map(t => ({ t })),
+        emailNote: x.emails.length + ' emails from the client email library', emailGroups: egs,
+        ready: ready.map(([k, ok, note, key]) => ({ k, state: ok ? 'Ready' : 'Not ready', cls: 'sb-chip ' + (ok ? 'c-ok' : 'c-warn'), note, canMark: !!(x.isDraft && key && !ok && dft.state === 'draft'), markLabel: 'Mark ready (demo)', mark: () => this.setState({ draft: Object.assign({}, dft, { ready: Object.assign({}, dft.ready, { [key]: true }) }) }) })),
+        readySum: x.isDraft ? nReady + ' of 4 ready' : (allReady(x) ? 'Every part is ready' : nReady + ' of 4 ready'), isDraft: !!x.isDraft,
+        vers: x.vers.map(v => ({ v: v[0], date: v[1], what: v[2], n: String(v[3]), st: v[4] }))
+      },
+      dr, drNote: s.drNote, drErr: s.drErr, onDrNote: e => this.setState({ drNote: e.target.value, drErr: false }),
+      addOpen: s.addOpen, openAdd: () => this.setState({ addOpen: true }), closeAdd: () => this.setState({ addOpen: false }), addName: s.addName, onAddName: e => this.setState({ addName: e.target.value, addErr: false }), addErr: s.addErr,
+      bases: [['dom', 'CQC domiciliary care'], ['sl', 'CQC supported living'], ['full', 'Full start-up']].map(([k, label]) => ({ label, cls: 'pk-pick ' + (s.base === k ? 'p-on' : 'p-off'), pressed: String(s.base === k), pick: () => this.setState({ base: k }) })),
+      createDraft: () => { if (!s.addName.trim()) { this.setState({ addErr: true }); return; } this.setState({ addOpen: false, sel: 'draft', draft: { name: s.addName.trim(), base: s.base, state: 'draft', ready: { form: false, price: false, journey: false, emails: false }, note: '' } }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Reports</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1780px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Reports" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Reports</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">How the business is doing, and whether we keep our promises. Example figures for the design.</span>
+        </div>
+      <div role="tablist" aria-label="Period"  style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="5">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="8">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="{{k.cls}}" style="align-self: flex-start;">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 1 1 460px; min-width: 0; padding-bottom: 8px;" aria-labelledby="pr-h">
+          <div class="sb-head"><h2 id="pr-h" class="sb-h2">Promises we make to clients</h2><span class="sb-sub">Target, and how often we met it</span></div>
+          <sc-for list="{{promises}}" as="p" hint-placeholder-count="5">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;"><div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">{{p.k}}</span><span>{{p.v}}</span></div><div class="bar" aria-hidden="true"><span class="{{p.bar}}"></span></div><span class="sb-muted">{{p.note}}</span></div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 1 1 460px; min-width: 0; padding-bottom: 8px;" aria-labelledby="st-h">
+          <div class="sb-head"><h2 id="st-h" class="sb-h2">Average days in each stage</h2><span class="sb-sub">Stages 1 to 10 of 11. Aftercare lasts 12 months</span></div>
+          <sc-for list="{{stages}}" as="s" hint-placeholder-count="6">
+            <div class="sb-row" style="gap: 12px;"><span style="width: 200px; flex-shrink: 0;">{{s.k}}</span><span class="bar" style="flex: 1;" aria-hidden="true"><span class="{{s.bar}}"></span></span><span style="width: 70px; text-align: right;">{{s.v}}</span></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-sub">With the regulator is outside our control. Of our own stages, documents is the slowest, mostly waiting for landlord letters and references. Starting both at the introduction call would save about a week.</span></div>
+        </section>
+      </div>
+      <section class="sb-card" aria-labelledby="rg-h">
+        <div class="sb-head"><h2 id="rg-h" class="sb-h2">Outcomes by regulator</h2><span class="sb-sub">Applications decided this quarter. A Notice of Proposal is not a decision yet, so it is counted separately</span></div>
+        <div class="sb-row" style="border-top: 0;"><span class="sb-th" style="flex: 1;">Regulator</span><span class="sb-th" style="flex: 1;">Decided</span><span class="sb-th" style="flex: 1;">Registered first time</span><span class="sb-th" style="flex: 1;">Registered after a resubmission</span><span class="sb-th" style="flex: 1;">Refused</span><span class="sb-th" style="flex: 1;">Notice of Proposal open</span></div>
+        <sc-for list="{{regs}}" as="g" hint-placeholder-count="4">
+          <div class="{{g.cls}}"><span style="flex: 1; font-weight: 500;">{{g.r}}</span><span style="flex: 1;">{{g.d}}</span><span style="flex: 1;">{{g.f}}</span><span style="flex: 1;">{{g.a}}</span><span style="flex: 1;">{{g.x}}</span><span style="flex: 1;">{{g.n}}</span></div>
+        </sc-for>
+      </section>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 1 1 300px; min-width: 0;" aria-labelledby="td-h">
+          <div class="sb-head"><h2 id="td-h" class="sb-h2">Tenders</h2><span class="sb-sub">Bids decided this quarter</span></div>
+          <sc-for list="{{tenders}}" as="x" hint-placeholder-count="5">
+            <div class="sb-row"><span style="flex: 1; min-width: 0;">{{x.k}}</span><span style="font-weight: 500; text-align: right;">{{x.v}}</span></div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 1 1 360px; min-width: 0;" aria-labelledby="fb-h">
+          <div class="sb-head"><h2 id="fb-h" class="sb-h2">Feedback by consultant</h2><span class="sb-sub">% happy. One tap, three faces, at three moments</span></div>
+          <div class="sb-row" style="border-top: 0; gap: 8px;"><span class="sb-th" style="flex: 1.6;">Consultant</span><span class="sb-th" style="flex: 1;">After onboarding</span><span class="sb-th" style="flex: 1;">After submission</span><span class="sb-th" style="flex: 1;">After the decision</span></div>
+          <sc-for list="{{feedback}}" as="f" hint-placeholder-count="3">
+            <div class="sb-row" style="gap: 8px; align-items: flex-start;"><span style="flex: 1.6; min-width: 0; display: flex; flex-direction: column;"><span style="font-weight: 500;">{{f.who}}</span><span class="sb-muted">{{f.note}}</span></span><span style="flex: 1;">{{f.a}}</span><span style="flex: 1;">{{f.b}}</span><span style="flex: 1;">{{f.c}}</span></div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 1 1 300px; min-width: 0;" aria-labelledby="fr-h">
+          <div class="sb-head"><h2 id="fr-h" class="sb-h2">Resubmissions this year</h2><span class="sb-sub">Our promise if a regulator refuses: included, at no charge to the client</span></div>
+          <sc-for list="{{resub}}" as="x" hint-placeholder-count="4">
+            <div class="sb-row"><span style="flex: 1; min-width: 0;">{{x.k}}</span><span style="font-weight: 500; text-align: right;">{{x.v}}</span></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-sub">Staff time we absorb. Hours come from the time log on each resubmission project, and match the manager dashboard.</span></div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1780}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 'q' }; }
+  renderVals() {
+    const t = this.state.t;
+    const T = [['m', 'This month'], ['q', 'This quarter'], ['y', 'This year']];
+    const G = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const kpis = [
+      ['Active clients', '52', '+6 this quarter', 'ok'], ['New clients', '14', '9 CQC, 2 CIW, 1 RQIA, 2 tender', 'neutral'], ['Registered', '10', 'all first time this quarter', 'ok'], ['Tender win rate', '50%', '4 of 8 bids decided', 'info'],
+      ['Paid on time', '82%', '2 overdue, reminders running', 'warn'], ['Average days to send', '62', 'from paying to sending (stages 1 to 6)', 'neutral'], ['Clients happy', '88%', '46 of 52. 1 worried', 'ok'], ['Reviews', '7', 'from 10 invitations, 1 per registered client', 'neutral']
+    ].map(([k, v, note, c]) => ({ k, v, note, cls: 'sb-chip c-' + c }));
+    const promises = [
+      ['Introduction call within 2 working hours', '91%', 'w90', '2 late this quarter, both on busy Mondays'],
+      ['Reply to client questions within ' + G('reply-client', '1 working day'), '97%', 'w95', 'Average reply 3 hours'],
+      ['Weekly update every ' + G('weekly-update-day', 'Friday') + ' by ' + G('weekly-update-time', '16:00'), '94%', 'w95', '1 bounced on Fri 30 Oct (Greenway), being fixed today'],
+      ['Tell the client the same day the regulator writes', '100%', 'w100', ''],
+      ['Concerns acknowledged within 1 working day', '100%', 'w100', '1 open (Riverside), acknowledged']
+    ].map(([k, v, bar, note]) => ({ k, v, bar, note }));
+    const stages = [['1 Welcome and onboarding', '9 days', 'w10'], ['2 CV review', '3 days', 'w5'], ['3 Your documents', '19 days', 'w25'], ['4 Drafting', '21 days', 'w25'], ['5 Your review', '6 days', 'w10'], ['6 Final pack sign-off', '4 days', 'w5'], ['7 Submitted', '1 day', 'w5'], ['8 With the regulator', '81 days', 'w100'], ['9 Interview', '12 days', 'w15'], ['10 Outcome', '9 days', 'w10']].map(([k, v, bar]) => ({ k, v, bar }));
+    const R = [['CQC', 8, 7, 0, 1, 1], ['CIW', 2, 2, 0, 0, 0], ['RQIA', 1, 1, 0, 0, 0]];
+    const sum = i => R.reduce((a, r) => a + r[i], 0);
+    const regs = R.concat([['All', sum(1), sum(2), sum(3), sum(4), sum(5)]]).map(([r, d, f, a, x, n]) => ({ r, d: String(d), f: String(f), a: String(a), x: String(x), n: String(n), cls: 'sb-row' + (r === 'All' ? '' : '') }));
+    const tenders = [['Bids decided', '8'], ['Won', '4 (50%)'], ['Lost', '4'], ['Value of contracts won', '£2.4m over the contract terms'], ['In progress', '2: Northshire Lot 1 North (we submit Fri 27 Nov), Eastford']].map(([k, v]) => ({ k, v }));
+    const feedback = [['Daniel Mensah', '100%', '100%', '75%', '9 replies. Most praised for clear Friday updates'], ['Olu', '100%', '67%', '100%', '7 replies. 1 worried after submission (Riverside)'], ['Sam Patel', '100%', '100%', '100%', '6 replies. Leaving Fri 6 Nov']].map(([who, a, b, c, note]) => ({ who, a, b, c, note }));
+    const resub = [['Resubmissions this year', '2'], ['Registered after resubmitting', '1 earlier client, July: 31 hours'], ['In progress', 'Westbrook: 14 hours so far'], ['Staff hours this year', '45 hours in total']].map(([k, v]) => ({ k, v }));
+    return { theme: this.props.theme ?? 'light', three: 3, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up', current: true },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: T.map(([k, label]) => ({ label, on: t === k, off: t !== k, pick: () => this.setState({ t: k }) })), kpis, promises, stages, regs, tenders, feedback, resub };
+  }
+}
+</script>
+</body>
+</html>

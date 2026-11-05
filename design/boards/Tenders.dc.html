@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your tenders</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.tn-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);padding:14px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--cs-text-primary)}
+.tn-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.tn-btn{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.tn-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1200px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px;">
+    <header style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Oakleaf Living Ltd</span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Your tenders</h1>
+      </div>
+      <a href="Account.dc.html" aria-label="Your account" style="width: 44px; height: 44px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; text-decoration: none;">OL</a>
+    </header>
+
+    <section aria-labelledby="lv-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <a href="TenderWork.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); text-decoration: none; color: var(--cs-text-primary);"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">What we need from you</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">6 things across 2 bids. The next one is due this Friday, 6 Nov</span></span><span aria-hidden="true" style="color: var(--cs-text-brand); font-weight: 500;">&#8250;</span></a>
+      <h2 id="lv-h" class="tn-h2">Live bids</h2>
+      <a href="TenderClient.dc.html" class="tn-card">
+        <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Northshire home care framework</span><x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">2 things for you</x-import></div>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Lot 1 North. Writing your answers. Case study by Wed 11 Nov. Care Sync submits Fri 27 Nov, 2 working days before the deadline of Tue 1 Dec, 12:00</span>
+        <div aria-hidden="true" style="height: 6px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div style="width: 40%; height: 6px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+      </a>
+      <a href="TenderConfirm.dc.html" class="tn-card">
+        <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Eastford supported living</span><x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">Check by Fri 6 Nov</x-import></div>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Eastford Borough Council, a dynamic purchasing system. Deciding the scope with you by Tue 17 Nov. Application deadline Fri 4 Dec.</span>
+        <div aria-hidden="true" style="height: 6px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div style="width: 10%; height: 6px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+      </a>
+    </section>
+
+    <section aria-labelledby="mt-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <h2 id="mt-h" class="tn-h2">Matched for you</h2>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">From our Tender Radar, checked against your profile</span>
+      </div>
+      <sc-for list="{{matches}}" as="m" hint-placeholder-count="2">
+        <div class="tn-card">
+          <span style="font-size: 16px; line-height: 24px; font-weight: 500;">{{m.title}}</span>
+          <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{m.meta}}</span>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 13px; line-height: 18px; color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n16}}"></x-import>{{m.fit}}</span>
+          <sc-if value="{{m.open}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; gap: 8px; padding-top: 4px;">
+              <button class="tn-btn" onClick="{{m.yes}}" style="border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary);">Look at it with us</button>
+              <button class="tn-btn" onClick="{{m.no}}" style="border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary);">Not for us</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{m.done}}" hint-placeholder-val="{{ false }}">
+            <span role="status" style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--cs-text-brand);">{{m.doneText}}</span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-labelledby="rs-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="rs-h" class="tn-h2">Results</h2>
+      <div class="tn-card">
+        <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Hollinvale home care</span><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">Won</x-import></div>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">March 2026. Your start-up checklist came from the promises in the bid.</span>
+      </div>
+      <div class="tn-card">
+        <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Riverbank home care, lot 2</span><x-import component-from-global-scope="CareSync.StatusBadge" status="neutral">Not this time</x-import></div>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Scored 68%. Feedback used to improve 3 answers. The framework reopens in April 2027 and we will remind you.</span>
+      </div>
+    </section>
+
+    <a href="TenderProfile.dc.html" class="tn-card" style="flex-direction: row; align-items: center; gap: 12px;">
+      <x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n20}}"></x-import>
+      <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Your tender profile is 82% ready</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">2 small things would make the next bid faster</span></span>
+      <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+    </a>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));">
+    <a href="Tenders.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="TenderProfile.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n24}}"></x-import>Profile</a>
+    <a href="TenderWork.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Workspace</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { d: {} };
+  }
+  renderVals() {
+    const M = [
+      { k: 'n', title: 'Northshire respite, dynamic market', meta: 'Open all year. Join at any time', fit: 'Good fit: low effort, keeps you on the buyer\'s list' }
+    ];
+    const d = this.state.d;
+    const matches = M.map(m => ({ title: m.title, meta: m.meta, fit: m.fit, open: !d[m.k], done: !!d[m.k],
+      doneText: d[m.k] === 'yes' ? 'Daniel will call you to talk it through, then you decide.' : 'Noted. We will not show this one again.',
+      yes: () => this.setState({ d: Object.assign({}, d, { [m.k]: 'yes' }) }), no: () => this.setState({ d: Object.assign({}, d, { [m.k]: 'no' }) }) }));
+    return { theme: this.props.theme ?? 'light', n16: 16, n20: 20, n24: 24, matches };
+  }
+}
+</script>
+</body>
+</html>

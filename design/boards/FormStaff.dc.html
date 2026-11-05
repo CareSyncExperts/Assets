@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Form received</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1820px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Onboarding" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div role="tablist" aria-label="Which form" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-brand); font-weight: 500;">{{kicker}}</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">{{client}}</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{sub}}</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <a class="ob-link" href="{{gatesHref}}" style="min-height: 36px; display: inline-flex; align-items: center;">{{gatesLink}}</a>
+          <button class="{{fixCls}}" onClick="{{sendFix}}">{{fixLabel}}</button>
+        </div>
+      </div>
+      <sc-if value="{{fixSent}}" hint-placeholder-val="{{ false }}"><div class="ob-ok" role="status">{{fixSentText}}</div></sc-if>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 3 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-labelledby="chk-h">
+            <div class="sb-head">
+              <span style="display: flex; flex-direction: column; gap: 2px;"><h2 id="chk-h" class="sb-h2">Checks, grouped into the 8 onboarding gates</h2><span class="sb-sub">{{chkSub}}</span></span>
+              <span style="display: flex; gap: 6px; flex-wrap: wrap;"><span class="sb-chip c-ok">{{nPass}}</span><span class="sb-chip c-warn">{{nWait}}</span><span class="sb-chip c-bad">{{nFail}}</span></span>
+            </div>
+          <sc-for list="{{gates}}" as="g" hint-placeholder-count="8">
+          <div class="{{g.rowCls}}">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span class="g-num">{{g.n}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 500;">{{g.name}}</span><span class="{{g.chipCls}}">{{g.chip}}</span><sc-if value="{{g.hasAssign}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-info">{{g.assignText}}</span></sc-if></span>
+                <span class="sb-sub">{{g.text}}</span>
+                <span class="sb-muted">{{g.decided}}</span>
+                <span style="padding-top: 4px;"><span style="display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0;">
+                <button class="sb-btn b-gh" onClick="{{g.accept}}">Accept</button>
+                <button class="sb-btn b-gh" onClick="{{g.failOpen}}" aria-expanded="{{g.failExp}}">Fail with a reason</button>
+                <button class="sb-btn b-gh" onClick="{{g.assignOpen}}" aria-expanded="{{g.assignExp}}">Assign</button>
+              </span></span>
+              </span>
+            </div>
+            <sc-if value="{{g.failing}}" hint-placeholder-val="{{ false }}">
+              <div class="g-panel">
+                <label class="ob-k" for="{{g.fid}}">Reason (the client sees this wording on the fix list)</label>
+                <textarea class="ob-ta" id="{{g.fid}}" value="{{g.reasonVal}}" onChange="{{g.onReason}}"></textarea>
+                <span class="sb-muted">{{g.failNote}}</span>
+                <span style="display: flex; gap: 6px;"><button class="sb-btn b-pri" onClick="{{g.failSave}}">Save as Fail</button><button class="sb-btn b-gh" onClick="{{g.cancel}}">Cancel</button></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{g.assigning}}" hint-placeholder-val="{{ false }}">
+              <div class="g-panel">
+                <span class="ob-k">Who checks it</span>
+                <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{g.people}}" as="p" hint-placeholder-count="4"><button class="{{p.cls}}" aria-pressed="{{p.pressed}}" onClick="{{p.pick}}">{{p.label}}</button></sc-for></span>
+                <span class="ob-k">By when</span>
+                <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{g.dates}}" as="d" hint-placeholder-count="4"><button class="{{d.cls}}" aria-pressed="{{d.pressed}}" onClick="{{d.pick}}">{{d.label}}</button></sc-for></span>
+                <span style="display: flex; gap: 6px;"><button class="sb-btn b-pri" onClick="{{g.assignSave}}">{{g.assignLabel}}</button><button class="sb-btn b-gh" onClick="{{g.cancel}}">Cancel</button></span>
+              </div>
+            </sc-if>
+          </div>
+          </sc-for>
+          </section>
+          <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="chg-h">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap;"><h2 id="chg-h" class="sb-h2">Changed since submission</h2><span class="sb-sub">{{chgWhen}}</span></div>
+            <sc-for list="{{changes}}" as="c" hint-placeholder-count="2">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 10px; font-size: 14px; line-height: 20px; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);"><span style="font-weight: 500;">{{c.k}}</span><span style="color: var(--cs-status-error-text); text-decoration: line-through;">{{c.old}}</span><span style="color: var(--cs-status-success-text);">{{c.now}}</span></div>
+            </sc-for>
+            <span class="sb-sub">{{chgNote}}</span>
+          </section>
+        </div>
+        <div style="flex: 2 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-labelledby="dl-h">
+            <div class="sb-head"><h2 id="dl-h" class="sb-h2">Download</h2><span class="sb-muted">Every download is logged</span></div>
+            <sc-for list="{{downloads}}" as="d" hint-placeholder-count="4">
+              <div class="sb-row"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span style="font-weight: 500;">{{d.k}}</span><span class="sb-muted">{{d.v}}</span></span><button class="sb-btn b-gh" onClick="{{d.get}}">{{d.label}}</button></div>
+            </sc-for>
+          </section>
+          <section class="sb-card" style="padding: 18px 20px 10px; display: flex; flex-direction: column; gap: 4px;" aria-labelledby="sh-h">
+            <h2 id="sh-h" class="sb-h2">{{sheetName}}</h2>
+            <span class="sb-sub" style="margin-bottom: 6px;">In the same order as {{portal}}. Open a group, then copy each field. No re-typing.</span>
+            <sc-for list="{{groups}}" as="gr" hint-placeholder-count="6">
+              <div>
+                <button class="ob-grp" aria-expanded="{{gr.exp}}" onClick="{{gr.toggle}}"><span>{{gr.name}}</span><span class="sb-muted">{{gr.count}}</span></button>
+                <sc-if value="{{gr.open}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; padding-bottom: 6px;">
+                    <sc-for list="{{gr.fields}}" as="f" hint-placeholder-count="3">
+                      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 0 4px 10px;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span class="ob-sheetk">{{f.k}}</span><span style="font-size: 13px; line-height: 18px;">{{f.v}}</span></span><button class="sb-btn b-gh" style="min-height: 36px; padding: 0 10px;" onClick="{{f.copy}}">{{f.label}}</button></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1820}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { reg: 'cqc', tick: 0, g: {}, log: [], fixes: null, open: { cqc0: true, cqc1: true, ciw0: true, rqia0: true }, copied: '', got: '', sent: {} }; }
+
+  now() { const t = 40 + (this.state.tick || 0); return '02/11 ' + (t < 60 ? '09:' + t : '10:' + String(t - 60).padStart(2, '0')); }
+  dates() { return ['Tue 3 Nov', 'Wed 4 Nov', 'Thu 5 Nov', 'Fri 6 Nov']; }
+
+  gateRows(G, key, fixes, client) {
+    const st = this.state;
+    const RES = { pass: ['Pass', 'sb-chip c-ok', ' g-pass'], fail: ['Fail', 'sb-chip c-bad', ' g-fail'], wait: ['Waiting', 'sb-chip c-warn', ' g-wait'] };
+    const PEOPLE = ['Grace', 'Daniel', 'Divine', 'Collins'];
+    const DATES = this.dates();
+    const upd = (n, patch) => Object.assign({}, st.g, { [key + n]: Object.assign({}, st.g[key + n] || {}, patch) });
+    return G.map(b => {
+      const o = Object.assign({}, b, st.g[key + b.n] || {});
+      const who = o.who || 'Daniel', when = o.when || DATES[1];
+      const draft = o.draft !== undefined ? o.draft : (o.reason || o.fixText || '');
+      const decided = o.res === 'wait' ? 'Waiting on ' + o.waitOn + ' since ' + o.at + '. Recheck ' + o.recheck + '. Logged' : (o.res === 'pass' ? 'Accepted by ' : 'Failed by ') + o.by + ', ' + o.at + '. Logged';
+      return {
+        n: String(o.n), name: o.name, text: o.text, chip: RES[o.res][0], chipCls: RES[o.res][1], rowCls: 'g-row' + RES[o.res][2],
+        decided: o.rec ? o.rec + ' ' + decided : decided,
+        hasAssign: !!o.assigned, assignText: o.assigned || '', fid: 'gr-' + key + o.n,
+        failing: o.mode === 'fail', assigning: o.mode === 'assign', failExp: String(o.mode === 'fail'), assignExp: String(o.mode === 'assign'),
+        reasonVal: draft, onReason: e => this.setState({ g: upd(o.n, { draft: e.target.value }) }),
+        failNote: o.noFix ? o.noFix : 'Saving adds this to the fix list for ' + client + '. You can still edit the wording there before sending.',
+        accept: () => this.logSet({ g: upd(o.n, { res: 'pass', by: 'Grace', at: this.now(), mode: null, rec: '' }), fixes: (st.fixes || []).filter(f => f.id !== key + o.n) }, 'accepted gate ' + o.n + ', ' + o.name),
+        failOpen: () => this.setState({ g: upd(o.n, { mode: o.mode === 'fail' ? null : 'fail' }) }),
+        assignOpen: () => this.setState({ g: upd(o.n, { mode: o.mode === 'assign' ? null : 'assign' }) }),
+        cancel: () => this.setState({ g: upd(o.n, { mode: null }) }),
+        failSave: () => {
+          const r = draft.trim() || 'Reason to be added';
+          const list = st.fixes || [];
+          const has = list.some(f => f.id === key + o.n);
+          const nf = o.noFix ? list : (has ? list.map(f => f.id === key + o.n ? Object.assign({}, f, { text: r }) : f) : list.concat([{ id: key + o.n, gate: 'Gate ' + o.n + ', ' + o.name, text: r }]));
+          this.logSet({ g: upd(o.n, { res: 'fail', by: 'Grace', at: this.now(), reason: r, mode: null, rec: '' }), fixes: nf }, 'failed gate ' + o.n + ', ' + o.name + ': ' + r);
+        },
+        people: PEOPLE.map(p => ({ label: p, cls: 'ob-pick ' + (who === p ? 'p-on' : 'p-off'), pressed: String(who === p), pick: () => this.setState({ g: upd(o.n, { who: p }) }) })),
+        dates: DATES.map(d => ({ label: d, cls: 'ob-pick ' + (when === d ? 'p-on' : 'p-off'), pressed: String(when === d), pick: () => this.setState({ g: upd(o.n, { when: d }) }) })),
+        assignLabel: 'Assign to ' + who + ', by ' + when,
+        assignSave: () => this.logSet({ g: upd(o.n, { assigned: who + ' checks it by ' + when, mode: null }) }, 'assigned gate ' + o.n + ' to ' + who + ', due ' + when)
+      };
+    });
+  }
+  logSet(patch, text) {
+    const st = this.state;
+    this.setState(Object.assign({ tick: st.tick + 1, log: [{ who: 'Grace', text, at: this.now() }].concat(st.log || []) }, patch));
+  }
+
+  renderVals() {
+    const st = this.state, reg = st.reg;
+    const CQC = [
+      { n: 1, name: 'Company and directors', res: 'fail', by: 'Grace', at: '30/10 11:05', text: 'Companies House shows 2 directors, Amara Okafor and Kwame Okafor. The form lists 1. Name, number and registered office match.', fixText: "Please add Kwame Okafor's details as your second director. Companies House lists him, so CQC needs him on the form too." },
+      { n: 2, name: 'Identity', res: 'pass', by: 'Grace', at: '30/10 10:20', text: "Amara's 3 identity documents checked: passport, driving licence photocard and council tax bill." },
+      { n: 3, name: 'Office address evidence', res: 'wait', by: 'Grace', at: '30/10 15:12', waitOn: 'the landlord, Tom Reid,', recheck: 'Thu 05/11', text: 'Office: Flat 2, 14 Harbour Road (rented). Tenancy received and matches. Landlord letter link sent to Tom Reid on Fri 30/10.', noFix: 'Already requested from Tom Reid on Fri 30/10, so it is never added to the client fix list again. Saving records the result only.' },
+      { n: 4, name: 'Registered manager', res: 'pass', by: 'Grace', at: '30/10 11:40', text: 'Ruth Bennett, a different person from Amara (nominated individual). CV received.' },
+      { n: 5, name: 'Employment history', res: 'fail', by: 'Grace', at: '30/10 11:45', text: "Ruth's CV has an unexplained gap, March to November 2019. Any gap longer than 4 weeks needs a line of explanation.", fixText: "Please add one line to Ruth's CV explaining the gap from March to November 2019." },
+      { n: 6, name: 'References', res: 'pass', by: 'Grace', at: '30/10 12:00', text: "The referee is Ruth's last employer, with permission for CQC to contact them." },
+      { n: 7, name: 'DBS', res: 'pass', by: 'Grace', at: '30/10 14:10', text: 'Ruth: Enhanced DBS with adult barred list, issued 14/02/2026, photo uploaded 30/10. Amara (nominated individual) has no DBS yet: we start her application, ID done.' },
+      { n: 8, name: 'Professional registers', res: 'pass', by: 'Grace', at: '30/10 14:20', rec: 'Register check recorded: Ruth is not on a register that applies.', text: 'Checked against the registers that could apply to Ruth. Result, date and checker are kept with the record.' }
+    ];
+    const CIW = [
+      { n: 1, name: 'Company and officers', res: 'pass', by: 'Grace', at: '13/10 10:05', text: 'Name, number, registered office and both officers match Companies House.' },
+      { n: 2, name: 'Identity', res: 'pass', by: 'Grace', at: '13/10 10:20', text: "Rhian's DBS is on the Update Service with consent to view, so no ID documents were needed." },
+      { n: 3, name: 'Office address evidence', res: 'pass', by: 'Grace', at: '13/10 10:30', text: 'Office in Wales. Lease in the company name, uploaded.' },
+      { n: 4, name: 'Responsible Individual', res: 'pass', by: 'Grace', at: '13/10 11:00', text: 'Rhian Example is the RI. "Why you are the right RI" answer read and passed to Daniel for the narrative.' },
+      { n: 5, name: 'Manager and Social Care Wales', res: 'pass', by: 'Grace', at: '13/10 11:20', text: 'Manager registration with Social Care Wales applied for, reference given.' },
+      { n: 6, name: 'References', res: 'pass', by: 'Grace', at: '13/10 11:40', text: 'Two referees for the RI. Contact details complete. CIW asks the referees itself.' },
+      { n: 7, name: 'DBS', res: 'pass', by: 'Grace', at: '13/10 12:00', text: 'Full 12 digit number, on the Update Service, consent to view given.' },
+      { n: 8, name: 'Areas and service details', res: 'pass', by: 'Grace', at: '13/10 12:15', text: '2 regional partnership areas, so 2 service entries. Confirmed with Daniel.' }
+    ];
+    const RQIA = [
+      { n: 1, name: 'Company and directors', res: 'pass', by: 'Grace', at: '26/09 10:00', text: 'Name, number (Northern Ireland) and officers match Companies House.' },
+      { n: 2, name: 'Identity for AccessNI', res: 'pass', by: 'Grace', at: '26/09 10:15', text: "Three ID documents each for the RI and the manager, including photo ID and proof of address, ready for RQIA's own AccessNI check." },
+      { n: 3, name: 'Office address evidence', res: 'pass', by: 'Grace', at: '26/09 10:30', text: 'Office lease in the company name, uploaded.' },
+      { n: 4, name: 'Responsible Individual', res: 'pass', by: 'Grace', at: '26/09 11:00', text: 'Niamh Example is the RI. Qualifications and experience given.' },
+      { n: 5, name: 'Manager and NISCC', res: 'pass', by: 'Grace', at: '29/09 09:30', text: 'Manager is a different person. NISCC registration underway, reference given.' },
+      { n: 6, name: 'Employment history', res: 'pass', by: 'Grace', at: '29/09 09:45', text: "7 month gap in 2021 on the manager's CV, explained by the client on 28/09." },
+      { n: 7, name: 'References', res: 'pass', by: 'Grace', at: '26/09 11:30', text: 'Referee 1 is the most recent employer. Dates match the CV.' },
+      { n: 8, name: 'Staffing plan', res: 'pass', by: 'Grace', at: '26/09 12:00', text: '8 staff for 20 service users. Matches the hours in the business plan.' }
+    ];
+    const F = (k, v) => [k, v];
+    const D = {
+      cqc: { label: 'CQC', G: CQC, kicker: 'CQC Registration Information Form received', client: 'Harbour Lane Care Ltd', who: 'Amara', portal: 'the CQC provider application', sheetName: 'CQC application sheet', gatesHref: 'Onboarding.dc.html', gatesLink: 'Open the onboarding gates',
+        sub: 'Form arrived Thu 29/10, 21:46, from Amara Okafor, director. Saved and finished over 3 sittings. Signed electronically. Stage 1 of 11: onboarding checks.',
+        chkSub: 'Ran the moment the form arrived. Grace confirms each one. The same results show on the gates board and on the client fix list.',
+        chgWhen: 'Edited by the client 31/10, 08:12', changes: [['Manager mobile', '07700 900111', '07700 900222'], ['Trading name', 'None', 'Harbour Lane Home Care']], chgNote: 'Affected checks were rerun: no change to any gate. The trading name is added to the consistency check across the pack.',
+        groups: [
+          ['Provider details', [F('Provider name', 'Harbour Lane Care Ltd'), F('Company number', '99000101'), F('Registered office', 'Flat 2, 14 Harbour Road, Stevenage SG1 2AB'), F('Telephone', '07700 900456'), F('Email', 'amara@harbourlanecare.co.uk'), F('Directors', 'Amara Okafor; Kwame Okafor (details on the fix list)')]],
+          ['Nominated individual', [F('Name', 'Amara Okafor'), F('Date of birth', '14/03/1986'), F('Role', 'Director'), F('DBS', 'Application to be started by Care Sync. ID checked 30/10')]],
+          ['Registered manager', [F('Name', 'Ruth Anne Bennett'), F('Date of birth', '09/07/1979'), F('Email', 'ruth@harbourlanecare.co.uk'), F('DBS', 'Enhanced with adult barred list, issued 14/02/2026'), F('Professional register', 'None that applies (checked 30/10)')]],
+          ['Locations', [F('Location name', 'Harbour Lane Care Ltd, office'), F('Address', 'Flat 2, 14 Harbour Road, Stevenage SG1 2AB'), F('Service type', 'Domiciliary care service')]],
+          ['Regulated activities', [F('Activity', 'Personal care')]],
+          ['Service users', [F('Bands', 'Older people (65 and over); younger adults; dementia; physical disability')]],
+          ['Declarations', [F('Form declaration', 'Signed by Amara Okafor, director, 29/10/2026'), F('CQC declaration', 'Signed by the client at final pack sign-off (stage 6)')]]
+        ] },
+      ciw: { label: 'CIW', G: CIW, kicker: 'CIW Registration Information Form', client: 'Afon Care Ltd', who: 'Rhian', portal: 'CIW Online', sheetName: 'CIW Online sheet', gatesHref: 'Handover.dc.html', gatesLink: 'How CIW gates differ',
+        sub: 'Form arrived 12/10 from Rhian Example, director. All gates passed 13/10. Submitted on CIW Online 14/10. Stage 8 of 11: with CIW.',
+        chkSub: 'All 8 passed before submission. Kept for the record; a gate can still be reopened with a reason.',
+        chgWhen: 'Edited by the client 28/10, 19:30', changes: [['Manager mobile', '07700 900310', '07700 900311'], ['Office telephone', '029 2018 0000', '029 2018 0001']], chgNote: 'These changed after we submitted to CIW Online on 14/10. Daniel tells CIW about the change through CIW Online. Task added for Daniel.',
+        groups: [
+          ['Organisation', [F('Organisation name', 'Afon Care Ltd'), F('Legal entity', 'Private limited company'), F('Preferred language', 'English')]],
+          ['Responsible Individual', [F('Name', 'Rhian Example'), F('DBS', 'On the Update Service, consent to view given')]],
+          ['Service', [F('Service type', 'Domiciliary Support Service'), F('Range of needs', 'Care and support for adults'), F('Areas (one service entry each)', 'Cardiff and Vale; West Glamorgan'), F('Average support hours per week', '251 to 500')]],
+          ['Manager', [F('Social Care Wales', 'Registration applied for, reference given')]],
+          ['Declarations', [F('Form declaration', 'Signed by Rhian Example, 12/10/2026')]]
+        ] },
+      rqia: { label: 'RQIA', G: RQIA, kicker: 'RQIA Registration Information Form', client: 'Lagan View Care Ltd', who: 'Niamh', portal: 'the RQIA Web Portal', sheetName: 'RQIA Web Portal sheet', gatesHref: 'Handover.dc.html', gatesLink: 'How RQIA gates differ',
+        sub: 'Form arrived 25/09 from Niamh Example, director. All gates passed 29/09. Submitted on the RQIA Web Portal 30/09. Stage 8 of 11: with RQIA.',
+        chkSub: 'All 8 passed before submission. Kept for the record; a gate can still be reopened with a reason.',
+        chgWhen: 'No edits since submission', changes: [], chgNote: 'Nothing has changed since we submitted on 30/09. If the client edits an answer, it shows here and Daniel is told.',
+        groups: [
+          ['Provider', [F('Provider name', 'Lagan View Care Ltd'), F('Legal entity', 'Private limited company (Northern Ireland)')]],
+          ['Responsible Individual', [F('Name', 'Niamh Example'), F('AccessNI', 'Three ID documents ready for RQIA\'s check')]],
+          ['Registered manager', [F('NISCC', 'Registration underway, reference given')]],
+          ['Service', [F('Service type', 'Domiciliary Care Agency (conventional)'), F('HSC Trust areas', 'Belfast; South Eastern')]],
+          ['Service users', [F('Groups', 'Older people, dementia, physical disability'), F('Expected number', '20')]],
+          ['Declarations', [F('Form declaration', 'Signed by Niamh Example, 25/09/2026')]]
+        ] }
+    };
+    const d = D[reg];
+    const fixes = st.fixes || [{ id: 'cqc1' }, { id: 'cqc5' }];
+    const gates = this.gateRows(d.G, reg, fixes, d.who);
+    const res = d.G.map(b => (st.g[reg + b.n] || {}).res || b.res);
+    const nP = res.filter(r => r === 'pass').length, nW = res.filter(r => r === 'wait').length, nF = res.filter(r => r === 'fail').length;
+    const nFix = d.G.filter((b, i) => res[i] === 'fail' && !b.noFix).length;
+    const sent = st.sent[reg];
+    const fixLabel = nFix ? (sent ? 'Sent (' + nFix + ')' : 'Send fix list (' + nFix + ')') : 'No fixes to send';
+    const groups = d.groups.map(([name, fields], i) => { const key = reg + i, open = !!st.open[key]; return {
+      name, count: fields.length + (fields.length === 1 ? ' field' : ' fields'), open, exp: String(open),
+      toggle: () => this.setState({ open: Object.assign({}, st.open, { [key]: !open }) }),
+      fields: fields.map(([k, v], j) => ({ k, v, label: st.copied === key + '-' + j ? 'Copied' : 'Copy', copy: () => this.setState({ copied: key + '-' + j }) })) }; });
+    const DL = [['Client Information Pack', 'Branded PDF with signature record'], [d.sheetName, 'Every field with a copy button'], ['Everything pack', 'ZIP: PDF plus every upload, named consistently'], ['Redacted PDF', 'Dates of birth and ID numbers hidden']];
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Grace Whitfield', initials: 'GW' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks', current: true },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: Object.keys(D).map(k => ({ label: D[k].label + ': ' + D[k].client, on: k === reg, off: k !== reg, pick: () => this.setState({ reg: k }) })),
+      kicker: d.kicker, client: d.client, sub: d.sub, chkSub: d.chkSub + ' Rules: any CV gap longer than ' + (window.CSR ? window.CSR.get('cv-gap-weeks', 4) : 4) + ' weeks needs a line of explanation; documents that expire get a warning ' + (window.CSR ? window.CSR.get('expiry-warning-weeks', 6) : 6) + ' weeks before.', portal: d.portal, sheetName: d.sheetName, gatesHref: d.gatesHref, gatesLink: d.gatesLink,
+      gates, nPass: nP + ' pass', nWait: nW + ' waiting', nFail: nF + ' fail',
+      fixLabel, fixCls: 'sb-btn ' + (nFix ? 'b-pri' : 'b-gh'),
+      sendFix: () => { if (!nFix || sent) return; this.logSet({ sent: Object.assign({}, st.sent, { [reg]: this.now() }) }, 'sent the fix list'); },
+      fixSent: !!sent && nFix > 0, fixSentText: 'Fix list (' + nFix + ') sent to ' + d.who + ', ' + (sent || '') + '. The landlord letter is not on it: it was already requested from Tom Reid on 30/10.',
+      chgWhen: d.chgWhen, changes: d.changes.map(([k, old, now]) => ({ k, old, now })), chgNote: d.chgNote,
+      downloads: DL.map(([k, v]) => ({ k, v, label: st.got === reg + k ? 'Downloaded' : 'Download', get: () => this.setState({ got: reg + k }) })),
+      groups
+    };
+  }
+}
+</script>
+</body>
+</html>

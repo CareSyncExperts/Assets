@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Team and cover</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:12px;font-weight:600}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.bz-bar{display:grid;grid-template-columns:170px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-bar2{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-gh{padding:10px 20px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600;letter-spacing:0;border-top:1px solid var(--cs-border-subtle)}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2680px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Team and cover" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Team and cover</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Who does what, who is away and who covers. Olu is on leave this week. Sam Patel is suspended pending the incident review and leaves on Friday. Cover is set up when leave is booked, so nobody needs emergency access for planned leave.</span>
+        </div>
+        <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{toggleLeave}}">{{leaveLabel}}</button><a class="sb-btn b-gh bz-link" href="PeopleAccess.dc.html">Invite a person</a></span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="{{k.cls}}" style="align-self: flex-start;">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{showLeave}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="lv-h">
+          <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="lv-h" class="sb-h2">Book leave and cover</h2><span class="sb-sub">A manager approves the cover when the leave is booked. It starts and ends by itself</span></div>
+          <span class="bz-lbl">Who is away</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;"><div role="tablist" aria-label="Who is away" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{lvWho}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">First day away</span><input class="bz-in" style="width: 200px;" value="{{lvFrom}}" onChange="{{onLvFrom}}"></label>
+            <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Back on</span><input class="bz-in" style="width: 200px;" value="{{lvTo}}" onChange="{{onLvTo}}"></label>
+          </div>
+          <span class="bz-lbl">Covered by</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;"><div role="tablist" aria-label="Covered by" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{lvCover}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <span class="sb-muted">Chloe Dunn (consultant) joins Mon 16 Nov and appears here once her account is active.</span>
+          <span class="sb-sub">{{lvWhat}}</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;"><div role="tablist" aria-label="Vault reveal" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{lvVault}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <sc-if value="{{lvErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Choose who is away, both dates and who covers.</span></sc-if>
+          <div><button class="sb-btn b-pri" onClick="{{lvSend}}">Send to a manager for approval</button></div>
+        </section>
+      </sc-if>
+
+      <section class="sb-card" aria-labelledby="pp-h">
+        <div class="sb-head"><h2 id="pp-h" class="sb-h2">People: 10 with access</h2><span class="sb-sub">Capacity is this week's planned work against that person's normal week</span></div>
+        <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 0 0 210px;">Person</span><span class="sb-th" style="flex: 1 1 260px;">Clients and work</span><span class="sb-th" style="flex: 0 0 180px;">Capacity</span><span class="sb-th" style="flex: 1 1 240px;">Leave and cover</span></div>
+        <sc-for list="{{people}}" as="p" hint-placeholder-count="10">
+          <div class="sb-row" style="align-items: flex-start;">
+            <span style="flex: 0 0 210px; display: flex; flex-direction: column;"><span class="bz-b">{{p.name}}</span><span class="sb-muted">{{p.role}}</span></span>
+            <span style="flex: 1 1 260px; min-width: 0;" class="sb-sub">{{p.work}}</span>
+            <span style="flex: 0 0 180px; display: flex; flex-direction: column; gap: 4px;"><span class="{{p.barCls}}" aria-hidden="true"><span class="{{p.w}}"></span></span><span class="sb-muted">{{p.cap}}</span></span>
+            <span style="flex: 1 1 240px; min-width: 0;"><span class="{{p.leaveCls}}" style="white-space: normal;">{{p.leave}}</span></span>
+          </div>
+        </sc-for>
+      </section>
+
+      <section class="sb-card" aria-labelledby="cv-h">
+        <div class="sb-head"><h2 id="cv-h" class="sb-h2">Cover this week: Olu on leave</h2><span class="sb-chip c-ok">Approved by Rachel Turner, Fri 30 Oct</span></div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+          <sc-for list="{{coverFacts}}" as="f" hint-placeholder-count="4"><div class="sb-kpi"><span class="sb-muted">{{f.k}}</span><span class="bz-b">{{f.v}}</span></div></sc-for>
+        </div>
+        <div class="sb-row"><span class="sb-sub">Daniel Mensah covers 4 of Olu's clients from Mon 2 Nov to Fri 6 Nov at 17:30. The cover includes the client pages, tasks, weekly updates and vault reveal for these 4 clients only, approved when Olu booked the leave. Every reveal still needs a reason and is logged; Olu sees the list when back. It ends by itself. Brookside Homecare (aftercare, month 1) is not urgent, so it waits for Olu.</span></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
+          <sc-for list="{{cover}}" as="c" hint-placeholder-count="4">
+            <div class="sb-row" style="align-items: flex-start;">
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{c.name}}</span><span class="sb-sub">{{c.what}}</span></span>
+              <span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;"><span class="{{c.cls}}">{{c.flag}}</span><span class="sb-chip c-brand">Vault reveal: yes</span></span>
+            </div>
+          </sc-for>
+        </div>
+        <div class="sb-row"><span class="sb-muted">Break-glass is for emergencies only, never for planned leave. None in the last 30 days. See Security (board 84).</span></div>
+        <sc-for list="{{booked}}" as="b" hint-placeholder-count="1">
+          <div class="sb-row" style="align-items: flex-start; background: var(--cs-surface-subtle);">
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{b.title}}</span><span class="sb-sub">{{b.text}}</span></span>
+            <span class="{{b.cls}}">{{b.chip}}</span>
+            <sc-if value="{{b.canApprove}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-sec" onClick="{{b.approve}}">Approve as a manager</button></sc-if>
+          </div>
+        </sc-for>
+      </section>
+
+      <section class="sb-card" aria-labelledby="sp-h">
+        <div class="sb-head"><h2 id="sp-h" class="sb-h2">Sam Patel: suspended, leaves Fri 6 Nov</h2><span class="{{offCls}}">{{offChip}}</span></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-start; border-top: 1px solid var(--cs-border-subtle);">
+          <div style="flex: 1 1 420px; min-width: 0;">
+            <div class="bz-gh" style="border-top: 0;">Checklist</div>
+            <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+              <div class="sb-row">
+                <span class="{{c.cls}}" style="width: 96px; justify-content: center; flex-shrink: 0;">{{c.state}}</span>
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span class="bz-b">{{c.k}}</span><span class="sb-sub">{{c.note}}</span></span>
+                <sc-if value="{{c.hasBtn}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-sec" onClick="{{c.act}}">{{c.btn}}</button></sc-if>
+              </div>
+            </sc-for>
+            <div class="sb-row" style="background: var(--cs-surface-subtle);"><span style="flex: 1; min-width: 0;" class="sb-sub">Each system has its own step (Google Workspace, the Hub, the Interview Preparation Hub, GoHighLevel, Xero, Stripe, DocuSeal). "Suspend now" already ran at 08:25.</span><a class="sb-btn b-gh bz-link" href="PeopleAccess.dc.html">Open People and access</a></div>
+          </div>
+          <div style="flex: 1.3 1 520px; min-width: 0; border-left: 1px solid var(--cs-border-subtle);">
+            <div class="bz-gh" style="border-top: 0;">Reassign Sam's 6 clients. None go to Daniel, who is at capacity this week</div>
+            <sc-for list="{{sams}}" as="r" hint-placeholder-count="6">
+              <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="display: flex; flex-direction: column;"><span class="bz-b">{{r.name}}</span><span class="sb-muted">{{r.what}}</span></span><span style="display: flex; gap: 8px; align-items: center;"><span class="{{r.cls}}" style="white-space: normal;">{{r.chip}}</span><sc-if value="{{r.closed}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-sec" onClick="{{r.openIt}}">Reassign</button></sc-if></span></div>
+                <sc-if value="{{r.done}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">{{r.noteLine}}</span></sc-if>
+                <sc-if value="{{r.open}}" hint-placeholder-val="{{ true }}">
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-lbl">New case owner</span>
+                    <sc-for list="{{r.opts}}" as="o" hint-placeholder-count="3">
+                      <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" aria-pressed="true" onClick="{{o.pick}}">{{o.label}}</button></sc-if>
+                      <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" aria-pressed="false" onClick="{{o.pick}}">{{o.label}}</button></sc-if>
+                    </sc-for>
+                    <span class="sb-muted">Daniel: at capacity. Chloe Dunn: joins Mon 16 Nov, shown here once active</span>
+                  </div>
+                  <textarea class="bz-ta" aria-label="{{r.taLabel}}" value="{{r.note}}" onChange="{{r.onNote}}" placeholder="Handover note: where things are, what is next, anything the client prefers"></textarea>
+                  <sc-if value="{{r.err}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Choose a new owner and write a handover note.</span></sc-if>
+                  <div style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{r.save}}">Save and send for approval</button><button class="sb-btn b-gh" onClick="{{r.close}}">Cancel</button></div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">A new case owner is a permission change, so a super admin approves it on super admin Home. The reassignment then sends email 9.3 "Your new consultant" to the client on the day it moves (Messages and automations, board 82, rule A35).</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sb-card" aria-labelledby="rp-h">
+        <div class="sb-head"><h2 id="rp-h" class="sb-h2">Roles and access</h2><a class="sb-btn b-gh bz-link" href="PeopleAccess.dc.html">Open People and access</a></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+          <sc-for list="{{roles}}" as="r" hint-placeholder-count="3"><div class="sb-kpi" style="gap: 4px;"><span class="bz-b">{{r.k}}</span><span class="sb-sub">{{r.v}}</span></div></sc-for>
+        </div>
+        <div class="sb-row"><span class="sb-muted">Roles, permissions, joiners, leavers and the quarterly access review are managed in People and access (board 83). Any change to a person's role or access needs a super admin, and the other super admin approves it.</span></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2680}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      re: { kings: { to: 'olu', note: 'Drafting the policies. Client prefers calls after 2pm. Next: draft to the client Thu 12 Nov.', ok: false }, cedar: { to: 'olu', note: 'Manager CV checked. References next. Director is new to care and likes things in writing.', ok: false } },
+      pick: {}, notes: {}, errs: {}, openId: 'rose', tasks: false, leave: false, lvWho: '', lvFrom: '', lvTo: '', lvCover: '', lvVault: 'yes', lvErr: false, booked: []
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const OWN = { olu: 'Olu, from Mon 9 Nov', rachel: 'Rachel Turner', collins: 'Collins' };
+    const SAMS = [
+      ['kings', 'Kingsway Care Ltd', 'CQC, domiciliary care. Stage 4 of 11: drafting'],
+      ['cedar', 'Cedar Lodge Care Ltd', 'CQC, domiciliary care. Stage 2 of 11: CV review'],
+      ['rose', 'Rosehill Homecare Ltd', 'CQC, domiciliary care. Stage 8 of 11: with the regulator'],
+      ['thorn', 'Thornbury Living Ltd', 'CQC, supported living. Stage 3 of 11: your documents'],
+      ['holly', 'Hollybush Care Ltd', 'CIW, domiciliary support. Stage 5 of 11: your review'],
+      ['bram', 'Bramley Support Ltd', 'CQC, supported living. Stage 11 of 11: aftercare, month 3']
+    ];
+    const nRe = SAMS.filter(x => s.re[x[0]]).length;
+    const sams = SAMS.map(([id, name, what]) => {
+      const done = s.re[id]; const pk = s.pick[id] || ''; const note = s.notes[id] || '';
+      const isOpen = !done && s.openId === id;
+      return { name, what, done: !!done, open: isOpen, closed: !done && !isOpen, openIt: () => this.setState({ openId: id }), close: () => this.setState({ openId: '' }),
+        chip: done ? 'To ' + OWN[done.to] + '. Waiting for a super admin' : 'No owner after Friday', cls: 'sb-chip ' + (done ? 'c-warn' : 'c-bad'),
+        noteLine: done ? 'Handover note: ' + done.note + ' Email 9.3 "Your new consultant" goes to the client on the day it moves.' : '',
+        opts: Object.keys(OWN).map(k => ({ label: OWN[k], on: pk === k, off: pk !== k, pick: () => this.setState({ pick: Object.assign({}, s.pick, { [id]: k }), errs: Object.assign({}, s.errs, { [id]: false }) }) })),
+        note, taLabel: 'Handover note for ' + name, err: !!s.errs[id],
+        onNote: e => this.setState({ notes: Object.assign({}, s.notes, { [id]: e.target.value }), errs: Object.assign({}, s.errs, { [id]: false }) }),
+        save: () => { if (!pk || !note.trim()) { this.setState({ errs: Object.assign({}, s.errs, { [id]: true }) }); return; } this.setState({ re: Object.assign({}, s.re, { [id]: { to: pk, note: note.trim() } }), openId: '' }); }
+      };
+    });
+    const left = 6 - nRe;
+    const checks = [
+      ['6 clients reassigned, each with a handover note', nRe + ' of 6 have a new owner and a note, waiting for super admin approval (Kingsway and Cedar Lodge to Olu: asked by Grace, Fri 30 Oct 16:10, decision 5 on Home). ' + (left ? left + ' still have no owner after Friday' : 'Every client has a new owner'), left ? 'To do' : 'Done', left ? 'bad' : 'ok', '', null],
+      ['Friday updates for Sam\'s clients', 'Collins sends Sam\'s 6 weekly updates due Fri 6 Nov. Sam is suspended, so he sends none', 'Planned', 'info', '', null],
+      ['Open tasks and Questions moved', s.tasks ? '14 of 14 tasks and 1 question moved to the new owners' : '9 of 14 tasks moved. 5 belong to clients with no owner yet', s.tasks ? 'Done' : 'To do', s.tasks ? 'ok' : 'warn', s.tasks ? '' : 'Move the other 5', () => this.setState({ tasks: true })],
+      ['Access suspended', 'Since Mon 2 Nov 08:25, by Rachel Turner, pending the incident review: Hub, Google Workspace and vault stopped, every device signed out. Disabled for good Fri 6 Nov 17:30. Sam\'s emails forward to Collins for 90 days', 'Suspended', 'bad', '', null],
+      ['Downloads paused', 'Since Mon 2 Nov 06:01, paused by the Hub. Collins, the data protection lead, has been assessing the export of 38 documents on Sun 1 Nov since 08:10 (Security, board 84)', 'Paused', 'warn', '', null],
+      ['Every step written to the audit log', 'Including each reassignment and its approval', 'Logging', 'ok', '', null]
+    ].map(([k, note, state, c, btn, act]) => ({ k, note, state, cls: 'sb-chip c-' + c, btn, hasBtn: !!btn, act }));
+    const toOlu = SAMS.filter(x => s.re[x[0]] && s.re[x[0]].to === 'olu').length;
+    const toCol = SAMS.filter(x => s.re[x[0]] && s.re[x[0]].to === 'collins').length;
+    const toRach = SAMS.filter(x => s.re[x[0]] && s.re[x[0]].to === 'rachel').length;
+    const P = [
+      ['Collins', 'Director, super admin 1, data protection lead', 'Leads the Sam Patel export assessment (window for an ICO report, if needed, ends Thu 5 Nov 06:00). Senior reviews: Sunrise Mon 9 Nov, Westbrook Thu 12 Nov. Calls Riverside today. Sends Sam\'s 6 weekly updates on Fri 6 Nov. Super admin decisions: 7, shared with Rachel Turner' + (toCol ? '. Case owner for ' + toCol + ' of Sam\'s clients from Mon 9 Nov' : ''), 75 + toCol * 5, 'In all week', 'ok'],
+      ['Rachel Turner', 'Operations manager, super admin 2', 'Reviews the decisions on the Sam Patel export (second pair of eyes). Approved Olu\'s cover on Fri 30 Oct. Super admin decisions: 7, shared with Collins' + (toRach ? '. Case owner for ' + toRach + ' of Sam\'s clients from Mon 9 Nov' : ''), 80 + toRach * 5, 'In all week', 'ok'],
+      ['Daniel Mensah', 'Consultant', '6 active, 2 in aftercare, plus 4 covering for Olu: 12 this week. Weekly updates: 10 due Fri 6 Nov', 95, 'Covering Olu until Fri 6 Nov 17:30', 'info'],
+      ['Olu', 'Consultant', '5 clients: 4 covered by Daniel (Riverside, Greenway, Lagan View, Willow Bank), and Brookside Homecare in aftercare, which waits for Olu' + (toOlu ? '. From Mon 9 Nov also ' + toOlu + ' of Sam\'s clients, once approved' : ''), 0, 'On leave Mon 2 to Fri 6 Nov. Back Mon 9 Nov', 'warn'],
+      ['Sam Patel', 'Consultant', '6 clients, ' + (left ? left + ' still to reassign' : 'all reassigned') + '. No client work while suspended; Collins covers his Friday updates', 0, 'Suspended since Mon 2 Nov 08:25, pending the incident review. Leaving Fri 6 Nov', 'bad'],
+      ['Grace', 'Onboarding lead', '6 clients in onboarding, including Harbour Lane (5 of 8 gates passed). Owns every form question; CQC form v8 waiting for approval', 70, 'In all week', 'ok'],
+      ['Divine', 'Client care', '3 calls today, including Meadow View\'s introduction call. 1 concern open (Riverside), 3 clients gone quiet', 60, 'In all week', 'ok'],
+      ['Millicent', 'Coach', '7 sessions this week, including Bright Path session 2 today at 10:00', 75, 'In all week', 'ok'],
+      ['Jo Martin', 'Sales', '12 Radar matches today, 4 providers in outreach. Asked for the Lindenfield discount', 55, 'In all week', 'ok'],
+      ['Femi Ade', 'Finance, part time', 'Closing October: 2 unmatched payments, 1 refund for a manager to approve, 4 overdue invoices', 65, 'Works Mon, Wed and Thu', 'neutral']
+    ];
+    const people = P.map(([name, role, work, cap, leave, lc]) => ({ name, role, work,
+      w: 'w' + Math.min(100, Math.round(cap / 5) * 5), barCls: 'bar' + (cap >= 90 ? ' red' : (cap >= 80 ? ' amb' : '')),
+      cap: name === 'Olu' ? 'On leave' : name === 'Sam Patel' ? 'Suspended' : cap + '% of ' + (name === 'Femi Ade' ? 'a part-time week' : 'a normal week'), leave, leaveCls: 'sb-chip c-' + lc }));
+    const cover = [
+      ['Riverside Homecare Ltd', 'Stage 8 of 11: with CQC since Fri 23 Oct. Worried: Collins calls today', 'Login missing 10 days', 'bad'],
+      ['Greenway Support Ltd', 'Stage 3 of 11: 3 documents waiting. Friday\'s weekly update bounced at 17:02', 'Gone quiet 10 days', 'warn'],
+      ['Lagan View Care Ltd', 'Stage 8 of 11: with RQIA since Wed 30 Sep. Interviews Tue 8 Dec', 'On track', 'ok'],
+      ['Willow Bank Supported Living Ltd', 'Stage 3 of 11: documents by Fri 27 Nov', 'On track', 'ok']
+    ].map(([name, what, flag, k]) => ({ name, what, flag, cls: 'sb-chip c-' + k }));
+    const coverFacts = [['Covered by', 'Daniel Mensah'], ['Dates', 'Mon 2 Nov to Fri 6 Nov, 17:30'], ['Clients', '4 of Olu\'s 5'], ['Ends', 'By itself, Fri 6 Nov 17:30']].map(([k, v]) => ({ k, v }));
+    const WHO = [['millicent', 'Millicent'], ['grace', 'Grace'], ['divine', 'Divine'], ['daniel', 'Daniel Mensah']];
+    const COV = { millicent: [['divine', 'Divine'], ['grace', 'Grace']], grace: [['divine', 'Divine'], ['rachel', 'Rachel Turner']], divine: [['grace', 'Grace'], ['jo', 'Jo Martin']], daniel: [['olu', 'Olu'], ['collins', 'Collins']] };
+    const WHAT = { millicent: 'Covers sessions only. Coaches never see the vault, so no vault reveal is needed.', grace: 'Covers onboarding gates, form questions and fix lists for the clients in onboarding.', divine: 'Covers introduction calls, concerns and gone quiet clients.', daniel: 'Covers Daniel\'s 6 active and 2 aftercare clients: client pages, tasks, weekly updates.' };
+    const needsVault = s.lvWho === 'daniel';
+    const lvSend = () => { if (!s.lvWho || !s.lvFrom.trim() || !s.lvTo.trim() || !s.lvCover) { this.setState({ lvErr: true }); return; }
+      const who = WHO.find(w => w[0] === s.lvWho)[1]; const cov = COV[s.lvWho].find(c => c[0] === s.lvCover)[1];
+      this.setState({ booked: s.booked.concat([{ who, cov, from: s.lvFrom.trim(), to: s.lvTo.trim(), vault: needsVault && s.lvVault === 'yes', ok: false }]), leave: false, lvErr: false, lvWho: '', lvFrom: '', lvTo: '', lvCover: '' }); };
+    const booked = s.booked.map((b, i) => ({ title: 'Leave booked: ' + b.who + ', ' + b.from + ' to ' + b.to + '. Covered by ' + b.cov, text: (b.vault ? 'Includes vault reveal for the covered clients and dates only. ' : 'No vault reveal. ') + 'Starts and ends by itself. ' + (b.ok ? 'Approved by Collins, just now. Both people and the clients\' records show the cover.' : 'Waiting for a manager. You are a director, so you can approve it.'),
+      chip: b.ok ? 'Approved' : 'Waiting', cls: 'sb-chip ' + (b.ok ? 'c-ok' : 'c-warn'), canApprove: !b.ok,
+      approve: () => { const nb = s.booked.slice(); nb[i] = Object.assign({}, b, { ok: true }); this.setState({ booked: nb }); } }));
+    const roles = [
+      ['10 people, 8 roles', 'Manager, consultant (case owner), onboarding lead, client care, coach, sales, finance and data protection lead. Super admin is a flag on top of a role: Collins and Rachel Turner.'],
+      ['Who sees which clients', 'Directors and managers see every client. Everyone else sees the clients assigned to them and the clients they cover, for the dates of the cover.'],
+      ['Waiting now', 'Olu takes Kingsway and Cedar Lodge from Mon 9 Nov, asked by Grace Fri 30 Oct 16:10 (decision 5 on Home). The quarterly access review is due.']
+    ].map(([k, v]) => ({ k, v }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users', current: true },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      kpis: [['People with access', '10', 'All use two-step login', 'ok'], ['On leave this week', '1', 'Olu, Daniel covering', 'warn'], ['Leaving', '1', 'Sam Patel: suspended, leaves Fri 6 Nov', 'bad'], ['No owner after Friday', String(left), left ? 'Reassign before Friday' : 'All reassigned', left ? 'bad' : 'ok']].map(([k, v, note, c]) => ({ k, v, note, cls: 'sb-chip c-' + c })),
+      showLeave: s.leave, toggleLeave: () => this.setState({ leave: !s.leave, lvErr: false }), leaveLabel: s.leave ? 'Close' : 'Book leave and cover',
+      lvWho: WHO.map(([k, label]) => ({ label, on: s.lvWho === k, off: s.lvWho !== k, pick: () => this.setState({ lvWho: k, lvCover: '', lvErr: false }) })),
+      lvCover: (COV[s.lvWho] || []).map(([k, label]) => ({ label, on: s.lvCover === k, off: s.lvCover !== k, pick: () => this.setState({ lvCover: k, lvErr: false }) })),
+      lvWhat: s.lvWho ? WHAT[s.lvWho] : 'Choose who is away to see what the cover includes.',
+      lvVault: needsVault ? [['yes', 'Include vault reveal for the covered clients and dates'], ['no', 'No vault reveal']].map(([k, label]) => ({ label, on: s.lvVault === k, off: s.lvVault !== k, pick: () => this.setState({ lvVault: k }) })) : [],
+      lvFrom: s.lvFrom, lvTo: s.lvTo, onLvFrom: e => this.setState({ lvFrom: e.target.value, lvErr: false }), onLvTo: e => this.setState({ lvTo: e.target.value, lvErr: false }), lvErr: s.lvErr, lvSend,
+      people, cover, coverFacts, booked, checks, sams, roles,
+      offChip: left ? left + ' clients still need an owner' : 'Clients all reassigned', offCls: 'sb-chip ' + (left ? 'c-bad' : 'c-ok')
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Notifications</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.nt-tab{min-height:40px;border:0;border-radius:8px;font:inherit;font-size:14px;cursor:pointer}
+.nt-tab:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 900px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; align-items: center; gap: 8px;">
+      <a href="Main.dc.html" aria-label="Back to Today" style="width: 44px; height: 44px; margin-left: -12px; display: flex; align-items: center; justify-content: center; color: var(--cs-text-primary);"><x-import component-from-global-scope="CareSync.Icon" name="chevron-left" size="{{n24}}"></x-import></a>
+      <h1 style="margin: 0; font-size: 22px; line-height: 30px; font-weight: 600; flex-grow: 1;">Notifications</h1>
+      <a href="Account.dc.html" style="font-size: 14px; font-weight: 500;">Settings</a>
+    </header>
+
+    <div role="tablist" aria-label="Filter" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="2">
+        <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}">
+          <button class="nt-tab" role="tab" aria-selected="true" onClick="{{tb.pick}}" style="background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); color: var(--cs-text-primary); font-weight: 500;">{{tb.label}}</button>
+        </sc-if>
+        <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}">
+          <button class="nt-tab" role="tab" aria-selected="false" onClick="{{tb.pick}}" style="background: transparent; color: var(--cs-text-secondary);">{{tb.label}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+      <sc-for list="{{items}}" as="n" hint-placeholder-count="5">
+        <div style="padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="CareSync.Icon" name="{{n.icon}}" size="{{n20}}"></x-import></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+            <span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{n.title}}</span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{n.body}}</span>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{n.when}}</span>
+          </span>
+          <sc-if value="{{n.needsYou}}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="warning">For you</x-import>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">{{footNote}}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'all' };
+  }
+  renderVals() {
+    const get = (k, f) => (window.CSR ? CSR.get(k, f) : f);
+    const day = get('weekly-update-day', 'Friday');
+    const all = [
+      { icon: 'file-text', title: 'Statement of Purpose, version 2', body: 'Ready for your comments. Daniel added learning disabilities as you asked.', when: 'Today, 09:14', needsYou: true },
+      { icon: 'upload', title: 'Proof of address', body: 'Your bill needs to be from the last 3 months. One photo is enough.', when: 'Today, 08:30', needsYou: true },
+      { icon: 'calendar-check', title: 'Session 2 booked', body: 'Thursday 5 November, 10:00, with Millicent.', when: 'Yesterday', needsYou: false },
+      { icon: 'circle-check', title: '30 policies written', body: 'Ready for you in the Review Room.', when: 'Saturday', needsYou: false },
+      { icon: 'inbox', title: 'Your ' + day + ' update', body: 'A good week. Nothing to worry about.', when: 'Friday', needsYou: false },
+      { icon: 'file-check', title: 'Your insurance quote is in', body: 'Daniel found a quote for you. It is in Written for you.', when: 'Thursday', needsYou: false }
+    ];
+    const t = this.state.tab;
+    const items = t === 'you' ? all.filter(i => i.needsYou) : all;
+    const tabs = [['you', 'Needs you (2)'], ['all', 'Everything']].map(([k, label]) => ({ label, on: t === k, off: t !== k, pick: () => this.setState({ tab: k }) }));
+    const footNote = 'Important news also comes by email. We only text to arrange your introduction call and for urgent legal deadlines. WhatsApp is coming later. Quiet hours are ' + get('quiet-hours', '8pm to 8am') + ', but legal deadline alerts and tender deadlines within 24 hours still come through.';
+    return { theme: this.props.theme ?? 'light', n20: 20, n24: 24, tabs, items, footNote };
+  }
+}
+</script>
+</body>
+</html>

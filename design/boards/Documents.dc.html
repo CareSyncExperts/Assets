@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your documents</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1550px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Stage 3 of 11</span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Your documents</h1>
+      </div>
+      <div role="tablist" aria-label="Which documents" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+        <a role="tab" aria-selected="true" href="Documents.dc.html" style="min-height: 40px; border-radius: 8px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-primary); text-decoration: none;">From you</a>
+        <a role="tab" aria-selected="false" href="DocRoom.dc.html" style="min-height: 40px; border-radius: 8px; background: transparent; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 20px; color: var(--cs-text-secondary); text-decoration: none;">Written for you</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div aria-hidden="true" style="flex-grow: 1; height: 8px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div style="width: 62%; height: 8px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+        <span style="font-size: 14px; line-height: 20px; font-weight: 500;">5 of 8 accepted</span>
+      </div>
+    </header>
+
+    <section aria-labelledby="office-q" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <h2 id="office-q" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Where will your office be?</h2>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Your answer changes which documents we ask for.</span>
+      </div>
+      <sc-if value="{{homeOn}}" hint-placeholder-val="{{ true }}">
+        <div role="radiogroup" aria-label="Office type" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+          <button role="radio" aria-checked="false" onClick="{{pickCommercial}}" style="min-height: 44px; border: 0; border-radius: 8px; font: inherit; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; background: transparent; color: var(--cs-text-secondary);">
+            <x-import component-from-global-scope="CareSync.Icon" name="building-2" size="{{n16}}"></x-import>Commercial office</button>
+          <button role="radio" aria-checked="true" onClick="{{pickHome}}" style="min-height: 44px; border: 0; border-radius: 8px; font: inherit; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); font-weight: 500; color: var(--cs-text-primary);">
+            <x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n16}}"></x-import>Home office</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{commercialOn}}" hint-placeholder-val="{{ false }}">
+        <div role="radiogroup" aria-label="Office type" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+          <button role="radio" aria-checked="true" onClick="{{pickCommercial}}" style="min-height: 44px; border: 0; border-radius: 8px; font: inherit; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); font-weight: 500; color: var(--cs-text-primary);">
+            <x-import component-from-global-scope="CareSync.Icon" name="building-2" size="{{n16}}"></x-import>Commercial office</button>
+          <button role="radio" aria-checked="false" onClick="{{pickHome}}" style="min-height: 44px; border: 0; border-radius: 8px; font: inherit; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; background: transparent; color: var(--cs-text-secondary);">
+            <x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n16}}"></x-import>Home office</button>
+        </div>
+      </sc-if>
+    </section>
+
+    <section aria-labelledby="g1" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="g1" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">Amara Okafor, director</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+
+        <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; background: var(--cs-status-warning-bg); border-bottom: 1px solid var(--cs-border-subtle);">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;">
+              <span style="font-size: 16px; line-height: 24px; font-weight: 500;">Proof of address</span>
+              <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Utility bill or bank statement</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="warning">Please re-upload</x-import>
+          </div>
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-status-warning-text);">This bill is from June 2026. Please upload one dated after 2 August 2026.</span>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+            <x-import component-from-global-scope="CareSync.Button" variant="primary" icon-start="upload" block="{{yes}}">Upload file</x-import>
+            <x-import component-from-global-scope="CareSync.Button" variant="secondary" icon-start="circle-help" block="{{yes}}">Ask about this</x-import>
+          </div>
+        </div>
+
+        <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="flex-grow: 1; font-size: 16px; line-height: 24px;">Enhanced DBS certificate</span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="success">Accepted</x-import>
+        </div>
+        <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="flex-grow: 1; font-size: 16px; line-height: 24px;">Photo ID: passport</span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="success">Accepted</x-import>
+        </div>
+        <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="flex-grow: 1; font-size: 16px; line-height: 24px;">Second ID: driving licence</span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="success">Accepted</x-import>
+        </div>
+        <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px;">
+          <span style="flex-grow: 1; font-size: 16px; line-height: 24px;">CV</span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="success">Accepted</x-import>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="g1b" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="g1b" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">Ruth Bennett, registered manager</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+        <span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">RB</span>
+        <span style="flex-grow: 1; display: flex; flex-direction: column;">
+          <span style="font-size: 16px; line-height: 24px;">Ruth is filling in the manager part</span>
+          <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">3 of 5 done. We remind Ruth, not you.</span>
+        </span>
+        <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="user">With Ruth</x-import>
+      </div>
+    </section>
+
+    <section aria-labelledby="g2" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="g2" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">Office evidence</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-if value="{{homeOn}}" hint-placeholder-val="{{ true }}">
+          <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;">
+              <span style="font-size: 16px; line-height: 24px;">Proof this is your home</span>
+              <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Tenancy agreement, mortgage statement or title</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="eye">Being checked</x-import>
+          </div>
+          <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px;">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;">
+              <span style="font-size: 16px; line-height: 24px;">Permission letter</span>
+              <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">From your mortgage lender or landlord</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.Button" variant="secondary" size="small" icon-start="upload">Upload</x-import>
+          </div>
+        </sc-if>
+        <sc-if value="{{commercialOn}}" hint-placeholder-val="{{ false }}">
+          <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px;">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;">
+              <span style="font-size: 16px; line-height: 24px;">Lease or licence agreement</span>
+              <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">For the office premises, signed by both parties</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.Button" variant="secondary" size="small" icon-start="upload">Upload</x-import>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <section aria-labelledby="g3" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="g3" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">Business</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div style="min-height: 56px; padding: 10px 16px; display: flex; align-items: center; gap: 12px;">
+          <span style="flex-grow: 1; display: flex; flex-direction: column;">
+            <span style="font-size: 16px; line-height: 24px;">Insurance quote</span>
+            <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Quote valid until 30/11/2026</span>
+          </span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">Expiring soon</x-import>
+        </div>
+      </div>
+    </section>
+
+    <div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-brand); color: var(--cs-action-on-secondary);">
+      <x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n20}}"></x-import>
+      <span style="font-size: 14px; line-height: 20px; display: flex; flex-direction: column; gap: 6px;"><span>Your documents are encrypted and only your Care Sync team can open them. Tip: take a photo with your phone and we will straighten it for you.</span><a href="Account.dc.html" style="color: inherit; font-weight: 500;">See who has opened them</a></span>
+    </div>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="Journey.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n24}}"></x-import>Journey</a>
+    <a href="Documents.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Documents</a>
+    <a href="Cqc.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n24}}"></x-import>CQC</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1550}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { office: 'home' };
+  }
+  renderVals() {
+    const home = this.state.office === 'home';
+    return {
+      theme: this.props.theme ?? 'light',
+      yes: true, n16: 16, n20: 20, n24: 24,
+      homeOn: home,
+      commercialOn: !home,
+      pickHome: () => this.setState({ office: 'home' }),
+      pickCommercial: () => this.setState({ office: 'commercial' })
+    };
+  }
+}
+</script>
+</body>
+</html>

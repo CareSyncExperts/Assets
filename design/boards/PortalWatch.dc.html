@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Regulator and tender watch</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.dk{border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;cursor:pointer;background:var(--cs-surface-raised);color:var(--cs-text-primary);box-shadow:var(--cs-elevation-1)}
+.dk-on{border:2px solid var(--cs-action-primary)}
+.dk-off{border:2px solid transparent}
+.dk:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.dk-v{font-size:26px;line-height:32px;font-weight:600}
+.pw-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.4fr) minmax(0,1.3fr) minmax(0,0.7fr) minmax(0,1.1fr);gap:10px;padding:12px 20px;border-top:1px solid var(--cs-border-subtle);align-items:center;font-size:14px;line-height:20px}
+.r-bad{background:var(--cs-status-error-bg)}
+.r-new{background:var(--cs-status-info-bg)}
+.r-plain{background:transparent}
+.t-bad{color:var(--cs-status-error-text);font-weight:500}
+.t-norm{color:var(--cs-text-secondary)}
+.vb{padding:12px;border-radius:10px;border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.vb-warn{border-color:var(--cs-status-warning-border);background:var(--cs-status-warning-bg)}
+.inp{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box;width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1300px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Regulator and tender watch" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Regulator and tender watch</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Monday 2 November. Every client waiting on CQC, CIW, RQIA or a buyer, and how we hear the moment they reply. Tap a number to see its list.</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+          <button class="{{k.cls}}" onClick="{{k.pick}}" aria-pressed="{{k.pressed}}"><span class="dk-v">{{k.v}}</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{k.label}}</span><span class="sb-muted">{{k.note}}</span></button>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" aria-labelledby="w-h" style="flex: 3 1 620px; min-width: 0;">
+          <div class="sb-head"><h2 id="w-h" class="sb-h2">{{listTitle}}</h2><span class="sb-sub">{{listSub}}</span></div>
+          <div class="pw-grid sb-th"><span>Client</span><span>Waiting on</span><span>How we watch</span><span>Last checked</span><span>Action</span></div>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+            <div class="{{r.cls}}">
+              <span style="font-weight: 500;">{{r.client}}</span>
+              <span style="display: flex; flex-direction: column;"><span>{{r.on}}</span><span class="sb-muted">{{r.dates}}</span></span>
+              <span class="{{r.howCls}}">{{r.how}}</span>
+              <span class="{{r.lastCls}}">{{r.last}}</span>
+              <span><button class="{{r.btnCls}}" onClick="{{r.act}}">{{r.cta}}</button></span>
+            </div>
+          </sc-for>
+          <div style="padding: 12px 20px 16px; font-size: 12px; line-height: 16px; color: var(--cs-text-muted); border-top: 1px solid var(--cs-border-subtle);">CQC writes to the applicant's email, so each CQC client's email login is held in the vault and the Hub checks it every few minutes, pulling in every CQC email automatically. A missing login turns red after 7 days and shows on My day and the manager dashboard. CIW messages arrive in CIW Online and RQIA uses its Web Portal, so the Hub checks those every working day and alerts the consultant the same hour something new appears. Every check appears on the client's work log.</div>
+        </section>
+
+        <section class="sb-card" aria-labelledby="v-h" style="flex: 2 1 360px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <sc-if value="{{adding}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h2 id="v-h" class="sb-h2">Ask Mark to add Riverside's CQC email login</h2><x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n20}}" label="Secure vault"></x-import></div>
+              <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-error-bg); color: var(--cs-status-error-text); font-size: 13px; line-height: 18px;">Missing for 10 days. It has shown on My day and the manager dashboard since day 7. Until it is added, we cannot see what CQC sends Mark.</div>
+              <span class="sb-sub">Mark adds it himself on "Your business email" in his Hub (board 27). The password goes straight into the encrypted vault, so nobody has to read it out on the phone or send it by email. The watch starts by itself once it is saved.</span>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">Your note to Mark<textarea class="inp" style="min-height: 112px; padding: 8px 12px; line-height: 20px; resize: vertical;" value="{{askNote}}" onChange="{{onAskNote}}"></textarea></label>
+              <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-info-bg); color: var(--cs-text-primary); font-size: 13px; line-height: 18px;">You can do this under Olu's cover delegation: Rachel approved it on Fri 30 Oct for Riverside, Greenway, Lagan View and Willow Bank, until Fri 6 Nov 17:30. Collins calls Mark today and can mention it.</div>
+              <sc-if value="{{notAsked}}" hint-placeholder-val="{{ true }}"><div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{send}}">Send Mark the link</button><a class="sb-btn b-gh" style="display: inline-flex; align-items: center; text-decoration: none;" href="EmailConnect.dc.html">See what Mark sees (board 27)</a><button class="sb-btn b-gh" onClick="{{cancel}}">Cancel</button></div></sc-if>
+              <sc-if value="{{asked}}" hint-placeholder-val="{{ false }}"><div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-success-bg); color: var(--cs-status-success-text); font-size: 13px; line-height: 18px;">Sent to Mark just now, by email and in his Hub, with your note. Logged on Riverside's work log. The row stays red until Mark saves the login.</div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{save}}">Show it once Mark has saved it</button><button class="sb-btn b-gh" onClick="{{cancel}}">Close</button></div></sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{notAdding}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h2 class="sb-h2">Access for Oakleaf Living Ltd</h2><x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n20}}" label="Secure vault"></x-import></div>
+              <div class="vb"><div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-weight: 500;">Northshire tender portal</span><span class="sb-chip c-ok">User added</span></div><span class="sb-sub">Daniel is a user on Kemi's account, so buyer messages reach us directly. No password held.</span></div>
+              <div class="vb"><div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-weight: 500;">Eastford supplier portal</span><span class="sb-chip c-warn">Portal check</span></div><span class="sb-sub">Not yet a user. Checked Monday and Thursday until Kemi adds Daniel.</span></div>
+              <div class="vb vb-warn">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="font-weight: 500;">Website hosting</span><span class="sb-chip c-warn">Stored login</span></div>
+                <span style="font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 2px;">{{secret}}</span>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{copy}}">Copy without showing</button><button class="sb-btn b-gh" onClick="{{reveal}}">{{revealLabel}}</button></div>
+                <sc-if value="{{asking}}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 6px;"><label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">Why do you need it? Needed to reveal and to copy<input class="inp" value="{{reason}}" onChange="{{onReason}}"></label><sc-if value="{{reasonErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: var(--cs-status-error-text); font-weight: 500;">Write a reason first. Kemi sees it on her privacy page.</span></sc-if><button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{confirm}}">{{confirmLabel}}</button></div></sc-if>
+                <span class="sb-muted">{{lastUsed}}</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="history" size="{{n16}}"></x-import>Every reveal and copy needs a reason. Both are logged and shown on the client's privacy page.</div>
+            </div>
+          </sc-if>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 'all', adding: false, added: false, asked: false, askNote: 'Hi Mark, CQC writes to your business email, so we need its login in your Hub to see their letters the moment they arrive. It takes about 2 minutes on the page this link opens. Thank you, Daniel', copied: false, asking: '', reason: '', reasonErr: false, shown: false }; }
+  renderVals() {
+    const s = this.state, f = s.f;
+    const R = [
+      { client: 'Sunrise Homecare Ltd', on: 'CQC: Notice of Proposal', dates: 'Served 21 Oct. Our target Tue 10 Nov. Legal deadline Tue 17 Nov', how: 'Client email connected', last: '2 min ago', kind: 'auto', isNew: true, cta: 'Confirm email', pri: true },
+      { client: 'Oakleaf Living Ltd', on: 'Northshire, Lot 1 North', dates: 'Questions close Fri 13 Nov 17:00. We submit Fri 27 Nov. Bid Tue 1 Dec 12:00', how: 'Daniel is a portal user', last: '08:40', kind: 'auto', cta: 'Log clarification' },
+      { client: 'Oakleaf Living Ltd', on: 'Eastford supported living', dates: 'Application deadline Fri 4 Dec', how: 'Portal check, Mon and Thu', last: 'Due today', lastBad: false, kind: 'check', cta: 'Mark checked' },
+      { client: 'Elm Tree Care Ltd', on: 'CQC: interview 24/11', dates: 'Reply to CQC\'s questions by Thu 12 Nov', how: 'Client email connected', last: '09:12', kind: 'auto', cta: 'Nothing new' },
+      { client: 'Westbrook Care Ltd', on: 'CQC: refused, we resubmit', dates: 'Decision 26 Oct. Appeal window closes Sun 22 Nov. Resubmit target Mon 30 Nov', how: 'Client email connected', last: '09:12', kind: 'auto', cta: 'Nothing new' },
+      { client: 'Afon Care Ltd', on: 'CIW: 1 reference waiting', dates: 'With CIW since 14 Oct. Interview Thu 26 Nov', how: 'CIW Online, checked daily', last: '07:30', kind: 'check', cta: 'Nudge referee' },
+      { client: 'Lagan View Care Ltd', on: 'RQIA', dates: 'Submitted on the RQIA Web Portal 30 Sep. Interviews Tue 8 Dec', how: 'Web Portal and client email, checked daily', last: '08:05', kind: 'check', cta: 'Nothing new' },
+      { client: 'Riverside Homecare Ltd', on: 'CQC', dates: 'Submitted 23 Oct. On My day and the manager dashboard since day 7', how: 'CQC email login not in the vault: 10 days', last: '10 days', kind: 'none', bad: true, cta: 'Ask Mark to add it', pri: true }
+    ];
+    if (s.added) { const r = R[7]; r.kind = 'auto'; r.bad = false; r.how = 'Client email connected by Mark'; r.last = 'Just now'; r.cta = 'Nothing new'; r.pri = false; r.isNew = false; }
+    else if (s.asked) { const r = R[7]; r.how = 'Login not in the vault: Mark asked today (board 27)'; }
+    const test = { all: () => true, auto: r => r.kind === 'auto', isNew: r => !!r.isNew && !s.confirmed, check: r => r.kind === 'check', none: r => r.kind === 'none' };
+    const n = k => R.filter(test[k]).length;
+    const K = [['all', 'Waiting for news', 'Clients and tenders watched'], ['auto', 'Watched automatically', 'Email connected or portal user'], ['isNew', 'New to confirm', 'Check before the client sees it'], ['check', 'Portal checks today', 'CIW Online, RQIA, Eastford'], ['none', 'Not watched', n('none') ? 'Red after 7 days' : 'All watched']];
+    const pick = k => () => this.setState({ f: k });
+    const kpis = K.map(([k, label, note]) => ({ v: String(n(k)), label, note, pick: pick(k), cls: 'dk ' + (f === k ? 'dk-on' : 'dk-off'), pressed: f === k ? 'true' : 'false' }));
+    const rows = R.filter(test[f]).map((r, i) => ({
+      client: r.client, on: r.on, dates: r.dates, how: r.how, last: r.last, cta: (r.isNew && s.confirmed) ? 'Confirmed' : r.cta,
+      cls: 'pw-grid ' + (r.bad ? 'r-bad' : (r.isNew && !s.confirmed) ? 'r-new' : 'r-plain'),
+      howCls: r.bad ? 't-bad' : '', lastCls: r.bad ? 'sb-chip c-bad' : 't-norm',
+      btnCls: 'sb-btn ' + (r.pri && !(r.isNew && s.confirmed) ? 'b-pri' : 'b-gh'),
+      act: r.cta === 'Ask Mark to add it' ? () => this.setState({ adding: true }) : (r.isNew ? () => this.setState({ confirmed: true }) : () => {})
+    }));
+    const label = K.find(x => x[0] === f)[1];
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n16: 16, n20: 20, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye', current: true },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      kpis, rows, listTitle: label, listSub: rows.length + (rows.length === 1 ? ' line' : ' lines'),
+      adding: s.adding, notAdding: !s.adding, askNote: s.askNote, onAskNote: e => this.setState({ askNote: e.target.value }),
+      asked: s.asked && !s.added, notAsked: !s.asked, send: () => this.setState({ asked: true }),
+      save: () => this.setState({ adding: false, added: true }),
+      cancel: () => this.setState({ adding: false }),
+      secret: s.shown ? 'oak-Web-2026!hosting' : '••••••••••••',
+      copy: () => this.setState({ asking: s.asking === 'copy' ? '' : 'copy', reasonErr: false }),
+      reveal: () => this.setState(s.shown ? { shown: false, asking: '' } : { asking: s.asking === 'reveal' ? '' : 'reveal', reasonErr: false }), revealLabel: s.shown ? 'Hide' : 'Reveal with reason',
+      asking: !!s.asking && !s.shown, reason: s.reason, onReason: e => this.setState({ reason: e.target.value, reasonErr: false }), reasonErr: s.reasonErr,
+      confirmLabel: s.asking === 'copy' ? 'Copy without showing' : 'Reveal for 30 seconds',
+      confirm: () => { if (!s.reason.trim()) return this.setState({ reasonErr: true }); this.setState(s.asking === 'copy' ? { copied: true, shown: false, asking: '', usedWhy: s.reason.trim() } : { shown: true, copied: false, asking: '', usedWhy: s.reason.trim() }); },
+      lastUsed: s.shown ? 'Last used: Daniel, just now, revealed for 30 seconds, "' + s.usedWhy + '". Logged and shown to Kemi.' : s.copied ? 'Last used: Daniel, just now, copied without showing, "' + s.usedWhy + '". Logged and shown to Kemi.' : 'Last used: Daniel, 30/10 15:20, revealed, "update the services page". Change it after the website work ends.'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Forms</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:12px;font-weight:600}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.bz-bar{display:grid;grid-template-columns:170px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-bar2{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-gh{padding:10px 20px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600;letter-spacing:0;border-top:1px solid var(--cs-border-subtle)}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+.fb-list>*,.fb-list button{flex-shrink:0}
+.fb-pkg{min-height:44px;padding:6px 10px;border-radius:10px;font:inherit;font-size:12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.fb-pkg:focus-visible,.fb-mod:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.fb-mod{width:100%;min-height:38px;padding:5px 8px;border-radius:10px;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(--cs-text-primary)}
+.fb-rule{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;background:var(--cs-status-info-bg);color:var(--cs-status-info-text);font-size:11px;line-height:16px;font-weight:500;align-self:flex-start}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1980px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Forms" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 760px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Forms</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Every onboarding form, its versions, and every screen that reads it. Grace drafts. A new version goes live only when a super admin who did not draft or edit it approves it.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
+          <span class="bz-lbl">You are acting as</span>
+          <div role="tablist" aria-label="Acting as" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{asTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+        </div>
+      </div>
+
+      <section class="sb-card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="fm-h">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;"><h2 id="fm-h" class="sb-h2" style="font-size: 16px;">Forms</h2><span class="{{statusCls}}">{{status}}</span></div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: stretch;">
+          <sc-for list="{{forms}}" as="p" hint-placeholder-count="9">
+            <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}"><button class="fb-pkg" aria-pressed="true" onClick="{{p.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-selection-text);"><span style="font-weight: 600;">{{p.label}}</span><span class="{{p.chipCls}}" style="align-self: flex-start;">{{p.chip}}</span></button></sc-if>
+            <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}"><button class="fb-pkg" aria-pressed="false" onClick="{{p.pick}}" style="border: 1px solid var(--cs-border-subtle); background: var(--cs-surface-raised); color: var(--cs-text-primary);"><span style="font-weight: 500;">{{p.label}}</span><span class="{{p.chipCls}}" style="align-self: flex-start;">{{p.chip}}</span></button></sc-if>
+          </sc-for>
+        </div>
+        <span class="sb-muted">{{usedBy}}</span>
+      </section>
+
+      <sc-if value="{{isCqc}}" hint-placeholder-val="{{ true }}">
+        <section class="sb-card" aria-labelledby="v8-h">
+          <div class="sb-head"><h2 id="v8-h" class="sb-h2">{{v8Title}}</h2><span style="display: flex; gap: 8px; flex-wrap: wrap;"><span class="{{liveChipCls}}">{{liveChip}}</span><span class="{{draftChipCls}}">{{draftChip}}</span></span></div>
+          <div class="sb-row" style="border-top: 0; padding-top: 0;"><span class="sb-sub">Drafted by Grace on Thu 29 Oct and sent for approval. It adds a "Your office" page, because the office address gate needs it; rewords 1 question so a missing second director is caught early; and removes "Type of Legal Entity", which now comes from Companies House. Collins or Rachel Turner approves.</span></div>
+          <div style="padding: 0 20px 12px;"><div role="tablist" aria-label="Draft v8" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{v8Tabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+
+          <sc-if value="{{tChanges}}" hint-placeholder-val="{{ true }}">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+              <sc-for list="{{changes}}" as="c" hint-placeholder-count="3">
+                <div style="padding: 14px 20px; display: flex; flex-direction: column; gap: 8px; border-right: 1px solid var(--cs-border-subtle);">
+                  <span style="display: flex; gap: 8px; align-items: center;"><span class="{{c.cls}}">{{c.k}}</span><span class="sb-sub">{{c.n}}</span></span>
+                  <sc-for list="{{c.items}}" as="i" hint-placeholder-count="1">
+                    <div class="bz-box" style="gap: 2px;"><span class="bz-lbl">{{i.page}}</span><span style="font-size: 13px; line-height: 18px;">{{i.now}}</span><sc-if value="{{i.hasWas}}" hint-placeholder-val="{{ false }}"><span class="sb-muted">{{i.was}}</span></sc-if></div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{hasMyEdits}}" hint-placeholder-val="{{ false }}"><div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 4px;"><span class="bz-lbl">{{editorLine}}</span><sc-for list="{{myEdits}}" as="m" hint-placeholder-count="1"><span class="sb-sub">{{m}}</span></sc-for></div></sc-if>
+          </sc-if>
+
+          <sc-if value="{{tImpact}}" hint-placeholder-val="{{ false }}">
+            <div class="sb-row" style="border-top: 1px solid var(--cs-border-subtle); padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 0 0 250px;">Where it is used</span><span class="sb-th" style="flex: 1 1 400px;">What changes with v8</span><span class="sb-th" style="flex: 0 0 120px;"></span></div>
+            <sc-for list="{{impact}}" as="im" hint-placeholder-count="6">
+              <div class="sb-row" style="align-items: flex-start;">
+                <span style="flex: 0 0 250px; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{im.where}}</span><span class="sb-muted">{{im.board}}</span></span>
+                <span style="flex: 1 1 400px; min-width: 0;" class="sb-sub">{{im.what}}</span>
+                <span style="flex: 0 0 120px; display: flex; justify-content: flex-end;"><a class="sb-btn b-gh bz-link" href="{{im.href}}" aria-label="{{im.aria}}">Open</a></span>
+              </div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">Clients affected today: 3 on v7 who have not finished. Every new CQC, supported living and full start-up client gets v8 from the day it is approved. Nothing changes for a client until they are moved.</span></div>
+          </sc-if>
+
+          <sc-if value="{{tClients}}" hint-placeholder-val="{{ false }}">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px; border-top: 1px solid var(--cs-border-subtle);">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-b">{{halfTitle}}</span><sc-if value="{{canMoveAll}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-sec" onClick="{{moveAll}}">Move all to v8</button></sc-if></div>
+              <span class="sb-sub">{{halfNote}}</span>
+              <sc-for list="{{half}}" as="h" hint-placeholder-count="3">
+                <div style="display: flex; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--cs-border-subtle);">
+                  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{h.name}}</span><span class="sb-sub">{{h.where}}</span><span class="sb-muted">{{h.after}}</span></span>
+                  <span class="{{h.cls}}">{{h.ver}}</span>
+                  <sc-if value="{{h.canMove}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" onClick="{{h.move}}">Move to v8</button></sc-if>
+                </div>
+              </sc-for>
+              <span class="sb-muted">All 3 are in Grace's onboarding queue (board 73).</span>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{tMsg}}" hint-placeholder-val="{{ false }}">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 10px; border-top: 1px solid var(--cs-border-subtle);">
+              <span class="sb-sub">Sent when a client is moved to v8, from hello@caresyncexperts.co.uk with Grace's name, and shown in the client's Hub. Never sent between 8pm and 8am. Edit the wording in Messages and automations (board 82).</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;"><div role="tablist" aria-label="Message for" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{msgTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+              <div class="bz-box" style="gap: 8px;">
+                <span class="bz-lbl">{{msg.subjectK}}</span><span class="bz-b">{{msg.subject}}</span>
+                <sc-for list="{{msg.lines}}" as="ml" hint-placeholder-count="4"><span style="font-size: 14px; line-height: 21px;">{{ml}}</span></sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 10px; background: var(--cs-surface-subtle);">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{apTitle}}</span><span class="sb-sub">{{apNote}}</span></span><span class="{{apChipCls}}">{{apChip}}</span></div>
+            <sc-if value="{{needDp}}" hint-placeholder-val="{{ false }}">
+              <div class="bz-amb"><span class="bz-b">Data protection lead needed</span><span class="sb-sub">{{dpText}}</span><sc-if value="{{canDp}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-sec" style="align-self: flex-start;" onClick="{{dpAgree}}">Agree as data protection lead</button></sc-if></div>
+            </sc-if>
+            <sc-if value="{{canApprove}}" hint-placeholder-val="{{ true }}">
+              <span class="bz-lbl">Who gets v8</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;"><div role="tablist" aria-label="Who gets v8" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{rollTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+              <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Your reason (written to the audit log)</span><textarea class="bz-ta" value="{{apReason}}" onChange="{{onApReason}}" placeholder="For example: the office page lets gate 3 start on day one"></textarea></label>
+              <sc-if value="{{apErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a reason first.</span></sc-if>
+              <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{approve}}">Approve v8</button><button class="sb-btn b-gh" onClick="{{back}}">Send back to Grace</button></span>
+            </sc-if>
+            <sc-if value="{{cannotNote}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">{{cannotText}}</span></sc-if>
+            <sc-if value="{{isLive}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{undoLive}}">Reset the demo</button></sc-if>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isDraft}}" hint-placeholder-val="{{ false }}">
+        <div class="bz-amb"><span class="bz-b">Draft, not live yet</span><span class="sb-sub">{{draftNote}}</span></div>
+      </sc-if>
+      <sc-if value="{{isOtherLive}}" hint-placeholder-val="{{ false }}">
+        <div class="bz-box" style="flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap;"><span><span class="bz-b">{{verLine}}</span> {{otherNote}}</span></div>
+      </sc-if>
+
+      <div class="bz-cols" style="flex-wrap: nowrap;">
+        <section aria-labelledby="pg-h" class="sb-card" style="flex: 0 0 300px; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 0 2px 4px; gap: 8px;">
+            <h2 id="pg-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Pages, in order</h2>
+            <span class="sb-muted">{{pageCount}}</span>
+          </div>
+          <sc-if value="{{isCqc}}" hint-placeholder-val="{{ true }}"><div style="display: flex; gap: 6px;"><div role="tablist" aria-label="Version shown" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{verTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div></sc-if>
+          <div class="fb-list" style="display: flex; flex-direction: column; gap: 5px; max-height: 760px; overflow-y: auto; padding: 2px;">
+          <sc-for list="{{pages}}" as="m" hint-placeholder-count="12">
+            <sc-if value="{{m.sel}}" hint-placeholder-val="{{ false }}">
+              <button class="fb-mod" onClick="{{m.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg);">
+                <span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">{{m.n}}</span>
+                <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="font-size: 13px; line-height: 18px; font-weight: 500;">{{m.name}}</span><sc-if value="{{m.hasRule}}" hint-placeholder-val="{{ false }}"><span class="fb-rule">{{m.rule}}</span></sc-if><sc-if value="{{m.hasFlag}}" hint-placeholder-val="{{ false }}"><span class="{{m.flagCls}}" style="align-self: flex-start;">{{m.flag}}</span></sc-if></span>
+              </button>
+            </sc-if>
+            <sc-if value="{{m.unsel}}" hint-placeholder-val="{{ true }}">
+              <button class="fb-mod" onClick="{{m.pick}}" style="border: 1px solid var(--cs-border-subtle); background: var(--cs-surface-raised);">
+                <span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">{{m.n}}</span>
+                <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="font-size: 13px; line-height: 18px; font-weight: 500;">{{m.name}}</span><sc-if value="{{m.hasRule}}" hint-placeholder-val="{{ false }}"><span class="fb-rule">{{m.rule}}</span></sc-if><sc-if value="{{m.hasFlag}}" hint-placeholder-val="{{ false }}"><span class="{{m.flagCls}}" style="align-self: flex-start;">{{m.flag}}</span></sc-if></span>
+              </button>
+            </sc-if>
+          </sc-for>
+          </div>
+          <span class="sb-muted" style="padding: 6px 2px 0;">Scroll for every page. Blue tags are the skip rules. Answers are never asked twice, pages that do not apply are skipped, every answer saves as you go, and the client can stop and come back.</span>
+        </section>
+
+        <section aria-labelledby="qs-h" class="sb-card" style="flex: 1 1 380px; min-width: 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+            <h2 id="qs-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">{{cur.name}}</h2>
+            <span class="sb-muted">{{cur.ver}}</span>
+          </div>
+          <div class="bz-box" style="gap: 2px;"><span class="bz-lbl">Show this page</span><span style="font-size: 13px; line-height: 18px; font-weight: 500;">{{cur.when}}</span></div>
+          <sc-for list="{{qs}}" as="q" hint-placeholder-count="4">
+            <div style="border-radius: 10px; border: 1px solid var(--cs-border-subtle); display: flex; flex-direction: column;">
+              <div style="padding: 8px 10px 8px 12px; display: flex; justify-content: space-between; gap: 8px; align-items: center;">
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 13px; line-height: 18px;">{{q.w}}</span><span style="display: flex; gap: 6px; flex-wrap: wrap;"><span class="{{q.tagCls}}">{{q.tag}}</span><span class="sb-chip c-neutral">{{q.v}}</span><sc-if value="{{q.hasFlag}}" hint-placeholder-val="{{ false }}"><span class="{{q.flagCls}}">{{q.flag}}</span></sc-if></span></span>
+                <button class="sb-btn b-gh" onClick="{{q.edit}}" aria-label="{{q.aria}}"><span style="display: inline-flex; gap: 6px; align-items: center;"><x-import component-from-global-scope="CareSync.Icon" name="pencil-line" size="{{n16}}"></x-import>Edit</span></button>
+              </div>
+              <sc-if value="{{q.open}}" hint-placeholder-val="{{ false }}">
+                <div style="padding: 12px; border-top: 2px solid var(--cs-action-primary); display: flex; flex-direction: column; gap: 10px;">
+                  <span class="sb-sub">{{edNote}}</span>
+                  <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Wording the client sees</span><textarea class="bz-ta" value="{{edW}}" onChange="{{onEdW}}"></textarea></label>
+                  <label style="display: flex; flex-direction: column; gap: 4px;"><span class="bz-lbl">Help text (also used by Questions inbox suggested replies)</span><textarea class="bz-ta" value="{{edH}}" onChange="{{onEdH}}" placeholder="One or two plain sentences"></textarea></label>
+                  <span class="bz-lbl">Validation</span>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;"><div role="tablist" aria-label="Validation" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{valTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+                  <span class="bz-lbl">Data category</span>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;"><div role="tablist" aria-label="Data category" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{tagTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+                  <span class="sb-muted">{{tagHelp}}</span>
+                  <sc-if value="{{edDp}}" hint-placeholder-val="{{ false }}"><div class="bz-amb"><span class="bz-b">Needs the data protection lead</span><span class="sb-sub">Adding special category, criminal offence or credential data needs Collins (data protection lead) to agree before this version can be approved. Collins sees why it is needed, who can see it and how long it is kept.</span></div></sc-if>
+                  <sc-if value="{{edErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">The wording cannot be empty.</span></sc-if>
+                  <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{edSave}}">{{edSaveLabel}}</button><button class="sb-btn b-gh" onClick="{{edCancel}}">Cancel</button></span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{savedMsg}}" hint-placeholder-val="{{ false }}"><div class="bz-ok"><span class="sb-sub">{{savedText}}</span></div></sc-if>
+        </section>
+
+        <section aria-labelledby="pv-h" class="sb-card" style="flex: 0 0 340px; min-width: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><h2 id="pv-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Preview as the client</h2><span class="sb-muted">{{pvVer}}</span></div>
+          <div style="border-radius: 22px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-page); padding: 16px 14px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><span class="sb-muted">{{pv.step}}</span><span class="sb-muted">{{pv.time}}</span></div>
+            <div class="bar" aria-hidden="true"><span class="{{pv.bar}}"></span></div>
+            <span style="font-size: 18px; line-height: 24px; font-weight: 600;">{{pv.title}}</span>
+            <sc-for list="{{pv.qs}}" as="pq" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{pq.w}}</span>
+                <sc-if value="{{pq.hasHelp}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">{{pq.h}}</span></sc-if>
+                <div style="min-height: 40px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); display: flex; align-items: center; padding: 0 12px; font-size: 13px; color: var(--cs-text-muted);">{{pq.ph}}</div>
+                <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-brand); font-weight: 500;">Not sure? Ask us</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{pv.more}}" hint-placeholder-val="{{ false }}"><span class="sb-muted">{{pv.moreText}}</span></sc-if>
+            <div style="min-height: 44px; border-radius: 12px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500;">Save and continue</div>
+            <span class="sb-muted" style="text-align: center;">Your answers save as you go</span>
+          </div>
+          <span class="sb-muted">Shows the selected page with any changes not yet saved, as a phone shows it.</span>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1980}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { as: 'collins', form: 'cqc', ver: 'v8', page: 4, v8: 'waiting', tab: 'changes', msgFor: 'oh', moved: {}, edits: {}, editors: [], dpNeed: [], dpOk: false,
+      openQ: '', edW: '', edH: '', edV: '', edT: '', edErr: false, saved: '', roll: 'new', apReason: '', apErr: false, decided: '' };
+  }
+  renderVals() {
+    const F = {
+      cqc: ['CQC Registration Information Form', 'Used by: CQC domiciliary, CQC supported living, full start-up', [
+        ['Company Registration Status', '', 'Always', ['Is your limited company already registered with Companies House? (Yes / No, please register it for me)']],
+        ['Company Information', 'If the company is registered', 'When "Is your company registered?" is Yes', ['Registered Business Name', 'Trading Name (if different)', 'Company Registration Number', 'Registered Office Address', 'Correspondence Address (if different)', 'Business Telephone Number (required)', 'Company Email Address', 'Website', 'Type of Legal Entity', 'Partners or owners who are not directors']],
+        ['Care Sync to Set Up Your Limited Company (3 pages)', 'If the company is not registered', 'When "Is your company registered?" is No', ['Service type (5 options) with SIC codes worked out automatically', '1st, 2nd and 3rd choice company names, trading name', 'Type of company, registered office', 'Director 1: legal name, date of birth, nationality, residence, service address, occupation, Companies House identity code', 'PSCs, shares, Companies House email and mobile', 'Authorisation and confirmation of accuracy']],
+        ['Directors', '"Another director?" adds the next', 'Always. Director 2, 3 and 4 appear only when "Is there another director?" is Yes', ['Director: full name, date of birth, mobile, email', 'Is there another director?', 'More than four directors?']],
+        ['Primary Service Type and CQC Service User Bands', '', 'Always', ['Regulated activities (5 options)', 'Service user bands (13 options)']],
+        ['Registered Manager Details', '', 'Always', ['Title (6 options), full name, date of birth, email, mobile, current address', 'Registered with a professional body? (Yes / No)', 'CV']],
+        ['Registered Manager Professional Registration', 'If registered with a professional body', 'When "Registered with a professional body?" is Yes', ['Professional body (11 options)', 'Professional registration number']],
+        ['GP Details', 'Registered Manager only', 'Always', ["GP's name, surgery, address lines 1 and 2, town, county, postcode", 'Permission for CQC to contact the doctor']],
+        ['Reference Details', 'Registered Manager only', 'Always', ['Must be the last employer (rules shown)', "Referee's title, first and last name, address, town, postcode, email, telephone", 'Permission for CQC to contact the referee']],
+        ['Registered Manager and Nominated Individual Confirmation', '', 'Always', ['Will the same person serve as both? (Yes / No)', 'If Yes: the Nominated Individual pages are skipped and nothing is entered twice']],
+        ['Nominated Individual Details', 'Only if a different person', 'When "Same person?" is No', ['Full name, date of birth, email, mobile, current address', 'Registered with a professional body?', 'CV']],
+        ['Nominated Individual Professional Registration', 'Different person and registered', 'When "Same person?" is No and "Registered?" is Yes', ['Professional body (11 options)', 'Registration number']],
+        ['DBS Check for Nominated Individual', 'Only if a different person', 'When "Same person?" is No', ['Enhanced DBS with Adult Workforce barred list and countersignature done? (Yes / No)']],
+        ['Nominated Individual DBS Certificate Details', 'If their DBS is done', 'When "Same person?" is No and the DBS is done', ['Certificate number (12 digits)', 'Issue date (within 12 months)', 'Upload']],
+        ['Nominated Individual: DBS application details', 'If their DBS is not done', 'When "Same person?" is No and the DBS is not done', ['Three forms of ID (6 options)', '5-year address history, addresses 1 to 5']],
+        ['DBS Check for Registered Manager', '', 'Always. If the same person, this is the one DBS', ['Enhanced DBS done? (Yes / No)']],
+        ['Registered Manager DBS Certificate Details', 'If the DBS is done', 'When the Registered Manager\'s DBS is done. No ID or address history is asked', ['Certificate number (12 digits)', 'Issue date (within 12 months, otherwise it must be redone)', 'Upload']],
+        ['Registered Manager: DBS application details', 'If the DBS is not done', 'When the Registered Manager\'s DBS is not done', ['Three forms of ID (6 options)', '5-year address history, addresses 1 to 5, and more if needed']],
+        ['Declaration', '', 'Always, last', ['Declaration statement', 'Signatory full name, position, signature, date']]
+      ]],
+      tender: ['Tender Preparation Questionnaire', 'Used by: tender writing', [
+        ['This tender', '', 'Always', ['1.1 to 1.8: portal link, tender name, closing date, portal registration, PDFs, authority to submit. Portal passwords are never asked', '1.9 Completed this form before?']],
+        ['What has changed', 'Returning clients', 'When 1.9 is "Yes, for an earlier tender". The profile pages below are then skipped', ['R.1 What has changed since you last filled in this form?', 'New or renewed documents']],
+        ['About your company', 'First time only', 'When 1.9 is "No, this is our first time"', ['3.1 to 3.16. The share code (3.14) shows only if registered on the Central Digital Platform']],
+        ['Your regulator', 'First time only', 'When 1.9 is No', ['2.1 Which regulator (7 options)', '2.2 More than one regulator']],
+        ['CQC: 4A, 5A, 6A', 'If CQC', 'When 2.1 is CQC', ['Provider and location IDs, web page, inspection date, rating, conditions (4A.7 only if Yes)', 'Regulated activities (15), service types (15), service user bands (12)']],
+        ['CIW: 4B, 5B, 6B', 'If CIW', 'When 2.1 is CIW', ['Provider ID, web page, inspection date, Regional Partnership Boards, Welsh Active Offer', 'Service types (11), range of needs (11)']],
+        ['RQIA: 4C, 5C, 6C', 'If RQIA', 'When 2.1 is RQIA', ['Registration number, web page, inspection date, HSC Trusts', 'Service types (12), service user groups (10)']],
+        ['5D. Your services and registration position', 'If not registered or not regulated', 'When 2.1 is Ofsted, Scotland, applying now, or not regulated', ['5D.1 Services and registration position']],
+        ['6D. Ages and specialisms', 'First time only', 'When 1.9 is No', ['Youngest and oldest age, criteria, specialisms (28 options)']],
+        ['7. Key people', 'First time only', 'When 1.9 is No', ['Owner, Nominated or Responsible Individual, Registered Manager, other senior staff', 'CVs']],
+        ['Finance and insurance', 'First time only', 'When 1.9 is No', ['F.1 to F.6. F.4 shows only for a new company']],
+        ['8. Track record and examples', 'First time only', 'When 1.9 is No. Examples 2 and 3 each on their own page when "another?" is Yes', ['8.1 Experience (4 options)', 'Contract examples 1 to 3 (8.2 to 8.34)']],
+        ['Private client experience', 'If they have it', 'When 8.A is Yes. Examples 2 and 3 on their own pages', ['PRIV1 to PRIV3, initials only']],
+        ['9. Workforce', 'First time only', 'When 1.9 is No', ['9.1 to 9.18, including visas and lowest hourly rate']],
+        ['13. Partnerships and social value', 'First time only', 'When 1.9 is No', ['13.1 to 13.4']],
+        ['14. Documents and policies', 'First time only', 'When 1.9 is No', ['14.1 documents (22), 14.2 policies (13), 14.3 to 14.5. A policy quote "Yes" creates a sales task']],
+        ['Your evidence', 'First time only', 'When 1.9 is No', ['E.1 to E.7']],
+        ['Lots', '', 'Always', ['L.1 to L.4']],
+        ['Your services for this tender', '', 'Always', ['Home care? Supported living? Care home? Community support?']],
+        ['Home care', 'If in the lots', 'When home care is Yes', ['11.1 to 11.8']],
+        ['Supported living', 'If in the lots', 'When supported living is Yes', ['10.1 to 10.4']],
+        ['Supported living property', 'If we provide it', 'When 10.4 is "We do, or our landlord partner does"', ['10.5 to 10.19']],
+        ['Care home', 'If in the lots', 'When care home is Yes', ['12.1 to 12.9. 12.4 only for specialist provision']],
+        ['Community support', 'If in the lots', 'When community support is Yes', ['C.1 to C.4']],
+        ['Sign-off', '', 'Always, last', ['16.1 to 16.5']]
+      ]],
+      ciw: ['CIW Registration Information Form', 'Used by: CIW registration', [['Before You Start', 'Added', 'Always', ['Your name; authority to apply (3 options); CIW Online account (Yes / No)']], ['Organisation Information', '', 'Always. Filled from Companies House for a company or LLP', ['Legal entity (6 options)', 'Name, trading name, number, registered office, postcode', 'Office in Wales if different (shown only when Yes)', 'Telephone, email, website, preferred language, ICO']], ['Organisation History and Group', 'Added', 'Always. Details only when Yes', ['Ever registered with a regulator?', 'Owned 50% or more by another company?']], ['Organisation Officers', '"Another officer?" adds the next', 'Officer 2 and 3 only when Yes', ['Name, date of birth (dd/mm/yyyy), position, email, telephone, home address']], ['Service Details', '', 'Always. Councils list follows the areas ticked', ['Areas: tick boxes, one Statement of Purpose per area', 'Councils within the chosen areas', 'Range of needs (3, as CIW Online), with a check against the age range', 'Weekly hours (8 bands, as CIW Online)', 'Client groups (12, as used in Wales), Other opens a box', 'Start date (at least 14 weeks), taking over a service, office ownership, shared office']], ['How You Will Work', 'Added', 'Experience question only if learning disability or autism is ticked', ['Personal care, medicines, money, Welsh speakers']], ['RI Details', '', 'Always. Copied from the chosen officer', ['Place of birth, previous surnames, NI number, 5-year address history']], ['DBS Information', 'Done already? No ID', 'Certificate details when Yes; three IDs when No; Update Service ID only when subscribed', ['Full 12-digit number (was last 4)', 'Issue date, warn at 3 months', 'Checked against; Update Service']], ['RI Qualifications and Experience', 'Added', 'Details only when Yes', ['Qualifications, professional body, investigations, eligibility']], ['Registration History', '', 'A note only when an answer is Yes', ['Five questions from the form plus other business interests']], ['Every other officer: Checks and GP, References (2 pages each)', 'Added', 'For each officer who is not the RI, because CIW Online keeps a full People record for every officer', ['DBS (same rule as the RI), GP medical reference, history', 'Two referees with the same CIW checks']], ['RI References', '', 'Warnings when a referee is a relative or a company director, or neither employed the RI', ['Two referees, employed 3 months?']], ['RI GP Details', '', 'Always', ['GP details; CIW GP form sent early']], ['Registered Manager Details', '', 'Nothing more if not chosen yet; only qualifications if the RI is the manager', ['Social Care Wales status and number, Level 5, qualifications']], ['Registered Manager: DBS, References, GP and History (3 pages)', 'Only if a different person', 'When the manager is chosen and is not the RI', ['Same DBS rule as the RI', 'Two referees with the same CIW checks', 'GP, registration history']], ['Your CIW Choices', 'Added', 'Always. Warnings when a choice would delay the application', ['Legal notices by email, sharing with Social Care Wales and Dewis Cymru', 'Areas and RI as conditions of registration']], ['Required Documents', '', 'Uploads match the answers', ['CV per person, DBS ID only when needed, documents you already have']], ['Declaration', '', 'Always last, after Check your answers', ['Three ticks, name, position, signature, date']]]],
+      rqia: ['RQIA Registration Information Form', 'Used by: RQIA registration', [['Organisation Information', '', 'Always. Filled from Companies House for a company or LLP', ['Legal entity (7 options), name, trading name, number, address', 'Telephone, email, website, ICO, RQIA Web Portal login']], ['Organisation Officers', '"Another officer?" adds the next', 'Officer 2 and 3 only when Yes', ['Name, date of birth (dd/mm/yyyy), position, email, telephone']], ['Service Details', '', 'Always', ['Service type (4 options), name, address', 'HSC Trust areas: tick boxes', 'Age range, service users, groups (9), start date']], ['How You Will Work', 'Added', 'Experience question only if learning disability or autism is ticked', ['Personal care, medicines, money, starting staff numbers']], ['RI Details', '', 'Always. Copied from the chosen officer', ['Place of birth, previous surnames, address, 5-year address history']], ['AccessNI Information', 'Always three IDs', 'RQIA runs its own AccessNI check for registration, so three IDs are always collected; certificate details are optional', ['Certificate number and date (optional)', 'Three IDs: at least one photo ID and one proof of address']], ['RI Qualifications and Experience', 'Added', 'Details only when Yes', ['Qualifications, professional body, investigations, experience']], ['Registration History', '', 'A note only when an answer is Yes', ['Five questions']], ['RI References', '', 'Warning when a referee is related', ['Two referees; relationship asked for both']], ['RI GP Details', '', 'Always', ['GP details']], ['Registered Manager Details', '', 'Only qualifications if the RI is the manager', ['NISCC/NMC/HCPC number, Level 5', 'If different: details and address history']], ['Registered Manager: AccessNI, References, GP and History (3 pages)', 'Only if a different person', 'When the manager is not the RI', ['The same AccessNI check as the RI', 'Two referees, one the current or most recent employer', 'GP, registration history']], ['Required Documents', '', 'Uploads match the answers', ['CV per person, AccessNI ID only when needed, documents you already have']], ['Declaration', '', 'Always last, after Check your answers', ['Three ticks, name, position, signature, date']]]]
+    };
+    const D = {
+      sladd: ['Supported living add-on', 'Adding supported living to a CQC registration', [
+        ['Your registration', '', 'Always. Filled in from your Hub record where we have it', ['CQC provider ID and location ID', 'Regulated activities you hold now', 'Upload your current registration certificate']],
+        ['Who you will support', '', 'Always', ['Service user bands for supported living', 'Will you support autistic people or people with a learning disability? (Yes / No)', 'How many people, and in how many homes', 'Start date you are aiming for']],
+        ['Housing and care', '', 'Always', ['Who is the landlord or housing provider?', 'Are housing and care provided by different organisations? (Yes / No)', 'Tenancy agreements: upload an example if you have one']],
+        ['Your manager', '', 'Always', ['Will your registered manager stay the same? (Yes / No)', 'Experience of supported living, in a few lines']],
+        ['Declaration', '', 'Always, last', ['Name, position, signature, date']]
+      ]],
+      int: ['CQC interview preparation', 'Application already in, interview booked or expected', [
+        ['Your application', '', 'Always', ['Which regulator (CQC, CIW, RQIA)', 'Date the application went in', 'Interview date, if booked']],
+        ['Who is being interviewed', '"Another person?" adds the next', 'Always', ['Name, role (registered manager, nominated individual, responsible individual)', 'Email for their Interview Preparation Hub account (the Hub creates it with the regulator, service type and role)']],
+        ['Your service', '', 'Always', ['Service type and service user bands', 'Upload your Statement of Purpose']],
+        ['Your sessions', '', 'Always', ['Best days and times for 3 sessions with Millicent', 'Anything you feel unsure about']]
+      ]],
+      pir: ['PIR writing', 'When a Provider Information Return arrives', [
+        ['The PIR', '', 'Always', ['Date the PIR request arrived', 'Deadline shown in the email', 'Location and service types (one PIR each)']],
+        ['Your service in numbers', '', 'Always', ['People supported now', 'Staff numbers and vacancies', 'Complaints, compliments and safeguarding referrals in the last 12 months', 'Notifications sent in the last 12 months']],
+        ['Briefing', '', 'Always', ['Best times for a 60 to 90 minute briefing with the registered manager', 'Who can confirm the final answers?']]
+      ]],
+      var: ['Registration variation', 'Adding a location, a service or a band', [
+        ['What is changing', '', 'Always', ['Add a location, add a service, add a service user band, or remove something', 'When you want the change to start']],
+        ['Your registration now', '', 'Always. Filled in from your Hub record where we have it', ['Provider and location IDs', 'Upload your current certificate']],
+        ['New location', 'If adding a location', 'When "Add a location" is chosen', ['Address and how you hold it (owned or rented)', 'Landlord letter or lease (we can ask the landlord for you)', 'Manager for this location']],
+        ['New service or band', 'If adding a service or band', 'When "Add a service" or "Add a band" is chosen', ['Service type or band', 'Staff training for it, in a few lines']],
+        ['Declaration', '', 'Always, last', ['Name, position, signature, date']]
+      ]],
+      web: ['Website or marketing', 'Brand, website and Google profile', [
+        ['Your brand', '', 'Always', ['Trading name', 'Logo and colours, if you have them', 'Three words that describe your service']],
+        ['Your website', '', 'Always', ['Do you have a website or domain now? (Yes / No)', 'Login for the domain (goes to the vault)', 'Services and areas to show']],
+        ['Photos and stories', '', 'Always', ['Photos you can use, with permission', 'Can we quote a happy family? (only with their consent)']],
+        ['Google Business Profile', '', 'Always', ['Do you have one? (Yes / No)', 'Office address and opening hours']]
+      ]]
+    };
+
+    const s = this.state;
+    const ME = s.as === 'collins' ? 'Collins' : 'Rachel Turner';
+    // v8 of the CQC form, as decision 4: adds "Your office", rewords 1 question, removes "Type of Legal Entity".
+    const OLD_DIR = 'Is there another director?';
+    const NEW_DIR = 'Companies House lists every director. Is there another director to add?';
+    const v7 = F.cqc[2];
+    const v8 = [];
+    v7.forEach(p => {
+      let qs = p[3].slice();
+      if (p[0] === 'Company Information') qs = qs.filter(q => q !== 'Type of Legal Entity');
+      if (p[0] === 'Directors') qs = qs.map(q => q === OLD_DIR ? NEW_DIR : q);
+      v8.push([p[0], p[1], p[2], qs, p[0] === 'Company Information' ? ['Removed', 'bad', '1 removed'] : (p[0] === 'Directors' ? ['Reworded', 'info', '1 reworded'] : null)]);
+      if (p[0] === 'Directors') v8.push(['Your office', 'New in v8', 'Always. Feeds gate 3, office address evidence', ['Office address (postcode lookup)', 'Do you own or rent the office? (Own / Rent)', 'Landlord name and email (we ask the landlord for the letter for you)', 'Tenancy, lease or proof of ownership (upload)', 'Is this also your registered office? (Yes / No)'], ['Added', 'ok', 'New page']]);
+    });
+    const HELP = {
+      'Office address (postcode lookup)': 'The address where you will run the service from. CQC needs evidence you can use it.',
+      'Landlord name and email (we ask the landlord for the letter for you)': 'We email your landlord a short form to confirm you can use the office for care work. You do not need to chase them.',
+      [NEW_DIR]: 'We check Companies House for you. Every director listed there must be on this form.',
+      'Certificate number (12 digits)': 'The 12 numbers at the top right of the certificate.',
+      "GP's name, surgery, address lines 1 and 2, town, county, postcode": 'CQC may ask your GP to confirm you are fit to manage the service.'
+    };
+    const tagOf = q => /DBS|barred|AccessNI|investigation|Registration History|registration history|criminal/i.test(q) ? 'criminal' : (/GP|doctor|medical|health/i.test(q) ? 'special' : (/password|login|vault|identity code/i.test(q) ? 'credential' : (/^Office address|own or rent|^Tenancy|registered office\?/i.test(q) ? 'business' : (/Business Name|Trading Name|Company Registration|Registered Office|Business Telephone|Company Email|Website|Legal Entity|Service type|Regulated activities|Service user bands|SIC|Type of company|tender|portal|Lots|L\.1/i.test(q) ? 'business' : 'personal'))));
+    const valOf = q => /Upload|upload|CV$|Tenancy|lease/.test(q) ? 'upload' : (/12 digits/.test(q) ? 'digits12' : (/Yes \/ No|Own \/ Rent|another/.test(q) ? 'yesno' : (/date of birth|Issue date|date/i.test(q) ? 'date' : (/email/i.test(q) ? 'email' : (/mobile|telephone/i.test(q) ? 'phone' : 'text')))));
+    const TAGS = [['business', 'Business only', 'c-neutral'], ['personal', 'Personal', 'c-info'], ['special', 'Special category', 'c-warn'], ['criminal', 'Criminal offence', 'c-bad'], ['credential', 'Credential', 'c-brand']];
+    const VALS = [['text', 'Required text'], ['yesno', 'Choice'], ['date', 'Date, dd/mm/yyyy'], ['email', 'Email address'], ['phone', 'UK phone number'], ['digits12', 'Exactly 12 digits'], ['upload', 'Upload, PDF or photo'], ['optional', 'Optional']];
+    const PH = { text: 'Type your answer', yesno: 'Choose one', date: 'dd/mm/yyyy', email: 'name@example.co.uk', phone: '07700 900000', digits12: '12 digits', upload: 'Choose a file or take a photo', optional: 'Optional' };
+    const tagName = k => TAGS.find(t => t[0] === k)[1];
+    const tagCls = k => 'sb-chip ' + TAGS.find(t => t[0] === k)[2];
+    const valName = k => VALS.find(v => v[0] === k)[1];
+    const SENS = ['special', 'criminal', 'credential'];
+
+    const VER = { cqc: 'Live v7', ciw: 'Live v3', rqia: 'Live v2', tender: 'Live v5' };
+    const MATCH = { cqc: 'matches the Google Form', tender: 'matches the Google Form', ciw: 'mapped to CIW Online', rqia: 'mapped to the RQIA Web Portal' };
+    const all = Object.assign({}, F, D);
+    const order = ['cqc', 'ciw', 'rqia', 'tender', 'sladd', 'int', 'pir', 'var', 'web'];
+    const live8 = s.v8 === 'live';
+    const verOf = k => k === 'cqc' && live8 ? 'Live v8' : VER[k];
+    const isD = !!D[s.form];
+    const isCqc = s.form === 'cqc';
+    const forms = order.map(k => {
+      const d = !!D[k];
+      const chip = d ? 'Draft' : (k === 'cqc' ? (live8 ? 'Live v8' : 'Live v7. v8 waiting') : verOf(k));
+      return { label: all[k][0].replace(' Registration Information Form', '').replace(' Preparation Questionnaire', ''), on: k === s.form, off: k !== s.form,
+        pick: () => this.setState({ form: k, page: 0, openQ: '', saved: '', ver: 'v8' }), chip, chipCls: 'sb-chip ' + (d ? 'c-warn' : (k === 'cqc' && !live8 ? 'c-info' : 'c-ok')) };
+    });
+    const showVer = isCqc ? (live8 ? 'v8' : s.ver) : 'live';
+    const list = isCqc ? (showVer === 'v8' ? v8 : v7.map(p => p.concat([null]))) : all[s.form][2].map(p => p.concat([null]));
+    const pi = Math.min(s.page, list.length - 1);
+    const pages = list.map((p, i) => ({ n: String(i + 1), name: p[0], rule: p[1], hasRule: !!p[1] && !p[4], sel: i === pi, unsel: i !== pi,
+      hasFlag: !!p[4], flag: p[4] ? p[4][2] : '', flagCls: 'sb-chip c-' + (p[4] ? p[4][1] : 'neutral'), pick: () => this.setState({ page: i, openQ: '', saved: '' }) }));
+    const c = list[pi];
+    const keyBase = s.form + ':' + showVer + ':' + c[0] + ':';
+    const draftName = isCqc ? 'draft v8' : 'a new draft';
+    const qObj = (q, i) => {
+      const k = keyBase + i; const e = s.edits[k] || {};
+      const base = { w: q, h: HELP[q] || '', v: valOf(q), t: tagOf(q) };
+      const cur = Object.assign({}, base, e);
+      const isNew = isCqc && showVer === 'v8' && c[0] === 'Your office';
+      const rew = isCqc && showVer === 'v8' && q === NEW_DIR;
+      const flag = e.w || e.h || e.v || e.t ? 'Edited by ' + e.by : (isNew ? 'New in v8' : (rew ? 'Reworded in v8' : ''));
+      return { k, base, cur, flag };
+    };
+    const QO = c[3].map(qObj);
+    const editable = !isD && !(isCqc && live8 && showVer === 'v8' && false);
+    const qs = QO.map((o, i) => ({ w: o.cur.w, tag: tagName(o.cur.t), tagCls: tagCls(o.cur.t), v: valName(o.cur.v), hasFlag: !!o.flag, flag: o.flag, flagCls: 'sb-chip ' + (o.flag.indexOf('Edited') === 0 ? 'c-warn' : (o.flag.indexOf('New') === 0 ? 'c-ok' : 'c-info')),
+      aria: 'Edit question: ' + o.cur.w, open: s.openQ === o.k,
+      edit: () => { if (isCqc && showVer === 'v7') { this.setState({ ver: 'v8', openQ: '', saved: 'Changes go into draft v8, never into the live v7. Showing v8: choose the question again to edit it.' }); return; }
+        this.setState({ openQ: s.openQ === o.k ? '' : o.k, edW: o.cur.w, edH: o.cur.h, edV: o.cur.v, edT: o.cur.t, edErr: false, saved: '' }); } }));
+    const openObj = QO.find(o => o.k === s.openQ);
+    const edDp = !!openObj && SENS.indexOf(s.edT) >= 0 && SENS.indexOf(openObj.base.t) < 0 && s.edT !== openObj.base.t;
+    const edSave = () => {
+      if (!s.edW.trim()) { this.setState({ edErr: true }); return; }
+      const o = openObj; const ch = { by: ME };
+      if (s.edW.trim() !== o.base.w) ch.w = s.edW.trim();
+      if (s.edH.trim() !== o.base.h) ch.h = s.edH.trim();
+      if (s.edV !== o.base.v) ch.v = s.edV;
+      if (s.edT !== o.base.t) ch.t = s.edT;
+      const changed = ch.w || ch.h || ch.v || ch.t;
+      const edits = Object.assign({}, s.edits); if (changed) edits[o.k] = ch; else delete edits[o.k];
+      const editors = changed && s.editors.indexOf(ME) < 0 ? s.editors.concat([ME]) : s.editors;
+      const dpNeed = edDp ? s.dpNeed.filter(x => x !== o.k).concat([o.k]) : s.dpNeed.filter(x => x !== o.k);
+      this.setState({ edits, editors, dpNeed, dpOk: edDp ? false : s.dpOk, openQ: '', saved: changed ? 'Saved to ' + draftName + ' by ' + ME + '. ' + (isCqc ? 'Because you edited the draft, ' + (ME === 'Collins' ? 'Rachel Turner' : 'Collins') + ' approves it.' : 'Grace reviews it before it goes for approval.') : 'No change made.' });
+    };
+    // Preview as the client: uses unsaved editor values for the open question.
+    const pvQs = QO.slice(0, 4).map(o => { const live = s.openQ === o.k ? { w: s.edW, h: s.edH, v: s.edV } : o.cur; return { w: live.w || ' ', h: live.h, hasHelp: !!live.h, ph: PH[live.v] || 'Type your answer' }; });
+    const mins = Math.max(1, Math.round(QO.length * 0.6));
+    const pv = { step: 'Page ' + (pi + 1) + ' of ' + list.length, time: 'About ' + mins + (mins === 1 ? ' minute' : ' minutes'), bar: 'w' + Math.max(5, Math.round((pi + 1) / list.length * 20) * 5), title: c[0], qs: pvQs, more: QO.length > 4, moreText: '+ ' + (QO.length - 4) + ' more on this page' };
+
+    // Changes view (decision 4)
+    const changes = [
+      ['Added', 'ok', 'Your office: 1 new page, 5 questions', [['Page 5 of 20, after Directors', 'Your office: address, own or rent, landlord, tenancy or lease, registered office', '']]],
+      ['Reworded', 'info', '1 question', [['Directors', NEW_DIR, 'Was: ' + OLD_DIR]]],
+      ['Removed', 'bad', '1 question', [['Company Information', 'Type of Legal Entity', 'Now read from Companies House, so it is not asked']]]
+    ].map(([k, cls, n, items]) => ({ k, cls: 'sb-chip c-' + cls, n, items: items.map(([page, now, was]) => ({ page, now, was, hasWas: !!was })) }));
+    const myEdits = Object.keys(s.edits).filter(k => k.indexOf('cqc:v8:') === 0).map(k => { const e = s.edits[k]; const parts = k.split(':'); const bits = []; if (e.w) bits.push('wording'); if (e.h) bits.push('help text'); if (e.v) bits.push('validation to ' + valName(e.v)); if (e.t) bits.push('data category to ' + tagName(e.t)); return parts[2] + ', question ' + (parseInt(parts[3], 10) + 1) + ': ' + bits.join(', ') + ' (' + e.by + ')'; });
+    const impact = [
+      ['Onboarding gates', 'Board 8, Onboarding', 'Gate 3, office address evidence, starts from the "Your office" answers: address, own or rent, and the landlord, who is asked for the letter straight away. Gate 1, company and directors, uses the reworded director question.', 'Onboarding.dc.html'],
+      ['Form checks', 'Board 13, Form received', 'New check rows: office address against the tenancy or lease and the landlord letter. The legal entity check compares Companies House only, because the form no longer asks it.', 'FormStaff.dc.html'],
+      ['CQC application sheet', 'Board 13, Form received', '"Type of legal entity" is filled from Companies House. The location address and how the office is held come from "Your office". Copy buttons stay the same.', 'FormStaff.dc.html'],
+      ['Questions inbox suggested replies', 'Board 67, Questions', 'Suggested replies follow the form\'s help text. 2 change: the director question and the new office help text. 6 past questions about the office address are now answered by the help text.', 'Questions.dc.html'],
+      ['Add a client form preview', 'Board 51, Add a client', 'For CQC packages, "Your office" is added as a new section and Company Information drops to 9 questions. Until v8 is live it shows v7 with a note about v8.', 'AddClient.dc.html'],
+      ['Client fix list and reminders', 'Client Hub and emails 2.3 to 2.5', 'Fix list wording for gate 3 uses the new help text. Reminder timings do not change (after 2 days and 4 days, then Grace calls on day 6).', 'Onboarding.dc.html']
+    ].map(([where, board, what, href]) => ({ where, board, what, href, aria: 'Open ' + where }));
+    const HC = [
+      ['oh', 'Oak Hollow Care Ltd', 'CQC registration, supported living. Stopped at section 8 of 13 (Reference Details), last answer Tue 27 Oct', 'If moved: answers kept. "Your office" is added before the pages still to do, and the reworded director question shows on the Directors page for a quick check.'],
+      ['hl', 'Harbour Lane Care Ltd', 'Full start-up, domiciliary care. Form arrived Thu 29 Oct; the fix list reopens 2 answers (second director, CV gap)', 'If moved: "Your office" is filled in from gate 3 (Flat 2, 14 Harbour Road, rented, landlord Tom Reid already asked) for Amara to check. Her fix list stays exactly 2 items.'],
+      ['mv', 'Meadow View Care Ltd', 'Full start-up, domiciliary care. Deal won in GoHighLevel; paying today. The form goes out after Divine\'s introduction call', 'If v8 is approved before the call, Ade starts on v8 and is never moved. Otherwise moving keeps any answers.']
+    ];
+    const movedN = HC.filter(h => s.moved[h[0]]).length;
+    const stay = HC.length - movedN;
+    const half = HC.map(([id, name, where, after]) => { const m = !!s.moved[id]; return { name, where, after: m ? 'Moved to v8 just now. Answers kept. ' + (id === 'mv' ? 'No message needed: the form has not gone out yet.' : 'The message below was sent.') : after, ver: m ? 'v8' : 'On v7', cls: 'sb-chip ' + (m ? 'c-ok' : 'c-neutral'), canMove: live8 && !m, move: () => this.setState({ moved: Object.assign({}, s.moved, { [id]: true }) }) }; });
+    const MSG = {
+      oh: ['Lena Brooks, Oak Hollow Care Ltd', 'We have made your onboarding form a little easier', ['Hi Lena,', 'We have improved our onboarding form. Everything you have already answered is saved.', 'There is one new page, "Your office", with 5 short questions about where you will run the service. We have taken out the question about your type of company, because we read it from Companies House.', 'You can carry on from where you stopped, at Reference Details. If anything is unclear, press "Not sure? Ask us" on any question.', 'Grace, Care Sync Experts']],
+      hl: ['Amara Okafor, Harbour Lane Care Ltd', 'One new page to check in your onboarding form', ['Hi Amara,', 'We have improved our onboarding form. Your answers are saved.', 'There is a new page, "Your office". We have filled it in from what you already told us (Flat 2, 14 Harbour Road, rented). Please check it. We have already asked Tom Reid for the landlord letter, so there is nothing to chase.', 'Your 2 fixes are unchanged: Kwame Okafor\'s details as second director, and one line about the gap on Ruth\'s CV.', 'Grace, Care Sync Experts']],
+      mv: ['Ade Ola, Meadow View Care Ltd', 'No message', ['Ade has not been sent the form yet, so there is nothing to tell them. They simply get the version that is live when Divine\'s call ends.']]
+    };
+    const m = MSG[s.msgFor];
+    const msg = { subjectK: 'To ' + m[0], subject: m[1], lines: m[2] };
+    // Approval: Grace drafted; anyone who edited the draft cannot approve it.
+    const dpPending = s.dpNeed.length > 0 && !s.dpOk;
+    const meEdited = s.editors.indexOf(ME) >= 0;
+    const canApprove = isCqc && s.v8 === 'waiting' && !meEdited && !dpPending;
+    const AP = {
+      waiting: ['Waiting for a super admin: Collins or Rachel Turner', 'Grace drafted v8, so either super admin may approve it, unless they edited it too. Decision 4 on super admin Home.'],
+      back: ['Sent back to Grace', 'Grace sees your note in her tasks and can send it again. Decision 4 leaves super admin Home until she does.'],
+      live: ['v8 is live from just now', '']
+    };
+    const liveNote = 'Approved by ' + (s.decided || ME) + '. ' + (s.roll === 'move' ? 'New clients get v8, and the 3 clients on v7 were moved with their answers kept.' : 'New clients get v8. The 3 clients on v7 stay on it until you move them.') + ' Written to the audit log, with v7 kept for the record.';
+    const cannotText = s.v8 !== 'waiting' ? '' : (meEdited ? 'You edited this draft, so you cannot approve it. ' + (ME === 'Collins' ? 'Rachel Turner' : 'Collins') + ' approves it. Switch at the top to try.' : (dpPending ? 'Approval opens once the data protection lead agrees.' : ''));
+    const approve = () => { if (!s.apReason.trim()) { this.setState({ apErr: true }); return; } const moved = s.roll === 'move' ? { oh: true, hl: true, mv: true } : s.moved; this.setState({ v8: 'live', decided: ME, apErr: false, moved, ver: 'v8' }); };
+    const T = [['changes', 'Changes'], ['impact', 'Impact'], ['clients', 'Clients on v7 (' + stay + ')'], ['msg', 'Message to moved clients']];
+    const USED = { cqc: 'Used by: CQC registration, domiciliary care; CQC registration, supported living; Full start-up package. Grace owns every form question.', ciw: 'Used by: CIW registration (Wales).', rqia: 'Used by: RQIA registration (Northern Ireland).', tender: 'Used by: Tender writing, and every tender package.' };
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n16: 16, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line', current: true },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      user: s.as === 'collins' ? { name: 'Collins', initials: 'C' } : { name: 'Rachel Turner', initials: 'RT' },
+      asTabs: [['collins', 'Collins'], ['rachel', 'Rachel Turner (super admin 2)']].map(([k, label]) => ({ label, on: s.as === k, off: s.as !== k, pick: () => this.setState({ as: k, openQ: '' }) })),
+      status: isD ? 'Draft add-on form, not live yet' : (verOf(s.form) + ', ' + MATCH[s.form]), statusCls: 'sb-chip ' + (isD ? 'c-warn' : 'c-ok'),
+      usedBy: isD ? 'Used by: ' + all[s.form][0] + ' (' + all[s.form][1] + '). Not offered to clients until the form, price and journey are ready.' : USED[s.form],
+      forms, pages, pageCount: pages.length + ' pages',
+      verTabs: (live8 ? [['v8', 'Live v8']] : [['v7', 'Live v7'], ['v8', 'Draft v8']]).map(([k, label]) => ({ label, on: showVer === k, off: showVer !== k, pick: () => this.setState({ ver: k, page: 0, openQ: '', saved: '' }) })),
+      cur: { name: c[0], when: c[2], ver: isD ? 'Draft' : (isCqc ? (showVer === 'v8' ? (live8 ? 'Live v8' : 'Draft v8') : 'Live v7') : verOf(s.form)) },
+      qs, edW: s.edW, edH: s.edH, edErr: s.edErr, edDp,
+      edNote: isCqc ? 'Editing draft v8. The live version does not change until v8 is approved.' : (isD ? 'Editing this draft add-on form.' : 'Changes go into a new draft for Grace. The live version does not change.'),
+      onEdW: e => this.setState({ edW: e.target.value, edErr: false }), onEdH: e => this.setState({ edH: e.target.value }),
+      valTabs: VALS.map(([k, label]) => ({ label, on: s.edV === k, off: s.edV !== k, pick: () => this.setState({ edV: k }) })),
+      tagTabs: TAGS.map(([k, label]) => ({ label, on: s.edT === k, off: s.edT !== k, pick: () => this.setState({ edT: k }) })),
+      tagHelp: { business: 'About the company, not a person.', personal: 'About a named person: kept as the retention schedule says.', special: 'Health and other special category data: only people who need it can see it.', criminal: 'DBS and offence information: seen by named staff only, images deleted once the regulator decides (proposed).', credential: 'A login or code: never kept in form answers. It goes to the vault, and every reveal needs a reason.' }[s.edT] || '',
+      edSave, edSaveLabel: 'Save to ' + draftName, edCancel: () => this.setState({ openQ: '' }),
+      savedMsg: !!s.saved, savedText: s.saved,
+      pv, pvVer: isCqc ? (showVer === 'v8' ? (live8 ? 'Live v8' : 'Draft v8') : 'Live v7') : (isD ? 'Draft' : verOf(s.form)),
+      isCqc, isDraft: isD, isOtherLive: !isD && !isCqc,
+      draftNote: 'Drafted by Grace from the add-on list in Add a client. These questions are not on any Google Form yet, so they need agreeing with the team. A super admin who did not draft it approves it before any client gets it.',
+      verLine: verOf(s.form) + ', ' + MATCH[s.form] + '.', otherNote: 'No draft open. Editing a question starts a draft for Grace.',
+      liveChip: live8 ? 'Live v8' : 'Live v7, matches the Google Form', liveChipCls: 'sb-chip c-ok',
+      draftChip: live8 ? 'v7 kept for the record' : (s.v8 === 'back' ? 'Draft v8: back with Grace' : 'Draft v8: waiting for approval'), draftChipCls: 'sb-chip ' + (live8 ? 'c-neutral' : 'c-warn'),
+      v8Tabs: T.map(([k, label]) => ({ label, on: s.tab === k, off: s.tab !== k, pick: () => this.setState({ tab: k }) })),
+      tChanges: s.tab === 'changes', tImpact: s.tab === 'impact', tClients: s.tab === 'clients', tMsg: s.tab === 'msg',
+      v8Title: live8 ? 'CQC form: v8 is live' : (s.v8 === 'back' ? 'CQC form: draft v8, back with Grace' : 'CQC form: draft v8'),
+      changes, myEdits, hasMyEdits: myEdits.length > 0, editorLine: 'Also changed in this draft by ' + s.editors.join(' and '), impact,
+      halfTitle: 'On v7 and not finished: ' + stay + (stay === 1 ? ' client' : ' clients'),
+      halfNote: live8 ? 'Move a client to v8 and their answers are kept; only the new page is added. They get the message on the last tab.' : 'Nobody is moved while v8 waits for approval. Once it is live you can move them, keeping their answers.',
+      half, canMoveAll: live8 && stay > 0, moveAll: () => this.setState({ moved: { oh: true, hl: true, mv: true } }),
+      msgTabs: [['oh', 'Oak Hollow'], ['hl', 'Harbour Lane'], ['mv', 'Meadow View']].map(([k, label]) => ({ label, on: s.msgFor === k, off: s.msgFor !== k, pick: () => this.setState({ msgFor: k }) })), msg,
+      apTitle: AP[s.v8][0], apNote: s.v8 === 'live' ? liveNote : AP[s.v8][1],
+      apChip: s.v8 === 'live' ? 'Approved' : (s.v8 === 'back' ? 'With Grace' : 'Waiting'), apChipCls: 'sb-chip ' + (s.v8 === 'live' ? 'c-ok' : (s.v8 === 'back' ? 'c-neutral' : 'c-warn')),
+      needDp: s.dpNeed.length > 0 && s.v8 === 'waiting', canDp: dpPending && s.as === 'collins',
+      dpText: s.dpOk ? 'Agreed by Collins, data protection lead, just now.' : (s.dpNeed.length + (s.dpNeed.length === 1 ? ' question now collects' : ' questions now collect') + ' special category, criminal offence or credential data. Collins, data protection lead, must agree first.' + (s.as === 'collins' ? '' : ' Switch to Collins at the top to try.')),
+      dpAgree: () => this.setState({ dpOk: true }),
+      canApprove, rollTabs: [['new', 'New clients only'], ['move', 'New clients, and move the 3 on v7 now']].map(([k, label]) => ({ label, on: s.roll === k, off: s.roll !== k, pick: () => this.setState({ roll: k }) })),
+      apReason: s.apReason, apErr: s.apErr, onApReason: e => this.setState({ apReason: e.target.value, apErr: false }),
+      approve, back: () => this.setState({ v8: 'back' }),
+      cannotNote: !!cannotText, cannotText, isLive: s.v8 !== 'waiting',
+      undoLive: () => this.setState({ v8: 'waiting', moved: {}, decided: '', apReason: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

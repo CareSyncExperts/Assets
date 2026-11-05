@@ -1,0 +1,187 @@
+import sys
+sys.path.insert(0, '/tmp/claude-0/-home-user-Assets/6db558a7-551f-58f7-827c-5570646704f4/scratchpad/gen')
+from staffboard import build
+OUT = '/tmp/claude-0/-home-user-Assets/6db558a7-551f-58f7-827c-5570646704f4/scratchpad/hub-canvas/project/Tender.dc.html'
+H = 1500
+
+CSS = '''.tr-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);padding:16px 20px;display:flex;flex-direction:column}
+.tr-h{margin:0 0 6px;font-size:17px;line-height:26px;font-weight:500}
+.tr-task{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1.4fr) 96px 130px;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.tr-fact{display:flex;flex-direction:column;padding:8px 0;border-top:1px solid var(--cs-border-subtle)}
+.tr-note{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.tr-file{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--cs-border-subtle)}
+.st-li{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.st-dot{width:24px;height:24px;border-radius:999px;box-sizing:border-box;display:flex;align-items:center;justify-content:center}
+.s-done{background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.s-now{border:2px solid var(--cs-action-primary)}
+.s-next{border:2px solid var(--cs-border-default)}
+.st-in{width:10px;height:10px;border-radius:999px;background:var(--cs-action-primary)}
+.sl-done{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sl-now{font-size:13px;line-height:18px;color:var(--cs-text-primary);font-weight:600}
+.sl-next{font-size:13px;line-height:18px;color:var(--cs-text-muted)}
+'''
+
+BODY = '''      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">Tender client. Registered with CQC already. Case owner Daniel</span>
+          <h1 style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600;">Oakleaf Living Ltd: tender record</h1>
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Client contact Kemi Adebola, director. Bid lead Daniel, second reviewer Olu. 2 bids open.</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <span class="{{dueCls}}">{{due}}</span>
+          <button class="sb-btn b-gh">Open the portal</button>
+          <button class="sb-btn b-pri" onClick="{{upload}}">Upload a Word version</button>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; border-radius: 12px; background: var(--cs-surface-brand); color: var(--cs-text-brand);">
+        <x-import component-from-global-scope="CareSync.Icon" name="info" size="{{n20}}"></x-import>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-primary);">The bid is written in Word by the bid team and submitted on the buyer's portal. The Hub keeps the record: which tender, the dates, who does what, every Word version uploaded with its number and date, and every message with the client.</span>
+      </div>
+      <div role="tablist" aria-label="Bids" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{bids}}" as="b" hint-placeholder-count="2">
+          <sc-if value="{{b.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{b.pick}}">{{b.label}}</button></sc-if>
+          <sc-if value="{{b.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{b.pick}}">{{b.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      <section aria-label="Stage" class="tr-card">
+        <ol style="margin: 0; padding: 4px 0; list-style: none; display: flex; gap: 6px;">
+          <sc-for list="{{stages}}" as="s" hint-placeholder-count="7">
+            <li class="st-li">
+              <sc-if value="{{s.done}}" hint-placeholder-val="{{ false }}"><span class="st-dot s-done"><x-import component-from-global-scope="CareSync.Icon" name="check" size="{{n16}}"></x-import></span></sc-if>
+              <sc-if value="{{s.now}}" hint-placeholder-val="{{ false }}"><span class="st-dot s-now"><span class="st-in"></span></span></sc-if>
+              <sc-if value="{{s.next}}" hint-placeholder-val="{{ true }}"><span class="st-dot s-next"></span></sc-if>
+              <span class="{{s.cls}}">{{s.label}}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </section>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section aria-labelledby="tk-h" class="tr-card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;"><h2 id="tk-h" class="tr-h">Tasks and deadlines</h2><span class="sb-sub">{{taskNote}}</span></div>
+            <div class="tr-task" style="padding: 4px 0;"><span class="sb-th">Task</span><span class="sb-th">Who</span><span class="sb-th">Date</span><span class="sb-th">Status</span></div>
+            <sc-for list="{{tasks}}" as="t" hint-placeholder-count="5">
+              <div class="tr-task"><span style="font-weight: 500;">{{t.name}}</span><span class="sb-sub">{{t.who}}</span><span class="sb-sub">{{t.date}}</span><span><span class="{{t.cls}}">{{t.state}}</span></span></div>
+            </sc-for>
+            <span class="sb-muted" style="padding-top: 8px;">{{tasksFoot}}</span>
+          </section>
+          <section aria-labelledby="lg-h" class="tr-card">
+            <h2 id="lg-h" class="tr-h">Notes and messages</h2>
+            <sc-for list="{{notes}}" as="n" hint-placeholder-count="6">
+              <div class="tr-note"><span>{{n.text}}</span><span style="color: var(--cs-text-muted); flex-shrink: 0;">{{n.date}}</span></div>
+            </sc-for>
+          </section>
+        </div>
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section aria-labelledby="fc-h" class="tr-card">
+            <h2 id="fc-h" class="tr-h">The tender</h2>
+            <sc-for list="{{facts}}" as="f" hint-placeholder-count="8">
+              <div class="tr-fact"><span class="sb-muted">{{f.k}}</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{f.v}}</span></div>
+            </sc-for>
+          </section>
+          <section aria-labelledby="fl-h" class="tr-card">
+            <h2 id="fl-h" class="tr-h">Files</h2>
+            <sc-for list="{{files}}" as="f" hint-placeholder-count="5">
+              <div class="tr-file"><x-import component-from-global-scope="CareSync.Icon" name="{{f.icon}}" size="{{n20}}"></x-import><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{f.name}}</span><span class="sb-muted">{{f.meta}}</span></span></div>
+            </sc-for>
+            <sc-if value="{{uploaded}}" hint-placeholder-val="{{ false }}"><span role="status" style="padding-top: 8px; font-size: 13px; line-height: 18px; color: var(--cs-status-success-text); font-weight: 500;">{{uploadText}}</span></sc-if>
+          </section>
+          <section aria-labelledby="oc-h" class="tr-card">
+            <h2 id="oc-h" class="tr-h">Result</h2>
+            <span class="sb-sub">Recorded when the buyer decides: won or not, the score, the feedback file, and when the contract or framework reopens.</span>
+          </section>
+        </div>
+      </div>
+'''
+
+SCRIPT = r'''class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { b: 'n', up: false }; }
+  renderVals() {
+    const { b, up } = this.state;
+    const chip = k => 'sb-chip c-' + k;
+    const D = {
+      n: {
+        label: 'Northshire home care framework, Lot 1 North',
+        due: '19 working days to Care Sync submitting', dueK: 'warn', now: 3,
+        taskNote: 'The same tasks and dates Kemi sees in her tender workspace',
+        tasks: [
+          ['Case study from Kemi', 'Kemi', 'Wed 11 Nov', 'Due in 9 days', 'warn'],
+          ['Staff numbers and turnover from Kemi', 'Kemi', 'Mon 16 Nov', 'Not yet', 'neutral'],
+          ['Care Sync draft to Kemi', 'Daniel, Word version uploaded to the Hub', 'Tue 17 Nov', 'Not yet', 'neutral'],
+          ['Kemi approves the final bid', 'Kemi, in the Hub, prices included', 'Tue 24 Nov', 'Not yet', 'neutral'],
+          ['Care Sync submits', 'Daniel, on the buyer\'s portal, receipt saved', 'Fri 27 Nov', 'Not yet', 'neutral']
+        ],
+        foot: 'Buyer dates: clarification questions close Fri 13 Nov, 17:00. Bid deadline Tue 1 Dec, 12:00. Our rule: draft to the client 10 working days before, client approval 5 working days before, and we submit 2 working days before.',
+        notes: [
+          ['Reminder sent to Kemi in the Hub: case study due Wed 11 Nov', 'Mon 2 Nov'],
+          ['Buyer clarification: social value goes inside the technical upload. Kemi told', 'Fri 30 Oct'],
+          ['Version 1 of the technical answers and social value uploaded from Word. Internal drafts, not sent to Kemi', 'Fri 30 Oct'],
+          ['Pricing call with Kemi: hourly rates worked out. She approves them with the final bid on Tue 24 Nov', 'Thu 29 Oct'],
+          ['Daniel added as a user on Oakleaf\'s portal account. No password held', 'Thu 22 Oct'],
+          ['Onboarding meeting held. Lot 1 North only, agreed with Kemi', 'Tue 20 Oct'],
+          ['Kemi sent the Tender Preparation Questionnaire', 'Fri 16 Oct'],
+          ['Kemi chose to bid on Lot 1 North. Daniel accepted the bid work: no capacity or same-lot question, so no director check was needed', 'Wed 14 Oct'],
+          ['Radar match suggested to Daniel as case owner. Daniel agreed and spoke to Kemi', 'Mon 12 Oct']
+        ],
+        facts: [
+          ['Buyer', 'Northshire County Council'], ['Reference', 'NS/2026/114'],
+          ['Lots', 'Lot 1 North (bidding). Lot 2 South (not this time)'], ['Estimated value', '£1.2m a year, 4 years'],
+          ['Clarification questions close', 'Fri 13 Nov, 17:00'], ['Bid deadline', 'Tue 1 Dec, 12:00'],
+          ['Care Sync submits', 'Fri 27 Nov'], ['Result expected', 'February 2027']
+        ],
+        files: [
+          ['archive', 'Tender pack from the portal', '12 files, saved Mon 12 Oct'],
+          ['file-text', 'Technical answers.docx, version 1', 'Word version uploaded Fri 30 Oct by Daniel. Internal draft'],
+          ['file-text', 'Social value.docx, version 1', 'Word version uploaded Fri 30 Oct by Daniel. Internal draft'],
+          ['file-check', 'Pricing schedule.xlsx', 'From Kemi, Thu 29 Oct'],
+          ['file-clock', 'Final submitted copy', 'Saved when we submit on Fri 27 Nov'],
+          ['file-clock', 'Portal receipt', 'Saved when we submit on Fri 27 Nov']
+        ],
+        upText: 'Technical answers.docx, version 2 uploaded Mon 2 Nov. Kemi sees it when the draft goes to her on Tue 17 Nov.'
+      },
+      e: {
+        label: 'Eastford supported living, dynamic purchasing system',
+        due: 'Application deadline Fri 4 Dec', dueK: 'info', now: 1,
+        taskNote: 'Deciding scope. Profile check under way',
+        tasks: [
+          ['Tender profile check: confirm what we hold, then 3 new questions', 'Kemi, in the Hub', 'Fri 6 Nov', 'Under way', 'warn'],
+          ['Decide the scope: which categories to apply for', 'Kemi with Daniel', 'Tue 17 Nov', 'Not yet', 'neutral'],
+          ['Bid or no bid', 'Kemi decides. Collins accepts the bid work only if there is a capacity question', 'After the scope', 'Not yet', 'neutral'],
+          ['Care Sync submits the application', 'Daniel, on the buyer\'s portal', 'By Fri 4 Dec', 'Not yet', 'neutral']
+        ],
+        foot: 'Buyer date: application deadline Fri 4 Dec. Our submission date is set once the scope is agreed.',
+        notes: [
+          ['Tender profile check sent to Kemi in the Hub: 2 of 6 parts checked for us, 4 for her to confirm', 'Mon 2 Nov'],
+          ['Radar match suggested to Daniel as case owner. Daniel agreed and spoke to Kemi. She wants to look at it', 'Mon 2 Nov']
+        ],
+        facts: [
+          ['Buyer', 'Eastford Borough Council'], ['Type', 'Dynamic purchasing system, supported living'],
+          ['Scope', '3 categories. Deciding which to apply for'], ['Status', 'Deciding scope, profile check under way'],
+          ['Application deadline', 'Fri 4 Dec'], ['Result expected', 'After the buyer\'s checks']
+        ],
+        files: [
+          ['archive', 'Documents from the buyer\'s portal', '8 files, saved Mon 2 Nov'],
+          ['file-check', 'Tender profile', 'Kept in the Hub. Check under way']
+        ],
+        upText: 'Word version uploaded Mon 2 Nov. It is kept with this bid.'
+      }
+    };
+    const d = D[b];
+    const S = ['Found', 'Bid decision and scope', 'Onboarding', 'Writing', 'Client review', 'Submitted', 'Result'];
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n16: 16, n20: 20,
+      user: { name: 'Daniel Mensah', initials: 'DM' },
+      nav: __NAV__,
+      bids: [['n', D.n.label], ['e', D.e.label]].map(([k, label]) => ({ label, on: b === k, off: b !== k, pick: () => this.setState({ b: k, up: false }) })),
+      due: d.due, dueCls: chip(d.dueK), taskNote: d.taskNote, tasksFoot: d.foot,
+      stages: S.map((label, i) => ({ label, done: i < d.now, now: i === d.now, next: i > d.now, cls: i < d.now ? 'sl-done' : (i === d.now ? 'sl-now' : 'sl-next') })),
+      tasks: d.tasks.map(t => ({ name: t[0], who: t[1], date: t[2], state: t[3], cls: chip(t[4]) })),
+      notes: d.notes.map(([text, date]) => ({ text, date })),
+      facts: d.facts.map(([k, v]) => ({ k, v })),
+      files: d.files.map(([icon, name, meta]) => ({ icon, name, meta })),
+      uploaded: up, uploadText: d.upText, upload: () => this.setState({ up: true })
+    };
+  }
+}'''
+
+build(OUT, 'Tender record', 'Tender record', H, BODY, SCRIPT, 'tenders', CSS)

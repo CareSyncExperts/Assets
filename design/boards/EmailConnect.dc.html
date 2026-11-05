@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your business email</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.ec-tab{min-height:40px;border:0;border-radius:8px;font:inherit;font-size:14px;cursor:pointer}
+.ec-tab:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1120px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 18px;">
+
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">One quick thing</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Let us look after your CQC emails</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">CQC writes to the email on your application. We watch it for you, reply from it for you, and show you every message here.</span>
+    </header>
+
+    <div role="tablist" aria-label="Which email" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="2">
+        <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}">
+          <button class="ec-tab" role="tab" aria-selected="true" onClick="{{tb.pick}}" style="background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); color: var(--cs-text-primary); font-weight: 500;">{{tb.label}}</button>
+        </sc-if>
+        <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}">
+          <button class="ec-tab" role="tab" aria-selected="false" onClick="{{tb.pick}}" style="background: transparent; color: var(--cs-text-secondary);">{{tb.label}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{created}}" hint-placeholder-val="{{ true }}">
+      <section aria-label="The email we set up" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">We set this up for you</span>
+        <span style="font-size: 18px; line-height: 26px; font-weight: 500; word-break: break-all;">amara@harbourlanecare.co.uk</span>
+        <span style="display: flex; gap: 8px; font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);"><x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n16}}"></x-import>In your name. You hold the recovery details, so it is always yours.</span>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{own}}" hint-placeholder-val="{{ false }}">
+      <section aria-label="Your own email" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="ec-addr" style="font-size: 13px; line-height: 18px; font-weight: 500;">Business email</label>
+          <input id="ec-addr" value="hello@harbourlanecare.co.uk" inputmode="email" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--cs-border-control); font: inherit; font-size: 16px; background: var(--cs-surface-raised); color: var(--cs-text-primary); box-sizing: border-box; width: 100%;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="ec-pw" style="font-size: 13px; line-height: 18px; font-weight: 500;">Password</label>
+          <input id="ec-pw" type="password" value="sample-password" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--cs-border-control); font: inherit; font-size: 16px; background: var(--cs-surface-raised); color: var(--cs-text-primary); box-sizing: border-box; width: 100%;">
+          <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Goes straight into our encrypted vault. It never appears in messages or emails.</span>
+        </div>
+      </section>
+    </sc-if>
+
+    <section aria-labelledby="ok-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="ok-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">What you are agreeing to</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{promises}}" as="pr" hint-placeholder-count="5">
+          <div style="padding: 12px 16px; display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid var(--cs-border-subtle);">
+            <x-import component-from-global-scope="CareSync.Icon" name="{{pr.icon}}" size="{{n20}}"></x-import>
+            <span style="font-size: 14px; line-height: 20px;">{{pr.text}}</span>
+          </div>
+        </sc-for>
+        <div style="padding: 12px 16px; display: flex; gap: 12px; align-items: center; background: var(--cs-status-success-bg);">
+          <x-import component-from-global-scope="CareSync.Icon" name="signature" size="{{n20}}"></x-import>
+          <span style="flex-grow: 1; font-size: 14px; line-height: 20px;">Agreed in the agreement you signed on 19 October</span>
+        </div>
+      </div>
+    </section>
+
+    <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="link">{{cta}}</x-import>
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">If your email ever asks for a code, we send you a one-tap request. No phone calls.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'created' };
+  }
+  renderVals() {
+    const m = this.state.mode;
+    const tabs = [['created', 'We set one up'], ['own', 'I have my own']].map(([k, label]) => ({ label, on: m === k, off: m !== k, pick: () => this.setState({ mode: k }) }));
+    return {
+      theme: this.props.theme ?? 'light', yes: true, n16: 16, n20: 20,
+      tabs, created: m === 'created', own: m === 'own',
+      cta: m === 'created' ? 'Yes, use this email for CQC' : 'Connect my email',
+      promises: [
+        { icon: 'inbox', text: 'We file only emails from CQC, CIW, RQIA and tender portals. Your other emails are never copied.' },
+        { icon: 'file-text', text: 'We send your application and replies to CQC from this address, and you see a copy here.' },
+        { icon: 'lock', text: 'We never read or file your Hub sign-in or e-signature emails. Because we hold this login, the Hub also texts a code to your mobile on a new device and before you sign or approve.' },
+        { icon: 'eye', text: 'You can see every time we sign in, and why, on your privacy page.' },
+        { icon: 'x', text: 'You can withdraw this at any time. When our work ends, we hand everything back.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

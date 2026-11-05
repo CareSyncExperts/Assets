@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>CQC centre</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1060px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">{{refLine}}</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Your CQC application</h1>
+    </header>
+
+    <sc-if value="{{isBefore}}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="bf-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-2); padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-brand); font-weight: 500;">Getting ready</span>
+          <h2 id="bf-h" style="margin: 0; font-size: 22px; line-height: 30px; font-weight: 600;">Your pack is 64% ready</h2>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">When you sign your pack, Daniel sends it to CQC by email from your business email, and tells you the same day.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; background: var(--cs-status-success-bg);">
+          <x-import component-from-global-scope="CareSync.Icon" name="inbox" size="{{n20}}"></x-import>
+          <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">Your business email is connected</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">We check it for CQC every few minutes, so nothing is missed</span></span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">On</x-import>
+        </div>
+      </section>
+      <section aria-labelledby="af-h" style="display: flex; flex-direction: column; gap: 10px;">
+        <h2 id="af-h" style="margin: 0 4px; font-size: 18px; line-height: 28px; font-weight: 500;">What happens after we send it</h2>
+        <ol style="list-style: none; margin: 0; padding: 0; background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+          <li style="padding: 12px 16px; display: flex; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);"><span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">1</span><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">CQC confirms they have it</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">We show you their email here</span></span></li>
+          <li style="padding: 12px 16px; display: flex; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);"><span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">2</span><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">CQC may ask for more information</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">This is normal. We prepare the reply with you</span></span></li>
+          <li style="padding: 12px 16px; display: flex; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);"><span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">3</span><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Your interview</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">A practice session with Millicent, and the Interview Preparation Hub</span></span></li>
+          <li style="padding: 12px 16px; display: flex; gap: 12px;"><span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">4</span><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">CQC's decision</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">CQC sets its own timescales. We update you every <span>{{updDay}}</span> until it comes</span></span></li>
+        </ol>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isAsk}}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="CareSync.Alert" status="info" title="CQC has asked a question">This is normal and part of most applications. We have read it and started on the answer with you.</x-import>
+      <section aria-labelledby="ask-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <h2 id="ask-h" style="margin: 0; font-size: 17px; line-height: 24px; font-weight: 500;">What CQC asked, in plain English</h2>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Please send your recruitment policy and explain how you will check new staff before they start.</span>
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">From CQC to your business email, Tuesday 5 January. Reply by Tuesday 19 January</span>
+      </section>
+      <section aria-labelledby="askp-h" style="display: flex; flex-direction: column; gap: 10px;">
+        <h2 id="askp-h" style="margin: 0 4px; font-size: 17px; line-height: 24px; font-weight: 500;">Our plan</h2>
+        <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+          <div style="padding: 12px 16px; display: flex; justify-content: space-between; gap: 8px; align-items: center; border-bottom: 1px solid var(--cs-border-subtle);"><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">We draft the reply</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Daniel, by Thursday 7 January</span></span><x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="pencil-line">In progress</x-import></div>
+          <div style="padding: 12px 16px; display: flex; justify-content: space-between; gap: 8px; align-items: center; border-bottom: 1px solid var(--cs-border-subtle);"><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">You check it</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">One tap to approve, or comment</span></span><x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Next</x-import></div>
+          <div style="padding: 12px 16px; display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">We send it to CQC</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">From your business email, by Wednesday 13 January, 4 working days before CQC's date</span></span><x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Later</x-import></div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isReturned}}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="CareSync.Alert" status="warning" title="CQC has returned your application">This is not a refusal. CQC has sent it back because something was missing, and it can be sent again.</x-import>
+      <section aria-labelledby="ret-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <h2 id="ret-h" style="margin: 0; font-size: 17px; line-height: 24px; font-weight: 500;">Why it came back</h2>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">The registered manager's DBS certificate was more than 12 months old.</span>
+        <span style="font-size: 14px; line-height: 20px;"><span style="font-weight: 500;">What we are doing:</span> a new DBS has been applied for. We resubmit the day it arrives, and you do not need to do anything else.</span>
+      </section>
+      <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="calendar">Talk it through with Daniel</x-import>
+    </sc-if>
+
+    <sc-if value="{{isInterview}}" hint-placeholder-val="{{ true }}">
+      <section aria-labelledby="iv-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-2); overflow: hidden;">
+        <div style="background: var(--cs-surface-inverse); color: #FFFFFF; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 12px; line-height: 16px; color: #AEFFEF; font-weight: 500;">Interview booked, in 14 days</span>
+          <h2 id="iv-h" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600;">Tuesday 26 January</h2>
+          <span style="font-size: 16px; line-height: 24px; color: #D0D5DD;">10:30, video call with a CQC registration inspector</span>
+        </div>
+        <div style="padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px;">
+          <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-end="external-link">Go to Interview Preparation Hub</x-import>
+          <x-import component-from-global-scope="CareSync.Button" variant="secondary" block="{{yes}}" icon-start="calendar">Book interview practice with Millicent (1 left)</x-import>
+          <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary); text-align: center;">We will remind you 7 days, 1 day and the morning before.</span>
+        </div>
+      </section>
+
+      <section aria-labelledby="hist-h" style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 id="hist-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">What has happened</h2>
+        <ol style="list-style: none; margin: 0; padding: 16px; background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); display: flex; flex-direction: column; gap: 16px;">
+          <li style="display: flex; gap: 12px;">
+            <span style="color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="calendar-check" size="{{n20}}"></x-import></span>
+            <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Interview date set</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">12 January</span></span>
+          </li>
+          <li style="display: flex; gap: 12px;">
+            <span style="color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}"></x-import></span>
+            <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Extra information sent to CQC</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">7 January. CQC asked for your recruitment policy on 5 January</span></span>
+          </li>
+          <li style="display: flex; gap: 12px;">
+            <span style="color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="inbox" size="{{n20}}"></x-import></span>
+            <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">CQC confirmed they received it</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">3 December</span></span>
+          </li>
+          <li style="display: flex; gap: 12px;">
+            <span style="color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n20}}"></x-import></span>
+            <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Submitted to CQC by email</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">1 December, sent by Daniel from your business email</span></span>
+          </li>
+        </ol>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isNotice}}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="CareSync.Alert" status="warning" title="CQC has sent a Notice of Proposal">This is not a final decision. You have time to respond, and we have already started on your reply. If CQC still refuses after reading it, we resubmit for you as part of your package.</x-import>
+
+      <section aria-labelledby="cd-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-2); padding: 20px; display: flex; align-items: center; gap: 20px;">
+        <div style="position: relative; width: 120px; height: 120px; flex-shrink: 0;">
+          <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#E4E7EC" stroke-width="10"></circle>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#0E7876" stroke-width="10" stroke-linecap="round" stroke-dasharray="222 327" transform="rotate(-90 60 60)"></circle>
+          </svg>
+          <div style="position: absolute; top: 0; left: 0; width: 120px; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <span style="font-size: 32px; line-height: 40px; font-weight: 600;">18</span>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">days left</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 id="cd-h" style="margin: 0; font-size: 18px; line-height: 28px; font-weight: 500;">Your written response is due Mon 1 March</h2>
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">The notice was served on 2 February 2027. We count 28 days the safe way, with that day as day 1. Confirm with a legal adviser.</span>
+        </div>
+      </section>
+
+      <section aria-labelledby="plan-h" style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 id="plan-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Our plan</h2>
+        <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+          <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">We draft your response</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Daniel, by Monday 15 February (day 14)</span></span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="pencil-line">In progress</x-import>
+          </div>
+          <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">You review it, add evidence and approve it</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">You and a senior colleague, by Friday 19 February</span></span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Next</x-import>
+          </div>
+          <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">We send it to CQC</span><span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">By email, by Monday 22 February (day 21), a week before the deadline</span></span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Later</x-import>
+          </div>
+        </div>
+        <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="calendar">Book a call with Daniel</x-import>
+        <x-import component-from-global-scope="CareSync.Button" variant="ghost" block="{{yes}}" icon-start="info">What a Notice of Proposal means</x-import>
+      </section>
+    </sc-if>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="Journey.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n24}}"></x-import>Journey</a>
+    <a href="Documents.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Documents</a>
+    <a href="Cqc.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n24}}"></x-import>CQC</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"situation":{"editor":"enum","options":["Before we send","CQC asked a question","Interview booked","Application returned","Notice of Proposal"],"default":"Interview booked"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.props.situation ?? 'Interview booked';
+    return {
+      theme: this.props.theme ?? 'light',
+      isInterview: s === 'Interview booked',
+      isNotice: s === 'Notice of Proposal',
+      isBefore: s === 'Before we send',
+      isAsk: s === 'CQC asked a question',
+      isReturned: s === 'Application returned',
+      updDay: (window.CSR && CSR.get('weekly-update-day', 'Friday')) || 'Friday',
+      refLine: s === 'Before we send' ? 'Not sent to CQC yet' : 'Application reference ending 4821',
+      yes: true, n16: 16, n20: 20, n24: 24
+    };
+  }
+}
+</script>
+</body>
+</html>

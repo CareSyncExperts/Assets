@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Onboarding check</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.oc-tab{min-height:34px;padding:0 12px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer;margin:0 6px 6px 0}
+.oc-tab:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.oc-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.oc-row{padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1100px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 10px 12px; background: var(--cs-surface-subtle);">
+    <span style="display: block; font-size: 11px; line-height: 14px; color: var(--cs-text-muted); margin-bottom: 6px;">Demo: after the client submits the onboarding form</span>
+    <div role="tablist" aria-label="Stage">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+        <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="oc-tab" role="tab" aria-selected="true" onClick="{{tb.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-weight: 500;">{{tb.label}}</button></sc-if>
+        <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="oc-tab" role="tab" aria-selected="false" onClick="{{tb.pick}}" style="border: 1px solid var(--cs-border-default); background: transparent; color: var(--cs-text-secondary);">{{tb.label}}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{isChecking}}" hint-placeholder-val="{{ true }}">
+    <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+      <header style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">Onboarding form sent</span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Thank you, Amara. Grace is checking it now</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">We have already checked the simple things. Grace checks the rest and tells you as soon as it is done. We have also asked your landlord, Tom Reid, for a short letter about your office.</span>
+      </header>
+      <div class="oc-card">
+        <sc-for list="{{auto}}" as="a" hint-placeholder-count="5">
+          <div class="oc-row">
+            <sc-if value="{{a.done}}" hint-placeholder-val="{{ true }}"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Checked"></x-import></span></sc-if>
+            <sc-if value="{{a.wait}}" hint-placeholder-val="{{ false }}"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="clock" size="{{n20}}" label="Being checked"></x-import></span></sc-if>
+            <span>{{a.text}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary); text-align: center;">You can still look at your answers. Nothing needs doing right now.</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isFix}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+      <header style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-status-warning-text); font-weight: 500;">Nearly there</span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">2 small things to fix</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Only these two need you, and each opens the right page. Already passed: your ID, Ruth as manager, Ruth's reference, her DBS and the register check.</span>
+      </header>
+      <div class="oc-card">
+        <div class="oc-row" style="flex-direction: column; gap: 8px;">
+          <span style="font-weight: 500;">Directors</span>
+          <span style="color: var(--cs-text-secondary);">Please add Kwame Okafor's details as your second director. Companies House lists him, so CQC needs him on the form too.</span>
+          <a href="RegDetails.dc.html" style="min-height: 40px; padding: 0 14px; border-radius: 10px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: inline-flex; align-items: center; align-self: flex-start; font-size: 14px; font-weight: 500; text-decoration: none;">Add Kwame's details</a>
+        </div>
+        <div class="oc-row" style="flex-direction: column; gap: 8px; border-bottom: 0;">
+          <span style="font-weight: 500;">Ruth's CV</span>
+          <span style="color: var(--cs-text-secondary);">Please add one line to Ruth's CV explaining the gap from March to November 2019.</span>
+          <a href="ManagerFlow.dc.html" style="min-height: 40px; padding: 0 14px; border-radius: 10px; background: var(--cs-action-secondary); color: var(--cs-action-on-secondary); display: inline-flex; align-items: center; align-self: flex-start; font-size: 14px; font-weight: 500; text-decoration: none;">Add the line</a>
+        </div>
+      </div>
+      <div class="oc-card"><div class="oc-row" style="border-bottom: 0;"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="clock" size="{{n20}}" label="Still being checked"></x-import></span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">Still being checked</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Your landlord's letter for Flat 2, 14 Harbour Road. We asked Tom Reid on Fri 30 Oct and he has opened it. Nothing for you to do.</span></span></div></div>
+      <span style="display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n16}}"></x-import>Please reply by Thu 5 Nov. Not sure? Tap Ask and Grace will help.</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isStarted}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section aria-labelledby="st-h" style="background: var(--cs-surface-inverse); color: #FFFFFF; padding: 32px 20px 26px; display: flex; flex-direction: column; gap: 10px;">
+        <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 999px; background: #AEFFEF; color: #004558; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+        <h1 id="st-h" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600;">Your project has started</h1>
+        <span style="font-size: 15px; line-height: 22px; color: #D0D5DD;">Every check has passed and our manager has approved your handover. Daniel is your consultant and starts on your CQC pack now.</span>
+      </section>
+      <div style="padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+        <h2 style="margin: 0; font-size: 18px; line-height: 26px; font-weight: 500;">What happens next</h2>
+        <div class="oc-card">
+          <sc-for list="{{next}}" as="n" hint-placeholder-count="4">
+            <div class="oc-row"><span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">{{n.no}}</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{n.title}}</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{n.sub}}</span></span></div>
+          </sc-for>
+        </div>
+        <a href="Main.dc.html" style="min-height: 52px; border-radius: 12px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; text-decoration: none;">Go to Today</a>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { st: 'checking' };
+  }
+  renderVals() {
+    const st = this.state.st;
+    const tabs = [['checking', '1. Being checked'], ['fix', '2. Something to fix'], ['started', '3. Project started']].map(([k, label]) => ({ label, on: st === k, off: st !== k, pick: () => this.setState({ st: k }) }));
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20, tabs,
+      isChecking: st === 'checking', isFix: st === 'fix', isStarted: st === 'started',
+      auto: [
+        { text: 'Company details match Companies House', done: true, wait: false },
+        { text: 'Your ID documents are clear and readable', done: true, wait: false },
+        { text: "Ruth's DBS number has 12 digits and was issued in the last 12 months", done: true, wait: false },
+        { text: 'Every required question answered', done: true, wait: false },
+        { text: 'Grace checks the directors, Ruth\'s CV, the referee and the uploads', done: false, wait: true },
+        { text: 'Your landlord\'s letter: we asked Tom Reid on Fri 30 Oct', done: false, wait: true }
+      ],
+      next: [
+        { no: '1', title: 'Your documents', sub: 'A few photos of your evidence, such as proof of address and insurance' },
+        { no: '2', title: 'We write your pack', sub: 'Policies, Statement of Purpose, training plan and business plan, watched on your checklist' },
+        { no: '3', title: 'You review and sign', sub: 'Comment on drafts, then sign once' },
+        { no: '4', title: 'We send it to CQC', sub: 'From your business email, and we tell you the same day' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

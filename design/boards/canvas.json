@@ -1,0 +1,963 @@
+{
+ "v": 3,
+ "attachments": {},
+ "boards": {
+  "Ask.dc.html": {
+   "h": 844,
+   "title": "6. Ask Care Sync",
+   "w": 390,
+   "x": 2350,
+   "y": 0
+  },
+  "Cqc.dc.html": {
+   "h": 1060,
+   "title": "5. CQC centre (5 states in Properties: before, question, interview, returned, Notice of Proposal)",
+   "w": 390,
+   "x": 1880,
+   "y": 0
+  },
+  "Documents.dc.html": {
+   "h": 1550,
+   "is_interactive": true,
+   "title": "3. Your documents",
+   "w": 390,
+   "x": 940,
+   "y": 0
+  },
+  "FormStaff.dc.html": {
+   "expand": "fill",
+   "h": 1820,
+   "title": "13. Form received (staff): CQC, CIW and RQIA, with checks and the application sheet for each (try the tabs)",
+   "w": 1440,
+   "x": 470,
+   "y": 9424,
+   "is_interactive": true
+  },
+  "Journey.dc.html": {
+   "h": 1420,
+   "title": "2. Your journey: CQC, CIW or RQIA (try the tabs)",
+   "w": 390,
+   "x": 470,
+   "y": 0,
+   "is_interactive": true
+  },
+  "Main.dc.html": {
+   "h": 1640,
+   "title": "1. Today (client home): CQC, CIW or RQIA (try the tabs), with the project switcher for registration plus tenders",
+   "w": 390,
+   "x": 0,
+   "y": 0,
+   "is_interactive": true
+  },
+  "Onboarding.dc.html": {
+   "expand": "fill",
+   "h": 2460,
+   "title": "8. Onboarding gates",
+   "w": 1440,
+   "x": 0,
+   "y": 4490
+  },
+  "Radar.dc.html": {
+   "expand": "fill",
+   "h": 1320,
+   "title": "10. Tender Radar",
+   "w": 2158,
+   "x": 0,
+   "y": 7070
+  },
+  "Review.dc.html": {
+   "h": 844,
+   "title": "4. Review Room",
+   "w": 390,
+   "x": 1410,
+   "y": 0
+  },
+  "Staff.dc.html": {
+   "expand": "fill",
+   "h": 2230,
+   "title": "7. Staff: My day",
+   "w": 1440,
+   "x": 0,
+   "y": 1860
+  },
+  "Tender.dc.html": {
+   "expand": "fill",
+   "h": 1500,
+   "title": "11. Tender record, the CRM view (staff)",
+   "w": 1440,
+   "x": 2238,
+   "y": 7070
+  },
+  "Weekly.dc.html": {
+   "expand": "fill",
+   "h": 1020,
+   "title": "9. Weekly update composer",
+   "w": 1440,
+   "x": 1520,
+   "y": 4490
+  },
+  "AddressCheck.dc.html": {
+   "expand": "fill",
+   "h": 1580,
+   "title": "14. Address and identity check (staff)",
+   "w": 1440,
+   "x": 0,
+   "y": 11744
+  },
+  "AddressClient.dc.html": {
+   "h": 1120,
+   "title": "15. One quick question (client)",
+   "w": 390,
+   "x": 1520,
+   "y": 11744
+  },
+  "EmailRegistered.dc.html": {
+   "h": 1260,
+   "title": "17. Email: You are registered",
+   "w": 640,
+   "x": 470,
+   "y": 13924
+  },
+  "DocRoom.dc.html": {
+   "h": 960,
+   "title": "18. Documents room (client)",
+   "w": 390,
+   "x": 1190,
+   "y": 13924
+  },
+  "Sign.dc.html": {
+   "h": 844,
+   "title": "19. Sign your pack (client)",
+   "w": 390,
+   "x": 1660,
+   "y": 13924
+  },
+  "Celebrate.dc.html": {
+   "h": 900,
+   "title": "20. Registered, share your experience (client)",
+   "w": 390,
+   "x": 2130,
+   "y": 13924
+  },
+  "DoneList.dc.html": {
+   "h": 1200,
+   "title": "21. Done for you checklist (client)",
+   "w": 390,
+   "x": 0,
+   "y": 15564
+  },
+  "PortalWatch.dc.html": {
+   "expand": "fill",
+   "h": 1300,
+   "title": "22. Regulator and tender watch, secure access (staff): CQC email, CIW Online, RQIA Web Portal and tender portals",
+   "w": 1440,
+   "x": 470,
+   "y": 15564
+  },
+  "CompanySearch.dc.html": {
+   "h": 844,
+   "title": "Helper inside the form, not a separate step. 23. Find your company (client, try typing)",
+   "w": 390,
+   "x": 1990,
+   "y": 15564,
+   "is_interactive": true
+  },
+  "SuperAdmin.dc.html": {
+   "expand": "fill",
+   "h": 4000,
+   "title": "24. Super admin Home: decisions inbox, open incident and 72-hour clock, health, readiness (try approving as Collins, then as Rachel)",
+   "w": 1440,
+   "x": 0,
+   "y": 17144,
+   "is_interactive": true
+  },
+  "Welcome.dc.html": {
+   "h": 1870,
+   "title": "25. Welcome, the first moment (client): registration, tenders only, or both (try the tabs)",
+   "w": 390,
+   "x": 0,
+   "y": 23574,
+   "is_interactive": true
+  },
+  "EmailConnect.dc.html": {
+   "h": 1120,
+   "title": "27. Your business email, the CQC channel (client, try it)",
+   "w": 390,
+   "x": 940,
+   "y": 23574,
+   "is_interactive": true
+  },
+  "Sessions.dc.html": {
+   "h": 1060,
+   "title": "28. Book your session with Millicent (client, try it)",
+   "w": 390,
+   "x": 1410,
+   "y": 23574,
+   "is_interactive": true
+  },
+  "Account.dc.html": {
+   "h": 3980,
+   "title": "29. Your account and privacy, mirrors the audit log (client)",
+   "w": 390,
+   "x": 1880,
+   "y": 23574,
+   "is_interactive": true
+  },
+  "Aftercare.dc.html": {
+   "h": 1380,
+   "title": "30. After registration: aftercare and growing (client)",
+   "w": 390,
+   "x": 2350,
+   "y": 23574
+  },
+  "TenderClient.dc.html": {
+   "h": 1300,
+   "title": "31. Your tender, for tender clients (client)",
+   "w": 390,
+   "x": 2820,
+   "y": 23574
+  },
+  "ClientMap.dc.html": {
+   "expand": "fill",
+   "h": 1410,
+   "title": "32. Client journey map, with super admin controls",
+   "w": 1920,
+   "x": 0,
+   "y": 21664
+  },
+  "IntroCall.dc.html": {
+   "expand": "fill",
+   "h": 1420,
+   "title": "33. Introduction call, Divine by default, anyone can take it (staff, try it)",
+   "w": 1440,
+   "x": 1520,
+   "y": 27974,
+   "is_interactive": true
+  },
+  "SnapSend.dc.html": {
+   "h": 900,
+   "title": "Helper inside the form, not a separate step. 34. Snap and send, photo to filled in (client, tap the shutter)",
+   "w": 390,
+   "x": 0,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "SupportWho.dc.html": {
+   "h": 1000,
+   "title": "Helper inside the form, not a separate step. 35. Who you will support, tap to choose (client, try it)",
+   "w": 390,
+   "x": 470,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "Directors.dc.html": {
+   "h": 1000,
+   "title": "Helper inside the form, not a separate step. 36. Directors and owners, from Companies House (client, try it)",
+   "w": 390,
+   "x": 940,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "ThirdParty.dc.html": {
+   "h": 1040,
+   "title": "37. One-task links for landlord, referee, accountant (no login, try it)",
+   "w": 390,
+   "x": 1410,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "TenderOnboard.dc.html": {
+   "h": 2400,
+   "title": "38. Tender Preparation Questionnaire, exactly as your Google Form with its smart skips (client, try it)",
+   "w": 390,
+   "x": 940,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "BrandWeb.dc.html": {
+   "h": 1200,
+   "title": "39. Brand and website, three choices (full package client, try it)",
+   "w": 390,
+   "x": 2350,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "SignIn.dc.html": {
+   "h": 844,
+   "title": "40. Sign in, no password (client, try it)",
+   "w": 390,
+   "x": 2820,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "Notifications.dc.html": {
+   "h": 900,
+   "title": "41. Notifications, the bell (client, try it)",
+   "w": 390,
+   "x": 3290,
+   "y": 33794,
+   "is_interactive": true
+  },
+  "ClientPage.dc.html": {
+   "h": 1610,
+   "title": "42. Client page, everything about one client (staff)",
+   "w": 1440,
+   "x": 0,
+   "y": 35254,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ManagerDash.dc.html": {
+   "h": 3920,
+   "title": "43. Manager dashboard (directors)",
+   "w": 1440,
+   "x": 1520,
+   "y": 35254,
+   "expand": "fill"
+  },
+  "FormBuilder.dc.html": {
+   "h": 1980,
+   "title": "44. Super admin: Forms, versions, question editor, preview as the client, impact on gates and checks (try v8)",
+   "w": 1440,
+   "x": 0,
+   "y": 39864,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "SmallTasks.dc.html": {
+   "h": 900,
+   "title": "45. Small tasks: insurance, money and interview (client). The \"not formed yet\" and declaration parts now live in the form (47)",
+   "w": 1880,
+   "x": 1520,
+   "y": 39864,
+   "expand": "fill"
+  },
+  "TenderProfile.dc.html": {
+   "h": 1700,
+   "title": "48. Tender profile: all 15 sections of the tender form, stop and resume (tender client)",
+   "w": 390,
+   "x": 470,
+   "y": 42874
+  },
+  "Tenders.dc.html": {
+   "h": 1200,
+   "title": "49. Your tenders, home for a tender-only client (try it)",
+   "w": 390,
+   "x": 0,
+   "y": 42874,
+   "is_interactive": true
+  },
+  "BidDecision.dc.html": {
+   "h": 1260,
+   "title": "50. Should we bid? Registration plus tender client (try it)",
+   "w": 390,
+   "x": 940,
+   "y": 42874,
+   "is_interactive": true
+  },
+  "RegDetails.dc.html": {
+   "h": 2040,
+   "title": "46. Your onboarding form: the form's sections, tailored by package (client, switch the package, tap a section)",
+   "w": 390,
+   "x": 0,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "ManagerFlow.dc.html": {
+   "h": 1800,
+   "title": "47. CQC Registration Information Form, exactly as your Google Form with its smart skips (client, try it)",
+   "w": 390,
+   "x": 470,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "AddClient.dc.html": {
+   "expand": "fill",
+   "h": 2300,
+   "title": "51. Add a client: choose the package, the onboarding form tailors itself (super admin, try it)",
+   "w": 1440,
+   "x": 0,
+   "y": 27974,
+   "is_interactive": true
+  },
+  "OnbCheck.dc.html": {
+   "h": 1100,
+   "title": "52. After the form: being checked, something to fix, project started (client, try it)",
+   "w": 390,
+   "x": 1410,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "ClientStates.dc.html": {
+   "h": 1760,
+   "title": "53. Every state and small moment (client): first sign-in, empty, waiting, errors, offline, payment, feedback, concerns, help",
+   "w": 2588,
+   "x": 0,
+   "y": 45034,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ClientDesktop.dc.html": {
+   "h": 1080,
+   "title": "54. Your Hub on a computer: Today, the tender project and the onboarding form (try the project and demo tabs)",
+   "w": 1440,
+   "x": 0,
+   "y": 47334,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "CiwForm.dc.html": {
+   "h": 2000,
+   "title": "55. CIW Registration Information Form, rebuilt from your Google Form: every question kept, smart rules, and the gaps CIW Online needs (try it)",
+   "w": 390,
+   "x": 1880,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "RqiaForm.dc.html": {
+   "h": 1900,
+   "title": "56. RQIA Registration Information Form, rebuilt from your Google Form: every question kept, smart rules, and the gaps RQIA needs (try it)",
+   "w": 390,
+   "x": 2350,
+   "y": 30754,
+   "is_interactive": true
+  },
+  "TenderWork.dc.html": {
+   "h": 1500,
+   "title": "57. Tender workspace (client): this week across all bids, one document store, review and approve once, past bids and renewals (try the tabs)",
+   "w": 390,
+   "x": 0,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "TenderConfirm.dc.html": {
+   "h": 1600,
+   "title": "58. Each new tender: confirm what we hold, then only the new questions (try Still right). One tender profile, no retyping",
+   "w": 390,
+   "x": 470,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "TwoServices.dc.html": {
+   "h": 1300,
+   "title": "59. Your plan: registration, then tenders, on one timeline (client with both services)",
+   "w": 390,
+   "x": 940,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "PlanCosts.dc.html": {
+   "h": 1250,
+   "title": "60. Plan and costs: key dates, every payment and extra, and what happens if CQC says no (try the tabs)",
+   "w": 390,
+   "x": 1410,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "AddressCards.dc.html": {
+   "h": 1200,
+   "title": "61. Address history as cards, with postcode lookup and a gap warning (try Add an address). Used on every form",
+   "w": 390,
+   "x": 1880,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "Security.dc.html": {
+   "h": 1300,
+   "title": "62. How we keep your information safe (client), with two-step sign-in",
+   "w": 390,
+   "x": 2350,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "RegCentre.dc.html": {
+   "h": 1150,
+   "title": "63. Your regulator, for CIW and RQIA clients: before we submit, submitted, questions, interview, registered (try both tabs)",
+   "w": 390,
+   "x": 2820,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "TeamViews.dc.html": {
+   "h": 1100,
+   "title": "64. Co-director and registered manager views, and signing together (try the tabs and the demo link)",
+   "w": 390,
+   "x": 3290,
+   "y": 48954,
+   "is_interactive": true
+  },
+  "Resubmit.dc.html": {
+   "h": 1300,
+   "title": "65. Refused: we resubmit (client). Shown for CQC; the same promise and plan apply to CIW and RQIA (try the tabs)",
+   "w": 390,
+   "x": 3760,
+   "y": 48144,
+   "is_interactive": true
+  },
+  "ResubmitStaff.dc.html": {
+   "h": 1850,
+   "title": "66. Resubmission project (staff), for CQC, CIW and RQIA: every reason and fix, refresh check, resubmission gate, dates, client updates, learning",
+   "w": 1440,
+   "x": 0,
+   "y": 51104,
+   "expand": "fill"
+  },
+  "Questions.dc.html": {
+   "h": 1260,
+   "title": "67. Questions inbox (staff): every \"Not sure? Ask us\" and Ask question, timed against the 1 working day promise (try selecting and sending)",
+   "w": 1440,
+   "x": 1520,
+   "y": 51104,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ClientsList.dc.html": {
+   "title": "68. Clients: every client, with filters for mine, covering, needs attention and each regulator (staff, try the tabs)",
+   "w": 1440,
+   "h": 1240,
+   "x": 0,
+   "y": 53254,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Deadlines.dc.html": {
+   "title": "75. Deadlines: legal and internal dates across every client, list and month (staff, try it)",
+   "w": 1440,
+   "h": 2050,
+   "x": 1520,
+   "y": 53254,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "RegReply.dc.html": {
+   "title": "76. Answer the regulator: Notice of Proposal representations and a request for more information (staff, try the tabs)",
+   "w": 1440,
+   "h": 1460,
+   "x": 3040,
+   "y": 53254,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "OnboardingQueue.dc.html": {
+   "title": "73. Onboarding queue: every client in onboarding, waiting on whom, nudge (Grace, try it)",
+   "w": 1440,
+   "h": 1030,
+   "x": 0,
+   "y": 55604,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Handover.dc.html": {
+   "title": "74. Handover from onboarding to the case owner, with manager approval (try approving)",
+   "w": 1440,
+   "h": 2020,
+   "x": 1520,
+   "y": 55604,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "CoachSessions.dc.html": {
+   "title": "69. Sessions and interview practice (Millicent)",
+   "w": 1440,
+   "h": 975,
+   "x": 3040,
+   "y": 55604,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ClientCare.dc.html": {
+   "title": "70. Client care: introduction calls, concerns, gone quiet (Divine)",
+   "w": 1440,
+   "h": 960,
+   "x": 0,
+   "y": 57924,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "AftercareStaff.dc.html": {
+   "title": "71. Aftercare: the 12 months after registration, by regulator (staff, try the tabs)",
+   "w": 1440,
+   "h": 950,
+   "x": 1520,
+   "y": 57924,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Reports.dc.html": {
+   "title": "72. Reports: promises kept, days per stage, outcomes by regulator, tenders (directors)",
+   "w": 1440,
+   "h": 1780,
+   "x": 3040,
+   "y": 57924,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "PriceBook.dc.html": {
+   "title": "77. Price book: every price, VAT and instalments, changes need the second super admin (try editing)",
+   "w": 1440,
+   "h": 3460,
+   "x": 0,
+   "y": 60004,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "TeamCover.dc.html": {
+   "title": "78. Team and cover: workload, leave and cover delegation, leavers (try booking leave)",
+   "w": 1440,
+   "h": 2680,
+   "x": 1520,
+   "y": 60004,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "GoLive.dc.html": {
+   "title": "79. Super admin: go-live readiness and setup mode (try entering the ICO number)",
+   "w": 1440,
+   "h": 2400,
+   "x": 0,
+   "y": 63764,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Rules.dc.html": {
+   "title": "80. Super admin: Rules and promises, every rule defined once, where it is used, change and approve (try it)",
+   "w": 1440,
+   "h": 3020,
+   "x": 1520,
+   "y": 63764,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Packages.dc.html": {
+   "title": "81. Super admin: Packages and journeys, each package end to end (try adding a package)",
+   "w": 1440,
+   "h": 1980,
+   "x": 3040,
+   "y": 63764,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Messages.dc.html": {
+   "title": "82. Super admin: Messages and automations, preview any email as a real client (try approving 5.2 v3)",
+   "w": 1440,
+   "h": 3480,
+   "x": 0,
+   "y": 67084,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "PeopleAccess.dc.html": {
+   "title": "83. Super admin: People and access, roles grid, joiners, leavers, access review",
+   "w": 1440,
+   "h": 1520,
+   "x": 1520,
+   "y": 67084,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "SecurityCentre.dc.html": {
+   "title": "84. Super admin: Security, incidents and the 72-hour clock, audit log, vault, elevated access, sign-in",
+   "w": 1440,
+   "h": 2720,
+   "x": 3040,
+   "y": 67084,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "DataPrivacy.dc.html": {
+   "title": "85. Super admin: Data and privacy, retention, deletions, rights requests, records, suppliers",
+   "w": 1440,
+   "h": 2240,
+   "x": 0,
+   "y": 70864,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Health.dc.html": {
+   "title": "86. Super admin: System health, every connection, failures and retries, email delivery, backups",
+   "w": 1440,
+   "h": 3400,
+   "x": 1520,
+   "y": 70864,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "MoneyExports.dc.html": {
+   "title": "87. Super admin: Money and exports, month close, accountant export, Stripe and Xero",
+   "w": 1440,
+   "h": 2280,
+   "x": 3040,
+   "y": 70864,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ViewAs.dc.html": {
+   "title": "88. Super admin: View as, communication history and the complaints register (try viewing as Amara)",
+   "w": 1440,
+   "h": 1480,
+   "x": 0,
+   "y": 74564,
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "FitsTogether.dc.html": {
+   "title": "89. Super admin: how it fits together, every setting and what reads it",
+   "w": 1440,
+   "h": 1950,
+   "x": 1520,
+   "y": 74564,
+   "expand": "fill",
+   "is_interactive": true
+  }
+ },
+ "createdOnFiles": {
+  "at": "2026-11-02T21:40:00Z",
+  "v": 1
+ },
+ "designSystems": [
+  {
+   "artifact": "https://claude.ai/artifact/XyqunCwrGHGuPWtwKZBz49",
+   "copiedAt": "2026-11-02T21:40:00Z",
+   "namespace": "caresync",
+   "title": "Care Sync Unified",
+   "version": "1792603359-26fe"
+  }
+ ],
+ "launch": {
+  "view": "canvas"
+ },
+ "noteOrder": [
+  "clientTitle",
+  "staffTitle",
+  "deliveryTitle",
+  "formsTitle",
+  "addressTitle",
+  "relationshipTitle",
+  "doneTitle",
+  "adminTitle",
+  "mapTitle",
+  "newClientTitle",
+  "introTitle",
+  "onbTitle",
+  "formsTitle2",
+  "tenderTitle",
+  "statesTitle",
+  "desktopTitle",
+  "finishTitle",
+  "resubTitle"
+ ],
+ "notes": {
+  "clientTitle": {
+   "kind": "title1",
+   "maxW": 2740,
+   "text": "Client app (phone)",
+   "w": 240,
+   "x": 0,
+   "y": -280
+  },
+  "deliveryTitle": {
+   "kind": "title1",
+   "maxW": 3678,
+   "text": "Delivery and tenders (staff)",
+   "w": 240,
+   "x": 0,
+   "y": 2880
+  },
+  "formsTitle": {
+   "kind": "title1",
+   "maxW": 1910,
+   "text": "Smart onboarding forms",
+   "w": 240,
+   "x": 0,
+   "y": 5420
+  },
+  "staffTitle": {
+   "kind": "title1",
+   "maxW": 1440,
+   "text": "Staff workspace (computer)",
+   "w": 240,
+   "x": 0,
+   "y": 1540
+  },
+  "addressTitle": {
+   "kind": "title1",
+   "maxW": 1910,
+   "text": "Address and company verification",
+   "w": 240,
+   "x": 0,
+   "y": 6920
+  },
+  "relationshipTitle": {
+   "kind": "title1",
+   "maxW": 2520,
+   "text": "Tailored forms, documents, signing and reviews",
+   "w": 240,
+   "x": 0,
+   "y": 8300
+  },
+  "doneTitle": {
+   "kind": "title1",
+   "maxW": 2380,
+   "text": "Done for you, and watching for news",
+   "w": 240,
+   "x": 0,
+   "y": 9940
+  },
+  "adminTitle": {
+   "kind": "title1",
+   "maxW": 1440,
+   "text": "Super admin",
+   "w": 240,
+   "x": 0,
+   "y": 11220
+  },
+  "newClientTitle": {
+   "kind": "title1",
+   "maxW": 3210,
+   "text": "Client screens added: welcome to aftercare",
+   "w": 240,
+   "x": 0,
+   "y": 14420
+  },
+  "mapTitle": {
+   "kind": "title1",
+   "maxW": 1920,
+   "text": "Client journey, start to finish",
+   "w": 240,
+   "x": 0,
+   "y": 12740
+  },
+  "introTitle": {
+   "kind": "title1",
+   "maxW": 2960,
+   "text": "After payment: add the client, the introduction call, then the onboarding form",
+   "w": 240,
+   "x": 0,
+   "y": 17250
+  },
+  "formsTitle2": {
+   "kind": "title1",
+   "maxW": 3680,
+   "text": "Forms, links and staff tools",
+   "w": 240,
+   "x": 0,
+   "y": 21810
+  },
+  "tenderTitle": {
+   "kind": "title1",
+   "maxW": 3290,
+   "text": "Tenders: a service of its own, or with a registration",
+   "w": 240,
+   "x": 0,
+   "y": 26270
+  },
+  "onbTitle": {
+   "kind": "title1",
+   "maxW": 2740,
+   "text": "The onboarding forms, exactly as your Google Forms: CQC (47), tender (38), CIW (55) and RQIA (56). The project starts when the form is complete",
+   "w": 240,
+   "x": 0,
+   "y": 18910
+  },
+  "statesTitle": {
+   "kind": "title1",
+   "maxW": 1600,
+   "text": "Every state and small moment, so nothing is left to chance",
+   "w": 240,
+   "x": 0,
+   "y": 28430
+  },
+  "desktopTitle": {
+   "kind": "title1",
+   "maxW": 1440,
+   "text": "The client side on a computer",
+   "w": 240,
+   "x": 0,
+   "y": 30730
+  },
+  "finishTitle": {
+   "kind": "title1",
+   "maxW": 4200,
+   "text": "Tenders, plans, costs and safety: the last pieces from the client tests",
+   "w": 240,
+   "x": 0,
+   "y": 32350
+  },
+  "resubTitle": {
+   "kind": "title1",
+   "maxW": 2960,
+   "text": "Staff: resubmission projects and the questions inbox",
+   "w": 240,
+   "x": 0,
+   "y": 34350
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Journey.dc.html",
+  "Documents.dc.html",
+  "Review.dc.html",
+  "Cqc.dc.html",
+  "Ask.dc.html",
+  "Staff.dc.html",
+  "Onboarding.dc.html",
+  "Weekly.dc.html",
+  "Radar.dc.html",
+  "Tender.dc.html",
+  "FormStaff.dc.html",
+  "AddressCheck.dc.html",
+  "AddressClient.dc.html",
+  "EmailRegistered.dc.html",
+  "DocRoom.dc.html",
+  "Sign.dc.html",
+  "Celebrate.dc.html",
+  "DoneList.dc.html",
+  "PortalWatch.dc.html",
+  "CompanySearch.dc.html",
+  "SuperAdmin.dc.html",
+  "ClientMap.dc.html",
+  "Welcome.dc.html",
+  "EmailConnect.dc.html",
+  "Sessions.dc.html",
+  "Account.dc.html",
+  "Aftercare.dc.html",
+  "TenderClient.dc.html",
+  "AddClient.dc.html",
+  "IntroCall.dc.html",
+  "RegDetails.dc.html",
+  "ManagerFlow.dc.html",
+  "TenderOnboard.dc.html",
+  "OnbCheck.dc.html",
+  "SnapSend.dc.html",
+  "SupportWho.dc.html",
+  "Directors.dc.html",
+  "ThirdParty.dc.html",
+  "BrandWeb.dc.html",
+  "SignIn.dc.html",
+  "Notifications.dc.html",
+  "ClientPage.dc.html",
+  "ManagerDash.dc.html",
+  "FormBuilder.dc.html",
+  "SmallTasks.dc.html",
+  "TenderProfile.dc.html",
+  "Tenders.dc.html",
+  "BidDecision.dc.html",
+  "ClientStates.dc.html",
+  "ClientDesktop.dc.html",
+  "CiwForm.dc.html",
+  "RqiaForm.dc.html",
+  "TenderWork.dc.html",
+  "TenderConfirm.dc.html",
+  "TwoServices.dc.html",
+  "PlanCosts.dc.html",
+  "AddressCards.dc.html",
+  "Security.dc.html",
+  "RegCentre.dc.html",
+  "TeamViews.dc.html",
+  "Resubmit.dc.html",
+  "ResubmitStaff.dc.html",
+  "Questions.dc.html"
+ ],
+ "pages": [],
+ "title": "Care Sync Hub Mockups"
+}

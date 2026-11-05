@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Super admin home</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible,.bz-a:focus-visible,.bz-tile:focus-visible,.bz-rowbtn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px;min-width:0}
+.bz-red{padding:14px 16px;border-radius:12px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-inf{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-info-border);background:var(--cs-status-info-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-h3{margin:0;font-size:16px;line-height:22px;font-weight:600}
+.bz-t15{font-size:15px;line-height:22px;font-weight:500}
+.bz-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-a{color:var(--cs-text-brand);font-weight:500;font-size:14px;line-height:20px;text-decoration:underline;text-underline-offset:3px;border-radius:4px}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.bz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bz-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bz-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.bz-g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.bz-item{padding:16px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:10px}
+.bz-ico{width:36px;height:36px;flex-shrink:0;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-secondary);display:flex;align-items:center;justify-content:center}
+.bz-tile{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:12px;background:var(--cs-surface-raised);box-shadow:var(--cs-elevation-1);text-decoration:none;color:var(--cs-text-primary);min-width:0}
+.bz-tile:hover{box-shadow:var(--cs-elevation-2)}
+.bz-num{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.bz-dot{width:8px;height:8px;border-radius:999px;flex-shrink:0;display:inline-block}
+.d-ok{background:var(--cs-status-success-text)}.d-warn{background:var(--cs-status-warning-text)}.d-bad{background:var(--cs-status-error-text)}.d-off{background:var(--cs-text-muted)}
+.bz-rowbtn{width:100%;border:0;background:transparent;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:12px 20px;display:flex;gap:14px;align-items:center;min-height:56px;box-sizing:border-box}
+.bz-rowbtn:hover{background:var(--cs-action-ghost-hover)}
+.bz-sel{background:var(--cs-surface-page)}
+.bz-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.bz-step{display:flex;gap:12px;align-items:flex-start}
+.bz-stepn{width:28px;height:28px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.bz-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;letter-spacing:0}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+.bar.ok span{background:var(--cs-status-success-text)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 4000px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Super admin" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 560px; min-width: 0;">
+          <span class="sb-muted">Super admin home. Monday 2 November, 09:20</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">{{greeting}}</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{headline}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+          <span class="bz-lbl">Demo: see this page as</span>
+          <div role="tablist" aria-label="Demo: see this page as" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{asTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+        </div>
+      </div>
+
+      <div class="bz-g5">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+          <a class="bz-tile" href="{{k.href}}"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="{{k.cls}}" style="align-self: flex-start;">{{k.note}}</span></a>
+        </sc-for>
+      </div>
+
+      <section class="bz-red" aria-labelledby="inc-h" style="flex-direction: row; gap: 20px; align-items: stretch; flex-wrap: wrap;">
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="sb-chip c-bad">Open incident</span><span class="sb-chip c-warn">Assessing</span><h2 id="inc-h" class="bz-h3">Sam Patel exported 38 client documents</h2></div>
+          <span>Sun 1 Nov at 21:40. Usual: under 5 a day. Sam leaves on Fri 6 Nov. The Hub flagged it at 06:00 today, so Care Sync became aware then and the clock started. Sam's downloads are paused. Collins, the data protection lead, started the breach assessment at 08:10 and leads it. Rachel Turner reviews the decision as the second pair of eyes.</span>
+          <span class="sb-sub">Not yet decided whether it must be reported. If it must, the ICO expects it without undue delay and, where feasible, within 72 hours of becoming aware: by Thu 5 Nov 06:00. The decision and the reasons are recorded either way.</span>
+        </div>
+        <div style="flex: 0 1 300px; min-width: 240px; display: flex; flex-direction: column; gap: 6px; justify-content: center;">
+          <span class="bz-lbl">72-hour window</span>
+          <span class="bz-big">68 h 40 min left</span>
+          <div class="bar red" aria-hidden="true"><span class="w5"></span></div>
+          <span class="sb-muted">Started Mon 2 Nov 06:00. Ends Thu 5 Nov 06:00.</span>
+          <a class="sb-btn b-pri bz-link" style="margin-top: 4px;" href="SecurityCentre.dc.html">Open the incident (Security, board 84)</a>
+        </div>
+      </section>
+
+      <div class="bz-cols">
+        <div style="flex: 3 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" aria-labelledby="dc-h">
+            <div class="sb-head"><h2 id="dc-h" class="sb-h2">Decisions waiting for a super admin: {{pendingVal}}</h2><span class="sb-sub">{{decSub}}</span></div>
+            <div style="padding: 0 20px 14px;"><div role="tablist" aria-label="Filter decisions" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{decTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+            <sc-for list="{{decs}}" as="a" hint-placeholder-count="7">
+              <div class="bz-item">
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span class="bz-ico" aria-hidden="true"><x-import component-from-global-scope="CareSync.Icon" name="{{a.icon}}" size="{{n20}}"></x-import></span>
+                  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                    <span class="bz-num">{{a.num}}</span>
+                    <span class="bz-t15">{{a.title}}</span>
+                    <span class="sb-sub">{{a.change}}</span>
+                    <span class="sb-muted">{{a.meta}}</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0;">
+                    <span class="{{a.chipCls}}">{{a.chip}}</span>
+                    <button class="sb-btn b-gh" aria-expanded="{{a.exp}}" onClick="{{a.toggle}}">{{a.toggleLabel}}</button>
+                  </div>
+                </div>
+                <sc-if value="{{a.isOpen}}" hint-placeholder-val="{{ false }}">
+                  <div class="bz-g2">
+                    <div class="bz-box"><span class="bz-lbl">{{a.extraLabel}}</span><sc-for list="{{a.extra}}" as="x" hint-placeholder-count="3"><span>{{x}}</span></sc-for></div>
+                    <div class="bz-box"><span class="bz-lbl">What it affects</span><sc-for list="{{a.affects}}" as="x" hint-placeholder-count="4"><span>{{x}}</span></sc-for></div>
+                  </div>
+                  <sc-if value="{{a.isPerm}}" hint-placeholder-val="{{ false }}">
+                    <div class="bz-g2">
+                      <div class="bz-box"><span class="bz-lbl">Olu before</span><sc-for list="{{a.before}}" as="x" hint-placeholder-count="3"><span>{{x}}</span></sc-for></div>
+                      <div class="bz-ok"><span class="bz-lbl">Olu after, from Mon 9 Nov</span><sc-for list="{{a.after}}" as="x" hint-placeholder-count="3"><span>{{x}}</span></sc-for></div>
+                    </div>
+                  </sc-if>
+                  <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: space-between;"><span class="sb-sub" style="flex: 1 1 360px;">{{a.clients}}</span><a class="bz-a" href="{{a.href}}">{{a.boardLabel}}</a></div>
+                  <sc-if value="{{a.own}}" hint-placeholder-val="{{ false }}">
+                    <div class="bz-amb" role="note">
+                      <span class="bz-b">{{a.ownTitle}}</span>
+                      <span class="sb-sub">{{a.ownText}}</span>
+                      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"><button class="sb-btn b-sec" onClick="{{a.remind}}">{{a.remindLabel}}</button><span class="sb-muted">{{a.remindNote}}</span></div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{a.canDecide}}" hint-placeholder-val="{{ true }}">
+                    <label class="bz-lbl" for="{{a.taId}}">Your reason (written to the audit log)</label>
+                    <textarea id="{{a.taId}}" class="bz-ta" value="{{a.reason}}" onChange="{{a.onReason}}" placeholder="{{a.ph}}"></textarea>
+                    <sc-if value="{{a.err}}" hint-placeholder-val="{{ false }}"><span class="bz-err" role="alert">Write a reason before you approve or decline.</span></sc-if>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{a.approve}}">{{a.approveLabel}}</button><button class="sb-btn b-gh" onClick="{{a.decline}}">Decline</button></div>
+                  </sc-if>
+                </sc-if>
+                <sc-if value="{{a.done}}" hint-placeholder-val="{{ false }}">
+                  <div class="{{a.doneBox}}"><span class="bz-b">{{a.doneText}}</span><span class="sb-sub">{{a.doneNote}}</span><div style="display: flex; gap: 8px;"><button class="sb-btn b-gh" onClick="{{a.undo}}">Undo (demo)</button></div></div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{noDecs}}" hint-placeholder-val="{{ false }}"><div class="bz-item"><span class="sb-sub">Nothing in this group. Try All.</span></div></sc-if>
+            <div style="padding: 12px 20px 16px; border-top: 1px solid var(--cs-border-subtle);" class="sb-muted">Nobody can approve their own request. Every decision is written to the audit log with the reason, and entries cannot be edited or deleted. In the Hub each super admin signs in with their own account and two-step login.</div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="mg-h">
+            <div class="sb-head"><h2 id="mg-h" class="sb-h2">Also waiting: 3</h2><span class="sb-sub">Not in the 7: none of these is a super admin decision. Two wait for a manager on the Manager dashboard (board 43); one waits for the data protection lead (Collins) on Data and privacy (board 85).</span></div>
+            <sc-for list="{{mgr}}" as="m" hint-placeholder-count="3">
+              <div class="sb-row" style="align-items: flex-start;">
+                <span class="sb-chip c-info" style="width: 96px; justify-content: center; flex-shrink: 0;">{{m.kind}}</span>
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{m.title}}</span><span class="sb-sub">{{m.why}}</span></span>
+                <a class="sb-btn b-gh bz-link" href="{{m.href}}">{{m.cta}}</a>
+              </div>
+            </sc-for>
+          </section>
+
+          <section class="sb-card" aria-labelledby="lg-h">
+            <div class="sb-head"><h2 id="lg-h" class="sb-h2">Audit log: today</h2><a class="bz-a" href="SecurityCentre.dc.html">Full audit log (Security, board 84)</a></div>
+            <sc-for list="{{log}}" as="l" hint-placeholder-count="5">
+              <div class="sb-row" style="align-items: flex-start;"><span class="sb-sub" style="flex: 0 0 76px;">{{l.at}}</span><span class="bz-b" style="flex: 0 0 120px;">{{l.who}}</span><span style="flex: 1; min-width: 0;">{{l.what}}</span></div>
+            </sc-for>
+            <div class="sb-row"><span class="sb-muted">Entries cannot be edited or deleted. Your decisions on this page appear here straight away.</span></div>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="hl-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="hl-h" class="sb-h2">System health</h2><span class="sb-chip c-warn">13 of 15 healthy</span></div>
+            <sc-for list="{{attn}}" as="t" hint-placeholder-count="2">
+              <div style="display: flex; gap: 10px; align-items: flex-start;"><span class="bz-dot d-bad" style="margin-top: 7px;" aria-hidden="true"></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span class="bz-b">{{t.k}}</span><span class="sb-sub">{{t.v}}</span></span></div>
+            </sc-for>
+            <div class="bz-red" style="gap: 8px;">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Weekly update to Greenway Support</span><span class="{{fixChipCls}}">{{fixChip}}</span></div>
+              <span class="sb-sub">The Friday 30 Oct update bounced at 17:02: the mailbox does not exist. It is waiting in Olu's outbox. Olu is on leave, so Daniel is covering and has been told.</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" aria-expanded="{{fixExp}}" onClick="{{toggleFix}}">Fix email address</button><button class="sb-btn b-gh" aria-expanded="{{logExp}}" onClick="{{toggleLog}}">See run log</button></div>
+              <sc-if value="{{showFix}}" hint-placeholder-val="{{ false }}">
+                <label class="bz-lbl" for="fx-in">Tunde Bello's email address</label>
+                <input id="fx-in" class="bz-in" value="{{fixVal}}" onChange="{{onFix}}">
+                <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{saveFix}}">Save and resend</button><span class="sb-muted" style="flex: 1 1 200px;">{{fixNote}}</span></div>
+              </sc-if>
+              <sc-if value="{{showLog}}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 6px; border-top: 1px solid var(--cs-status-error-border);">
+                  <sc-for list="{{runLog}}" as="l" hint-placeholder-count="5"><span style="font-size: 13px; line-height: 18px;"><span class="bz-b">{{l.t}}</span> {{l.x}}</span></sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <sc-for list="{{healthLines}}" as="t" hint-placeholder-count="3">
+              <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px; line-height: 20px;"><span class="sb-sub" style="flex: 0 0 96px;">{{t.k}}</span><span style="flex: 1; min-width: 0; text-align: right;">{{t.v}}</span></div>
+            </sc-for>
+            <span class="sb-muted">Every failure shows here and to its owner. Nothing fails silently.</span>
+            <a class="sb-btn b-gh bz-link" href="Health.dc.html">Open System health (board 86)</a>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="un-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="un-h" class="sb-h2">Unusual activity</h2><span class="sb-sub">Since Fri 30 Oct</span></div>
+            <div class="{{unCls}}" role="status">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Femi Ade signed in from a new device</span><span class="{{unChipCls}}">{{unChip}}</span></div>
+              <span class="sb-sub">{{unText}}</span>
+              <sc-if value="{{unOpen}}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{unLook}}">Look into it</button><button class="sb-btn b-gh" aria-expanded="{{unAskExp}}" onClick="{{unAsk}}">Mark as expected</button></div>
+                <sc-if value="{{unAsking}}" hint-placeholder-val="{{ false }}">
+                  <label class="bz-lbl" for="un-r">Why is it expected? (written to the audit log)</label>
+                  <textarea id="un-r" class="bz-ta" value="{{unReason}}" onChange="{{onUnReason}}" placeholder="For example: Femi told me about the new laptop on Friday"></textarea>
+                  <sc-if value="{{unErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err" role="alert">Write a reason first.</span></sc-if>
+                  <div><button class="sb-btn b-pri" onClick="{{unFine}}">Mark as expected</button></div>
+                </sc-if>
+              </sc-if>
+              <sc-if value="{{unLooked}}" hint-placeholder-val="{{ false }}"><a class="bz-a" href="SecurityCentre.dc.html">Open the assessment (Security, board 84)</a></sc-if>
+            </div>
+            <div class="bz-box">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">Sam Patel's export, Sun 1 Nov 21:40</span><span class="sb-chip c-bad">Now an incident</span></div>
+              <span class="sb-sub">38 client documents, usual under 5 a day. Looked into at 06:00, downloads paused, breach assessment open (see the incident above).</span>
+            </div>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="ea-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="ea-h" class="sb-h2">Cover and emergency access</h2></div>
+            <div class="bz-ok">
+              <span class="bz-b">Cover: Daniel covers Olu's 4 clients</span>
+              <span class="sb-sub">Riverside, Greenway, Lagan View and Willow Bank, including vault reveal for those 4 clients only. Olu is on leave Mon 2 to Fri 6 Nov. Approved by Rachel Turner on Fri 30 Oct. Ends automatically Fri 6 Nov 17:30.</span>
+            </div>
+            <span class="sb-sub">{{bgText}}</span>
+            <a class="bz-a" href="PeopleAccess.dc.html">Cover and access (People and access, board 83)</a>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="dp-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="dp-h" class="sb-h2">Data and privacy</h2></div>
+            <sc-for list="{{dataLines}}" as="t" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);"><div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="bz-b">{{t.k}}</span><span class="{{t.cls}}">{{t.chip}}</span></div><span class="sb-sub">{{t.v}}</span></div>
+            </sc-for>
+            <a class="bz-a" href="DataPrivacy.dc.html">Open Data and privacy (board 85)</a>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="gl-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="gl-h" class="sb-h2">Go-live readiness</h2><span class="sb-chip c-warn">12 of 16 done</span></div>
+            <div class="bar amb" aria-hidden="true"><span class="w75"></span></div>
+            <span class="sb-sub">Live since Thu 1 Oct 2026, dual control on. Still open:</span>
+            <ul class="bz-ul">
+              <sc-for list="{{golive}}" as="g" hint-placeholder-count="4"><li style="font-size: 14px; line-height: 20px;">{{g}}</li></sc-for>
+            </ul>
+            <a class="bz-a" href="GoLive.dc.html">Open Go-live readiness (board 79)</a>
+          </section>
+
+        </div>
+      </div>
+
+      <section class="sb-card" aria-labelledby="ru-h">
+        <div class="sb-head"><h2 id="ru-h" class="sb-h2">Promises in force today</h2><span class="sb-sub">Read from Rules and promises. Every screen and email uses the same values; a change shows where it is used, then needs approval.</span></div>
+        <div class="bz-g5" style="padding: 0 20px 16px;">
+          <sc-for list="{{rules}}" as="r" hint-placeholder-count="5">
+            <div class="bz-box" style="gap: 2px;"><span class="bz-lbl">{{r.k}}</span><span class="bz-b">{{r.v}}</span></div>
+          </sc-for>
+        </div>
+        <div style="padding: 0 20px 16px;"><a class="bz-a" href="Rules.dc.html">Open Rules and promises (board 80)</a></div>
+      </section>
+
+      <section class="sb-card" aria-labelledby="ws-h">
+        <div class="sb-head"><h2 id="ws-h" class="sb-h2">Weekly super admin summary: Mon 26 Oct to Sun 1 Nov</h2><div style="display: flex; gap: 10px; align-items: center;"><span class="sb-sub">Sent to Collins and Rachel every Monday at 07:00</span><button class="sb-btn b-gh" aria-expanded="{{sumExp}}" onClick="{{toggleSum}}">{{sumLabel}}</button></div></div>
+        <sc-if value="{{showSum}}" hint-placeholder-val="{{ true }}">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
+            <sc-for list="{{summary}}" as="w" hint-placeholder-count="8">
+              <div class="sb-row" style="align-items: flex-start;"><span class="{{w.cls}}" style="width: 104px; justify-content: center; flex-shrink: 0;">{{w.k}}</span><span class="sb-sub" style="flex: 1; min-width: 0;">{{w.t}}</span></div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </section>
+
+      <section aria-labelledby="ql-h" style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 id="ql-h" class="sb-h2">Every area</h2>
+        <div class="bz-g4">
+          <sc-for list="{{areas}}" as="q" hint-placeholder-count="13">
+            <a class="bz-tile" href="{{q.href}}">
+              <span style="display: flex; gap: 10px; align-items: center;"><span class="bz-ico" aria-hidden="true"><x-import component-from-global-scope="CareSync.Icon" name="{{q.icon}}" size="{{n20}}"></x-import></span><span style="display: flex; flex-direction: column; min-width: 0;"><span class="bz-b" style="font-size: 15px; line-height: 20px;">{{q.name}}</span><span class="bz-num">{{q.num}}</span></span></span>
+              <span class="sb-sub">{{q.note}}</span>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { as: 'collins', dec: {}, by: {}, reasons: {}, errs: {}, open: { price: true }, f: 'all', reminded: {}, un: '', unAsking: false, unReason: '', unErr: false, showSum: true, showFix: false, showLog: false, fix: 'tunde@greenwaysupport.example', fixSaved: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const R = (window.CSR && typeof window.CSR.get === 'function') ? window.CSR : { get: (k, f) => f };
+    const money = n => { const v = Number(n); return '£' + v.toLocaleString('en-GB', { minimumFractionDigits: (Math.round(v * 100) % 100) ? 2 : 0, maximumFractionDigits: 2 }); };
+    const vat = Number(R.get('vat-rate', 20));
+    const full = Number(R.get('price-full', 8500));
+    const third = Math.floor(full * 100 / 3) / 100;
+    const lastPart = Math.round((full - 2 * third) * 100) / 100;
+    const dom = Number(R.get('price-dom', 4000));
+    const pir = Number(R.get('price-pir', 750));
+    const day = R.get('weekly-update-day', 'Friday');
+    const legalDays = R.get('nop-legal-days', 28);
+    const bgHours = R.get('break-glass-hours', 4);
+    const me = s.as;
+    const meName = me === 'collins' ? 'Collins' : 'Rachel Turner';
+    const otherFirst = me === 'collins' ? 'Rachel' : 'Collins';
+    const names = { collins: 'Collins', rachel: 'Rachel Turner' };
+    const base = [
+      { id: 'price', type: 'money', icon: 'file-check', asker: 'collins', askerName: 'Collins',
+        title: 'Price: Full start-up package, ' + money(full) + ' + VAT',
+        change: 'A first price for the package. Until now each set-up was quoted before work started.',
+        meta: 'Entered by Collins today. Waiting for Rachel Turner, who also checks ' + money(full) + ' against £8,000.',
+        extraLabel: 'The change', extra: ['New price: ' + money(full) + ' + VAT (' + money(full * (1 + vat / 100)) + ' with VAT at ' + vat + '%)', '3 instalments: ' + money(third) + ', ' + money(third) + ' and ' + money(lastPart) + ' + VAT, at accept, sign and pay; final pack sign-off; submission', 'Still to check: ' + money(full) + ' or £8,000. Rachel confirms before approving.'],
+        affects: ['Add a client (board 51): package price and instalments', 'Plan and costs (board 60) and Your account (board 29) for new clients', 'Stripe: the 3 instalment payments', 'Xero: invoice lines', 'Packages and journeys (board 81)'],
+        clients: 'Clients affected today: none. New clients only, from the day it is approved. Signed clients keep their agreed price.',
+        href: 'PriceBook.dc.html', boardLabel: 'Open in Price book (board 77)', approveLabel: 'Approve the price', ph: 'For example: checked against £8,000, ' + money(full) + ' is right',
+        ok: 'The price is live for new clients from today, as version 1 in the price book. Add a client, Plan and costs and Stripe read it now.', log: 'the Full start-up package price, ' + money(full) + ' + VAT' },
+      { id: 'lind', type: 'money', icon: 'trending-down', asker: 'jo', askerName: 'Jo Martin',
+        title: 'Discount: Lindenfield Care Ltd, CQC domiciliary care',
+        change: '£3,800 + VAT instead of ' + money(dom) + ' + VAT (' + money(dom - 3800) + ' off).',
+        meta: 'Asked by Jo Martin from Add a client, today 08:05.',
+        extraLabel: 'Why Jo asked', extra: ['Ready to sign today, and price is the last blocker.', 'Jo offered to trade scope first; the client wants the full package.', 'The price book itself does not change.'],
+        affects: ['Lindenfield\'s agreement to sign (board 19)', 'Stripe: 2 instalments of £1,900 + VAT instead of ' + money(dom / 2) + ' + VAT', 'Xero: the invoice shows the discount line', 'Plan and costs (board 60) for this client', 'Money and exports (board 87): discounts given'],
+        clients: 'Clients affected: 1 (Lindenfield Care Ltd, not yet signed).',
+        href: 'PriceBook.dc.html', boardLabel: 'Open in Price book (board 77)', approveLabel: 'Approve the discount', ph: 'For example: full package, ready to sign today',
+        ok: 'Jo is told. Lindenfield\'s agreement and Stripe instalments show £3,800 + VAT.', log: 'the discount for Lindenfield Care Ltd (£3,800 + VAT)' },
+      { id: 'ashby', type: 'money', icon: 'trending-down', asker: 'daniel', askerName: 'Daniel Mensah',
+        title: 'Discount: Ashby Care, PIR writing for 2 service types',
+        change: '£1,350 + VAT instead of ' + money(2 * pir) + ' + VAT (2 PIRs at ' + money(pir) + ' + VAT).',
+        meta: 'Asked by Daniel Mensah, Fri 30 Oct.',
+        extraLabel: 'Why Daniel asked', extra: ['Aftercare client, month 12, handover 18 Nov, happy.', 'Both PIRs share most of the same evidence.', 'The price book itself does not change.'],
+        affects: ['Ashby\'s agreement for the PIR work (board 19)', 'Stripe: the payment for this work', 'Xero: the invoice shows the discount line', 'Aftercare (board 71): Ashby\'s month 12 plan', 'Money and exports (board 87): discounts given'],
+        clients: 'Clients affected: 1 (Ashby Care).',
+        href: 'PriceBook.dc.html', boardLabel: 'Open in Price book (board 77)', approveLabel: 'Approve the discount', ph: 'For example: shared evidence, long-standing client',
+        ok: 'Daniel is told. Ashby\'s agreement shows £1,350 + VAT.', log: 'the discount for Ashby Care (£1,350 + VAT for 2 PIRs)' },
+      { id: 'form', type: 'content', icon: 'pencil-line', asker: 'grace', askerName: 'Grace',
+        title: 'Form: CQC onboarding form, version 8',
+        change: 'Adds a "Your office" step, rewords 1 question and removes "Type of Legal Entity".',
+        meta: 'Drafted by Grace (onboarding lead), Thu 29 Oct. Collins or Rachel can approve.',
+        extraLabel: 'What changes', extra: ['Added: a "Your office" step, which the office address gate needs', 'Reworded: 1 question (the old wording is shown on the Forms board)', 'Removed: "Type of Legal Entity" (Companies House already tells us)'],
+        affects: ['Onboarding gates (board 8): Office address evidence reads the new step', 'Form received checks and the CQC application sheet (board 13)', 'Questions inbox (board 67): suggested replies follow the form\'s help text', 'Add a client (board 51): the form preview', 'The client\'s onboarding form (board 46)'],
+        clients: 'Clients affected: 3 halfway through version 7 stay on it unless moved (answers kept). New clients get version 8 once approved.',
+        href: 'FormBuilder.dc.html', boardLabel: 'Open in Forms (board 44)', approveLabel: 'Approve version 8', ph: 'For example: catches this month\'s office address fixes',
+        ok: 'Version 8 is live for new clients. The 3 clients halfway through stay on version 7 unless Grace moves them. Grace is told.', log: 'version 8 of the CQC onboarding form' },
+      { id: 'perm', type: 'people', icon: 'users', asker: 'grace', askerName: 'Grace', isPerm: true,
+        title: 'Permission: Olu takes 2 of Sam Patel\'s clients',
+        change: 'Kingsway Care Ltd and Cedar Lodge Care Ltd move from Sam Patel to Olu from Mon 9 Nov.',
+        meta: 'Asked by Grace in Team and cover, Fri 30 Oct 16:10. Sam leaves Fri 6 Nov.',
+        extraLabel: 'Why', extra: ['Sam Patel leaves on Fri 6 Nov; 2 of Sam\'s 6 clients go to Olu.', 'Olu is back from leave on Mon 9 Nov.', 'Handover notes for both clients are written.'],
+        affects: ['People and access (board 83) and Team and cover (board 78)', 'Olu\'s My day (board 7) and weekly updates', 'Vault: reveal for these 2 clients moves to Olu; Sam\'s access ends Fri 6 Nov 17:30', 'Both clients see Olu as their consultant and get email 9.3, "Your new consultant"'],
+        before: ['Case owner: 5 clients (Riverside, Greenway, Lagan View, Willow Bank, Brookside)', 'Vault: reveal for those 5', 'Weekly updates: 5'],
+        after: ['Case owner: 7 clients (adds Kingsway Care and Cedar Lodge Care)', 'Vault: reveal for those 7', 'Weekly updates: 7'],
+        clients: 'Clients affected: 2.',
+        href: 'PeopleAccess.dc.html', boardLabel: 'Open in People and access (board 83)', approveLabel: 'Approve', ph: 'For example: Olu knows both services, handover notes written',
+        ok: 'From Mon 9 Nov Olu is case owner for both clients. Grace and Olu are told.', log: 'the permission change for Olu (2 clients from Sam Patel, from Mon 9 Nov)' },
+      { id: 'email', type: 'content', icon: 'inbox', asker: 'daniel', askerName: 'Daniel Mensah',
+        title: 'Email: 5.2 Notice of Proposal, version 3',
+        change: 'Clearer legal wording about the ' + legalDays + ' days, worked out the safe way: the day of service counts as day 1.',
+        meta: 'Drafted by Daniel Mensah, Fri 30 Oct. Emails with legal wording need a super admin\'s approval.',
+        extraLabel: 'Preview with Sunrise Homecare\'s dates', extra: ['Served: Wed 21 Oct (day 1)', 'Legal deadline for written representations: Tue 17 Nov (' + legalDays + ' days)', 'Our target to send: Tue 10 Nov, a week before', 'Shown with: "Worked out the safe way; confirm with a legal adviser"'],
+        affects: ['Messages and automations (board 82): the email library', 'The client\'s CQC centre (board 5) shows the same dates', 'Deadlines (board 75) and the legal deadline alerts', 'Answer the regulator (board 76)'],
+        clients: 'Clients with a Notice of Proposal today: 1 (Sunrise, already emailed on Wed 21 Oct; not sent again). Used for every new Notice of Proposal once approved.',
+        href: 'Messages.dc.html', boardLabel: 'Open in Messages and automations (board 82)', approveLabel: 'Approve version 3', ph: 'For example: dates match the safe way of counting',
+        ok: 'Version 3 is used for every new Notice of Proposal. Emails already sent do not change. Daniel is told.', log: 'version 3 of email 5.2 Notice of Proposal' },
+      { id: 'ret', type: 'data', icon: 'file-clock', asker: 'collins', askerName: 'Collins',
+        title: 'Retention schedule, version 2',
+        change: 'Identity and DBS certificate images are deleted once the regulator has made its decision. A record stays: seen by, date, document type, DBS number and issue date.',
+        meta: 'Proposed by Collins as data protection lead, Fri 30 Oct. Waiting for Rachel Turner, the other super admin.',
+        extraLabel: 'The change', extra: ['Version 1: identity and DBS images kept until our work for the client ends', 'Version 2: deleted once the regulator decides, with a record kept', 'Everything else stays as in version 1', 'Deletions inside the schedule run automatically with 7 days\' notice'],
+        affects: ['Data and privacy (board 85): the schedule and the deletion runs', 'Your account (board 29) and How we keep your information safe (board 62): "How long we keep things"', 'Form received (board 13): the record kept after deletion', 'The privacy notice: a new version'],
+        clients: 'Applies to every client\'s identity and DBS images once their regulator decides.',
+        href: 'DataPrivacy.dc.html', boardLabel: 'Open in Data and privacy (board 85)', approveLabel: 'Approve version 2', ph: 'For example: we only need the number and issue date after the decision',
+        ok: 'Version 2 is live. The client privacy pages read the new wording. Collins is told.', log: 'version 2 of the retention schedule' }
+    ];
+    const set = (k, id, v) => this.setState({ [k]: Object.assign({}, s[k], { [id]: v }) });
+    const all = base.map((a, i) => {
+      const v = s.dec[a.id]; const r = (s.reasons[a.id] || '');
+      const own = !v && a.asker === me;
+      const isOpen = !!s.open[a.id];
+      const go = val => { if (!r.trim()) { set('errs', a.id, true); return; } this.setState({ dec: Object.assign({}, s.dec, { [a.id]: val }), by: Object.assign({}, s.by, { [a.id]: me }), errs: Object.assign({}, s.errs, { [a.id]: false }) }); };
+      const byName = names[s.by[a.id]] || meName;
+      return Object.assign({ isPerm: false, before: [], after: [] }, a, {
+        num: 'Decision ' + (i + 1) + ' of 7',
+        isOpen, exp: isOpen ? 'true' : 'false', toggle: () => set('open', a.id, !isOpen), toggleLabel: isOpen ? 'Close' : 'Open details',
+        own, canDecide: !v && !own, done: !!v, reason: r, err: !!s.errs[a.id], taId: 'r-' + a.id,
+        ownTitle: (a.asker === 'collins' ? 'Rachel' : 'Collins') + ' must approve this',
+        ownText: (a.id === 'price' ? 'You entered this price' : 'You proposed this change') + ', and nobody can approve their own request. It waits for ' + (a.asker === 'collins' ? 'Rachel Turner' : 'Collins') + '.',
+        remind: () => set('reminded', a.id, true), remindLabel: 'Remind ' + otherFirst,
+        remindNote: s.reminded[a.id] ? otherFirst + ' was reminded just now, in the Hub and by email.' : '',
+        onReason: e => this.setState({ reasons: Object.assign({}, s.reasons, { [a.id]: e.target.value }), errs: Object.assign({}, s.errs, { [a.id]: false }) }),
+        approve: () => go('yes'), decline: () => go('no'),
+        undo: () => { const d = Object.assign({}, s.dec); delete d[a.id]; this.setState({ dec: d }); },
+        chip: v ? (v === 'yes' ? 'Approved' : 'Declined') : (a.asker === me ? 'Waiting for ' + otherFirst : 'Waiting for you'),
+        chipCls: 'sb-chip ' + (v ? (v === 'yes' ? 'c-ok' : 'c-neutral') : (a.asker === me ? 'c-neutral' : 'c-warn')),
+        doneBox: v === 'yes' ? 'bz-ok' : 'bz-box',
+        doneText: v === 'yes' ? 'Approved by ' + byName + ', just now. ' + a.ok : 'Declined by ' + byName + ', just now. ' + a.askerName + ' is told, with the reason. Nothing changes.',
+        doneNote: 'Reason: "' + r.trim() + '". Written to the audit log.'
+      });
+    });
+    const pending = all.filter(a => !a.done).length;
+    const mine = all.filter(a => !a.done && !a.own).length;
+    const others = pending - mine;
+    const F = { all: null, money: ['money'], content: ['content'], people: ['people'], data: ['data'] };
+    const cnt = k => all.filter(a => !a.done && (!F[k] || F[k].includes(a.type))).length;
+    const decs = all.filter(a => !F[s.f] || F[s.f].includes(a.type));
+    const nav = [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', current: true, badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }];
+    if (pending) nav[1].items[0].badge = { text: String(pending), status: 'warning' }; else delete nav[1].items[0].badge;
+    const L = [
+      ['08:55', 'Jo Martin', 'asked to export the Tender Radar prospects list (140 rows); the data protection lead decides on Data and privacy'],
+      ['08:50', 'Collins', 'viewed Harbour Lane Care Ltd as Amara saw it on Fri 30 Oct, reason "Complaint check C-001". Read only; ended 09:02 (12 minutes)'],
+      ['08:25', 'Rachel Turner', 'suspended Sam Patel\'s access pending the incident review'],
+      ['08:10', 'Collins', 'started the breach assessment, as data protection lead, for Sam Patel\'s export; awareness time Mon 2 Nov 06:00'],
+      ['08:05', 'Jo Martin', 'asked for a discount for Lindenfield Care Ltd from Add a client'],
+      ['06:01', 'The Hub', 'paused Sam Patel\'s downloads and told both super admins'],
+      ['06:00', 'The Hub', 'flagged unusual activity: Sam Patel exported 38 client documents on Sun 1 Nov at 21:40'],
+      ['06:00', 'The Hub', 'gave 7 days\' notice of the Mon 9 Nov deletion run (14 identity documents, legal hold check clear)']
+    ];
+    const newLog = base.filter(a => s.dec[a.id]).map(a => ['09:20', names[s.by[a.id]] || meName, (s.dec[a.id] === 'yes' ? 'approved ' : 'declined ') + a.log + '. Reason: "' + (s.reasons[a.id] || '').trim() + '"']);
+    const unLog = s.un === 'look' ? [['09:20', meName, 'started a breach assessment for Femi Ade\'s new device sign-in']] : (s.un === 'fine' ? [['09:20', meName, 'marked Femi Ade\'s new device sign-in as expected. Reason: "' + s.unReason.trim() + '"']] : []);
+    const fixLog = s.fixSaved ? [['09:20', meName, 'changed Greenway Support\'s email address to ' + s.fix + '; the resend waits for Daniel to confirm it with Tunde']] : [];
+    const remLog = Object.keys(s.reminded).filter(k => s.reminded[k]).map(() => ['09:20', meName, 'sent ' + otherFirst + ' a reminder about a decision only ' + otherFirst + ' can make']);
+    const log = newLog.concat(unLog, fixLog, remLog, L).map(([at, who, what]) => ({ at, who, what }));
+    const unText = s.un === 'look' ? 'Breach assessment started on Security (board 84). The new device is paused until Femi confirms it. Collins leads it as data protection lead; Rachel Turner is told.' : (s.un === 'fine' ? 'Marked as expected: "' + s.unReason.trim() + '". Written to the audit log.' : 'Sun 1 Nov at 22:15, a new laptop. Two-step login passed. Femi opened the Xero sync page only. Usual: weekdays, on the office laptop.');
+    return {
+      theme: this.props.theme ?? 'light', n20: 20, nav,
+      user: me === 'collins' ? { name: 'Collins', initials: 'C' } : { name: 'Rachel Turner', initials: 'RT' },
+      three: pending,
+      asTabs: [['collins', 'Collins'], ['rachel', 'Rachel Turner']].map(([k, label]) => ({ label, on: me === k, off: me !== k, pick: () => this.setState({ as: k }) })),
+      greeting: 'Good morning, ' + (me === 'collins' ? 'Collins' : 'Rachel'),
+      headline: (pending === 0 ? 'No decisions are waiting.' : pending + (pending === 1 ? ' decision waits' : ' decisions wait') + ' for a super admin.') + ' 1 open incident, 68 hours 40 minutes left on the clock. 13 of 15 connections healthy.',
+      pendingVal: String(pending),
+      decSub: pending === 0 ? 'All decided' : (mine + ' you can decide' + (others ? ', ' + others + (others === 1 ? ' needs ' : ' need ') + otherFirst : '')),
+      decTabs: [['all', 'All'], ['money', 'Prices and discounts'], ['content', 'Forms and emails'], ['people', 'People'], ['data', 'Data']].map(([k, label]) => ({ label: label + ' ' + cnt(k), on: s.f === k, off: s.f !== k, pick: () => this.setState({ f: k }) })),
+      decs, noDecs: decs.length === 0,
+      kpis: [
+        ['Decisions waiting', String(pending), pending ? mine + ' you can decide' : 'All clear', pending ? 'warn' : 'ok', '#dc-h'],
+        ['Open incident', '68 h 40 min', 'To Thu 5 Nov 06:00', 'bad', 'SecurityCentre.dc.html'],
+        ['Connections', '13 of 15', '2 need attention', 'warn', 'Health.dc.html'],
+        ['Go-live readiness', '12 of 16', '4 still open', 'warn', 'GoLive.dc.html'],
+        ['People with access', '10', 'Sam Patel suspended, leaves Fri', 'neutral', 'PeopleAccess.dc.html']
+      ].map(([k, v, note, c, href]) => ({ k, v, note, href, cls: 'sb-chip c-' + c })),
+      mgr: [
+        ['Handover', 'Binnian Care Ltd: approve the handover', 'Grace asked Collins to approve the handover from onboarding to the case owner. A Northern Ireland company.', 'Handover.dc.html', 'Open handover'],
+        ['Bid work', 'Accept the bid work: Maple Court Care, Northshire Lot 2 South', 'Oakleaf Living already bids on Lot 1 North of the same framework, so a director accepts the work.', 'ManagerDash.dc.html', 'Open dashboard'],
+        ['Export', 'Jo Martin\'s export request: Tender Radar prospects list', '140 rows, contact details only, for Northshire outreach. Decided by the data protection lead (Collins) on Data and privacy. Not a super admin decision, and Jo cannot decide her own request.', 'DataPrivacy.dc.html', 'Open exports']
+      ].map(([kind, title, why, href, cta]) => ({ kind, title, why, href, cta })),
+      log,
+      attn: [
+        ['CQC email watch: Riverside Homecare', 'Login not in the vault for 10 days (red after ' + R.get('watch-gap-red-days', 7) + '). CQC emails to Mark are not seen.'],
+        ['Email delivery: Greenway Support', 'Tunde Bello\'s address bounced on Fri 30 Oct at 17:02.']
+      ].map(([k, v]) => ({ k, v })),
+      fixChip: s.fixSaved ? 'Waiting for Daniel' : 'Failed', fixChipCls: 'sb-chip ' + (s.fixSaved ? 'c-warn' : 'c-bad'),
+      showFix: s.showFix, showLog: s.showLog, fixExp: s.showFix ? 'true' : 'false', logExp: s.showLog ? 'true' : 'false',
+      toggleFix: () => this.setState({ showFix: !s.showFix }), toggleLog: () => this.setState({ showLog: !s.showLog }),
+      fixVal: s.fix, onFix: e => this.setState({ fix: e.target.value, fixSaved: false }), saveFix: () => this.setState({ fixSaved: true }),
+      fixNote: s.fixSaved ? 'Saved. The resend waits until Daniel confirms the address with Tunde by phone.' : 'The current address bounced. Check it with the client first.',
+      runLog: [['Fri 30 Oct 17:00', 'weekly update built from the week\'s progress'], ['17:01', 'sent to tunde@greenwaysupport.example'], ['17:02', 'bounced: the mailbox does not exist'], ['17:02', 'moved to Olu\'s outbox; Olu and Daniel told'], ['Mon 2 Nov 07:00', 'still waiting; Daniel covering this week']].map(([t, x]) => ({ t, x })),
+      healthLines: [['Automations', '46 on, 1 failed this week, 0 waiting to retry'], ['Backups', 'Nightly 02:00 done'], ['Restore test', 'Tue 13 Oct, passed. Next by Mon 11 Jan']].map(([k, v]) => ({ k, v })),
+      unCls: s.un ? (s.un === 'look' ? 'bz-inf' : 'bz-box') : 'bz-amb', unChip: s.un === 'look' ? 'Assessing' : (s.un === 'fine' ? 'Expected' : 'New'), unChipCls: 'sb-chip ' + (s.un === 'look' ? 'c-info' : (s.un === 'fine' ? 'c-ok' : 'c-warn')),
+      unText, unOpen: !s.un, unLooked: s.un === 'look', unAsking: s.unAsking, unAskExp: s.unAsking ? 'true' : 'false',
+      unLook: () => this.setState({ un: 'look', unAsking: false }), unAsk: () => this.setState({ unAsking: !s.unAsking }),
+      unReason: s.unReason, unErr: s.unErr, onUnReason: e => this.setState({ unReason: e.target.value, unErr: false }),
+      unFine: () => { if (!s.unReason.trim()) { this.setState({ unErr: true }); return; } this.setState({ un: 'fine', unAsking: false }); },
+      bgText: 'Break-glass: none in the last 30 days. It is for emergencies only: ' + bgHours + ' hours, approved by a super admin who is not the requester, both super admins and the client told the same day, reviewed within 1 working day.',
+      dataLines: [
+        ['Rights request: a former referee', 'Asks what Care Sync holds about them. Received Wed 28 Oct by email, identity checked. Due Fri 27 Nov.', 'Open', 'c-info'],
+        ['Deletion run: Mon 9 Nov', '14 identity documents from 3 closed clients (Fernhill, Northgate, Bluebell). Runs automatically after 7 days\' notice. Legal hold check clear.', 'Scheduled', 'c-neutral'],
+        ['Retention schedule', 'Version 1 live. Version 2, proposed by Collins, waits for Rachel Turner (decision 7).', 'Waiting', 'c-warn']
+      ].map(([k, v, chip, c]) => ({ k, v, chip, cls: 'sb-chip ' + c })),
+      golive: ['ICO registration number: not entered, so the Security page claim stays hidden', '6 prices still to set', 'Full start-up price check: ' + money(full) + ' or £8,000 (decision 1)', 'Trustpilot review link not yet added'],
+      rules: [
+        ['Weekly update', 'Every ' + day + ' by ' + R.get('weekly-update-time', '16:00')],
+        ['Reply to clients', 'Within ' + R.get('reply-client', '1 working day')],
+        ['Senior questions', 'Within ' + R.get('reply-senior', '2 working hours')],
+        ['Quiet hours', R.get('quiet-hours', '8pm to 8am') + ', automated emails and texts'],
+        ['Break-glass', 'Emergencies only, ' + bgHours + ' hours']
+      ].map(([k, v]) => ({ k, v })),
+      showSum: s.showSum, sumExp: s.showSum ? 'true' : 'false', toggleSum: () => this.setState({ showSum: !s.showSum }), sumLabel: s.showSum ? 'Hide' : 'Show',
+      summary: [
+        ['Decisions', '3 decided last week, all with a reason. 7 wait today: 5 Collins can decide, 2 need Rachel (the price Collins entered and the retention schedule Collins proposed).', 'c-info'],
+        ['Security', 'Sam Patel\'s Sunday night export, flagged 06:00 Monday. Now an incident being assessed.', 'c-bad'],
+        ['Access', 'Every vault reveal and copy had a reason. No break-glass. Cover for Olu\'s 4 clients approved by Rachel on Fri 30 Oct.', 'c-brand'],
+        ['Automations', '1,284 runs, 1 failure: the Greenway weekly update bounce.', 'c-bad'],
+        ['Connections', '13 of 15 healthy. CQC email watch needs Riverside\'s login (10 days). Greenway\'s address bounced.', 'c-warn'],
+        ['Prices', 'Full start-up ' + money(full) + ' + VAT entered by Collins on Mon 2 Nov, for Rachel to approve. 2 discount requests.', 'c-info'],
+        ['People', 'Olu on leave this week, Daniel covering. Sam Patel leaves Fri 6 Nov.', 'c-neutral'],
+        ['Data', '1 rights request open (due Fri 27 Nov). 14 identity documents to delete on Mon 9 Nov, legal hold check clear.', 'c-neutral']
+      ].map(([k, t, c]) => ({ k, t, cls: 'sb-chip ' + c })),
+      areas: [
+        ['Go-live readiness', 'Board 79', '12 of 16 setup checks done', 'list-checks', 'GoLive.dc.html'],
+        ['Rules and promises', 'Board 80', 'Every rule once, where it is used', 'clock', 'Rules.dc.html'],
+        ['Packages and journeys', 'Board 81', 'Packages, stages, gates, sessions', 'clipboard-list', 'Packages.dc.html'],
+        ['Price book', 'Board 77', '1 price and 2 discounts waiting', 'file-check', 'PriceBook.dc.html'],
+        ['Forms', 'Board 44', 'CQC form version 8 waiting', 'pencil-line', 'FormBuilder.dc.html'],
+        ['Messages and automations', 'Board 82', 'Email 5.2 version 3 waiting. 46 automations on', 'inbox', 'Messages.dc.html'],
+        ['People and access', 'Board 83', '10 people. 1 permission change waiting', 'users', 'PeopleAccess.dc.html'],
+        ['Security', 'Board 84', '1 open incident, assessing', 'shield-alert', 'SecurityCentre.dc.html'],
+        ['Data and privacy', 'Board 85', 'Retention version 2 waiting. 1 rights request', 'lock', 'DataPrivacy.dc.html'],
+        ['System health', 'Board 86', '13 of 15 connections healthy', 'refresh-cw', 'Health.dc.html'],
+        ['Money and exports', 'Board 87', 'Invoiced £9,600, collected £4,150, overdue £5,300 in 4 invoices', 'download', 'MoneyExports.dc.html'],
+        ['View as', 'Board 88', 'See a client\'s Hub as they saw it, with a reason', 'eye', 'ViewAs.dc.html'],
+        ['How it fits together', 'Board 89', 'From each setting to the screens that read it', 'git-compare', 'FitsTogether.dc.html']
+      ].map(([name, num, note, icon, href]) => ({ name, num, note, icon, href }))
+    };
+  }
+}
+</script>
+</body>
+</html>

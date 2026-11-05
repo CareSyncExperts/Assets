@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Sign in</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.si-btn{min-height:52px;border-radius:12px;font:inherit;font-size:17px;font-weight:500;cursor:pointer;width:100%}
+.si-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="height: 220px; background: var(--cs-surface-inverse); color: #FFFFFF; padding: 40px 24px 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;">
+    <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 12px; background: #AEFFEF; color: #004558; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600;">CS</span>
+    <span style="font-size: 26px; line-height: 34px; font-weight: 600;">Care Sync Hub</span>
+    <span style="font-size: 14px; line-height: 20px; color: #D0D5DD;">Everything about your journey, in one calm place</span>
+  </div>
+
+  <div style="padding: 28px 24px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <sc-if value="{{isEnter}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="si-email" style="font-size: 14px; line-height: 20px; font-weight: 500;">Your email</label>
+        <input id="si-email" value="amara@harbourlanecare.co.uk" inputmode="email" autocomplete="email" style="min-height: 52px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--cs-border-control); font: inherit; font-size: 17px; background: var(--cs-surface-raised); color: var(--cs-text-primary); box-sizing: border-box; width: 100%;">
+      </div>
+      <button class="si-btn" onClick="{{send}}" style="border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary);">Email me a sign-in link</button>
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary); text-align: center;">No password to remember. A phone or computer you have used before stays signed in for {{deviceDays}} days.</span>
+    </sc-if>
+
+    <sc-if value="{{isSent}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; padding-top: 8px;">
+        <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="CareSync.Icon" name="inbox" size="{{n24}}"></x-import></span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Check your email</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">We sent a link to amara@harbourlanecare.co.uk. Tap it on this phone and you are in.</span>
+        <button onClick="{{code}}" style="min-height: 44px; border: 0; background: transparent; color: var(--cs-text-brand); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">Demo: open the link on a new phone</button>
+        <button onClick="{{back}}" style="min-height: 44px; border: 0; background: transparent; color: var(--cs-text-brand); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">Use a different email</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isCode}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h1 style="margin: 0; font-size: 22px; line-height: 30px; font-weight: 600;">One more step on a new phone</h1>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Care Sync holds the login to your business email, so a link alone is not enough. We texted a code to your mobile ending 456. Only you can see it.</span>
+        <input aria-label="6-digit code" value="" placeholder="6-digit code" inputmode="numeric" autocomplete="one-time-code" style="min-height: 56px; padding: 0 16px; border-radius: 12px; border: 2px solid var(--cs-action-primary); font: inherit; font-size: 22px; letter-spacing: 6px; text-align: center; background: var(--cs-surface-raised); color: var(--cs-text-primary); box-sizing: border-box; width: 100%;">
+        <button onClick="{{back}}" style="min-height: 44px; border: 0; background: transparent; color: var(--cs-text-brand); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">Back</button>
+      </div>
+    </sc-if>
+
+    <a href="Ask.dc.html" style="margin-top: 8px; text-align: center; font-size: 14px; font-weight: 500;">Trouble signing in? We will help</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'enter' };
+  }
+  renderVals() {
+    const st = this.state.step;
+    return {
+      theme: this.props.theme ?? 'light', n24: 24, deviceDays: String(window.CSR ? CSR.get('client-device-days', 30) : 30),
+      isEnter: st === 'enter', isSent: st === 'sent', isCode: st === 'code',
+      send: () => this.setState({ step: 'sent' }), code: () => this.setState({ step: 'code' }), back: () => this.setState({ step: 'enter' })
+    };
+  }
+}
+</script>
+</body>
+</html>

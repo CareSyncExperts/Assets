@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Onboarding gates</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2460px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Onboarding" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a class="ob-link" href="OnboardingQueue.dc.html">Onboarding queue</a>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Harbour Lane Care Ltd</h1>
+            <span class="{{badgeCls}}">{{badge}}</span>
+          </div>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Stage 1 of 11: Welcome, onboarding checks. CQC, domiciliary care, Full start-up package. Paid and introduction call Mon 19 Oct. Form sent 19 Oct, arrived Thu 29 Oct. Grace owns it until a manager approves the handover.</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a class="ob-link" href="FormStaff.dc.html" style="min-height: 36px; display: inline-flex; align-items: center;">Open the form answers</a>
+          <a class="ob-link" href="AddressCheck.dc.html" style="min-height: 36px; display: inline-flex; align-items: center;">Address and identity check</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4"><div class="sb-card sb-kpi"><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.k}}</span></div></sc-for>
+      </div>
+      <div class="ob-lock" role="note"><span style="font-weight: 600;">Locked until a manager approves the handover:</span><span>application work (stages 2 to 6) and the 3 included sessions. Nothing starts while a gate is open.</span></div>
+      <section class="sb-card" aria-labelledby="gt-h">
+        <div class="sb-head"><h2 id="gt-h" class="sb-h2">Onboarding gates</h2><span class="sb-sub">The same 8 checks and results as the form check and the client's fix list. Every decision is logged with who and when.</span></div>
+          <sc-for list="{{gates}}" as="g" hint-placeholder-count="8">
+          <div class="{{g.rowCls}}">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <span class="g-num">{{g.n}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 500;">{{g.name}}</span><span class="{{g.chipCls}}">{{g.chip}}</span><sc-if value="{{g.hasAssign}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-info">{{g.assignText}}</span></sc-if></span>
+                <span class="sb-sub">{{g.text}}</span>
+                <span class="sb-muted">{{g.decided}}</span>
+              </span>
+              <span style="display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0;">
+                <button class="sb-btn b-gh" onClick="{{g.accept}}">Accept</button>
+                <button class="sb-btn b-gh" onClick="{{g.failOpen}}" aria-expanded="{{g.failExp}}">Fail with a reason</button>
+                <button class="sb-btn b-gh" onClick="{{g.assignOpen}}" aria-expanded="{{g.assignExp}}">Assign</button>
+              </span>
+            </div>
+            <sc-if value="{{g.failing}}" hint-placeholder-val="{{ false }}">
+              <div class="g-panel">
+                <label class="ob-k" for="{{g.fid}}">Reason (the client sees this wording on the fix list)</label>
+                <textarea class="ob-ta" id="{{g.fid}}" value="{{g.reasonVal}}" onChange="{{g.onReason}}"></textarea>
+                <span class="sb-muted">{{g.failNote}}</span>
+                <span style="display: flex; gap: 6px;"><button class="sb-btn b-pri" onClick="{{g.failSave}}">Save as Fail</button><button class="sb-btn b-gh" onClick="{{g.cancel}}">Cancel</button></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{g.assigning}}" hint-placeholder-val="{{ false }}">
+              <div class="g-panel">
+                <span class="ob-k">Who checks it</span>
+                <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{g.people}}" as="p" hint-placeholder-count="4"><button class="{{p.cls}}" aria-pressed="{{p.pressed}}" onClick="{{p.pick}}">{{p.label}}</button></sc-for></span>
+                <span class="ob-k">By when</span>
+                <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{g.dates}}" as="d" hint-placeholder-count="4"><button class="{{d.cls}}" aria-pressed="{{d.pressed}}" onClick="{{d.pick}}">{{d.label}}</button></sc-for></span>
+                <span style="display: flex; gap: 6px;"><button class="sb-btn b-pri" onClick="{{g.assignSave}}">{{g.assignLabel}}</button><button class="sb-btn b-gh" onClick="{{g.cancel}}">Cancel</button></span>
+              </div>
+            </sc-if>
+          </div>
+          </sc-for>
+        <div class="sb-row" style="align-items: flex-start;"><x-import component-from-global-scope="CareSync.Icon" name="info" size="{{n18}}"></x-import><span class="sb-sub" style="flex: 1; min-width: 0;">{{rulesNote}}</span></div>
+      </section>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 1 1 520px; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="fx-h">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap;"><h2 id="fx-h" class="sb-h2">Fix list for Amara</h2><span class="sb-sub">Made from the failed gates. Edit the wording before you send.</span></div>
+          <sc-for list="{{fixes}}" as="f" hint-placeholder-count="2">
+            <div class="ob-box">
+              <span style="display: flex; justify-content: space-between; gap: 8px; align-items: center;"><span class="ob-k">{{f.no}}. {{f.gate}}</span><sc-if value="{{f.manual}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" onClick="{{f.remove}}">Remove</button></sc-if></span>
+              <textarea class="ob-ta" aria-label="{{f.aria}}" value="{{f.text}}" onChange="{{f.edit}}"></textarea>
+            </div>
+          </sc-for>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input class="ob-in" aria-label="Add a manual item" placeholder="Add a manual item, for example: a clearer photo of page 2" value="{{newText}}" onChange="{{onNew}}">
+            <button class="sb-btn b-sec" onClick="{{addNew}}">Add item</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span class="ob-k">Due date for the client</span>
+            <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{dues}}" as="d" hint-placeholder-count="4"><button class="{{d.cls}}" aria-pressed="{{d.pressed}}" onClick="{{d.pick}}">{{d.label}}</button></sc-for></span>
+          </div>
+          <div class="ob-box">
+            <span style="font-weight: 500; font-size: 14px;">Already requested</span>
+            <span class="sb-sub">Landlord letter for Flat 2, 14 Harbour Road. Sent to Tom Reid on Fri 30 Oct. Not on Amara's list, so she is not asked twice.</span>
+            <div style="display: flex; gap: 6px;">
+              <sc-for list="{{track}}" as="t" hint-placeholder-count="4"><span class="{{t.cls}}"><span style="font-size: 12px; font-weight: 500;">{{t.k}}</span><span style="font-size: 12px;">{{t.v}}</span></span></sc-for>
+            </div>
+            <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-gh" onClick="{{nudge}}">{{nudgeLabel}}</button><span class="sb-muted">Landlord reminders go after 3 working days, then weekly: Tom's goes automatically on Wed 4 Nov. Recheck Thu 5 Nov.</span></span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            <button class="sb-btn b-pri" onClick="{{send}}">{{sendLabel}}</button>
+            <button class="sb-btn b-gh" onClick="{{togglePreview}}" aria-expanded="{{previewExp}}">{{previewLabel}}</button>
+          </div>
+          <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}"><div class="ob-ok" role="status">{{sentText}}</div></sc-if>
+          <sc-if value="{{preview}}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: center; width: 340px; max-width: 100%; border-radius: 20px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-page); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+              <span class="ob-k">Preview: what Amara sees on her phone</span>
+              <span style="font-size: 13px; color: var(--cs-status-warning-text); font-weight: 500;">Nearly there</span>
+              <span style="font-size: 20px; line-height: 28px; font-weight: 600;">{{pvTitle}}</span>
+              <sc-for list="{{fixes}}" as="f" hint-placeholder-count="2"><div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); font-size: 14px; line-height: 20px;">{{f.text}}</div></sc-for>
+              <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Still being checked: your landlord's letter. We asked Tom Reid on Fri 30 Oct. Nothing for you to do.</span>
+              <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{pvDue}}</span>
+            </div>
+          </sc-if>
+        </section>
+        <section class="sb-card" style="flex: 1 1 460px; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="ho-h">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap;"><h2 id="ho-h" class="sb-h2">Handover to the case owner</h2><span class="{{hoCls}}">{{hoChip}}</span></div>
+          <span class="ob-k">Proposed case owner (the manager confirms)</span>
+          <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{owners}}" as="o" hint-placeholder-count="4"><button class="{{o.cls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></span>
+          <span class="sb-sub">{{ownerLoad}}</span>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+            <span style="display: flex; flex-direction: column;"><span class="ob-k">Weekly update owner</span><span class="ob-v">{{weekly}}</span></span>
+            <span style="display: flex; flex-direction: column;"><span class="ob-k">Approves</span><span class="ob-v">Collins, director</span></span>
+          </div>
+          <div class="ob-box">
+            <span style="font-weight: 500; font-size: 14px;">Handover summary for the consultant</span>
+            <span class="ob-k">Key answers</span>
+            <span class="sb-sub">Amara Okafor: director and nominated individual. Kwame Okafor: second director (details to add). Ruth Bennett: proposed registered manager. Personal care, domiciliary care for adults 65+, dementia and physical disability. Office: Flat 2, 14 Harbour Road, rented.</span>
+            <span class="ob-k">Introduction call notes (Divine, Mon 19 Oct)</span>
+            <span class="sb-sub">Wants to start supporting people in the spring. A little nervous about the CQC interview. Asked about WhatsApp: it comes later, so email and the Hub for now. Landlord is friendly.</span>
+            <span class="ob-k">Open risks</span>
+            <span class="sb-sub">{{risks}}</span>
+          </div>
+          <button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{request}}">{{requestLabel}}</button>
+          <sc-if value="{{requested}}" hint-placeholder-val="{{ false }}"><div class="ob-warn" role="status">{{requestText}}</div></sc-if>
+          <span class="sb-muted">When Collins approves: the case owner and weekly update owner are set, Amara is told who her consultant is, stage 2 opens and the kick-off session can be booked. Not before.</span>
+        </section>
+      </div>
+      <section class="sb-card" style="padding: 18px 20px 10px;" aria-labelledby="hi-h">
+        <h2 id="hi-h" class="sb-h2" style="margin-bottom: 8px;">History</h2>
+        <sc-for list="{{log}}" as="l" hint-placeholder-count="6"><div class="ob-log"><span class="sb-muted" style="width: 110px; flex-shrink: 0;">{{l.at}}</span><span style="flex: 1; min-width: 0;"><span style="font-weight: 500; margin-right: 5px;">{{l.who}}</span><span>{{l.text}}</span></span></div></sc-for>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2460}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tick: 0, g: {}, log: [], fixes: [
+      { id: 'hl1', gate: 'Gate 1, Company and directors', text: "Please add Kwame Okafor's details as your second director. Companies House lists him, so CQC needs him on the form too." },
+      { id: 'hl5', gate: 'Gate 5, Employment history', text: "Please add one line to Ruth's CV explaining the gap from March to November 2019." }
+    ], due: 'Thu 5 Nov', newText: '', preview: false, sent: false, sentText: '', nudged: '', owner: 'daniel', requested: false, reqAt: '' };
+  }
+
+  now() { const t = 40 + (this.state.tick || 0); return 'Mon 2 Nov ' + (t < 60 ? '09:' + t : '10:' + String(t - 60).padStart(2, '0')); }
+  dates() { return ['Tue 3 Nov', 'Wed 4 Nov', 'Thu 5 Nov', 'Fri 6 Nov']; }
+
+  gateRows(G, key, fixes, client) {
+    const st = this.state;
+    const RES = { pass: ['Pass', 'sb-chip c-ok', ' g-pass'], fail: ['Fail', 'sb-chip c-bad', ' g-fail'], wait: ['Waiting', 'sb-chip c-warn', ' g-wait'] };
+    const PEOPLE = ['Grace', 'Daniel', 'Divine', 'Collins'];
+    const DATES = this.dates();
+    const upd = (n, patch) => Object.assign({}, st.g, { [key + n]: Object.assign({}, st.g[key + n] || {}, patch) });
+    return G.map(b => {
+      const o = Object.assign({}, b, st.g[key + b.n] || {});
+      const who = o.who || 'Daniel', when = o.when || DATES[1];
+      const draft = o.draft !== undefined ? o.draft : (o.reason || o.fixText || '');
+      const decided = o.res === 'wait' ? 'Waiting on ' + o.waitOn + ' since ' + o.at + '. Recheck ' + o.recheck + '. Logged' : (o.res === 'pass' ? 'Accepted by ' : 'Failed by ') + o.by + ', ' + o.at + '. Logged';
+      return {
+        n: String(o.n), name: o.name, text: o.text, chip: RES[o.res][0], chipCls: RES[o.res][1], rowCls: 'g-row' + RES[o.res][2],
+        decided: o.rec ? o.rec + ' ' + decided : decided,
+        hasAssign: !!o.assigned, assignText: o.assigned || '', fid: 'gr-' + key + o.n,
+        failing: o.mode === 'fail', assigning: o.mode === 'assign', failExp: String(o.mode === 'fail'), assignExp: String(o.mode === 'assign'),
+        reasonVal: draft, onReason: e => this.setState({ g: upd(o.n, { draft: e.target.value }) }),
+        failNote: o.noFix ? o.noFix : 'Saving adds this to the fix list for ' + client + '. You can still edit the wording there before sending.',
+        accept: () => this.logSet({ g: upd(o.n, { res: 'pass', by: 'Grace', at: this.now(), mode: null, rec: '' }), fixes: (st.fixes || []).filter(f => f.id !== key + o.n) }, 'accepted gate ' + o.n + ', ' + o.name),
+        failOpen: () => this.setState({ g: upd(o.n, { mode: o.mode === 'fail' ? null : 'fail' }) }),
+        assignOpen: () => this.setState({ g: upd(o.n, { mode: o.mode === 'assign' ? null : 'assign' }) }),
+        cancel: () => this.setState({ g: upd(o.n, { mode: null }) }),
+        failSave: () => {
+          const r = draft.trim() || 'Reason to be added';
+          const list = st.fixes || [];
+          const has = list.some(f => f.id === key + o.n);
+          const nf = o.noFix ? list : (has ? list.map(f => f.id === key + o.n ? Object.assign({}, f, { text: r }) : f) : list.concat([{ id: key + o.n, gate: 'Gate ' + o.n + ', ' + o.name, text: r }]));
+          this.logSet({ g: upd(o.n, { res: 'fail', by: 'Grace', at: this.now(), reason: r, mode: null, rec: '' }), fixes: nf }, 'failed gate ' + o.n + ', ' + o.name + ': ' + r);
+        },
+        people: PEOPLE.map(p => ({ label: p, cls: 'ob-pick ' + (who === p ? 'p-on' : 'p-off'), pressed: String(who === p), pick: () => this.setState({ g: upd(o.n, { who: p }) }) })),
+        dates: DATES.map(d => ({ label: d, cls: 'ob-pick ' + (when === d ? 'p-on' : 'p-off'), pressed: String(when === d), pick: () => this.setState({ g: upd(o.n, { when: d }) }) })),
+        assignLabel: 'Assign to ' + who + ', by ' + when,
+        assignSave: () => this.logSet({ g: upd(o.n, { assigned: who + ' checks it by ' + when, mode: null }) }, 'assigned gate ' + o.n + ' to ' + who + ', due ' + when)
+      };
+    });
+  }
+  logSet(patch, text) {
+    const st = this.state;
+    this.setState(Object.assign({ tick: st.tick + 1, log: [{ who: 'Grace', text, at: this.now() }].concat(st.log || []) }, patch));
+  }
+
+  renderVals() {
+    const st = this.state;
+    const G = [
+      { n: 1, name: 'Company and directors', res: 'fail', by: 'Grace', at: '30 Oct 11:05', text: 'Companies House shows 2 directors, Amara Okafor and Kwame Okafor. The form lists 1. Name, number and registered office match.', fixText: "Please add Kwame Okafor's details as your second director. Companies House lists him, so CQC needs him on the form too." },
+      { n: 2, name: 'Identity', res: 'pass', by: 'Grace', at: '30 Oct 10:20', text: "Amara's 3 identity documents checked: passport, driving licence photocard and council tax bill." },
+      { n: 3, name: 'Office address evidence', res: 'wait', by: 'Grace', at: '30 Oct 15:12', waitOn: 'the landlord, Tom Reid,', recheck: 'Thu 5 Nov', text: 'Office: Flat 2, 14 Harbour Road (rented). Tenancy received and matches. Landlord letter link sent to Tom Reid on Fri 30 Oct.', noFix: 'Already requested from Tom Reid on Fri 30 Oct, so it is never added to the client fix list again. Saving records the result only.' },
+      { n: 4, name: 'Registered manager', res: 'pass', by: 'Grace', at: '30 Oct 11:40', text: 'Ruth Bennett, a different person from Amara (nominated individual). CV received.' },
+      { n: 5, name: 'Employment history', res: 'fail', by: 'Grace', at: '30 Oct 11:45', text: "Ruth's CV has an unexplained gap, March to November 2019. Any gap longer than 4 weeks needs a line of explanation.", fixText: "Please add one line to Ruth's CV explaining the gap from March to November 2019." },
+      { n: 6, name: 'References', res: 'pass', by: 'Grace', at: '30 Oct 12:00', text: "The referee is Ruth's last employer, with permission for CQC to contact them." },
+      { n: 7, name: 'DBS', res: 'pass', by: 'Grace', at: '30 Oct 14:10', text: 'Ruth: Enhanced DBS with adult barred list, issued 14 Feb 2026, photo uploaded 30 Oct. Amara (nominated individual) has no DBS yet: we start her application, ID done.' },
+      { n: 8, name: 'Professional registers', res: 'pass', by: 'Grace', at: '30 Oct 14:20', rec: 'Register check recorded: Ruth is not on a register that applies.', text: 'Checked against the registers that could apply to Ruth. Result, date and checker are kept with the record.' }
+    ];
+    const gates = this.gateRows(G, 'hl', st.fixes, 'Amara');
+    const res = G.map(b => (st.g['hl' + b.n] || {}).res || b.res);
+    const nPass = res.filter(r => r === 'pass').length, nWait = res.filter(r => r === 'wait').length, nFail = res.filter(r => r === 'fail').length;
+    const open = 8 - nPass;
+    const n = st.fixes.length;
+    const fixes = st.fixes.map((f, i) => ({ no: String(i + 1), gate: f.gate, text: f.text, manual: !!f.manual, aria: 'Fix list item ' + (i + 1),
+      edit: e => { const a = st.fixes.slice(); a[i] = Object.assign({}, f, { text: e.target.value }); this.setState({ fixes: a }); },
+      remove: () => this.logSet({ fixes: st.fixes.filter((x, j) => j !== i) }, 'removed a manual item from the fix list') }));
+    const O = [['daniel', 'Daniel', 'Daniel: 6 active, covering 4 this week for Olu. Harbour Lane would be his 7th own client.'], ['olu', 'Olu', 'Olu: on leave Mon 2 to Fri 6 November. 4 active clients, covered by Daniel this week.'], ['sam', 'Sam Patel', 'Sam Patel: leaving Friday 6 November, so not taking new clients.']];
+    const ow = O.find(x => x[0] === st.owner);
+    const risks = [nWait ? 'Landlord letter still with Tom Reid (gate 3).' : '', nFail ? nFail + (nFail === 1 ? ' fix' : ' fixes') + ' open with the client.' : '', 'Amara has no DBS yet: we start her application, ID done.'].filter(Boolean).join(' ');
+    const GR = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const rulesNote = 'Rules from Rules and promises (board 80): any gap longer than ' + GR('cv-gap-weeks', 4) + ' weeks on a CV needs a line of explanation. Documents that expire (DBS, insurance, right to work) get a warning ' + GR('expiry-warning-weeks', 6) + ' weeks before. Form reminders ' + GR('form-reminders', 'after 2 days and 4 days; Grace calls on day 6; then weekly') + '. Landlord and referee reminders ' + GR('third-party-reminders', 'after 3 working days, then weekly') + '. Documents: reminders ' + GR('document-reminders', 'after 3 days, then weekly') + '.';
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n18: 18, user: { name: 'Grace Whitfield', initials: 'GW' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks', current: true },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }], rulesNote,
+      gates, badge: nPass + ' of 8 passed', badgeCls: 'sb-chip ' + (open ? 'c-warn' : 'c-ok'),
+      kpis: [[nPass + ' of 8', 'gates passed'], [String(nWait), 'waiting on the landlord'], [String(nFail), 'to fix by the client'], ['14', 'days in onboarding, since Mon 19 Oct']].map(([v, k]) => ({ v, k })),
+      fixes, newText: st.newText, onNew: e => this.setState({ newText: e.target.value }),
+      addNew: () => { const t = st.newText.trim(); if (!t) return; this.logSet({ fixes: st.fixes.concat([{ id: 'm' + st.tick, gate: 'Added by Grace', text: t, manual: true }]), newText: '' }, 'added a manual item to the fix list'); },
+      dues: ['Thu 5 Nov', 'Fri 6 Nov', 'Mon 9 Nov'].map(d => ({ label: d, cls: 'ob-pick ' + (st.due === d ? 'p-on' : 'p-off'), pressed: String(st.due === d), pick: () => this.setState({ due: d }) })),
+      track: [['Sent', 'Fri 30 Oct 15:12', true], ['Opened', 'Sat 31 Oct 09:14', true], ['Uploaded', 'Not yet', false], ['Accepted', 'Not yet', false]].map(([k, v, d]) => ({ k, v, cls: 'ob-step ' + (d ? 's-done' : 's-todo') })),
+      nudge: () => { if (st.nudged) return; this.logSet({ nudged: this.now() }, 'nudged Tom Reid about the landlord letter'); },
+      nudgeLabel: st.nudged ? 'Nudge sent to Tom, ' + st.nudged : 'Nudge Tom',
+      sendLabel: (st.sent ? 'Send again (' : 'Send fix list (') + n + ')',
+      send: () => { if (!n) return; this.logSet({ sent: true, sentText: 'Sent to Amara, ' + this.now() + '. ' + n + (n === 1 ? ' item' : ' items') + ', due ' + st.due + '. She sees it on her Today page and by email.' }, 'sent the fix list (' + n + ') to Amara, due ' + st.due); },
+      sent: st.sent, sentText: st.sentText,
+      preview: st.preview, previewExp: String(st.preview), previewLabel: st.preview ? 'Hide the preview' : 'Preview as the client',
+      togglePreview: () => this.setState({ preview: !st.preview }),
+      pvTitle: n + (n === 1 ? ' small thing to fix' : ' small things to fix'), pvDue: 'Please reply by ' + st.due + '. Not sure? Tap Ask and Grace will help.',
+      owners: O.map(([k, label]) => ({ label, cls: 'ob-pick ' + (st.owner === k ? 'p-on' : 'p-off'), pressed: String(st.owner === k), pick: () => this.setState({ owner: k }) })),
+      ownerLoad: ow[2], weekly: 'Grace until handover, then ' + ow[1],
+      hoChip: st.requested ? 'Waiting for Collins' : 'Not requested yet', hoCls: 'sb-chip ' + (st.requested ? 'c-warn' : 'c-neutral'),
+      risks, requested: st.requested,
+      requestLabel: st.requested ? 'Approval requested' : 'Request manager approval',
+      request: () => { if (st.requested) return; this.logSet({ requested: true, reqAt: this.now() }, 'asked Collins to approve the handover to ' + ow[1]); },
+      requestText: 'Sent to Collins, ' + st.reqAt + ', proposing ' + ow[1] + '. ' + (open ? 'Collins can approve only when all 8 gates pass: ' + open + ' still open. ' + ow[1] + ' can read this summary now, but does not start.' : 'All 8 gates have passed, so Collins can approve now.'),
+      log: st.log.concat([
+        { who: 'Tom Reid', text: 'opened the landlord letter link', at: 'Sat 31 Oct 09:14' },
+        { who: 'Grace', text: 'sent the landlord letter link to Tom Reid for Flat 2, 14 Harbour Road', at: 'Fri 30 Oct 15:12' },
+        { who: 'Grace', text: "recorded the register check for Ruth: not on a register that applies", at: 'Fri 30 Oct 14:20' },
+        { who: 'Grace', text: "accepted Ruth's DBS: Enhanced with adult barred list, issued 14 Feb 2026", at: 'Fri 30 Oct 14:10' },
+        { who: 'Grace', text: "failed gate 5: gap on Ruth's CV, March to November 2019", at: 'Fri 30 Oct 11:45' },
+        { who: 'Grace', text: 'failed gate 1: Companies House shows 2 directors, the form lists 1', at: 'Fri 30 Oct 11:05' },
+        { who: 'Grace', text: "accepted Amara's 3 identity documents", at: 'Fri 30 Oct 10:20' },
+        { who: 'Amara', text: 'sent the onboarding form, signed electronically', at: 'Thu 29 Oct 21:46' },
+        { who: 'Divine', text: 'made the introduction call. The onboarding form was sent straight after', at: 'Mon 19 Oct' }
+      ])
+    };
+  }
+}
+</script>
+</body>
+</html>

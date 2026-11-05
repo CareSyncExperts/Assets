@@ -1,0 +1,359 @@
+# View as and history (board 88), built by samessages.py.
+import sys
+from staffboard import build_sa
+
+CSS88 = '''
+.ph{width:340px;flex-shrink:0;border-radius:28px;border:8px solid var(--cs-grey-900);background:var(--cs-surface-page);overflow:hidden;display:flex;flex-direction:column}
+.ph-in{padding:16px 14px 18px;display:flex;flex-direction:column;gap:12px}
+.ph-hero{background:var(--cs-teal-800);color:#FFFFFF;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.ph-seg{display:flex;gap:3px}
+.ph-seg span{flex:1;height:4px;border-radius:999px;background:rgba(255,255,255,0.25)}
+.ph-seg span.on{background:var(--cs-mint-300)}
+.ph-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.ph-it{padding:10px 12px;display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ph-h{font-size:15px;line-height:22px;font-weight:500;margin:4px 2px 0}
+.mk{width:22px;height:22px;border-radius:999px;flex-shrink:0;background:var(--cs-status-warning-text);color:var(--cs-surface-raised);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.mk-none{display:none}
+.va-ban{padding:10px 14px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:19px}
+.va-end{background:var(--cs-surface-subtle);color:var(--cs-text-primary)}
+.tl-day{padding:10px 20px 6px;font-size:12px;line-height:16px;font-weight:600;color:var(--cs-text-muted);border-top:1px solid var(--cs-border-subtle);background:var(--cs-surface-subtle)}
+.tl{display:grid;grid-template-columns:56px 150px minmax(0,1fr);gap:12px;padding:10px 20px;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:19px;align-items:start}
+.tl-q{font-style:italic;color:var(--cs-text-secondary)}
+.cp-step{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:19px}
+.dot{width:22px;height:22px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.dot-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.dot-now{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.dot-todo{background:var(--cs-surface-subtle);color:var(--cs-text-muted)}
+'''
+
+B88 = '''      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">View as and history</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">See the Hub exactly as a client or a member of staff saw it, now or on a past date. Read only, logged, and shown to the client. One history per client, and the complaints register.</span>
+        </div>
+        <span class="sb-sub">Signed in as Collins, super admin 1. Mon 2 Nov</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.label}}</span><span class="sb-kv">{{k.value}}</span><span class="sb-sub">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+      <div role="tablist" aria-label="Show" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3"><button class="{{tb.cls}}" role="tab" aria-selected="{{tb.sel}}" onClick="{{tb.pick}}">{{tb.label}}</button></sc-for>
+      </div>
+
+      <sc-if value="{{isView}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 1 1 360px; min-width: 0;" aria-labelledby="st-h">
+          <div class="sb-head"><h2 id="st-h" class="sb-h2">Start a view</h2><span class="sb-sub">Super admins only</span></div>
+          <div style="padding: 0 20px 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;"><span class="sb-th">Whose Hub</span>
+              <div class="chips"><sc-for list="{{kinds}}" as="c" hint-placeholder-count="2"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><span class="sb-th">Person</span>
+              <div class="chips"><sc-for list="{{people}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><span class="sb-th">When</span>
+              <div class="chips"><sc-for list="{{whens}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div>
+              <span class="sb-muted">A past date is rebuilt from the history: what the screen showed at that moment.</span></div>
+            <label for="va-r" class="sb-th">Reason (required). The client sees it on their privacy page</label>
+            <textarea id="va-r" class="ta ta-sm" placeholder="For example: Complaint check C-001" value="{{reason}}" onChange="{{onReason}}"></textarea>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{start}}">{{startLabel}}</button><sc-if value="{{started}}" hint-placeholder-val="{{ true }}"><button class="sb-btn b-gh" onClick="{{end}}">End view</button></sc-if></div>
+            <sc-if value="{{msg}}" hint-placeholder-val="{{ false }}"><div class="box bx-warn">{{msg}}</div></sc-if>
+            <div class="box bx-plain"><span class="sb-th">Every view</span><sc-for list="{{rules}}" as="r" hint-placeholder-count="5"><span class="sb-sub">{{r}}</span></sc-for></div>
+          </div>
+        </section>
+        <section class="sb-card" style="flex: 2 1 640px; min-width: 0;" aria-labelledby="pr-h">
+          <div class="sb-head"><h2 id="pr-h" class="sb-h2">{{prevTitle}}</h2><span class="{{stateCls}}">{{stateChip}}</span></div>
+          <div style="padding: 0 20px 20px; display: flex; flex-direction: column; gap: 14px;">
+            <sc-if value="{{showMock}}" hint-placeholder-val="{{ true }}">
+            <div class="{{banCls}}" role="status"><x-import component-from-global-scope="CareSync.Icon" name="eye" size="{{n16}}"></x-import><span>{{banner}}</span></div>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+              <sc-if value="{{isClientMock}}" hint-placeholder-val="{{ true }}">
+              <div class="ph" aria-label="Read-only preview of the client's Today screen">
+                <div class="ph-in">
+                  <div style="display: flex; justify-content: space-between; align-items: center;"><span style="display: flex; flex-direction: column;"><span class="sb-muted">{{m.date}}</span><span style="font-size: 20px; line-height: 26px; font-weight: 600;">{{m.greet}}</span></span><span style="width: 36px; height: 36px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">{{m.ini}}</span></div>
+                  <div class="ph-hero"><span style="font-size: 11px; line-height: 16px; opacity: 0.85;">{{m.pkg}}</span><span style="font-size: 17px; line-height: 23px; font-weight: 600;">{{m.company}}</span><div class="ph-seg"><sc-for list="{{m.segs}}" as="g" hint-placeholder-count="11"><span class="{{g}}"></span></sc-for></div><span style="font-size: 13px; line-height: 18px;">{{m.stage}}</span></div>
+                  <span class="ph-h">{{m.youTitle}}</span>
+                  <div class="ph-card"><sc-for list="{{m.you}}" as="i" hint-placeholder-count="2"><div class="ph-it" style="border-top: 0;"><span class="{{i.mk}}">{{i.flag}}</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{i.t}}</span><span class="sb-muted">{{i.d}}</span></span></div></sc-for></div>
+                  <span class="ph-h">Waiting on others</span>
+                  <div class="ph-card"><sc-for list="{{m.others}}" as="i" hint-placeholder-count="1"><div class="ph-it" style="border-top: 0;"><span class="{{i.mk}}">{{i.flag}}</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{i.t}}</span><span class="sb-muted">{{i.d}}</span></span></div></sc-for></div>
+                  <span class="ph-h">Latest from us</span>
+                  <div class="ph-card"><sc-for list="{{m.latest}}" as="i" hint-placeholder-count="1"><div class="ph-it" style="border-top: 0;"><span class="{{i.mk}}">{{i.flag}}</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{i.t}}</span><span class="sb-muted">{{i.d}}</span></span></div></sc-for></div>
+                </div>
+              </div>
+              </sc-if>
+              <sc-if value="{{isStaffMock}}" hint-placeholder-val="{{ false }}">
+              <div class="em-frame" style="flex: 1 1 340px; min-width: 0;">
+                <div class="em-meta" style="grid-template-columns: 1fr;"><span style="font-weight: 500;">{{sm.title}}</span><span class="sb-muted">{{sm.sub}}</span></div>
+                <sc-for list="{{sm.items}}" as="i" hint-placeholder-count="4"><div class="sg-row" style="padding: 10px 16px;"><span class="{{i.cls}}">{{i.k}}</span><span class="sb-sub" style="flex: 1;">{{i.v}}</span></div></sc-for>
+              </div>
+              </sc-if>
+              <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+                <div class="{{note.cls}}"><span style="font-weight: 500;">{{note.t}}</span><sc-for list="{{note.lines}}" as="l" hint-placeholder-count="2"><span>{{l}}</span></sc-for></div>
+                <div class="box bx-plain"><span style="font-weight: 500;">{{privTitle}}</span>
+                  <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="width: 32px; height: 32px; border-radius: 999px; background: var(--cs-surface-subtle); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><x-import component-from-global-scope="CareSync.Icon" name="eye" size="{{n16}}"></x-import></span><span style="display: flex; flex-direction: column;"><span><b style="font-weight: 500;">Collins</b> {{privText}}</span><span class="sb-muted">{{privWhen}}</span></span></div>
+                  <span class="sb-muted">{{privNote}}</span>
+                </div>
+                <div class="box bx-plain"><span style="font-weight: 500;">Audit log entry (Security, board 84)</span><span class="sb-sub">{{audit}}</span></div>
+              </div>
+            </div>
+            </sc-if>
+            <sc-if value="{{notStarted}}" hint-placeholder-val="{{ false }}"><div class="box bx-plain"><span style="font-weight: 500;">No view open</span><span class="sb-sub">To look again, choose a person, a time and a reason on the left, then start a new view. Nothing is shown until the reason is written.</span></div></sc-if>
+          </div>
+        </section>
+      </div>
+      <section class="sb-card" aria-labelledby="ss-h">
+        <div class="sb-head"><h2 id="ss-h" class="sb-h2">View-as sessions, last 30 days</h2><span class="sb-sub">The same list is in Security (board 84)</span></div>
+        <div class="tl" style="grid-template-columns: 120px 140px minmax(0,1.2fr) minmax(0,1.6fr) 120px; padding-top: 4px; border-top: 0;"><span class="sb-th">When</span><span class="sb-th">Who</span><span class="sb-th">Whose Hub, as at</span><span class="sb-th">Reason</span><span class="sb-th">Length</span></div>
+        <sc-for list="{{sessions}}" as="x" hint-placeholder-count="2">
+          <div class="tl" style="grid-template-columns: 120px 140px minmax(0,1.2fr) minmax(0,1.6fr) 120px;"><span>{{x.at}}</span><span>{{x.who}}</span><span>{{x.whom}}</span><span class="sb-sub">{{x.why}}</span><span class="{{x.cls}}">{{x.len}}</span></div>
+        </sc-for>
+      </section>
+      </sc-if>
+
+      <sc-if value="{{isHist}}" hint-placeholder-val="{{ false }}">
+      <section class="sb-card" aria-labelledby="hi-h">
+        <div class="sb-head">
+          <div style="display: flex; flex-direction: column; gap: 2px;"><h2 id="hi-h" class="sb-h2">Communication history: {{histClient}}</h2><span class="sb-sub">Emails, texts, calls, Hub messages, documents, checks, decisions and every look, in one timeline. WhatsApp joins when it is switched on (later phase).</span></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"><div class="chips"><sc-for list="{{hclients}}" as="c" hint-placeholder-count="3"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div><button class="sb-btn b-gh" onClick="{{exportH}}">Export as PDF</button></div>
+        </div>
+        <div style="padding: 0 20px 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"><div class="chips"><sc-for list="{{hfilts}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div><span class="sb-muted">{{exportMsg}}</span></div>
+        <sc-if value="{{histFlag}}" hint-placeholder-val="{{ false }}"><div style="padding: 0 20px 12px;"><div class="box bx-warn"><span style="font-weight: 500;">Two different messages on the same day</span><span>{{histFlag}}</span></div></div></sc-if>
+        <sc-for list="{{hdays}}" as="d" hint-placeholder-count="5">
+          <div class="tl-day">{{d.day}}</div>
+          <sc-for list="{{d.items}}" as="i" hint-placeholder-count="3">
+            <div class="tl"><span class="num">{{i.time}}</span><span style="display: flex; flex-direction: column; gap: 4px;"><span class="{{i.cls}}">{{i.type}}</span><span class="sb-muted">{{i.who}}</span></span>
+              <span style="display: flex; flex-direction: column; gap: 3px;"><span style="font-weight: 500;">{{i.t}}</span><sc-if value="{{i.d}}" hint-placeholder-val="{{ true }}"><span class="{{i.dcls}}">{{i.d}}</span></sc-if><sc-if value="{{i.flag}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-warn" style="align-self: flex-start; white-space: normal;">{{i.flag}}</span></sc-if></span></div>
+          </sc-for>
+        </sc-for>
+      </section>
+      </sc-if>
+
+      <sc-if value="{{isComp}}" hint-placeholder-val="{{ false }}">
+      <section class="sb-card" aria-labelledby="cr-h">
+        <div class="sb-head"><div style="display: flex; flex-direction: column; gap: 2px;"><h2 id="cr-h" class="sb-h2">Complaints register</h2><span class="sb-sub">Complaints about Care Sync's own service, since go-live on Thu 1 Oct. Reviewed by the directors every month; next review Mon 30 Nov.</span></div><span class="sb-chip c-brand">Locked rule: acknowledge in 1 working day</span></div>
+        <div class="tl" style="grid-template-columns: 70px minmax(0,1.3fr) minmax(0,1.6fr) 130px 150px 130px 120px; padding-top: 4px; border-top: 0;"><span class="sb-th">Ref</span><span class="sb-th">Client</span><span class="sb-th">What it is about</span><span class="sb-th">Handler</span><span class="sb-th">Acknowledged</span><span class="sb-th">Full reply due</span><span class="sb-th">Status</span></div>
+        <div class="tl" style="grid-template-columns: 70px minmax(0,1.3fr) minmax(0,1.6fr) 130px 150px 130px 120px; background: var(--cs-surface-brand);"><span class="num">C-001</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">Harbour Lane Care Ltd</span><span class="sb-muted">Amara Okafor, received Sat 31 Oct 10:02</span></span><span>Told two different things about the landlord letter</span><span>Rachel Turner</span><span style="display: flex; flex-direction: column; gap: 3px;"><span>Sat 31 Oct 10:03</span><span class="sb-chip c-ok" style="align-self: flex-start;">Within 1 working day</span></span><span>Fri 27 Nov</span><span class="{{cStatusCls}}">{{cStatus}}</span></div>
+        <div style="padding: 16px 20px 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; border-top: 1px solid var(--cs-border-subtle);">
+          <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+            <div class="kv">
+              <span class="kv-k">Raised by</span><span>Amara Okafor, director, with "Raise a concern" in her Hub</span>
+              <span class="kv-k">Her words</span><span class="tl-q">"Friday's email said I needed 3 things, including a letter from my landlord. Now the Hub says you asked Tom yourselves and there is nothing for me to do. Which is right? I had already messaged Tom."</span>
+              <span class="kv-k">About</span><span>Email 2.3 (automatic, Fri 30 Oct 08:00) and the Hub after Grace sent the link to Tom Reid (15:12)</span>
+              <span class="kv-k">Went to</span><span>Collins, director. Not the person complained about</span>
+              <span class="kv-k">Handler</span><span>Rachel Turner, operations manager. Not involved in Harbour Lane's work</span>
+              <span class="kv-k">Acknowledged</span><span>Sat 31 Oct 10:03, email 9.2. Due by Mon 2 Nov 17:30 (1 working day)</span>
+              <span class="kv-k">Full reply due</span><span>Fri 27 Nov: 20 working days, counting Mon 2 Nov as day 1</span>
+            </div>
+            <div class="box bx-plain"><span style="font-weight: 500;">Steps</span>
+              <sc-for list="{{steps}}" as="p" hint-placeholder-count="6"><div class="cp-step"><span class="{{p.cls}}">{{p.n}}</span><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{p.t}}</span><span class="sb-muted">{{p.d}}</span></span><span class="sb-muted">{{p.when}}</span></div></sc-for>
+            </div>
+          </div>
+          <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <span class="sb-th">What we found (from View as and the history)</span>
+            <div class="box bx-plain"><span>Both messages were real. At 08:00 the automatic email 2.3 counted the landlord letter as one of Amara's 3 things. At 15:12 Grace sent the letter request to Tom Reid herself, and the Hub said there was nothing for Amara to do. The email was never corrected.</span></div>
+            <span class="sb-th">Outcome</span>
+            <div class="chips"><sc-for list="{{outcomes}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" aria-pressed="{{c.sel}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div>
+            <label for="c-l" class="sb-th">Lesson learned</label>
+            <textarea id="c-l" class="ta ta-sm" style="min-height: 92px;" placeholder="What we change so it does not happen again" value="{{lesson}}" onChange="{{onLesson}}"></textarea>
+            <span class="sb-muted">Suggested: email 2.3 lists only things a person has confirmed, and never anything we have asked someone else for. Rule A05 in Messages and automations (board 82).</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{saveC}}">Save outcome and lesson</button><button class="sb-btn b-gh" onClick="{{useSug}}">Use the suggestion</button></div>
+            <sc-if value="{{cMsg}}" hint-placeholder-val="{{ false }}"><div class="{{cMsgCls}}">{{cMsg}}</div></sc-if>
+            <span class="sb-muted">The complaint closes only after the full reply is sent. Outcomes and lessons feed the monthly directors' review and Reports (board 72).</span>
+          </div>
+        </div>
+      </section>
+      </sc-if>
+'''
+
+S88 = r'''const BOARDS = __BOARDS__;
+const M = {
+  amara: {
+    now: { date: 'Monday 2 November', greet: 'Good morning, Amara', stage: 'Stage 1 of 11: Welcome. Onboarding checks', youTitle: 'Waiting on you',
+      you: [['Nothing right now', 'Grace is confirming 2 things from your form. She will send you a short list today.', '']],
+      others: [['Your landlord\'s letter', 'We asked Tom Reid on Fri 30 Oct. He opened the link on Sat 31 Oct. Nothing for you to do.', '']],
+      latest: [['We have received your concern', 'Sat 31 Oct, 10:03. Collins, a director, will be in touch by Mon 2 Nov.', '']],
+      note: ['bx-ok', 'Today the Hub and the emails agree', ['The fix list (2 items) goes to Amara today. The landlord letter is not on it: it is with Tom Reid.']] },
+    fri18: { date: 'Friday 30 October', greet: 'Good evening, Amara', stage: 'Stage 1 of 11: Welcome. Onboarding checks', youTitle: 'Waiting on you',
+      you: [['Nothing right now', 'Grace is confirming 2 things from your form. She will send you a short list.', '']],
+      others: [['Your landlord\'s letter', 'We asked Tom Reid on Fri 30 Oct. Nothing for you to do.', 'A']],
+      latest: [['Thank you, we have your form', 'Email, Fri 30 Oct 08:00: "We need 3 small things from you."', 'B']],
+      note: ['bx-warn', 'A and B disagree. This is what the complaint is about', ['B: at 08:00 the automatic email 2.3 counted the landlord letter as one of Amara\'s 3 things.', 'A: at 15:12 Grace sent the request to Tom Reid, and the Hub said there was nothing for Amara to do. The email was never corrected.']] },
+    fri09: { date: 'Friday 30 October', greet: 'Good morning, Amara', stage: 'Stage 1 of 11: Welcome. Onboarding checks', youTitle: '3 small things may need you',
+      you: [['Kwame Okafor\'s details', 'Companies House shows a second director', ''], ['A line about the gap on Ruth\'s CV', 'March to November 2019', ''], ['Your landlord\'s letter', 'Ask your landlord for a short letter about the office', 'B']],
+      others: [['Nobody else right now', 'We tell you here when we ask someone for you', '']],
+      latest: [['Thank you, we have your form', 'Email, Fri 30 Oct 08:00: "We need 3 small things from you."', 'B']],
+      note: ['bx-plain', 'At 09:00 the Hub and the email agreed', ['Both said the landlord letter was Amara\'s job. These 3 came from the automatic checks; Grace had not confirmed them yet.']] },
+    thu22: { date: 'Thursday 29 October', greet: 'Good evening, Amara', stage: 'Stage 1 of 11: Welcome. Form received', youTitle: 'Waiting on you',
+      you: [['Nothing right now', 'Thank you, we have your form. We are checking it now.', '']],
+      others: [['Nobody else right now', 'We tell you here when we ask someone for you', '']],
+      latest: [['Your form is in', 'Sent Thu 29 Oct at 21:46. Our email waits until 8am (quiet hours).', '']],
+      note: ['bx-plain', 'Before the email went', ['Nothing contradicted anything yet. Email 2.3 was held by quiet hours until 08:00.']] }
+  },
+  ruth: { date: 'Monday 2 November', greet: 'Good morning, Ruth', stage: 'Your part: registered manager', youTitle: 'Waiting on you',
+    you: [['Nothing right now', 'Your part is done. Thank you.', '']], others: [['Interview practice', 'Comes after the handover, with Millicent', '']], latest: [['Your DBS is checked', 'Fri 30 Oct', '']],
+    note: ['bx-plain', 'Ruth sees only her own tasks', ['As the registered manager she cannot see Amara\'s money, logins or other documents.']] },
+  priya: { date: 'Monday 2 November', greet: 'Good morning, Priya', stage: 'Stage 10 of 11: Notice of Proposal', youTitle: 'Waiting on you',
+    you: [['Coming soon: approve your response', 'Ready for you by Mon 9 Nov. We aim to send it by Tue 10 Nov.', '']], others: [['We are drafting your response to CQC', 'Legal deadline Tue 17 Nov, worked out the safe way', '']], latest: [['CQC has written to you, and we have a plan', 'Email, Wed 21 Oct', '']],
+    note: ['bx-plain', 'Matches email 5.2 and the Deadlines board', ['Same dates everywhere: served Wed 21 Oct, our target Tue 10 Nov, legal deadline Tue 17 Nov.']] },
+  tunde: { date: 'Monday 2 November', greet: 'Good morning, Tunde', stage: 'Stage 3 of 11: Your documents', youTitle: 'Waiting on you',
+    you: [['3 documents we need', 'Each one is a photo', '']], others: [['Nobody else right now', 'We tell you here when we ask someone for you', '']], latest: [['Your weekly update', 'Fri 30 Oct. In your Hub; the email did not arrive', '']],
+    note: ['bx-warn', 'The email bounced, the Hub did not', ['Tunde\'s weekly update is in his Hub, but the email bounced on Fri 30 Oct at 17:02. Daniel confirms the new address by phone (Messages and automations, A16).']] }
+};
+const STAFF = {
+  daniel: ['Daniel Mensah, consultant: My day', 'Sees 13 clients: his 6, 2 in aftercare, 4 covering for Olu, 1 coming from onboarding', [['Covering', 'Riverside, Greenway, Lagan View, Willow Bank, with vault reveal until Fri 6 Nov 17:30'], ['Today', 'Session 2 with Bright Path at 10:00. Riverside CQC email login missing 10 days. Greenway bounce'], ['Questions', '2 assigned to Daniel'], ['Cannot see', 'Clients outside his list, prices, people and access']]],
+  grace: ['Grace Whitfield, onboarding lead: Onboarding', 'Sees the 6 clients in onboarding and every form', [['Harbour Lane', 'Send the fix list (2). Landlord letter with Tom Reid'], ['Meadow View', 'Form goes after Divine\'s call'], ['Cannot see', 'Clients after handover, money, vault logins']]],
+  divine: ['Divine, client care: Client care', 'Sees contact details, calls and feelings for every client', [['Introduction call', 'Meadow View, due by 12:02'], ['Worried', 'Riverside: Collins calls today'], ['Cannot see', 'Documents and vault logins']]],
+  sam: ['Sam Patel, consultant (leaving Fri 6 Nov): My day', 'Sees his 6 clients, being reassigned', [['Downloads', 'Paused since Mon 2 Nov 08:10 while the export is assessed (Security, board 84)'], ['Can still', 'Read and write notes for handover'], ['Ends', 'All access Fri 6 Nov 17:30']]]
+};
+const H = {
+  harbour: { label: 'Harbour Lane Care Ltd', flag: 'Email 2.3 at 08:00 on Fri 30 Oct told Amara the landlord letter was one of her 3 things. At 15:12 the Hub told her Care Sync had asked Tom Reid. Complaint C-001.', items: [
+    ['Mon 2 Nov', '08:50', 'access', 'Collins', 'Viewed Amara\'s Hub as she saw it on Fri 30 Oct, 18:00, from 08:50 to 09:02 (12 minutes)', 'Reason "Complaint check C-001". Read only. Shown on Amara\'s privacy page.', ''],
+    ['Mon 2 Nov', '08:40', 'decision', 'Collins', 'Named Rachel Turner as handler for complaint C-001', 'Rachel is not involved in Harbour Lane\'s work.', ''],
+    ['Sat 31 Oct', '10:03', 'email', 'Hub to Amara', 'Email 9.2: We have received your concern', '"Your concern has gone to Collins, a director who is not involved in your day-to-day work." Opened 10:20.', ''],
+    ['Sat 31 Oct', '10:02', 'concern', 'Amara, in the Hub', 'Concern raised', 'q:"Friday\'s email said I needed 3 things, including a letter from my landlord. Now the Hub says you asked Tom yourselves and there is nothing for me to do. Which is right? I had already messaged Tom."', ''],
+    ['Sat 31 Oct', '09:14', 'doc', 'Tom Reid', 'Tom Reid opened the landlord letter link', '', ''],
+    ['Fri 30 Oct', '15:12', 'hub', 'Grace to Tom Reid', 'Landlord letter link sent to Tom Reid', 'Amara\'s Today changed to "We asked Tom Reid on Fri 30 Oct. Nothing for you to do."', 'Different from email 2.3 at 08:00'],
+    ['Fri 30 Oct', '14:20', 'check', 'Grace', 'Register check for Ruth recorded: not on a register that applies', '', ''],
+    ['Fri 30 Oct', '14:15', 'hub', 'Daniel to Amara', 'Reply in Ask', 'q:"Yes, that is fine. Your office stays Flat 2, 14 Harbour Road, and we explain it in your application."', ''],
+    ['Fri 30 Oct', '14:10', 'check', 'Grace', 'Ruth\'s DBS accepted: Enhanced with adult barred list, issued 14 Feb 2026', '', ''],
+    ['Fri 30 Oct', '14:05', 'access', 'Daniel Mensah', 'Saw Amara\'s Hub as she sees it, to answer her question about the home office', 'Shown on Amara\'s privacy page.', ''],
+    ['Fri 30 Oct', '13:50', 'hub', 'Amara to Daniel', 'Question in Ask about the home office', '', ''],
+    ['Fri 30 Oct', '11:45', 'check', 'Grace', 'Gate 5 failed: gap on Ruth\'s CV, March to November 2019', 'Goes on the fix list. Not sent to Amara yet.', ''],
+    ['Fri 30 Oct', '11:05', 'check', 'Grace', 'Gate 1 failed: Companies House shows 2 directors, the form lists 1', 'Goes on the fix list. Not sent to Amara yet.', ''],
+    ['Fri 30 Oct', '10:20', 'check', 'Grace', 'Amara\'s 3 identity documents accepted', '', ''],
+    ['Fri 30 Oct', '08:00', 'email', 'Hub to Amara', 'Email 2.3: Thank you, we have your form', 'q:"We need 3 small things from you. Each one is explained in your Hub." The 3 came from the automatic checks: the second director, the CV gap and the landlord letter. Held overnight by quiet hours.', 'Says the landlord letter is Amara\'s job'],
+    ['Thu 29 Oct', '21:46', 'doc', 'Amara', 'Onboarding form sent, signed electronically', 'Finished over 3 sittings.', ''],
+    ['Thu 29 Oct', '11:10', 'access', 'Daniel Mensah', 'Copied the business email login without showing it, reason "sign in to check the CQC filter works"', 'Shown on Amara\'s privacy page.', ''],
+    ['Thu 29 Oct', '09:40', 'access', 'Daniel Mensah', 'Revealed the business email login for 30 seconds, reason "set up the CQC filter"', 'Shown on Amara\'s privacy page.', ''],
+    ['Wed 28 Oct', '16:03', 'email', 'Hub to Amara', 'Email 2.6: We are now watching for CQC emails for you', '', ''],
+    ['Wed 28 Oct', '16:02', 'access', 'Care Sync Hub', 'Business email login stored in the encrypted vault', '', ''],
+    ['Wed 28 Oct', '10:20', 'access', 'Grace Whitfield', 'Opened the proof of address to check the date', '', ''],
+    ['Mon 26 Oct', '11:00', 'call', 'Grace to Amara', 'Call on day 6 of the form', 'Amara is finishing the form this week. No problems.', ''],
+    ['Fri 23 Oct', '09:00', 'email', 'Hub to Amara', 'Email 2.2: One quick thing: finish your onboarding form', 'Second reminder.', ''],
+    ['Wed 21 Oct', '09:00', 'email', 'Hub to Amara', 'Email 2.2: One quick thing: finish your onboarding form', 'First reminder.', ''],
+    ['Tue 20 Oct', '10:15', 'email', 'Hub to Ruth Bennett', 'Email 2.5: Amara has asked you to do your part', '', ''],
+    ['Mon 19 Oct', '11:16', 'email', 'Hub to Amara', 'Email 2.1: Your onboarding form, made for the Full start-up package', '', ''],
+    ['Mon 19 Oct', '11:15', 'email', 'Divine to Amara', 'Email 1.2: Lovely to speak to you today', 'Divine edited it before it went.', ''],
+    ['Mon 19 Oct', '10:40', 'call', 'Divine to Amara', 'Introduction call', 'Spoke to the client. Likes WhatsApp for quick things (a later phase).', ''],
+    ['Mon 19 Oct', '09:31', 'email', 'Hub to Amara', 'Email 1.1: Welcome to Care Sync, Amara', '', ''],
+    ['Mon 19 Oct', '09:30', 'pay', 'Amara', 'First instalment paid through Stripe', 'Agreement signed the same morning.', '']
+  ] },
+  sunrise: { label: 'Sunrise Homecare Ltd', flag: '', items: [
+    ['Fri 30 Oct', '15:40', 'email', 'Daniel to Priya', 'Email 3.1: Your weekly update', 'Your response to CQC is being drafted. You approve it by Mon 9 Nov; we aim to send it by Tue 10 Nov.', ''],
+    ['Thu 29 Oct', '11:00', 'call', 'Daniel to Priya', 'Went through the plan for the response', 'Priya sent 2 staff training records the same day.', ''],
+    ['Tue 27 Oct', '07:00', 'check', 'Care Sync Hub', 'Legal deadline alert, day 7, to Daniel and Collins', '', ''],
+    ['Wed 21 Oct', '12:30', 'email', 'Hub to Priya', 'Email 5.2 (version 2): CQC has written to you, and we have a plan', 'Deadline in the email: Tuesday 17 November.', ''],
+    ['Wed 21 Oct', '11:30', 'call', 'Daniel to Priya', 'Talked the notice through, as email 5.2 promises', '', ''],
+    ['Wed 21 Oct', '10:15', 'decision', 'Daniel Mensah', 'Notice of Proposal logged, service date Wed 21 Oct', 'Legal deadline Tue 17 Nov, worked out the safe way. Our target Tue 10 Nov. Senior review by Collins Mon 9 Nov.', ''],
+    ['Wed 21 Oct', '09:50', 'doc', 'Regulator watch', 'CQC email filed: Notice of Proposal', '', '']
+  ] },
+  greenway: { label: 'Greenway Support Ltd', flag: '', items: [
+    ['Fri 30 Oct', '17:03', 'check', 'Care Sync Hub', 'Bounce alert to Olu and Daniel. Update marked overdue; resend held', 'Daniel is covering for Olu this week.', ''],
+    ['Fri 30 Oct', '17:02', 'email', 'Hub to Tunde', 'Email 3.1: Your weekly update. Bounced', 'The receiving server says the mailbox does not exist. The update is in Tunde\'s Hub.', 'Not delivered'],
+    ['Mon 26 Oct', '09:00', 'email', 'Hub to Tunde', 'Document reminder: 3 documents', 'Delivered, not opened.', ''],
+    ['Fri 23 Oct', '15:20', 'email', 'Olu to Tunde', 'Email 3.1: Your weekly update', 'Delivered and opened.', ''],
+    ['Thu 22 Oct', '18:05', 'doc', 'Tunde', 'Uploaded the lease for the office', 'Last contact from Tunde: 10 days ago.', '']
+  ] }
+};
+const TY = { email: ['Email', 'c-info', 'msg'], text: ['Text', 'c-info', 'msg'], call: ['Call', 'c-brand', 'call'], hub: ['Hub message', 'c-neutral', 'hub'], concern: ['Concern', 'c-bad', 'hub'], doc: ['Document', 'c-neutral', 'doc'], check: ['Check', 'c-ok', 'check'], decision: ['Decision', 'c-ok', 'check'], pay: ['Payment', 'c-ok', 'check'], access: ['Look', 'c-warn', 'access'] };
+const PEOPLE = { client: [['amara', 'Amara Okafor, Harbour Lane'], ['ruth', 'Ruth Bennett, Harbour Lane'], ['priya', 'Priya Shah, Sunrise'], ['tunde', 'Tunde Bello, Greenway']], staff: [['daniel', 'Daniel Mensah'], ['grace', 'Grace Whitfield'], ['divine', 'Divine'], ['sam', 'Sam Patel']] };
+const WHEN = [['now', 'Now, Mon 2 Nov'], ['fri18', 'Fri 30 Oct, 18:00'], ['fri09', 'Fri 30 Oct, 09:00'], ['thu22', 'Thu 29 Oct, 22:00']];
+const COMPANY = { amara: ['Harbour Lane Care Ltd', 'Domiciliary Care: Full Package', 'AO', 1], ruth: ['Harbour Lane Care Ltd', 'Registered manager', 'RB', 1], priya: ['Sunrise Homecare Ltd', 'Domiciliary Care: Registration', 'PS', 10], tunde: ['Greenway Support Ltd', 'Supported Living: Registration', 'TB', 3] };
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'view', kind: 'client', person: 'amara', when: 'now', reason: '', started: false, msg: '', extra: [], cur: { person: 'amara', when: 'fri18', reason: 'Complaint check C-001', at: '08:50', end: '09:02', len: '12 minutes' },
+      hc: 'harbour', hf: 'all', exportMsg: '', outcome: '', lesson: '', cMsg: '', cSaved: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const pname = k => (PEOPLE.client.concat(PEOPLE.staff).find(p => p[0] === k) || ['', k])[1];
+    const whenL = k => WHEN.find(w => w[0] === k)[1];
+    const cur = s.cur;
+    const isClient = !!COMPANY[cur.person];
+    const first = pname(cur.person).split(' ')[0];
+    const pick = (label, sel, fn) => ({ label, sel: sel ? 'true' : 'false', cls: 'pick ' + (sel ? 't-on' : 't-off'), pick: fn });
+    let m = {}, note = { cls: 'box bx-plain', t: '', lines: [] }, sm = { title: '', sub: '', items: [] };
+    if (isClient) {
+      const src = cur.person === 'amara' ? M.amara[cur.when] : M[cur.person];
+      const co = COMPANY[cur.person];
+      const it = a => a.map(x => ({ t: x[0], d: x[1], flag: x[2], mk: x[2] ? 'mk' : 'mk-none' }));
+      m = { date: cur.person === 'amara' ? src.date : (cur.when === 'now' ? src.date : whenL(cur.when).split(',')[0].replace('Fri', 'Friday').replace('Thu', 'Thursday').replace(' Oct', ' October')), greet: src.greet, ini: co[2], pkg: co[1], company: co[0], stage: src.stage,
+        segs: Array.from({ length: 11 }, (x, i) => (i < co[3] ? 'on' : '')), youTitle: src.youTitle, you: it(src.you), others: it(src.others), latest: it(src.latest) };
+      note = { cls: 'box ' + src.note[0], t: src.note[1], lines: src.note[2].concat(cur.person !== 'amara' && cur.when !== 'now' ? ['Nothing on this Today screen changed between ' + whenL(cur.when) + ' and now.'] : []) };
+    } else {
+      const st = STAFF[cur.person];
+      sm = { title: st[0], sub: st[1] + '. As at ' + whenL(cur.when) + '.', items: st[2].map(x => ({ k: x[0], v: x[1], cls: 'sb-chip ' + (x[0] === 'Cannot see' ? 'c-neutral' : 'c-info') })) };
+      note = { cls: 'box bx-plain', t: 'Seeing what a colleague sees', lines: ['Use it to check a role is set up right, or to help someone find something. Vault logins and documents stay hidden.'] };
+    }
+    const row = c => ({ at: 'Today ' + c.at + (c.end ? ' to ' + c.end : ''), who: 'Collins', whom: pname(c.person) + ', as at ' + whenL(c.when), why: c.reason, len: c.end ? c.len + ', ended' : 'Open now', cls: 'sb-chip ' + (c.end ? 'c-neutral' : 'c-warn') });
+    const sessions = [row(cur)].concat(s.extra.map(row)).concat([
+      { at: 'Fri 30 Oct 14:05', who: 'Daniel Mensah', whom: 'Amara Okafor, as she sees it now', why: 'To answer her question about the home office', len: '6 minutes, ended', cls: 'sb-chip c-neutral' },
+      { at: 'Thu 29 Oct 10:12', who: 'Daniel Mensah', whom: 'Joy Adeyemi, Bright Path, as she sees it now', why: 'Check what Joy sees before session 2', len: '4 minutes, ended', cls: 'sb-chip c-neutral' }]);
+    // history
+    const hc = H[s.hc];
+    const groups = { all: 'All', msg: 'Emails and texts', call: 'Calls', hub: 'Hub messages', doc: 'Documents', check: 'Checks and decisions', access: 'Every look' };
+    const items = hc.items.filter(x => s.hf === 'all' || TY[x[2]][2] === s.hf);
+    const days = [];
+    items.forEach(x => { let d = days.find(y => y.day === x[0]); if (!d) { d = { day: x[0], items: [] }; days.push(d); } const q = x[5].indexOf('q:') === 0; d.items.push({ time: x[1], type: TY[x[2]][0], cls: 'sb-chip ' + TY[x[2]][1], who: x[3], t: x[4], d: q ? x[5].slice(2) : x[5], dcls: q ? 'tl-q' : 'sb-sub', flag: x[6] }); });
+    // complaint
+    const saved = s.cSaved;
+    const steps = [
+      ['1', 'Acknowledge', 'Email 9.2, automatic. Locked rule: within 1 working day', 'Sat 31 Oct 10:03', 'done'],
+      ['2', 'Name a handler not involved', 'Rachel Turner, named by Collins', 'Mon 2 Nov 08:40', 'done'],
+      ['3', 'Look at what the client saw', 'View as, Fri 30 Oct, and the history', 'Mon 2 Nov 08:50 to 09:02', 'done'],
+      ['4', 'Call Amara', 'Rachel explains, says sorry for the confusion, and confirms the landlord letter is with Tom Reid', 'Today', 'now'],
+      ['5', 'Full reply in writing', 'With the outcome and what we change', 'By Fri 27 Nov', 'todo'],
+      ['6', 'Directors\' monthly review', 'Outcome and lesson', 'Mon 30 Nov', 'todo']
+    ].map(([n, t, d, when, k]) => ({ n: k === 'done' ? '✓' : n, t, d, when, cls: 'dot dot-' + k }));
+    const SUG = 'Email 2.3 lists only things a person has confirmed, and never anything we have asked someone else for. When a request moves to a third party, the Hub tells the client by email the same day.';
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n16: 16, user: { name: 'Collins', initials: 'C' }, nav: __NAV__,
+      kpis: [
+        { label: 'Views open now', value: s.started ? '1' : '0', note: s.started ? 'Collins: ' + pname(cur.person) : 'None. Last: Collins, ended at ' + cur.end },
+        { label: 'View-as sessions, 30 days', value: String(sessions.length), note: 'Every one on the client\'s privacy page' },
+        { label: 'Open complaints', value: '1', note: 'Harbour Lane, acknowledged within 1 working day' },
+        { label: 'Harbour Lane history', value: String(H.harbour.items.length), note: 'Items since payment on Mon 19 Oct' }
+      ],
+      tabs: [['view', 'View as'], ['hist', 'Communication history'], ['comp', 'Complaints register (1 open)']].map(([k, l]) => ({ label: l, sel: s.tab === k ? 'true' : 'false', cls: 'sb-tab ' + (s.tab === k ? 't-on' : 't-off'), pick: () => this.setState({ tab: k }) })),
+      isView: s.tab === 'view', isHist: s.tab === 'hist', isComp: s.tab === 'comp',
+      kinds: [['client', 'A client'], ['staff', 'A member of staff']].map(([k, l]) => pick(l, s.kind === k, () => this.setState({ kind: k, person: PEOPLE[k][0][0], msg: '' }))),
+      people: PEOPLE[s.kind].map(([k, l]) => pick(l, s.person === k, () => this.setState({ person: k, msg: '' }))),
+      whens: WHEN.map(([k, l]) => pick(l, s.when === k, () => this.setState({ when: k, msg: '' }))),
+      reason: s.reason, onReason: e => this.setState({ reason: e.target.value, msg: '' }), msg: s.msg,
+      startLabel: s.started ? 'Switch view' : 'Start a new view',
+      start: () => {
+        if (!s.reason.trim()) return this.setState({ msg: 'Write a reason first. The client sees it on their privacy page, and it goes in the audit log.' });
+        const prev = Object.assign({}, cur, cur.end ? {} : { end: '09:40', len: 'Under a minute' });
+        this.setState({ started: true, msg: '', reason: '', cur: { person: s.person, when: s.when, reason: s.reason.trim(), at: '09:40', end: '', len: '' }, extra: [prev].concat(s.extra) });
+      },
+      end: () => this.setState({ started: false, msg: '', cur: Object.assign({}, cur, { end: '09:41', len: 'Under a minute' }) }),
+      started: s.started, notStarted: !s.started && !cur.end, showMock: s.started || !!cur.end,
+      rules: ['Read only: nothing can be sent, signed, approved or downloaded', 'Vault logins never show, even to a super admin', 'Only for clients the person may already see', 'Logged in the audit log, with the reason', 'The client sees an entry on their privacy page'],
+      prevTitle: s.started ? (isClient ? 'Today, as ' + pname(cur.person).split(',')[0] + ' saw it' : 'As ' + pname(cur.person) + ' sees the Hub') : 'Last view, ended at ' + cur.end + ': what it showed',
+      stateChip: s.started ? 'Read only, open now' : 'Ended. No view open', stateCls: 'sb-chip ' + (s.started ? 'c-warn' : 'c-neutral'),
+      banCls: s.started ? 'va-ban' : 'va-ban va-end',
+      banner: s.started ? 'Read only. You are viewing ' + (isClient ? COMPANY[cur.person][0] + ' as ' + pname(cur.person).split(',')[0] : 'the Hub as ' + pname(cur.person)) + (cur.when === 'now' ? ', now' : ' saw it on ' + whenL(cur.when)) + '. Started by Collins at ' + cur.at + '. Reason: "' + cur.reason + '". Nothing you do here is sent or saved.'
+        : 'Ended at ' + cur.end + '. Collins viewed ' + (isClient ? COMPANY[cur.person][0] + ' as ' + pname(cur.person).split(',')[0] : 'the Hub as ' + pname(cur.person)) + (cur.when === 'now' ? ' saw it then' : ' saw it on ' + whenL(cur.when)) + ', from ' + cur.at + ' to ' + cur.end + ' (' + cur.len + '). Reason: "' + cur.reason + '". Rebuilt from the history so you can see what it showed. To look again, start a new view.',
+      isClientMock: isClient, isStaffMock: !isClient, m, sm, note,
+      privTitle: isClient ? 'What ' + first + ' sees on their privacy page (Account, board 29)' : 'Who is told',
+      privText: isClient ? 'saw your Hub as you saw it' + (cur.when === 'now' ? '' : ' on ' + whenL(cur.when).split(',')[0]) + ', reason "' + cur.reason + '". Read only' : 'saw the Hub as ' + pname(cur.person) + ' sees it, reason "' + cur.reason + '". Read only',
+      privWhen: '02/11, ' + cur.at + (cur.end ? ' to ' + cur.end : ''), privNote: isClient ? 'Under "Every time we looked". Written in plain words; the client can ask about it with one tap.' : 'Each client whose information appears on these screens sees an entry on their privacy page.',
+      audit: 'view_as.started: Collins, ' + pname(cur.person) + ', as at ' + whenL(cur.when) + ', reason "' + cur.reason + '", ' + cur.at + '. ' + (s.started ? 'Still open.' : 'view_as.ended: ' + cur.end + ', ' + cur.len + '.'),
+      sessions,
+      histClient: hc.label, hclients: Object.keys(H).map(k => pick(H[k].label.replace(' Ltd', ''), s.hc === k, () => this.setState({ hc: k, hf: 'all', exportMsg: '' }))),
+      hfilts: Object.keys(groups).map(k => pick(groups[k] + ' ' + (k === 'all' ? hc.items.length : hc.items.filter(x => TY[x[2]][2] === k).length), s.hf === k, () => this.setState({ hf: k }))),
+      hdays: days, histFlag: hc.flag && (s.hf === 'all' || s.hf === 'msg' || s.hf === 'hub') ? hc.flag : '',
+      exportMsg: s.exportMsg, exportH: () => this.setState({ exportMsg: 'Prepared: ' + hc.label + ' history, ' + hc.items.length + ' items, logged in the exports register (Data and privacy, board 85).' }),
+      steps, cStatus: saved ? 'Outcome recorded' : 'Investigating', cStatusCls: 'sb-chip ' + (saved ? 'c-info' : 'c-warn'),
+      outcomes: [['Upheld', 'Upheld'], ['Partly upheld', 'Partly upheld'], ['Not upheld', 'Not upheld']].map(([k, l]) => pick(l, s.outcome === k, () => this.setState({ outcome: k, cMsg: '' }))),
+      lesson: s.lesson, onLesson: e => this.setState({ lesson: e.target.value, cMsg: '' }), useSug: () => this.setState({ lesson: SUG, cMsg: '' }),
+      saveC: () => { if (!s.outcome || !s.lesson.trim()) return this.setState({ cMsg: 'Choose an outcome and write the lesson first.', cSaved: false }); this.setState({ cSaved: true, cMsg: 'Saved by Collins, Mon 2 Nov 09:40: ' + s.outcome + '. Rachel Turner puts it in the full reply by Fri 27 Nov. The lesson goes to the directors\' review on Mon 30 Nov.' }); },
+      cMsg: s.cMsg, cMsgCls: 'box ' + (s.cSaved ? 'bx-ok' : 'bx-warn')
+    };
+  }
+}'''
+
+def gen88(out, h, css, js, boards):
+    script = S88.replace('__BOARDS__', js(boards))
+    build_sa(out + '/ViewAs.dc.html', 'View as and history', 'Super admin', h, B88, script, 'viewas', css + CSS88)

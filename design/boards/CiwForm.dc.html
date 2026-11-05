@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>CIW Registration Information Form</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.of-in{min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);font:inherit;font-size:15px;background:var(--cs-surface-raised);color:var(--cs-text-primary);box-sizing:border-box;width:100%}
+.of-ta{min-height:76px;padding:10px 12px;border-radius:10px;border:1px solid var(--cs-border-control);font:inherit;font-size:15px;background:var(--cs-surface-raised);color:var(--cs-text-primary);box-sizing:border-box;width:100%;resize:vertical}
+.of-l{font-size:14px;line-height:20px;font-weight:500}
+.of-f{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:12px;background:var(--cs-surface-raised);box-shadow:var(--cs-elevation-1)}
+.of-opt{display:flex;align-items:center;gap:10px;min-height:40px;padding:6px 12px;border-radius:10px;font:inherit;font-size:14px;line-height:19px;text-align:left;cursor:pointer;width:100%;box-sizing:border-box}
+.of-opt:focus-visible,.of-btn:focus-visible,.of-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.of-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.of-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.of-btn{min-height:50px;border-radius:12px;font:inherit;font-size:16px;font-weight:500;cursor:pointer}
+.of-link{min-height:40px;border:0;background:transparent;color:var(--cs-text-brand);font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.of-hint{font-size:12px;line-height:16px;color:var(--cs-text-secondary)}
+.of-ok{font-size:12px;line-height:16px;color:var(--cs-status-success-text)}
+.of-req{color:var(--cs-status-error-text)}
+.of-box{min-height:64px;border-radius:10px;border:1px dashed var(--cs-border-control);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--cs-text-secondary)}
+.of-info{padding:12px 14px;border-radius:12px;font-size:13px;line-height:19px;white-space:pre-line}
+.tone-info{background:var(--cs-status-info-bg)}
+.tone-ok{background:var(--cs-status-success-bg)}
+.tone-warn{background:var(--cs-status-warning-bg)}
+.w0{width:0}.w10{width:10%}.w20{width:20%}.w30{width:30%}.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}.w100{width:100%}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 2000px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <sc-if value="{{isWelcome}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 48px 24px 40px; display: flex; flex-direction: column; gap: 16px;">
+      <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="CareSync.Icon" name="history" size="{{n24}}"></x-import></span>
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">CIW Registration Information Form</span>
+      <h1 style="margin: 0; font-size: 26px; line-height: 34px; font-weight: 600;">Welcome back, Rhian</h1>
+      <span style="font-size: 16px; line-height: 24px; color: var(--cs-text-secondary);">You stopped at "{{resumeTitle}}". Everything before it is saved, and pages that do not apply to you are skipped.</span>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1);">
+        <sc-for list="{{doneTitles}}" as="d" hint-placeholder-count="6">
+          <span style="display: flex; gap: 10px; align-items: center; font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n16}}"></x-import>{{d}}</span>
+        </sc-for>
+      </div>
+      <button class="of-btn" onClick="{{resume}}" style="border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary);">Carry on where I stopped</button>
+      <button class="of-link" onClick="{{fromStart}}">Go to the first page and check my answers</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isPaused}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 64px 24px 40px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;">
+      <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 999px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Saved. Come back any time</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">You will pick up at "{{secTitle}}" on any phone or computer. If it is still waiting, we send a gentle reminder after 2 days and again after 4, outside quiet hours, and Grace calls you on day 6.</span>
+      <button class="of-link" onClick="{{unpause}}">Carry on now instead</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isSent}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 64px 24px 40px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;">
+      <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 999px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Thank you. We have your answers</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Grace checks it now. As soon as it passes, your project starts and your consultant begins your CIW pack. We also send you the GP medical reference form straight away. A copy of your answers comes to you by email.</span>
+      <button class="of-link" onClick="{{restart}}">See it again (demo)</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{inForm}}" hint-placeholder-val="{{ true }}">
+    <header style="background: var(--cs-surface-raised); border-bottom: 1px solid var(--cs-border-subtle); padding: 14px 20px 12px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">CIW Registration Information Form</span>
+        <span role="status" style="display: flex; align-items: center; gap: 4px; font-size: 12px; line-height: 16px; color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="check" size="{{n16}}"></x-import>Saved</span>
+      </div>
+      <div aria-hidden="true" style="height: 6px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div class="{{barCls}}" style="height: 6px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-brand); font-weight: 500;">Page {{secNo}} of {{secTotal}}. About {{mins}}{{skipNote}}</span>
+      <h1 style="margin: 0; font-size: 21px; line-height: 28px; font-weight: 600;">{{secTitle}}</h1>
+      <span class="of-hint">{{secIntro}}</span>
+    </header>
+
+    <main style="padding: 16px 16px 170px; display: flex; flex-direction: column; gap: 10px;">
+      <sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
+        <div>
+          <sc-if value="{{f.isInfo}}" hint-placeholder-val="{{ false }}"><div class="{{f.tone}}">{{f.label}}</div></sc-if>
+          <sc-if value="{{f.isJump}}" hint-placeholder-val="{{ false }}"><button class="of-opt of-off" onClick="{{f.go}}" style="justify-content: space-between;"><span style="display: flex; align-items: center; gap: 10px;"><span aria-hidden="true" style="color: var(--cs-status-success-text);">✓</span>{{f.label}}</span><span style="color: var(--cs-text-brand); font-weight: 500;">Change</span></button></sc-if>
+          <sc-if value="{{f.isField}}" hint-placeholder-val="{{ true }}">
+            <div class="of-f">
+              <span class="of-l">{{f.label}}<sc-if value="{{f.req}}" hint-placeholder-val="{{ false }}"><span class="of-req"> *</span></sc-if></span>
+              <sc-if value="{{f.hasTip}}" hint-placeholder-val="{{ false }}"><span class="of-hint">{{f.tip}}</span></sc-if>
+              <sc-if value="{{f.isText}}" hint-placeholder-val="{{ true }}"><input class="of-in" aria-label="{{f.label}}" value="{{f.value}}" placeholder="{{f.ph}}"></sc-if>
+              <sc-if value="{{f.isPara}}" hint-placeholder-val="{{ false }}"><textarea class="of-ta" aria-label="{{f.label}}" placeholder="{{f.ph}}" value="{{f.value}}"></textarea></sc-if>
+              <sc-if value="{{f.isChoice}}" hint-placeholder-val="{{ false }}">
+                <div role="radiogroup" aria-label="{{f.label}}" style="display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="2">
+                    <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button class="of-opt of-on" role="radio" aria-checked="true" onClick="{{o.pick}}"><span aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; border-radius: 999px; border: 5px solid var(--cs-action-primary); box-sizing: border-box;"></span>{{o.label}}</button></sc-if>
+                    <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}"><button class="of-opt of-off" role="radio" aria-checked="false" onClick="{{o.pick}}"><span aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-border-control); box-sizing: border-box;"></span>{{o.label}}</button></sc-if>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{f.isMulti}}" hint-placeholder-val="{{ false }}">
+                <div role="group" aria-label="{{f.label}}" style="display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="3">
+                    <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button class="of-opt of-on" role="checkbox" aria-checked="true" onClick="{{o.pick}}"><span aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span>{{o.label}}</button></sc-if>
+                    <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}"><button class="of-opt of-off" role="checkbox" aria-checked="false" onClick="{{o.pick}}"><span aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px; border: 2px solid var(--cs-border-control); box-sizing: border-box;"></span>{{o.label}}</button></sc-if>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{f.isFile}}" hint-placeholder-val="{{ false }}"><span class="of-box">{{f.value}}</span></sc-if>
+              <sc-if value="{{f.isSign}}" hint-placeholder-val="{{ false }}"><span class="of-box" style="font-family: cursive; font-size: 22px; color: var(--cs-text-primary);">{{f.value}}</span></sc-if>
+              <sc-if value="{{f.hasOk}}" hint-placeholder-val="{{ false }}"><span class="of-ok">{{f.ok}}</span></sc-if>
+              <button class="of-link" onClick="{{f.ask}}" style="min-height: 32px; font-size: 13px; align-self: flex-start; padding: 0;">{{f.askLabel}}</button>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </main>
+
+    <footer style="position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 20px 20px; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: flex; flex-direction: column; gap: 4px;">
+      <div style="display: flex; gap: 10px;">
+        <button class="of-btn" onClick="{{prev}}" style="flex: 0 0 96px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-size: 15px;">Back</button>
+        <button class="of-btn" onClick="{{next}}" style="flex: 1 1 auto; border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary);">{{nextLabel}}</button>
+      </div>
+      <button class="of-link" onClick="{{pause}}">Save and finish later</button>
+    </footer>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":2000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: -1, paused: false, sent: false, a: { auth: 'y', ciwAcc: 'n', entity: 'ltd', princ: 'y', lang: 'en', ico: 'n', orgReg: 'n', sub: 'n', pos1: 'dir', pos2: 'dir', o2: 'y', o3: 'n', areas: [2, 3], las: [], needs: [0], age: '18', gender: 'any', hours: 'b', groups: [0, 1, 2, 5], takeover: 'n', tenure: 'lease', shared: 'n', pc: 'y', meds: 'prompt', money: 'n', welsh: 'some', riWho: 'o1', riDbs: 'y', riList: 'b', riUpd: 'y', riConsent: 'y', riIds: [], riProf: 'n', riInv: 'n', h1: 'n', h2: 'n', h3: 'n', h4: 'n', h5: 'n', h6: 'n', riEmp1: 'y', riEmp2: 'n', riRel: 'n', rmYet: 'y', riRm: 'y', scw: 'pend', l5: 'held', rmDbs: 'y', rmList: 'a', rmUpd: 'y', rmConsent: 'y', rmIds: [], rmEmp1: 'y', rmEmp2: 'y', rmRel: 'n', rmHist: 'n', rmProf: 'n', o2Dbs: 'y', o2List: 'a', o2Upd: 'y', o2Consent: 'y', o2Hist: 'n', o2rEmp1: 'y', o2rEmp2: 'y', o2rRel: 'n', o2rDir: 'n', svcSame: 'y', branch: 'n', svcLang: 'en', inspLang: 'en', funders: [], riIntLang: 'en', rmIntLang: 'en', riDir: 'n', rmDir: 'n', oDbs2: 'y', oHist2: 'n', legalEmail: 'y', shareScw: 'y', shareDewis: 'y', condArea: 'y', condRi: 'y', have: [], decl: [] } };
+  }
+  renderVals() {
+    const st = this.state, A = st.a;
+    const set = (k, v) => this.setState({ a: Object.assign({}, A, { [k]: v }) });
+    const tog = (k, j) => { const cur = (A[k] || []).slice(); const p = cur.indexOf(j); if (p >= 0) cur.splice(p, 1); else cur.push(j); set(k, cur); };
+    const T = (label, value, o) => Object.assign({ kind: 'text', label, value: value || '', req: false }, o || {});
+    const P = (label, value, o) => Object.assign({ kind: 'para', label, value: value || '', req: false }, o || {});
+    const C = (label, key, opts, o) => Object.assign({ kind: 'choice', label, key, opts, req: true }, o || {});
+    const M = (label, key, opts, o) => Object.assign({ kind: 'multi', label, key, opts, req: false }, o || {});
+    const F = (label, value, o) => Object.assign({ kind: 'file', label, value: value || 'Add file', req: false }, o || {});
+    const SG = (label, value, o) => Object.assign({ kind: 'sign', label, value: value || '', req: false }, o || {});
+    const I = (text, tone) => ({ kind: 'info', label: text, tone: 'of-info tone-' + (tone || 'info') });
+    const S = [];
+    const skipped = [];
+    let skipWord = 'not needed for you';
+
+    const yn = [['y', 'Yes'], ['n', 'No']];
+    const ltd = A.entity === 'ltd' || A.entity === 'llp';
+    const sole = A.entity === 'sole';
+    // Demo people. In the Hub these come from Companies House and from earlier answers.
+    const P1 = ltd ? { name: 'Rhian Example', dob: '03/09/1980', dobOk: 'Month and year from Companies House. You added the day.', pos: 'dir', email: 'rhian@afoncare.co.uk', tel: '07700 900111', home: '14 Example Close, Cardiff', pc: 'CF14 2AB' } : { name: '', dob: '', pos: '', email: '', tel: '', home: '', pc: '' };
+    const P2 = ltd ? { name: 'Owen Example', dob: '__/01/1977', dobOk: 'Companies House shows only the month and year. Please add the day.', pos: 'dir', email: 'owen@afoncare.co.uk', tel: '07700 900222', home: '3 Example Lane, Penarth', pc: 'CF64 1AA' } : { name: '', dob: '', pos: '', email: '', tel: '', home: '', pc: '' };
+    const posOpts = [['dir', 'Director'], ['part', 'Partner'], ['trus', 'Trustee'], ['sec', 'Company Secretary'], ['oth', 'Other']];
+
+    // Before you start
+    const stF = [T('Your full name', P1.name, { req: true }),
+      C('Are you authorised to make this application for the organisation?', 'auth', [['y', 'Yes, I am a director or partner'], ['l', 'Yes, I have a letter of authority or board minute'], ['n', 'No, someone else is']], { tip: 'Added by the Hub. CIW asks this as a legal declaration.' })];
+    if (A.auth === 'l') stF.push(F('Letter of authority or board minute', 'Add file', { tip: 'CIW may ask to see it.' }));
+    if (A.auth === 'n') stF.push(T('Name and email of the person who is authorised', '', { req: true }), I('That is fine. You can fill in the form, and we ask them to check it and sign the declaration before anything goes to CIW.', 'ok'));
+    stF.push(C('Do you already have a CIW Online account?', 'ciwAcc', [['y', 'Yes'], ['n', 'No, please help us set one up']], { tip: 'Added by the Hub. We work on your application with you in CIW Online.' }));
+    S.push({ id: 'start', title: 'Before You Start', intro: 'Two quick questions about who is filling this in. CIW asks the same when we start your application.', fields: stF });
+
+    // Organisation
+    const sameOffice = A.princ !== 'n';
+    const org = [C('Legal Entity Type (Select one)', 'entity', [['sole', 'Individual (Sole Trader)'], ['ltd', 'Limited Company'], ['llp', 'Limited Liability Partnership (LLP)'], ['cio', 'Charitable Incorporated Organisation (CIO)'], ['part', 'Partnership'], ['oth', 'Other']]),
+      ltd ? I('Type your company name or number and we fill in the rest from Companies House, including your officers. CIW checks these match Companies House exactly, so we copy them for you.', 'ok') : I('As you are not a limited company, please fill these in yourself.'),
+      T('Organisation/Provider Name', ltd ? 'Afon Care Ltd' : '', { req: true, ok: ltd ? 'From Companies House' : '' }),
+      T('Trading Name (if different)'),
+      T('Company/Charity Number (if applicable)', ltd ? '99000303' : '', { ok: ltd ? 'From Companies House' : '' }),
+      T('Registered Office Address', ltd ? '2 Example Road, Cardiff' : '', { req: true, ok: ltd ? 'From Companies House' : '' }), T('Postcode', ltd ? 'CF10 1AA' : '', { req: true }),
+      C('Will the service be run from this address?', 'princ', [['y', 'Yes'], ['n', 'No, from a different office']], { tip: 'Added by the Hub. CIW asks for the office the service is run from, which should be in Wales. If it is this address, we fill it in for you on the service page.' })];
+    if (A.princ === 'n') org.push(T('Office address in Wales (where the service will be run from)', '', { req: true, tip: 'Type the postcode to find the address. We use it on the service page too.' }));
+    org.push(T('Organisation Telephone', '029 2000 0000', { req: true }), T('Organisation Email', 'hello@afoncare.co.uk', { req: true }), T('Website (if applicable)'),
+      C('Preferred Language', 'lang', [['en', 'English'], ['cy', 'Welsh']], { tip: 'The language CIW uses for calls and letters to you.' }),
+      C('Are you registered with the Information Commissioner (ICO)?', 'ico', [['y', 'Yes'], ['n', 'No, please help us register']], { tip: 'Added by the Hub. Care providers hold personal and health information, so this is needed. We can help you do it.' }));
+    if (A.ico === 'y') org.push(T('ICO registration number', '', { tip: 'Starts with ZA or ZB.' }));
+    S.push({ id: 'org', title: 'Organisation Information', intro: 'About the organisation that will be registered with CIW.', fields: org });
+
+    const og = [C('Has the organisation ever been registered with, refused by, or had action taken by any health or social care regulator, or is it under investigation now?', 'orgReg', yn, { tip: 'Added by the Hub. CIW asks about the organisation as well as the people. Include CQC, RQIA, Care Inspectorate Scotland and Ofsted.' })];
+    if (A.orgReg === 'y') og.push(P('Which regulator, which service, the registration number, and what happened', '', { req: true }));
+    og.push(C('Is the organisation owned by another company (50% or more)?', 'sub', yn, { tip: 'Added by the Hub. CIW asks whether you are part of a group. A company or investor holding most of the shares counts.' }));
+    if (A.sub === 'y') og.push(T('Parent company name and Companies House number', '', { req: true }), P('Other care services the group runs anywhere in the UK', ''));
+    S.push({ id: 'orghist', title: 'Organisation History and Group', intro: 'Two questions CIW asks about the organisation itself.', fields: og });
+
+    // Officers
+    const offP = (n, p, last) => [T('Officer ' + n + ': Full Name', p.name, { req: true, ok: ltd && p.name ? 'From Companies House' : '' }), T('Officer ' + n + ': Date of Birth (dd/mm/yyyy)', p.dob, { req: true, ok: ltd ? (p.dobOk || '') : '' }),
+      C('Officer ' + n + ': Position', 'pos' + n, posOpts), T('Officer ' + n + ': Email', p.email, { req: true }), T('Officer ' + n + ': Telephone', p.tel, { req: true }),
+      T('Officer ' + n + ': Home address', p.home ? p.home + ' ' + p.pc : '', { req: true, tip: n === 1 ? 'Added by the Hub. CIW wants the home address, not the company address.' : '' })];
+    const off = [sole ? I('As a sole trader, you are the provider. Please enter your own details as Officer 1.') : I(ltd ? 'Filled in from Companies House. Please check each one and add the rest.' : 'List ALL directors, partners, or trustees of the organisation.', ltd ? 'ok' : 'info')]
+      .concat(offP(1, P1));
+    if (!sole) off.push(C('Is there another director, partner or trustee?', 'o2', yn));
+    if (!sole && A.o2 === 'y') off.push(...offP(2, P2), C('Is there another director, partner or trustee?', 'o3', yn));
+    if (!sole && A.o2 === 'y' && A.o3 === 'y') off.push(...offP(3, { name: '', dob: '', email: '', tel: '', home: '', pc: '' }), P('More than three officers?', '', { tip: 'For each one: full name, date of birth, position, email, telephone and home address.' }));
+    S.push({ id: 'off', title: 'Organisation Officers', intro: 'Every current director, partner or trustee, one after another. CIW checks this against Companies House.', fields: off });
+
+    // Service
+    const AREAS = [['Gwent', 'Blaenau Gwent, Caerphilly, Monmouthshire, Newport, Torfaen'], ['North Wales', 'Anglesey, Conwy, Denbighshire, Flintshire, Gwynedd, Wrexham'], ['Cardiff and Vale', 'Cardiff, Vale of Glamorgan'], ['West Glamorgan', 'Neath Port Talbot, Swansea'], ['Cwm Taf Morgannwg', 'Bridgend, Merthyr Tydfil, Rhondda Cynon Taf'], ['West Wales', 'Carmarthenshire, Ceredigion, Pembrokeshire'], ['Powys', 'Powys']];
+    const chosen = (A.areas || []).slice().sort();
+    const councils = [];
+    chosen.forEach(k => AREAS[k][1].split(', ').forEach(x => councils.push(x)));
+    const groups = A.groups || [];
+    const needs = A.needs || [];
+    const svc = [T('Service Name', 'Afon Care', { req: true, tip: 'Must match your Statement of Purpose exactly. We keep them the same for you.' }),
+      T('Office Address (where service will be coordinated from)', sameOffice ? (ltd ? '2 Example Road, Cardiff' : '') : '(the office address you gave on page 2)', { req: true, ok: sameOffice ? (ltd ? 'Same as your registered office' : '') : 'Copied from page 2' }),
+      T('Postcode', sameOffice && ltd ? 'CF10 1AA' : '', { req: true }),
+      C('Use the organisation telephone and email for the service?', 'svcSame', yn, { tip: 'CIW publishes the service telephone and email on its directory, so people can contact you.' }),
+      T('Service Telephone', A.svcSame === 'n' ? '' : '029 2000 0000', { req: true, ok: A.svcSame === 'n' ? '' : 'Same as the organisation' }), T('Service Email', A.svcSame === 'n' ? '' : 'hello@afoncare.co.uk', { req: true, ok: A.svcSame === 'n' ? '' : 'Same as the organisation' }),
+      C('Will the service also be run from any other office, such as a branch?', 'branch', yn, { tip: 'Added by the Hub. CIW Online asks this.' }),
+      M('Regional Partnership Board Area(s) (Select where your service will operate)', 'areas', AREAS.map(a => a[0] === 'Powys' ? 'Powys' : a[0] + ' (' + a[1] + ')'), { req: true, tip: 'Tick every area you will work in.' })];
+    if (A.branch === 'y') svc.splice(svc.length - 1, 0, T('Other office address', '', { req: true }));
+    if (chosen.length > 1) svc.push(I('You chose ' + chosen.length + ' areas. CIW registers each area as its own service with its own Statement of Purpose, so we prepare ' + chosen.length + '. You do not need to do anything extra.', 'warn'));
+    if (chosen.length) svc.push(M('Specific Local Authority Areas (if not covering entire region)', 'las', councils, { tip: 'Only the councils in the areas you ticked. Leave them all empty if you will cover the whole area.' }));
+    svc.push(M('Range of needs', 'needs', ['Care and support for adults', 'Care and support for children', 'Supported living'], { req: true, tip: 'Using the names CIW Online uses.' }),
+      C('Age Range Supported', 'age', [['18', '18+'], ['65', '65+'], ['all', 'All ages']]));
+    if (needs.includes(1) && A.age !== 'all') svc.push(I('You ticked care and support for children, but the age range does not include children. Please check one of them.', 'warn'));
+    if (A.age === '65' && groups.includes(1)) svc.push(I('You chose 65+, but also ticked adults under 65 below. Please check one of them.', 'warn'));
+    svc.push(C('Gender Supported', 'gender', [['m', 'Male'], ['f', 'Female'], ['any', 'Any']]),
+      T('Expected Number of People Supported', '25', { req: true, tip: 'In your first 12 months. We use the same number in your financial forecast, because CIW checks they match.' }),
+      C('Expected Weekly Care Hours', 'hours', [['a', '0 - 250'], ['b', '251 - 500'], ['c', '501 - 750'], ['d', '751 - 1000'], ['e', '1001 - 1500'], ['f', '1501 - 2000'], ['g', '2001 - 3000'], ['h', '3001+']], { tip: 'The average number of care hours a week once you are up and running. The same bands CIW Online uses.' }),
+      M('Client Groups Supported (Select all that apply)', 'groups', ['Older people (over 65)', 'Adults under 65', 'People with dementia', 'People with a learning disability', 'People with autism', 'People with a physical disability', 'People with a sensory impairment', 'People with mental health needs', 'People who misuse alcohol or drugs', 'People with a terminal illness (end of life care)', 'People who have been in the criminal justice system', 'Other'], { req: true, tip: 'The groups used in Wales. Only tick groups you are ready to support.' }));
+    if (groups.includes(11)) svc.push(T('Other client group: please describe', '', { req: true }));
+    svc.push(T('When would you like to start providing care? (month and year)', '', { req: true, tip: 'Added by the Hub. Allow at least 14 weeks from a complete application. You cannot start until CIW registers you.' }),
+      C('Are you taking over a service that is already registered with CIW?', 'takeover', yn, { tip: 'Added by the Hub. CIW Online asks this.' }));
+    if (A.takeover === 'y') svc.push(T('Name of the service and its current provider', '', { req: true }));
+    svc.push(C('Is your office owned, leased or licensed?', 'tenure', [['own', 'Owned'], ['lease', 'Leased'], ['lic', 'Licence or serviced office'], ['none', 'Not found yet']], { tip: 'Added by the Hub.' }));
+    if (A.tenure === 'none') svc.push(I('CIW needs the address of the office the service is run from. Tell your consultant as soon as you have one, and we will update everything for you.', 'warn'));
+    else svc.push(C('Does any other business run from the same office?', 'shared', yn, { tip: 'Added by the Hub. CIW Online asks this.' }));
+    S.push({ id: 'svc', title: 'Service Details', intro: 'The domiciliary support service you are registering.', fields: svc });
+
+    // How you will work
+    const how = [C('Will you provide personal care (for example washing, dressing, help with the toilet)?', 'pc', yn),
+      C('What help with medicines will you give?', 'meds', [['none', 'None'], ['prompt', 'Reminding (prompting) only'], ['admin', 'Giving medicines (administering)']]),
+      C('Will staff help people with their money (for example shopping)?', 'money', yn),
+      C('Which languages will you provide the service in?', 'svcLang', [['en', 'English'], ['cy', 'Welsh'], ['both', 'Both']], { tip: 'CIW Online asks this. CIW expects Welsh to be offered to people who want it, without them having to ask (the Active Offer).' }),
+      C('Will anyone working in the service speak Welsh, including you?', 'welsh', [['none', 'Not yet'], ['some', 'Yes, some'], ['most', 'Yes, most or all']], { tip: 'If not yet, that is fine. We write a plan for offering Welsh as you grow.' }),
+      C('Which language should CIW use when it inspects you?', 'inspLang', [['en', 'English'], ['cy', 'Welsh']]),
+      T('Roughly what will you charge per hour?', '', { tip: 'A rough figure is fine. CIW asks for your prices, and we use it in your business plan.' }),
+      M('Who will pay for the care?', 'funders', ['The council', 'People paying for themselves', 'The NHS (continuing healthcare)'], { tip: 'Tick all you expect.' })];
+    if (A.pc === 'n') how.splice(1, 0, I('Without personal care, the service may be treated differently for registration. Your consultant will check this with you before anything else.', 'warn'));
+    if (groups.includes(3) || groups.includes(4)) how.push(P('Your experience supporting people with a learning disability or autism', '', { req: true, tip: 'You ticked learning disability or autism. CIW checks the RI and manager have real experience here, so tell us where and for how long.' }));
+    S.push({ id: 'how', title: 'How You Will Work', intro: 'Added by the Hub. Short answers that shape your policies and Statement of Purpose, so we do not have to ask later.', fields: how });
+
+    // Responsible Individual
+    const offList = [['o1', 'Officer 1' + (P1.name ? ': ' + P1.name : '')]].concat(!sole && A.o2 === 'y' ? [['o2', 'Officer 2' + (P2.name ? ': ' + P2.name : '')]] : []).concat(!sole && A.o2 === 'y' && A.o3 === 'y' ? [['o3', 'Officer 3']] : []).concat(sole || A.entity === 'part' ? [] : [['other', 'Someone else, who is not an officer']]);
+    const R = A.riWho === 'o2' ? P2 : ((A.riWho === 'o3' || A.riWho === 'other') ? { name: '', dob: '', pos: '', email: '', tel: '', home: '', pc: '' } : P1);
+    const cp = v => v ? 'Copied from the officers page' : '';
+    S.push({ id: 'ri', title: 'Responsible Individual (RI) Details', intro: sole ? 'As a sole trader, you are the RI yourself, so these are your own details.' : A.entity === 'part' ? 'In a partnership, the RI must be one of the partners.' : 'The RI is the person with strategic oversight of the service (must be a director, partner, or trustee).', fields: [
+      C('Which officer will be the Responsible Individual?', 'riWho', offList, { tip: 'Their details are copied from the officers page, so you do not type them twice.' }),
+      A.riWho === 'other' ? I('CIW lets you name an RI who is not an officer. We add them to the officers section in CIW Online with you, so please give their details here.', 'warn') : I('CIW emails the RI an invitation to complete their own part in CIW Online. Look out for it, and check spam.', 'ok'),
+      I('Personal Details'),
+      T('Full Name', R.name, { req: true, ok: cp(R.name) }), T('Date of Birth (dd/mm/yyyy)', R.dob, { req: true, ok: cp(R.dob) }),
+      T('Place of Birth', '', { req: true }), T('Any Previous Surnames', '', { req: true, tip: 'Write "None" if there are none.' }),
+      T('Current Address', R.home, { req: true, ok: cp(R.home) }), T('Postcode', R.pc, { req: true }), T('Telephone'), T('Mobile', R.tel, { req: true, ok: cp(R.tel) }), T('Email', R.email, { req: true, ok: cp(R.email) }),
+      T('Position in Organisation', R.name ? 'Director' : '', { req: true, ok: cp(R.name) }),
+      T('National Insurance number', '', { tip: 'Added by the Hub. Kept with the RI\'s fitness records, which CIW can ask to see.' }),
+      C('Language for the RI\'s CIW interview', 'riIntLang', [['en', 'English'], ['cy', 'Welsh']], { tip: 'Added by the Hub. CIW asks each person this.' }),
+      I('5-Year Address History (Complete history with no gaps)\nAdd each address with the month and year you moved in and out. We check the dates join up and tell you if there is a gap.'),
+      T('Address 1 (current): Address (including Postcode), From (MM/YYYY) to present', R.home ? R.home + ' ' + R.pc + ', from 06/2019' : '', { req: true, ok: R.home ? 'Copied from the current address above. Just add the date you moved in.' : '' }),
+      T('Address 2: Address (including Postcode), From (MM/YYYY) to (MM/YYYY)'), T('Address 3: Address (including Postcode), From (MM/YYYY) to (MM/YYYY)'),
+      I('Add another address appears when you need it. The 5 years are covered when the bar fills.', 'ok')] });
+
+    // A DBS block used for the RI and, when different, the manager.
+    const adultSvc = needs.includes(0) || needs.includes(2) || needs.length === 0;
+    const dbsBlock = (who, k) => {
+      const f = [C(who + 'Do you have a current Enhanced DBS?', k + 'Dbs', [['y', 'Yes'], ['n', 'No, please help me apply']], { tip: 'It must be an Enhanced DBS with the barred list check for the people you will support.' })];
+      if (A[k + 'Dbs'] === 'y') {
+        f.push(T(who + 'DBS Certificate Number', k === 'ri' ? '001234567890' : '', { req: true, tip: 'The full 12-digit number. CIW checks it online through the Update Service, so it needs all 12 digits, not just the last 4.', ok: k === 'ri' ? '12 digits, thank you' : '' }),
+          T(who + 'Date Issued (dd/mm/yyyy)', k === 'ri' ? '20/09/2026' : '', { req: true, ok: k === 'ri' ? 'Issued 6 weeks ago. We aim to submit before it is 3 months old.' : '', tip: 'CIW Online warns that a certificate more than 3 months old on the day we submit may be rejected. We tell you if yours is getting close, and help you get a new one if needed.' }),
+          C(who + 'Checked Against', k + 'List', [['a', 'Adults'], ['c', 'Children'], ['b', 'Both']], { tip: 'The barred lists checked. You can see this on the certificate.' }));
+        if (A[k + 'List'] === 'c' && adultSvc) f.push(I('You will support adults, so the DBS needs the adult barred list. Your consultant will help you get the right check.', 'warn'));
+        f.push(C(who + 'Registered with DBS Update Service?', k + 'Upd', yn, { tip: 'CIW checks the DBS through the Update Service, so you need to be signed up.' }));
+        if (A[k + 'Upd'] === 'y') f.push(T(who + 'Update Service ID (if yes)', '', { tip: 'You can find it in your DBS Update Service account. If you are not sure, leave it and we will help.' }),
+          C(who + 'Do you agree to CIW checking this certificate on the Update Service?', k + 'Consent', yn, { tip: 'Added by the Hub. CIW Online asks for this consent.' }),
+          I('As the DBS is done and on the Update Service, you do not need to send ID documents.', 'ok'));
+        if (A[k + 'Upd'] === 'n') f.push(I('Please join the DBS Update Service. There is a time limit after a certificate is issued, so do it soon. Your consultant will help.', 'warn'));
+      } else if (A[k + 'Dbs'] === 'n') f.push(I('We will help you apply. For that we need THREE ID documents. When the certificate arrives, join the DBS Update Service straight away, because there is a short time limit.'),
+        M(who + 'Please provide THREE of the following ID documents', k + 'Ids', ['Current valid passport', 'Driving licence (photocard)', 'eVisa (we check it online with a share code)', 'Biometric residence permit (an expired one showing indefinite leave is accepted for up to 18 months after expiry)', 'Birth certificate', 'Utility bill (within last 3 months)', 'Bank statement (within last 3 months)', 'Council tax statement (within last 12 months)'], { req: true, tip: 'Tick three, including at least one photo ID (passport, photocard licence or eVisa) and at least one showing your current address. We ask for a photo of each on the documents page.' }));
+      return f;
+    };
+    S.push({ id: 'dbs', title: 'DBS Information', intro: 'For the Responsible Individual. Done already and on the Update Service? Then no ID documents are needed.', fields: dbsBlock('', 'ri') });
+
+    const ql = [P('Relevant qualifications', '', { tip: 'Added by the Hub. List each one. Copies go on the documents page.' }),
+      C('Are you registered with a professional body (for example Social Care Wales or the NMC)?', 'riProf', yn, { tip: 'Added by the Hub.' })];
+    if (A.riProf === 'y') ql.push(T('Professional body and registration number', '', { req: true }));
+    ql.push(C('Have you ever been investigated by a professional regulator, in any country?', 'riInv', yn, { tip: 'Added by the Hub. CIW asks this, including investigations that went no further.' }));
+    if (A.riInv === 'y') ql.push(P('Please tell us what happened', '', { req: true }));
+    ql.push(P('Why you are the right person to be RI', '', { tip: 'Added by the Hub. A few lines about your experience of care and of running things. CIW asks how the RI is eligible, so we build this into a strong answer with you.' }));
+    S.push({ id: 'riq', title: 'RI Qualifications and Experience', intro: 'Added by the Hub. CIW asks for these in the RI section of CIW Online.', fields: ql });
+
+    const histQs = [['h1', 'Previously registered to provide regulated care in Wales?'], ['h2', 'Ever refused registration in Wales or UK?'], ['h3', 'Ever had registration cancelled by enforcement?'], ['h4', 'Ever prosecuted relating to a regulated service?'], ['h5', 'Any other business interests in regulated care?'], ['h6', 'Any other business interests in the UK or overseas, including companies you own?']];
+    const hf = [];
+    histQs.forEach(([k, q]) => { hf.push(C(q, k, yn, k === 'h6' ? { tip: 'Added by the Hub. CIW Online asks this too.' } : {})); if (A[k] === 'y') hf.push(P('Please tell us more', '', { req: true, tip: 'Added by the Hub. A short note now saves CIW asking later.' })); });
+    S.push({ id: 'hist', title: 'Registration History', intro: 'For the Responsible Individual. A Yes does not stop an application, but leaving something out can.', fields: hf });
+
+    // A references block used for the RI and, when different, the manager.
+    const refBlock = (who, k) => {
+      const isMgr = k.startsWith('rm');
+      const yo = who ? (isMgr ? 'the manager' : 'them') : 'you';
+      const f = [I((who ? (isMgr ? 'The manager' : who.replace(': ', '')) + ' needs their own TWO references. ' : 'CIW requires TWO references. ') + 'Neither referee can be a relative. One must have employed ' + yo + ' for at least 3 months, unless that is not possible. Both should be able to speak about ' + (who ? (isMgr ? 'managing a care service like this one.' : 'their suitability to help run a care service.') : 'your ability to be the RI of a care service like this one.'), 'warn')];
+      ['1', '2'].forEach(n => f.push(I(who + 'Referee ' + n), T(who + 'Referee ' + n + ': Full Name', '', { req: true }), T(who + 'Referee ' + n + ': Job Title / Position', '', { req: true }), T(who + 'Referee ' + n + ': Organisation', '', { req: true }),
+        T(who + 'Referee ' + n + (who ? (isMgr ? ': Relationship to the Manager' : ': Relationship to them') : ': Relationship to You'), '', { req: true, tip: 'And how long they have known ' + yo + '. For example: ' + (who ? 'their' : 'my') + ' line manager at Example Care from 2019 to 2024.' }), T(who + 'Referee ' + n + ': Email', '', { req: true, tip: 'CIW emails the referee directly. Please check it is right.' }), T(who + 'Referee ' + n + ': Telephone', '', { req: true }),
+        C(who + 'Referee ' + n + ': Did they employ ' + yo + ' for at least 3 months?', k + 'Emp' + n, yn, { tip: 'Added by the Hub.' })));
+      f.push(C(who + 'Is either referee related to ' + yo + '?', k + 'Rel', yn, { tip: 'Added by the Hub. CIW does not accept a relative.' }));
+      if (A[k + 'Rel'] === 'y') f.push(I('CIW does not accept a relative, so please choose a different referee. Your consultant can help you think of one.', 'warn'));
+      f.push(C(who + 'Is either referee a director or owner of this company?', k + 'Dir', yn, { tip: 'Added by the Hub.' }));
+      if (A[k + 'Dir'] === 'y') f.push(I('CIW looks for referees who can speak independently, so we suggest choosing someone outside the company. Your consultant can talk it through.', 'warn'));
+      if (A[k + 'Emp1'] === 'n' && A[k + 'Emp2'] === 'n') f.push(I('One referee needs to have employed ' + yo + ' for at least 3 months. If that is not possible, tell us why and we explain it to CIW.', 'warn'), P(who + 'Why neither referee was an employer', '', { req: true }));
+      return f;
+    };
+    S.push({ id: 'refs', title: 'RI References', intro: 'Two people who can speak about your work and your ability to be the RI.', fields: refBlock('', 'ri').concat([I('We tell you when CIW emails your referees, so you can give them a nudge. CIW emails can land in spam.', 'ok')]) });
+    const gpBlock = (who) => [T(who + 'GP Name', '', { req: true }), T(who + 'Surgery/Practice Name', '', { req: true, ok: 'Searching the practice fills in the address' }), T(who + 'Surgery Address', '', { req: true }), T(who + 'Postcode', '', { req: true }), T(who + 'Surgery Telephone', '', { req: true })];
+    S.push({ id: 'gp', title: 'RI GP Details', intro: 'CIW requires a medical reference from your GP.', fields: gpBlock('').concat([I("We send you CIW's medical reference form to take to your GP. CIW needs all 3 pages, signed and stamped, in one file. GPs can take a few weeks, so we start this early.", 'warn')]) });
+
+    // Every other officer gets the same checks in CIW Online (a full People record each)
+    const others = [];
+    if (!sole && A.riWho !== 'o1' && A.riWho) others.push(['o1', P1.name || 'Officer 1']);
+    if (!sole && A.o2 === 'y' && A.riWho !== 'o2') others.push(['o2', P2.name || 'Officer 2']);
+    if (!sole && A.o2 === 'y' && A.o3 === 'y' && A.riWho !== 'o3') others.push(['o3', 'Officer 3']);
+    others.forEach(([k, nm]) => {
+      const who = nm + ': ';
+      const oh = [C(who + 'has any of these ever applied to them?', k + 'Hist', yn, { tip: 'Registered to provide regulated care before; refused registration; registration cancelled by enforcement; prosecuted relating to a regulated service; investigated by a professional regulator; other business interests in care or other companies.' })];
+      if (A[k + 'Hist'] === 'y') oh.push(P(who + 'please tell us which, and what happened', '', { req: true }));
+      S.push({ id: k + 'chk', title: nm + ': Checks and GP', intro: 'Added by the Hub. CIW Online keeps a full record for every officer, with the same checks as the RI: DBS, references, GP medical reference and history.', fields: [
+        I('CIW emails ' + nm + ' an invitation to complete their own part in CIW Online. We help them with it.', 'ok'),
+        T(who + 'Place of Birth', '', { req: true }), T(who + 'Any Previous Surnames', '', { tip: 'Write "None" if there are none.' }), T(who + 'National Insurance number'),
+        P(who + 'Relevant qualifications', '')].concat(dbsBlock(who, k), oh, [I(who + 'GP Details')], gpBlock(who), [I("We send " + nm + " CIW's medical reference form too.", 'ok')]) });
+      S.push({ id: k + 'ref', title: nm + ': References', intro: 'Added by the Hub. The same reference rules as the RI.', fields: refBlock(who, k + 'r') });
+    });
+    if (!others.length) skipped.push('Other officers: checks and references');
+
+    // Registered Manager
+    const rmDiff = A.rmYet === 'y' && A.riRm === 'n';
+    const rm = [C('Have you chosen your Registered Manager yet?', 'rmYet', [['y', 'Yes'], ['n', 'Not yet']], { tip: 'Added by the Hub.' })];
+    if (A.rmYet === 'n') rm.push(I('That is fine. CIW lets you apply without a manager, but will not register the service until a manager registered with Social Care Wales is named. We remind you, and the manager pages open when you add them.', 'warn'));
+    else {
+      rm.push(C('Will the RI also be the Registered Manager?', 'riRm', yn));
+      if (A.riRm === 'y') rm.push(I("We use the RI's details, DBS, references and GP for the manager too, so you only need the qualifications and Social Care Wales details below. Your referees should be able to speak about managing a care service.", 'ok'));
+      else rm.push(I('CIW emails the manager an invitation to complete their own part in CIW Online. Please let them know to look out for it.', 'ok'), T('Full Name', '', { req: true }), T('Date of Birth (dd/mm/yyyy)', '', { req: true }), T('Address', '', { req: true }), T('Postcode', '', { req: true }), T('Telephone', '', { req: true }), T('Email', '', { req: true }),
+        T('Manager: Place of Birth', '', { req: true, tip: 'Added by the Hub. Needed for their DBS and fitness checks.' }), T('Manager: Any Previous Surnames', '', { tip: 'Write "None" if there are none.' }), T('Manager: National Insurance number'),
+        C('Manager: Language for their CIW interview', 'rmIntLang', [['en', 'English'], ['cy', 'Welsh']]),
+        I('Manager 5-Year Address History (Complete history with no gaps)'), T('Manager Address 1 (current): Address (including Postcode), From (MM/YYYY) to present', '', { req: true }), T('Manager Address 2: Address (including Postcode), From (MM/YYYY) to (MM/YYYY)'));
+      rm.push(C('Social Care Wales registration as a manager', 'scw', [['reg', 'Registered'], ['pend', 'Applied, waiting'], ['no', 'Not yet applied']], { tip: 'Added by the Hub. CIW will not register the service without a manager registered with Social Care Wales.' }));
+      if (A.scw !== 'no') rm.push(T('Social Care Wales Registration Number', '', { tip: 'Or the application reference if you are waiting.' }));
+      else rm.push(I('Social Care Wales registration can take a while, so it is worth starting now. Your consultant will talk you through it.', 'warn'));
+      rm.push(C('Level 5 qualification in leadership and management', 'l5', [['held', 'Held'], ['prog', 'Working towards it'], ['no', 'Not started']], { tip: 'Added by the Hub.' }));
+      if (A.l5 === 'no') rm.push(I('Social Care Wales will ask about management qualifications. Your consultant will go through the options with you.', 'warn'));
+      rm.push(P('Relevant Qualifications'));
+    }
+    S.push({ id: 'rm', title: 'Registered Manager Details', intro: 'The person in day-to-day charge of the service.', fields: rm });
+    if (rmDiff) {
+      S.push({ id: 'rmdbs', title: 'Registered Manager: DBS', intro: 'Added by the Hub. CIW Online asks for the manager\'s own DBS. Done already and on the Update Service? Then no ID documents.', fields: dbsBlock('Manager: ', 'rm') });
+      const rh = [C('Manager: has any of these ever applied to them?', 'rmHist', yn, { tip: 'Previously registered to provide regulated care in Wales; refused registration in Wales or the UK; registration cancelled by enforcement; prosecuted relating to a regulated service; investigated by a professional regulator; business interests in regulated care or other companies.' })];
+      if (A.rmHist === 'y') rh.push(P('Manager: please tell us which, and what happened', '', { req: true }));
+      rh.push(C('Manager: are they registered with a professional body (for example the NMC)?', 'rmProf', yn));
+      if (A.rmProf === 'y') rh.push(T('Manager: professional body and registration number', '', { req: true }));
+      S.push({ id: 'rmref', title: 'Registered Manager: References', intro: 'Added by the Hub. CIW Online asks for the manager\'s own references.', fields: refBlock('Manager: ', 'rm') });
+      S.push({ id: 'rmgp', title: 'Registered Manager: GP and History', intro: 'Added by the Hub. CIW Online asks for these for the manager as well as the RI.', fields: gpBlock('Manager: ').concat([I("We send the manager CIW's medical reference form too.", 'ok'), I('Registration history')], rh) });
+    } else skipped.push('Registered Manager: DBS', 'Registered Manager: References', 'Registered Manager: GP and History');
+
+    // Choices only the client can make
+    const ch = [I('Some answers in CIW Online are your decision, so we ask you rather than choosing for you.'),
+      C('Can CIW send legal notices to you by email?', 'legalEmail', yn, { tip: 'Most providers say Yes. It is quicker than post.' }),
+      C('Can CIW share your email address with Social Care Wales?', 'shareScw', yn),
+      C('Can CIW share your email address with Data Cymru, for the Dewis Cymru directory?', 'shareDewis', yn, { tip: 'Dewis Cymru is a public directory that helps people in Wales find care and support.' }),
+      C('Do you agree to the areas you chose becoming a condition of your registration?', 'condArea', yn, { tip: 'This is normal. It means you register for the areas you named.' })];
+    if (A.condArea === 'n') ch.push(I('If you say No, CIW sends a notice and the application takes longer. Your consultant will talk it through with you first.', 'warn'));
+    ch.push(C('Do you agree to your RI being named as a condition of your registration?', 'condRi', yn, { tip: 'This is normal too.' }));
+    if (A.condRi === 'n') ch.push(I('If you say No, CIW sends a notice and the application takes longer. Your consultant will talk it through with you first.', 'warn'));
+    ch.push(I('When we submit, the applicant, the RI and the manager each tick some declarations in CIW Online themselves, such as the promise about visit lengths and that they are fit to do the role. We walk each person through them.', 'ok'));
+    S.push({ id: 'choices', title: 'Your CIW Choices', intro: 'Added by the Hub. Decisions CIW Online asks you to make.', fields: ch });
+
+    // Documents
+    const docs = [I('For ALL Directors/Officers/Responsible Individual/Registered Manager: a CV for each person (full employment history, no gaps, with start/end dates). One upload per person.'),
+      F('CV: Officer 1' + (P1.name ? ', ' + P1.name : ''), 'CV received', { req: true, ok: 'Received. We check it for any gap longer than 4 weeks and ask you about it.' })];
+    if (!sole && A.o2 === 'y') docs.push(F('CV: Officer 2' + (P2.name ? ', ' + P2.name : ''), 'Add file', { req: true }));
+    if (rmDiff) docs.push(F('CV: Registered Manager', 'Add file', { req: true }));
+    if (A.riDbs === 'n') docs.push(F('For DBS (for RI and any director requiring a check): the THREE ID documents you ticked', 'Add photos', { req: true }));
+    if (rmDiff && A.rmDbs === 'n') docs.push(F('For DBS: the manager\'s THREE ID documents', 'Add photos', { req: true }));
+    others.forEach(([k, nm]) => { if (A[k + 'Dbs'] === 'n') docs.push(F('For DBS: ' + nm + "'s THREE ID documents", 'Add photos', { req: true })); });
+    if (A.riDbs !== 'n' && !(rmDiff && A.rmDbs === 'n') && !others.some(([k]) => A[k + 'Dbs'] === 'n')) docs.push(I('No ID documents needed, because the DBS is already done.', 'ok'));
+    docs.push(F('Qualification certificates (RI and manager)', 'Add files', { tip: 'Added by the Hub. Photos are fine.' }),
+      F('Proof of right to work in the UK (only if not a British or Irish citizen)', 'Add file', { tip: 'Added by the Hub. For example a share code or visa.' }),
+      M('Which of these do you already have? (we create or request the rest with you)', 'have', ['Statement of Purpose', 'Business plan for 2 years', '2-year cash flow forecast', "Bank reference on CIW's own form, signed by your bank", 'Insurance certificate (not a quote or schedule)', 'The 10 policies CIW asks for', 'Chart showing who is in charge of what', 'Your prices (scale of charges)', 'Last 2 years of accounts (if you have them)'], { tip: 'Added by the Hub. This builds your documents list. Leave a box empty if you are not sure.' }));
+    S.push({ id: 'docs', title: 'Required Documents', intro: 'Upload now or later from your documents page. Your progress is saved either way.', fields: docs });
+    S.push({ id: 'decl', title: 'Declaration', intro: A.auth === 'n' ? 'Last of all. The authorised person you named signs this part.' : 'Last of all.', fields: [
+      M('Please confirm each statement', 'decl', ['I confirm the information provided is true and accurate', 'I understand that providing false information is a criminal offence', 'I consent to CIW processing this information for regulatory purposes', 'I agree to Care Sync Experts using these answers to prepare and make our CIW application with us'], { req: true, tip: 'The last statement lets us act for you. We never submit anything without your approval.' }),
+      T('Full Name', P1.name, { req: true }), T('Position', P1.name ? 'Director' : '', { req: true }), SG('Signature', P1.name, { req: true, tip: 'Sign with your finger or mouse. No need to print or scan.' }), T('Date', '04/11/2026', { ok: 'Filled in for you' })] });
+
+    const lastPage = S.pop();
+    S.push({ id: 'review', title: 'Check your answers', intro: 'Every page you have filled in. Tap any page to change it, then go on to the last page.', fields: [I((skipped.length ? skipped.length + (skipped.length === 1 ? ' page is ' : ' pages are ') + skipWord + ', so they are not shown. ' : '') + 'Nothing is sent until you press Send on the last page.', 'ok')].concat(S.map((x, k) => ({ kind: 'jump', label: x.title, to: k }))) });
+    S.push(lastPage);
+    const n = S.length;
+    const i = Math.min(Math.max(st.i, 0), n - 1);
+    const cur = S[i];
+    const clean = t => (t || '').replace(/^Added by the Hub[.:]?\s*/, '');
+    const fields = cur.fields.map(f => {
+      const tip = clean(f.tip);
+      const b = { label: f.label, req: !!f.req, value: f.value || '', ph: f.ph || '', tip, hasTip: !!tip, ok: f.ok || '', hasOk: !!f.ok,
+        tone: f.tone || '', isInfo: f.kind === 'info', isField: f.kind !== 'info' && f.kind !== 'jump',
+        isJump: f.kind === 'jump', go: () => this.setState({ i: f.to || 0 }),
+        askLabel: st.asked === f.label ? 'Sent. Grace replies here within ' + ((window.CSR && CSR.get('reply-client', '1 working day')) || '1 working day') : 'Not sure? Ask us', ask: () => this.setState({ asked: f.label }), isText: f.kind === 'text', isPara: f.kind === 'para', isChoice: f.kind === 'choice', isMulti: f.kind === 'multi', isFile: f.kind === 'file', isSign: f.kind === 'sign', opts: [] };
+      if (f.kind === 'choice') { const v = A[f.key] !== undefined ? A[f.key] : null; b.opts = f.opts.map(([k, label]) => ({ label, on: v === k, off: v !== k, pick: () => set(f.key, k) })); }
+      if (f.kind === 'multi') { const v = A[f.key] || []; b.opts = f.opts.map((label, j) => ({ label, on: v.includes(j), off: !v.includes(j), pick: () => tog(f.key, j) })); }
+      return b;
+    });
+    const ri = Math.max(0, S.findIndex(x => x.id === 'refs'));
+    const pct = Math.round(((i + 1) / n) * 10) * 10;
+    const nf = cur.fields.filter(f => f.kind !== 'info' && f.kind !== 'jump').length;
+    const mm = Math.max(1, Math.round(nf * 0.4));
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n24: 24,
+      isWelcome: st.i === -1 && !st.paused && !st.sent, isPaused: st.paused, isSent: st.sent, inForm: st.i >= 0 && !st.paused && !st.sent,
+      resumeTitle: S[ri].title, doneTitles: S.slice(0, ri).map(x => x.title),
+      secNo: String(i + 1), secTotal: String(n), skipNote: skipped.length ? '. ' + skipped.length + (skipped.length === 1 ? ' page ' : ' pages ') + skipWord : '',
+      mins: mm === 1 ? '1 minute' : mm + ' minutes', secTitle: cur.title, secIntro: clean(cur.intro), barCls: 'w' + pct, fields,
+      nextLabel: i === n - 1 ? 'Send to Care Sync' : 'Next',
+      resume: () => this.setState({ i: ri }), fromStart: () => this.setState({ i: 0 }),
+      next: () => (i === n - 1 ? this.setState({ sent: true }) : this.setState({ i: i + 1 })),
+      prev: () => this.setState({ i: i === 0 ? -1 : i - 1 }),
+      pause: () => this.setState({ paused: true }), unpause: () => this.setState({ paused: false }),
+      restart: () => this.setState({ i: -1, sent: false, paused: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

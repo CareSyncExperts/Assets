@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Client Hub on a computer</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.cd-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.cd-row{padding:14px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.cd-ico{width:40px;height:40px;flex-shrink:0;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.cd-btn{min-height:44px;padding:0 16px;border-radius:10px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.cd-btn:focus-visible,.cd-tab:focus-visible,.cd-page:focus-visible,.cd-proj:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.cd-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.cd-proj{min-height:44px;padding:6px 14px;border-radius:10px;font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:0}
+.cd-page{width:100%;min-height:40px;padding:8px 12px;border-radius:8px;border:0;font:inherit;font-size:14px;line-height:20px;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center}
+.cd-in{width:100%;box-sizing:border-box;min-height:48px;padding:0 14px;border-radius:10px;border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:15px}
+.cd-lab{font-size:15px;line-height:22px;font-weight:500}
+.cd-hint{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.cd-radio{min-height:48px;padding:0 14px;border-radius:10px;border:1px solid var(--cs-border-default);display:flex;gap:10px;align-items:center;font-size:15px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 1440px; min-height: 1080px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; align-items: stretch;">
+  <div style="flex-shrink: 0;">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Harbour Lane Care Ltd" label="Your Hub" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="{{topTitle}}" notifications="{{two}}" user="{{user}}"></x-import>
+
+    <div style="padding: 12px 32px; background: var(--cs-surface-subtle); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;" role="tablist" aria-label="Your projects">
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); margin-right: 4px;">Your projects</span>
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="2">
+          <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}"><button class="cd-proj" role="tab" aria-selected="true" onClick="{{p.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-surface-raised); color: var(--cs-text-primary);"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{p.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{p.sub}}</span></button></sc-if>
+          <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}"><button class="cd-proj" role="tab" aria-selected="false" onClick="{{p.pick}}" style="border: 1px solid var(--cs-border-default); background: transparent; color: var(--cs-text-secondary);"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{p.name}}</span><span style="font-size: 12px; line-height: 16px;">{{p.sub}}</span></button></sc-if>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 6px; align-items: center;" role="tablist" aria-label="Demo screen">
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); margin-right: 4px;">Demo</span>
+        <sc-for list="{{views}}" as="v" hint-placeholder-count="2">
+          <sc-if value="{{v.on}}" hint-placeholder-val="{{ false }}"><button class="cd-tab" role="tab" aria-selected="true" onClick="{{v.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-weight: 500;">{{v.label}}</button></sc-if>
+          <sc-if value="{{v.off}}" hint-placeholder-val="{{ true }}"><button class="cd-tab" role="tab" aria-selected="false" onClick="{{v.pick}}" style="border: 1px solid var(--cs-border-default); background: transparent; color: var(--cs-text-secondary);">{{v.label}}</button></sc-if>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{showRegToday}}" hint-placeholder-val="{{ true }}">
+      <div style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Wednesday 4 November</span>
+            <h1 style="margin: 0; font-size: 30px; line-height: 38px; font-weight: 600;">Good morning, Amara</h1>
+          </div>
+          <a href="Ask.dc.html" class="cd-btn" style="background: var(--cs-action-secondary); color: var(--cs-action-on-secondary);"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n20}}"></x-import>Ask Care Sync</a>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <section aria-label="Your registration" style="background: var(--cs-surface-inverse); color: #FFFFFF; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between; gap: 16px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; line-height: 18px; color: #AEFFEF; font-weight: 500;">CQC registration: Domiciliary Care, Full Package</span><span style="font-size: 22px; line-height: 30px; font-weight: 500;">Stage 3 of 11: Your documents</span></div>
+                <div style="text-align: right;"><span style="display: block; font-size: 32px; line-height: 40px; font-weight: 600;">64%</span><span style="font-size: 12px; line-height: 16px; color: #D0D5DD;">pack ready</span></div>
+              </div>
+              <div aria-hidden="true" style="height: 8px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden;"><span style="display: block; width: 64%; height: 8px; background: #AEFFEF;"></span></div>
+              <span style="font-size: 14px; line-height: 20px; color: #D0D5DD;">Your policies are written and waiting for your review. Your next step is 3 photos of evidence, about 10 minutes.</span>
+            </section>
+            <section class="cd-card" aria-labelledby="wy-h">
+              <div style="padding: 18px 20px 12px; display: flex; justify-content: space-between; align-items: center;"><h2 id="wy-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Waiting on you</h2><x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">3 to do</x-import></div>
+              <sc-for list="{{todo}}" as="t" hint-placeholder-count="3">
+                <div class="cd-row"><span class="cd-ico" style="background: var(--cs-surface-brand); color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="{{t.icon}}" size="{{n20}}"></x-import></span><span style="flex: 1; display: flex; flex-direction: column;"><span style="font-weight: 500;">{{t.title}}</span><span class="cd-hint">{{t.sub}}</span></span><a href="{{t.href}}" class="cd-btn" style="background: var(--cs-action-primary); color: var(--cs-action-on-primary);">{{t.cta}}</a></div>
+              </sc-for>
+            </section>
+            <section class="cd-card" aria-labelledby="ws-h">
+              <div style="padding: 18px 20px 12px;"><h2 id="ws-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">What we did this week</h2></div>
+              <sc-for list="{{done}}" as="d" hint-placeholder-count="3">
+                <div class="cd-row"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Done"></x-import></span><span style="flex: 1;">{{d.text}}</span><span class="cd-hint">{{d.when}}</span></div>
+              </sc-for>
+            </section>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <section class="cd-card" aria-labelledby="tm-h" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+              <h2 id="tm-h" style="margin: 0; font-size: 18px; line-height: 26px; font-weight: 500;">Your team</h2>
+              <sc-for list="{{team}}" as="m" hint-placeholder-count="3">
+                <div style="display: flex; gap: 12px; align-items: center;"><span style="width: 40px; height: 40px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500;">{{m.in}}</span><span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{m.name}}</span><span class="cd-hint">{{m.role}}</span></span></div>
+              </sc-for>
+            </section>
+            <section class="cd-card" aria-labelledby="nx-h" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+              <h2 id="nx-h" style="margin: 0; font-size: 18px; line-height: 26px; font-weight: 500;">Coming up</h2>
+              <span style="font-size: 14px; line-height: 20px; font-weight: 500;">Session 2 with Millicent: going through your documents</span>
+              <span class="cd-hint">Thursday 5 November, 10:00 to 11:00, by video</span>
+              <a href="Sessions.dc.html" style="font-size: 14px; line-height: 20px; font-weight: 500;">Change the time</a>
+            </section>
+            <section aria-label="Your other project" style="border: 1px dashed var(--cs-border-default); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 14px; line-height: 20px; font-weight: 500;">Your tender project</span>
+              <span class="cd-hint">Kent home care framework: 1 case study needed by Friday, and 1 decision by 10 November. Switch project above to see them.</span>
+            </section>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{showTenderToday}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Tender project</span>
+          <h1 style="margin: 0; font-size: 30px; line-height: 38px; font-weight: 600;">Your tenders</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">We find, check and write your bids. Here you can see each tender, what we need from you and when it closes.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+          <sc-for list="{{tenders}}" as="t" hint-placeholder-count="3">
+            <div class="cd-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+              <x-import component-from-global-scope="CareSync.StatusBadge" status="{{t.tone}}" icon="{{t.icon}}">{{t.status}}</x-import>
+              <span style="font-size: 16px; line-height: 24px; font-weight: 500;">{{t.name}}</span>
+              <span class="cd-hint">{{t.buyer}}</span>
+              <span style="font-size: 14px; line-height: 20px;">{{t.next}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <section class="cd-card" aria-labelledby="tp-h">
+          <div style="padding: 18px 20px 12px; display: flex; justify-content: space-between; align-items: center;"><h2 id="tp-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Your tender profile</h2><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="circle-check">Up to date</x-import></div>
+          <div class="cd-row"><span style="flex: 1;">We use your Tender Preparation Questionnaire answers for every bid, so you only tell us once. Check them before each new tender.</span><a href="TenderProfile.dc.html" class="cd-btn" style="background: var(--cs-action-secondary); color: var(--cs-action-on-secondary);">See your answers</a></div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{showForm}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 24px 32px 48px; display: grid; grid-template-columns: 260px minmax(0, 1fr) 300px; gap: 24px; align-items: start;">
+        <nav aria-label="Form pages" class="cd-card" style="padding: 14px 10px; display: flex; flex-direction: column; gap: 2px;">
+          <span style="padding: 4px 12px 10px; font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{formName}}</span>
+          <sc-for list="{{pages}}" as="pg" hint-placeholder-count="8">
+            <sc-if value="{{pg.cur}}" hint-placeholder-val="{{ false }}"><button class="cd-page" aria-current="page" style="background: var(--cs-surface-brand); color: var(--cs-text-brand); font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="pencil-line" size="{{n16}}"></x-import>{{pg.title}}</button></sc-if>
+            <sc-if value="{{pg.done}}" hint-placeholder-val="{{ true }}"><button class="cd-page" style="background: transparent; color: var(--cs-text-primary);"><span style="color: var(--cs-status-success-text); display: flex;"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n16}}" label="Done"></x-import></span>{{pg.title}}</button></sc-if>
+            <sc-if value="{{pg.todo}}" hint-placeholder-val="{{ false }}"><button class="cd-page" style="background: transparent; color: var(--cs-text-secondary);"><span style="width: 16px; height: 16px; border-radius: 999px; border: 1px solid var(--cs-border-default); box-sizing: border-box;"></span>{{pg.title}}</button></sc-if>
+            <sc-if value="{{pg.skip}}" hint-placeholder-val="{{ false }}"><span class="cd-page" style="color: var(--cs-text-muted); cursor: default;"><x-import component-from-global-scope="CareSync.Icon" name="minus" size="{{n16}}"></x-import>{{pg.title}} (not needed)</span></sc-if>
+          </sc-for>
+        </nav>
+        <main class="cd-card" style="padding: 28px 32px; display: flex; flex-direction: column; gap: 22px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Page 11 of 15, saved 2 minutes ago</span>
+            <div aria-hidden="true" style="height: 6px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><span style="display: block; width: 70%; height: 6px; background: var(--cs-action-primary);"></span></div>
+            <h1 style="margin: 8px 0 0; font-size: 26px; line-height: 34px; font-weight: 600;">Reference Details</h1>
+            <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">For the registered manager. CQC asks for the most recent employer.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px;">
+            <label style="display: flex; flex-direction: column; gap: 6px;"><span class="cd-lab">Referee full name</span><input class="cd-in" value="Sarah Example"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px;"><span class="cd-lab">Job title</span><input class="cd-in" value="Registered Manager"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px;"><span class="cd-lab">Organisation</span><input class="cd-in" value="Example Homecare Ltd"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px;"><span class="cd-lab">Email address</span><input class="cd-in" value="sarah@example.org"></label>
+          </div>
+          <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <legend class="cd-lab" style="padding: 0 0 8px;">Was this your most recent employer?</legend>
+            <span class="cd-radio" style="border: 2px solid var(--cs-action-primary);"><span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 999px; border: 5px solid var(--cs-action-primary); box-sizing: border-box;"></span>Yes</span>
+            <span class="cd-radio"><span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 999px; border: 1px solid var(--cs-border-default); box-sizing: border-box;"></span>No</span>
+          </fieldset>
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid var(--cs-border-subtle);">
+            <span class="cd-btn" style="background: transparent; color: var(--cs-text-secondary); border: 1px solid var(--cs-border-default);"><x-import component-from-global-scope="CareSync.Icon" name="save" size="{{n16}}"></x-import>Save and finish later</span>
+            <span style="display: flex; gap: 10px;"><span class="cd-btn" style="background: var(--cs-action-secondary); color: var(--cs-action-on-secondary);">Back</span><a href="ManagerFlow.dc.html" class="cd-btn" style="background: var(--cs-action-primary); color: var(--cs-action-on-primary);">Next page</a></span>
+          </div>
+        </main>
+        <aside style="display: flex; flex-direction: column; gap: 16px;">
+          <section class="cd-card" aria-labelledby="why-h" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+            <h2 id="why-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Why we ask</h2>
+            <span class="cd-hint">CQC contacts the referee before the manager's interview. A friend or family member is not accepted, so a work referee avoids delays.</span>
+          </section>
+          <section class="cd-card" aria-labelledby="sk-h" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+            <h2 id="sk-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Pages you do not need</h2>
+            <span class="cd-hint">You said the registered manager is also the nominated individual, so we filled those pages from your answers. You said the DBS is done, so no ID or address history is needed.</span>
+          </section>
+          <section style="border-radius: 12px; background: var(--cs-surface-brand); padding: 16px 20px; display: flex; gap: 10px; align-items: flex-start;">
+            <span style="color: var(--cs-text-brand); display: flex;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n20}}"></x-import></span>
+            <span style="font-size: 14px; line-height: 20px;">Stuck on a question? <a href="Ask.dc.html">Ask Grace</a> and you will get a reply here.</span>
+          </section>
+        </aside>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { proj: 'reg', view: 'today' };
+  }
+  renderVals() {
+    const { proj, view } = this.state;
+    const projects = [['reg', 'CQC registration', 'Domiciliary care, stage 3 of 11'], ['tender', 'Tenders', 'Kent home care framework, 2 things need you']].map(([k, name, sub]) => ({ name, sub, on: proj === k, off: proj !== k, pick: () => this.setState({ proj: k }) }));
+    const views = [['today', 'Today'], ['form', 'Onboarding form']].map(([k, label]) => ({ label, on: view === k, off: view !== k, pick: () => this.setState({ view: k }) }));
+    const regPages = [['Contact', 'd'], ['Company Information', 'd'], ['Directors', 'd'], ['Service Details', 'd'], ['Registered Manager', 'd'], ['Professional body', 's'], ['RM DBS certificate', 'd'], ['Nominated Individual', 's'], ['GP Details', 'd'], ['Employment History', 'd'], ['Reference Details', 'c'], ['Office and premises', 't'], ['Check your answers', 't'], ['Declaration', 't']];
+    const tenPages = [['About your organisation', 'd'], ['Registration and ratings', 'd'], ['Services and settings', 'd'], ['Home care', 'd'], ['Workforce', 'c'], ['Quality and safeguarding', 't'], ['Contract example 1', 't'], ['Social value', 't'], ['Check your answers', 't'], ['Declaration', 't']];
+    const pages = (proj === 'reg' ? regPages : tenPages).map(([title, s]) => ({ title, done: s === 'd', cur: s === 'c', todo: s === 't', skip: s === 's' }));
+    const navItems = [
+      { label: 'Today', icon: 'layout-dashboard', current: view === 'today' },
+      { label: 'Onboarding form', icon: 'clipboard-list', current: view === 'form' },
+      { label: 'Your journey', icon: 'list-checks' },
+      { label: 'Documents', icon: 'file-text', badge: { text: '3', status: 'warning' } },
+      { label: 'Review Room', icon: 'eye' },
+      { label: 'CQC', icon: 'shield-check' },
+      { label: 'Tenders', icon: 'trending-up' },
+      { label: 'Sessions', icon: 'calendar' }
+    ];
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20, two: 2,
+      user: { name: 'Amara Okafor', initials: 'AO' },
+      topTitle: view === 'form' ? 'Your onboarding form' : 'Today',
+      projects, views, pages,
+      formName: proj === 'reg' ? 'CQC Registration Information Form' : 'Tender Preparation Questionnaire',
+      showRegToday: view === 'today' && proj === 'reg', showTenderToday: view === 'today' && proj === 'tender', showForm: view === 'form',
+      nav: [{ items: navItems }, { heading: 'You', items: [{ label: 'Ask Care Sync', icon: 'circle-help' }, { label: 'Account and privacy', icon: 'user' }] }],
+      todo: [
+        { icon: 'upload', title: 'Proof of the office address', sub: 'A photo of a utility bill or council tax letter', cta: 'Upload', href: 'Documents.dc.html' },
+        { icon: 'eye', title: 'Review your Statement of Purpose', sub: 'Daniel finished it yesterday, about 15 minutes to read', cta: 'Review', href: 'Review.dc.html' },
+        { icon: 'file-check', title: 'One question about your office', sub: 'Is it a home office? One tap', cta: 'Answer', href: 'AddressClient.dc.html' }
+      ],
+      done: [
+        { text: 'Onboarding form approved', when: '27 October' },
+        { text: 'All 30 policies written, ready for your review', when: 'Friday' },
+        { text: 'Business email connected for CQC', when: 'Tuesday' }
+      ],
+      team: [
+        { in: 'DM', name: 'Daniel Mensah', role: 'Your consultant' },
+        { in: 'GW', name: 'Grace Whitfield', role: 'Checks your forms and documents so nothing comes back' },
+        { in: 'DV', name: 'Divine', role: 'Client care, here whenever you need us' },
+        { in: 'MI', name: 'Millicent', role: 'Policy walkthrough and interview practice' }
+      ],
+      tenders: [
+        { name: 'Kent home care framework', buyer: 'Kent County Council', status: 'Writing, closes 30 Nov', tone: 'brand', icon: 'pencil-line', next: 'We need 1 case study from you by Friday' },
+        { name: 'Medway supported living', buyer: 'Medway Council', status: 'Should we bid?', tone: 'warning', icon: 'circle-help', next: 'Your decision by 10 November' },
+        { name: 'Bexley reablement', buyer: 'London Borough of Bexley', status: 'Submitted', tone: 'success', icon: 'circle-check', next: 'Result expected in January' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

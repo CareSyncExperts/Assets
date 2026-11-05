@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>One quick question</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1120px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Harbour Lane Care Ltd</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Your office address</h1>
+    </header>
+
+    <section aria-labelledby="q-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-2); padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="q-h" style="margin: 0; font-size: 18px; line-height: 26px; font-weight: 500;">Flat 2, 14 Harbour Road</h2>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Your form and your tenancy agreement match. CQC also needs your landlord's permission to use the flat as your office, so we asked your landlord, Tom Reid, for a short letter.</span>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <sc-for list="{{steps}}" as="t" hint-placeholder-count="4">
+          <div style="display: flex; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--cs-border-subtle);">
+            <sc-if value="{{t.done}}" hint-placeholder-val="{{ true }}"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Done"></x-import></span></sc-if>
+            <sc-if value="{{t.wait}}" hint-placeholder-val="{{ false }}"><span style="color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="clock" size="{{n20}}" label="Not yet"></x-import></span></sc-if>
+            <span style="flex-grow: 1; font-size: 15px; line-height: 22px;">{{t.k}}</span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{t.v}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 14px; line-height: 20px; font-weight: 500;">Nothing for you to do. A gentle reminder goes to Tom on Wed 4 Nov.</span>
+      <button onClick="{{nudge}}" style="min-height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">{{nudgeLabel}}</button>
+      <a href="Ask.dc.html" style="align-self: center; min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; font-weight: 500; text-decoration: none;">Tom's details have changed? Ask Grace</a>
+    </section>
+
+    <section aria-labelledby="chk-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="chk-h" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">What we checked for you</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Checked"></x-import></span>
+          <span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Your company is active at Companies House</span>
+        </div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Checked"></x-import></span>
+          <span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Your company name is the same in every document</span>
+        </div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n20}}" label="Checked"></x-import></span>
+          <span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Your manager's details match their ID</span>
+        </div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+          <span style="color: var(--cs-status-warning-text);"><x-import component-from-global-scope="CareSync.Icon" name="clock" size="{{n20}}" label="Waiting"></x-import></span>
+          <span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Office address: waiting for Tom's letter</span>
+        </div>
+      </div>
+      <span style="margin: 0 4px; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">We check these automatically so nothing small holds up your application.</span>
+    </section>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));">
+    <a href="Main.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="Journey.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n24}}"></x-import>Journey</a>
+    <a href="Documents.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Documents</a>
+    <a href="Cqc.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n24}}"></x-import>CQC</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { asked: false }; }
+  renderVals() {
+    const steps = [['Sent to Tom', 'Fri 30 Oct', true], ['Opened by Tom', 'Sat 31 Oct', true], ['Signed and uploaded', 'Not yet', false], ['Checked by Grace', 'Not yet', false]].map(([k, v, d]) => ({ k, v, done: d, wait: !d }));
+    return { theme: this.props.theme ?? 'light', n16: 16, n20: 20, n24: 24, steps,
+      nudge: () => this.setState({ asked: true }), nudgeLabel: this.state.asked ? 'Done. Grace will remind Tom today' : 'Ask Grace to remind Tom now' };
+  }
+}
+</script>
+</body>
+</html>

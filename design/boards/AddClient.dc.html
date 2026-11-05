@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Add a client</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.ac-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.ac-h{margin:0;font-size:16px;line-height:24px;font-weight:500}
+.ac-pkg{width:100%;padding:10px 12px;border-radius:10px;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(--cs-text-primary)}
+.ac-pkg:focus-visible,.ac-tg:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.ac-tg{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;cursor:pointer}
+.ac-f{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px solid var(--cs-border-subtle)}
+.ac-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ac-v{font-size:14px;line-height:20px;font-weight:500}
+.ac-ch{min-height:36px;padding:4px 12px;border-radius:10px;font:inherit;font-size:13px;cursor:pointer;text-align:left;display:flex;flex-direction:column;justify-content:center}
+.ac-ch:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.ch-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary)}
+.ch-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ac-line{display:flex;justify-content:space-between;gap:10px;font-size:14px;line-height:20px;padding:6px 0;border-top:1px solid var(--cs-border-subtle)}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2300px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Add a client" notifications="{{two}}" user="{{user}}"></x-import>
+    <main style="padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <h1 style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600;">Add a client</h1>
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Choose the package and the client gets the matching onboarding form: the same questions as our Google Forms, nothing they do not need.</span>
+        </div>
+        <x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">Deal won in GoHighLevel 10:02. First instalment paid through Stripe</x-import>
+      </div>
+
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section aria-labelledby="cl-h" class="ac-card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 id="cl-h" class="ac-h">The client</h2><span style="font-size: 12px; color: var(--cs-text-muted);">Filled in from the won deal. Check and change if needed</span></div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px;">
+              <div class="ac-f"><span class="ac-k">Company</span><span class="ac-v">Meadow View Care Ltd</span></div>
+              <div class="ac-f"><span class="ac-k">Main contact</span><span class="ac-v">Ade Ola, director</span></div>
+              <div class="ac-f"><span class="ac-k">Mobile</span><span class="ac-v">07700 900789</span></div>
+              <div class="ac-f"><span class="ac-k">Email</span><span class="ac-v">ade@meadowviewcare.co.uk</span></div>
+            </div>
+            <span class="ac-k" style="padding-top: 4px;">Is the company already formed at Companies House?</span>
+            <div role="radiogroup" aria-label="Company formed" style="display: flex; gap: 8px;">
+              <sc-for list="{{formedOpts}}" as="o" hint-placeholder-count="2">
+                <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button class="ac-tg" role="radio" aria-checked="true" onClick="{{o.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{o.label}}</button></sc-if>
+                <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}"><button class="ac-tg" role="radio" aria-checked="false" onClick="{{o.pick}}" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{o.label}}</button></sc-if>
+              </sc-for>
+            </div>
+          </section>
+
+          <section aria-labelledby="pk-h" class="ac-card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 id="pk-h" class="ac-h">Packages</h2><span style="font-size: 12px; color: var(--cs-text-muted);">Choose one or more. Try it</span></div>
+            <sc-for list="{{pkgs}}" as="p" hint-placeholder-count="12">
+              <sc-if value="{{p.head}}" hint-placeholder-val="{{ false }}"><span class="ac-k" style="padding-top: 6px; font-weight: 500;">{{p.headText}}</span></sc-if>
+              <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}">
+                <button class="ac-pkg" aria-pressed="true" onClick="{{p.flip}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg);">
+                  <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 6px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+                  <span style="flex-grow: 1; font-size: 14px; line-height: 20px; font-weight: 500;">{{p.label}}</span>
+                  <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary); text-align: right;">{{p.price}}</span>
+                </button>
+                <sc-if value="{{p.hasQty}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; gap: 8px; align-items: center; padding: 0 0 4px 34px;"><span class="ac-k">PIRs, one per service type</span><button class="ac-tg" style="min-width: 40px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);" onClick="{{p.less}}" aria-label="One fewer PIR">-</button><span style="font-weight: 500; min-width: 18px; text-align: center;">{{p.qty}}</span><button class="ac-tg" style="min-width: 40px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);" onClick="{{p.more}}" aria-label="One more PIR">+</button></div>
+                </sc-if>
+              </sc-if>
+              <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}">
+                <button class="ac-pkg" aria-pressed="false" onClick="{{p.flip}}" style="border: 1px solid var(--cs-border-subtle); background: var(--cs-surface-raised);">
+                  <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 6px; border: 2px solid var(--cs-border-control); box-sizing: border-box;"></span>
+                  <span style="flex-grow: 1; font-size: 14px; line-height: 20px;">{{p.label}}</span>
+                  <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary); text-align: right;">{{p.price}}</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{p.locked}}" hint-placeholder-val="{{ false }}">
+                <div class="ac-pkg" style="border: 1px dashed var(--cs-border-default); background: transparent; cursor: default;">
+                  <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0;"></span>
+                  <span style="flex-grow: 1; font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">{{p.label}}</span>
+                  <span style="font-size: 12px; line-height: 16px; padding: 2px 8px; border-radius: 999px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text); font-weight: 500;">{{p.price}}</span>
+                </div>
+              </sc-if>
+            </sc-for>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Names and prices come from the price book (board 77). A dashed row has no price yet, so nobody can sell it: a super admin enters the price and the other super admin approves it.</span>
+            <sc-for list="{{clashes}}" as="c" hint-placeholder-count="1">
+              <div role="alert" style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text); font-size: 13px; line-height: 18px; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 600;">{{c.title}}</span><span>{{c.text}}</span></div>
+            </sc-for>
+          </section>
+
+          <section aria-labelledby="tm-h" class="ac-card">
+            <h2 id="tm-h" class="ac-h">Team</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px;">
+              <div class="ac-f"><span class="ac-k">Introduction call</span><span class="ac-v">Divine (default)</span></div>
+              <div class="ac-f"><span class="ac-k">Onboarding lead</span><span class="ac-v">Grace Whitfield</span></div>
+              <div class="ac-f"><span class="ac-k">Coach</span><span class="ac-v">Millicent</span></div>
+            </div>
+            <span class="ac-k">Proposed consultant (a manager confirms at handover)</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <sc-for list="{{cons}}" as="c" hint-placeholder-count="3"><sc-if value="{{c.can}}" hint-placeholder-val="{{ true }}"><button class="{{c.cls}}" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}"><span style="font-weight: 500;">{{c.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{c.load}}</span></button></sc-if><sc-if value="{{c.cannot}}" hint-placeholder-val="{{ false }}"><div class="ac-ch" style="border: 1px dashed var(--cs-border-default); cursor: default;"><span style="font-weight: 500; color: var(--cs-text-secondary);">{{c.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{c.load}}</span></div></sc-if></sc-for>
+            </div>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Everyone with the consultant role in People and access (board 83) appears here.</span>
+            <span class="ac-k">Weekly update owner</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <sc-for list="{{weekly}}" as="w" hint-placeholder-count="3"><button class="{{w.cls}}" aria-pressed="{{w.pressed}}" onClick="{{w.pick}}"><span style="font-weight: 500;">{{w.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{w.load}}</span></button></sc-for>
+            </div>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{weeklyNote}}</span>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section aria-labelledby="pv-h" class="ac-card" style="border: 2px solid var(--cs-action-primary);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+              <h2 id="pv-h" class="ac-h">The onboarding form this client gets</h2>
+              <span style="font-size: 13px; color: var(--cs-text-secondary);">{{secCount}}</span>
+            </div>
+            <sc-if value="{{none}}" hint-placeholder-val="{{ false }}">
+              <span style="font-size: 14px; color: var(--cs-text-secondary);">Choose a package to see the form.</span>
+            </sc-if>
+            <sc-for list="{{secs}}" as="s" hint-placeholder-count="9">
+              <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--cs-border-subtle);">
+                <span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 8px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">{{s.n}}</span>
+                <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{s.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{s.who}}</span></span>
+                <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); flex-shrink: 0;">{{s.size}}</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{hasV8}}" hint-placeholder-val="{{ true }}"><div role="note" style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-info-bg); color: var(--cs-status-info-text); font-size: 13px; line-height: 18px;">Live CQC form v7. Draft v8 is waiting for a super admin (decision 4 on Home): it adds a "Your office" page and removes "Type of Legal Entity". This preview changes the day v8 is approved. <a href="FormBuilder.dc.html" style="color: inherit; font-weight: 600;">Open Forms</a></div></sc-if>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Shared answers are asked once, even across two packages. Anything already known is filled in for the client to check.</span>
+          </section>
+
+          <section aria-labelledby="mo-h" class="ac-card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><h2 id="mo-h" class="ac-h">Package total and payments</h2><span style="font-size: 12px; color: var(--cs-text-muted);">From the price book</span></div>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{lines}}" as="l" hint-placeholder-count="2"><div class="ac-line"><span>{{l.k}}</span><span style="font-weight: 500; white-space: nowrap;">{{l.v}}</span></div></sc-for>
+              <div class="ac-line" style="font-weight: 600;"><span>Total</span><span>{{total}}</span></div>
+              <div class="ac-line"><span>{{paidK}}</span><span style="font-weight: 500; white-space: nowrap;">{{paid}}</span></div>
+            </div>
+            <sc-if value="{{hasCheck}}" hint-placeholder-val="{{ true }}">
+              <div role="note" style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text); font-size: 13px; line-height: 18px; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 600;">Check: £8,500 or £8,000</span><span>Collins entered £8,500 + VAT on Mon 2 Nov as the checked price. Rachel Turner checks it against £8,000 (decision 1 on super admin Home). Until then the price book price stands, and the instalments follow it.</span></div>
+            </sc-if>
+            <sc-for list="{{plans}}" as="pl" hint-placeholder-count="1">
+              <div style="display: flex; flex-direction: column; padding-top: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; padding-bottom: 4px;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">{{pl.title}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{pl.note}}</span></div>
+                <sc-for list="{{pl.rows}}" as="n" hint-placeholder-count="3"><div class="ac-line"><span style="display: flex; flex-direction: column; min-width: 0;"><span>{{n.k}}</span><sc-if value="{{n.hasSub}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{n.sub}}</span></sc-if></span><span style="font-weight: 500; white-space: nowrap;">{{n.v}}</span></div></sc-for>
+              </div>
+            </sc-for>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{moneyNote}}</span>
+            <div style="border-top: 1px solid var(--cs-border-subtle); padding-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+              <sc-if value="{{dCanAsk}}" hint-placeholder-val="{{ true }}"><button class="ac-tg" style="align-self: flex-start; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-weight: 500;" onClick="{{dToggle}}">{{dToggleLabel}}</button></sc-if>
+              <sc-if value="{{dForm}}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Trade scope first. If price is still the blocker, ask here. A super admin who did not ask decides, with a reason. It goes to super admin Home and the price book's discount requests.</span>
+                <span class="ac-k">Which package</span>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{dPkgs}}" as="o" hint-placeholder-count="2"><button class="{{o.cls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}"><span style="font-weight: 500;">{{o.label}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{o.sub}}</span></button></sc-for></div>
+                <label style="display: flex; flex-direction: column; gap: 4px;"><span class="ac-k">Price you are asking for, in pounds, before VAT</span><input style="min-height: 40px; width: 180px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 14px; box-sizing: border-box;" value="{{dPrice}}" onChange="{{onDPrice}}" placeholder="{{dPh}}"></label>
+                <label style="display: flex; flex-direction: column; gap: 4px;"><span class="ac-k">Reason (the super admin sees it, and it is written to the audit log)</span><textarea style="width: 100%; min-height: 60px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 14px; line-height: 20px; box-sizing: border-box; resize: vertical;" value="{{dReason}}" onChange="{{onDReason}}" placeholder="For example: ready to sign today, price is the last blocker"></textarea></label>
+                <sc-if value="{{dErr}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 13px; line-height: 18px; color: var(--cs-status-error-text); font-weight: 500;">{{dErrText}}</span></sc-if>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="ac-tg" style="border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary); font-weight: 500;" onClick="{{dSend}}">Send to the super admins</button><button class="ac-tg" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);" onClick="{{dToggle}}">Cancel</button></div>
+              </sc-if>
+              <sc-if value="{{dSent}}" hint-placeholder-val="{{ false }}">
+                <div role="status" style="padding: 10px 12px; border-radius: 10px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text); font-size: 13px; line-height: 18px; display: flex; flex-direction: column; gap: 4px;">
+                  <span style="font-weight: 600;">{{dSentTitle}}</span>
+                  <span>{{dSentText}}</span>
+                  <span>{{dIfText}}</span>
+                </div>
+                <button class="ac-tg" style="align-self: flex-start; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);" onClick="{{dCancel}}">Withdraw the request</button>
+              </sc-if>
+            </div>
+          </section>
+
+          <section aria-labelledby="nx-h" class="ac-card">
+            <h2 id="nx-h" class="ac-h">When you press Add</h2>
+            <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px;">
+              <li>The client gets the welcome email and their Hub.</li>
+              <li>Divine gets the introduction call task, due within 2 working hours.</li>
+              <li>Straight after the call, the onboarding form above is sent. The client can start, stop and come back any time.</li>
+              <li><span style="font-weight: 500;">Application work and sessions start only when every onboarding gate passes and a manager approves the handover.</span> No CQC writing starts before.</li>
+            </ol>
+          </section>
+          <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="plus">Add client and book the introduction call</x-import>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: { full: true }, formed: true, con: 'olu', wk: 'grace', pirN: 1, dOpen: false, dPkg: '', dPrice: '', dReason: '', dErr: '', dSent: null };
+  }
+  renderVals() {
+    const s = this.state;
+    const C = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const VAT = Number(C('vat-rate', 20));
+    const pn = id => Math.round(Number(C(id, 0)) * 100);
+    const fmtP = (p, dec) => '£' + (p / 100).toLocaleString('en-GB', { minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 });
+    // Exactly the price book (board 77): [id, name, pence, vat 'ex'|'incl', plan, state, group]
+    const P = [
+      ['dom', 'CQC registration: domiciliary care', pn('price-dom'), 'ex', 'two', 'live', 'Registration packages'],
+      ['sl', 'CQC registration: supported living', pn('price-sl'), 'ex', 'two', 'live', ''],
+      ['ciw', 'CIW registration (Wales)', pn('price-ciw'), 'ex', 'two', 'live', ''],
+      ['rqia', 'RQIA registration (Northern Ireland)', pn('price-rqia'), 'ex', 'two', 'live', ''],
+      ['full', 'Full start-up package', pn('price-full'), 'ex', 'three', 'live', ''],
+      ['sladd', 'Supported living add-on', pn('price-sl-addon'), 'incl', 'one', 'live', 'Add-ons and single services'],
+      ['int', 'CQC interview preparation', pn('price-interview'), 'incl', 'one', 'live', ''],
+      ['pir', 'PIR writing', pn('price-pir'), 'ex', 'one', 'live', ''],
+      ['single', 'Single services', 50000, 'ex', 'one', 'from', ''],
+      ['rebrand', 'Policy rebrand, branding and business forms', 50000, 'ex', 'one', 'confirm', ''],
+      ['web', 'Website or marketing', null, 'ex', '', 'quote', ''],
+      ['after', 'Aftercare, 12 months', null, 'ex', '', 'set', ''],
+      ['extra', 'Extra sessions', null, 'ex', '', 'set', ''],
+      ['var', 'Registration variation', null, 'ex', '', 'set', ''],
+      ['mock', 'Mock inspection', null, 'ex', '', 'set', ''],
+      ['tender', 'Tender writing', pn('price-tender-from'), 'ex', 'tender', 'from', 'Tenders'],
+      ['pol', 'Policy writing for a tender', null, 'ex', '', 'quote', ''],
+      ['bid', 'Bid review', null, 'ex', '', 'vat', ''],
+      ['ret', 'Retained tender package', null, 'ex', '', 'set', ''],
+      ['fw', 'Framework or dynamic purchasing application', null, 'ex', '', 'set', '']
+    ];
+    const qty = id => id === 'pir' ? s.pirN : 1;
+    const priceText = p => { const [id, , pence, vat, , st] = p; if (st === 'set') return 'Price to set'; if (st === 'vat') return 'Around £500, VAT to confirm'; if (st === 'quote') return 'Quote per client'; const v = vat === 'incl' ? ' incl. VAT' : ' + VAT'; const unit = (st === 'from' || st === 'confirm' ? 'From ' : '') + fmtP(pence) + v; if (id === 'pir') return unit + ' per PIR'; if (st === 'confirm') return unit + ', to confirm'; return unit; };
+    const CQC = [['Company Registration Status', 'You', '1 question'], [s.formed ? 'Company Information' : 'Care Sync to Set Up Your Limited Company (3 pages)', s.formed ? 'You. Filled in from Companies House' : 'You. SIC codes worked out for you', s.formed ? '10 questions' : 'About 25 questions'], ['Directors', 'You. Another director? adds the next', '4 per director'], ['Primary Service Type and CQC Service User Bands', 'You', '2 questions'], ['Registered Manager Details', 'You', '7 questions and a CV'], ['Registered Manager Professional Registration', 'Only if registered with a professional body', '2 questions'], ['GP Details', 'Registered Manager only', '8 questions'], ['Reference Details', 'Registered Manager only. Last employer', '10 questions'], ['Registered Manager and Nominated Individual Confirmation', 'Same person? Then the next pages are skipped', '1 question'], ['Nominated Individual pages', 'Only if a different person', 'Up to 4 pages'], ['DBS Check for Registered Manager', 'You', '1 question'], ['DBS Certificate Details, or DBS application details', 'DBS done: 3 questions. Not done: IDs and 5-year address history', '3 to 8 questions'], ['Declaration', 'A director, last of all', '4 questions']];
+    const TEN = ['Tender details', 'Company', 'Regulator and registration', 'Who you support', 'Key people', 'Finance', 'Contract examples', 'Private client examples', 'Workforce', 'Partnerships and social value', 'Documents and policies', 'Evidence and case studies', 'Lots', 'How you deliver (only the settings in the lots)', 'Declaration'].map(x => [x, 'You. Reused for every bid', 'As on the tender form']);
+    let list = [];
+    const cqcPk = s.sel.dom || s.sel.sl || s.sel.full;
+    if (cqcPk) list = list.concat(CQC.map(x => x.concat(['CQC form'])));
+    if (s.sel.full) list.push(['Brand and website', 'You', 'Extra, to confirm', 'Full package']);
+    if (s.sel.ciw) list = list.concat([['Before You Start', 'You', 'Added. Who is filling it in, and the CIW Online account'], ['Organisation Information', 'You', 'Filled in from Companies House for a company'], ['Organisation History and Group', 'You', 'Added. CIW asks this about the organisation'], ['Organisation Officers', 'You', 'Every officer, one after another'], ['Service Details', 'You', 'You'], ['How You Will Work', 'You', 'Added. Shapes your policies'], ['Responsible Individual (RI) Details', 'You', 'Picked from your officers, so nothing is typed twice'], ['DBS Information', 'You', 'Done already? No ID documents needed'], ['RI Qualifications and Experience', 'You', 'Added. CIW Online asks these'], ['Registration History', 'You', 'A Yes asks for a short note'], ['Every other officer: checks and references', 'You', '2 pages for each officer who is not the RI'], ['RI References', 'You', 'Two referees, checked for CIW rules'], ['RI GP Details', 'You', 'We send the CIW GP form early'], ['Registered Manager Details', 'You', 'Same as RI? Only qualifications asked'], ['Registered Manager: checks, references and GP', 'You', 'Only if a different person'], ['Your CIW Choices', 'You', 'Decisions only you can make'], ['Required Documents', 'You', 'One upload per person'], ['Declaration', 'You', 'Last of all']].map(x => x.concat(['CIW form'])));
+    if (s.sel.rqia) list = list.concat([['Organisation Information', 'You', 'Filled in from Companies House for a company'], ['Organisation Officers', 'You', 'Every officer, one after another'], ['Service Details', 'You', 'You'], ['How You Will Work', 'You', 'Added. Shapes your policies and staffing plan'], ['Responsible Individual (RI) Details', 'You', 'Picked from your officers, so nothing is typed twice'], ['AccessNI Information', 'You', 'Three ID documents for RQIA\'s own check'], ['RI Qualifications and Experience', 'You', 'Added'], ['Registration History', 'You', 'A Yes asks for a short note'], ['RI References', 'You', 'One must be the current or most recent employer'], ['RI GP Details', 'You', 'Health declaration'], ['Registered Manager Details', 'You', 'Same as RI? Only qualifications asked'], ['Registered Manager: checks, references and GP', 'You', 'Only if a different person'], ['Required Documents', 'You', 'One upload per person'], ['Declaration', 'You', 'Last of all']].map(x => x.concat(['RQIA form'])));
+    if (s.sel.tender) list = list.concat(TEN.map(x => x.concat(['Tender form'])));
+    const small = ['sladd', 'int', 'pir', 'single', 'rebrand', 'web'].filter(k => s.sel[k]);
+    if (small.length && !cqcPk && !s.sel.tender && !s.sel.ciw && !s.sel.rqia) list.push(['Your company', 'You', '1 question', 'Short form']);
+    if (small.length) list.push(['Questions for ' + small.length + (small.length > 1 ? ' add-ons' : ' add-on'), 'To agree with you (not on the current forms)', 'To confirm', 'Add-on']);
+    const SHARED = ['Registered Manager Details', 'Declaration'];
+    const seen = {};
+    const merged = [];
+    list.forEach(x => { const shared = SHARED.indexOf(x[0]) >= 0; if (shared && seen[x[0]] !== undefined) { const m = merged[seen[x[0]]]; m[3] = m[3].indexOf(x[3]) >= 0 ? m[3] : m[3] + ' and ' + x[3]; m[4] = true; return; } if (shared) seen[x[0]] = merged.length; merged.push(x.concat([false])); });
+    const secs = merged.map((x, i) => ({ n: String(i + 1), name: x[0], who: x[4] ? 'Asked once, used for both: ' + x[3].replace(/ form/g, '') : x[1] + '. ' + x[3], size: x[2] }));
+
+    const on = P.filter(p => s.sel[p[0]]);
+    let exVat = 0, incVat = 0, quotes = 0, from = false;
+    on.forEach(p => { if (p[2] === null) { quotes++; return; } const v = p[2] * qty(p[0]); if (p[3] === 'incl') incVat += v; else { exVat += v; if (p[5] !== 'live') from = true; } });
+    const lines = on.map(p => ({ k: p[1] + (p[0] === 'pir' ? ', ' + s.pirN + (s.pirN === 1 ? ' PIR' : ' PIRs') : ''), v: p[0] === 'pir' && s.pirN > 1 ? fmtP(p[2] * s.pirN) + ' + VAT' : priceText(p) }));
+    const parts = [];
+    if (exVat) parts.push((from ? 'from ' : '') + fmtP(exVat) + ' + VAT');
+    if (incVat) parts.push(fmtP(incVat) + ' incl. VAT');
+    if (quotes) parts.push(quotes + (quotes === 1 ? ' quote' : ' quotes') + ' to agree');
+    const total = !on.length ? 'Choose a package' : parts.join(', plus ');
+    const PL = {
+      two: ['2 instalments', 'Default from the price book', ['when the client accepts, signs and pays', 'when the application is submitted']],
+      three: ['3 instalments', 'Default from the price book', ['when the client accepts, signs and pays', 'at final pack sign-off', 'when the application is submitted']],
+      tender: ['2 instalments', '50% at signing, 50% before submission', ['at signing', 'before submission']],
+      one: ['1 payment in full', 'Default from the price book', ['when the client accepts, signs and pays']]
+    };
+    const split = (total, n) => { const base = Math.floor(total / n); return Array.from({ length: n }, (x, i) => i < n - 1 ? base : total - base * (n - 1)); };
+    const plans = on.filter(p => p[2] !== null && PL[p[4]]).map(p => {
+      const vatTxt = p[3] === 'incl' ? ' incl. VAT' : ' + VAT', fr = p[5] !== 'live';
+      const [label, note, whens] = PL[p[4]];
+      const amts = split(p[2] * qty(p[0]), whens.length);
+      const dec = amts.some(a => a % 100 !== 0);
+      const paidNow = p[0] === 'full';
+      return { title: p[1] + ': ' + label, note, rows: whens.map((w, i) => ({ k: (i + 1) + ' of ' + whens.length + ': ' + w, v: (fr ? 'From ' : '') + fmtP(amts[i], dec) + vatTxt, sub: paidNow && i === 0 ? 'Paid 10:02 through Stripe. Receipt saved to Xero' : '', hasSub: paidNow && i === 0 })) };
+    });
+    const CL = [
+      [['dom', 'full'], 'These two overlap', 'The Full start-up package already includes CQC registration for domiciliary care. Untick one so the client is not charged twice.'],
+      [['sl', 'sladd'], 'These two overlap', 'CQC registration for supported living already covers supported living. The add-on is only for providers already registered for domiciliary care.'],
+      [['full', 'web'], 'These two overlap', 'The Full start-up package already includes brand and website.'],
+      [['int', 'any'], 'These two overlap', 'Interview practice is already one of the 3 included sessions in every registration package. CQC interview preparation is for clients without a registration package.']
+    ];
+    const reg = ['dom', 'sl', 'full', 'ciw', 'rqia'].some(k => s.sel[k]);
+    const clashes = CL.filter(([ks]) => ks[1] === 'any' ? (s.sel.int && reg) : ks.every(k => s.sel[k])).map(([ks, title, text]) => ({ title, text }));
+    const CONS = [['daniel', 'Daniel Mensah', 'At capacity: 6 active, 2 in aftercare, covering 4 this week', true], ['olu', 'Olu', 'Back Mon 9 Nov. 5 clients, 2 more from Mon 9 Nov if approved', true], ['sam', 'Sam Patel', 'Leaving Fri 6 Nov. Cannot take new clients', false]];
+    const cons = CONS.map(([k, name, load, can]) => ({ name, load, can, cannot: !can, cls: 'ac-ch ' + (s.con === k ? 'ch-on' : 'ch-off'), pressed: String(s.con === k), pick: () => this.setState({ con: k }) }));
+    const conName = CONS.find(c => c[0] === s.con)[1].split(' ')[0];
+    const WK = [['grace', 'Grace', 'Onboarding: 6 clients'], ['con', conName, 'The proposed consultant'], ['divine', 'Divine', 'Client care']];
+    const weekly = WK.map(([k, name, load]) => ({ name, load, cls: 'ac-ch ' + (s.wk === k ? 'ch-on' : 'ch-off'), pressed: String(s.wk === k), pick: () => this.setState({ wk: k }) }));
+    const pkgs = P.map((p, i) => { const locked = p[5] === 'set' || p[5] === 'vat'; const sel = !!s.sel[p[0]];
+      return { label: p[1], price: priceText(p), on: !locked && sel, off: !locked && !sel, locked, head: !!p[6], headText: p[6],
+        hasQty: p[0] === 'pir', qty: String(s.pirN), less: () => this.setState({ pirN: Math.max(1, s.pirN - 1) }), more: () => this.setState({ pirN: Math.min(6, s.pirN + 1) }),
+        flip: () => { const ns = Object.assign({}, s.sel, { [p[0]]: !sel }); this.setState({ sel: ns, dPkg: s.dPkg === p[0] && sel ? '' : s.dPkg }); } }; });
+    const formedOpts = [['y', 'Yes, already formed'], ['n', 'No, we will set it up']].map(([k, label]) => ({ label, on: (k === 'y') === s.formed, off: (k === 'y') !== s.formed, pick: () => this.setState({ formed: k === 'y' }) }));
+    // Ask for a discount
+    const dable = on.filter(p => p[2] !== null && p[5] === 'live' && p[3] === 'ex');
+    const dKey = dable.find(p => p[0] === s.dPkg) ? s.dPkg : (dable[0] ? dable[0][0] : '');
+    const dP = P.find(p => p[0] === dKey);
+    const dList = dP ? dP[2] * qty(dKey) : 0;
+    const dSend = () => {
+      const v = parseFloat(String(s.dPrice).replace(/[^0-9.]/g, ''));
+      if (!dP) { this.setState({ dErr: 'Choose a package with a fixed price first.' }); return; }
+      if (isNaN(v) || v <= 0 || Math.round(v * 100) >= dList) { this.setState({ dErr: 'Enter a price lower than ' + fmtP(dList) + '.' }); return; }
+      if (!s.dReason.trim()) { this.setState({ dErr: 'Write a reason first.' }); return; }
+      this.setState({ dSent: { id: dKey, name: dP[1], list: dList, ask: Math.round(v * 100), reason: s.dReason.trim(), plan: dP[4] }, dOpen: false, dErr: '' });
+    };
+    const d = s.dSent;
+    let dIf = '';
+    if (d) {
+      const whens = PL[d.plan][2];
+      if (d.id === 'full') { const paid = Math.floor(d.list / 3); const rest = split(d.ask - paid, 2); const dec = true; dIf = 'If approved: instalment 1 (' + fmtP(paid, dec) + ' + VAT) is already paid, so the discount comes off the other two: ' + rest.map((x, i) => fmtP(x, dec) + ' + VAT ' + whens[i + 1]).join(', and ') + '. The agreement, Stripe, the Xero invoice and Ade\'s Plan and costs all change to match.'; }
+      else { const a = split(d.ask, whens.length); const dec = a.some(x => x % 100 !== 0); dIf = 'If approved: ' + a.map((x, i) => fmtP(x, dec) + ' + VAT ' + whens[i]).join(', and ') + '. The agreement, Stripe, the Xero invoice and the client\'s Plan and costs all change to match.'; }
+    }
+    return {
+      theme: this.props.theme ?? 'light', yes: true, two: 2,
+      user: { name: 'Collins', initials: 'C' },
+      pkgs, formedOpts, secs, secCount: secs.length + (secs.length === 1 ? ' section' : ' sections'), none: secs.length === 0, hasV8: !!(s.sel.dom || s.sel.sl || s.sel.full),
+      clashes, lines, total, plans, cons, weekly, hasCheck: !!s.sel.full,
+      paidK: s.sel.full ? 'Paid so far, through Stripe' : 'Paid so far', paid: s.sel.full ? fmtP(Math.floor(pn('price-full') / 3), true) + ' + VAT' : 'Nothing yet',
+      weeklyNote: s.wk === 'grace' ? 'Grace sends the Friday update until handover. At handover it moves to the case owner unless the manager chooses otherwise.' : 'Sends the Friday update from the first Friday, including during onboarding.',
+      moneyNote: (quotes ? 'A quoted item is agreed with the client before it is invoiced. ' : '') + 'The client pays each instalment through Stripe, by card or another method Stripe supports. Each amount is rounded down to the penny and the last instalment takes the rounding, so the amounts add up exactly. VAT is ' + VAT + '%.',
+      dCanAsk: !d && !s.dOpen && dable.length > 0, dForm: s.dOpen && !d, dSent: !!d,
+      dToggle: () => this.setState({ dOpen: !s.dOpen, dErr: '' }), dToggleLabel: 'Ask for a discount',
+      dPkgs: dable.map(p => ({ label: p[1], sub: fmtP(p[2] * qty(p[0])) + ' + VAT', cls: 'ac-ch ' + (dKey === p[0] ? 'ch-on' : 'ch-off'), pressed: String(dKey === p[0]), pick: () => this.setState({ dPkg: p[0] }) })),
+      dPrice: s.dPrice, dReason: s.dReason, dPh: dP ? 'Now ' + (dList / 100) : '', dErr: !!s.dErr, dErrText: s.dErr,
+      onDPrice: e => this.setState({ dPrice: e.target.value, dErr: '' }), onDReason: e => this.setState({ dReason: e.target.value, dErr: '' }), dSend,
+      dSentTitle: d ? 'Discount asked: ' + fmtP(d.ask, d.ask % 100 !== 0) + ' + VAT instead of ' + fmtP(d.list) + ' + VAT for ' + d.name + ' (' + fmtP(d.list - d.ask, (d.list - d.ask) % 100 !== 0) + ' off)' : '',
+      dSentText: d ? 'You asked, so Rachel Turner decides, with a reason. It is now a decision on super admin Home and in the price book\'s discount requests. The total above does not change until it is approved. Your reason: "' + d.reason + '"' : '',
+      dIfText: dIf, dCancel: () => this.setState({ dSent: null, dPrice: '', dReason: '' }),
+      nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users', current: true },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }]
+    };
+  }
+}
+</script>
+</body>
+</html>

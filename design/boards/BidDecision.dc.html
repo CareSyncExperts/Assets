@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Should we bid?</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.bd-opt{min-height:44px;border-radius:10px;font:inherit;font-size:14px;cursor:pointer}
+.bd-opt:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.bd-row{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:18px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1260px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">Harbour Lane Care. Registration plus tender writing</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Should we bid?</h1>
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Hertfordshire community support, a dynamic market. You can join now and add more later. Your decision, with our view.</span>
+    </header>
+
+    <sc-for list="{{lots}}" as="l" hint-placeholder-count="2">
+      <section style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; gap: 8px; align-items: flex-start;">
+          <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">{{l.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{l.what}}</span></span>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="{{l.tone}}" icon="{{l.icon}}">{{l.verdict}}</x-import>
+        </div>
+        <sc-for list="{{l.checks}}" as="c" hint-placeholder-count="3">
+          <div class="bd-row">
+            <sc-if value="{{c.ok}}" hint-placeholder-val="{{ true }}"><span style="color: var(--cs-status-success-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-check" size="{{n16}}" label="Met"></x-import></span></sc-if>
+            <sc-if value="{{c.bad}}" hint-placeholder-val="{{ false }}"><span style="color: var(--cs-status-warning-text);"><x-import component-from-global-scope="CareSync.Icon" name="circle-alert" size="{{n16}}" label="Not met yet"></x-import></span></sc-if>
+            <span>{{c.text}}</span>
+          </div>
+        </sc-for>
+        <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-subtle); font-size: 13px; line-height: 18px;"><span style="font-weight: 600;">Our view: </span>{{l.view}}</div>
+        <div role="radiogroup" aria-label="{{l.name}}" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+          <sc-for list="{{l.opts}}" as="o" hint-placeholder-count="2">
+            <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}">
+              <button class="bd-opt" role="radio" aria-checked="true" onClick="{{o.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{o.label}}</button>
+            </sc-if>
+            <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}">
+              <button class="bd-opt" role="radio" aria-checked="false" onClick="{{o.pick}}" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{o.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+
+    <section aria-labelledby="sm-h" style="padding: 14px 16px; border-radius: 12px; background: var(--cs-status-info-bg); display: flex; flex-direction: column; gap: 6px;">
+      <h2 id="sm-h" style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 600;">What happens next</h2>
+      <span style="font-size: 13px; line-height: 18px;">{{summary}}</span>
+    </section>
+
+    <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="check">Confirm my decision</x-import>
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">We confirm the price before any work starts. Your registration work carries on exactly as planned.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1260}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { a: 'later', b: 'bid' };
+  }
+  renderVals() {
+    const s = this.state;
+    const L = [
+      { k: 'a', name: 'Lot 1: Personal care at home', what: 'Regulated care. Needs CQC registration when you apply', tone: 'warning', icon: 'clock', verdict: 'After registration',
+        checks: [['CQC registration for personal care', false], ['Office in Hertfordshire', true], ['No minimum years of history for this market', true]],
+        view: 'Wait until you are registered, then join. Dynamic markets stay open, so you lose nothing by waiting.',
+        opts: [['bid', 'Apply now'], ['later', 'Join after registration']] },
+      { k: 'b', name: 'Lot 2: Community support', what: 'Help with shopping, outings and wellbeing. Not regulated by CQC', tone: 'success', icon: 'check', verdict: 'You can apply now',
+        checks: [['Office in Hertfordshire', true], ['Insurance at the levels asked', true], ['Policies for community support', true]],
+        view: 'A good first step. It puts you on the council\'s list and builds the history later bids ask for.',
+        opts: [['bid', 'Apply now'], ['no', 'Not for us']] }
+    ];
+    const lots = L.map(l => Object.assign({}, l, {
+      checks: l.checks.map(c => ({ text: c[0], ok: c[1], bad: !c[1] })),
+      opts: l.opts.map(([k, label]) => ({ label, on: s[l.k] === k, off: s[l.k] !== k, pick: () => this.setState({ [l.k]: k }) }))
+    }));
+    const parts = [];
+    if (s.b === 'bid') parts.push('We prepare your Lot 2 application from your profile, so only a few new questions come to you.');
+    if (s.a === 'later') parts.push('We remind you to join Lot 1 the week you are registered.');
+    if (s.a === 'bid') parts.push('Lot 1 cannot be accepted before registration. Daniel will call you about the timing.');
+    if (s.b === 'no' && s.a !== 'bid') parts.push('Nothing to do now. We keep watching for tenders that suit you.');
+    return { theme: this.props.theme ?? 'light', yes: true, n16: 16, lots, summary: parts.join(' ') };
+  }
+}
+</script>
+</body>
+</html>

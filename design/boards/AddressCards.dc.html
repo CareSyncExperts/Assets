@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Address history</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.pb-tab{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.pb-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.pb-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.pb-tab:focus-visible,.pb-btn:focus-visible,.pb-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.pb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.pb-row{padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.pb-row:first-child{border-top:0}
+.pb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.pb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.pb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.pb-btn{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap}
+.pb-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.pb-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.pb-ghost{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.pb-dis{border:0;background:var(--cs-surface-subtle);color:var(--cs-text-muted);cursor:not-allowed}
+.pb-link{border:0;background:transparent;color:var(--cs-text-brand);font:inherit;font-size:14px;font-weight:500;cursor:pointer;min-height:40px;padding:0}
+.pb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.pb-note{padding:12px 14px;border-radius:12px;font-size:13px;line-height:19px}
+.n-info{background:var(--cs-status-info-bg)}
+.n-ok{background:var(--cs-status-success-bg)}
+.n-warn{background:var(--cs-status-warning-bg)}
+.dot{width:14px;height:14px;border-radius:999px;flex-shrink:0;margin-top:3px;box-sizing:border-box}
+.d-done{background:var(--cs-action-primary)}
+.d-now{border:3px solid var(--cs-action-primary);background:var(--cs-surface-raised)}
+.d-next{border:2px solid var(--cs-border-default);background:var(--cs-surface-raised)}
+.d-ten{border:3px solid var(--cs-status-info-text);background:var(--cs-surface-raised)}
+.w0{width:0}.w10{width:10%}.w20{width:20%}.w30{width:30%}.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1200px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span class="pb-sub">CQC Registration Information Form. Page 13 of 16</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Where have you lived in the last 5 years?</h1>
+      <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Start with where you live now. Type a postcode to find each address, then pick the month you moved in.</span>
+    </header>
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; justify-content: space-between;"><span class="pb-sub">{{covered}}</span><span class="pb-sub">5 years</span></div>
+      <div aria-hidden="true" style="height: 10px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div class="{{barCls}}" style="height: 10px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+    </div>
+    <sc-for list="{{cards}}" as="c" hint-placeholder-count="3">
+      <div>
+        <sc-if value="{{c.isGap}}" hint-placeholder-val="{{ false }}">
+          <div class="pb-note n-warn" style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-weight: 500;">{{c.title}}</span>
+            <span>Were you living somewhere else, or between homes? Either is fine. We just need to know.</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="pb-btn pb-pri" onClick="{{c.fix}}">Add an address</button><button class="pb-btn pb-ghost">Tell us why</button></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{c.isAddr}}" hint-placeholder-val="{{ true }}">
+          <div class="pb-card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><span class="pb-muted">{{c.label}}</span><button class="pb-link" style="min-height: 32px;">Change</button></div>
+            <span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{c.title}}</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <span style="display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 8px; background: var(--cs-surface-page);"><span class="pb-muted">Moved in</span><span style="font-weight: 500;">{{c.from}}</span></span>
+              <span style="display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 8px; background: var(--cs-surface-page);"><span class="pb-muted">Moved out</span><span style="font-weight: 500;">{{c.to}}</span></span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <button class="pb-btn pb-ghost" style="min-height: 48px;">+ Add another address</button>
+    <sc-if value="{{complete}}" hint-placeholder-val="{{ false }}"><div class="pb-note n-ok">All 5 years are covered, with no gaps. Thank you.</div></sc-if>
+    <span class="pb-muted" style="text-align: center;">Used the same way for the RI, manager and every director, on every form.</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { fixed: false }; }
+  renderVals() {
+    const fixed = this.state.fixed;
+    const cards = [{ isAddr: true, label: 'Where you live now', title: '22 Willow Court, Stevenage SG2 7AB', from: 'September 2022', to: 'Now' }];
+    if (fixed) cards.push({ isAddr: true, label: 'Address 2', title: 'Flat 4, 9 Example Street, Luton LU1 2AA', from: 'May 2022', to: 'August 2022' });
+    else cards.push({ isGap: true, title: 'Gap: May 2022 to August 2022' });
+    cards.push({ isAddr: true, label: fixed ? 'Address 3' : 'Address 2', title: '5 Example Gardens, Hitchin SG4 9AA', from: 'June 2019', to: 'April 2022' });
+    const out = cards.map(c => Object.assign({ isGap: false, isAddr: false, label: '', from: '', to: '', fix: () => this.setState({ fixed: true }) }, c));
+    return { theme: this.props.theme ?? 'light', cards: out, covered: fixed ? '5 years covered' : '4 years 8 months covered', barCls: fixed ? 'w100' : 'w90', complete: fixed };
+  }
+}
+</script>
+</body>
+</html>

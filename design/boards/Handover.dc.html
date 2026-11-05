@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Handover</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2020px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Onboarding" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a class="ob-link" href="OnboardingQueue.dc.html">Onboarding queue</a>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Handover: Binnian Care Ltd</h1>
+            <span class="sb-chip c-ok">All 8 gates passed</span><span class="{{stateCls}}">{{stateChip}}</span>
+          </div>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">RQIA, domiciliary care agency. RQIA registration package. Paid Thu 15 Oct, form arrived Thu 22 Oct, last gate passed Fri 30 Oct. Grace hands over; Collins approves. Viewing as Collins.</span>
+        </div>
+      </div>
+      <div class="{{lockCls}}" role="status"><span style="font-weight: 600;">{{lockTitle}}</span><span>{{lockText}}</span></div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="sa-h">
+            <h2 id="sa-h" class="sb-h2">Summary of answers</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px;">
+              <sc-for list="{{answers}}" as="a" hint-placeholder-count="8"><span style="display: flex; flex-direction: column;"><span class="ob-k">{{a.k}}</span><span class="ob-v">{{a.v}}</span></span></sc-for>
+            </div>
+          </section>
+          <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;" aria-labelledby="ic-h">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><h2 id="ic-h" class="sb-h2">Introduction call notes</h2><span class="sb-muted">Divine, Thu 15 Oct</span></div>
+            <sc-for list="{{call}}" as="c" hint-placeholder-count="4"><span class="sb-sub" style="display: flex; gap: 8px;"><span aria-hidden="true">&#8226;</span><span>{{c.t}}</span></span></sc-for>
+          </section>
+          <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;" aria-labelledby="rk-h">
+            <h2 id="rk-h" class="sb-h2">Open risks for the case owner</h2>
+            <sc-for list="{{risks}}" as="r" hint-placeholder-count="3"><div class="ob-box" style="flex-direction: row; gap: 10px; align-items: flex-start;"><span class="{{r.cls}}">{{r.level}}</span><span class="sb-sub" style="flex: 1; min-width: 0;">{{r.t}}</span></div></sc-for>
+          </section>
+          <section class="sb-card" aria-labelledby="dr-h">
+            <div class="sb-head"><h2 id="dr-h" class="sb-h2">Documents received</h2><span class="sb-sub">{{docCount}}</span></div>
+            <sc-for list="{{docs}}" as="d" hint-placeholder-count="7"><div class="sb-row"><span style="flex: 1; min-width: 0;">{{d.k}}</span><span class="sb-muted">{{d.v}}</span><span class="sb-chip c-ok">Accepted</span></div></sc-for>
+          </section>
+        </div>
+        <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="ap-h">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><h2 id="ap-h" class="sb-h2">Manager approval</h2><span class="{{stateCls}}">{{stateChip}}</span></div>
+            <span class="ob-k">Proposed case owner</span>
+            <span style="display: flex; gap: 6px; flex-wrap: wrap;"><sc-for list="{{owners}}" as="o" hint-placeholder-count="4"><button class="{{o.cls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></span>
+            <span class="sb-sub">{{ownerLoad}}</span>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+              <span style="display: flex; flex-direction: column;"><span class="ob-k">Weekly update owner</span><span class="ob-v">{{weekly}}</span></span>
+              <span style="display: flex; flex-direction: column;"><span class="ob-k">Coach</span><span class="ob-v">Millicent</span></span>
+            </div>
+            <sc-if value="{{waiting}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label class="ob-k" for="ho-note">Note for Grace and the case owner (optional)</label>
+                <textarea class="ob-ta" id="ho-note" value="{{note}}" onChange="{{onNote}}"></textarea>
+                <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{approve}}">{{approveLabel}}</button><button class="sb-btn b-gh" onClick="{{sendBack}}">Send back to Grace</button></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{approved}}" hint-placeholder-val="{{ false }}"><div class="ob-ok" role="status">{{approvedText}}</div></sc-if>
+            <sc-if value="{{back}}" hint-placeholder-val="{{ false }}"><div class="ob-warn" role="status">{{backText}}</div></sc-if>
+            <sc-if value="{{notWaiting}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{reset}}">Undo (demo)</button></sc-if>
+            <div class="ob-box"><span class="ob-k">What Ciara sees in her Hub now</span><span class="sb-sub">{{clientSees}}</span></div>
+          </section>
+          <section class="sb-card" aria-labelledby="gs-h">
+            <div class="sb-head"><h2 id="gs-h" class="sb-h2">RQIA gates</h2><span class="sb-sub">8 of 8 passed</span></div>
+            <sc-for list="{{gates}}" as="g" hint-placeholder-count="8"><div class="sb-row" style="padding: 8px 20px;"><span class="g-num">{{g.n}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span style="font-weight: 500;">{{g.k}}</span><span class="sb-muted">{{g.v}}</span></span><span class="sb-chip c-ok">Pass</span></div></sc-for>
+          </section>
+          <section class="sb-card" style="padding: 18px 20px 10px;" aria-labelledby="lg-h">
+            <h2 id="lg-h" class="sb-h2" style="margin-bottom: 6px;">Log</h2>
+            <sc-for list="{{log}}" as="l" hint-placeholder-count="6"><div class="ob-log"><span class="sb-muted" style="width: 110px; flex-shrink: 0;">{{l.at}}</span><span style="flex: 1; min-width: 0;"><span style="font-weight: 500; margin-right: 5px;">{{l.who}}</span><span>{{l.text}}</span></span></div></sc-for>
+          </section>
+        </div>
+      </div>
+      <section class="sb-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;" aria-labelledby="df-h">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap;"><h2 id="df-h" class="sb-h2">How the gates differ by regulator</h2><span class="sb-sub">Every client has 8 gates before handover. What each gate checks depends on the regulator or the tender.</span></div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+          <sc-for list="{{regs}}" as="r" hint-placeholder-count="4">
+            <div class="ob-box" style="gap: 6px;">
+              <span style="display: flex; gap: 8px; align-items: center;"><span class="sb-chip c-brand">{{r.name}}</span><span class="sb-muted">{{r.who}}</span></span>
+              <sc-for list="{{r.items}}" as="i" hint-placeholder-count="5"><span class="sb-sub" style="display: flex; gap: 6px;"><span aria-hidden="true">&#8226;</span><span>{{i.t}}</span></span></sc-for>
+            </div>
+          </sc-for>
+        </div>
+        <span class="sb-muted">Kept general on purpose. Grace checks the regulator's current guidance for each client, and the form builder holds the exact questions.</span>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2020}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { st: 'waiting', owner: 'olu', note: '', at: '' }; }
+  renderVals() {
+    const s = this.state;
+    const O = [['olu', 'Olu', 'Olu: does RQIA work and has Lagan View. 4 active clients. On leave Mon 2 to Fri 6 November, so starts Mon 9 Nov. Nothing waits on Daniel.'], ['daniel', 'Daniel', 'Daniel: 6 active, covering 4 this week for Olu, and Harbour Lane coming after approval. Does CQC, CIW and tenders.']];
+    const ow = O.find(x => x[0] === s.owner);
+    const approved = s.st === 'approved', back = s.st === 'back';
+    const baseLog = [
+      { who: 'Grace', text: 'asked Collins to approve the handover, proposing Olu', at: 'Fri 30 Oct 16:05' },
+      { who: 'Grace', text: 'accepted gate 5: NISCC registration underway, reference given', at: 'Fri 30 Oct 15:40' },
+      { who: 'Grace', text: 'accepted the office lease and landlord letter (gate 3)', at: 'Wed 28 Oct 11:10' },
+      { who: 'Ciara', text: 'sent the RQIA onboarding form, signed electronically', at: 'Thu 22 Oct 19:20' },
+      { who: 'Divine', text: 'made the introduction call. The form was sent straight after', at: 'Thu 15 Oct' }
+    ];
+    const extra = approved ? [
+      { who: 'Hub', text: 'unlocked the 3 included sessions. Ciara can book her kick-off with Millicent', at: 'Mon 2 Nov ' + s.at },
+      { who: 'Hub', text: 'told Ciara: "' + ow[1] + ' is your consultant"', at: 'Mon 2 Nov ' + s.at },
+      { who: 'Hub', text: 'opened Stage 2 of 11: CV review, and set ' + ow[1] + ' as case owner and weekly update owner', at: 'Mon 2 Nov ' + s.at },
+      { who: 'Collins', text: 'approved the handover to ' + ow[1] + (s.note.trim() ? '. Note: ' + s.note.trim() : ''), at: 'Mon 2 Nov ' + s.at }
+    ] : (back ? [{ who: 'Collins', text: 'sent the handover back to Grace. Note: ' + (s.note.trim() || 'please add more detail on the staffing plan'), at: 'Mon 2 Nov ' + s.at }] : []);
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks', current: true },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      stateChip: approved ? 'Approved by Collins' : (back ? 'Sent back to Grace' : 'Waiting for Collins'), stateCls: 'sb-chip ' + (approved ? 'c-ok' : 'c-warn'),
+      lockCls: approved ? 'ob-ok ob-flex' : 'ob-lock', lockTitle: approved ? 'Unlocked:' : 'Locked until Collins approves:',
+      lockText: approved ? 'application work (stages 2 to 6) and the 3 included sessions are open. Ciara has been told who her consultant is.' : 'application work (stages 2 to 6) and the 3 included sessions. The client has not been told who her consultant is yet.',
+      answers: [['Provider', 'Binnian Care Ltd, a Northern Ireland company'], ['Responsible Individual', 'Ciara Doherty, director'], ['Registered manager', 'Aoife Kelly, a different person'], ['Service', 'Domiciliary care agency (conventional)'], ['HSC Trust area', 'Southern HSC Trust'], ['Service users', 'Older people, dementia, physical disability. About 15 at the start'], ['Office', 'Unit 4, Example Business Park, Newry. Leased, landlord letter accepted'], ['Planned start', 'Spring 2027']].map(([k, v]) => ({ k, v })),
+      call: ['Ciara ran a care team for 9 years and knows the Minimum Standards well.', 'Worried about the time RQIA takes. We explained RQIA sets its own pace and we update her every Friday.', 'Prefers email, and calls after 16:00.', 'Happy with the call. No concerns raised.'].map(t => ({ t })),
+      risks: [['Check', 'c-warn', "Aoife's NISCC registration is underway, not confirmed. Check it is in place before the application goes in."], ['Note', 'c-info', "RQIA runs its own AccessNI check with its PIN after the application is in. Both sets of 3 ID documents are ready."], ['Note', 'c-info', 'Referee 2 for Aoife is due from Ciara by Fri 13 Nov. It is not a gate.']].map(([level, k, t]) => ({ level, cls: 'sb-chip ' + k, t })),
+      docs: [['CVs for Ciara and Aoife', '22 Oct'], ['3 ID documents each, for AccessNI', '22 Oct'], ['Office lease and landlord letter', '28 Oct'], ["Referee 1 for Aoife, most recent employer", '26 Oct'], ['GP details for both', '22 Oct'], ["Aoife's NISCC application reference", '30 Oct'], ['Company certificate', 'From Companies House']].map(([k, v]) => ({ k, v })),
+      docCount: '7 documents, all accepted by Grace',
+      owners: O.map(([k, label]) => ({ label, cls: 'ob-pick ' + (s.owner === k ? 'p-on' : 'p-off'), pressed: String(s.owner === k), pick: () => { if (s.st === 'waiting') this.setState({ owner: k }); } })),
+      ownerLoad: ow[2], weekly: ow[1] + ', from approval',
+      waiting: s.st === 'waiting', notWaiting: s.st !== 'waiting', approved, back,
+      note: s.note, onNote: e => this.setState({ note: e.target.value }),
+      approveLabel: 'Approve handover to ' + ow[1],
+      approve: () => this.setState({ st: 'approved', at: '10:45' }), sendBack: () => this.setState({ st: 'back', at: '10:45' }), reset: () => this.setState({ st: 'waiting', at: '' }),
+      approvedText: 'Approved by Collins, Mon 2 Nov 10:45, and logged. ' + ow[1] + ' is case owner and weekly update owner. Ciara has been told, stage 2 is open and sessions are unlocked.',
+      backText: 'Sent back to Grace, Mon 2 Nov 10:45, and logged. Nothing is unlocked and the client is not told.',
+      clientSees: approved ? '"Your checks are done. ' + ow[1] + ' is your consultant and starts on your RQIA application' + (s.owner === 'olu' ? ' on Mon 9 Nov' : '') + '. Book your kick-off session with Millicent."' : '"Your checks are done, thank you. We are choosing your consultant and will tell you very soon."',
+      gates: [['Company and directors', 'Companies House (Northern Ireland) matches'], ['Identity for AccessNI', '3 ID documents each for Ciara and Aoife'], ['Office address evidence', 'Lease and landlord letter accepted 28 Oct'], ['Responsible Individual', 'Ciara: qualifications and experience given'], ['Manager and NISCC', 'NISCC registration underway, reference given'], ['Employment history', 'Both CVs complete, no gaps'], ['References', 'Referee 1 is the most recent employer'], ['Professional registers', 'Checked for Ciara and Aoife 30 Oct, recorded']].map(([k, v], i) => ({ n: String(i + 1), k, v })),
+      log: extra.concat(baseLog),
+      regs: [
+        ['CQC', 'England', ['Company and directors (Companies House)', 'Identity, or DBS details', 'Office address evidence', 'Registered manager and nominated individual', 'Enhanced DBS with adult barred list', 'Employment history, references, professional registers']],
+        ['CIW', 'Wales', ['Company and officers', 'Responsible Individual named for the company', 'DBS for the RI and the manager', 'Manager registered with Social Care Wales, or applied', 'References and GP details for each person', 'Office in Wales and the areas served']],
+        ['RQIA', 'Northern Ireland', ['Company and directors', 'Responsible Individual', 'ID documents for AccessNI, which RQIA checks itself', 'Manager registered with NISCC, or underway', 'A reference from the current or most recent employer', 'Office address and staffing plan']],
+        ['Tender', 'Any council', ['Tender profile complete', 'Policies in date', 'Insurance in place and in date', 'Registration in place where the tender needs it', 'Case studies and references ready', 'Bid or no bid approved by Collins']]
+      ].map(([name, who, items]) => ({ name, who, items: items.map(t => ({ t })) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

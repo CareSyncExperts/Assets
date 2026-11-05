@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Resubmission project</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.rs-tick{width:22px;height:22px;flex-shrink:0;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;box-sizing:border-box;}
+.k-on{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.k-off{border:2px solid var(--cs-border-control);background:transparent;color:transparent}
+.tk-btn{width:36px;height:36px;margin:-7px 0 -7px -7px;border:0;background:transparent;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.tk-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:0;border-radius:8px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1850px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Westbrook Care Ltd: resubmission" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-status-error-text); font-weight: 500;">CQC refused the application. Notice of decision received Mon 26 Oct. Resubmission project opened the same day</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Westbrook Care Ltd</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Sade Johnson (director) and Leon Grant (manager). Stage 10 of 11: refused, we resubmit. Resubmission is included, at no charge to the client: it is part of the Care Sync promise. Owner: Daniel Mensah.</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="sb-btn b-gh">CQC's notice of decision</button>
+          <button class="sb-btn b-sec">Open the new pack</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{dates}}" as="d" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{d.what}}</span><span style="font-size: 20px; line-height: 28px; font-weight: 600;">{{d.when}}</span><span class="{{d.cls}}" style="align-self: flex-start;">{{d.left}}</span><span class="sb-muted">{{d.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 3 1 580px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-labelledby="rr-h">
+            <div class="sb-head"><h2 id="rr-h" class="sb-h2">Every reason CQC gave, and the fix</h2><span class="sb-sub">A reason only closes when the evidence is in the pack</span></div>
+            <sc-for list="{{reasons}}" as="r" hint-placeholder-count="3">
+              <div class="sb-row" style="align-items: flex-start;">
+                <span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{r.reason}}</span><span class="sb-muted">Root cause: {{r.cause}}</span></span>
+                <span style="flex: 1 1 220px; min-width: 0;" class="sb-sub">{{r.fix}}</span>
+                <span style="width: 80px; flex-shrink: 0;" class="sb-sub">{{r.who}}</span>
+                <span class="{{r.cls}}">{{r.state}}</span>
+              </div>
+            </sc-for>
+          </section>
+
+          <section class="sb-card" aria-labelledby="rf-h">
+            <div class="sb-head" style="flex-direction: column; align-items: flex-start; gap: 2px;"><h2 id="rf-h" class="sb-h2">Is every date still valid on Mon 30 November?</h2><span class="sb-sub">Checked against the resubmit date, not today. Our rules: DBS under 12 months old, references under 6 months old, insurance in force.</span></div>
+            <sc-for list="{{refresh}}" as="f" hint-placeholder-count="7">
+              <div class="sb-row"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{f.item}}</span><span class="sb-muted">{{f.note}}</span></span><span class="{{f.cls}}">{{f.state}}</span></div>
+            </sc-for>
+          </section>
+
+          <section class="sb-card" aria-labelledby="gt-h" style="padding-bottom: 8px;">
+            <div class="sb-head" style="flex-direction: column; align-items: flex-start; gap: 2px;"><h2 id="gt-h" class="sb-h2">Resubmission gate: {{gateCount}}</h2><span class="sb-sub">The pack cannot be sent until every line is ticked. Tap a box to tick it.</span></div>
+            <sc-for list="{{gate}}" as="g" hint-placeholder-count="7">
+              <div class="sb-row"><button class="tk-btn" onClick="{{g.flip}}" aria-pressed="{{g.pressed}}" aria-label="{{g.text}}"><span class="{{g.tick}}">{{g.mark}}</span></button><span style="flex: 1; min-width: 0;">{{g.text}}</span></div>
+            </sc-for>
+            <div class="sb-row"><button class="sb-btn b-pri" onClick="{{send}}">{{sendLabel}}</button><span class="sb-sub">{{sendNote}}</span></div>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-labelledby="dc-h" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;">
+            <h2 id="dc-h" class="sb-h2">The client's choice</h2>
+            <span class="sb-sub">Sade chose to resubmit rather than appeal to the tribunal. Recorded Wed 28 Oct, with Sade's email saved as evidence. The appeal window still runs to Sun 22 Nov, so the choice can be talked through again before then if anything changes.</span>
+          </section>
+          <section class="sb-card" aria-labelledby="cu-h">
+            <div class="sb-head"><h2 id="cu-h" class="sb-h2">Keeping the client close</h2></div>
+            <sc-for list="{{comms}}" as="c" hint-placeholder-count="5">
+              <div class="sb-row"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{c.what}}</span><span class="sb-muted">{{c.note}}</span></span><span class="{{c.cls}}">{{c.state}}</span></div>
+            </sc-for>
+          </section>
+          <section class="sb-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;" aria-labelledby="hr-h">
+            <h2 id="hr-h" class="sb-h2">Time spent, at no charge</h2>
+            <span class="sb-sub">14 hours so far: Daniel 9, Millicent 2, Grace 3. Shown on Reports and the manager dashboard as resubmission time, at no charge to the client.</span>
+          </section>
+          <section class="sb-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;" aria-labelledby="ln-h">
+            <h2 id="ln-h" class="sb-h2">Learning for every client</h2>
+            <span class="sb-sub">2 new Pack check rules added from this decision, with no client names: "staffing plan names cover for sickness" and "office permission from the landlord is in the pack". They now check every new pack.</span>
+          </section>
+          <section class="sb-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;" aria-labelledby="pv-h">
+            <h2 id="pv-h" class="sb-h2">Preventing a refusal next time</h2>
+            <span class="sb-sub">If a serious problem shows up while CQC is still checking, talk to a senior consultant early. Withdrawing and resubmitting can sometimes avoid a refusal, but it may not be possible once CQC has served a notice, so we check before advising the client.</span>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1850}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { g: [false, false, true, false, false, false, false], sent: false }; }
+  renderVals() {
+    const st = this.state;
+    const dates = [
+      ['Notice of decision received', 'Mon 26 Oct', '7 days ago', 'neutral', 'By email. Copy saved with the date received'],
+      ['Senior review of the new pack', 'Thu 12 Nov', '10 days left', 'info', 'A second consultant reads it against CQC\'s reasons'],
+      ['Tribunal appeal window closes', 'Sun 22 Nov', '20 days left', 'warn', '28 days worked out the safe way: the day of service, Mon 26 Oct, counts as day 1. Confirm with a legal adviser. Client chose to resubmit'],
+      ['Resubmit target', 'Mon 30 Nov', '28 days left', 'brand', 'Shown to the client and checked every Friday']
+    ].map(([what, when, left, k, note]) => ({ what, when, left, note, cls: 'sb-chip c-' + k }));
+    const reasons = [
+      ['Staffing was not clear enough', 'cover for sickness and first-month recruitment not shown', 'New staffing plan with named staff, a recruitment timetable and sickness cover', 'Daniel', 'In progress', 'warn'],
+      ['Manager interview: safeguarding referrals', 'Leon was unsure of the local referral route', 'Extra practice with Millicent on Tue 10 Nov, the interview portal module, and the local route written into the policy', 'Millicent', 'Booked', 'info'],
+      ['Office permission', 'landlord letter missing from the pack', 'Landlord letter requested through the Hub on Tue 27 Oct, one-task link sent', 'Grace', 'Waiting', 'warn']
+    ].map(([reason, cause, fix, who, state, k]) => ({ reason, cause, fix, who, state, cls: 'sb-chip c-' + k }));
+    const refresh = [
+      ['Leon Grant: Enhanced DBS with adult barred list', 'Issued 9 Mar 2026. 8 months old on 30 Nov, so it is valid', 'Valid on 30 Nov', 'ok'],
+      ['Sade Johnson: DBS (nominated individual)', 'Issued 18 Nov 2025, so it turns 12 months old on Wed 18 Nov, before we resubmit. New application started 29 Oct', 'Renewing', 'bad'],
+      ['Reference 1: Leon\'s last employer', 'Dated 12 May 2026, so over 6 months old from Thu 12 Nov. Asked the referee to confirm again on 28 Oct', 'Waiting', 'warn'],
+      ['Reference 2: Leon\'s earlier manager', 'Dated 2 Sep 2026. Under 6 months old on 30 Nov', 'Valid on 30 Nov', 'ok'],
+      ['Insurance: employer\'s and public liability', 'In force until 31 Dec 2026. Renewal is in the calendar so the pack stays current while CQC checks it', 'Valid on 30 Nov', 'ok'],
+      ['Statement of Purpose and business plan', 'Dated August. Update dates, staffing and figures to match the new staffing plan', 'Refresh', 'warn'],
+      ['Earlier refusal', 'Declared on the new application, with what has changed', 'Pre-filled', 'ok']
+    ].map(([item, note, state, k]) => ({ item, note, state, cls: 'sb-chip c-' + k }));
+    const G = ['Every reason has evidence in the pack', 'Every date checked as valid on the resubmit date (DBS, references, insurance)', 'The earlier refusal is declared, with what has changed', 'Interview practice done for Leon', 'Senior review done against CQC\'s reasons (Thu 12 Nov)', 'Sade has reviewed the changes and signed', 'Copy of the pack and the date sent kept as evidence'];
+    const gate = G.map((text, i) => ({ text, tick: 'rs-tick ' + (st.g[i] ? 'k-on' : 'k-off'), mark: st.g[i] ? '✓' : '', pressed: st.g[i] ? 'true' : 'false', flip: () => { const g = st.g.slice(); g[i] = !g[i]; this.setState({ g, sent: false }); } }));
+    const done = st.g.filter(Boolean).length, all = done === G.length;
+    const comms = [
+      ['Call to talk it through', 'Daniel, Mon 26 Oct, the day the decision came', 'Done', 'ok'],
+      ['Written plan in the Hub', 'Reasons, fixes, dates and who does what. Sent Tue 27 Oct', 'Sent', 'ok'],
+      ['Resubmit or appeal', 'Sade chose to resubmit. Recorded Wed 28 Oct', 'Recorded', 'ok'],
+      ['Kind check-in a week after the decision', 'Divine calls Sade today, about how they are, not the paperwork', 'Today', 'info'],
+      ['Friday updates', 'Every Friday until the new decision. Next on Fri 6 Nov', 'Weekly', 'neutral']
+    ].map(([what, note, state, k]) => ({ what, note, state, cls: 'sb-chip c-' + k }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users', current: true },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      dates, reasons, refresh, gate, comms,
+      gateCount: done + ' of ' + G.length + ' ticked',
+      sendLabel: st.sent ? 'Ready to send' : 'Check the gate',
+      sendNote: st.sent ? 'Every line is ticked. Send on Mon 30 Nov, then record the date and keep a copy.' : (all ? 'All ticked. Tap to confirm the pack is ready.' : (G.length - done) + ' still to tick. The pack stays locked until then.'),
+      send: () => this.setState({ sent: all })
+    };
+  }
+}
+</script>
+</body>
+</html>

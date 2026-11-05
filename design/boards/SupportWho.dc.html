@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Who you will support</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.sw-chip{min-height:44px;padding:0 14px;border-radius:999px;font:inherit;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.sw-chip:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1000px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 18px;">
+
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">One small task</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Who will you support?</h1>
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Tap everyone you plan to support in your first year. You can change this later.</span>
+    </header>
+
+    <div role="group" aria-label="People you will support" style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="9">
+        <sc-if value="{{g.on}}" hint-placeholder-val="{{ false }}">
+          <button class="sw-chip" aria-pressed="true" onClick="{{g.flip}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-selection-text); font-weight: 500;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>{{g.label}}</button>
+        </sc-if>
+        <sc-if value="{{g.off}}" hint-placeholder-val="{{ true }}">
+          <button class="sw-chip" aria-pressed="false" onClick="{{g.flip}}" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{g.label}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <section aria-labelledby="pv-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="pv-h" style="margin: 0; font-size: 13px; line-height: 18px; color: var(--cs-text-muted); font-weight: 500;">Your Statement of Purpose will say</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 22px;">{{sentence}}</p>
+    </section>
+
+    <sc-if value="{{hasKnock}}" hint-placeholder-val="{{ true }}">
+      <section aria-labelledby="kn-h" style="padding: 14px 16px; border-radius: 12px; background: var(--cs-status-info-bg); display: flex; flex-direction: column; gap: 6px;">
+        <h2 id="kn-h" style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 600;">We update these for you</h2>
+        <sc-for list="{{knock}}" as="k" hint-placeholder-count="2">
+          <span style="display: flex; gap: 8px; font-size: 13px; line-height: 18px;"><x-import component-from-global-scope="CareSync.Icon" name="check" size="{{n16}}"></x-import>{{k.text}}</span>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{kids}}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="CareSync.Alert" status="warning" title="Supporting children is a big change">Daniel will call you about this before anything changes. It affects your registration, training and safeguarding.</x-import>
+    </sc-if>
+
+    <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-end="chevron-right">Save</x-import>
+    <a href="Ask.dc.html" style="text-align: center; font-size: 14px; font-weight: 500; min-height: 44px; display: flex; align-items: center; justify-content: center;">Not sure? Ask Daniel</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: { older: true, dementia: true, physical: true, ld: true } };
+  }
+  renderVals() {
+    const G = [
+      ['older', 'Older people', 'older people'],
+      ['dementia', 'People living with dementia', 'people living with dementia'],
+      ['physical', 'Physical disabilities', 'people with physical disabilities'],
+      ['ld', 'Learning disabilities', 'people with learning disabilities'],
+      ['autism', 'Autistic people', 'autistic people'],
+      ['mh', 'Mental health', 'people with mental health needs'],
+      ['sensory', 'Sensory impairment', 'people with a sensory impairment'],
+      ['younger', 'Younger adults', 'younger adults'],
+      ['children', 'Children (0 to 18)', 'children aged 0 to 18']
+    ];
+    const sel = this.state.sel;
+    const groups = G.map(([k, label]) => ({ label, on: !!sel[k], off: !sel[k], flip: () => this.setState({ sel: Object.assign({}, sel, { [k]: !sel[k] }) }) }));
+    const chosen = G.filter(g => sel[g[0]]).map(g => g[2]);
+    let list = chosen.length === 0 ? '' : (chosen.length === 1 ? chosen[0] : chosen.slice(0, -1).join(', ') + ' and ' + chosen[chosen.length - 1]);
+    const sentence = chosen.length === 0
+      ? 'Choose at least one group, and we will write this for you.'
+      : 'Harbour Lane Care Ltd provides personal care to ' + list + ', in their own homes across Stevenage and North Hertfordshire.';
+    const knock = [];
+    if (sel.ld || sel.autism) knock.push({ text: 'Training plan: learning disability and autism training, as CQC expects' });
+    if (sel.dementia) knock.push({ text: 'Policies: dementia care and consent' });
+    if (sel.mh) knock.push({ text: 'Policies: mental health and crisis support' });
+    knock.push({ text: 'Statement of Purpose and service user guide' });
+    return {
+      theme: this.props.theme ?? 'light', yes: true, n16: 16,
+      groups, sentence, knock, hasKnock: chosen.length > 0, kids: !!sel.children
+    };
+  }
+}
+</script>
+</body>
+</html>

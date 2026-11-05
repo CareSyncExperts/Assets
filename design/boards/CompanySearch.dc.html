@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Find your company</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">Question 1 of 3</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Find your company</h1>
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Type your company name or number. We fill in the rest from Companies House.</span>
+    </header>
+
+    <sc-if value="{{searching}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="co-search" style="font-size: 13px; line-height: 18px; font-weight: 500;">Company name or number</label>
+        <input id="co-search" value="{{q}}" onChange="{{onType}}" autocomplete="off" placeholder="For example Harbour Lane" style="min-height: 52px; padding: 0 16px; border-radius: 12px; border: 2px solid var(--cs-action-primary); font: inherit; font-size: 17px; background: var(--cs-surface-raised); color: var(--cs-text-primary); box-sizing: border-box; width: 100%;">
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{hint}}</span>
+      </div>
+
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+          <button onClick="{{r.pick}}" style="width: 100%; padding: 12px 16px; border: 0; border-bottom: 1px solid var(--cs-border-subtle); background: transparent; color: var(--cs-text-primary); font: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer;">
+            <span style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+              <span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{r.name}}</span>
+              <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{r.meta}}</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="success">Active</x-import>
+          </button>
+        </sc-for>
+        <sc-if value="{{noResults}}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 16px; font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">No active companies match. Try fewer words, or the company number.</div>
+        </sc-if>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button style="min-height: 48px; border-radius: 12px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 15px; cursor: pointer;">My company is not formed yet</button>
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">Dissolved companies are hidden. Results come from the Companies House register.</span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{confirming}}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="conf-h" style="background: var(--cs-surface-raised); border-radius: 16px; box-shadow: var(--cs-elevation-2); overflow: hidden;">
+        <div style="padding: 18px 20px; background: var(--cs-surface-inverse); color: #FFFFFF; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 13px; line-height: 18px; color: #AEFFEF; font-weight: 500;">Is this your company?</span>
+          <h2 id="conf-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600;">{{picked.name}}</h2>
+          <span style="font-size: 13px; line-height: 18px; color: #D0D5DD;">{{picked.number}}. Active. Incorporated {{picked.inc}}</span>
+        </div>
+        <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Registered office</span><span style="font-size: 15px; line-height: 22px;">{{picked.office}}</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Directors</span><span style="font-size: 15px; line-height: 22px;">{{picked.directors}}</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Nature of business</span><span style="font-size: 15px; line-height: 22px;">{{picked.sic}}</span></div>
+        </div>
+      </section>
+      <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="check">Yes, that is us</x-import>
+      <button onClick="{{back}}" style="min-height: 44px; border: 0; background: transparent; color: var(--cs-text-brand); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">No, search again</button>
+      <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">We will fill in your company details, directors and owners, and check your company status for you.</span>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: 'Harb', picked: null };
+  }
+  renderVals() {
+    const all = [
+      { id: 1, name: 'Harbour Lane Care Ltd', number: '99000101', inc: '12/03/2025', town: 'Stevenage', office: 'Flat 3, 14 Orchard Way, Stevenage SG1 2AB', directors: 'Amara Okafor, Kwame Okafor', sic: '88100, social work without accommodation' },
+      { id: 2, name: 'Harbour Lights Homecare Ltd', number: '99000202', inc: '04/06/2021', town: 'Brighton', office: '2 Marine Parade, Brighton BN2 1AA', directors: 'Sian Morgan', sic: '88100, social work without accommodation' },
+      { id: 3, name: 'Harbour View Living Ltd', number: '99000303', inc: '19/09/2023', town: 'Hull', office: '8 Dock Street, Hull HU1 3AA', directors: 'Kwame Asante, Lucy Asante', sic: '87900, other residential care' },
+      { id: 4, name: 'Bright Path Care Ltd', number: '99000404', inc: '02/01/2025', town: 'Leeds', office: '21 Park Row, Leeds LS1 5AA', directors: 'Amara Okafor', sic: '88100, social work without accommodation' }
+    ];
+    const q = (this.state.q || '').trim().toLowerCase();
+    const matches = q.length < 2 ? [] : all.filter(c => c.name.toLowerCase().includes(q) || c.number.includes(q));
+    const results = matches.map(c => ({ name: c.name, meta: c.number + '. Incorporated ' + c.inc + '. ' + c.town, pick: () => this.setState({ picked: c }) }));
+    const picked = this.state.picked || all[0];
+    return {
+      theme: this.props.theme ?? 'light', yes: true,
+      q: this.state.q,
+      onType: (e) => this.setState({ q: e.target.value }),
+      results,
+      noResults: q.length >= 2 && results.length === 0,
+      hint: q.length < 2 ? 'Type at least 2 letters' : results.length + ' found',
+      searching: !this.state.picked,
+      confirming: !!this.state.picked,
+      picked,
+      back: () => this.setState({ picked: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

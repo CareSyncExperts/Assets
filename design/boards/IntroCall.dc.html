@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Introduction call</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.ic-chip{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-size:14px;cursor:pointer}
+.ic-chip:focus-visible,.ic-check:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.ic-check{width:100%;padding:10px 12px;border:0;border-radius:10px;background:transparent;font:inherit;text-align:left;display:flex;gap:12px;align-items:flex-start;cursor:pointer;color:var(--cs-text-primary)}
+.ic-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1)}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1420px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Introduction call" notifications="{{two}}" user="{{user}}"></x-import>
+
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 20px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-brand); font-weight: 500;">New client. Paid today at 10:02</span>
+          <h1 style="margin: 0; font-size: 30px; line-height: 38px; font-weight: 600;">Say hello to Ade at Meadow View Care</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">A friendly introduction, not a sales call. Keep it short and warm.</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">Call by 12:02</x-import>
+          <x-import component-from-global-scope="CareSync.StatusBadge" status="{{statusTone}}" icon="{{statusIcon}}">{{statusText}}</x-import>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+
+        <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+
+          <section aria-labelledby="cl-h" class="ic-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500;">AO</span>
+                <div style="display: flex; flex-direction: column;">
+                  <h2 id="cl-h" style="margin: 0; font-size: 18px; line-height: 26px; font-weight: 500;">Ade Ola, director</h2>
+                  <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">07700 900789. Prefers mornings. CQC domiciliary care, Full start-up package</span>
+                </div>
+              </div>
+              <a href="tel:07700900789" style="min-height: 44px; padding: 0 18px; border-radius: 10px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>Call Ade</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+              <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-subtle); display: flex; flex-direction: column;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Welcome email</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">Opened at 10:09</span></div>
+              <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-subtle); display: flex; flex-direction: column;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Hub</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">Signed in, question 1 not started</span></div>
+              <div style="padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-subtle); display: flex; flex-direction: column;"><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Payment</span><span style="font-size: 14px; line-height: 20px; font-weight: 500;">First instalment of 3 received through Stripe</span></div>
+            </div>
+          </section>
+
+          <section aria-labelledby="sl-h" class="ic-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <h2 id="sl-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">From the sales call on Wed 28 October</h2>
+              <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Brought over from GoHighLevel</span>
+            </div>
+            <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px;">
+              <li>Wants to start supporting people in the spring.</li>
+              <li>Home office in a rented flat. Has not asked the landlord yet.</li>
+              <li>A little nervous about the CQC interview.</li>
+              <li>What we said is included: Friday updates, business plan, brand and website, and 3 sessions with Millicent once onboarding checks pass.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="gd-h" class="ic-card" style="padding: 18px 20px 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <h2 id="gd-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Call guide</h2>
+              <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{doneCount}} of 8 covered</span>
+            </div>
+            <sc-for list="{{guide}}" as="g" hint-placeholder-count="8">
+              <sc-if value="{{g.on}}" hint-placeholder-val="{{ false }}">
+                <button class="ic-check" role="checkbox" aria-checked="true" onClick="{{g.flip}}">
+                  <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 6px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+                  <span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary); text-decoration: line-through; text-decoration-color: var(--cs-text-muted);">{{g.title}}</span></span>
+                </button>
+              </sc-if>
+              <sc-if value="{{g.off}}" hint-placeholder-val="{{ true }}">
+                <button class="ic-check" role="checkbox" aria-checked="false" onClick="{{g.flip}}">
+                  <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 6px; border: 2px solid var(--cs-border-control); box-sizing: border-box;"></span>
+                  <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{g.title}}</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{g.say}}</span></span>
+                </button>
+              </sc-if>
+            </sc-for>
+            <sc-if value="{{officeOn}}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="margin: 4px 0 6px 46px; padding: 12px 14px; border-radius: 10px; background: var(--cs-status-success-bg); color: var(--cs-status-success-text); display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 18px;">
+                <span style="font-weight: 600;">Created by ticking "Ask about the office"</span>
+                <span>Landlord letter link for the office, ready to send as soon as Ade gives the landlord's name and email (asked on the form, or by email).</span>
+                <span>Added to Grace's onboarding list: "Meadow View Care: office address evidence, landlord letter requested". It is never added to Ade's fix list again.</span>
+              </div>
+            </sc-if>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+
+          <section aria-labelledby="as-h" class="ic-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <h2 id="as-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Who is calling</h2>
+            <div role="radiogroup" aria-labelledby="as-h" style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <sc-for list="{{people}}" as="p" hint-placeholder-count="4">
+                <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}">
+                  <button class="ic-chip" role="radio" aria-checked="true" onClick="{{p.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{p.name}}</button>
+                </sc-if>
+                <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}">
+                  <button class="ic-chip" role="radio" aria-checked="false" onClick="{{p.pick}}" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{p.name}}</button>
+                </sc-if>
+              </sc-for>
+            </div>
+            <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{assignNote}}</span>
+          </section>
+
+          <section aria-labelledby="oc-h" class="ic-card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+            <h2 id="oc-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">How did it go?</h2>
+            <div role="radiogroup" aria-labelledby="oc-h" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
+              <sc-for list="{{outcomes}}" as="o" hint-placeholder-count="3">
+                <sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}">
+                  <button class="ic-chip" role="radio" aria-checked="true" onClick="{{o.pick}}" style="padding: 0 8px; border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{o.label}}</button>
+                </sc-if>
+                <sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}">
+                  <button class="ic-chip" role="radio" aria-checked="false" onClick="{{o.pick}}" style="padding: 0 8px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{o.label}}</button>
+                </sc-if>
+              </sc-for>
+            </div>
+
+            <sc-if value="{{isSpoke}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-size: 14px; line-height: 20px; font-weight: 500;">How did Ade sound?</span>
+                <div role="radiogroup" aria-label="How the client sounded" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
+                  <sc-for list="{{moods}}" as="m" hint-placeholder-count="3">
+                    <sc-if value="{{m.on}}" hint-placeholder-val="{{ false }}">
+                      <button class="ic-chip" role="radio" aria-checked="true" onClick="{{m.pick}}" style="padding: 0 8px; border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{m.label}}</button>
+                    </sc-if>
+                    <sc-if value="{{m.off}}" hint-placeholder-val="{{ true }}">
+                      <button class="ic-chip" role="radio" aria-checked="false" onClick="{{m.pick}}" style="padding: 0 8px; border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{m.label}}</button>
+                    </sc-if>
+                  </sc-for>
+                </div>
+                <label for="ic-notes" style="font-size: 14px; line-height: 20px; font-weight: 500; margin-top: 4px;">Anything to remember?</label>
+                <textarea id="ic-notes" rows="3" style="padding: 10px 12px; border-radius: 10px; border: 1px solid var(--cs-border-control); font: inherit; font-size: 14px; line-height: 20px; background: var(--cs-surface-raised); color: var(--cs-text-primary); resize: vertical;">Landlord is friendly. Asked about WhatsApp: it comes later, so email and the Hub for now. Kick-off to be booked after the onboarding checks pass and the handover is approved.</textarea>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isCallback}}" hint-placeholder-val="{{ false }}">
+              <div role="radiogroup" aria-label="Call back time" style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <sc-for list="{{slots}}" as="s" hint-placeholder-count="3">
+                  <sc-if value="{{s.on}}" hint-placeholder-val="{{ false }}">
+                    <button class="ic-chip" role="radio" aria-checked="true" onClick="{{s.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-selection-bg); color: var(--cs-text-primary); font-weight: 500;">{{s.label}}</button>
+                  </sc-if>
+                  <sc-if value="{{s.off}}" hint-placeholder-val="{{ true }}">
+                    <button class="ic-chip" role="radio" aria-checked="false" onClick="{{s.pick}}" style="border: 1px solid var(--cs-border-default); background: var(--cs-surface-raised); color: var(--cs-text-primary);">{{s.label}}</button>
+                  </sc-if>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <div role="status" style="padding: 14px; border-radius: 12px; background: var(--cs-surface-subtle); display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 14px; line-height: 20px; font-weight: 600;">What happens next, automatically</span>
+              <sc-for list="{{next}}" as="n" hint-placeholder-count="3">
+                <span style="display: flex; gap: 8px; font-size: 13px; line-height: 18px;"><x-import component-from-global-scope="CareSync.Icon" name="check" size="{{n16}}"></x-import>{{n.text}}</span>
+              </sc-for>
+            </div>
+
+            <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="circle-check">{{saveLabel}}</x-import>
+          </section>
+
+          <section aria-labelledby="tl-h" class="ic-card" style="padding: 18px 20px;">
+            <h2 id="tl-h" style="margin: 0 0 10px; font-size: 16px; line-height: 24px; font-weight: 500;">So far today</h2>
+            <x-import component-from-global-scope="CareSync.AuditTimeline" events="{{log}}" label="What has happened since payment"></x-import>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1420}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { who: 'divine', ticks: [true, true, true, true, false, false, false, false], outcome: 'spoke', mood: 'happy', slot: 0 };
+  }
+  renderVals() {
+    const s = this.state;
+    const G = [
+      ['Welcome Ade by name and say thank you', 'Thank you for choosing us. I am calling to say hello, not to sell anything.'],
+      ['Introduce the team', 'Grace checks your onboarding form first. Then your consultant writes your pack and talks to CQC (we confirm who after the checks). Millicent is your coach.'],
+      ['Confirm what is included', 'CQC domiciliary care, Full start-up package. We do the heavy lifting; you watch it get ticked off.'],
+      ['Explain the onboarding form', 'It is sent straight after this call and is tailored to the Full start-up package. It saves as you go. The company details fill in from Companies House.'],
+      ['Ask about the office', 'Sales notes say the landlord has not been asked. Ticking this creates the landlord letter link and puts it on Grace\'s onboarding list, so it starts early.'],
+      ['Explain that CQC works by email', 'We send and receive CQC emails from the business email, with permission. Next step in the Hub.'],
+      ['Set honest expectations', 'CQC sets its own timescales. You get an update every Friday, and the same day CQC writes.'],
+      ['Explain when sessions start, and ask how they like to hear from us', 'The kick-off with Millicent is booked once Grace\'s onboarding checks pass and the handover is approved. Then ask the best times to call. Updates come by email and in the Hub; texts are only for urgent legal deadlines. WhatsApp comes later.']
+    ];
+    const guide = G.map((g, i) => ({ title: g[0], say: g[1], on: s.ticks[i], off: !s.ticks[i], flip: () => { const t = s.ticks.slice(); t[i] = !t[i]; this.setState({ ticks: t }); } }));
+    const P = [['divine', 'Divine'], ['grace', 'Grace'], ['daniel', 'Daniel']];
+    const people = P.map(([k, name]) => ({ name, on: s.who === k, off: s.who !== k, pick: () => this.setState({ who: k }) }));
+    const whoName = P.find(p => p[0] === s.who)[1];
+    const O = [['spoke', 'Spoke to Ade'], ['none', 'No answer'], ['later', 'Call back later']];
+    const outcomes = O.map(([k, label]) => ({ label, on: s.outcome === k, off: s.outcome !== k, pick: () => this.setState({ outcome: k }) }));
+    const M = [['happy', 'Happy'], ['unsure', 'Unsure'], ['worried', 'Worried']];
+    const moods = M.map(([k, label]) => ({ label, on: s.mood === k, off: s.mood !== k, pick: () => this.setState({ mood: k }) }));
+    const SL = ['Today 15:00', 'Tomorrow 09:30', 'Tomorrow 12:00'];
+    const slots = SL.map((label, i) => ({ label, on: s.slot === i, off: s.slot !== i, pick: () => this.setState({ slot: i }) }));
+    let next, saveLabel, nextBg, statusText, statusTone, statusIcon;
+    if (s.outcome === 'spoke') {
+      next = [
+        'The onboarding form for the Full start-up package is sent now. Grace checks it when it arrives.',
+        'The kick-off session is booked only after the onboarding checks pass and a manager approves the handover.',
+        'Ade gets a "lovely to speak to you" email with the next 3 things. You can edit it first.',
+        'Your answers fill in the client record, so Ade is not asked twice.',
+        s.mood === 'worried' ? 'Worried: the manager is told today and calls Ade within 1 working day. No sales or growth messages until it is resolved.' : (s.mood === 'unsure' ? 'Unsure: Grace gets a nudge to check in when the form arrives.' : 'Happy: noted on the client record. Nothing else to do.')
+      ];
+      saveLabel = 'Save and finish'; nextBg = 'var(--cs-status-success-bg)'; statusText = 'In progress'; statusTone = 'info'; statusIcon = 'pencil-line';
+    } else if (s.outcome === 'none') {
+      next = [
+        'Attempt 1 of 3. A text goes now: "Hi Ade, it is ' + whoName + ' from Care Sync. Sorry we missed you. We will try again at 14:00, or pick a time."',
+        'Next tries: today 14:00, then tomorrow 10:00, each as a task for ' + whoName + '.',
+        'After 3 tries we email instead and tell the manager. We never call more than 3 times.'
+      ];
+      saveLabel = 'Save attempt'; nextBg = 'var(--cs-status-warning-bg)'; statusText = 'Trying again'; statusTone = 'warning'; statusIcon = 'refresh-cw';
+    } else {
+      next = [
+        'Ade gets a text confirming ' + SL[s.slot].toLowerCase() + '.',
+        'A task moves to ' + whoName + ' for ' + SL[s.slot].toLowerCase() + ', with these notes kept.',
+        'If the time changes, Ade can pick another from the link in the text.'
+      ];
+      saveLabel = 'Save call back'; nextBg = 'var(--cs-status-info-bg)'; statusText = 'Call back booked'; statusTone = 'info'; statusIcon = 'calendar';
+    }
+    return {
+      theme: this.props.theme ?? 'light', yes: true, two: 2, n16: 16, n20: 20,
+      user: { name: 'Divine', initials: 'DV' },
+      officeOn: s.ticks[4], guide, doneCount: s.ticks.filter(Boolean).length,
+      people,
+      assignNote: s.who === 'divine' ? 'Divine makes most introduction calls. Anyone can take this one if Divine is busy.' : 'Reassigned to ' + whoName + '. Divine is told, and the call guide and notes go with it.',
+      outcomes, moods, slots,
+      isSpoke: s.outcome === 'spoke', isCallback: s.outcome === 'later',
+      next: next.map(text => ({ text })), saveLabel, nextBg, statusText, statusTone, statusIcon,
+      log: [
+        { type: 'viewed', actor: 'Ade', action: 'opened the welcome email and signed in to the Hub', at: '10:09' },
+        { type: 'created', actor: 'Care Sync Hub', action: 'sent the welcome email with the Hub link', at: '10:03' },
+        { type: 'created', actor: 'Care Sync Hub', action: 'created this call for Divine, to be made by 12:02', at: '10:02' },
+        { type: 'signed', actor: 'Payments', action: 'first instalment paid through Stripe', at: '10:02' }
+      ],
+      nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user', current: true },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }]
+    };
+  }
+}
+</script>
+</body>
+</html>

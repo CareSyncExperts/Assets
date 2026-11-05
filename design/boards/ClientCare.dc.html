@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Client care</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 960px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Client care" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Client care</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">How every client feels, and the calls that keep them close. Divine leads; anyone can pick up a call.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.k}}</span></div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 3 1 560px; min-width: 0;" aria-labelledby="cq-h">
+          <div class="sb-head"><h2 id="cq-h" class="sb-h2">Calls and follow-ups, most urgent first</h2></div>
+          <sc-for list="{{queue}}" as="q" hint-placeholder-count="6">
+            <div class="sb-row" style="align-items: flex-start;">
+              <span class="{{q.cls}}" style="width: 120px; justify-content: center;">{{q.kind}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{q.client}}</span><span class="sb-sub">{{q.why}}</span></span>
+              <span class="sb-sub" style="width: 120px; flex-shrink: 0;">{{q.due}}</span>
+              <button class="sb-btn b-sec">{{q.cta}}</button>
+            </div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 2 1 340px; min-width: 0; padding-bottom: 8px;" aria-labelledby="fl-h">
+          <div class="sb-head"><h2 id="fl-h" class="sb-h2">How clients feel</h2><span class="sb-sub">From calls, sessions and one-tap check-ins</span></div>
+          <sc-for list="{{feel}}" as="f" hint-placeholder-count="3">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;"><div style="display: flex; justify-content: space-between;"><span style="font-weight: 500;">{{f.k}}</span><span>{{f.v}}</span></div><div class="bar" aria-hidden="true"><span class="{{f.bar}}"></span></div></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-sub">Unhappy feedback goes to the manager, who calls within 1 working day (a director if the manager is involved) and shares it with the consultant with care. Worried clients get no sales or growth messages until it is resolved. The review invitation is never held back.</span></div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const queue = [
+      ['Introduction call', 'warn', 'Meadow View Care Ltd', 'Paid today at 10:02. Target: within 2 working hours. The onboarding form goes after the call', 'By 12:02', 'Take the call'],
+      ['Concern', 'bad', 'Riverside Homecare Ltd', 'Mark felt rushed on Friday\'s call. Acknowledged within 1 working day. Collins calls today, Daniel sends Collins notes first', 'Today', 'See the concern'],
+      ['Gone quiet', 'warn', 'Greenway Support Ltd', 'No reply or upload for 10 days, 3 documents waiting. Friday\'s update bounced at 17:02, likely why. Daniel calls today', 'Today', 'Call'],
+      ['Check-in', 'info', 'Westbrook Care Ltd', 'Refused, decision received Mon 26 Oct. A kind check-in a week after the decision, about how Sade is, not the paperwork', 'Today', 'Plan the call'],
+      ['Review', 'ok', 'Brookside Homecare', 'Invited once, at registration 2 weeks ago, to review on Google or Trustpilot (Brookside chose). The one reminder went after 7 days. They left a Google review on Fri 30 Oct: reply within 2 working days', 'Tue 3 Nov', 'Reply'],
+      ['Aftercare', 'neutral', 'Maple Court Care', 'Month 6 of 12. Monthly check-in with Daniel is booked', 'Mon 9 Nov', 'Open']
+    ].map(([kind, k, client, why, due, cta]) => ({ kind, cls: 'sb-chip c-' + k, client, why, due, cta }));
+    const kpis = [['1', 'introduction call today'], ['1', 'concern open'], ['1', 'client gone quiet'], ['46 of 52', 'clients happy']].map(([v, k]) => ({ v, k }));
+    const feel = [['Happy', '46', 'w90'], ['Unsure', '5', 'w10'], ['Worried', '1', 'w5']].map(([k, v, bar]) => ({ k, v, bar }));
+    return { theme: this.props.theme ?? 'light', three: 3, user: { name: 'Divine', initials: 'DV' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user', current: true },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }], queue, kpis, feel };
+  }
+}
+</script>
+</body>
+</html>

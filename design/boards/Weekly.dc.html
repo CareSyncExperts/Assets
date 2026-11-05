@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Weekly update composer</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.wq{padding:10px 16px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--cs-border-subtle)}
+.wq-cur{background:var(--cs-selection-bg)}
+.wq-bad{background:var(--cs-status-error-bg)}
+.wq-plain{background:transparent}
+.ws{border:1px solid var(--cs-border-subtle);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.ws-need{border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg)}
+.ws-k{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.ws-need .ws-k{color:var(--cs-status-warning-text)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1020px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Weekly updates" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Friday updates</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Monday 2 November. 10 updates due Friday 6 November: your 6 and Olu's 4 while you cover. Each one is drafted from the week's activity.</span>
+        </div>
+        <div role="tablist" aria-label="Weekly rhythm" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+      </div>
+      <div class="sb-card" style="padding: 12px 16px; display: flex; gap: 10px; align-items: center;"><x-import component-from-global-scope="CareSync.Icon" name="calendar-check" size="{{n18}}"></x-import><span style="font-size: 14px; line-height: 20px;">{{rhythm}}</span></div>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" aria-labelledby="q-h" style="flex: 1 1 320px; min-width: 0;">
+          <div class="sb-head" style="padding: 16px 16px 8px;"><h2 id="q-h" class="sb-h2" style="font-size: 16px;">Due Friday 6 November</h2><span class="sb-sub">10 updates, 1 overdue</span></div>
+          <sc-for list="{{queue}}" as="q" hint-placeholder-count="10">
+            <div class="{{q.cls}}">
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{q.client}}</span><span class="sb-muted">{{q.note}}</span></span>
+              <span class="{{q.chip}}" style="white-space: normal; max-width: 150px;">{{q.state}}</span>
+            </div>
+          </sc-for>
+        </section>
+
+        <section class="sb-card" aria-labelledby="c-h" style="flex: 3 1 600px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <h2 id="c-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Update for Bright Path Care Ltd, Friday 6 November</h2>
+              <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">To Joy Adeyemi by email and in the Hub. Drafted from 14 changes this week.</span>
+            </div>
+            <span class="sb-chip c-info">Stage 4 of 11: drafting</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="sb-chip c-ok">Policies: complete</span>
+            <span class="sb-chip c-warn">Provider form: with Joy to check</span>
+            <span class="sb-chip c-brand">Manager form: drafting</span>
+            <span class="sb-chip c-info">Statement of Purpose v2: in our quality check</span>
+            <span class="sb-chip c-neutral">Interview Preparation Hub: account not created yet</span>
+          </div>
+          <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+            <sc-for list="{{sections}}" as="s" hint-placeholder-count="8">
+              <li class="{{s.cls}}"><span class="ws-k">{{s.k}}</span><span style="font-size: 14px; line-height: 20px;">{{s.v}}</span></li>
+            </sc-for>
+          </ol>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 10px; background: var(--cs-surface-page); flex-wrap: wrap;">
+            <span style="font-size: 14px; line-height: 20px;"><span style="color: var(--cs-text-muted);">9. Next update: </span><span style="font-weight: 500;">Friday 13 November</span></span>
+            <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary); display: inline-flex; align-items: center; gap: 6px;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n16}}"></x-import>Sent date, method and a copy are recorded as evidence automatically</span>
+          </div>
+          <sc-if value="{{scheduled}}" hint-placeholder-val="{{ false }}"><div style="padding: 10px 14px; border-radius: 10px; background: var(--cs-status-success-bg); color: var(--cs-status-success-text); font-size: 14px; line-height: 20px;">Ready. It goes to Joy on Friday 6 November at 16:00, after Thursday's quality check. You can still change it until then.</div></sc-if>
+          <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+            <button class="sb-btn b-gh">Edit wording</button>
+            <button class="sb-btn b-sec">Mark client unreachable</button>
+            <button class="sb-btn b-pri" onClick="{{ready}}">{{readyLabel}}</button>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1020}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 0, ready: false }; }
+  renderVals() {
+    const t = this.state.t, ready = this.state.ready;
+    const G = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const T = [
+      ['Mon review (today)', 'Monday: read what changed last week, and fix anything that did not arrive. Greenway\'s update of Friday 30 October bounced at 17:02, so fix the address and resend it today.'],
+      ['Wed chase', 'Wednesday: chase anything a client still owes, kindly, outside quiet hours (' + G('quiet-hours', '8pm to 8am') + ').'],
+      ['Thu check', 'Thursday: a second person checks every draft before it goes. This check is never skipped.'],
+      ['Fri send', G('weekly-update-day', 'Friday') + ': send all 10 by ' + G('weekly-update-time', '16:00') + '. The client cannot switch the update off; they choose the channel. Each send is logged with the date, method and a copy as evidence.']
+    ];
+    const Q = [
+      ['Greenway Support Ltd', 'Olu\'s, you cover. Stage 3 of 11', 'Overdue: Friday\'s update bounced at 17:02, fix the email address', 'bad', 'wq wq-bad'],
+      ['Bright Path Care Ltd', 'Yours. Stage 4 of 11: drafting', ready ? 'Ready for Friday' : 'Open now', ready ? 'ok' : 'brand', 'wq wq-cur'],
+      ['Sunrise Homecare Ltd', 'Yours. Notice of Proposal', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Westbrook Care Ltd', 'Yours. Refused, we resubmit', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Elm Tree Care Ltd', 'Yours. Interview Tue 24 Nov', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Afon Care Ltd', 'Yours. With CIW since 14 Oct', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Oakleaf Living Ltd', 'Yours. Tenders: Northshire and Eastford', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Riverside Homecare Ltd', 'Olu\'s, you cover. Submitted to CQC 23 Oct', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Lagan View Care Ltd', 'Olu\'s, you cover. With RQIA since 30 Sep', 'Drafting', 'neutral', 'wq wq-plain'],
+      ['Willow Bank Supported Living Ltd', 'Olu\'s, you cover. Stage 3 of 11', 'Drafting', 'neutral', 'wq wq-plain']
+    ].map(([client, note, state, k, cls]) => ({ client, note, state, chip: 'sb-chip c-' + k, cls }));
+    const S = [
+      ['1. Where you are', 'Stage 4 of 11: we are drafting your registration pack.'],
+      ['2. Done this week', 'All 30 policies are finished. Statement of Purpose version 2 is written.'],
+      ['3. Policies', 'Complete, and checked by a second consultant.'],
+      ['4. Application forms', 'The provider form is with you to check. We are drafting the manager form.'],
+      ['5. Statement of Purpose', 'Version 2 is in our quality check, then it comes to you.'],
+      ['6. Interview Preparation Hub', 'Not set up yet. We create your account when the interview stage starts.'],
+      ['7. What we need from you', 'Please check the provider form and re-upload your utility bill, by Wednesday 11 November.', true],
+      ['8. What we will do next', 'Finish the manager form and send it to you by Monday 9 November.']
+    ];
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n16: 16, n18: 18, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard', current: true },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: T.map(([label], i) => ({ label, on: t === i, off: t !== i, pick: () => this.setState({ t: i }) })),
+      rhythm: T[t][1], queue: Q,
+      sections: S.map(([k, v, need]) => ({ k, v, cls: need ? 'ws ws-need' : 'ws' })),
+      scheduled: ready, readyLabel: ready ? 'Undo' : 'Ready for Friday', ready: () => this.setState({ ready: !ready })
+    };
+  }
+}
+</script>
+</body>
+</html>

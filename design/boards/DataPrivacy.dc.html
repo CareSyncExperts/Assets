@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Data and privacy</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.sx-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.sx-ta{width:100%;min-height:64px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.sx-in:focus-visible,.sx-ta:focus-visible,.sx-sw:focus-visible,.sx-tile:focus-visible,.sx-cell:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sx-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.sx-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-inf{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-info-border);background:var(--cs-status-info-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sx-b{font-weight:500}
+.sx-big{font-size:30px;line-height:38px;font-weight:600}
+.sx-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.sx-pad{padding:0 20px 18px;display:flex;flex-direction:column;gap:12px}
+.sx-kv{display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 16px;font-size:14px;line-height:20px}
+.sx-kv>span:nth-child(odd){color:var(--cs-text-muted);font-size:13px}
+.sx-tile{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);border:0;padding:14px 16px;display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;color:var(--cs-text-primary);cursor:pointer;min-height:96px}
+.sx-tv{font-size:24px;line-height:32px;font-weight:600}
+.sx-sw{width:52px;height:32px;border-radius:999px;border:0;padding:3px;display:inline-flex;align-items:center;cursor:pointer;flex-shrink:0}
+.sx-sw span{width:26px;height:26px;border-radius:999px;background:var(--cs-surface-raised);display:block}
+.sw-on{background:var(--cs-action-primary);justify-content:flex-end}
+.sw-off{background:var(--cs-border-default);justify-content:flex-start}
+.sw-lock{background:var(--cs-action-primary);justify-content:flex-end;opacity:.55;cursor:not-allowed}
+.sx-step{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.st-done{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:500;background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.st-now{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;border:2px solid var(--cs-action-primary);color:var(--cs-text-primary);background:var(--cs-surface-raised)}
+.st-next{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;border:1px dashed var(--cs-border-default);color:var(--cs-text-muted)}
+.sx-chk{display:flex;gap:10px;align-items:flex-start;min-height:36px;cursor:pointer;font-size:14px;line-height:20px}
+.sx-chk input{width:20px;height:20px;margin:0;flex-shrink:0;accent-color:var(--cs-action-primary)}
+.sx-cell{min-height:36px;width:100%;padding:4px 8px;border-radius:8px;font:inherit;font-size:12px;line-height:16px;text-align:left;cursor:pointer;border:1px solid var(--cs-border-subtle);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.cell-ch{border:2px solid var(--cs-action-primary);background:var(--cs-surface-brand);color:var(--cs-text-brand);font-weight:500}
+.cell-no{color:var(--cs-text-muted);background:transparent}
+.sx-link{color:var(--cs-text-brand);font-weight:500;text-decoration:underline;text-underline-offset:2px}
+.sx-col3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sx-col2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sx-ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2240px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Data and privacy" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Data and privacy</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">How long we keep things, deletions and legal holds, people's rights requests, our records, suppliers and exports. Shown at Monday 2 November, 09:20. Collins is the data protection lead; schedule changes and early deletions need both super admins.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{tiles}}" as="k" hint-placeholder-count="6">
+          <button class="sx-tile" onClick="{{k.go}}" aria-label="{{k.aria}}"><span class="sb-sub">{{k.k}}</span><span class="sx-tv">{{k.v}}</span><span class="{{k.cls}}" style="white-space: normal; align-self: flex-start;">{{k.note}}</span></button>
+        </sc-for>
+      </div>
+      <div role="tablist" aria-label="Data and privacy areas" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="6">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{isRet}}" hint-placeholder-val="{{ true }}">
+        <section class="sb-card" aria-labelledby="v2-h">
+          <div class="sb-head"><h2 id="v2-h" class="sb-h2">Retention schedule v2: waiting for Rachel Turner</h2><span class="{{v2Cls}}">{{v2State}}</span></div>
+          <div class="sx-pad">
+            <div class="sx-col2">
+              <div class="sx-box"><span class="sx-lbl">What changes</span><span>Identity document images and DBS certificate images are deleted <span class="sx-b">once the regulator has made its decision</span>, instead of being kept until our work for the client ends. The Hub keeps a record: who saw it, the date, the document type, and the DBS number and issue date.</span></div>
+              <div class="sx-box"><span class="sx-lbl">Impact today</span><span>17 clients have a regulator decision. Their 46 identity images and 12 DBS images would go into the next deletion run, after 7 days' notice. Client screens that read this schedule: Account and the Security page ("How long we keep things").</span></div>
+            </div>
+            <span class="sb-sub">Proposed by Collins as data protection lead, Fri 30 Oct. A schedule change needs the other super admin, so only Rachel Turner can approve it. Decision 7 of 7 on Home.</span>
+            <sc-if value="{{v2Open}}" hint-placeholder-val="{{ true }}"><div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"><span class="sx-lbl">See this as</span><div role="tablist" aria-label="See this as" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{v2As}}" as="tb" hint-placeholder-count="2">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div></sc-if>
+            <sc-if value="{{v2Own}}" hint-placeholder-val="{{ true }}"><div class="sx-box" style="gap: 8px;"><span class="sx-b">Rachel Turner must approve this</span><span class="sb-sub">You proposed this change, and nobody can approve their own request. It waits for Rachel Turner.</span><div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{v2Remind}}">Remind Rachel</button><span class="sb-muted">{{v2RemindNote}}</span></div></div></sc-if>
+            <sc-if value="{{v2CanDecide}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span class="sx-lbl">Applies to</span>
+                <div role="tablist" aria-label="Applies to" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{v2When}}" as="tb" hint-placeholder-count="2">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+                <label class="sx-lbl" for="v2-ta">Your reason (written to the audit log)</label>
+                <textarea id="v2-ta" class="sx-ta" value="{{v2R}}" onChange="{{onV2R}}" placeholder="For example: we only need the images for the regulator's checks; the record is enough after that"></textarea>
+                <sc-if value="{{v2Err}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason before you approve or decline.</span></sc-if>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{v2Yes}}">Approve v2</button><button class="sb-btn b-gh" onClick="{{v2No}}">Decline</button></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{v2Done}}" hint-placeholder-val="{{ false }}"><div class="{{v2Box}}"><span class="sx-b">{{v2Head}}</span><span class="sb-sub">{{v2Note}}</span></div></sc-if>
+          </div>
+        </section>
+        <section class="sb-card" aria-labelledby="rs-h">
+          <div class="sb-head"><h2 id="rs-h" class="sb-h2">Retention schedule, per document type</h2><div role="tablist" aria-label="Version" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{verTabs}}" as="tb" hint-placeholder-count="2">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <div style="padding: 0 20px 10px;" class="sb-sub">{{verNote}}</div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 2 1 210px;">Document or data</span><span class="sb-th" style="flex: 2 1 200px;">How long, from when</span><span class="sb-th" style="flex: 2 1 220px;">Why, and the source</span><span class="sb-th" style="flex: 1 1 150px;">Systems to clear</span><span class="sb-th" style="flex: 0 0 150px;">Status</span></div>
+          <sc-for list="{{sched}}" as="r" hint-placeholder-count="18">
+            <div class="sb-row" style="align-items: flex-start; padding-top: 9px; padding-bottom: 9px;">
+              <span class="sx-b" style="flex: 2 1 210px; min-width: 0; font-size: 13px; line-height: 18px;">{{r.type}}</span>
+              <span style="flex: 2 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 18px;"><span>{{r.period}}</span><sc-if value="{{r.was}}" hint-placeholder-val="{{ false }}"><span class="sb-muted">Was (v1): {{r.wasText}}</span></sc-if></span>
+              <span class="sb-sub" style="flex: 2 1 220px; min-width: 0;">{{r.basis}}</span>
+              <span class="sb-muted" style="flex: 1 1 150px; min-width: 0;">{{r.sys}}</span>
+              <span style="flex: 0 0 150px;"><span class="{{r.cls}}" style="white-space: normal;">{{r.status}}</span></span>
+            </div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">Every row ends in deletion, not archiving. Values marked "proposed" are for the data protection lead to confirm. Routine deletions inside the live schedule run by themselves with 7 days' notice. History: v1 approved by Collins and Rachel Turner at go-live, Thu 1 Oct.</span></div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isDel}}" hint-placeholder-val="{{ false }}">
+        <div class="sx-cols">
+          <section class="sb-card" style="flex: 3 1 600px; min-width: 0;" aria-labelledby="dr-h">
+            <div class="sb-head"><h2 id="dr-h" class="sb-h2">Deletion run: Mon 9 Nov, 06:00</h2><span class="{{runCls}}">{{runState}}</span></div>
+            <div class="sx-pad">
+              <span class="sb-sub">14 identity documents from 3 closed clients, under schedule v1. Notice given Mon 2 Nov 06:00 (7 days). It runs by itself unless someone stops it.</span>
+              <div class="sx-box" style="padding: 0; overflow: hidden; gap: 0;">
+                <div style="display: grid; grid-template-columns: 1.4fr 1.3fr 1fr; gap: 10px; padding: 8px 14px;"><span class="sx-lbl">Document</span><span class="sx-lbl">Closed client</span><span class="sx-lbl">Retention ended</span></div>
+                <sc-for list="{{delDocs}}" as="d" hint-placeholder-count="14">
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.3fr 1fr; gap: 10px; padding: 5px 14px; border-top: 1px solid var(--cs-border-subtle); font-size: 13px; line-height: 18px;"><span>{{d.t}}</span><span>{{d.c}}</span><span>{{d.e}}</span></div>
+                </sc-for>
+              </div>
+              <div class="sx-ok"><span class="sx-b">Legal hold check: clear</span><span class="sb-sub">None of the 3 clients has a legal hold, an open complaint, a regulator query, a payment dispute or a rights request that covers these documents. (The open rights request covers a reference letter for Northgate Care Ltd, which is not in this run.) Checked by the Hub today at 06:00.</span></div>
+              <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; padding-bottom: 6px;"><span class="sx-b">Systems to clear outside the Hub</span><span class="sb-muted">{{sysCount}}</span></div>
+                <sc-for list="{{delSys}}" as="x" hint-placeholder-count="7">
+                  <div style="display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--cs-border-subtle);"><label class="sx-chk" style="flex: 1; min-width: 0;"><input type="checkbox" checked="{{x.done}}" onChange="{{x.flip}}"><span style="display: flex; flex-direction: column;"><span>{{x.t}}</span><span class="sb-muted">{{x.note}}</span></span></label><span class="{{x.cls}}">{{x.state}}</span></div>
+                </sc-for>
+              </div>
+              <span class="sb-muted">If a system is not ticked by the run, the run shows "Partly done" and stays open. A certificate of deletion (what, when, systems cleared, backup expiry) is kept, never the documents.</span>
+              <sc-if value="{{runOpen}}" hint-placeholder-val="{{ true }}">
+                <label class="sx-lbl" for="stop-ta">Reason to stop the run</label>
+                <textarea id="stop-ta" class="sx-ta" value="{{stopR}}" onChange="{{onStopR}}" placeholder="For example: Northgate's director has raised a complaint"></textarea>
+                <sc-if value="{{stopErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason first.</span></sc-if>
+                <div><button class="sb-btn b-gh" onClick="{{stopRun}}">Stop this run</button></div>
+              </sc-if>
+              <sc-if value="{{runStopped}}" hint-placeholder-val="{{ false }}"><div class="sx-amb"><span class="sx-b">Stopped by Collins, just now</span><span class="sb-sub">Reason: "{{stopR}}". Nothing is deleted. Restarting needs a new 7 days' notice.</span><div><button class="sb-btn b-gh" onClick="{{restart}}">Restart with new notice</button></div></div></sc-if>
+            </div>
+          </section>
+          <section class="sb-card" style="flex: 2 1 380px; min-width: 0;" aria-labelledby="lh-h">
+            <div class="sb-head"><h2 id="lh-h" class="sb-h2">Legal holds</h2><span class="sb-sub">{{holdCount}}</span></div>
+            <sc-for list="{{holds}}" as="h" hint-placeholder-count="3">
+              <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px;"><span class="sx-b">{{h.scope}}</span><span class="{{h.cls}}">{{h.state}}</span></div>
+                <span class="sb-sub">{{h.why}}</span>
+                <span class="sb-muted">{{h.meta}}</span>
+                <sc-if value="{{h.on}}" hint-placeholder-val="{{ true }}"><div><button class="sb-btn b-gh" onClick="{{h.release}}">Release, with a reason</button></div></sc-if>
+                <sc-if value="{{h.asking}}" hint-placeholder-val="{{ false }}">
+                  <input aria-label="{{h.relLabel}}" class="sx-in" value="{{h.r}}" onChange="{{h.onR}}" placeholder="Reason for releasing it">
+                  <sc-if value="{{h.err}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason first.</span></sc-if>
+                  <div style="display: flex; gap: 8px;"><button class="sb-btn b-sec" onClick="{{h.confirm}}">Release the hold</button><button class="sb-btn b-gh" onClick="{{h.cancel}}">Keep it</button></div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+              <span class="sx-b">Place a legal hold</span>
+              <input aria-label="What the hold covers" class="sx-in" value="{{nhScope}}" onChange="{{onNhScope}}" placeholder="What it covers, for example: Riverside Homecare Ltd, call notes">
+              <input aria-label="Why" class="sx-in" value="{{nhWhy}}" onChange="{{onNhWhy}}" placeholder="Why, for example: concern raised on Fri 30 Oct">
+              <sc-if value="{{nhErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Say what it covers and why.</span></sc-if>
+              <div><button class="sb-btn b-sec" onClick="{{addHold}}">Place the hold</button></div>
+              <span class="sb-muted">A hold stops every deletion it covers, including routine runs, until it is released with a reason.</span>
+            </div>
+          </section>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isRights}}" hint-placeholder-val="{{ false }}">
+        <div class="sx-cols">
+          <section class="sb-card" style="flex: 3 1 600px; min-width: 0;" aria-labelledby="rr-h">
+            <div class="sb-head"><h2 id="rr-h" class="sb-h2">Request 2026-01: a former referee asks what we hold</h2><span class="{{rrCls}}">{{rrState}}</span></div>
+            <div class="sx-pad">
+              <div class="sx-step"><sc-for list="{{rrSteps}}" as="st" hint-placeholder-count="5"><span class="{{st.cls}}">{{st.label}}</span></sc-for></div>
+              <div class="sx-kv">
+                <sc-for list="{{rrFacts}}" as="f" hint-placeholder-count="9"><span>{{f.k}}</span><span>{{f.v}}</span></sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; padding-bottom: 6px;"><span class="sx-b">Systems searched</span><span class="sb-muted">{{srCount}}</span></div>
+                <sc-for list="{{searched}}" as="x" hint-placeholder-count="9">
+                  <div style="display: flex; gap: 12px; align-items: flex-start; padding: 7px 0; border-top: 1px solid var(--cs-border-subtle);"><label class="sx-chk" style="flex: 1; min-width: 0;"><input type="checkbox" checked="{{x.done}}" onChange="{{x.flip}}"><span style="display: flex; flex-direction: column;"><span>{{x.t}}</span><span class="sb-muted">{{x.note}}</span></span></label><span class="{{x.cls}}">{{x.state}}</span></div>
+                </sc-for>
+              </div>
+              <div class="sx-box" style="gap: 8px;">
+                <span class="sx-b">Other people's details</span>
+                <span class="sb-sub">The reference is about Northgate's former manager. Hannah wrote it, so she gets it, but our covering emails also hold the manager's home address and DBS number: those are removed before sending.</span>
+                <label class="sx-chk"><input type="checkbox" checked="{{redacted}}" onChange="{{flipRed}}"><span>Redaction done and checked by a second person (Rachel Turner)</span></label>
+              </div>
+              <div class="sx-box" style="gap: 8px;">
+                <span class="sx-b">Send the response</span>
+                <span class="sb-sub">By a secure link from the Hub that expires after 14 days. The download is logged. No fee (normally free: Art 12(5)).</span>
+                <sc-if value="{{sendErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">{{sendErrText}}</span></sc-if>
+                <sc-if value="{{rrOpen}}" hint-placeholder-val="{{ true }}"><div><button class="sb-btn b-pri" onClick="{{sendRr}}">Send the response to Hannah</button></div></sc-if>
+                <sc-if value="{{rrSent}}" hint-placeholder-val="{{ false }}"><div class="sx-ok"><span class="sx-b">Sent by Collins, Mon 2 Nov 09:20, 25 days before the due date</span><span class="sb-sub">The link expires Mon 16 Nov. The request closes when Hannah opens it, or when the link expires.</span></div></sc-if>
+              </div>
+            </div>
+          </section>
+          <div style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+            <section class="sb-card sx-pad" style="padding-top: 18px;" aria-labelledby="rc-h">
+              <h2 id="rc-h" class="sb-h2">The one-month clock</h2>
+              <span class="sx-big">25 days left</span>
+              <div class="bar" aria-hidden="true"><span class="w20"></span></div>
+              <div class="sx-kv" style="grid-template-columns: 110px minmax(0, 1fr);">
+                <span>Received</span><span>Wed 28 Oct</span>
+                <span>Due</span><span class="sx-b">Fri 27 Nov</span>
+                <span>Shown at</span><span>Mon 2 Nov 09:20</span>
+              </div>
+              <span class="sb-muted">Source: UK GDPR Art 12(3) and the ICO's right of access guidance. Within one month of receipt, worked out the safe way (a day early). Up to two more months for complex or many requests, only if we tell the person within the first month. Pausing the clock while we wait for ID: ICO guidance allows it, and the Data (Use and Access) Act 2025 puts it in law (check it has commenced).</span>
+            </section>
+            <section class="sb-card sx-pad" style="padding-top: 18px;" aria-labelledby="ra2-h">
+              <h2 id="ra2-h" class="sb-h2">Requests from anyone</h2>
+              <span class="sb-sub">"Download everything" serves the client's account holder. Everyone else comes here: registered managers, co-directors, referees, landlords, GPs named on forms, prospects and staff. Requests count however they arrive: email, phone, a message or a letter. Every staff screen has "Log a request".</span>
+              <span class="sb-sub">Types: access, correction, erasure, restriction, objection, portability, complaint. "Correct something we hold" on the client's Account page lands here too.</span>
+              <div class="sx-box"><span class="sx-lbl">Closed since go-live</span><span style="font-size: 13px; line-height: 18px;">1 correction: Bright Path Care Ltd changed Joy's phone number through "Correct something we hold", Thu 15 Oct, done the same day.</span></div>
+              <span class="sb-muted">To decide with the data protection lead: what each role's "Download everything" contains (for example, a director's download and the registered manager's DBS details). Data protection complaints: acknowledge within 30 days (check whether this part of the Data (Use and Access) Act 2025 has commenced).</span>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isRec}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="ropa-h">
+          <div class="sb-head"><h2 id="ropa-h" class="sb-h2">Record of processing</h2><span class="sb-sub">UK GDPR Art 30. Needed even under 250 staff, because the processing is regular and includes criminal offence data (Art 30(5))</span></div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 2 1 190px;">Activity and purpose</span><span class="sb-th" style="flex: 2 1 200px;">People and data</span><span class="sb-th" style="flex: 2 1 210px;">Lawful basis and condition</span><span class="sb-th" style="flex: 0 0 120px;">Our role</span><span class="sb-th" style="flex: 2 1 180px;">Suppliers and place</span></div>
+          <sc-for list="{{ropa}}" as="r" hint-placeholder-count="10">
+            <div class="sb-row" style="align-items: flex-start; padding-top: 9px; padding-bottom: 9px;">
+              <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b" style="font-size: 13px;">{{r.a}}</span><span class="sb-muted">{{r.p}}</span></span>
+              <span class="sb-sub" style="flex: 2 1 200px; min-width: 0;">{{r.d}}</span>
+              <span class="sb-sub" style="flex: 2 1 210px; min-width: 0;">{{r.b}}</span>
+              <span class="sb-sub" style="flex: 0 0 120px;">{{r.role}}</span>
+              <span class="sb-muted" style="flex: 2 1 180px; min-width: 0;">{{r.s}}</span>
+            </div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">Each row links to its retention row and supplier records. "Check" means the data protection lead confirms it before the next review.</span></div>
+        </section>
+        <div class="sx-cols">
+          <section class="sb-card" style="flex: 3 1 560px; min-width: 0;" aria-labelledby="dp-h">
+            <div class="sb-head"><h2 id="dp-h" class="sb-h2">Data protection impact assessments</h2><span class="sb-sub">Art 35. If high risk remains after the measures, we consult the ICO first (Art 36)</span></div>
+            <sc-for list="{{dpias}}" as="d" hint-placeholder-count="6">
+              <div class="sb-row" style="align-items: flex-start;">
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b">{{d.t}}</span><span class="sb-sub">{{d.m}}</span><span class="sb-muted">{{d.meta}}</span></span>
+                <span style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end;"><span class="{{d.cls}}">{{d.state}}</span><span class="sb-chip c-neutral">{{d.res}}</span></span>
+              </div>
+            </sc-for>
+          </section>
+          <div style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+            <section class="sb-card sx-pad" style="padding-top: 18px;" aria-labelledby="apd-h">
+              <h2 id="apd-h" class="sb-h2">Appropriate policy document</h2>
+              <div class="sx-kv" style="grid-template-columns: 100px minmax(0, 1fr);"><span>Version</span><span>v1, Mon 28 Sep 2026</span><span>Owner</span><span>Collins, data protection lead</span><span>Review</span><span>Tue 28 Sep 2027</span><span>Covers</span><span>DBS information (criminal offence data). The Schedule 1 condition, and whether Part 4 needs this document: check</span></div>
+              <span class="sb-muted">Source: UK GDPR Art 10; Data Protection Act 2018 s.10 and Schedule 1.</span>
+            </section>
+            <section class="sb-card" aria-labelledby="pn-h">
+              <div class="sb-head"><h2 id="pn-h" class="sb-h2">Privacy notices</h2></div>
+              <sc-for list="{{notices}}" as="n" hint-placeholder-count="3">
+                <div class="sb-row" style="align-items: flex-start;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b">{{n.t}}</span><span class="sb-sub">{{n.x}}</span></span><span class="{{n.cls}}">{{n.state}}</span></div>
+              </sc-for>
+              <div class="sb-row"><span class="sb-muted">The privacy notice is information, not consent. Consent is asked separately, only where it is the basis: call recording, WhatsApp updates (later) and holding an authenticator.</span></div>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isSup}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="su-h">
+          <div class="sb-head"><h2 id="su-h" class="sb-h2">Suppliers who process our data</h2><div role="tablist" aria-label="Show" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{supTabs}}" as="tb" hint-placeholder-count="3">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 2 1 190px;">Supplier and purpose</span><span class="sb-th" style="flex: 2 1 190px;">Data</span><span class="sb-th" style="flex: 1 1 140px;">Where stored</span><span class="sb-th" style="flex: 1 1 130px;">Transfer safeguard</span><span class="sb-th" style="flex: 1 1 150px;">Contract</span><span class="sb-th" style="flex: 0 0 90px;">Review</span><span class="sb-th" style="flex: 0 0 120px;">State</span></div>
+          <sc-for list="{{sups}}" as="r" hint-placeholder-count="16">
+            <div class="sb-row" style="align-items: flex-start; padding-top: 9px; padding-bottom: 9px;">
+              <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b" style="font-size: 13px;">{{r.n}}</span><span class="sb-muted">{{r.p}}</span></span>
+              <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="sb-sub">{{r.d}}</span><sc-if value="{{r.sp}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-warn" style="align-self: flex-start;">Special or criminal data</span></sc-if></span>
+              <span class="sb-sub" style="flex: 1 1 140px; min-width: 0;">{{r.w}}</span>
+              <span class="sb-sub" style="flex: 1 1 130px; min-width: 0;">{{r.tx}}</span>
+              <span style="flex: 1 1 150px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="sb-sub">{{r.c}}</span><sc-if value="{{r.canCheck}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" style="align-self: flex-start;" onClick="{{r.check}}">Contract checked</button></sc-if></span>
+              <span class="sb-sub" style="flex: 0 0 90px;">{{r.rv}}</span>
+              <span style="flex: 0 0 120px;"><span class="{{r.cls}}" style="white-space: normal;">{{r.state}}</span></span>
+            </div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">Not processors, listed so nothing is missed: Companies House, CQC data, Ordnance Survey and HM Land Registry (public data we look up; only search terms leave us). The Interview Preparation Hub is our own system; its hosting is checked like a supplier. Each supplier is one record; the 7 with a live connection (Google Workspace, Stripe, Xero, DocuSeal, GoHighLevel, email sending and texts) also show on System health (board 86). Every processor needs a written contract (Art 28(3)).</span></div>
+        </section>
+        <div class="sx-inf"><span class="sx-b">What the client's Security page should say</span><span class="sb-sub">"Your Hub's database and files are in the UK. Some of our trusted suppliers process data elsewhere, under UK safeguards." It shows the list of suppliers from this screen, and the ICO registration number once it is entered on Go-live readiness.</span></div>
+      </sc-if>
+
+      <sc-if value="{{isExp}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="ex-h">
+          <div class="sb-head"><h2 id="ex-h" class="sb-h2">Exports register</h2><span class="sb-sub">Every export, its purpose and who approved it</span></div>
+          <sc-for list="{{exps}}" as="x" hint-placeholder-count="5">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+              <div style="display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap;">
+                <span class="sb-sub" style="flex: 0 0 120px;">{{x.at}}</span>
+                <span style="flex: 2 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b">{{x.what}}</span><span class="sb-sub">{{x.who}}. {{x.n}}. Purpose: {{x.why}}</span></span>
+                <span class="sb-sub" style="flex: 1 1 200px; min-width: 0;">{{x.ap}}</span>
+                <span class="sb-sub" style="flex: 1 1 170px; min-width: 0;">{{x.exp}}</span>
+                <span style="flex: 0 0 170px;"><span class="{{x.cls}}" style="white-space: normal;">{{x.state}}</span></span>
+              </div>
+              <sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 134px;">
+                  <label class="sx-lbl" for="ex-ta">Your reason (written to the audit log)</label>
+                  <textarea id="ex-ta" class="sx-ta" value="{{exR}}" onChange="{{onExR}}" placeholder="For example: outreach list for the Northshire framework; contact details only, link for 24 hours"></textarea>
+                  <sc-if value="{{exErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason before you approve or decline.</span></sc-if>
+                  <div style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{exYes}}">Approve the export</button><button class="sb-btn b-gh" onClick="{{exNo}}">Decline</button></div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </section>
+        <div class="sx-cols">
+          <section class="sb-card sx-pad" style="flex: 1 1 460px; min-width: 0; padding-top: 18px;" aria-labelledby="er-h">
+            <h2 id="er-h" class="sb-h2">Export rules</h2>
+            <ol class="sx-ol">
+              <li>Consultants download single documents only; no bulk export.</li>
+              <li>A bulk export needs approval by someone else, and appears here.</li>
+              <li>Links expire after 24 hours. Every download is logged.</li>
+              <li>Logins never appear in an export (locked).</li>
+              <li>A client's own "Download everything" needs the mobile code when we hold their sign-in mailbox login.</li>
+            </ol>
+            <span class="sb-muted">Who may export is set per role on People and access (board 83).</span>
+          </section>
+          <section class="sb-card sx-pad" style="flex: 1 1 460px; min-width: 0; padding-top: 18px;" aria-labelledby="es-h">
+            <h2 id="es-h" class="sb-h2">States</h2>
+            <span class="sb-sub">Requested, Approved, Ready, Expired. Downloads outside an approved export, like the 38 single downloads on Sun 1 Nov, show here as flagged and open the incident on Security (board 84).</span>
+          </section>
+        </div>
+      </sc-if>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: 'ret', ver: 'v1', v2When: 'all', v2R: '', v2Err: false, v2Dec: '', v2As: 'collins', v2Reminded: false, sys: { gmail: true, dsl: true, ghl: true, iph: true }, stopR: '', stopErr: false, stopped: false,
+      rel: {}, relAsk: {}, relR: {}, relErr: {}, nh: [], nhScope: '', nhWhy: '', nhErr: false,
+      sr: { hub: true, gmail: true, drive: true, ghl: true, xero: true, dsl: true }, redacted: false, sendErr: false, rrSent: false,
+      sup: 'all', supChk: {}, exR: '', exErr: false, exDec: '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const G = (k, f) => { try { return (window.CSR && window.CSR.get) ? window.CSR.get(k, f) : f; } catch (e) { return f; } };
+    const ch = k => 'sb-chip c-' + k;
+    const up = (o, k, v) => Object.assign({}, o, { [k]: v });
+
+    const T = [['ret', 'Retention'], ['del', 'Deletions and holds'], ['rights', 'Rights requests (1)'], ['rec', 'Records'], ['sup', 'Suppliers'], ['exp', 'Exports']];
+    const V1 = 'Kept until our work for the client ends';
+    const SC = [
+      ['Identity document images (passport, driving licence, proof of address)', V1, 'Deleted once the regulator has made its decision', 'Needed only for the regulator\'s checks. A record is kept: seen by, date, document type', 'Hub, Gmail, Drive, staff phones', 'p'],
+      ['DBS certificate images', V1, 'Deleted once the regulator has made its decision', 'Criminal offence data (Art 10; DPA 2018 Schedule 1 condition: check). DBS guidance for registered bodies says normally no longer than 6 months: check whether it applies to us', 'Hub, Gmail, Drive, staff phones', 'p'],
+      ['DBS record (number, issue date, who saw it, when)', '6 years after the work ends', '', 'Evidence of what we checked; contract claims (Limitation Act 1980 s.5)', 'Hub', 'p'],
+      ['GP medical reference forms (CIW and RQIA)', 'Deleted once the regulator has made its decision', '', 'Health data (Art 9 condition: check)', 'Hub, Gmail', 'p'],
+      ['CVs, employment history and references', '12 months after the work ends', '', 'Questions after registration', 'Hub, Gmail, Drive, Interview Preparation Hub', 'p'],
+      ['Application packs, policies and plans we wrote', '6 years after the work ends', '', 'Contract claims (Limitation Act 1980 s.5)', 'Hub, Drive', 'p'],
+      ['Engagement letters, agreements and signature records', '6 years after the work ends', '', 'Contract claims (Limitation Act 1980 s.5)', 'Hub, DocuSeal', 'c'],
+      ['Invoices, payments and VAT records', '6 years after the financial year ends', '', 'HMRC record keeping (check); Companies Act 2006 s.388: 3 years for a private company\'s accounts (check)', 'Hub, Xero, Stripe', 'c'],
+      ['Messages, emails and call notes with the client', '6 years after the work ends', '', 'Evidence of the advice we gave; complaints', 'Hub, Gmail, GoHighLevel', 'p'],
+      ['Regulator letters filed from the client\'s mailbox', '6 years after the work ends', '', 'Evidence of the advice we gave', 'Hub', 'p'],
+      ['Vault logins', 'Deleted at hand-back, at the end of the work', '', 'Settled in the design (spec 41.3)', 'Hub', 'c'],
+      ['Voice notes', 'Deleted once transcribed and checked, unless the client asks to keep them', '', 'Settled in the design (spec 13)', 'Hub, speech-to-text supplier', 'c'],
+      ['Prospects who did not buy (GoHighLevel, Tender Radar)', '2 years after the last contact', '', 'Legitimate interests (check)', 'GoHighLevel, Hub', 'p'],
+      ['Call recordings (only with consent)', '90 days', '', 'Consent', 'GoHighLevel', 'p'],
+      ['AI prompt logs', '30 days', '', 'Quality checks only', 'AI prompt log tool', 'p'],
+      ['Audit log', '6 years', '', 'Evidence of who saw what; contract claims', 'Hub, write-once copy', 'p'],
+      ['Staff Hub accounts after leaving', 'Disabled on the last day, deleted after 12 months; audit entries stay', '', 'HR records are kept separately', 'Hub, Google Workspace', 'p'],
+      ['Backups', '35 days, rolling', '', 'Recovery after a failure', 'Backup account', 'p']
+    ];
+    const v2Approved = s.v2Dec === 'yes';
+    const showV2 = s.ver === 'v2' || v2Approved;
+    const sched = SC.map(([type, v1, v2, basis, sys, st]) => { const changed = !!v2 && showV2;
+      return { type, period: changed ? v2 : v1, was: changed, wasText: v1, basis, sys, status: changed ? (v2Approved ? 'Live in v2, proposed for the data protection lead' : 'Changed in v2, waiting for Rachel Turner') : (st === 'c' ? 'Confirmed by the data protection lead' : 'Proposed, for the data protection lead'), cls: ch(changed ? (v2Approved ? 'info' : 'warn') : (st === 'c' ? 'ok' : 'neutral')) }; });
+    const v2Open = !s.v2Dec;
+    const v2Go = val => { if (!s.v2R.trim()) { this.setState({ v2Err: true }); return; } this.setState({ v2Dec: val, v2Err: false }); };
+    const delDocs = [
+      ['Passport (director)', 'Fernhill Homecare Ltd', '15 Oct 2026'], ['Driving licence (director)', 'Fernhill Homecare Ltd', '15 Oct 2026'], ['Utility bill (director)', 'Fernhill Homecare Ltd', '15 Oct 2026'], ['Passport (manager)', 'Fernhill Homecare Ltd', '15 Oct 2026'], ['Bank statement (manager)', 'Fernhill Homecare Ltd', '15 Oct 2026'],
+      ['Passport (director)', 'Northgate Care Ltd', '22 Oct 2026'], ['Birth certificate (director)', 'Northgate Care Ltd', '22 Oct 2026'], ['Council tax bill (director)', 'Northgate Care Ltd', '22 Oct 2026'], ['Driving licence (manager)', 'Northgate Care Ltd', '22 Oct 2026'], ['Bank statement (manager)', 'Northgate Care Ltd', '22 Oct 2026'],
+      ['Passport (director)', 'Bluebell Support Ltd', '31 Oct 2026'], ['Driving licence (director)', 'Bluebell Support Ltd', '31 Oct 2026'], ['Utility bill (manager)', 'Bluebell Support Ltd', '31 Oct 2026'], ['DBS certificate copy (manager)', 'Bluebell Support Ltd', '31 Oct 2026']
+    ].map(([t, c, e]) => ({ t, c, e }));
+    const DS = [
+      ['gmail', 'Gmail: search staff mailboxes for these attachments', 'Rachel Turner. 3 found and deleted, trash emptied'],
+      ['drive', 'Google Drive: staff working copies', 'Rachel Turner, by Fri 6 Nov'],
+      ['phones', 'Staff phones: photos or downloads of these documents', 'Each case owner confirms, by Fri 6 Nov'],
+      ['dsl', 'DocuSeal', 'Identity documents are never sent for signing. Confirmed not held'],
+      ['ghl', 'GoHighLevel notes', 'Confirmed not held'],
+      ['iph', 'Interview Preparation Hub', 'Confirmed not held'],
+      ['bk', 'Backups', 'They expire by themselves by Mon 14 Dec (35 days after the run). Tick when confirmed']
+    ];
+    const delSys = DS.map(([id, t, note]) => { const done = !!s.sys[id]; return { t, note, done, state: done ? 'Cleared' : 'To do', cls: ch(done ? 'ok' : 'warn'), flip: () => this.setState({ sys: up(s.sys, id, !done) }) }; });
+    const sysDone = delSys.filter(x => x.done).length;
+    const HL = [
+      ['inc', 'Sam Patel\'s account and the records of the 38 documents', 'Incident 2026-01, the bulk download (Security, board 84)', 'Placed by Rachel Turner, Mon 2 Nov 08:30. Review when the incident closes'],
+      ['wb', 'Westbrook Care Ltd: everything', 'Refused. The appeal window to the tribunal closes Sun 22 Nov (worked out the safe way; confirm with a legal adviser) and the resubmission is under way', 'Placed by Collins, Mon 26 Oct. Review Mon 23 Nov'],
+      ['sun', 'Sunrise Homecare Ltd: everything', 'Notice of Proposal. Written representations due by Tue 17 Nov', 'Placed by Collins, Thu 22 Oct. Review after CQC\'s decision']
+    ].concat(s.nh.map((h, i) => ['n' + i, h.scope, h.why, 'Placed by Collins, just now. Review in 3 months']));
+    const holds = HL.map(([id, scope, why, meta]) => { const released = !!s.rel[id]; const asking = !released && !!s.relAsk[id]; const r = s.relR[id] || '';
+      return { scope, why: released ? why + '. Released: "' + s.rel[id] + '"' : why, meta, on: !released && !asking, asking, state: released ? 'Released' : 'On hold', cls: ch(released ? 'neutral' : 'warn'), r, err: !!s.relErr[id], relLabel: 'Reason for releasing ' + scope,
+        release: () => this.setState({ relAsk: up(s.relAsk, id, true) }), cancel: () => this.setState({ relAsk: up(s.relAsk, id, false) }),
+        onR: e => this.setState({ relR: up(s.relR, id, e.target.value), relErr: up(s.relErr, id, false) }),
+        confirm: () => { if (!r.trim()) { this.setState({ relErr: up(s.relErr, id, true) }); return; } this.setState({ rel: up(s.rel, id, r.trim()) }); } }; });
+    const holdsOn = holds.filter(h => h.state === 'On hold').length;
+    const SR = [
+      ['hub', 'The Hub', 'Found: the reference letter, our request email and 2 reminders'],
+      ['gmail', 'Gmail', 'Found: 3 emails with Hannah'],
+      ['drive', 'Google Drive', 'Nothing found'],
+      ['ghl', 'GoHighLevel', 'Not held'],
+      ['xero', 'Xero', 'Not held'],
+      ['dsl', 'DocuSeal', 'Not held'],
+      ['wa', 'Staff phones and WhatsApp', 'To search: ask the case owner who handled Northgate'],
+      ['iph', 'Interview Preparation Hub', 'To search'],
+      ['ai', 'AI prompt logs', 'To search: logs older than 30 days are already gone']
+    ];
+    const searched = SR.map(([id, t, note]) => { const done = !!s.sr[id]; return { t, note, done, state: done ? 'Searched' : 'To do', cls: ch(done ? 'ok' : 'warn'), flip: () => this.setState({ sr: up(s.sr, id, !done), sendErr: false }) }; });
+    const srDone = searched.filter(x => x.done).length;
+    const rrSteps = ['Received', 'Verifying', 'In progress', 'Sent', 'Closed'].map((label, i) => { const cur = s.rrSent ? 3 : 2; return { label, cls: i < cur ? 'st-done' : (i === cur ? 'st-now' : 'st-next') }; });
+    const rrFacts = [
+      ['Received', 'Wed 28 Oct, by email to hello@caresyncexperts.co.uk'],
+      ['Person', 'Hannah Price, who gave a reference for Northgate Care Ltd\'s former manager (a closed client)'],
+      ['Request', 'Access: what do you hold about me?'],
+      ['Identity', 'Checked Thu 29 Oct: matched to the email address and phone number on the reference. No copy of ID kept'],
+      ['Due', 'Fri 27 Nov (one month)'],
+      ['Extension', 'Not needed'],
+      ['Clock paused', 'No'],
+      ['Owner', 'Collins, data protection lead'],
+      ['Fee', 'None']
+    ].map(([k, v]) => ({ k, v }));
+    const sendRr = () => { if (srDone < SR.length || !s.redacted) { this.setState({ sendErr: true }); return; } this.setState({ rrSent: true, sendErr: false }); };
+    const leftParts = []; if (srDone < SR.length) leftParts.push((SR.length - srDone) + ' systems still to search'); if (!s.redacted) leftParts.push('the redaction check');
+    const ropa = [
+      ['Registration work', 'Prepare and submit registrations', 'Directors, nominated individuals, managers: contact details, CVs, employment history, references', 'Contract with the client company; legitimate interests for the people in it (check)', 'Controller (check)', 'Hosting (UK), Google Workspace, DocuSeal, AI provider'],
+      ['Identity and DBS checks', 'Evidence for the regulator\'s fit person checks', 'Identity documents; DBS certificates (criminal offence data)', 'Legitimate interests (check); Art 10 with a DPA 2018 Schedule 1 condition (check); appropriate policy document v1', 'Controller (check)', 'Hosting (UK)'],
+      ['GP medical references', 'CIW and RQIA applications', 'Health data about managers and individuals', 'Art 9 condition: check', 'Controller (check)', 'Hosting (UK), Gmail'],
+      ['Mailbox monitoring and sending as the client', 'Watch for regulator emails; send replies the client approved', 'Regulator emails only; never Hub sign-in or e-signature emails', 'Contract, with written authority in the engagement letter. DPIA done', 'Processor for the client (check)', 'Google or Microsoft connection'],
+      ['The vault', 'Act on portals for the client', 'Logins to client accounts', 'Contract, with written authority. DPIA done', 'Controller (check)', 'Hosting (UK)'],
+      ['AI drafting and checks', 'Staff drafting and quality checks', 'Client documents; never logins or ID numbers', 'Legitimate interests (check). DPIA done', 'Controller (check)', 'AI provider; AI prompt log tool'],
+      ['Sales and prospecting', 'Find and contact providers who may need us', 'Names, work contact details, public CQC data', 'Legitimate interests (check); marketing email rules under PECR (check)', 'Controller', 'GoHighLevel'],
+      ['Billing', 'Invoices, payments and VAT', 'Payer names, company details, payment records', 'Contract; legal obligation', 'Controller', 'Stripe, Xero'],
+      ['Interview preparation', 'Practice and coaching for regulator interviews', 'Names, answers, session notes', 'Contract', 'Controller (check)', 'Interview Preparation Hub (our own)'],
+      ['Staff and monitoring', 'Run the team; the audit log watches access', 'Staff details, sign-ins, actions', 'Contract; legitimate interests, explained in the staff privacy notice (check ICO employment monitoring guidance)', 'Controller', 'Google Workspace, Hub']
+    ].map(([a, p, d, b, role, sp]) => ({ a, p, d, b, role, s: sp }));
+    const dpias = [
+      ['The Hub as a whole', 'UK hosting, encryption, two-step for staff, audit log, roles by client', 'v1 signed off Mon 28 Sep, during setup mode and before go-live. Owner Collins. Review Mon 29 Mar', 'Approved', 'ok', 'Residual risk: medium'],
+      ['Mailbox monitoring and sending as the client', 'Files regulator emails only; never sign-in or e-signature emails; client mobile code when we hold the sign-in mailbox login', 'Owner Collins. Review Mon 29 Mar', 'Approved', 'ok', 'Residual risk: low'],
+      ['The vault and stored authenticators', 'Reason for reveal and copy, reveal threshold, authenticators target 0', 'Owner Collins. Review due now: Willow Bank still has an authenticator held', 'Review due', 'warn', 'Residual risk: medium'],
+      ['AI drafting on client documents', 'No logins or ID numbers sent; prompt logs kept 30 days; supplier terms to check', 'Owner Collins. Review Mon 29 Mar', 'Approved', 'ok', 'Residual risk: low'],
+      ['Criminal offence data (DBS)', 'Images deleted once the regulator decides, if schedule v2 is approved; record kept', 'Owner Collins. Review after the v2 decision', 'Approved', 'ok', 'Residual risk: medium'],
+      ['Bulk downloads and exports', 'New, from incident 2026-01: real-time alerts, no bulk export for consultants, export register', 'Owner Collins. Draft by Fri 20 Nov', 'Draft', 'info', 'Residual risk: to assess']
+    ].map(([t, m, meta, state, k, res]) => ({ t, m, meta, state, cls: ch(k), res }));
+    const notices = [
+      ['Client privacy notice v1', 'Live since Thu 1 Oct, on the website and every client\'s privacy page', 'Live', 'ok'],
+      ['Client privacy notice v1.1', 'Draft: adds the supplier list, "some of our trusted suppliers process data elsewhere under UK safeguards", how long we keep things (read from the schedule), and the ICO registration number once entered', 'Draft', 'info'],
+      ['Staff privacy notice v1', 'Live since Thu 1 Oct. Explains the audit log and alerts (check ICO employment monitoring guidance)', 'Live', 'ok']
+    ].map(([t, x, state, k]) => ({ t, x, state, cls: ch(k) }));
+    const SU = [
+      ['host', 'Hosting provider (name to confirm)', 'Database and files', 'All client data', true, 'UK (London) region', 'Check backups and support access', 'Signed before go-live (check the processing terms)', 'Sep 2027', 'ok'],
+      ['gws', 'Google Workspace', 'Staff email, calendar, Drive, staff sign-in', 'Staff and client emails, working documents', true, 'Check', 'Check', 'Online processing terms accepted (record the date)', 'Dec 2026', 'chk'],
+      ['ghl', 'GoHighLevel', 'Sales CRM, call recordings', 'Prospects\' and clients\' contact details, call notes', false, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['str', 'Stripe', 'Payments and instalments', 'Payer names; card details held by Stripe', false, 'Check', 'Check', 'Stripe terms accepted (record the date)', 'Dec 2026', 'chk'],
+      ['xero', 'Xero', 'Accounts and invoices', 'Client company and contact names, amounts', false, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['dsl', 'DocuSeal', 'E-signatures', 'Signers\' names, emails, signatures', false, 'Cloud or our own hosting: check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['mail', 'Transactional email service (name to confirm)', 'Hub emails from hello@caresyncexperts.co.uk', 'Names, email addresses, message content', false, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['sms', 'Text message provider (name to confirm)', 'Sign-in codes, introduction call and urgent deadline texts', 'Mobile numbers, short messages', false, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['ai', 'AI provider (Claude)', 'Staff drafting and checks', 'Client documents (may include special category data)', true, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['lf', 'AI prompt log tool (Langfuse)', 'Quality checks on AI use', 'Prompts and answers, kept 30 days', true, 'Our own hosting or cloud: check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['stt', 'Speech-to-text provider (name to confirm)', 'Voice notes', 'Recordings until transcribed', false, 'Check', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['virus', 'Virus scanning', 'Every file on upload', 'Files, briefly', true, 'Check (may run in our hosting)', 'Check', 'Check', 'Dec 2026', 'chk'],
+      ['n8n', 'Automations tool (n8n)', 'Reminders, chasers and alerts', 'Names, dates, message content', false, 'Our own hosting: check', 'Check', 'Not needed if our own hosting (check)', 'Dec 2026', 'chk'],
+      ['op', '1Password (interim)', 'Logins until moved into the vault', 'Logins', false, 'Check', 'Check', 'Ends after the clear-out, by Fri 13 Nov', 'Fri 13 Nov', 'end'],
+      ['wa', 'WhatsApp Business (Meta)', 'Later phase: off', 'None yet', false, 'Check before use', 'Check before use', 'None yet', 'Before use', 'off'],
+      ['ab', 'AssuredBid (partner)', 'Partner access to tender packs', 'None yet', false, 'Check before use', 'Check before use', 'Data sharing or processor agreement needed first', 'Before use', 'off']
+    ];
+    const SST = { ok: ['Approved', 'ok'], chk: ['Check', 'warn'], end: ['Ending', 'neutral'], off: ['Not live', 'neutral'], done: ['Contract checked', 'ok'] };
+    const supF = { all: () => true, chk: r => r[9] === 'chk' && !s.supChk[r[0]], off: r => r[9] === 'off' || r[9] === 'end' };
+    const sups = SU.filter(supF[s.sup]).map(r => { const st = (r[9] === 'chk' && s.supChk[r[0]]) ? 'done' : r[9];
+      return { n: r[1], p: r[2], d: r[3], sp: r[4], w: r[5], tx: r[6], c: st === 'done' ? 'Checked by Collins, just now' : r[7], rv: r[8], state: SST[st][0], cls: ch(SST[st][1]), canCheck: st === 'chk', check: () => this.setState({ supChk: up(s.supChk, r[0], true) }) }; });
+    const nChk = SU.filter(r => r[9] === 'chk' && !s.supChk[r[0]]).length;
+    const exGo = val => { if (!s.exR.trim()) { this.setState({ exErr: true }); return; } this.setState({ exDec: val, exErr: false }); };
+    const exps = [
+      ['Today 08:55', 'Tender Radar prospects list (spreadsheet)', 'Jo Martin', '140 rows, contact details only', 'outreach for the Northshire framework', s.exDec === 'yes' ? 'Approved by Collins (data protection lead), just now: "' + s.exR.trim() + '"' : (s.exDec === 'no' ? 'Declined by Collins (data protection lead), just now: "' + s.exR.trim() + '"' : 'The data protection lead (Collins) decides. Jo cannot decide her own request. Not a super admin decision'), s.exDec === 'yes' ? 'Link expires Tue 3 Nov 09:20. Not downloaded yet' : 'No link yet', s.exDec === 'yes' ? 'Ready' : (s.exDec === 'no' ? 'Declined' : 'Requested'), s.exDec === 'yes' ? 'ok' : (s.exDec === 'no' ? 'neutral' : 'warn'), !s.exDec],
+      ['Today 08:45', 'Sam Patel\'s audit entries, 1 Oct to 2 Nov', 'Rachel Turner', '212 rows', 'incident 2026-01', 'Collins, data protection lead; logged on Security', 'Link expires today 17:00. Downloaded', 'Ready', 'ok', false],
+      ['Sun 1 Nov 21:40', '38 single downloads, not an export request', 'Sam Patel', '38 files from 6 clients', 'none given', 'No approval: single downloads added up to a bulk export', 'Downloaded to laptop CS-LT-07', 'Flagged: incident 2026-01', 'bad', false],
+      ['Fri 30 Oct 16:00', 'October invoices list for the accountant', 'Femi Ade', '52 rows', 'month close', 'Approved by Collins', 'Expired Sat 31 Oct. Downloaded', 'Expired', 'neutral', false],
+      ['Wed 28 Oct 19:30', 'Download everything: Bright Path Care Ltd', 'Joy Adeyemi (client)', '61 files', 'the client\'s own copy', 'The client\'s own right; no approval needed', 'Expired Thu 29 Oct. Downloaded', 'Expired', 'neutral', false]
+    ].map(([at, what, who, n, why, ap, exp, state, k, open]) => ({ at, what, who, n, why, ap, exp, state, cls: ch(k), open }));
+
+    return {
+      theme: this.props.theme ?? 'light', three: 7, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock', current: true },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      tiles: [
+        ['ret', 'Retention schedule', v2Approved ? 'v2 live' : 'v1 live', v2Approved ? 'Approved just now' : (s.v2Dec === 'no' ? 'v2 declined' : 'v2 waiting for Rachel Turner'), v2Approved ? 'ok' : 'warn'],
+        ['del', 'Next deletion run', s.stopped ? 'Stopped' : 'Mon 9 Nov', '14 identity documents', s.stopped ? 'warn' : 'neutral'],
+        ['del', 'Legal holds', String(holdsOn), 'Incident, Westbrook, Sunrise', 'info'],
+        ['rights', 'Open rights requests', s.rrSent ? '0' : '1', s.rrSent ? 'Sent today' : '25 days left: due Fri 27 Nov', s.rrSent ? 'ok' : 'warn'],
+        ['sup', 'Suppliers to check', String(nChk), 'Where stored and safeguards', nChk ? 'warn' : 'ok'],
+        ['exp', 'Exports waiting', s.exDec ? '0' : '1', s.exDec ? 'Decided' : 'Jo Martin\'s prospects list', s.exDec ? 'ok' : 'warn']
+      ].map(([k, l, v, note, c]) => ({ k: l, v, note, cls: ch(c), aria: l + ': ' + v + '. ' + note + '. Open', go: () => this.setState({ t: k }) })),
+      tabs: T.map(([k, label]) => ({ label, on: s.t === k, off: s.t !== k, pick: () => this.setState({ t: k }) })),
+      isRet: s.t === 'ret', isDel: s.t === 'del', isRights: s.t === 'rights', isRec: s.t === 'rec', isSup: s.t === 'sup', isExp: s.t === 'exp',
+      v2State: v2Approved ? 'Approved' : (s.v2Dec === 'no' ? 'Declined' : 'Waiting for Rachel Turner'), v2Cls: ch(v2Approved ? 'ok' : (s.v2Dec === 'no' ? 'neutral' : 'warn')),
+      v2When: [['all', 'Everyone, from the next run'], ['new', 'New clients only']].map(([k, label]) => ({ label, on: s.v2When === k, off: s.v2When !== k, pick: () => this.setState({ v2When: k }) })),
+      v2R: s.v2R, v2Err: s.v2Err, onV2R: e => this.setState({ v2R: e.target.value, v2Err: false }), v2Open, v2Done: !v2Open,
+      v2As: [['collins', 'Collins (proposed it)'], ['rachel', 'Rachel Turner']].map(([k, label]) => ({ label, on: s.v2As === k, off: s.v2As !== k, pick: () => this.setState({ v2As: k, v2Err: false }) })),
+      v2Own: v2Open && s.v2As === 'collins', v2CanDecide: v2Open && s.v2As === 'rachel',
+      v2Remind: () => this.setState({ v2Reminded: true }), v2RemindNote: s.v2Reminded ? 'Rachel was reminded just now, in the Hub and by email.' : 'Rachel sees it on Home as decision 7.',
+      v2Yes: () => v2Go('yes'), v2No: () => v2Go('no'), v2Box: v2Approved ? 'sx-ok' : 'sx-box',
+      v2Head: v2Approved ? 'Approved by Rachel Turner, just now. Schedule v2 is live' : 'Declined by Rachel Turner, just now. v1 stays live; Collins is told',
+      v2Note: (v2Approved ? (s.v2When === 'all' ? 'The next deletion run lists the 46 identity images and 12 DBS images, with 7 days\' notice. ' : 'Applies to clients added from today; existing clients stay on v1. ') + 'Account and the Security page now read v2. ' : '') + 'Reason: "' + s.v2R.trim() + '". Written to the audit log. Home shows 6 decisions waiting.',
+      verTabs: [['v1', 'v1, live'], ['v2', 'v2, proposed']].map(([k, label]) => ({ label, on: s.ver === k, off: s.ver !== k, pick: () => this.setState({ ver: k }) })),
+      verNote: showV2 ? 'Showing v2. The 2 changed rows show what v1 said.' : 'Showing v1, live since Thu 1 Oct. Switch to v2 to see the 2 proposed changes.', sched,
+      runState: s.stopped ? 'Stopped' : 'Scheduled', runCls: ch(s.stopped ? 'warn' : 'info'), delDocs, delSys, sysCount: sysDone + ' of ' + delSys.length + ' cleared',
+      runOpen: !s.stopped, runStopped: s.stopped, stopR: s.stopR, stopErr: s.stopErr, onStopR: e => this.setState({ stopR: e.target.value, stopErr: false }),
+      stopRun: () => { if (!s.stopR.trim()) { this.setState({ stopErr: true }); return; } this.setState({ stopped: true }); }, restart: () => this.setState({ stopped: false, stopR: '' }),
+      holds, holdCount: holdsOn + ' on hold', nhScope: s.nhScope, nhWhy: s.nhWhy, nhErr: s.nhErr,
+      onNhScope: e => this.setState({ nhScope: e.target.value, nhErr: false }), onNhWhy: e => this.setState({ nhWhy: e.target.value, nhErr: false }),
+      addHold: () => { if (!s.nhScope.trim() || !s.nhWhy.trim()) { this.setState({ nhErr: true }); return; } this.setState({ nh: s.nh.concat([{ scope: s.nhScope.trim(), why: s.nhWhy.trim() }]), nhScope: '', nhWhy: '' }); },
+      rrState: s.rrSent ? 'Sent' : 'In progress', rrCls: ch(s.rrSent ? 'ok' : 'info'), rrSteps, rrFacts, searched, srCount: srDone + ' of ' + SR.length + ' searched',
+      redacted: s.redacted, flipRed: () => this.setState({ redacted: !s.redacted, sendErr: false }),
+      sendErr: s.sendErr, sendErrText: 'Before sending: ' + leftParts.join(' and ') + '.', rrOpen: !s.rrSent, rrSent: s.rrSent, sendRr,
+      ropa, dpias, notices,
+      supTabs: [['all', 'All (' + SU.length + ')'], ['chk', 'To check (' + nChk + ')'], ['off', 'Not live or ending']].map(([k, label]) => ({ label, on: s.sup === k, off: s.sup !== k, pick: () => this.setState({ sup: k }) })), sups,
+      exps, exR: s.exR, exErr: s.exErr, onExR: e => this.setState({ exR: e.target.value, exErr: false }), exYes: () => exGo('yes'), exNo: () => exGo('no')
+    };
+  }
+}
+</script>
+</body>
+</html>

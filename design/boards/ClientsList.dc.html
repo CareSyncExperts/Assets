@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Clients</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1240px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Clients" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Clients</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{summary}}</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <input aria-label="Find a client" placeholder="Find a client, person or company number" style="min-height: 40px; width: 320px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 14px;">
+          <button class="sb-btn b-gh" aria-expanded="{{exOpenAria}}" onClick="{{exToggle}}">Request an export</button>
+        </div>
+      </div>
+      <sc-if value="{{exOpen}}" hint-placeholder-val="{{ false }}">
+      <section class="sb-card" aria-labelledby="ex-h" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+        <h2 id="ex-h" class="sb-h2">Request an export of this list</h2>
+        <span class="sb-sub">Consultants download single documents only; there is no bulk export. A list export needs approval from a manager or the data protection lead, and it is recorded in the exports register on Data and privacy (board 85). If it is approved, the link works for {{exHours}} hours and every download is logged. Logins never appear in an export.</span>
+        <sc-if value="{{exNotSent}}" hint-placeholder-val="{{ true }}">
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Why do you need it? (written to the audit log)<input aria-label="Why do you need the export" value="{{exWhy}}" onChange="{{onExWhy}}" placeholder="For example: list of my clients and next deadlines for the team meeting" style="min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 14px;"></label>
+          <sc-if value="{{exErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: var(--cs-status-error-text); font-weight: 500;">Write a reason first.</span></sc-if>
+          <div style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{exSend}}">Send the request</button><button class="sb-btn b-gh" onClick="{{exToggle}}">Cancel</button></div>
+        </sc-if>
+        <sc-if value="{{exSent}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-info" style="align-self: flex-start; white-space: normal;">{{exMsg}}</span></sc-if>
+      </section>
+      </sc-if>
+      <div role="tablist" aria-label="Show" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="5">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      <section class="sb-card" aria-label="Clients">
+        <div class="sb-row" style="border-top: 0; gap: 10px;"><span class="sb-th" style="flex: 2 1 210px;">Client</span><span class="sb-th" style="flex: 1 1 150px;">Stage</span><span class="sb-th" style="flex: 1 1 120px;">Waiting on</span><span class="sb-th" style="flex: 1 1 150px;">Next deadline</span><span class="sb-th" style="flex: 1 1 110px;">Last contact</span><span class="sb-th" style="flex: 1 1 110px;">Weekly update</span><span class="sb-th" style="flex: 0 0 96px;">Owner</span><span class="sb-th" style="flex: 0 0 70px;">Feeling</span></div>
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+          <div class="sb-row" style="gap: 10px; align-items: flex-start;">
+            <span style="flex: 2 1 210px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{r.name}}</span><span style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;"><span class="{{r.regCls}}">{{r.reg}}</span><span class="sb-muted">{{r.contact}}</span></span></span>
+            <span style="flex: 1 1 150px; min-width: 0;" class="sb-sub">{{r.stage}}</span>
+            <span style="flex: 1 1 120px; min-width: 0;"><span class="{{r.waitCls}}" style="white-space: normal;">{{r.wait}}</span></span>
+            <span style="flex: 1 1 150px; min-width: 0;" class="sb-sub">{{r.next}}</span>
+            <span style="flex: 1 1 110px; min-width: 0;" class="sb-sub">{{r.last}}</span>
+            <span style="flex: 1 1 110px; min-width: 0;"><span class="{{r.updCls}}" style="white-space: normal;">{{r.upd}}</span></span>
+            <span style="flex: 0 0 96px;" class="sb-sub">{{r.owner}}</span>
+            <span style="flex: 0 0 70px;"><span class="{{r.feelCls}}">{{r.feel}}</span></span>
+          </div>
+        </sc-for>
+      </section>
+      <span class="sb-muted">{{footNote}}</span>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 'list', ex: false, exWhy: '', exErr: false, exSent: false }; }
+  renderVals() {
+    const t = this.state.t, s = this.state;
+    // name, contact, reg, service, stage, wait, waitK, next, last, upd, updK, owner, feel, feelK, group
+    const R = [
+      ['Sunrise Homecare Ltd', 'Priya Shah', 'CQC', 'Domiciliary care', 'Stage 10 of 11: Notice of Proposal', 'Us: written representations', 'bad', 'Legal deadline Tue 17 Nov. Our target Tue 10 Nov', 'Thu 29 Oct, call', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Unsure', 'warn', 'own'],
+      ['Riverside Homecare Ltd', 'Mark Evans', 'CQC', 'Domiciliary care', 'Stage 8 of 11: with CQC', 'Us: CQC email login, 10 days', 'bad', 'Add the login today. Collins calls today', 'Fri 30 Oct, call', 'Due Fri 6 Nov', 'neutral', 'Olu (Daniel covering)', 'Worried', 'bad', 'cover'],
+      ['Greenway Support Ltd', 'Tunde Bello', 'CQC', 'Supported living', 'Stage 3 of 11: your documents', 'Client, 10 days', 'bad', 'Call today and fix the email address', 'Thu 22 Oct, upload', 'Overdue: bounced', 'bad', 'Olu (Daniel covering)', 'Unsure', 'warn', 'cover'],
+      ['Bright Path Care Ltd', 'Joy Adeyemi', 'CQC', 'Domiciliary, full start-up', 'Stage 4 of 11: drafting', 'Us: Statement of Purpose check', 'info', 'Session 2 today 10:00. Provider form check Wed 11 Nov', 'Fri 30 Oct, update', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Happy', 'ok', 'own'],
+      ['Afon Care Ltd', 'Rhian Example', 'CIW', 'Domiciliary support', 'Stage 8 of 11: with CIW since 14 Oct', 'Referee, 3 days', 'warn', 'Nudge Sarah today. Interview Thu 26 Nov', 'Thu 29 Oct, email', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Happy', 'ok', 'own'],
+      ['Westbrook Care Ltd', 'Sade Johnson', 'CQC', 'Domiciliary care', 'Stage 10 of 11: refused, we resubmit', 'Us: new pack', 'info', 'Appeal window closes Sun 22 Nov. Senior review Thu 12 Nov. Resubmit Mon 30 Nov', 'Wed 28 Oct, call', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Unsure', 'warn', 'own'],
+      ['Elm Tree Care Ltd', 'Femi Adebayo', 'CQC', 'Domiciliary care', 'Stage 9 of 11: interview', 'Us: CQC questions', 'info', 'Answers to CQC by Fri 6 Nov. Interview Tue 24 Nov', 'Fri 30 Oct, email', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Happy', 'ok', 'own'],
+      ['Oakleaf Living Ltd', 'Kemi Adebola', 'Tender', 'Northshire and Eastford', 'Tender: 2 bids', 'Client: case study', 'ok', 'Case study Wed 11 Nov. Draft to Kemi Tue 17 Nov. We submit Fri 27 Nov', 'Fri 30 Oct, update', 'Due Fri 6 Nov', 'neutral', 'Daniel', 'Happy', 'ok', 'own'],
+      ['Lagan View Care Ltd', 'Niamh Example', 'RQIA', 'Domiciliary care agency', 'Stage 8 of 11: with RQIA since 30 Sep', 'Regulator', 'neutral', 'Interviews Tue 8 Dec', 'Fri 30 Oct, update', 'Due Fri 6 Nov', 'neutral', 'Olu (Daniel covering)', 'Happy', 'ok', 'cover'],
+      ['Willow Bank Supported Living Ltd', 'David Clarke', 'CQC', 'Registration then tenders', 'Stage 3 of 11: your documents', 'Client, 1 day', 'ok', 'Documents by Fri 27 Nov', 'Today, question', 'Due Fri 6 Nov', 'neutral', 'Olu (Daniel covering)', 'Happy', 'ok', 'cover'],
+      ['Harbour Lane Care Ltd', 'Amara Okafor', 'CQC', 'Domiciliary, full start-up', 'Stage 1 of 11: onboarding checks', 'Client: 2 fixes. Landlord letter', 'warn', 'Gates 5 of 8 passed. Then manager approval', 'Fri 30 Oct, Grace', 'Starts at handover', 'neutral', 'Grace, then Daniel', 'Happy', 'ok', 'onb'],
+      ['Meadow View Care Ltd', 'Ade Ola', 'CQC', 'Domiciliary, full start-up', 'Stage 1 of 11: welcome', 'Us: introduction call', 'warn', 'Paid today 10:02. Call by 12:02', 'Today, payment', 'Starts after onboarding', 'neutral', 'Divine, then Grace', 'New', 'neutral', 'team']
+    ];
+    const inList = r => r[14] !== 'team';
+    const test = { all: () => true, list: inList, own: r => r[14] === 'own', cover: r => r[14] === 'cover', att: r => inList(r) && (r[6] === 'bad' || r[10] === 'bad' || r[13] === 'bad'), cqc: r => inList(r) && r[2] === 'CQC', ciw: r => inList(r) && r[2] === 'CIW', rqia: r => inList(r) && r[2] === 'RQIA', tender: r => inList(r) && r[2] === 'Tender' };
+    const T = [['list', 'My list'], ['own', 'My own'], ['cover', 'Covering for Olu'], ['att', 'Needs attention'], ['cqc', 'CQC'], ['ciw', 'CIW'], ['rqia', 'RQIA'], ['tender', 'Tenders'], ['all', 'All']];
+    const rows = R.filter(test[t]).map(r => ({
+      name: r[0], contact: r[1], reg: r[2], regCls: 'sb-chip ' + (r[2] === 'Tender' ? 'c-info' : 'c-brand'), service: r[3], stage: r[4], wait: r[5], waitCls: 'sb-chip c-' + r[6], next: r[7], last: r[8], upd: r[9], updCls: 'sb-chip c-' + r[10], owner: r[11], feel: r[12], feelCls: 'sb-chip c-' + r[13]
+    }));
+    const label = T.find(x => x[0] === t)[1];
+    const G = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const footNote = '"Waiting on" turns amber after ' + G('waiting-amber-days', 5) + ' days and red after ' + G('waiting-red-days', 10) + '. Worried clients get no sales or growth messages until the concern is resolved, and the manager calls within 1 working day. Weekly updates go every ' + G('weekly-update-day', 'Friday') + ' by ' + G('weekly-update-time', '16:00') + '; the next are due Fri 6 Nov.';
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users', current: true },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }], footNote,
+      exOpen: s.ex, exOpenAria: s.ex ? 'true' : 'false', exToggle: () => this.setState({ ex: !s.ex, exErr: false }), exHours: String(G('export-link-hours', 24)),
+      exWhy: s.exWhy, onExWhy: e => this.setState({ exWhy: e.target.value, exErr: false }), exErr: s.exErr, exSent: s.exSent, exNotSent: !s.exSent,
+      exSend: () => { if (!s.exWhy.trim()) return this.setState({ exErr: true }); this.setState({ exSent: true, exErr: false }); },
+      exMsg: 'Requested just now: "' + s.exWhy.trim() + '". It waits in the exports register for a manager or the data protection lead. You get the link if it is approved.',
+      tabs: T.map(([k, l]) => ({ label: l + ' (' + R.filter(test[k]).length + ')', on: t === k, off: t !== k, pick: () => this.setState({ t: k }) })),
+      rows, summary: t === 'all' ? 'All: your 11 clients, plus Meadow View Care, who paid today and is with Divine for the introduction call. The team has 52 active clients.' : t === 'list' ? 'Your list: 11 clients. 6 your own, 4 covering for Olu this week, 1 coming from onboarding. Most urgent first. The team has 52 active clients.' : label + ': ' + rows.length + (rows.length === 1 ? ' client' : ' clients') + ' from your list of 11. Most urgent first.'
+    };
+  }
+}
+</script>
+</body>
+</html>

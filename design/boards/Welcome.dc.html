@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Welcome</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1870px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <div style="padding: 10px 12px; background: var(--cs-surface-subtle);">
+    <span style="display: block; font-size: 11px; line-height: 14px; color: var(--cs-text-muted); margin-bottom: 6px;">Demo: the package the client bought</span>
+    <div role="tablist" aria-label="Package" style="display: flex; flex-wrap: wrap; gap: 6px;">
+      <sc-for list="{{pkgs}}" as="p" hint-placeholder-count="3">
+        <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}"><button role="tab" aria-selected="true" onClick="{{p.pick}}" style="min-height: 34px; padding: 0 12px; border-radius: 999px; border: 2px solid var(--cs-action-primary); background: var(--cs-surface-raised); color: var(--cs-text-primary); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer;">{{p.label}}</button></sc-if>
+        <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}"><button role="tab" aria-selected="false" onClick="{{p.pick}}" style="min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--cs-border-default); background: transparent; color: var(--cs-text-secondary); font: inherit; font-size: 12px; cursor: pointer;">{{p.label}}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+  <section aria-labelledby="wel-h" style="background: var(--cs-surface-inverse); color: #FFFFFF; padding: 28px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+    <span style="font-size: 13px; line-height: 18px; color: #AEFFEF; font-weight: 500;">Monday 19 October</span>
+    <h1 id="wel-h" style="margin: 0; font-size: 30px; line-height: 38px; font-weight: 600;">Welcome to Care Sync, {{who}}</h1>
+    <span style="font-size: 16px; line-height: 24px; color: #D0D5DD;">{{intro}}</span>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px;">
+      <span style="display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 20px;"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 999px; background: #AEFFEF; color: #004558; display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>Agreement signed</span>
+      <span style="display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 20px;"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 999px; background: #AEFFEF; color: #004558; display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>First instalment received, thank you</span>
+      <span style="display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 20px;"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #AEFFEF; box-sizing: border-box;"></span>Your onboarding form. We start your project as soon as it is done</span>
+    </div>
+  </section>
+
+  <div style="padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 20px;">
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="RegDetails.dc.html" style="min-height: 52px; border-radius: 12px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 500; text-decoration: none;">Start your onboarding form<x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></a>
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary); text-align: center;">{{formNote}}</span>
+    </div>
+
+    <section aria-labelledby="call-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; gap: 12px; align-items: flex-start;">
+      <span aria-hidden="true" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg></span>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+        <h2 id="call-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Divine will call you this morning</h2>
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Just to say hello, answer any questions and help you start your onboarding form. We will ring 07700 900456.</span>
+        <a href="#" style="min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; font-weight: 500;">Pick a better time</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="team-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="team-h" style="margin: 0 4px; font-size: 18px; line-height: 28px; font-weight: 500;">Your team</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{team}}" as="m" hint-placeholder-count="4">
+          <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+            <span aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500;">{{m.initials}}</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+              <span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{m.name}}</span>
+              <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">{{m.role}}</span>
+            </span>
+          </div>
+        </sc-for>
+        <a href="#" style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--cs-text-primary);">
+          <span aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+          <span style="flex-grow: 1; font-size: 15px; line-height: 22px; font-weight: 500;">A hello from Daniel, 1 minute</span>
+          <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="how-h" style="margin: 0 4px; font-size: 18px; line-height: 28px; font-weight: 500;">How it works</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; gap: 12px;"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n20}}"></x-import><span style="font-size: 15px; line-height: 22px;"><span style="font-weight: 500;">We do the work.</span> {{how1}}</span></div>
+        <div style="display: flex; gap: 12px;"><x-import component-from-global-scope="CareSync.Icon" name="clock" size="{{n20}}"></x-import><span style="font-size: 15px; line-height: 22px;"><span style="font-weight: 500;">You do small things.</span> {{how2}}</span></div>
+        <div style="display: flex; gap: 12px;"><x-import component-from-global-scope="CareSync.Icon" name="bell" size="{{n20}}"></x-import><span style="font-size: 15px; line-height: 22px;"><span style="font-weight: 500;">You always know.</span> {{how3}}</span></div>
+      </div>
+    </section>
+
+    <sc-if value="{{hasSessions}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); color: var(--cs-text-primary);">
+      <x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n20}}"></x-import>
+      <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Your kick-off with Millicent</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Session 1 of 3, by video. You book it once your onboarding checks pass and a manager approves your handover.</span></span>
+    </div>
+    </sc-if>
+
+    <span style="display: flex; align-items: center; gap: 8px; justify-content: center; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n16}}"></x-import>You signed in with the link we emailed you. No password to remember.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1870}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { pkg: 'reg' }; }
+  renderVals() {
+    const k = this.state.pkg;
+    const day = (window.CSR && CSR.get('weekly-update-day', 'Friday')) || 'Friday';
+    const D = {
+      reg: { label: 'CQC registration', who: 'Amara', intro: 'Harbour Lane Care Ltd. Domiciliary care, full package. From today, we do the heavy lifting and you always know where things stand.',
+        formNote: 'Your first step, and the biggest one: about an hour in total, in as many short sittings as you like. It saves as you go.',
+        how1: 'Your policies, your plans and your application. You watch each one get ticked off.', how2: 'After the form, it is mostly small things: one photo or one tap, usually no more than 3 at a time.', how3: 'An update every ' + day + ', and the same day whenever CQC writes.', sessions: true },
+      ten: { label: 'Tenders only', who: 'Kemi', intro: 'Oakleaf Living Ltd. Tender support. We find the right tenders, write and submit your bids, and keep you posted on every deadline.',
+        formNote: 'A one-off profile about your company, about 40 minutes. We reuse it for every bid, so after this each tender only asks what is new.',
+        how1: 'We check each tender, write the bid and submit it, ahead of the buyer\'s deadline.', how2: 'You approve, add a case study or a figure now and then, and sign off before we submit.', how3: 'A message whenever a deadline is near or the buyer changes something, and your results with feedback.', sessions: false },
+      both: { label: 'Registration and tenders', who: 'David', intro: 'Willow Bank Supported Living Ltd. CQC registration and tender support. Registration comes first, because most tenders need you to be registered. We tell you which tenders you can go for, and when.',
+        formNote: 'Two forms: the registration form first, then your tender profile when it helps. Both save as you go.',
+        how1: 'Your registration pack and application first, then your bids. You see both on Today.', how2: 'Mostly small things: one photo or one tap. We keep the two services in one list, so nothing clashes.', how3: 'An update every ' + day + ', the same day whenever CQC writes, and a message when a tender you can bid for opens.', sessions: true }
+    };
+    const d = D[k];
+    const team = [{ initials: 'DV', name: 'Divine', role: 'Client care. Your welcome call, and here whenever you need us' }, { initials: 'GW', name: 'Grace Whitfield', role: 'Onboarding. Checks your forms and documents so nothing comes back' }];
+    if (k !== 'ten') team.unshift({ initials: 'DM', name: 'Daniel Mensah', role: 'Your consultant. Writes your registration pack and talks to CQC' }, { initials: 'MI', name: 'Millicent', role: 'Your coach. Your 3 sessions after handover, including interview practice' });
+    if (k !== 'reg') team.splice(k === 'ten' ? 0 : 2, 0, { initials: 'BL', name: 'Your bid lead', role: 'Named when your first tender starts. Writes and submits your bids' });
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20,
+      pkgs: Object.keys(D).map(x => ({ label: D[x].label, on: x === k, off: x !== k, pick: () => this.setState({ pkg: x }) })),
+      who: d.who, intro: d.intro, formNote: d.formNote, how1: d.how1, how2: d.how2, how3: d.how3, hasSessions: d.sessions,
+      team
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Money and exports</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:1px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:12px;font-weight:600}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.bz-bar{display:grid;grid-template-columns:170px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-bar2{display:grid;grid-template-columns:96px minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px;line-height:18px}
+.bz-gh{padding:10px 20px 4px;font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:600;letter-spacing:0;border-top:1px solid var(--cs-border-subtle)}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2280px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Money and exports" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Money and exports</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Month close, the export for the accountant, Xero and Stripe, refunds and discounts. Femi Ade (finance) prepares it; a manager approves refunds; a super admin locks the month. Amounts exclude VAT unless they say otherwise.</span>
+        </div>
+        <span class="sb-chip c-ok">{{syncTime}}</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 1 1 400px; min-width: 0;" aria-labelledby="mc-h">
+          <div class="sb-head"><h2 id="mc-h" class="sb-h2">Month close: October 2026</h2><span class="{{closeChipCls}}">{{closeChip}}</span></div>
+          <div style="padding: 0 20px 10px;"><div class="bar" aria-hidden="true"><span class="{{closeBar}}"></span></div></div>
+          <sc-for list="{{close}}" as="c" hint-placeholder-count="8">
+            <div class="sb-row" style="align-items: flex-start;">
+              <span class="{{c.cls}}" style="width: 72px; justify-content: center; flex-shrink: 0;">{{c.state}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{c.k}}</span><span class="sb-sub">{{c.note}}</span></span>
+            </div>
+          </sc-for>
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px; background: var(--cs-surface-subtle);">
+            <sc-if value="{{canLock}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{lock}}">Send the export and lock October</button></sc-if>
+            <sc-if value="{{cantLock}}" hint-placeholder-val="{{ true }}"><span class="sb-sub">{{cantLockText}}</span></sc-if>
+            <sc-if value="{{locked}}" hint-placeholder-val="{{ false }}"><div class="bz-ok"><span class="bz-b">October is locked. The export went to the accountant just now.</span><span class="sb-sub">Locked by Collins. Any later change to October needs a credit note. Logged in the exports register (Data and privacy, board 85).</span></div></sc-if>
+          </div>
+        </section>
+
+        <section class="sb-card" style="flex: 1.7 1 600px; min-width: 0;" aria-labelledby="ae-h">
+          <div class="sb-head"><h2 id="ae-h" class="sb-h2">Export for the accountant: October</h2><span class="sb-sub">{{vatRate}}</span></div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 1 1 220px;">Line</span><span class="sb-th" style="flex: 0 0 44px; text-align: right;">Count</span><span class="sb-th" style="flex: 0 0 96px; text-align: right;">Net</span><span class="sb-th" style="flex: 0 0 86px; text-align: right;">VAT</span><span class="sb-th" style="flex: 0 0 96px; text-align: right;">Gross</span></div>
+          <sc-for list="{{lines}}" as="l" hint-placeholder-count="8">
+            <div class="sb-row" style="padding-top: 7px; padding-bottom: 7px; font-size: 13px;"><span style="flex: 1 1 220px; min-width: 0;" class="{{l.cls}}">{{l.k}}</span><span style="flex: 0 0 44px; text-align: right;">{{l.n}}</span><span style="flex: 0 0 96px; text-align: right;">{{l.net}}</span><span style="flex: 0 0 86px; text-align: right;">{{l.vat}}</span><span style="flex: 0 0 96px; text-align: right;">{{l.gross}}</span></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">Prices that include VAT are split back out at the same rate. CN-0007: interview preparation was added to Elm Tree's registration package by mistake. No discounts were given in October.</span></div>
+          <div class="bz-gh">Download</div>
+          <div style="padding: 4px 20px 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <sc-for list="{{exports}}" as="x" hint-placeholder-count="5"><button class="{{x.cls}}" onClick="{{x.pick}}">{{x.label}}</button></sc-for>
+          </div>
+          <sc-if value="{{hasExp}}" hint-placeholder-val="{{ false }}"><div class="sb-row"><span class="sb-sub">{{expText}}</span></div></sc-if>
+        </section>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 1 1 520px; min-width: 0;" aria-labelledby="sp-h">
+          <div class="sb-head"><h2 id="sp-h" class="sb-h2">Stripe payouts and fees: October</h2><span class="sb-sub">Payments by card and other Stripe methods</span></div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 1 1 140px;">Payout</span><span class="sb-th" style="flex: 0 0 80px; text-align: right;">Payments</span><span class="sb-th" style="flex: 0 0 110px; text-align: right;">Collected</span><span class="sb-th" style="flex: 0 0 90px; text-align: right;">Fees</span><span class="sb-th" style="flex: 0 0 110px; text-align: right;">Paid to bank</span></div>
+          <sc-for list="{{payouts}}" as="p" hint-placeholder-count="6">
+            <div class="sb-row" style="padding-top: 7px; padding-bottom: 7px; font-size: 13px;"><span style="flex: 1 1 140px;" class="{{p.cls}}">{{p.k}}</span><span style="flex: 0 0 80px; text-align: right;">{{p.n}}</span><span style="flex: 0 0 110px; text-align: right;">{{p.gross}}</span><span style="flex: 0 0 90px; text-align: right;">{{p.fee}}</span><span style="flex: 0 0 110px; text-align: right;">{{p.net}}</span></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">Collected amounts include VAT. Bank transfer only by agreement: 1 in October (£2,700.00, Lagan View Care, RQIA instalment 2, marked paid by Femi Ade).</span></div>
+        </section>
+
+        <section class="sb-card" style="flex: 1 1 420px; min-width: 0;" aria-labelledby="xs-h">
+          <div class="sb-head"><h2 id="xs-h" class="sb-h2">Xero sync</h2><button class="sb-btn b-gh" onClick="{{syncNow}}">{{syncLabel}}</button></div>
+          <sc-for list="{{xero}}" as="x" hint-placeholder-count="7">
+            <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span style="flex: 1 1 160px;" class="sb-sub">{{x.k}}</span><span style="flex: 1 1 200px; min-width: 0;" class="bz-b">{{x.v}}</span><span class="{{x.cls}}">{{x.chip}}</span></div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">A failed sync shows on System health (board 86) with what it affects, and Femi and both super admins are told.</span></div>
+        </section>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 1 1 520px; min-width: 0;" aria-labelledby="um-h">
+          <div class="sb-head"><h2 id="um-h" class="sb-h2">{{umLeft}}</h2><span class="sb-sub">Money in that Xero cannot match to an invoice</span></div>
+          <sc-for list="{{unmatched}}" as="u" hint-placeholder-count="2">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-b">{{u.title}}</span><span class="{{u.cls}}">{{u.chip}}</span></div>
+              <span class="sb-sub">{{u.text}}</span>
+              <sc-if value="{{u.open}}" hint-placeholder-val="{{ true }}"><span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-sec" onClick="{{u.act}}">{{u.cta}}</button><button class="sb-btn b-gh" onClick="{{u.ask}}">{{u.askLabel}}</button></span></sc-if>
+              <sc-if value="{{u.done}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">{{u.doneText}}</span></sc-if>
+            </div>
+          </sc-for>
+        </section>
+
+        <section class="sb-card" style="flex: 1 1 420px; min-width: 0;" aria-labelledby="rf-h">
+          <div class="sb-head"><h2 id="rf-h" class="sb-h2">{{rfLeft}}</h2></div>
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px; border-top: 0;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="bz-b">Thornbury Living Ltd: £3,000.00 to the card it came from</span><span class="{{rfChipCls}}">{{rfChip}}</span></div>
+            <span class="sb-sub">Asked by Femi Ade, Fri 30 Oct. Reason: "Duplicate payment. The first instalment (£2,500.00 + VAT £500.00) was taken twice on Thu 29 Oct, 4 minutes apart, when the card was retried." No credit note is needed, because the invoice was only raised once.</span>
+            <span class="sb-muted">A manager approves refunds, never the person who asked. Managers: Collins, Rachel Turner.</span>
+            <sc-if value="{{rfOpen}}" hint-placeholder-val="{{ true }}">
+              <textarea class="bz-ta" aria-label="Reason for the refund decision" value="{{rfReason}}" onChange="{{onRfReason}}" placeholder="Your reason (written to the audit log)"></textarea>
+              <sc-if value="{{rfErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err">Write a reason first.</span></sc-if>
+              <span style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{rfYes}}">Approve the refund</button><button class="sb-btn b-gh" onClick="{{rfNo}}">Decline</button></span>
+            </sc-if>
+            <sc-if value="{{rfDone}}" hint-placeholder-val="{{ false }}"><div class="{{rfBox}}"><span class="bz-b">{{rfResult}}</span><span class="sb-sub">{{rfNote}}</span></div></sc-if>
+          </div>
+        </section>
+      </div>
+
+      <section class="sb-card" aria-labelledby="df-h">
+        <div class="sb-head"><h2 id="df-h" class="sb-h2">How a discount flows through</h2><span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="sb-sub">Example: Lindenfield Care Ltd, decision 2 on super admin Home</span><div role="tablist" aria-label="Discount example" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{dfTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></span></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--cs-border-subtle);">
+          <sc-for list="{{flow}}" as="f" hint-placeholder-count="6">
+            <div style="padding: 14px 20px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid var(--cs-border-subtle); border-bottom: 1px solid var(--cs-border-subtle);">
+              <span style="display: flex; gap: 8px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 8px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">{{f.n}}</span><span class="bz-b">{{f.where}}</span></span>
+              <span class="sb-sub">{{f.what}}</span>
+              <span class="{{f.cls}}" style="align-self: flex-start;">{{f.state}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div class="sb-row"><span class="sb-muted">{{dfNote}}</span></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2280}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { um: {}, rf: '', rfReason: '', rfErr: false, exp: '', synced: false, locked: false, df: 'now' }; }
+  renderVals() {
+    const s = this.state;
+    const C = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const VAT = Number(C('vat-rate', 20));
+    const gbp = p => (p < 0 ? '-' : '') + '£' + (Math.abs(p) / 100).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const vatOn = net => Math.round(net * VAT / 100);
+    const gbp0 = p => p % 100 === 0 ? '£' + (p / 100).toLocaleString('en-GB') : gbp(p);
+    const netOfGross = g => g - Math.round(g * VAT / (100 + VAT));
+    // October invoice lines: [label, count, unit pence, incl VAT?]
+    const L = [
+      ['CQC domiciliary care, instalments', 6, Math.round(Number(C('price-dom', 4000)) * 50), false],
+      ['CQC supported living, instalments', 2, Math.round(Number(C('price-sl', 5000)) * 50), false],
+      ['Full start-up, first instalments', 3, Math.floor(Number(C('price-full', 8500)) * 100 / 3), false],
+      ['CIW and RQIA, instalments', 2, Math.round(Number(C('price-ciw', 4500)) * 50), false],
+      ['Tender writing, instalments', 4, 102500, false],
+      ['PIR writing', 3, Math.round(Number(C('price-pir', 750)) * 100), false],
+      ['Interview preparation (incl. VAT)', 2, Math.round(Number(C('price-interview', 750)) * 100), true],
+      ['Supported living add-on (incl. VAT)', 1, Math.round(Number(C('price-sl-addon', 1500)) * 100), true]
+    ];
+    let tn = 0, tv = 0, cnt = 0;
+    const lines = L.map(([k, n, unit, incl]) => { const uNet = incl ? netOfGross(unit) : unit; const uVat = incl ? unit - uNet : vatOn(unit); const net = uNet * n, vat = uVat * n; tn += net; tv += vat; cnt += n; return { k, n: String(n), net: gbp(net), vat: gbp(vat), gross: gbp(net + vat), cls: '' }; });
+    const cnGross = Math.round(Number(C('price-interview', 750)) * 100), cnNet = netOfGross(cnGross);
+    lines.unshift({ k: 'Invoices raised', n: String(cnt), net: gbp(tn), vat: gbp(tv), gross: gbp(tn + tv), cls: 'bz-b' });
+    lines.push({ k: 'Credit note CN-0007, Elm Tree Care', n: '1', net: gbp(-cnNet), vat: gbp(-(cnGross - cnNet)), gross: gbp(-cnGross), cls: '' });
+    lines.push({ k: 'Refunds paid', n: '0', net: gbp(0), vat: gbp(0), gross: gbp(0), cls: '' });
+    lines.push({ k: 'Discounts given', n: '0', net: gbp(0), vat: gbp(0), gross: gbp(0), cls: '' });
+    lines.push({ k: 'Sales for the VAT return', n: ' ', net: gbp(tn - cnNet), vat: gbp(tv - (cnGross - cnNet)), gross: gbp(tn + tv - cnGross), cls: 'bz-b' });
+    const PO = [['Fri 2 Oct', 3, 631000, 9550], ['Fri 9 Oct', 5, 1002060, 15040], ['Fri 16 Oct', 4, 853000, 12740], ['Fri 23 Oct', 6, 1027200, 15360], ['Fri 30 Oct', 3, 704600, 6860]];
+    let pn = 0, pg = 0, pf = 0;
+    const payouts = PO.map(([k, n, g, f]) => { pn += n; pg += g; pf += f; return { k, n: String(n), gross: gbp(g), fee: gbp(f), net: gbp(g - f), cls: '' }; });
+    payouts.push({ k: 'October', n: String(pn), gross: gbp(pg), fee: gbp(pf), net: gbp(pg - pf), cls: 'bz-b' });
+    const umDone = k => !!s.um[k];
+    const unmatched = [
+      ['thorn', 'Stripe, £3,000.00, Thu 29 Oct: Thornbury Living Ltd', 'A second payment for invoice INV-1052 (first instalment, £2,500.00 + VAT), 4 minutes after the first. The card was retried.', 'Link to the refund request', 'Linked to the refund request below. It stays out of sales; Xero shows it as money to return.', 'Tell Femi it is a duplicate', 'Femi Ade is told.'],
+      ['bryn', 'Bank transfer, £900.00, Fri 30 Oct, reference "BRYN GLAS"', 'Looks like half of INV-1038: Bryn Glas Care, tender writing instalment 1, £1,800.00 including VAT, 31 to 60 days overdue.', 'Match as a part payment', 'Matched to INV-1038 as a part payment. Overdue becomes £4,550.00 net in 4 invoices; the Manager dashboard shows it after the next sync.', 'Ask the case owner', 'Asked Daniel Mensah to confirm with Bryn Glas Care.']
+    ].map(([k, title, text, cta, doneText, askLabel, askText]) => ({ title, text, cta, askLabel, open: !umDone(k), done: umDone(k), doneText: s.um[k] === 'ask' ? askText : doneText,
+      chip: umDone(k) ? (s.um[k] === 'ask' ? 'Asked' : 'Sorted') : 'To sort', cls: 'sb-chip ' + (umDone(k) ? (s.um[k] === 'ask' ? 'c-info' : 'c-ok') : 'c-warn'),
+      act: () => this.setState({ um: Object.assign({}, s.um, { [k]: 'done' }) }), ask: () => this.setState({ um: Object.assign({}, s.um, { [k]: 'ask' }) }) }));
+    const umLeft = ['thorn', 'bryn'].filter(k => s.um[k] !== 'done').length;
+    const rfDecided = !!s.rf;
+    const rfGo = v => { if (!s.rfReason.trim()) { this.setState({ rfErr: true }); return; } this.setState({ rf: v, rfErr: false }); };
+    const CL = [
+      ['Every October invoice is in Xero', cnt + ' of ' + cnt + ' invoices synced, ' + gbp(tn) + ' net', true],
+      ['Stripe payouts match the bank', '5 of 5 payouts found in the bank feed, ' + gbp(pg - pf) + ' in all', true],
+      ['Unmatched payments sorted', umLeft ? umLeft + ' still to sort (below)' : 'Both sorted', umLeft === 0],
+      ['Refunds decided by a manager', rfDecided ? 'Thornbury Living: ' + (s.rf === 'yes' ? 'approved' : 'declined') + ' by Collins' : '1 waiting: Thornbury Living, £3,000.00', rfDecided],
+      ['Credit notes checked', '1: CN-0007, Elm Tree Care, Mon 19 Oct. Interview practice is already one of the 3 included sessions', true],
+      ['Discounts given match an approval', 'None given in October. 2 asked for November are waiting on super admin Home', true],
+      ['VAT split checked', 'At ' + VAT + '%, the rate in Rules and promises. Prices that include VAT are split back out', true],
+      ['Export sent and October locked', s.locked ? 'Sent to the accountant and locked just now' : 'Opens when everything above is done', s.locked]
+    ];
+    const doneN = CL.filter(c => c[2]).length;
+    const close = CL.map(([k, note, ok]) => ({ k, note, state: ok ? 'Done' : 'To do', cls: 'sb-chip ' + (ok ? 'c-ok' : 'c-warn') }));
+    const ready = umLeft === 0 && rfDecided && !s.locked;
+    const EX = [['csv', 'October accountant export (CSV)'], ['vat', 'VAT summary'], ['stripe', 'Stripe payouts and fees'], ['refunds', 'Refunds and credit notes'], ['disc', 'Discounts given']];
+    const exLabel = EX.find(x => x[0] === s.exp);
+    const dfOn = s.df === 'if';
+    const dom = Math.round(Number(C('price-dom', 4000)) * 100), ask = 380000, off = dom - ask, half = Math.floor(ask / 2);
+    const FL = [
+      ['Asked in Add a client', 'Jo Martin asked for ' + gbp0(off) + ' off, with a reason: ready to sign today, price is the last blocker.', 'Done, today 08:05', 'ok'],
+      ['Decided on super admin Home', 'Collins or Rachel Turner decides, never Jo. A reason is required and written to the audit log.', dfOn ? 'Approved' : 'Waiting', dfOn ? 'ok' : 'warn'],
+      ['Agreement (DocuSeal)', 'List price ' + gbp0(dom) + ' + VAT, discount ' + gbp0(off) + ', agreed price ' + gbp0(ask) + ' + VAT. Sent for signature only after the decision.', dfOn ? 'Updated' : 'Not sent yet', dfOn ? 'ok' : 'neutral'],
+      ['Stripe instalments', '2 of ' + gbp(half) + ' + VAT ' + gbp(vatOn(half)) + ' = ' + gbp(half + vatOn(half)) + ': at accept, sign and pay, and when the application is submitted.', dfOn ? 'Updated' : 'Not created yet', dfOn ? 'ok' : 'neutral'],
+      ['Xero invoice', 'A line at ' + gbp(dom) + ', then "Discount agreed by Care Sync" ' + gbp(off) + ' off. VAT at ' + VAT + '% on ' + gbp(ask) + ': ' + gbp(vatOn(ask)) + '.', dfOn ? 'Updated' : 'Not raised yet', dfOn ? 'ok' : 'neutral'],
+      ['Plan and costs (board 60)', 'The client sees "Your price: ' + gbp0(ask) + ' + VAT. This includes a ' + gbp0(off) + ' discount agreed by Care Sync." It also appears here under discounts given.', dfOn ? 'Updated' : 'Shows the price book price', dfOn ? 'ok' : 'neutral']
+    ];
+    const flow = FL.map(([where, what, state, k], i) => ({ n: String(i + 1), where, what, state, cls: 'sb-chip c-' + k }));
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download', current: true },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      syncTime: 'Xero: connected, synced ' + (s.synced ? 'just now' : '09:00'), vatRate: 'VAT at ' + VAT + '%, from Rules and promises',
+      kpis: [['Invoiced this month', '£9,600', '5 invoices on 1 and 2 Nov, as the Manager dashboard'], ['Collected this month', '£4,150', '3 payments through Stripe'], ['Overdue', '£5,300', '4 invoices. Reminders running'], ['October close', doneN + ' of 8', s.locked ? 'Locked' : 'Femi Ade prepares it']].map(([k, v, note]) => ({ k, v, note })),
+      close, closeBar: 'w' + Math.round(doneN / 8 * 20) * 5, closeChip: s.locked ? 'Locked' : (ready ? 'Ready to lock' : (8 - doneN) + ' to do'), closeChipCls: 'sb-chip ' + (s.locked ? 'c-ok' : (ready ? 'c-info' : 'c-warn')),
+      canLock: ready, cantLock: !ready && !s.locked, locked: s.locked, cantLockText: 'Sort the unmatched payments and decide the refund first. Then the export goes to the accountant and October is locked.', lock: () => this.setState({ locked: true }),
+      lines, exports: EX.map(([k, label]) => ({ label, cls: 'sb-btn ' + (s.exp === k ? 'b-sec' : 'b-gh'), pick: () => this.setState({ exp: k }) })),
+      hasExp: !!s.exp, expText: exLabel ? exLabel[1] + ' prepared just now for October. It holds company names and amounts only, no identity documents. Logged in the exports register (Data and privacy, board 85).' : '',
+      payouts,
+      xero: [['Connection', 'Connected, synced every hour', 'Healthy', 'ok'], ['Last sync', s.synced ? 'Just now' : 'Today 09:00. Next 10:00', 'Done', 'ok'], ['Invoices, October', cnt + ' synced', 'Done', 'ok'], ['Payments', (umLeft ? umLeft + ' unmatched' : 'All matched'), umLeft ? 'To sort' : 'Done', umLeft ? 'warn' : 'ok'], ['Credit notes', '1 synced (CN-0007)', 'Done', 'ok'], ['VAT rate used', VAT + '% (VAT on income)', 'Matches Rules', 'ok'], ['Errors, last 30 days', 'None', 'Clear', 'ok']].map(([k, v, chip, c]) => ({ k, v, chip, cls: 'sb-chip c-' + c })),
+      syncNow: () => this.setState({ synced: true }), syncLabel: s.synced ? 'Synced just now' : 'Sync now',
+      unmatched, umLeft: 'Unmatched payments: ' + umLeft,
+      rfLeft: 'Refunds waiting for a manager: ' + (rfDecided ? '0' : '1'), rfOpen: !rfDecided, rfDone: rfDecided, rfReason: s.rfReason, rfErr: s.rfErr,
+      onRfReason: e => this.setState({ rfReason: e.target.value, rfErr: false }), rfYes: () => rfGo('yes'), rfNo: () => rfGo('no'),
+      rfChip: !rfDecided ? 'Waiting' : (s.rf === 'yes' ? 'Approved' : 'Declined'), rfChipCls: 'sb-chip ' + (!rfDecided ? 'c-warn' : (s.rf === 'yes' ? 'c-ok' : 'c-neutral')),
+      rfBox: s.rf === 'yes' ? 'bz-ok' : 'bz-box',
+      rfResult: s.rf === 'yes' ? 'Approved by Collins, just now. £3,000.00 goes back to the card through Stripe.' : 'Declined by Collins, just now. Femi Ade is told.',
+      rfNote: 'Reason: "' + s.rfReason.trim() + '". Written to the audit log. ' + (s.rf === 'yes' ? 'The refund shows in the November export under refunds paid, and Thornbury Living is emailed a receipt.' : ''),
+      dfTabs: [['now', 'Today: waiting'], ['if', 'If approved']].map(([k, label]) => ({ label, on: s.df === k, off: s.df !== k, pick: () => this.setState({ df: k }) })), flow,
+      dfNote: 'The price book never changes for a discount. The same flow applies to Ashby Care (decision 3): PIR writing for 2 service types, ' + gbp0(135000) + ' + VAT instead of ' + gbp0(Math.round(Number(C('price-pir', 750)) * 200)) + ' + VAT, 1 payment in full.'
+    };
+  }
+}
+</script>
+</body>
+</html>

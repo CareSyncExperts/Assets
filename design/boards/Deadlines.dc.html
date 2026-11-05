@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Deadlines</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.dl-date{width:64px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 0;border-radius:10px;background:var(--cs-surface-page)}
+.dl-d{font-size:22px;line-height:26px;font-weight:600}
+.dl-grp{padding:12px 20px 6px;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px;font-weight:600;color:var(--cs-text-secondary);display:flex;justify-content:space-between}
+.dl-when{display:flex;flex-direction:column;gap:4px;width:250px;flex-shrink:0}
+.dl-line{display:flex;justify-content:space-between;gap:8px;font-size:13px;line-height:18px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;padding:0 20px 16px}
+.cal-h{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500;padding:4px 6px}
+.cal-c{min-height:78px;border-radius:10px;padding:6px 8px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;font:inherit;text-align:left;cursor:pointer;color:var(--cs-text-primary)}
+.cc-off{border:1px solid var(--cs-border-subtle);background:var(--cs-surface-page)}
+.cc-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised)}
+.cc-blank{border:0;background:transparent;cursor:default}
+.cal-c:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.cal-n{font-size:14px;line-height:18px;font-weight:500}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:999px;display:inline-block}
+.d-legal{background:var(--cs-status-error-text)}
+.d-reg{background:var(--cs-status-info-text)}
+.d-tender{background:var(--cs-text-brand)}
+.d-exp{background:var(--cs-status-warning-text)}
+.d-after{background:var(--cs-text-muted)}
+.lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;color:var(--cs-text-secondary)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2050px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Deadlines" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Deadlines</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Every regulator and tender date across all clients. Days left are counted from today, Monday 2 November.</span>
+        </div>
+      <div role="tablist" aria-label="View" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{views}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+      <div role="tablist" aria-label="Show" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{filters}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+        <span class="sb-sub">{{summary}}</span>
+      </div>
+
+      <sc-if value="{{isList}}" hint-placeholder-val="{{ true }}">
+        <section class="sb-card" aria-label="Deadlines by date">
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+            <div class="dl-grp"><span>{{g.label}}</span><span>{{g.count}}</span></div>
+            <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+              <div class="sb-row" style="align-items: flex-start;">
+                <span class="dl-date"><span class="sb-muted">{{r.dow}}</span><span class="dl-d">{{r.day}}</span><span class="sb-muted">{{r.mon}}</span></span>
+                <span style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 500;">{{r.title}}</span><span class="{{r.typeCls}}">{{r.type}}</span></span>
+                  <span class="sb-sub"><span style="font-weight: 500; color: var(--cs-text-primary);">{{r.client}}</span>. Owner: {{r.owner}}</span>
+                  <span class="sb-muted">{{r.note}}</span>
+                </span>
+                <span class="dl-when">
+                  <sc-for list="{{r.dates}}" as="d" hint-placeholder-count="2">
+                    <span class="dl-line"><span><span class="sb-muted">{{d.k}}</span><br><span style="font-weight: 500;">{{d.v}}</span></span><span class="{{d.cls}}">{{d.left}}</span></span>
+                  </sc-for>
+                </span>
+                <button class="sb-btn b-gh" style="width: 128px; flex-shrink: 0;">{{r.cta}}</button>
+              </div>
+            </sc-for>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isMonth}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+          <section class="sb-card" style="flex: 3 1 600px; min-width: 0;" aria-labelledby="m-h">
+            <div class="sb-head"><h2 id="m-h" class="sb-h2">November 2026</h2>
+              <span style="display: flex; gap: 12px; flex-wrap: wrap;"><span class="lg"><span class="dot d-legal"></span>Legal</span><span class="lg"><span class="dot d-reg"></span>Regulator</span><span class="lg"><span class="dot d-tender"></span>Tender</span><span class="lg"><span class="dot d-exp"></span>Expiry</span><span class="lg"><span class="dot d-after"></span>Aftercare</span></span>
+            </div>
+            <div class="cal">
+              <sc-for list="{{dow}}" as="w" hint-placeholder-count="7"><span class="cal-h">{{w.k}}</span></sc-for>
+              <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
+                <sc-if value="{{c.real}}" hint-placeholder-val="{{ true }}">
+                  <button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.aria}}">
+                    <span class="cal-n">{{c.n}}</span>
+                    <span class="dots"><sc-for list="{{c.dots}}" as="d" hint-placeholder-count="1"><span class="{{d.cls}}"></span></sc-for></span>
+                    <span class="sb-muted">{{c.tag}}</span>
+                  </button>
+                </sc-if>
+                <sc-if value="{{c.blank}}" hint-placeholder-val="{{ false }}"><span class="cal-c cc-blank"></span></sc-if>
+              </sc-for>
+            </div>
+          </section>
+          <section class="sb-card" style="flex: 2 1 340px; min-width: 0;" aria-labelledby="dd-h">
+            <div class="sb-head"><h2 id="dd-h" class="sb-h2">{{dayTitle}}</h2><span class="sb-sub">{{dayCount}}</span></div>
+            <sc-for list="{{dayRows}}" as="r" hint-placeholder-count="3">
+              <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 4px;">
+                <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 500;">{{r.title}}</span><span class="{{r.typeCls}}">{{r.type}}</span></span>
+                <span class="sb-sub">{{r.client}}. {{r.which}}. {{r.left}}</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{dayEmpty}}" hint-placeholder-val="{{ false }}"><div class="sb-row"><span class="sb-sub">Nothing due on this day.</span></div></sc-if>
+            <sc-if value="{{decShow}}" hint-placeholder-val="{{ true }}"><div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 4px;"><span class="sb-th">Early December</span><sc-for list="{{dec}}" as="r" hint-placeholder-count="3"><span class="sb-sub">{{r.t}}</span></sc-for></div></sc-if>
+          </section>
+        </div>
+      </sc-if>
+
+      <div class="sb-card" style="padding: 12px 16px; display: flex; gap: 10px; align-items: flex-start;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n18}}"></x-import><span class="sb-sub">{{footNote}}</span></div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2050}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { v: 'list', f: 'mine', day: 30 }; }
+  renderVals() {
+    const s = this.state;
+    const DAY = 86400000, TODAY = Date.UTC(2026, 10, 2);
+    const W = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const ts = d => Date.UTC(2026, d[0] - 1, d[1]);
+    const fmt = d => { const x = new Date(ts(d)); return W[x.getUTCDay()] + ' ' + d[1] + ' ' + M[d[0] - 1]; };
+    const left = d => { const n = Math.round((ts(d) - TODAY) / DAY); return n === 0 ? 'Today' : n === 1 ? '1 day' : n + ' days'; };
+    // type: legal, duty, reg, tender, exp, after. main: [month, day, label]. target: [month, day] or null
+    const D = [
+      { c: 'Elm Tree Care Ltd', t: 'Reply to CQC\'s request for more information', type: 'reg', main: [11, 12, 'CQC reply by'], target: [11, 6], owner: 'Daniel', mine: true, note: 'Received by email Thu 29 Oct. 3 questions. Femi approves the answers first', cta: 'Open answers' },
+      { c: 'Sunrise Homecare Ltd', t: 'Written representations to the Notice of Proposal', type: 'legal', main: [11, 17, 'Legal deadline'], target: [11, 10], owner: 'Daniel', mine: true, note: 'Served Wed 21 Oct, day 1 of 28 (worked out the safe way; confirm with a legal adviser). Draft by day 14 (Tue 3 Nov), senior review by Collins and Priya\'s approval by day 20 (Mon 9 Nov), send by day 21 (Tue 10 Nov)', cta: 'Open reply' },
+      { c: 'Oakleaf Living Ltd', t: 'Case study due from Kemi, Northshire bid', type: 'tender', main: [11, 11, 'Due from Kemi'], target: null, owner: 'Daniel', mine: true, note: 'From the bid plan agreed with Kemi', cta: 'Open bid' },
+      { c: 'Westbrook Care Ltd', t: 'Leon\'s reference 1 passes 6 months old', type: 'exp', main: [11, 12, 'Passes 6 months'], target: null, owner: 'Daniel', mine: true, note: 'Dated 12 May. Our rule: references under 6 months old on the resubmit date, Mon 30 Nov. Referee asked 28 Oct', cta: 'Open project' },
+      { c: 'Oakleaf Living Ltd', t: 'Northshire clarification questions close, 17:00', type: 'tender', main: [11, 13, 'Buyer\'s deadline'], target: null, owner: 'Daniel', mine: true, note: 'Northshire County Council home care framework, Lot 1 North', cta: 'Open bid' },
+      { c: 'Westbrook Care Ltd', t: 'Sade\'s DBS passes 12 months old', type: 'exp', main: [11, 18, 'Passes 12 months'], target: null, owner: 'Daniel', mine: true, note: 'Issued 18 Nov 2025. Our rule: DBS under 12 months old on the resubmit date. New application started 29 Oct, so the pack has a current one on 30 Nov', cta: 'Open project' },
+      { c: 'Ashby Care', t: 'Month 12 handover', type: 'after', main: [11, 18, 'Handover'], target: null, owner: 'Daniel', mine: true, note: 'Summary of everything done and what is due next', cta: 'Open' },
+      { c: 'Westbrook Care Ltd', t: 'Tribunal appeal window closes', type: 'legal', main: [11, 22, 'Legal deadline'], target: null, owner: 'Daniel', mine: true, note: 'Notice of decision received Mon 26 Oct, day 1 of 28 (worked out the safe way; confirm with a legal adviser). Sade chose to resubmit (recorded 28 Oct), so no appeal is planned', cta: 'Open project' },
+      { c: 'Elm Tree Care Ltd', t: 'CQC interview with Claire Hughes', type: 'reg', main: [11, 24, 'Interview'], target: null, owner: 'Daniel', mine: true, note: 'Interview portal 40% done. Practice with Millicent Thu 5 Nov', cta: 'Open portal' },
+      { c: 'Afon Care Ltd', t: 'CIW suitability interview with Rhian', type: 'reg', main: [11, 26, 'Interview'], target: null, owner: 'Daniel', mine: true, note: 'Practice with Millicent Mon 9 Nov', cta: 'Open' },
+      { c: 'Westbrook Care Ltd', t: 'Resubmit the new pack to CQC', type: 'reg', main: null, target: [11, 30], owner: 'Daniel', mine: true, note: 'Senior review first, on Thu 12 Nov. Every date checked as valid on 30 Nov', cta: 'Open project' },
+      { c: 'Oakleaf Living Ltd', t: 'Public liability insurance renews', type: 'exp', main: [11, 30, 'Renews'], target: null, owner: 'Daniel', mine: true, note: 'Ask Kemi for the new certificate. The Northshire bid needs a current one', cta: 'Open' },
+      { c: 'Bryn Glas Care', t: 'CIW regulation 73 visit and report', type: 'duty', main: [11, 30, 'Due'], target: null, owner: 'Aftercare team', mine: false, note: 'Responsible individual visit, every 3 months. Month 4 of aftercare', cta: 'Open' },
+      { c: 'Foyle Home Care', t: 'RQIA monthly quality monitoring report', type: 'duty', main: [11, 30, 'Due'], target: null, owner: 'Aftercare team', mine: false, note: 'Written by the registered person each month. Month 8 of aftercare', cta: 'Open' },
+      { c: 'Oakleaf Living Ltd', t: 'Care Sync draft to Kemi, Northshire bid', type: 'tender', main: null, target: [11, 17], owner: 'Daniel', mine: true, note: '10 working days before the buyer\'s deadline. Kemi approves the final bid Tue 24 Nov, 5 working days before', cta: 'Open bid' },
+      { c: 'Oakleaf Living Ltd', t: 'Northshire bid deadline, 12:00', type: 'tender', main: [12, 1, 'Buyer\'s deadline'], target: [11, 27], owner: 'Daniel', mine: true, note: 'Kemi approves the final bid Tue 24 Nov. Care Sync submits Fri 27 Nov, 2 working days before the deadline', cta: 'Open bid' },
+      { c: 'Oakleaf Living Ltd', t: 'Eastford supported living application deadline', type: 'tender', main: [12, 4, 'Buyer\'s deadline'], target: null, owner: 'Daniel', mine: true, note: 'Dynamic purchasing system. Deciding scope, profile check under way', cta: 'Open bid' },
+      { c: 'Lagan View Care Ltd', t: 'RQIA interviews', type: 'reg', main: [12, 8, 'Interviews'], target: null, owner: 'Olu (Daniel covering this week)', mine: true, note: 'Submitted on the RQIA Web Portal Wed 30 Sep. Practice with Millicent Wed 11 Nov', cta: 'Open' }
+    ];
+    const TYPE = { legal: ['Legal deadline', 'c-bad', 'd-legal'], duty: ['Duty in the regulations', 'c-bad', 'd-legal'], reg: ['Regulator', 'c-info', 'd-reg'], tender: ['Tender', 'c-brand', 'd-tender'], exp: ['Expiry', 'c-warn', 'd-exp'], after: ['Aftercare', 'c-neutral', 'd-after'] };
+    const isLegal = x => x.type === 'legal' || x.type === 'duty';
+    const test = { mine: x => x.mine, all: () => true, legal: isLegal };
+    const items = D.filter(test[s.f]).map(x => {
+      const first = x.target && (!x.main || ts(x.target) < ts(x.main)) ? x.target : x.main;
+      return Object.assign({}, x, { first, when: ts(first) });
+    }).sort((a, b) => a.when - b.when);
+    const datesOf = x => {
+      const out = [];
+      if (x.target) out.push({ k: 'Our target', v: fmt(x.target), left: left(x.target), cls: 'sb-chip c-neutral' });
+      if (x.main) out.push({ k: x.main[2], v: fmt(x.main), left: left(x.main), cls: 'sb-chip ' + (isLegal(x) ? 'c-bad' : 'c-info') });
+      return out;
+    };
+    const row = x => { const d = new Date(x.when); return {
+      title: x.t, client: x.c, owner: x.owner, note: x.note, cta: x.cta, type: TYPE[x.type][0], typeCls: 'sb-chip ' + TYPE[x.type][1],
+      dow: W[d.getUTCDay()], day: String(d.getUTCDate()), mon: M[d.getUTCMonth()], dates: datesOf(x)
+    }; };
+    const G = [['This week', Date.UTC(2026, 10, 9)], ['Next week', Date.UTC(2026, 10, 16)], ['Later', Infinity]];
+    let from = 0;
+    const groups = G.map(([label, to]) => { const rows = items.filter(x => x.when >= from && x.when < to).map(row); from = to; return { label, count: rows.length === 1 ? '1 date' : rows.length + ' dates', rows }; }).filter(g => g.rows.length);
+    // month view
+    const dots = {};
+    items.forEach(x => [x.main, x.target].forEach(d => { if (d && d[0] === 11) { (dots[d[1]] = dots[d[1]] || []).push({ x, which: d === x.target ? 'Our target' : d[2] }); } }));
+    const cells = [];
+    for (let i = 0; i < 6; i++) cells.push({ real: false, blank: true });
+    for (let n = 1; n <= 30; n++) {
+      const list = dots[n] || [];
+      cells.push({ real: true, blank: false, n: String(n), cls: 'cal-c ' + (s.day === n ? 'cc-on' : 'cc-off'), pressed: s.day === n ? 'true' : 'false',
+        aria: n + ' November: ' + (list.length === 1 ? '1 date' : list.length + ' dates'), tag: n === 2 ? 'Today' : (list.length > 2 ? list.length + ' dates' : ''),
+        dots: list.map(o => ({ cls: 'dot ' + TYPE[o.x.type][2] })), pick: () => this.setState({ day: n }) });
+    }
+    while (cells.length % 7) cells.push({ real: false, blank: true });
+    const sel = dots[s.day] || [];
+    const dayRows = sel.map(o => ({ title: o.x.t, client: o.x.c, which: o.which, left: left([11, s.day]) + ' left', type: TYPE[o.x.type][0], typeCls: 'sb-chip ' + TYPE[o.x.type][1] }));
+    const dec = items.filter(x => (x.main && x.main[0] === 12)).map(x => ({ t: fmt(x.main) + ': ' + x.c + ', ' + x.t + ' (' + left(x.main) + ')' }));
+    const V = [['list', 'List by date'], ['month', 'Month']];
+    const F = [['mine', 'Mine'], ['all', 'All'], ['legal', 'Legal deadlines only']];
+    const GD = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const footNote = 'Every date is worked out from the date a notice was served or a message was received, and recorded with evidence: a copy of the letter or email, the date it arrived, and who logged it. Legal periods are worked out the safe way: the day of service counts as day 1, so 28 days ends 27 days after service. If unsure, we use the earliest possible date and confirm with a legal adviser. Our own targets come first: for a Notice of Proposal, draft by day ' + GD('nop-draft-day', 14) + ', senior review and client approval by day ' + GD('nop-review-day', 20) + ', send by day ' + GD('nop-send-day', 21) + '. For tenders, we submit ' + GD('tender-submit-days-before', 2) + ' working days before the buyer\'s deadline.';
+    return {
+      theme: this.props.theme ?? 'light', three: 3, n18: 18, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock', current: true },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }], footNote,
+      views: V.map(([k, label]) => ({ label, on: s.v === k, off: s.v !== k, pick: () => this.setState({ v: k }) })),
+      filters: F.map(([k, label]) => ({ label: label + ' (' + D.filter(test[k]).length + ')', on: s.f === k, off: s.f !== k, pick: () => this.setState({ f: k }) })),
+      summary: items.length + ' dates. ' + items.filter(isLegal).length + ' legal. Mine includes the clients you cover for Olu this week',
+      isList: s.v === 'list', isMonth: s.v === 'month', groups,
+      dow: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(k => ({ k })), cells,
+      dayTitle: fmt([11, s.day]), dayCount: sel.length === 1 ? '1 date' : sel.length + ' dates', dayRows, dayEmpty: sel.length === 0, dec, decShow: dec.length > 0
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Review Room</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--cs-surface-subtle); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <header style="background: var(--cs-surface-raised); border-bottom: 1px solid var(--cs-border-subtle); padding: 12px 8px 12px 4px; display: flex; align-items: center; gap: 4px;">
+    <a href="Main.dc.html" aria-label="Back to Today" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="chevron-left" size="{{n24}}"></x-import></a>
+    <div style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+      <h1 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 500;">Statement of Purpose</h1>
+      <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Version 2, ready for your review</span>
+    </div>
+    <x-import component-from-global-scope="CareSync.IconButton" icon="git-compare" label="Compare with version 1" variant="ghost"></x-import>
+  </header>
+
+  <main style="padding: 16px 16px 140px; display: flex; flex-direction: column; gap: 12px;">
+    <article style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 24px 20px; display: flex; flex-direction: column; gap: 14px;">
+      <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); font-weight: 500;">Section 3 of 9</span>
+      <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Who we support</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 24px; color: var(--cs-text-secondary);">Harbour Lane Care Ltd provides personal care to adults in their own homes across Stevenage and North Hertfordshire.</p>
+      <p style="margin: 0; font-size: 15px; line-height: 24px; color: var(--cs-text-secondary);">
+        <mark style="background: var(--cs-selection-bg); color: var(--cs-selection-text); border-radius: 4px; padding: 1px 2px; box-shadow: inset 0 -2px 0 var(--cs-action-primary);">We support older people, people living with dementia and people with physical disabilities.</mark>
+        We do not currently provide nursing care.</p>
+
+      <div role="group" aria-label="Thread on highlighted text" style="border: 1px solid var(--cs-border-subtle); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 12px; background: var(--cs-surface-page);">
+        <div style="display: flex; gap: 10px;">
+          <span aria-hidden="true" style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500;">AO</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 14px; line-height: 20px; font-weight: 500;">You</span>
+              <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="circle-help">Question</x-import>
+            </div>
+            <span style="font-size: 14px; line-height: 20px;">Should we add people with learning disabilities? Two of our first clients may need this.</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <span aria-hidden="true" style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-inverse); color: #AEFFEF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500;">DM</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; line-height: 20px; font-weight: 500;">Daniel, Care Sync <span style="font-weight: 400; color: var(--cs-text-muted);">10:42</span></span>
+            <span style="font-size: 14px; line-height: 20px;">Yes, good thinking. I will add it in version 3 and update your training plan to match.</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin: 0; font-size: 15px; line-height: 24px; color: var(--cs-text-secondary);">Our service is open to people aged 18 and over. Referrals come from local authorities, health services and families who fund their own care.</p>
+    </article>
+
+    <div aria-hidden="true" style="align-self: center; display: flex; align-items: center; gap: 0; background: var(--cs-grey-900); color: #FFFFFF; border-radius: 12px; box-shadow: var(--cs-elevation-3); overflow: hidden; position: absolute; top: 192px; left: 56px;">
+      <span style="padding: 10px 14px; font-size: 14px; line-height: 20px; font-weight: 500;">Comment</span>
+      <span style="width: 1px; align-self: stretch; background: rgba(255,255,255,0.18);"></span>
+      <span style="padding: 10px 14px; font-size: 14px; line-height: 20px; font-weight: 500;">Ask a question</span>
+      <span style="width: 1px; align-self: stretch; background: rgba(255,255,255,0.18);"></span>
+      <span style="padding: 10px 14px; font-size: 14px; line-height: 20px; font-weight: 500;">Suggest</span>
+    </div>
+  </main>
+
+  <footer style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); padding: 12px 16px 28px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -4px 12px rgb(16 24 40 / 6%);">
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary); text-align: center;">2 comments and 1 question on this draft. Daniel replies within 1 working day.</span>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+      <x-import component-from-global-scope="CareSync.Button" variant="secondary" size="large" block="{{yes}}" icon-start="pencil-line">Needs changes</x-import>
+      <x-import component-from-global-scope="CareSync.Button" variant="primary" size="large" block="{{yes}}" icon-start="check">Approve</x-import>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'light', yes: true, n16: 16, n20: 20, n24: 24 };
+  }
+}
+</script>
+</body>
+</html>

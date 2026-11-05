@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Done for you</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1200px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 110px; display: flex; flex-direction: column; gap: 16px;">
+
+    <header style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Domiciliary care, full package</span>
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">What we have done</h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div aria-hidden="true" style="flex-grow: 1; height: 8px; border-radius: 999px; background: var(--cs-surface-subtle); overflow: hidden;"><div style="width: 69%; height: 8px; border-radius: 999px; background: var(--cs-action-primary);"></div></div>
+        <span style="font-size: 14px; line-height: 20px; font-weight: 500;">18 of 26 done</span>
+      </div>
+    </header>
+
+    <section aria-labelledby="prog-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="prog-h" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">In progress</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-action-primary); box-sizing: border-box; display: flex; align-items: center; justify-content: center;"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--cs-action-primary);"></span></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Writing your business plan</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Daniel, ready by Friday</span></span>
+        </div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+          <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-status-warning-border); box-sizing: border-box;"></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Upload your landlord's letter</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-status-warning-text);">You, one photo</span></span>
+          <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="done-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <button onClick="{{toggle}}" aria-expanded="{{open}}" style="margin: 0 4px; padding: 0; min-height: 32px; border: 0; background: transparent; font: inherit; color: var(--cs-text-secondary); display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+        <span id="done-h" style="font-size: 14px; line-height: 20px; font-weight: 500;">Done (18)</span>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand);">{{toggleLabel}}</span>
+      </button>
+      <sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+        <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+          <sc-for list="{{done}}" as="d" hint-placeholder-count="6">
+            <div style="padding: 11px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+              <span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+              </span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+                <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary); text-decoration: line-through; text-decoration-color: var(--cs-text-muted);">{{d.title}}</span>
+                <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{d.meta}}</span>
+              </span>
+              <sc-if value="{{d.hasDoc}}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-brand); font-weight: 500;">View</span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </section>
+
+    <section aria-labelledby="next-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="next-h" style="margin: 0 4px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--cs-text-secondary);">Coming up</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden; opacity: 0.85;">
+        <div style="padding: 11px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);"><span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-border-default); box-sizing: border-box;"></span><span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Final pack check and your signature</span></div>
+        <div style="padding: 11px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);"><span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-border-default); box-sizing: border-box;"></span><span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">We submit to CQC and tell you the same day</span></div>
+        <div style="padding: 11px 16px; display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--cs-border-default); box-sizing: border-box;"></span><span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Session 2 with Millicent, Thursday 5 November</span></div>
+      </div>
+    </section>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="DoneList.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="list-checks" size="{{n24}}"></x-import>Journey</a>
+    <a href="DocRoom.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Documents</a>
+    <a href="Cqc.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="shield-check" size="{{n24}}"></x-import>CQC</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: true };
+  }
+  renderVals() {
+    const done = [
+      ['Wrote your 30 policies', 'Daniel, 31/10', true],
+      ['Checked by a second consultant', 'Olu, 31/10', false],
+      ['Your training plan, approved by you', 'You, 30/10', true],
+      ['Kick-off session and your plan agreed, after your handover was approved', 'Millicent and Daniel, 29/10', false],
+      ['Insurance quote obtained for you', 'Daniel, 29/10', true],
+      ['Compared your address across 6 documents, found 1 thing to check', 'Care Sync Hub, 28/10', false],
+      ['Checked your company with Companies House', 'Care Sync Hub, 28/10', false],
+      ['You uploaded your ID and proof of address', 'You, 27/10', false]
+    ].map(x => ({ title: x[0], meta: x[1], hasDoc: x[2] }));
+    const open = this.state.open;
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20, n24: 24,
+      done, open,
+      toggleLabel: open ? 'Hide' : 'Show all',
+      toggle: () => this.setState({ open: !open })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your tender</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1300px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; flex-direction: column; gap: 2px;">
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Oakleaf Living Ltd. Lot 1 North</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Northshire home care framework</h1>
+    </header>
+
+    <section aria-label="Deadline" style="background: var(--cs-surface-inverse); color: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--cs-elevation-2);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 12px; line-height: 16px; color: #AEFFEF; font-weight: 500;">Care Sync submits</span>
+          <span style="font-size: 20px; line-height: 28px; font-weight: 500;">Fri 27 Nov</span>
+          <span style="font-size: 13px; line-height: 18px; color: #D0D5DD;">2 working days before the buyer's deadline, Tue 1 Dec, 12:00</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end;"><span style="font-size: 32px; line-height: 40px; font-weight: 600;">25</span><span style="font-size: 12px; line-height: 16px; color: #D0D5DD;">days</span></div>
+      </div>
+      <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;">
+        <span style="height: 6px; border-radius: 999px; background: #AEFFEF;"></span>
+        <span style="height: 6px; border-radius: 999px; background: #AEFFEF;"></span>
+        <span style="height: 6px; border-radius: 999px; background: #FFFFFF;"></span>
+        <span style="height: 6px; border-radius: 999px; background: rgba(255,255,255,0.22);"></span>
+        <span style="height: 6px; border-radius: 999px; background: rgba(255,255,255,0.22);"></span>
+        <span style="height: 6px; border-radius: 999px; background: rgba(255,255,255,0.22);"></span>
+        <span style="height: 6px; border-radius: 999px; background: rgba(255,255,255,0.22);"></span>
+      </div>
+      <span style="font-size: 14px; line-height: 20px;">Bid decision and plan done. Now: writing your answers.</span>
+    </section>
+
+    <section aria-labelledby="you-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="you-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Waiting on you</h2>
+        <x-import component-from-global-scope="CareSync.StatusBadge" status="warning" icon="clock">2 to do</x-import>
+      </div>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+          <span aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text); display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><path d="M12 19v3"></path></svg></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Case study from Kemi</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">By Wed 11 Nov. A time your team made a difference. Record a voice note or type it</span></span>
+          <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+        </div>
+        <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+          <span aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n20}}"></x-import></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 16px; line-height: 24px; font-weight: 500;">Staff numbers and turnover from Kemi</span><span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">By Mon 16 Nov. For the workforce answer. About 10 minutes</span></span>
+          <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="dr-h" style="display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="dr-h" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500;">Drafts and approval</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{answers}}" as="a" hint-placeholder-count="4">
+          <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--cs-border-subtle);">
+            <span style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{a.title}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{a.meta}}</span></span>
+            <x-import component-from-global-scope="CareSync.StatusBadge" status="{{a.tone}}">{{a.state}}</x-import>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-labelledby="by-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 id="by-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">From the buyer</h2>
+      <div style="display: flex; gap: 12px; align-items: flex-start;"><x-import component-from-global-scope="CareSync.Icon" name="inbox" size="{{n20}}"></x-import><span style="font-size: 14px; line-height: 20px;">2 new answers to bidders' questions on Fri 30 Oct. Daniel has read them: social value now goes inside the technical upload. Clarification questions close Fri 13 Nov, 17:00.</span></div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;"><x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n20}}"></x-import><span style="font-size: 14px; line-height: 20px;">Daniel is a user on your portal account, so we see every message from the buyer. No password needed.</span></div>
+    </section>
+
+    <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary); text-align: center;">When we submit, you get the portal receipt the same day. We tell you the result as soon as the buyer does.</span>
+  </div>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 8px 20px; box-sizing: border-box; background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));">
+    <a href="Tenders.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-brand); font-size: 12px; line-height: 16px; font-weight: 500;"><x-import component-from-global-scope="CareSync.Icon" name="layout-dashboard" size="{{n24}}"></x-import>Today</a>
+    <a href="TenderProfile.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n24}}"></x-import>Profile</a>
+    <a href="TenderWork.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="file-check" size="{{n24}}"></x-import>Workspace</a>
+    <a href="Ask.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--cs-text-secondary); font-size: 12px; line-height: 16px;"><x-import component-from-global-scope="CareSync.Icon" name="circle-help" size="{{n24}}"></x-import>Ask</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20, n24: 24,
+      answers: [
+        { title: 'Care Sync draft to Kemi', meta: 'Technical answers, Word document. Comment in the Hub or on a call', state: 'Tue 17 Nov', tone: 'neutral' },
+        { title: 'Social value', meta: 'Word document, with the same draft', state: 'Tue 17 Nov', tone: 'neutral' },
+        { title: 'Kemi approves the final bid', meta: 'Every answer, the prices and the declarations, approved once in the Hub', state: 'Tue 24 Nov', tone: 'neutral' },
+        { title: 'Pricing schedule', meta: 'Worked out with you on Thu 29 Oct. You approve it with the final bid', state: 'Tue 24 Nov', tone: 'neutral' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

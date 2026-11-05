@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>People and access</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.sx-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.sx-ta{width:100%;min-height:64px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.sx-in:focus-visible,.sx-ta:focus-visible,.sx-sw:focus-visible,.sx-tile:focus-visible,.sx-cell:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sx-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.sx-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-red{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-inf{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-info-border);background:var(--cs-status-info-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.sx-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sx-b{font-weight:500}
+.sx-big{font-size:30px;line-height:38px;font-weight:600}
+.sx-cols{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.sx-pad{padding:0 20px 18px;display:flex;flex-direction:column;gap:12px}
+.sx-kv{display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 16px;font-size:14px;line-height:20px}
+.sx-kv>span:nth-child(odd){color:var(--cs-text-muted);font-size:13px}
+.sx-tile{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);border:0;padding:14px 16px;display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;color:var(--cs-text-primary);cursor:pointer;min-height:96px}
+.sx-tv{font-size:24px;line-height:32px;font-weight:600}
+.sx-sw{width:52px;height:32px;border-radius:999px;border:0;padding:3px;display:inline-flex;align-items:center;cursor:pointer;flex-shrink:0}
+.sx-sw span{width:26px;height:26px;border-radius:999px;background:var(--cs-surface-raised);display:block}
+.sw-on{background:var(--cs-action-primary);justify-content:flex-end}
+.sw-off{background:var(--cs-border-default);justify-content:flex-start}
+.sw-lock{background:var(--cs-action-primary);justify-content:flex-end;opacity:.55;cursor:not-allowed}
+.sx-step{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.st-done{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:500;background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.st-now{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;border:2px solid var(--cs-action-primary);color:var(--cs-text-primary);background:var(--cs-surface-raised)}
+.st-next{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;font-size:12px;border:1px dashed var(--cs-border-default);color:var(--cs-text-muted)}
+.sx-chk{display:flex;gap:10px;align-items:flex-start;min-height:36px;cursor:pointer;font-size:14px;line-height:20px}
+.sx-chk input{width:20px;height:20px;margin:0;flex-shrink:0;accent-color:var(--cs-action-primary)}
+.sx-cell{min-height:36px;width:100%;padding:4px 8px;border-radius:8px;font:inherit;font-size:12px;line-height:16px;text-align:left;cursor:pointer;border:1px solid var(--cs-border-subtle);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.cell-ch{border:2px solid var(--cs-action-primary);background:var(--cs-surface-brand);color:var(--cs-text-brand);font-weight:500}
+.cell-no{color:var(--cs-text-muted);background:transparent}
+.sx-link{color:var(--cs-text-brand);font-weight:500;text-decoration:underline;text-underline-offset:2px}
+.sx-col3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sx-col2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sx-ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1520px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="People and access" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px; max-width: 820px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">People and access</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">The 10 people with access, what each role can do, joiners, leavers, the access review and cover. Shown at Monday 2 November, 09:20. Permission changes need the other super admin.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{tiles}}" as="k" hint-placeholder-count="6">
+          <button class="sx-tile" onClick="{{k.go}}" aria-label="{{k.aria}}"><span class="sb-sub">{{k.k}}</span><span class="sx-tv">{{k.v}}</span><span class="{{k.cls}}" style="white-space: normal; align-self: flex-start;">{{k.note}}</span></button>
+        </sc-for>
+      </div>
+      <div role="tablist" aria-label="People and access areas" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="6">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{isPeople}}" hint-placeholder-val="{{ true }}">
+        <section class="sb-card" aria-labelledby="pp-h">
+          <div class="sb-head"><h2 id="pp-h" class="sb-h2">People with access</h2><span class="sb-sub">Two-step status is read from Google Workspace at 06:00</span></div>
+          <div class="sb-row" style="padding-top: 8px; padding-bottom: 8px;"><span class="sb-th" style="flex: 2 1 190px;">Person and role</span><span class="sb-th" style="flex: 2 1 200px;">Clients</span><span class="sb-th" style="flex: 2 1 190px;">Vault and export</span><span class="sb-th" style="flex: 0 0 120px;">Two-step</span><span class="sb-th" style="flex: 0 0 200px;">State</span></div>
+          <sc-for list="{{people}}" as="p" hint-placeholder-count="10">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+              <div style="display: flex; gap: 14px; align-items: flex-start;">
+                <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="sx-b">{{p.name}}</span><span class="sb-muted">{{p.job}}</span><span style="display: flex; gap: 4px; flex-wrap: wrap;"><sc-for list="{{p.roles}}" as="r" hint-placeholder-count="2"><span class="{{r.cls}}">{{r.t}}</span></sc-for></span></span>
+                <span class="sb-sub" style="flex: 2 1 200px; min-width: 0;">{{p.clients}}</span>
+                <span class="sb-sub" style="flex: 2 1 190px; min-width: 0;">{{p.vault}}</span>
+                <span style="flex: 0 0 120px;"><span class="{{p.twoCls}}" style="white-space: normal;">{{p.two}}</span></span>
+                <span style="flex: 0 0 200px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start;"><span class="{{p.cls}}" style="white-space: normal;">{{p.state}}</span><sc-if value="{{p.canSuspend}}" hint-placeholder-val="{{ false }}"><button class="sb-btn b-gh" onClick="{{p.ask}}">Suspend now</button></sc-if></span>
+              </div>
+              <sc-if value="{{p.asking}}" hint-placeholder-val="{{ false }}">
+                <div class="sx-amb" style="gap: 8px;">
+                  <span class="sx-b">Suspend {{p.name}} now?</span>
+                  <span class="sb-sub">Stops the Hub and Google Workspace at once, signs out every device and pauses downloads. Their clients stay with their cover or manager. Both super admins and the data protection lead are told.</span>
+                  <input aria-label="{{p.rLabel}}" class="sx-in" value="{{p.r}}" onChange="{{p.onR}}" placeholder="Reason (written to the audit log)">
+                  <sc-if value="{{p.err}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason first.</span></sc-if>
+                  <div style="display: flex; gap: 8px;"><button class="sb-btn b-pri" onClick="{{p.go}}">Suspend now</button><button class="sb-btn b-gh" onClick="{{p.cancel}}">Cancel</button></div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <div class="sb-row"><span class="sb-muted">States: Invited, Active, Covering, Suspended, Leaving, Left. Directors and managers see all clients; everyone else sees assigned and covered clients. Menu items a role cannot use are hidden.</span></div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isRoles}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="rg-h">
+          <div class="sb-head"><h2 id="rg-h" class="sb-h2">Roles and permissions</h2><span class="sb-sub">Click a cell to change it. Nothing changes until the other super admin approves</span></div>
+          <div style="overflow-x: auto; padding: 0 20px 16px;">
+            <div style="display: grid; grid-template-columns: 150px repeat(8, minmax(0, 1fr)); gap: 6px; min-width: 1000px;">
+              <span class="sb-th">Role</span>
+              <sc-for list="{{areas}}" as="a" hint-placeholder-count="8"><span class="sb-th">{{a}}</span></sc-for>
+              <sc-for list="{{grid}}" as="g" hint-placeholder-count="8">
+                <span class="sx-b" style="font-size: 13px; line-height: 18px; align-self: center;">{{g.role}}</span>
+                <sc-for list="{{g.cells}}" as="c" hint-placeholder-count="8"><button class="{{c.cls}}" aria-label="{{c.aria}}" onClick="{{c.next}}">{{c.t}}</button></sc-for>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{hasChanges}}" hint-placeholder-val="{{ false }}">
+            <div class="sx-pad">
+              <div class="sx-amb" style="gap: 8px;">
+                <span class="sx-b">{{chgHead}}</span>
+                <sc-for list="{{chgList}}" as="x" hint-placeholder-count="2"><span style="font-size: 13px; line-height: 18px;">{{x}}</span></sc-for>
+                <span class="sb-sub">{{chgImpact}}</span>
+                <label class="sx-lbl" for="pc-ta">Reason (written to the audit log)</label>
+                <textarea id="pc-ta" class="sx-ta" value="{{pcR}}" onChange="{{onPcR}}" placeholder="For example: finance needs to see the payment status of every client for month close"></textarea>
+                <sc-if value="{{pcErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">Write a reason first.</span></sc-if>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{sendPc}}">Send to Rachel Turner to approve</button><button class="sb-btn b-gh" onClick="{{resetPc}}">Undo the changes</button></div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{pcSent}}" hint-placeholder-val="{{ false }}"><div class="sx-pad"><div class="sx-inf"><span class="sx-b">Sent to Rachel Turner, just now</span><span class="sb-sub">It waits on Home as a new decision (8 waiting). The grid above shows the current permissions until she approves. Reason: "{{pcR}}"</span></div></div></sc-if>
+        </section>
+        <div class="sx-cols">
+          <section class="sb-card sx-pad" style="flex: 1 1 460px; min-width: 0; padding-top: 18px;" aria-labelledby="sa-h">
+            <h2 id="sa-h" class="sb-h2">Super admin: a flag on a role</h2>
+            <div class="sx-kv" style="grid-template-columns: 140px minmax(0, 1fr);">
+              <span>Holders</span><span>Collins (director, manager and data protection lead roles) and Rachel Turner (operations manager, manager role). Two named super admins, as go-live needs</span>
+              <span>Adds</span><span>Enters prices; approves discounts, permission changes, form versions, emails with legal wording, retention changes, early deletions and break-glass. Reads and exports the whole audit log</span>
+              <span>Rule</span><span>Nobody approves their own request. Inviting a super admin needs the other super admin</span>
+              <span>Since</span><span>Setup mode ran Mon 14 Sep to Wed 30 Sep; dual control on since Thu 1 Oct</span>
+            </div>
+          </section>
+          <section class="sb-card sx-pad" style="flex: 1 1 460px; min-width: 0; padding-top: 18px;" aria-labelledby="wr-h">
+            <h2 id="wr-h" class="sb-h2">What each role sees inside a client</h2>
+            <sc-for list="{{roleNotes}}" as="n" hint-placeholder-count="8">
+              <div style="display: flex; gap: 10px;"><span class="sx-b" style="flex: 0 0 140px; font-size: 13px;">{{n.r}}</span><span style="font-size: 13px; line-height: 18px;">{{n.x}}</span></div>
+            </sc-for>
+          </section>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isJoin}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="jn-h">
+          <div class="sb-head"><h2 id="jn-h" class="sb-h2">Joiner: Chloe Dunn, consultant, starts Mon 16 Nov</h2><span class="{{joinCls}}">{{joinState}}</span></div>
+          <div class="sx-pad">
+            <span class="sb-sub">Replaces Sam Patel's capacity. Line manager: Collins. Client scope: none until a manager assigns clients. Not yet one of the 10 people with access.</span>
+            <div class="sx-col2">
+              <div class="sx-box" style="gap: 8px;">
+                <span class="sx-b">Gates before any client data</span>
+                <sc-for list="{{gates}}" as="g" hint-placeholder-count="3">
+                  <label class="sx-chk"><input type="checkbox" checked="{{g.done}}" onChange="{{g.flip}}"><span style="display: flex; flex-direction: column;"><span>{{g.t}}</span><span class="sb-muted">{{g.note}}</span></span></label>
+                </sc-for>
+                <div class="{{vaultBox}}"><span class="sx-b">{{vaultHead}}</span><span class="sb-sub">The vault and client documents open only when all 3 gates pass.</span></div>
+              </div>
+              <div class="sx-box" style="gap: 8px;">
+                <span class="sx-b">Accounts in each system</span>
+                <sc-for list="{{prov}}" as="x" hint-placeholder-count="7">
+                  <div style="display: flex; gap: 10px; align-items: flex-start;"><label class="sx-chk" style="flex: 1; min-width: 0;"><input type="checkbox" checked="{{x.done}}" onChange="{{x.flip}}"><span style="display: flex; flex-direction: column;"><span>{{x.t}}</span><span class="sb-muted">{{x.note}}</span></span></label><span class="{{x.cls}}">{{x.state}}</span></div>
+                </sc-for>
+              </div>
+            </div>
+            <span class="sb-muted">Invites expire after 7 days and need two-step login. Once active, Chloe appears in Add a client, reassignment and cover lists.</span>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isLeave}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="lv-h">
+          <div class="sb-head"><h2 id="lv-h" class="sb-h2">Leaver: Sam Patel, consultant, last day Fri 6 Nov</h2><span class="sb-chip c-bad">Suspended</span></div>
+          <div class="sx-pad">
+            <div class="sx-red" style="flex-direction: row; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <span style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b">Suspended since Mon 2 Nov 08:25 by Rachel Turner, pending the incident review</span><span class="sb-sub">"Suspend now" already ran: Hub and Google Workspace stopped, every device signed out, downloads paused since 08:10. Lifting it needs the incident to close and the other super admin. Incident 2026-01 is on Security (board 84).</span></span>
+              <button class="sb-btn b-gh" onClick="{{noop}}" aria-disabled="true">{{suspLabel}}</button>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; gap: 8px; padding-bottom: 6px;"><span class="sx-b">Every system</span><span class="sb-muted">{{lvCount}}</span></div>
+              <sc-for list="{{leaver}}" as="x" hint-placeholder-count="12">
+                <div style="display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--cs-border-subtle);">
+                  <label class="sx-chk" style="flex: 1; min-width: 0;"><input type="checkbox" checked="{{x.done}}" onChange="{{x.flip}}"><span style="display: flex; flex-direction: column;"><span class="sx-b">{{x.t}}</span><span class="sb-sub">{{x.note}}</span></span></label>
+                  <span class="sb-muted" style="flex: 0 0 130px;">{{x.who}}</span>
+                  <span style="flex: 0 0 100px;"><span class="{{x.cls}}">{{x.state}}</span></span>
+                </div>
+              </sc-for>
+            </div>
+            <div class="sx-col2">
+              <div class="sx-box"><span class="sx-b">Sam's 6 clients</span><span class="sb-sub">Kingsway Care and Cedar Lodge Care move to Olu from Mon 9 Nov: asked by Grace on Fri 30 Oct 16:10, waiting for a super admin (decision 5 on Home). Rosehill Homecare, Thornbury Living, Hollybush Care and Bramley Support still need a new owner: reassign in Team and cover (board 78), each with a handover note.</span></div>
+              <div class="sx-box"><span class="sx-b">This Friday</span><span class="sb-sub">Sam's 6 weekly updates due Fri 6 Nov are sent by Collins this week. Sam's Questions inbox items moved to Collins at 08:25.</span></div>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isReview}}" hint-placeholder-val="{{ false }}">
+        <section class="sb-card" aria-labelledby="ar-h">
+          <div class="sb-head"><h2 id="ar-h" class="sb-h2">Quarterly access review</h2><span class="{{revCls}}">{{revState}}</span></div>
+          <div style="padding: 0 20px 12px;" class="sb-sub">Reviewers: Rachel Turner with Collins. Last review: at go-live, Thu 1 Oct. Brought forward because of Sam's leaving and the export incident: due by Fri 13 Nov. Mark each grant keep or remove, with a reason.</div>
+          <sc-for list="{{grants}}" as="g" hint-placeholder-count="11">
+            <div class="sb-row" style="align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+              <span style="flex: 2 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="sx-b">{{g.who}}</span><span class="sb-sub">{{g.what}}</span></span>
+              <input aria-label="{{g.rLabel}}" class="sx-in" style="flex: 1 1 220px; min-width: 0;" value="{{g.r}}" onChange="{{g.onR}}" placeholder="{{g.ph}}">
+              <span style="display: flex; gap: 6px;"><sc-for list="{{g.opts}}" as="o" hint-placeholder-count="2"><sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" aria-pressed="true" onClick="{{o.pick}}">{{o.label}}</button></sc-if><sc-if value="{{o.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" aria-pressed="false" onClick="{{o.pick}}">{{o.label}}</button></sc-if></sc-for></span>
+            </div>
+          </sc-for>
+          <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
+            <span class="sb-sub">{{revProgress}}</span>
+            <sc-if value="{{revErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">{{revErrText}}</span></sc-if>
+            <sc-if value="{{revOpen}}" hint-placeholder-val="{{ true }}"><div><button class="sb-btn b-pri" onClick="{{signOff}}">Sign off the review</button></div></sc-if>
+            <sc-if value="{{revDone}}" hint-placeholder-val="{{ false }}"><div class="sx-ok"><span class="sx-b">Signed off by Collins, Mon 2 Nov 09:20</span><span class="sb-sub">{{revDoneNote}}</span></div></sc-if>
+            <span class="sb-muted">States: Due, In progress, Signed off, Overdue. The next review is due 3 months after sign-off.</span>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isCover}}" hint-placeholder-val="{{ false }}">
+        <div class="sx-cols">
+          <section class="sb-card" style="flex: 3 1 560px; min-width: 0;" aria-labelledby="co-h">
+            <div class="sb-head"><h2 id="co-h" class="sb-h2">Cover delegations</h2><span class="sb-chip c-info">1 active</span></div>
+            <div class="sx-pad">
+              <div class="sx-box" style="gap: 8px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px;"><span class="sx-b">Daniel Mensah covers Olu</span><span class="sb-chip c-info">Active</span></div>
+                <div class="sx-kv" style="grid-template-columns: 120px minmax(0, 1fr);">
+                  <span>Leave</span><span>Olu, Mon 2 to Fri 6 Nov</span>
+                  <span>Clients</span><span>Riverside Homecare, Greenway Support, Lagan View Care, Willow Bank Supported Living</span>
+                  <span>Vault</span><span>Reveal included for those 4 clients only</span>
+                  <span>Booked</span><span>Collins, Wed 28 Oct</span>
+                  <span>Approved</span><span>Rachel Turner, Fri 30 Oct</span>
+                  <span>Ends</span><span class="sx-b">Fri 6 Nov 17:30, by itself</span>
+                </div>
+                <span class="sb-muted">Brookside Homecare (aftercare, not urgent) waits for Olu. Every look Daniel takes shows on that client's privacy page. Details and early end: Security, Elevated access (board 84).</span>
+              </div>
+              <span class="sb-muted">Earlier cover since go-live: none. Planned leave always uses cover; break-glass is for emergencies only.</span>
+            </div>
+          </section>
+          <section class="sb-card" style="flex: 2 1 380px; min-width: 0;" aria-labelledby="nc-h">
+            <div class="sb-head"><h2 id="nc-h" class="sb-h2">Set up cover for leave</h2></div>
+            <div class="sx-pad">
+              <span class="sx-lbl">Who is away</span>
+              <div role="tablist" aria-label="Who is away" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{awayTabs}}" as="tb" hint-placeholder-count="3">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+              <span class="sx-lbl">Who covers</span>
+              <div role="tablist" aria-label="Who covers" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{covTabs}}" as="tb" hint-placeholder-count="3">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div>
+              <label class="sx-lbl" for="nc-in">Dates</label>
+              <input id="nc-in" class="sx-in" value="{{ncDates}}" onChange="{{onNcDates}}" placeholder="For example: Mon 23 to Fri 27 Nov">
+              <label class="sx-chk"><input type="checkbox" checked="{{ncVault}}" onChange="{{flipNcVault}}"><span>Include vault reveal for the covered clients</span></label>
+              <sc-if value="{{ncErr}}" hint-placeholder-val="{{ false }}"><span class="sx-err">{{ncErrText}}</span></sc-if>
+              <div><button class="sb-btn b-sec" onClick="{{sendNc}}">Send to a manager to approve</button></div>
+              <sc-if value="{{ncSent}}" hint-placeholder-val="{{ false }}"><div class="sx-inf"><span class="sx-b">{{ncHead}}</span><span class="sb-sub">Rachel Turner approves it (you booked it, so not you). It starts and ends by itself, and each client sees who is covering.</span></div></sc-if>
+            </div>
+          </section>
+        </div>
+      </sc-if>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1520}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: 'people', susp: {}, sAsk: {}, sR: {}, sErr: {}, perm: {}, pcR: '', pcErr: false, pcSent: false,
+      gates: { conf: true }, prov: { gws: true, xero: true, stripe: true },
+      lv: { hub: true, gws: true, xero: true, stripe: true, iph: true, pw: true },
+      rv: {}, rvR: {}, revErr: false, revSigned: false, away: '', cov: '', ncDates: '', ncVault: true, ncErr: false, ncSent: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const G = (k, f) => { try { return (window.CSR && window.CSR.get) ? window.CSR.get(k, f) : f; } catch (e) { return f; } };
+    const ch = k => 'sb-chip c-' + k;
+    const up = (o, k, v) => Object.assign({}, o, { [k]: v });
+
+    const T = [['people', 'People (10)'], ['roles', 'Roles and permissions'], ['join', 'Joiners (1)'], ['leave', 'Leavers (1)'], ['review', 'Access review'], ['cover', 'Cover (1)']];
+    const RC = { 'Manager': 'c-info', 'Data protection lead': 'c-warn', 'Super admin': 'c-brand' };
+    const P = [
+      ['col', 'Collins', 'Director', ['Manager', 'Data protection lead', 'Super admin'], 'All clients', 'Vault: reveal for his own and covered clients; others by break-glass. Export: approves bulk exports; rights request and incident exports', 'Security key', 'ok', 'Active', 'ok'],
+      ['rac', 'Rachel Turner', 'Operations manager', ['Manager', 'Super admin'], 'All clients', 'Vault: as a manager. Export: approves bulk exports', 'Security key', 'ok', 'Active', 'ok'],
+      ['dan', 'Daniel Mensah', 'Consultant', ['Consultant'], '8 of his own, plus Olu\'s 4 covered until Fri 6 Nov 17:30', 'Vault: reveal for those 12. Export: single documents', 'App', 'ok', 'Covering Olu', 'info'],
+      ['olu', 'Olu', 'Consultant', ['Consultant'], '5 of his own (4 covered by Daniel this week)', 'Vault: reveal for his 5. Export: single documents', 'App', 'ok', 'Active, on leave to Fri 6 Nov', 'neutral'],
+      ['sam', 'Sam Patel', 'Consultant', ['Consultant'], '6, being reassigned', 'None while suspended', 'App', 'ok', 'Suspended since 08:25. Leaving Fri 6 Nov', 'bad'],
+      ['gra', 'Grace', 'Onboarding lead', ['Onboarding lead'], '6 in onboarding, including Harbour Lane', 'Vault: add logins for onboarding clients, no reveal. Export: single documents', 'Security key', 'ok', 'Active', 'ok'],
+      ['div', 'Divine', 'Client care', ['Client care'], 'Assigned: contact details and how clients feel', 'None', 'App', 'ok', 'Active', 'ok'],
+      ['mil', 'Millicent', 'Coach', ['Coach'], 'Assigned: sessions only', 'None', 'App', 'ok', 'Active', 'ok'],
+      ['jo', 'Jo Martin', 'Sales', ['Sales'], 'Prospects; existing clients only once the case owner agrees', 'Export: prospect lists, with approval', 'App', 'ok', 'Active', 'ok'],
+      ['fem', 'Femi Ade', 'Finance, part time', ['Finance'], 'Billing details for all clients', 'Export: accountant exports, with approval', 'Text codes: weaker', 'warn', 'Active', 'ok']
+    ];
+    const people = P.map(([id, name, job, roles, clients, vault, two, twoK, state, k]) => { const sus = !!s.susp[id]; const asking = !sus && !!s.sAsk[id]; const r = s.sR[id] || '';
+      return { name, job, roles: roles.map(t => ({ t, cls: 'sb-chip ' + (RC[t] || 'c-neutral') })), clients, vault: sus ? 'None while suspended' : vault, two, twoCls: ch(twoK),
+        state: sus ? 'Suspended by Collins, just now: "' + r.trim() + '"' : state, cls: ch(sus ? 'bad' : k), canSuspend: id !== 'sam' && id !== 'col' && !sus && !asking, asking, r, err: !!s.sErr[id], rLabel: 'Reason for suspending ' + name,
+        ask: () => this.setState({ sAsk: up(s.sAsk, id, true) }), cancel: () => this.setState({ sAsk: up(s.sAsk, id, false) }),
+        onR: e => this.setState({ sR: up(s.sR, id, e.target.value), sErr: up(s.sErr, id, false) }),
+        go: () => { if (!r.trim()) { this.setState({ sErr: up(s.sErr, id, true) }); return; } this.setState({ susp: up(s.susp, id, true) }); } }; });
+    // Roles grid
+    const areas = ['Clients', 'Vault', 'Export', 'Prices', 'Forms', 'Approvals', 'Money', 'Audit log'];
+    const LV = [
+      ['None', 'Assigned', 'Assigned and covered', 'Billing only, all', 'All'],
+      ['None', 'Add only', 'Reveal: assigned and covered', 'Reveal: all, by break-glass'],
+      ['None', 'Single documents', 'Bulk, with approval', 'Approves bulk'],
+      ['None', 'View', 'Suggest', 'Enter (super admin)'],
+      ['None', 'View', 'Draft', 'Approve (super admin)'],
+      ['None', 'Gates', 'Handovers and cover', 'Data protection decisions', 'All (super admin)'],
+      ['None', 'Payment status', 'View all', 'Manage'],
+      ['None', 'Own actions', 'Team', 'All, read and export']
+    ];
+    const RG = [
+      ['Manager', [4, 2, 3, 2, 1, 2, 2, 2]],
+      ['Consultant', [2, 2, 1, 2, 1, 0, 1, 1]],
+      ['Onboarding lead', [1, 1, 1, 2, 2, 1, 1, 1]],
+      ['Client care', [1, 0, 0, 1, 1, 0, 1, 1]],
+      ['Coach', [1, 0, 0, 0, 0, 0, 0, 1]],
+      ['Sales', [1, 0, 2, 2, 0, 0, 0, 1]],
+      ['Finance', [3, 0, 2, 1, 0, 0, 3, 1]],
+      ['Data protection lead', [4, 2, 3, 2, 1, 3, 2, 3]]
+    ];
+    const changes = [];
+    const grid = RG.map(([role, base]) => ({ role, cells: base.map((b, i) => { const key = role + '|' + i; const v = Object.prototype.hasOwnProperty.call(s.perm, key) ? s.perm[key] : b; const changed = v !== b;
+      if (changed) changes.push(role + ', ' + areas[i] + ': ' + LV[i][b] + ' becomes ' + LV[i][v]);
+      return { t: LV[i][v], cls: 'sx-cell' + (changed ? ' cell-ch' : (v === 0 ? ' cell-no' : '')), aria: role + ', ' + areas[i] + ': ' + LV[i][v] + '. Click to change',
+        next: () => { const nv = (v + 1) % LV[i].length; const np = Object.assign({}, s.perm); if (nv === b) delete np[key]; else np[key] = nv; this.setState({ perm: np, pcSent: false, pcErr: false }); } }; }) }));
+    const roleNotes = [['Manager', 'Everything in every client, and the money. Approves handovers and cover'], ['Consultant', 'Their own and covered clients in full'], ['Onboarding lead', 'Clients in onboarding: forms, gates, documents'], ['Client care', 'Contact details, how clients feel, payment status. Never the vault'], ['Coach', 'Session notes and interview practice only'], ['Sales', 'Prospects and the Radar; an existing client only once the case owner agrees'], ['Finance', 'Billing details, invoices and payments for every client; nothing else'], ['Data protection lead', 'As a manager, plus rights requests, incidents, retention and the whole audit log. Signs off form questions that collect special category, criminal offence or login data']].map(([r, x]) => ({ r, x }));
+    const counts = { Manager: 2, Consultant: 3, 'Onboarding lead': 1, 'Client care': 1, Coach: 1, Sales: 1, Finance: 1, 'Data protection lead': 1 };
+    const rolesHit = [...new Set(changes.map(c => c.split(',')[0]))];
+    const nPeople = rolesHit.reduce((a, r) => a + (counts[r] || 0), 0);
+    // Joiner
+    const G1 = [['conf', 'Confidentiality agreement signed', 'Signed in DocuSeal, Fri 30 Oct'], ['train', 'Data protection training passed', 'Academy module, booked for Mon 16 Nov 09:30'], ['dev', 'Device check done', 'Laptop CS-LT-11: encryption, screen lock, managed by Google Workspace']];
+    const gates = G1.map(([id, t, note]) => { const done = !!s.gates[id]; return { t, note, done, flip: () => this.setState({ gates: up(s.gates, id, !done) }) }; });
+    const gDone = gates.filter(g => g.done).length;
+    const PV = [
+      ['gws', 'Google Workspace', 'Account created, suspended until Mon 16 Nov 08:00; two-step required'],
+      ['hub', 'Hub', 'Invite sent on her first morning; consultant role; no clients until assigned'],
+      ['iph', 'Interview Preparation Hub', 'Staff account through its API, after the gates'],
+      ['ghl', 'GoHighLevel', 'User (not admin), to see her clients\' sales history'],
+      ['dsl', 'DocuSeal', 'Sender, after the gates'],
+      ['xero', 'Xero', 'Not needed for consultants'],
+      ['stripe', 'Stripe', 'Not needed for consultants']
+    ];
+    const prov = PV.map(([id, t, note]) => { const done = !!s.prov[id]; const na = id === 'xero' || id === 'stripe'; return { t, note, done, state: na ? 'Not needed' : (done ? 'Done' : 'To do'), cls: ch(na ? 'neutral' : (done ? 'ok' : 'warn')), flip: () => this.setState({ prov: up(s.prov, id, !done) }) }; });
+    const pDone = prov.filter(x => x.done).length;
+    // Leaver
+    const LS = [
+      ['hub', 'Hub', 'Suspended Mon 2 Nov 08:25 by Rachel Turner pending the incident review; disabled for good Fri 6 Nov 17:30', 'Rachel Turner', 'Suspended'],
+      ['gws', 'Google Workspace', 'Sign-in suspended 08:25 and every session signed out. Mail still arrives and forwards to Collins for 90 days', 'Collins', 'Suspended'],
+      ['gmail', 'Gmail delegation and Drive ownership', 'Delegate access removed 08:25. 214 Drive files move to Collins on Fri 6 Nov, kept under the legal hold until the incident closes', 'Collins', ''],
+      ['ghl', 'GoHighLevel', 'Deactivate Sam\'s user; notes and calls move to the new owners', 'Jo Martin', ''],
+      ['xero', 'Xero', 'Consultants have no access: nothing to remove', 'None', 'Not used'],
+      ['stripe', 'Stripe', 'Consultants have no access: nothing to remove', 'None', 'Not used'],
+      ['dsl', 'DocuSeal', '2 envelopes waiting for signature move to the new owners; sender account closed', 'Collins', ''],
+      ['iph', 'Interview Preparation Hub', 'Staff account disabled through its API at 08:26', 'The Hub', ''],
+      ['dev', 'Devices returned', 'Laptop CS-LT-07 to Rachel today at 14:00 for the incident check; phone work profile wiped 08:25', 'Rachel Turner', ''],
+      ['mbox', 'Client mailbox connections handed to the new owner', '3 connected under Sam (Kingsway, Rosehill, Hollybush). The watch keeps running under Collins until each new owner is approved', 'Collins', ''],
+      ['tell', 'Clients told with email 9.3 "Your new consultant"', 'Sent to each client when their new owner is approved; their screens then show the new name. 0 of 6 sent', 'New case owners', ''],
+      ['pw', 'Interim 1Password vault', 'Removed from the shared vault at 08:25', 'Collins', '']
+    ];
+    const leaver = LS.map(([id, t, note, who, fixed]) => { const done = !!s.lv[id]; return { t, note, who, done, state: done ? (fixed || 'Done') : 'To do', cls: ch(done ? (fixed === 'Suspended' ? 'bad' : (fixed === 'Not used' ? 'neutral' : 'ok')) : 'warn'), flip: () => this.setState({ lv: up(s.lv, id, !done) }) }; });
+    const lvDone = leaver.filter(x => x.done).length;
+    // Access review
+    const GR = [
+      ['dc', 'Daniel Mensah', 'Cover access to Olu\'s 4 clients, vault reveal included, ends Fri 6 Nov 17:30', 'keep', 'Approved cover; ends by itself'],
+      ['sam', 'Sam Patel', 'All access (suspended, leaving Fri 6 Nov)', 'remove', 'Leaver'],
+      ['jo', 'Jo Martin', 'GoHighLevel admin rights (a user account is enough)', 'remove', 'Least access'],
+      ['fe', 'Femi Ade', 'Stripe admin, to prepare refunds a super admin approves', 'keep', ''],
+      ['gr', 'Grace', 'Vault: add logins for onboarding clients, no reveal', 'keep', ''],
+      ['mi', 'Millicent', 'Interview Preparation Hub admin', 'keep', ''],
+      ['ol', 'Olu', 'Vault reveal for his 5 clients', 'keep', ''],
+      ['sa', 'Collins and Rachel Turner', 'Super admin flag', 'keep', ''],
+      ['keys', 'Integration keys', '5 keys (Stripe, Xero, DocuSeal, GoHighLevel, Google)', 'keep', ''],
+      ['dev', 'Developers', 'Standing access to the live database: none (just in time only)', 'keep', ''],
+      ['part', 'Partners', 'AssuredBid access: none yet', 'keep', '']
+    ];
+    const grants = GR.map(([id, who, what, sug]) => { const v = s.rv[id] || ''; const r = s.rvR[id] || '';
+      return { who, what, r, rLabel: 'Reason for ' + who, ph: v === 'remove' ? 'Reason to remove (needed)' : 'Reason (needed to remove)', onR: e => this.setState({ rvR: up(s.rvR, id, e.target.value), revErr: false }),
+        opts: [['keep', 'Keep'], ['remove', 'Remove']].map(([k, label]) => ({ label: label + (sug === k && !v ? ' (suggested)' : ''), on: v === k, off: v !== k, pick: () => this.setState({ rv: up(s.rv, id, k), revErr: false }) })) }; });
+    const marked = GR.filter(g => s.rv[g[0]]).length;
+    const removes = GR.filter(g => s.rv[g[0]] === 'remove');
+    const missingR = removes.filter(g => !(s.rvR[g[0]] || '').trim()).length;
+    const revState = s.revSigned ? 'Signed off' : (marked ? 'In progress' : 'Due by Fri 13 Nov');
+    // Cover form
+    const AW = [['grace', 'Grace'], ['mil', 'Millicent'], ['dan', 'Daniel Mensah']];
+    const CV = [['olu', 'Olu'], ['rac', 'Rachel Turner'], ['col', 'Collins']];
+    const nm = (L, k) => (L.find(x => x[0] === k) || ['', ''])[1];
+    const ncProblem = !s.away || !s.cov ? 'Choose who is away and who covers.' : (!s.ncDates.trim() ? 'Add the dates.' : '');
+    return {
+      theme: this.props.theme ?? 'light', three: 7, user: { name: 'Collins', initials: 'C' }, nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks' },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users', current: true },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }],
+      tiles: [
+        ['people', 'People with access', '10', '2 super admins', 'neutral'],
+        ['people', 'Two-step sign-in', '10 of 10', '1 on text codes (Femi Ade)', 'warn'],
+        ['join', 'Joiners', '1', 'Chloe Dunn, Mon 16 Nov', 'info'],
+        ['leave', 'Leavers', '1', 'Sam Patel: suspended', 'bad'],
+        ['review', 'Access review', s.revSigned ? 'Done' : 'Due', s.revSigned ? 'Signed off today' : 'By Fri 13 Nov', s.revSigned ? 'ok' : 'warn'],
+        ['cover', 'Cover', '1 active', 'Daniel for Olu, to Fri 6 Nov', 'info']
+      ].map(([k, l, v, note, c]) => ({ k: l, v, note, cls: ch(c), aria: l + ': ' + v + '. ' + note + '. Open', go: () => this.setState({ t: k }) })),
+      tabs: T.map(([k, label]) => ({ label, on: s.t === k, off: s.t !== k, pick: () => this.setState({ t: k }) })),
+      isPeople: s.t === 'people', isRoles: s.t === 'roles', isJoin: s.t === 'join', isLeave: s.t === 'leave', isReview: s.t === 'review', isCover: s.t === 'cover',
+      people, areas, grid, roleNotes, hasChanges: changes.length > 0 && !s.pcSent, chgList: changes,
+      chgHead: changes.length + (changes.length === 1 ? ' change' : ' changes') + ' to send for approval',
+      chgImpact: 'Affects ' + nPeople + (nPeople === 1 ? ' person' : ' people') + ' today (' + rolesHit.join(', ') + '). Their menus and screens change once approved.',
+      pcR: s.pcR, pcErr: s.pcErr, onPcR: e => this.setState({ pcR: e.target.value, pcErr: false }),
+      sendPc: () => { if (!s.pcR.trim()) { this.setState({ pcErr: true }); return; } this.setState({ pcSent: true, perm: {} }); }, resetPc: () => this.setState({ perm: {}, pcErr: false }), pcSent: s.pcSent,
+      gates, prov, joinState: gDone === 3 ? 'Ready to start' : 'Gates: ' + gDone + ' of 3', joinCls: ch(gDone === 3 ? 'ok' : 'warn'),
+      vaultBox: gDone === 3 ? 'sx-ok' : 'sx-box', vaultHead: gDone === 3 ? 'All 3 gates passed: client data opens on Mon 16 Nov' : 'Client data closed: ' + gDone + ' of 3 gates passed. Accounts: ' + pDone + ' of 7',
+      suspLabel: 'Suspended', noop: () => {}, leaver, lvCount: lvDone + ' of ' + leaver.length + ' done',
+      grants, revState, revCls: ch(s.revSigned ? 'ok' : (marked ? 'info' : 'warn')), revProgress: marked + ' of ' + GR.length + ' grants marked. ' + removes.length + ' to remove.',
+      revErr: s.revErr, revErrText: marked < GR.length ? 'Mark every grant first.' : 'Write a reason for each removal.', revOpen: !s.revSigned, revDone: s.revSigned,
+      signOff: () => { if (marked < GR.length || missingR) { this.setState({ revErr: true }); return; } this.setState({ revSigned: true }); },
+      revDoneNote: removes.length + ' grants are removed now, each logged with its reason. Next review due Tue 2 Feb.',
+      awayTabs: AW.map(([k, label]) => ({ label, on: s.away === k, off: s.away !== k, pick: () => this.setState({ away: k, ncErr: false, ncSent: false }) })),
+      covTabs: CV.map(([k, label]) => ({ label, on: s.cov === k, off: s.cov !== k, pick: () => this.setState({ cov: k, ncErr: false, ncSent: false }) })),
+      ncDates: s.ncDates, onNcDates: e => this.setState({ ncDates: e.target.value, ncErr: false, ncSent: false }), ncVault: s.ncVault, flipNcVault: () => this.setState({ ncVault: !s.ncVault }),
+      ncErr: s.ncErr, ncErrText: ncProblem || 'Check the details.', sendNc: () => { if (ncProblem) { this.setState({ ncErr: true }); return; } this.setState({ ncSent: true }); }, ncSent: s.ncSent,
+      ncHead: 'Sent: ' + nm(CV, s.cov) + ' covers ' + nm(AW, s.away) + ', ' + s.ncDates.trim() + (s.ncVault ? ', vault reveal included' : ', no vault reveal')
+    };
+  }
+}
+</script>
+</body>
+</html>

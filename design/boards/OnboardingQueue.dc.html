@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Onboarding queue</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1030px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Onboarding" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Onboarding</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Grace's queue: every client between payment and handover. Monday 2 November, 10:30.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="sb-card sb-kpi"><span class="sb-kv">{{k.v}}</span><span class="sb-sub">{{k.k}}</span></div></sc-for>
+      </div>
+      <div role="tablist" aria-label="Which form" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      <section class="sb-card" aria-label="Clients in onboarding">
+        <div class="sb-row" style="border-top: 0;"><span class="sb-th" style="flex: 2 1 190px;">Client</span><span class="sb-th" style="flex: 1 1 130px;">Package and regulator</span><span class="sb-th" style="flex: 1 1 150px;">Form progress</span><span class="sb-th" style="flex: 1 1 150px;">Last activity</span><span class="sb-th" style="flex: 2 1 190px;">Waiting on</span><span class="sb-th" style="flex: 0 0 84px;">Recheck</span><span class="sb-th" style="flex: 0 0 56px;">Days</span><span class="sb-th" style="flex: 0 0 116px;">Nudge</span></div>
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+          <div class="sb-row" style="align-items: flex-start;">
+            <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{r.name}}</span><span class="sb-muted">{{r.contact}}</span><sc-if value="{{r.hasLink}}" hint-placeholder-val="{{ false }}"><a class="ob-link" href="{{r.href}}">{{r.linkText}}</a></sc-if></span>
+            <span style="flex: 1 1 130px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="{{r.regCls}}" style="align-self: flex-start;">{{r.reg}}</span><span class="sb-muted">{{r.pkg}}</span></span>
+            <span style="flex: 1 1 150px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="sb-sub">{{r.prog}}</span><span class="bar" aria-hidden="true"><span class="{{r.bar}}"></span></span></span>
+            <span style="flex: 1 1 150px; min-width: 0;" class="sb-sub">{{r.last}}</span>
+            <span style="flex: 2 1 190px; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><span class="{{r.waitCls}}" style="align-self: flex-start;">{{r.wait}}</span><span class="sb-muted">{{r.waitWhy}}</span></span>
+            <span style="flex: 0 0 84px;" class="sb-sub">{{r.recheck}}</span>
+            <span style="flex: 0 0 56px; font-weight: 500;">{{r.days}}</span>
+            <span style="flex: 0 0 116px; display: flex; flex-direction: column; gap: 2px;"><button class="{{r.nudgeCls}}" onClick="{{r.nudge}}" aria-label="{{r.nudgeAria}}">{{r.nudgeLabel}}</button><span class="sb-muted">{{r.nudgeTo}}</span></span>
+          </div>
+        </sc-for>
+      </section>
+      <span class="sb-muted">{{queueNote}}</span>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1030}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 'all', nudged: {} }; }
+  renderVals() {
+    const st = this.state;
+    // [key, name, contact, reg, pkg, prog, bar, last, waitGroup, wait, waitWhy, recheck, days, nudgeTo, link]
+    const R = [
+      ['hl', 'Harbour Lane Care Ltd', 'Amara Okafor', 'CQC', 'Full start-up, domiciliary care', 'Form arrived 29 Oct. Checks 5 of 8', 'w60', 'Tom Reid opened the landlord letter link, Sat 31 Oct', 'us', 'Us: send fix list (2)', 'Also waiting on the landlord, Tom Reid, for the office letter', 'Thu 5 Nov', 14, 'Tom Reid', ['Onboarding.dc.html', 'Open the gates']],
+      ['mv', 'Meadow View Care Ltd', 'Ade Ola', 'CQC', 'Full start-up, domiciliary care', 'Form not sent yet. Sent after the call', 'w0', 'Paid today 10:02', 'us', 'Us: introduction call', 'Divine calls by 12:02. Then the form goes out', 'Today 12:02', 0, 'Divine', ['IntroCall.dc.html', 'Open the call']],
+      ['ts', 'Ty Seren Care Ltd', 'Ffion Pryce', 'CIW', 'CIW registration, domiciliary support', 'Form arrived 28 Oct. Checks 6 of 8', 'w75', 'Asked about referees, today 08:50', 'client', 'Client: 2 fixes', 'A second RI referee, and the manager\'s Social Care Wales reference. Sent Fri 30 Oct', 'Wed 4 Nov', 12, 'Ffion Pryce', null],
+      ['kf', 'Kingfisher Support Ltd', 'Marcus Hale', 'Tender', 'Tender writing, supported living', 'Tender form 9 of 15 sections', 'w60', 'Uploaded insurance certificates, Sat 31 Oct', 'client', 'Client: rest of the form', 'Policies list, workforce and case studies still to fill in', 'Thu 5 Nov', 7, 'Marcus Hale', null],
+      ['oh', 'Oak Hollow Care Ltd', 'Lena Brooks', 'CQC', 'CQC registration, supported living', 'Stopped at section 8 of 13', 'w60', 'Last answer Tue 27 Oct, 6 days ago', 'client', 'Client: stopped mid-form', 'Reminders sent Thu 29 Oct and Sat 31 Oct, not opened. Day 6: Grace calls today', 'Today', 13, 'Lena Brooks', null],
+      ['bn', 'Binnian Care Ltd', 'Ciara Doherty', 'RQIA', 'RQIA registration, domiciliary care agency', 'Form arrived 22 Oct. Checks 8 of 8', 'w100', 'Grace asked Collins to approve the handover, Fri 30 Oct', 'ready', 'Ready for handover', 'Waiting for Collins to approve. Proposed case owner: Olu', 'Today', 18, 'Collins', ['Handover.dc.html', 'Open the handover']]
+    ];
+    const T = [['all', 'All'], ['client', 'Waiting on the client'], ['us', 'Waiting on us'], ['ready', 'Ready for handover']];
+    const cnt = k => R.filter(r => r[8] === k).length;
+    const WC = { us: 'c-info', client: 'c-warn', ready: 'c-ok' };
+    const rows = R.filter(r => st.t === 'all' || r[8] === st.t).map(r => {
+      const sent = st.nudged[r[0]];
+      return { name: r[1], contact: r[2], reg: r[3], regCls: 'sb-chip ' + (r[3] === 'Tender' ? 'c-info' : 'c-brand'), pkg: r[4], prog: r[5], bar: r[6], last: r[7],
+        wait: r[9], waitCls: 'sb-chip ' + WC[r[8]], waitWhy: r[10], recheck: r[11], days: String(r[12]),
+        hasLink: !!r[14], href: r[14] ? r[14][0] : '#', linkText: r[14] ? r[14][1] : '',
+        nudgeLabel: sent ? 'Sent ' + sent : 'Nudge', nudgeCls: 'sb-btn ' + (sent ? 'b-gh' : 'b-sec'), nudgeTo: (sent ? 'Nudged: ' : 'To ') + r[13], nudgeAria: 'Nudge ' + r[13] + ' about ' + r[1],
+        nudge: () => { if (sent) return; this.setState({ nudged: Object.assign({}, st.nudged, { [r[0]]: '10:' + String(30 + Object.keys(st.nudged).length) }) }); } };
+    });
+    const avg = Math.round(R.reduce((a, r) => a + r[12], 0) / R.length);
+    const GN = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const queueNote = 'Days in onboarding count from payment. Form reminders: ' + GN('form-reminders', 'after 2 days and 4 days; Grace calls on day 6; then weekly') + '. Landlord and referee reminders ' + GN('third-party-reminders', 'after 3 working days, then weekly') + '. Documents: ' + GN('document-reminders', 'after 3 days, then weekly') + '. No reminder goes in quiet hours (' + GN('quiet-hours', '8pm to 8am') + '). Nudges are logged on the client record. A worried client gets a call from a person instead of automatic nudges.';
+    return { queueNote,
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Grace Whitfield', initials: 'GW' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks', current: true },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: T.map(([k, label]) => ({ label: label + ' (' + (k === 'all' ? R.length : cnt(k)) + ')', on: st.t === k, off: st.t !== k, pick: () => this.setState({ t: k }) })),
+      rows,
+      kpis: [[String(R.length), 'clients in onboarding'], [String(cnt('client')), 'waiting on the client'], [String(cnt('us')), 'waiting on us'], [String(cnt('ready')), 'ready for handover'], [avg + ' days', 'average time in onboarding']].map(([v, k]) => ({ v, k }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>One quick request</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.tp-btn{min-height:52px;border-radius:12px;font:inherit;font-size:16px;font-weight:500;cursor:pointer;width:100%}
+.tp-btn:focus-visible,.tp-tab:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.tp-tab{min-height:36px;border:0;border-radius:8px;font:inherit;font-size:13px;cursor:pointer}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 1040px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+
+  <div style="padding: 10px 12px; background: var(--cs-surface-subtle); display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 11px; line-height: 14px; color: var(--cs-text-muted); text-align: center;">Demo: who is this link for?</span>
+    <div role="tablist" aria-label="Who the link is for" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px;">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+        <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}">
+          <button class="tp-tab" role="tab" aria-selected="true" onClick="{{tb.pick}}" style="background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); color: var(--cs-text-primary); font-weight: 500;">{{tb.label}}</button>
+        </sc-if>
+        <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}">
+          <button class="tp-tab" role="tab" aria-selected="false" onClick="{{tb.pick}}" style="background: transparent; color: var(--cs-text-secondary);">{{tb.label}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span aria-hidden="true" style="width: 28px; height: 28px; border-radius: 8px; background: var(--cs-surface-inverse); color: #AEFFEF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">CS</span>
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Care Sync Experts, for Amara Okafor</span>
+    </div>
+
+    <sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+      <header style="display: flex; flex-direction: column; gap: 6px;">
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">{{title}}</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{intro}}</span>
+      </header>
+
+      <section aria-labelledby="lt-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;"><h2 id="lt-h" style="margin: 0; font-size: 13px; line-height: 18px; color: var(--cs-text-muted); font-weight: 500;">{{draftLabel}}</h2><x-import component-from-global-scope="CareSync.Icon" name="pencil-line" size="{{n16}}" label="Edit"></x-import></div>
+        <p style="margin: 0; font-size: 14px; line-height: 21px; white-space: pre-line;">{{letter}}</p>
+      </section>
+
+      <button class="tp-btn" onClick="{{sign}}" style="border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary);">{{cta}}</button>
+      <button class="tp-btn" style="border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-size: 15px;">Upload my own instead</button>
+      <a href="#" style="text-align: center; font-size: 14px; font-weight: 500; min-height: 44px; display: flex; align-items: center; justify-content: center;">I have a question</a>
+    </sc-if>
+
+    <sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+      <div style="padding-top: 24px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;">
+        <span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 999px; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+        <h1 style="margin: 0; font-size: 26px; line-height: 34px; font-weight: 600;">Thank you, that is all</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{doneText}}</span>
+        <button onClick="{{reset}}" style="min-height: 44px; border: 0; background: transparent; color: var(--cs-text-brand); font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;">See it again (demo)</button>
+      </div>
+    </sc-if>
+
+    <span style="display: flex; gap: 8px; justify-content: center; font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;"><x-import component-from-global-scope="CareSync.Icon" name="lock" size="{{n16}}"></x-import>No account needed. This link is just for you and expires in 14 days.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { who: 'landlord', done: false };
+  }
+  renderVals() {
+    const W = {
+      landlord: {
+        tab: 'Landlord',
+        title: 'Hello Tom, one quick request',
+        intro: 'Amara rents Flat 2, 14 Harbour Road from you and would like to run the office for Harbour Lane Care Ltd from there. Office work only, no care at the flat. CQC asks for your written permission.',
+        draftLabel: 'A letter ready for you to sign',
+        letter: 'I, Tom Reid, owner of Flat 2, 14 Harbour Road, Stevenage SG1 2AB, give permission for my tenant, Amara Okafor, to use the flat as the office of Harbour Lane Care Ltd.\nNo care will be provided at the flat. Office use only.',
+        cta: 'Check and sign',
+        doneText: 'We have sent the signed letter to Amara and to Care Sync. You will not hear from us again about this.'
+      },
+      referee: {
+        tab: 'Referee',
+        title: 'Hello Janet, a short reference',
+        intro: 'Ruth Bennett has named you as a referee for their role as registered manager at Harbour Lane Care. Three short questions, on your phone.',
+        draftLabel: 'What we will ask',
+        letter: '1. How do you know Ruth, and for how long?\n2. What were their main responsibilities?\n3. Is there anything that would make them unsuitable to manage a care service?',
+        cta: 'Start the reference',
+        doneText: 'Thank you. Your reference goes only to Care Sync and Harbour Lane Care, and is kept securely.'
+      },
+      accountant: {
+        tab: 'Accountant',
+        title: 'Hello, a few money questions',
+        intro: 'Amara has asked you to help with the business plan for Harbour Lane Care. We need 4 figures. You can type them or upload what you already have.',
+        draftLabel: 'What we need',
+        letter: 'Money available to start the service\nExpected monthly costs for the first year\nSalaries for the manager and first carers\nAny loans or investment planned',
+        cta: 'Answer the questions',
+        doneText: 'Thank you. Daniel will use these in the business plan and Amara will check it before it goes to CQC.'
+      }
+    };
+    const s = this.state; const cur = W[s.who];
+    const tabs = Object.keys(W).map(k => ({ label: W[k].tab, on: k === s.who, off: k !== s.who, pick: () => this.setState({ who: k, done: false }) }));
+    return Object.assign({ theme: this.props.theme ?? 'light', n16: 16, tabs, open: !s.done, done: s.done,
+      sign: () => this.setState({ done: true }), reset: () => this.setState({ done: false }) }, cur);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Go-live readiness</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.bz-in{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.bz-ta{width:100%;min-height:60px;padding:8px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;box-sizing:border-box;resize:vertical}
+.bz-in:focus-visible,.bz-ta:focus-visible,.bz-link:focus-visible,.bz-a:focus-visible,.bz-tile:focus-visible,.bz-rowbtn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.bz-err{font-size:13px;line-height:18px;color:var(--cs-status-error-text);font-weight:500}
+.bz-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-subtle);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px;min-width:0}
+.bz-red{padding:14px 16px;border-radius:12px;border:1px solid var(--cs-status-error-border);background:var(--cs-status-error-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-amb{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-warning-border);background:var(--cs-status-warning-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-ok{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-success-border);background:var(--cs-status-success-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-inf{padding:12px 14px;border-radius:10px;border:1px solid var(--cs-status-info-border);background:var(--cs-status-info-bg);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px}
+.bz-lbl{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.bz-b{font-weight:500}
+.bz-h3{margin:0;font-size:16px;line-height:22px;font-weight:600}
+.bz-t15{font-size:15px;line-height:22px;font-weight:500}
+.bz-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box}
+.bz-a{color:var(--cs-text-brand);font-weight:500;font-size:14px;line-height:20px;text-decoration:underline;text-underline-offset:3px;border-radius:4px}
+.bz-big{font-size:24px;line-height:32px;font-weight:600}
+.bz-cols{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.bz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bz-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bz-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.bz-g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.bz-item{padding:16px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:10px}
+.bz-ico{width:36px;height:36px;flex-shrink:0;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-secondary);display:flex;align-items:center;justify-content:center}
+.bz-tile{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:12px;background:var(--cs-surface-raised);box-shadow:var(--cs-elevation-1);text-decoration:none;color:var(--cs-text-primary);min-width:0}
+.bz-tile:hover{box-shadow:var(--cs-elevation-2)}
+.bz-num{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.bz-dot{width:8px;height:8px;border-radius:999px;flex-shrink:0;display:inline-block}
+.d-ok{background:var(--cs-status-success-text)}.d-warn{background:var(--cs-status-warning-text)}.d-bad{background:var(--cs-status-error-text)}.d-off{background:var(--cs-text-muted)}
+.bz-rowbtn{width:100%;border:0;background:transparent;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:12px 20px;display:flex;gap:14px;align-items:center;min-height:56px;box-sizing:border-box}
+.bz-rowbtn:hover{background:var(--cs-action-ghost-hover)}
+.bz-sel{background:var(--cs-surface-page)}
+.bz-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.bz-step{display:flex;gap:12px;align-items:flex-start}
+.bz-stepn{width:28px;height:28px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.bz-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;letter-spacing:0}
+.bar.red span{background:var(--cs-status-error-text)}
+.bar.amb span{background:var(--cs-status-warning-text)}
+.bar.ok span{background:var(--cs-status-success-text)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 2400px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Super admin" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Go-live readiness" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 560px; min-width: 0;">
+          <span class="sb-muted">Super admin. Monday 2 November</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Go-live readiness</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">The Hub went live on Thu 1 Oct 2026. This list stays as the health of the setup: anything still open shows here and on Home until it is done.</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;"><span class="sb-muted">{{checkedNote}}</span><button class="sb-btn b-gh" onClick="{{recheck}}">Check again</button></div>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 1 1 360px; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="sc-h">
+          <h2 id="sc-h" class="sb-h2">Setup score</h2>
+          <div style="display: flex; align-items: baseline; gap: 10px;"><span class="sb-kv">{{scoreVal}}</span><span class="sb-sub">{{scoreSub}}</span></div>
+          <div class="{{barCls}}" aria-hidden="true"><span class="{{barW}}"></span></div>
+          <span class="sb-sub">{{scoreNote}}</span>
+        </section>
+        <section class="sb-card" style="flex: 2 1 620px; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;" aria-labelledby="sm-h">
+          <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap;"><h2 id="sm-h" class="sb-h2">Setup mode and dual control</h2><span class="sb-chip c-ok">Dual control on since Thu 1 Oct</span></div>
+          <div class="bz-g3">
+            <sc-for list="{{steps}}" as="p" hint-placeholder-count="3">
+              <div class="bz-step"><span class="{{p.cls}}">{{p.n}}</span><span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;"><span class="bz-b">{{p.t}}</span><span class="sb-muted">{{p.when}}</span><span class="sb-sub">{{p.x}}</span></span></div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+
+      <div class="bz-cols">
+        <section class="sb-card" style="flex: 3 1 640px; min-width: 0;" aria-labelledby="cl-h">
+          <div class="sb-head"><h2 id="cl-h" class="sb-h2">Checklist by area</h2><span class="sb-sub">Open a line to see where it shows and what is left</span></div>
+          <div style="padding: 0 20px 12px;"><div role="tablist" aria-label="Filter the checklist" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{fTabs}}" as="tb" hint-placeholder-count="4">
+            <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+            <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          </sc-for>
+        </div></div>
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="5">
+            <div style="padding: 12px 20px 4px; border-top: 1px solid var(--cs-border-subtle);" class="bz-lbl">{{g.name}}</div>
+            <sc-for list="{{g.items}}" as="i" hint-placeholder-count="3">
+              <div style="border-top: 1px solid var(--cs-border-subtle);">
+                <button class="{{i.rowCls}}" aria-expanded="{{i.exp}}" onClick="{{i.toggle}}">
+                  <span class="{{i.dot}}" aria-hidden="true"></span>
+                  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b" style="font-size: 15px; line-height: 22px;">{{i.t}}</span><span class="sb-sub">{{i.x}}</span></span>
+                  <span class="sb-muted" style="flex: 0 0 150px; text-align: right;">{{i.when}}</span>
+                  <span class="{{i.chipCls}}" style="width: 120px; justify-content: center;">{{i.chip}}</span>
+                </button>
+                <sc-if value="{{i.isOpen}}" hint-placeholder-val="{{ false }}">
+                  <div style="padding: 0 20px 16px 42px; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="bz-box"><span class="bz-lbl">Where it shows</span><sc-for list="{{i.where}}" as="w" hint-placeholder-count="2"><span>{{w}}</span></sc-for></div>
+                    <sc-if value="{{i.isIco}}" hint-placeholder-val="{{ false }}">
+                      <div class="bz-g2">
+                        <div style="display: flex; flex-direction: column; gap: 6px;"><label class="bz-lbl" for="ico-n">ICO registration number</label><input id="ico-n" class="bz-in" value="{{icoVal}}" onChange="{{onIco}}" placeholder="For example ZA123456"></div>
+                        <div style="display: flex; flex-direction: column; gap: 6px;"><label class="bz-lbl" for="ico-d">Renewal date</label><input id="ico-d" class="bz-in" value="{{icoDate}}" onChange="{{onIcoDate}}" placeholder="For example 30/09/2027"></div>
+                      </div>
+                      <sc-if value="{{icoErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err" role="alert">{{icoErrText}}</span></sc-if>
+                      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{saveIco}}">Save the number</button><span class="sb-muted">Shown on the client Security page and the privacy notice. A reminder goes to Collins, the data protection lead, 6 weeks before renewal.</span></div>
+                    </sc-if>
+                    <sc-if value="{{i.isTp}}" hint-placeholder-val="{{ false }}">
+                      <label class="bz-lbl" for="tp-in">Trustpilot review link</label>
+                      <input id="tp-in" class="bz-in" value="{{tpVal}}" onChange="{{onTp}}" placeholder="https://uk.trustpilot.com/evaluate/...">
+                      <sc-if value="{{tpErr}}" hint-placeholder-val="{{ false }}"><span class="bz-err" role="alert">Paste the review link from your Trustpilot business account. It contains trustpilot.com.</span></sc-if>
+                      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-pri" onClick="{{saveTp}}">Add the link</button><span class="sb-muted">Every registered client is invited once, whatever their feedback, and chooses Google or Trustpilot.</span></div>
+                    </sc-if>
+                    <sc-if value="{{i.hasNote}}" hint-placeholder-val="{{ false }}"><div class="bz-ok"><span class="bz-b">{{i.note}}</span></div></sc-if>
+                    <sc-if value="{{i.hasLink}}" hint-placeholder-val="{{ false }}"><a class="bz-a" href="{{i.href}}">{{i.linkText}}</a></sc-if>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </sc-for>
+        </section>
+
+        <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="sa-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="sa-h" class="sb-h2">The two super admins</h2></div>
+            <sc-for list="{{admins}}" as="a" hint-placeholder-count="2">
+              <div style="display: flex; gap: 12px; align-items: flex-start; padding-top: 10px; border-top: 1px solid var(--cs-border-subtle);">
+                <span class="bz-ico bz-b" aria-hidden="true">{{a.ini}}</span>
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span class="bz-b">{{a.name}}</span><span class="sb-sub">{{a.role}}</span><span class="sb-muted">{{a.since}}</span></span>
+                <span class="sb-chip c-ok">Two-step on</span>
+              </div>
+            </sc-for>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="dc2-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="dc2-h" class="sb-h2">What needs the other super admin</h2></div>
+            <ul class="bz-ul">
+              <sc-for list="{{dual}}" as="d" hint-placeholder-count="9"><li style="font-size: 14px; line-height: 20px;">{{d}}</li></sc-for>
+            </ul>
+            <div class="bz-box"><span class="bz-lbl">Without a second approval</span><span>Routine deletions inside the approved schedule run on their own, with 7 days' notice. Anyone with permission can suggest a price; only a super admin enters it.</span></div>
+            <span class="sb-muted">Break-glass in a real emergency: if no other super admin can be reached, the person may self-authorise with a written reason. Always {{bgHours}} hours, both super admins and the client told the same day, reviewed within 1 working day.</span>
+          </section>
+
+          <section class="sb-card" style="padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px;" aria-labelledby="sm2-h">
+            <div class="sb-head" style="padding-left: 0; padding-right: 0;"><h2 id="sm2-h" class="sb-h2">How setup mode worked</h2></div>
+            <span class="sb-sub">Before go-live there was only one super admin, so nothing could be approved by a second person. In setup mode the first super admin could set things up alone, and every change was still logged. Go-live needed two active, named super admins. From that moment dual control switched on, and it stays on.</span>
+            <a class="bz-a" href="SuperAdmin.dc.html">Back to Home (board 24)</a>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: 'all', open: { ico: true }, ico: '', icoDate: '', icoErr: '', icoSaved: false, tp: '', tpErr: false, tpSaved: false, checked: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const R = (window.CSR && typeof window.CSR.get === 'function') ? window.CSR : { get: (k, f) => f };
+    const money = n => { const v = Number(n); return '£' + v.toLocaleString('en-GB', { minimumFractionDigits: (Math.round(v * 100) % 100) ? 2 : 0, maximumFractionDigits: 2 }); };
+    const full = Number(R.get('price-full', 8500));
+    const G = [
+      ['People and control', [
+        ['admins', 'Two named super admins', 'Collins and Rachel Turner, both active with two-step login.', 'done', 'Thu 1 Oct', ['People and access (board 83): super admin is a flag on a role', 'Every approval on Home, the Price book, Forms, Messages and Data and privacy'], 'PeopleAccess.dc.html', 'Open People and access (board 83)'],
+        ['people', 'People and roles', '10 people with roles set, including finance and the data protection lead.', 'done', 'Wed 30 Sep', ['Every staff menu shows only what the role can use', 'Pickers such as "Proposed consultant" in Add a client (board 51)'], 'PeopleAccess.dc.html', 'Open People and access (board 83)']
+      ]],
+      ['Brand and sending', [
+        ['brand', 'Branding', 'Logo, colours and the email footer.', 'done', 'Mon 21 Sep', ['Every client screen and email', 'Email signatures (Messages and automations, board 82)'], 'Messages.dc.html', 'Open Messages and automations (board 82)'],
+        ['domain', 'Sending domain', 'hello@caresyncexperts.co.uk. Sending domain checks passed (SPF, DKIM and DMARC).', 'done', 'Tue 22 Sep', ['Every automated Hub email, including sign-in links', 'Personal messages go from each person\'s Google Workspace mailbox'], 'Health.dc.html', 'Open System health (board 86)'],
+        ['tp', 'Review links', 'Google link added. Trustpilot link not yet added, so clients only see Google for now.', 'open', 'Since Thu 1 Oct', ['Registered, share your experience (board 20)', 'Email: You are registered (board 17)'], 'Rules.dc.html', 'Review platforms in Rules and promises (board 80)']
+      ]],
+      ['Legal and data', [
+        ['legal', 'Legal wordings', 'Agreement, terms and privacy notice, version 1 of each, with dates.', 'done', 'Fri 25 Sep', ['Sign your pack (board 19): the agreement', 'First sign-in (board 53): the privacy notice'], 'DataPrivacy.dc.html', 'Open Data and privacy (board 85)'],
+        ['ico', 'ICO registration number', 'Not entered. The client Security page hides "registered with the ICO" until it is.', 'open', 'Since Thu 1 Oct', ['How we keep your information safe (board 62)', 'The privacy notice'], 'DataPrivacy.dc.html', 'Open Data and privacy (board 85)'],
+        ['ret', 'Retention schedule', 'Version 1 live. Version 2, proposed by Collins, waits for Rachel Turner on Home.', 'done', 'Thu 1 Oct', ['Your account (board 29): how long we keep things', 'Deletion runs (Data and privacy, board 85)'], 'DataPrivacy.dc.html', 'Open Data and privacy (board 85)']
+      ]],
+      ['What we sell', [
+        ['packages', 'Packages', '7 packages: CQC domiciliary care, CQC supported living, Full start-up, CIW, RQIA, tender writing, and add-ons.', 'done', 'Fri 25 Sep', ['Add a client (board 51)', 'The client\'s journey (board 2) and Plan and costs (board 60)'], 'Packages.dc.html', 'Open Packages and journeys (board 81)'],
+        ['prices', 'Prices', '6 prices still to set, including "Aftercare, 12 months" (add-on) and extra sessions. Nobody quotes a price that is not set.', 'open', 'Since Thu 1 Oct', ['Add a client (board 51) shows "Price to set" and blocks the quote', 'Plan and costs (board 60)'], 'PriceBook.dc.html', 'Open Price book (board 77)'],
+        ['full', 'Full start-up price check', money(full) + ' + VAT entered by Collins on Mon 2 Nov. Rachel checks it against £8,000 and approves it (decision 1 on Home).', 'open', 'Since Mon 2 Nov', ['Add a client (board 51), Plan and costs (board 60), Stripe instalments'], 'SuperAdmin.dc.html', 'Open the decision on Home (board 24)'],
+        ['forms', 'Forms', 'CQC (version 7), CIW, RQIA and tender forms live. CQC version 8 waits for approval.', 'done', 'Mon 28 Sep', ['Onboarding forms (boards 46, 47, 55, 56 and 38)', 'Form received checks (board 13)'], 'FormBuilder.dc.html', 'Open Forms (board 44)'],
+        ['emails', 'Emails', 'The email library approved, each email with a version. 5.2 version 3 waits for approval.', 'done', 'Tue 29 Sep', ['Every email the Hub sends', 'Weekly update composer (board 9)'], 'Messages.dc.html', 'Open Messages and automations (board 82)']
+      ]],
+      ['Systems and clients', [
+        ['integrations', 'Connections', 'All 15 set up. 2 need attention today: the CQC email watch for Riverside and a bounced address for Greenway.', 'warn', 'Tue 29 Sep', ['System health (board 86) shows each one and what depends on it'], 'Health.dc.html', 'Open System health (board 86)'],
+        ['import', 'Clients already partway through', 'Imported at their current stage before go-live, for example Westbrook at stage 10 of 11.', 'done', 'Wed 30 Sep', ['Clients (board 68) and each client page (board 42)'], 'ClientsList.dc.html', 'Open Clients (board 68)'],
+        ['test', 'A 3-client test', 'Three test clients went from welcome to submission in a test space, with test payments and signatures.', 'done', 'Tue 29 Sep', ['Run before go-live; run again after any big change'], '', '']
+      ]]
+    ];
+    const isDone = id => (id === 'ico' && s.icoSaved) || (id === 'tp' && s.tpSaved);
+    const items = G.map(([name, list]) => [name, list.map(([id, t, x, st, when, where, href, linkText]) => {
+      const state = isDone(id) ? 'done' : st;
+      const xx = id === 'ico' && s.icoSaved ? 'Saved: ' + s.ico.trim().toUpperCase() + (s.icoDate.trim() ? ', renews ' + s.icoDate.trim() : '') + '. The client Security page now shows it.' : (id === 'tp' && s.tpSaved ? 'Google and Trustpilot both added. Clients choose either.' : x);
+      return { id, t, x: xx, state, when: isDone(id) ? 'Mon 2 Nov' : when, where, href, linkText };
+    })]);
+    const flat = [].concat(...items.map(g => g[1]));
+    const total = flat.length; const done = flat.filter(i => i.state !== 'open').length; const open = total - done;
+    const pct = Math.round(done / total * 100); const w = 'w' + Math.round(pct / 5) * 5;
+    const F = { all: () => true, open: i => i.state === 'open' || isDone(i.id), done: i => i.state !== 'open' };
+    const set = (k, id, v) => this.setState({ [k]: Object.assign({}, s[k], { [id]: v }) });
+    const chipOf = { done: ['Done', 'c-ok', 'd-ok'], open: ['Still open', 'c-warn', 'd-warn'], warn: ['Done, 2 to watch', 'c-info', 'd-warn'] };
+    const groups = items.map(([name, list]) => ({ name, items: list.filter(F[s.f]).map(i => {
+      const isOpen = !!s.open[i.id];
+      const note = i.id === 'ico' && s.icoSaved ? 'Saved by Collins, the data protection lead, just now. Rachel is told. Written to the audit log.' : (i.id === 'tp' && s.tpSaved ? 'Added by Collins just now. The next registered client can choose Trustpilot.' : '');
+      return Object.assign({}, i, { isOpen, exp: isOpen ? 'true' : 'false', toggle: () => set('open', i.id, !isOpen),
+        rowCls: 'bz-rowbtn' + (isOpen ? ' bz-sel' : ''), dot: 'bz-dot ' + chipOf[i.state][2], chip: chipOf[i.state][0], chipCls: 'sb-chip ' + chipOf[i.state][1],
+        isIco: i.id === 'ico' && !s.icoSaved, isTp: i.id === 'tp' && !s.tpSaved, hasNote: !!note, note, hasLink: !!i.href });
+    }) })).filter(g => g.items.length);
+    return {
+      theme: this.props.theme ?? 'light', nav: [{ items: [
+  { label: 'Back to the Hub', icon: 'chevron-left' }
+] }, { heading: 'Super admin', items: [
+  { label: 'Home', icon: 'layout-dashboard', badge: { text: '7', status: 'warning' } },
+  { label: 'Go-live readiness', icon: 'list-checks', current: true },
+  { label: 'Rules and promises', icon: 'clock' },
+  { label: 'Packages and journeys', icon: 'clipboard-list' },
+  { label: 'Price book', icon: 'file-check' },
+  { label: 'Forms', icon: 'pencil-line' },
+  { label: 'Messages and automations', icon: 'inbox' },
+  { label: 'People and access', icon: 'users' },
+  { label: 'Security', icon: 'shield-alert' },
+  { label: 'Data and privacy', icon: 'lock' },
+  { label: 'System health', icon: 'refresh-cw' },
+  { label: 'Money and exports', icon: 'download' },
+  { label: 'View as', icon: 'eye' },
+  { label: 'How it fits together', icon: 'git-compare' }
+] }], user: { name: 'Collins', initials: 'C' }, three: 7,
+      bgHours: R.get('break-glass-hours', 4),
+      checkedNote: s.checked ? 'Checked just now' : 'Checked today 06:00', recheck: () => this.setState({ checked: true }),
+      scoreVal: done + ' of ' + total, scoreSub: pct + '% done', barCls: 'bar ' + (open ? 'amb' : 'ok'), barW: w,
+      scoreNote: open ? open + (open === 1 ? ' thing is' : ' things are') + ' still open. None of them stops the Hub working, but each one is promised somewhere.' : 'Everything is done. New gaps appear here if a setting is removed.',
+      steps: [
+        ['1', 'Setup mode', 'Mon 14 Sep to Wed 30 Sep', 'Collins set things up alone. Every change was logged.', 'bz-stepn c-neutral'],
+        ['2', 'Go-live', 'Thu 1 Oct 2026', 'Needed two active, named super admins with two-step login. The 3-client test had passed.', 'bz-stepn c-info'],
+        ['3', 'Dual control', 'On since Thu 1 Oct', 'Sensitive changes need the other super admin. Nobody approves their own request.', 'bz-stepn c-ok']
+      ].map(([n, t, when, x, cls]) => ({ n, t, when, x, cls })),
+      fTabs: [['all', 'All ' + total], ['open', 'Still open ' + open], ['done', 'Done ' + done]].map(([k, label]) => ({ label, on: s.f === k, off: s.f !== k, pick: () => this.setState({ f: k }) })),
+      groups,
+      icoVal: s.ico, icoDate: s.icoDate, icoErr: !!s.icoErr, icoErrText: s.icoErr,
+      onIco: e => this.setState({ ico: e.target.value, icoErr: '' }), onIcoDate: e => this.setState({ icoDate: e.target.value }),
+      saveIco: () => { const v = s.ico.trim().toUpperCase(); if (!v) { this.setState({ icoErr: 'Enter the number from the ICO certificate.' }); return; } if (!/^Z[A-Z0-9]{7}$/.test(v)) { this.setState({ icoErr: 'ICO registration numbers start with Z and have 8 characters. Check the certificate.' }); return; } this.setState({ icoSaved: true, icoErr: '' }); },
+      tpVal: s.tp, tpErr: s.tpErr, onTp: e => this.setState({ tp: e.target.value, tpErr: false }),
+      saveTp: () => { if (!/trustpilot\.com/i.test(s.tp)) { this.setState({ tpErr: true }); return; } this.setState({ tpSaved: true }); },
+      admins: [
+        ['C', 'Collins', 'Director. Super admin 1 and data protection lead.', 'Super admin since setup began, Mon 14 Sep'],
+        ['RT', 'Rachel Turner', 'Operations manager. Super admin 2.', 'Invited by Collins in setup mode on Mon 28 Sep. Active from Thu 1 Oct']
+      ].map(([ini, name, role, since]) => ({ ini, name, role, since })),
+      dual: ['Price changes and discounts', 'Permission changes and super admin invites', 'Form versions', 'Template and email versions with legal wording', 'Retention schedule changes', 'Early or unscheduled deletion', 'Break-glass, unless self-authorised in an emergency']
+    };
+  }
+}
+</script>
+</body>
+</html>

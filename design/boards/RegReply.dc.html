@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Answering a regulator</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+.rr-ta{min-height:84px;padding:10px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;resize:vertical;box-sizing:border-box;width:100%}
+.rr-inp{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;box-sizing:border-box}
+.rr-q{padding:16px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.rr-quote{padding:10px 12px;border-left:3px solid var(--cs-border-default);background:var(--cs-surface-page);border-radius:0 8px 8px 0;font-size:14px;line-height:20px}
+.rr-step{display:flex;gap:12px;align-items:flex-start;padding:12px 20px;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.rr-num{width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.n-done{background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.n-todo{border:2px solid var(--cs-border-control);color:var(--cs-text-secondary);box-sizing:border-box}
+.rr-msg{padding:10px 12px;border-radius:10px;font-size:14px;line-height:20px}
+.m-warn{background:var(--cs-status-warning-bg);color:var(--cs-text-primary)}
+.m-ok{background:var(--cs-status-success-bg);color:var(--cs-text-primary)}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1460px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Deadlines: answering a regulator" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Answering a regulator</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">One place to answer what a regulator has asked: each point, our answer, the evidence, a senior check, the client's approval, and a record of what was sent.</span>
+        </div>
+      <div role="tablist" aria-label="Which reply" style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+          <sc-if value="{{tb.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+          <sc-if value="{{tb.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{tb.pick}}">{{tb.label}}</button></sc-if>
+        </sc-for>
+      </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{facts}}" as="k" hint-placeholder-count="4">
+          <div class="sb-card sb-kpi"><span class="sb-muted">{{k.k}}</span><span style="font-size: 18px; line-height: 26px; font-weight: 600;">{{k.v}}</span><span class="{{k.cls}}" style="align-self: flex-start;">{{k.note}}</span></div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 3 1 600px; min-width: 0;" aria-labelledby="pt-h">
+          <div class="sb-head" style="flex-direction: column; align-items: flex-start; gap: 2px;"><h2 id="pt-h" class="sb-h2">{{pointsTitle}}</h2><span class="sb-sub">{{pointsSub}}</span></div>
+          <sc-for list="{{points}}" as="p" hint-placeholder-count="3">
+            <div class="rr-q">
+              <div style="display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 600;">{{p.n}}</span><span class="{{p.cls}}">{{p.state}}</span></div>
+              <div class="rr-quote"><span class="sb-muted">{{p.qLabel}}</span><br>{{p.q}}</div>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--cs-text-secondary);">{{p.aLabel}}<textarea class="rr-ta" value="{{p.a}}" onChange="{{p.onA}}"></textarea></label>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;"><span class="sb-muted">Evidence:</span><sc-for list="{{p.ev}}" as="e" hint-placeholder-count="2"><span class="{{e.cls}}">{{e.t}}</span></sc-for></div>
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><button class="sb-btn b-gh" onClick="{{p.flip}}">{{p.flipLabel}}</button><span class="sb-muted">{{p.hint}}</span></div>
+            </div>
+          </sc-for>
+        </section>
+
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-labelledby="st-h" style="padding-bottom: 8px;">
+            <div class="sb-head"><h2 id="st-h" class="sb-h2">Before it goes</h2><span class="sb-sub">{{stepsSub}}</span></div>
+            <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+              <div class="rr-step"><span class="{{s.cls}}">{{s.mark}}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{s.t}}</span><span class="sb-sub">{{s.note}}</span></span></div>
+            </sc-for>
+            <div class="rr-step" style="flex-direction: column; align-items: stretch; gap: 8px;">
+              <label style="display: flex; gap: 10px; align-items: center; min-height: 36px; cursor: pointer;"><input type="checkbox" checked="{{reviewed}}" onChange="{{onReview}}" style="width: 20px; height: 20px; accent-color: var(--cs-action-primary);">{{reviewLabel}}</label>
+              <button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{toClient}}">{{toClientLabel}}</button>
+              <sc-if value="{{blockShow}}" hint-placeholder-val="{{ false }}"><div class="rr-msg m-warn">{{blockText}}</div></sc-if>
+            </div>
+          </section>
+
+          <section class="sb-card" aria-labelledby="rs-h" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <h2 id="rs-h" class="sb-h2">Record sent</h2>
+            <span class="sb-sub">{{recordIntro}}</span>
+            <sc-if value="{{canRecord}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">Date sent<input class="rr-inp" placeholder="dd/mm/yyyy" value="{{sentDate}}" onChange="{{onDate}}"></label>
+                <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">How it was sent<select class="rr-inp" value="{{method}}" onChange="{{onMethod}}"><option>By email, to the address the regulator gave</option><option>By post, recorded delivery</option><option>Through the regulator's online portal</option></select></label>
+                <span class="sb-muted">A PDF copy of exactly what was sent is kept in the evidence log, with who sent it.</span>
+                <button class="sb-btn b-pri" style="align-self: flex-start;" onClick="{{record}}">Record sent</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{recorded}}" hint-placeholder-val="{{ false }}"><div class="rr-msg m-ok">{{recordedText}}</div></sc-if>
+          </section>
+
+          <section class="sb-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 6px;" aria-labelledby="pl-h">
+            <h2 id="pl-h" class="sb-h2">{{plainTitle}}</h2>
+            <span class="sb-sub">{{plain}}</span>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1460}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: 0,
+      ready: [[true, false, true], [true, false, true]],
+      ans: [[
+        'We have recruited 6 care workers, with signed offers, and set out a rota for the first 3 months. A senior carer covers sickness and leave, and the manager is on call outside office hours. We will start with up to 8 people and grow only as staff join.',
+        'Since the interview, the proposed manager has completed safeguarding adults training and two practice sessions with our coach. The local authority referral route, with phone numbers, is now written into the safeguarding policy and the staff handbook.',
+        'The Statement of Purpose has been corrected. It now describes personal care only and lists no nursing or clinical tasks. The changes are marked so they are easy to check.'
+      ], [
+        'Our staffing plan now shows weekend cover: 2 care workers each Saturday and Sunday, with a senior carer on call. Sickness is covered by a bank of 2 relief workers who have finished induction.',
+        'Claire was caring full time for a close family member from June 2021 to January 2022. She has written and signed a short statement to explain this.',
+        'The office lease started on 1 October 2026. A copy of the signed lease is attached.'
+      ]],
+      reviewed: [false, false], stage: ['draft', 'draft'], block: [false, false], sentDate: ['', ''], method: ['By email, to the address the regulator gave', 'By email, to the address the regulator gave'], rec: ['', '']
+    };
+  }
+  renderVals() {
+    const st = this.state, t = st.tab;
+    const set = (key, val) => { const a = st[key].slice(); a[t] = val; const o = {}; o[key] = a; this.setState(o); };
+    const C = [{
+      who: 'Priya', approver: 'Priya Shah', reviewer: 'Collins', reviewWhen: 'Mon 9 Nov',
+      facts: [['Served (received)', 'Wed 21 Oct', 'Day 1. Notice saved', 'neutral'], ['Our target to send', 'Tue 10 Nov', 'Day 21: 8 days', 'warn'], ['Legal deadline', 'Tue 17 Nov', 'Day 28: 15 days', 'bad'], ['Senior review and approval', 'Mon 9 Nov', 'Day 20: Collins, then Priya', 'info']],
+      targets: ['by day 14, Tue 3 Nov', 'by day 20, Mon 9 Nov', 'by day 20, Mon 9 Nov', 'by day 21, Tue 10 Nov'],
+      pointsTitle: 'Sunrise Homecare Ltd: each ground in the Notice of Proposal',
+      qLabel: 'What the notice says',
+      aLabel: 'Our response',
+      points: [
+        ['Ground 1: staffing', 'The provider has not shown that there will be enough suitably trained staff to deliver the care described.', [['Staffing plan v3', 1], ['6 signed offers of employment', 1], ['Rota for the first 3 months', 1]]],
+        ['Ground 2: safeguarding', 'At interview, the proposed manager could not explain how a safeguarding concern would be reported to the local authority.', [['Training certificate', 0], ['Safeguarding policy v2', 1], ['Coaching session notes', 1]]],
+        ['Ground 3: Statement of Purpose', 'The Statement of Purpose describes clinical tasks that do not match the personal care service applied for.', [['Statement of Purpose v4, changes marked', 1]]]
+      ],
+      plainTitle: 'In plain English',
+      plain: 'A Notice of Proposal tells the provider what CQC plans to decide and why. It is not the final decision. Written representations are the provider\'s chance to show CQC why it should decide differently, with evidence. We write them with Priya, who approves every word before anything is sent. If CQC still refuses, we resubmit, at no charge to the client. The 28 days are worked out the safe way: the day of service counts as day 1, so Priya\'s legal deadline is Tue 17 Nov. Confirm with a legal adviser if unsure. Our own targets: draft by day 14, senior review and Priya\'s approval by day 20, send by day 21, a week before the legal deadline.'
+    }, {
+      who: 'Femi', approver: 'Femi Adebayo', reviewer: 'Collins', reviewWhen: 'Thu 5 Nov',
+      targets: ['', '', '', 'Fri 6 Nov, 4 working days before CQC\'s date'],
+      facts: [['Received', 'Thu 29 Oct', 'By email, saved', 'neutral'], ['Our target to send', 'Fri 6 Nov', '4 days', 'warn'], ['CQC reply by', 'Thu 12 Nov', '10 days', 'info'], ['Senior review', 'Thu 5 Nov', 'Collins', 'info']],
+      pointsTitle: 'Elm Tree Care Ltd: CQC request for more information',
+      qLabel: 'CQC asked',
+      aLabel: 'Our drafted answer',
+      points: [
+        ['Question 1: weekend and sickness cover', 'Please send an updated staffing plan showing how calls will be covered at weekends and during sickness.', [['Staffing plan v3', 1], ['Weekend rota', 1]]],
+        ['Question 2: employment history', 'Please explain the gap in Claire Hughes\'s employment history between June 2021 and January 2022.', [['Claire\'s signed statement', 0]]],
+        ['Question 3: office lease', 'Please confirm the office lease has started and send a copy.', [['Signed lease', 1]]]
+      ],
+      plainTitle: 'Why CQC asks',
+      plain: 'Questions like these are a normal part of most applications and are not a sign of trouble. Clear, complete answers by the date CQC gives help the application keep moving towards Claire\'s interview on Tue 24 Nov.'
+    }][t];
+    const ready = st.ready[t];
+    const points = C.points.map(([n, q, ev], i) => {
+      const missing = ev.filter(e => !e[1]).length;
+      const ok = ready[i];
+      return {
+        n, q, qLabel: C.qLabel, aLabel: C.aLabel, a: st.ans[t][i],
+        onA: (e) => { const all = st.ans.map(x => x.slice()); all[t][i] = e.target.value; this.setState({ ans: all }); },
+        ev: ev.map(([txt, have]) => ({ t: (have || ok ? txt : txt + ': waiting'), cls: 'sb-chip ' + (have || ok ? 'c-ok' : 'c-warn') })),
+        state: ok ? 'Ready' : (missing ? 'Waiting for evidence' : 'Drafted'), cls: 'sb-chip ' + (ok ? 'c-ok' : 'c-warn'),
+        flipLabel: ok ? 'Mark as not ready' : 'Mark ready',
+        hint: ok ? 'Answer written and evidence attached.' : (missing ? 'Asked ' + C.who + ' for it. Mark ready once it is attached.' : 'Check the wording, then mark ready.'),
+        flip: () => { const all = st.ready.map(x => x.slice()); all[t][i] = !ok; const stage = st.stage.slice(); if (stage[t] !== 'sent') stage[t] = 'draft'; this.setState({ ready: all, stage }); }
+      };
+    });
+    const nReady = ready.filter(Boolean).length, allReady = nReady === ready.length;
+    const stage = st.stage[t], reviewed = st.reviewed[t];
+    const tg = i => C.targets[i] ? '. Target ' + C.targets[i] : '';
+    const steps = [
+      ['Draft every point', 'Daniel. ' + nReady + ' of ' + ready.length + ' ready' + tg(0), allReady],
+      ['Senior review', C.reviewer + ', booked ' + C.reviewWhen + tg(1), reviewed],
+      ['Client approves', C.approver + ' reads and approves the final wording' + tg(2), stage === 'approved' || stage === 'sent'],
+      ['Send and record', 'Date, method and a copy kept as evidence' + tg(3), stage === 'sent']
+    ].map(([tt, note, done], i) => ({ t: tt, note, cls: 'rr-num ' + (done ? 'n-done' : 'n-todo'), mark: done ? '✓' : String(i + 1) }));
+    const left = [];
+    if (!allReady) left.push((ready.length - nReady) + (ready.length - nReady === 1 ? ' point is' : ' points are') + ' not ready yet');
+    if (!reviewed) left.push('the senior review by ' + C.reviewer + ' is booked for ' + C.reviewWhen);
+    return {
+      theme: this.props.theme ?? 'light', three: 3, user: { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock', current: true },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      tabs: ['Sunrise: Notice of Proposal', 'Elm Tree: CQC questions'].map((label, i) => ({ label, on: t === i, off: t !== i, pick: () => this.setState({ tab: i }) })),
+      facts: C.facts.map(([k, v, note, c]) => ({ k, v, note, cls: 'sb-chip c-' + c })),
+      pointsTitle: C.pointsTitle, pointsSub: nReady + ' of ' + ready.length + ' ready. Edit any answer here; every change is saved with who made it.', points,
+      stepsSub: stage === 'sent' ? 'Sent and recorded' : stage === 'approved' ? 'Approved, ready to send' : stage === 'client' ? 'With ' + C.who + ' for approval' : 'In progress',
+      steps, reviewed, reviewLabel: C.reviewer + ' has reviewed it (booked ' + C.reviewWhen + ')',
+      onReview: () => set('reviewed', !reviewed),
+      toClientLabel: stage === 'draft' ? 'Send to client for approval' : stage === 'client' ? 'Record ' + C.who + '\'s approval' : stage === 'approved' ? 'Approved by ' + C.who : 'Sent',
+      toClient: () => { if (stage === 'client') { const s3 = st.stage.slice(); s3[t] = 'approved'; this.setState({ stage: s3 }); return; } if (stage !== 'draft') return; if (allReady && reviewed) { const s2 = st.stage.slice(); s2[t] = 'client'; const b = st.block.slice(); b[t] = false; this.setState({ stage: s2, block: b }); } else set('block', true); },
+      blockShow: st.block[t] && stage === 'draft', blockText: 'Not yet: ' + left.join(', and ') + '. We only send to ' + C.who + ' once every point is ready and checked.',
+      canRecord: stage === 'approved', recorded: stage === 'sent',
+      recordIntro: stage === 'draft' || stage === 'client' ? 'Opens once ' + C.who + ' has approved the final wording.' : stage === 'approved' ? C.who + ' has approved. Once it is sent, record it here.' : 'Done. This is the record the team and the client can see.',
+      sentDate: st.sentDate[t], onDate: (e) => set('sentDate', e.target.value),
+      method: st.method[t], onMethod: (e) => set('method', e.target.value),
+      record: () => { if (!st.sentDate[t].trim()) return; const s2 = st.stage.slice(); s2[t] = 'sent'; this.setState({ stage: s2 }); },
+      recordedText: 'Recorded: sent ' + st.sentDate[t] + ', ' + st.method[t].charAt(0).toLowerCase() + st.method[t].slice(1) + '. A copy is kept as evidence, and ' + C.who + ' can see it in the Hub.',
+      plainTitle: C.plainTitle, plain: C.plain
+    };
+  }
+}
+</script>
+</body>
+</html>

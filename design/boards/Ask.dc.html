@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Ask Care Sync</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box; display: flex; flex-direction: column;">
+
+  <header style="background: var(--cs-surface-raised); border-bottom: 1px solid var(--cs-border-subtle); padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px;">
+    <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Ask Care Sync</h1>
+    <span style="display: flex; gap: 8px; align-items: center; font-size: 14px; line-height: 20px; padding: 10px 12px; border-radius: 10px; background: var(--cs-surface-brand);"><x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n16}}"></x-import><span>Prefer to talk to a person? Call <span style="font-weight: 600; user-select: all;">0333 577 0877</span>, or ask below and Daniel replies here.</span></span>
+    <div role="tablist" aria-label="Who to ask" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: var(--cs-surface-subtle);">
+      <button role="tab" aria-selected="true" style="min-height: 40px; border: 0; border-radius: 8px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); font: inherit; font-size: 14px; font-weight: 500; color: var(--cs-text-primary); display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path><path d="M19 17v4"></path><path d="M17 19h4"></path></svg>Sync Assistant</button>
+      <button role="tab" aria-selected="false" style="min-height: 40px; border: 0; border-radius: 8px; background: transparent; font: inherit; font-size: 14px; color: var(--cs-text-secondary); display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <x-import component-from-global-scope="CareSync.Icon" name="user" size="{{n16}}"></x-import>Daniel, consultant</button>
+    </div>
+  </header>
+
+  <main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
+    <span style="align-self: center; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Today</span>
+
+    <div style="align-self: flex-end; max-width: 78%; background: var(--cs-action-primary); color: var(--cs-action-on-primary); border-radius: 18px 18px 4px 18px; padding: 10px 14px; font-size: 15px; line-height: 22px;">Where do I get an enhanced DBS check?</div>
+
+    <div style="align-self: flex-start; max-width: 86%; display: flex; flex-direction: column; gap: 8px;">
+      <div style="background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); border-radius: 18px 18px 18px 4px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-size: 15px; line-height: 22px;">You need an enhanced DBS check for the role you will hold. Your Documents checklist has a step-by-step guide, and Daniel will confirm the right route for your application.</span>
+        <span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-action-on-secondary); font-size: 12px; line-height: 16px; font-weight: 500;">
+          <x-import component-from-global-scope="CareSync.Icon" name="file-text" size="{{n16}}"></x-import>From Care Sync help: DBS checks</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; padding-left: 4px;">
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Was this helpful?</span>
+        <button style="min-height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); font: inherit; font-size: 12px; color: var(--cs-text-primary);">Yes</button>
+        <button style="min-height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-raised); font: inherit; font-size: 12px; color: var(--cs-text-primary);">No</button>
+      </div>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 78%; background: var(--cs-action-primary); color: var(--cs-action-on-primary); border-radius: 18px 18px 4px 18px; padding: 10px 14px; font-size: 15px; line-height: 22px;">Is a council flat OK for my home office?</div>
+
+    <div style="align-self: flex-start; max-width: 86%; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); border-radius: 18px 18px 18px 4px; padding: 12px 14px; font-size: 15px; line-height: 22px;">That depends on your tenancy, so it is a question for your consultant. I have sent it to Daniel with this conversation.</div>
+
+    <div role="status" style="align-self: stretch; border-radius: 12px; border: 1px solid var(--cs-border-subtle); background: var(--cs-surface-raised); padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+      <span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-inverse); color: #AEFFEF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">DM</span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column;">
+        <span style="font-size: 14px; line-height: 20px; font-weight: 500;">Sent to Daniel</span>
+        <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Daniel usually replies within 1 working day. You will get an email too.</span>
+      </span>
+      <x-import component-from-global-scope="CareSync.StatusBadge" status="info" icon="clock">With us</x-import>
+    </div>
+  </main>
+
+  <footer style="background: var(--cs-surface-raised); border-top: 1px solid var(--cs-border-subtle); padding: 10px 12px 24px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; gap: 8px; overflow: hidden;">
+      <button style="flex-shrink: 0; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: var(--cs-surface-brand); color: var(--cs-action-on-secondary); font: inherit; font-size: 13px; font-weight: 500;">What happens after you submit?</button>
+      <button style="flex-shrink: 0; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: var(--cs-surface-brand); color: var(--cs-action-on-secondary); font: inherit; font-size: 13px; font-weight: 500;">Request a call back</button>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <label for="ask-input" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Your question</label>
+      <input id="ask-input" placeholder="Ask anything about your journey" style="flex-grow: 1; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--cs-border-control); background: var(--cs-surface-page); font: inherit; font-size: 15px; color: var(--cs-text-primary);">
+      <button aria-label="Record a voice question" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; border: 0; background: var(--cs-surface-subtle); color: var(--cs-text-primary); display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><path d="M12 19v3"></path></svg>
+      </button>
+      <button aria-label="Send" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary); display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4z"></path></svg>
+      </button>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'light', n16: 16, n20: 20, n24: 24 };
+  }
+}
+</script>
+</body>
+</html>

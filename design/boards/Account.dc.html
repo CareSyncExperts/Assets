@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your account and privacy</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}a:hover{color:#0A6361}
+.ac-sw{width:52px;height:32px;border-radius:999px;border:0;padding:3px;cursor:pointer;display:flex;align-items:center;flex-shrink:0;box-sizing:border-box}
+.ac-sw:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.ac-out{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:15px;font-weight:500;cursor:pointer}
+.ac-out:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.ac-row{padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--cs-border-subtle)}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 3980px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; align-items: center; gap: 12px;">
+      <a href="Main.dc.html" aria-label="Back to Today" style="width: 44px; height: 44px; margin-left: -12px; display: flex; align-items: center; justify-content: center; color: var(--cs-text-primary);"><x-import component-from-global-scope="CareSync.Icon" name="chevron-left" size="{{n24}}"></x-import></a>
+      <span aria-hidden="true" style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500;">AO</span>
+      <div style="display: flex; flex-direction: column;">
+        <h1 style="margin: 0; font-size: 22px; line-height: 30px; font-weight: 600;">Your account and privacy</h1>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Amara Okafor, Harbour Lane Care Ltd</span>
+      </div>
+    </header>
+
+    <section aria-labelledby="see-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="see-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Who can see your information</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{team}}" as="m" hint-placeholder-count="6">
+          <div class="ac-row">
+            <span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">{{m.initials}}</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{m.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{m.role}}</span></span>
+          </div>
+        </sc-for>
+        <div style="padding: 12px 16px; font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Nobody else at Care Sync can open your documents or logins. In an emergency only, someone else may need to look. A senior member of the Care Sync team approves it first, it lasts {{bgHours}} hours at most, and we tell you the same day. You would see it below.</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="log-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 0 4px;">
+        <h2 id="log-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Every time we looked</h2>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-brand); font-weight: 500;">See all</span>
+      </div>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px;">
+        <x-import component-from-global-scope="CareSync.AuditTimeline" events="{{log}}" label="Access to your information"></x-import>
+      </div>
+      <span style="margin: 0 4px; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">Our system checks your business email for CQC every few minutes. Those automatic checks are summed up, not listed one by one.</span>
+    </section>
+
+    <section aria-labelledby="em-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="em-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Your business email</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><span style="font-size: 15px; line-height: 22px; font-weight: 500; word-break: break-all;">amara@harbourlanecare.co.uk</span><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="inbox">Connected</x-import></div>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">We only file emails from CQC, CIW, RQIA and tender portals. We never open your Hub sign-in or e-signature emails. Agreed on 19 October.</span>
+        <a href="EmailConnect.dc.html" style="font-size: 14px; line-height: 20px; font-weight: 500;">Change or withdraw access</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="si-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="si-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Signing in</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-size: 14px; line-height: 20px;">We email you a sign-in link, so there is no password. A phone or computer you have used before stays signed in for {{deviceDays}} days.</span>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Because Care Sync holds the login to the email you sign in with, we also text a code to your mobile, 07700 900456, on a new phone or computer, and before you sign, approve, download everything or change your contact details. Only you can see that code.</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="dv-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="dv-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Signed in on</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{devices}}" as="d" hint-placeholder-count="2">
+          <div class="ac-row">
+            <x-import component-from-global-scope="CareSync.Icon" name="{{d.icon}}" size="{{n20}}"></x-import>
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">{{d.name}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{d.note}}</span></span>
+            <sc-if value="{{d.isThis}}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="CareSync.StatusBadge" status="success">This phone</x-import></sc-if>
+          </div>
+        </sc-for>
+        <div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;">
+          <button class="ac-out" onClick="{{signOutAll}}">{{outLabel}}</button>
+          <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{outNote}}</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="ct-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="ct-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">How we keep in touch</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <sc-for list="{{channels}}" as="c" hint-placeholder-count="3">
+          <div class="ac-row">
+            <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">{{c.label}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{c.note}}</span></span>
+            <sc-if value="{{c.on}}" hint-placeholder-val="{{ true }}">
+              <button class="ac-sw" role="switch" aria-checked="true" aria-label="{{c.label}}" onClick="{{c.flip}}" style="background: var(--cs-action-primary); justify-content: flex-end;"><span style="width: 26px; height: 26px; border-radius: 999px; background: var(--cs-surface-raised);"></span></button>
+            </sc-if>
+            <sc-if value="{{c.off}}" hint-placeholder-val="{{ false }}">
+              <button class="ac-sw" role="switch" aria-checked="false" aria-label="{{c.label}}" onClick="{{c.flip}}" style="background: var(--cs-border-default); justify-content: flex-start;"><span style="width: 26px; height: 26px; border-radius: 999px; background: var(--cs-surface-raised);"></span></button>
+            </sc-if>
+            <sc-if value="{{c.later}}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Coming later</x-import>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+          <span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">Quiet hours</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{quietNote}}</span></span>
+          <span style="font-size: 14px; line-height: 20px; font-weight: 500; white-space: nowrap;">{{quiet}}</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="pp-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="pp-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">People on your account</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div class="ac-row"><span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-brand); color: var(--cs-text-brand); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">AO</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">You</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Director. Sees everything</span></span></div>
+        <div class="ac-row"><span aria-hidden="true" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--cs-surface-subtle); color: var(--cs-text-secondary); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500;">RB</span><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Ruth Bennett</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Registered manager. Sees their own tasks, such as interview practice</span></span></div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; color: var(--cs-text-brand);"><x-import component-from-global-scope="CareSync.Icon" name="plus" size="{{n20}}"></x-import><span style="display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Add someone</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">A co-director (sees everything, with their own sign-in and tasks), or your accountant (only what you share)</span></span></div>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="PlanCosts.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); text-decoration: none; color: var(--cs-text-primary);"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">Your plan and costs</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Key dates, every payment, and what happens if CQC says no</span></span><span aria-hidden="true" style="color: var(--cs-text-brand); font-weight: 500;">&#8250;</span></a>
+      <a href="Security.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--cs-surface-raised); box-shadow: var(--cs-elevation-1); text-decoration: none; color: var(--cs-text-primary);"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">How we keep your information safe</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Where your information is kept, who can see it, and signing in</span></span><span aria-hidden="true" style="color: var(--cs-text-brand); font-weight: 500;">&#8250;</span></a>
+    </div>
+
+    <section aria-labelledby="pay-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="pay-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Your payments</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div class="ac-row" style="flex-direction: column; align-items: stretch; gap: 4px;"><span style="display: flex; justify-content: space-between; font-size: 15px; line-height: 22px; font-weight: 500;"><span>Your package</span><span>{{pkgPrice}}</span></span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{pkgNote}}</span></div>
+        <div class="ac-row"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">{{inst1}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Paid 19 October through Stripe. Receipt saved</span></span><x-import component-from-global-scope="CareSync.StatusBadge" status="success" icon="check">Paid</x-import></div>
+        <div class="ac-row"><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">{{inst2}}</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Due when you sign off your final pack. We remind you a week before</span></span><x-import component-from-global-scope="CareSync.StatusBadge" status="neutral" icon="clock">Not due yet</x-import></div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;"><x-import component-from-global-scope="CareSync.Icon" name="download" size="{{n20}}"></x-import><span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Invoices and receipts</span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="dt-h" style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="dt-h" style="margin: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500;">Your data</h2>
+      <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+        <div class="ac-row"><x-import component-from-global-scope="CareSync.Icon" name="download" size="{{n20}}"></x-import><span style="flex-grow: 1; font-size: 15px; line-height: 22px;">Download everything</span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></div>
+        <div class="ac-row"><x-import component-from-global-scope="CareSync.Icon" name="pencil-line" size="{{n20}}"></x-import><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">Correct something we hold</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Tell us what is wrong. It goes to Collins, our data protection lead, as a rights request, and we reply within one month</span></span><x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import></div>
+        <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;"><x-import component-from-global-scope="CareSync.Icon" name="file-clock" size="{{n20}}"></x-import><span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px;">How long we keep things</span><span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">Images of your ID and DBS certificate are deleted once the regulator has made its decision. We keep a short record: who checked them, when, the type of document, and the DBS number and issue date. Everything else follows the retention schedule in our privacy notice.</span></span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cn-h" style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+      <h2 id="cn-h" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500;">Something not right?</h2>
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Tell us and it goes to a manager, not your consultant. We confirm we have it within 1 working day, and the manager calls you within 1 working day.</span>
+      <x-import component-from-global-scope="CareSync.Button" variant="secondary" block="{{yes}}" icon-start="circle-alert">Raise a concern</x-import>
+    </section>
+
+    <span style="display: flex; align-items: center; gap: 8px; justify-content: center; font-size: 12px; line-height: 16px; color: var(--cs-text-muted);"><x-import component-from-global-scope="CareSync.Icon" name="log-out" size="{{n16}}"></x-import>Sign out of this phone</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":3980}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { email: true, text: true, whatsapp: false, out: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const get = (k, f) => (window.CSR ? CSR.get(k, f) : f);
+    const day = get('weekly-update-day', 'Friday');
+    const channels = [
+      ['email', 'Email', day + ' updates and anything important', false],
+      ['text', 'Text message', 'Only to arrange your introduction call and for urgent legal deadlines', false],
+      ['whatsapp', 'WhatsApp', 'From the Care Sync business number', true]
+    ].map(([k, label, note, later]) => ({ label, note, later, on: !later && s[k], off: !later && !s[k], flip: () => this.setState({ [k]: !s[k] }) }));
+    const price = get('price-full', 8500), vat = 1 + get('vat-rate', 20) / 100;
+    const third = Math.floor(price / 3 * 100) / 100, last = Math.round((price - 2 * third) * 100) / 100;
+    const m = n => '£' + Number(n).toLocaleString('en-GB', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' + VAT';
+    return {
+      theme: this.props.theme ?? 'light', yes: true, n16: 16, n20: 20, n24: 24,
+      channels,
+      devices: (s.out ? [['lock', 'iPhone, Safari', 'Last used just now', true]] : [
+        ['lock', 'iPhone, Safari', 'Last used just now', true],
+        ['lock', 'Windows laptop, Chrome', 'Last used Thu 29 October, 21:46, when you sent your form', false]
+      ]).map(([icon, name, note, isThis]) => ({ icon, name, note, isThis })),
+      signOutAll: () => this.setState({ out: true }), outLabel: s.out ? 'Signed out everywhere' : 'Sign out everywhere',
+      outNote: s.out ? 'Every other phone and computer is signed out. Each one now needs a new sign-in link and the code to your mobile. We added it to "Every time we looked".' : 'Signs out every other phone and computer. This phone stays signed in. Use it if you lose a device or think someone else has used your Hub.',
+      bgHours: String(get('break-glass-hours', 4)), deviceDays: String(get('client-device-days', 30)),
+      quiet: get('quiet-hours', '8pm to 8am'),
+      quietNote: 'No automated emails or texts. Legal deadline alerts and tender deadlines within 24 hours still come through',
+      pkgPrice: m(price),
+      pkgNote: 'Full start-up package, in 3 instalments, paid through Stripe. Paid ' + m(third) + '. Left to pay ' + m(price - third) + ': ' + m(third) + ' when you sign off your final pack, and ' + m(last) + ' when we submit your application. Nothing else unless you ask for an extra, and we always tell you the price first.',
+      inst1: 'First instalment: ' + m(third), inst2: 'Next instalment: ' + m(third),
+      team: [
+        { initials: 'DM', name: 'Daniel Mensah', role: 'Your consultant. Documents and your business email' },
+        { initials: 'GW', name: 'Grace Whitfield', role: 'Onboarding lead, until your handover. Your ID, DBS and office evidence' },
+        { initials: 'MI', name: 'Millicent', role: 'Your coach. Session notes only' },
+        { initials: 'DV', name: 'Divine', role: 'Client care. Your contact details and call notes' },
+        { initials: 'MG', name: 'Care Sync managers', role: 'Collins and Rachel Turner. They can see every client, to check quality' },
+        { initials: 'CV', name: 'A colleague covering leave', role: 'Only while Daniel is on leave, for named dates a manager approves. It ends by itself. You would see it below, for example: "Olu is covering for Daniel from Mon 23 to Fri 27 November"' }
+      ],
+      log: (s.out ? [{ type: 'created', actor: 'You', action: 'signed out every other phone and computer', at: 'Just now' }] : []).concat([
+        { type: 'viewed', actor: 'Collins', action: 'saw your Hub as you saw it on Fri 30 Oct, reason "Complaint check C-001". Read only', at: '02/11, 08:50 to 09:02', detail: 'A director, checking your concern. 12 minutes.' },
+        { type: 'viewed', actor: 'Daniel Mensah', action: 'saw your Hub as you see it, to answer your question about the home office', at: '30/10, 14:05' },
+        { type: 'viewed', actor: 'Daniel Mensah', action: 'copied your business email login without showing it, reason "sign in to check the CQC filter works"', at: '29/10, 11:10' },
+        { type: 'viewed', actor: 'Daniel Mensah', action: 'revealed your business email login for 30 seconds, reason "set up the CQC filter"', at: '29/10, 09:40' },
+        { type: 'viewed', actor: 'Grace Whitfield', action: 'opened your proof of address to check the date', at: '28/10, 10:20' },
+        { type: 'created', actor: 'Care Sync Hub', action: 'stored your business email login in the encrypted vault', at: '28/10, 16:02' }
+      ])
+    };
+  }
+}
+</script>
+</body>
+</html>

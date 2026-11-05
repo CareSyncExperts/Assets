@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Your onboarding form</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+a{color:#0E7876}
+.rd-sec{width:100%;padding:14px 16px;border:0;border-bottom:1px solid var(--cs-border-subtle);background:transparent;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--cs-text-primary)}
+.rd-sec:focus-visible,.rd-pk:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+.rd-dot{width:26px;height:26px;flex-shrink:0;border-radius:999px;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.st-done{background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.st-part{border:2px solid var(--cs-action-primary)}
+.st-wait{border:2px solid var(--cs-status-warning-border)}
+.st-skip{background:var(--cs-surface-subtle)}
+.st-later{border:2px dashed var(--cs-border-default)}
+.st-todo{border:2px solid var(--cs-border-default)}
+.st-part .in{width:10px;height:10px;border-radius:999px;background:var(--cs-action-primary)}
+.rd-pk{min-height:34px;padding:0 12px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer;margin:0 6px 6px 0}
+.w0{width:0}.w10{width:10%}.w20{width:20%}.w30{width:30%}.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}.w100{width:100%}
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="width: 390px; height: 2040px; position: relative; overflow: hidden; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; box-sizing: border-box;">
+  <div style="padding: 10px 12px; background: var(--cs-surface-subtle);">
+    <span style="display: block; font-size: 11px; line-height: 14px; color: var(--cs-text-muted); margin-bottom: 6px;">Demo: the package chosen when the client was added</span>
+    <div role="radiogroup" aria-label="Package">
+      <sc-for list="{{pkgs}}" as="p" hint-placeholder-count="8">
+        <sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}"><button class="rd-pk" role="radio" aria-checked="true" onClick="{{p.pick}}" style="border: 2px solid var(--cs-action-primary); background: var(--cs-surface-raised); color: var(--cs-text-primary); font-weight: 500;">{{p.label}}</button></sc-if>
+        <sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}"><button class="rd-pk" role="radio" aria-checked="false" onClick="{{p.pick}}" style="border: 1px solid var(--cs-border-default); background: transparent; color: var(--cs-text-secondary);">{{p.label}}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding: 20px 20px 120px; display: flex; flex-direction: column; gap: 16px;">
+    <header style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-secondary);">Wednesday 21 October. Harbour Lane Care Ltd</span>
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600;">Your onboarding form</h1>
+      <span style="font-size: 14px; line-height: 20px; color: var(--cs-text-secondary);">Made for your package: {{pkgName}}. It saves as you go, so stop and come back any time.</span>
+    </header>
+
+    <section aria-label="Progress" style="background: var(--cs-surface-inverse); color: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{doneText}}</span><span style="font-size: 26px; line-height: 34px; font-weight: 600;">{{pct}}%</span></div>
+      <div aria-hidden="true" style="height: 8px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden;"><div class="{{barCls}}" style="height: 8px; border-radius: 999px; background: #AEFFEF;"></div></div>
+      <a href="ManagerFlow.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.1); color: #FFFFFF; text-decoration: none;">
+        <x-import component-from-global-scope="CareSync.Icon" name="history" size="{{n20}}"></x-import>
+        <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{resumeTitle}}</span><span style="font-size: 13px; line-height: 18px; color: #D0D5DD;">{{resumeSub}}</span></span>
+        <x-import component-from-global-scope="CareSync.Icon" name="chevron-right" size="{{n20}}"></x-import>
+      </a>
+    </section>
+
+    <sc-if value="{{showDir}}" hint-placeholder-val="{{ true }}">
+      <div role="note" style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 12px; background: var(--cs-status-warning-bg); color: var(--cs-status-warning-text);">
+        <span style="font-size: 15px; line-height: 22px; font-weight: 600;">Companies House shows 2 directors</span>
+        <span style="font-size: 13px; line-height: 18px; color: var(--cs-text-primary);">You have added 1: Amara Okafor. Companies House also lists Kwame Okafor. CQC needs every director, so please add Kwame's details.</span>
+        <button onClick="{{openDirs}}" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: var(--cs-action-primary); color: var(--cs-action-on-primary); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;">Add Kwame's details</button>
+      </div>
+    </sc-if>
+
+    <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--cs-status-info-bg);">
+      <x-import component-from-global-scope="CareSync.Icon" name="info" size="{{n20}}"></x-import>
+      <span style="font-size: 13px; line-height: 18px;">{{banner}}</span>
+    </div>
+
+    <div style="background: var(--cs-surface-raised); border-radius: 12px; box-shadow: var(--cs-elevation-1); overflow: hidden;">
+      <sc-for list="{{secs}}" as="s" hint-placeholder-count="10">
+        <div>
+          <button class="rd-sec" aria-expanded="{{s.expanded}}" onClick="{{s.toggle}}">
+            <span class="{{s.cls}}" aria-hidden="true">
+              <sc-if value="{{s.isDone}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></sc-if>
+              <sc-if value="{{s.isPart}}" hint-placeholder-val="{{ false }}"><span class="in"></span></sc-if>
+            </span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+              <span style="font-size: 15px; line-height: 22px; font-weight: 500;">{{s.n}}. {{s.title}}</span>
+              <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-secondary);">{{s.status}}</span>
+            </span>
+            <x-import component-from-global-scope="CareSync.Icon" name="{{s.chev}}" size="{{n16}}"></x-import>
+          </button>
+          <sc-if value="{{s.open}}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 4px 16px 14px 54px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid var(--cs-border-subtle); background: var(--cs-surface-page);">
+              <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted);">{{s.who}}</span>
+              <sc-for list="{{s.qs}}" as="q" hint-placeholder-count="4">
+                <span style="display: flex; gap: 8px; font-size: 13px; line-height: 18px;"><span style="color: var(--cs-text-muted);">{{q.mark}}</span><span>{{q.text}}</span></span>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <span style="font-size: 12px; line-height: 16px; color: var(--cs-text-muted); text-align: center;">Saved on every answer, on any phone or computer. Prefer to talk? We can do any section with you on a call.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":2040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { pkg: 'full', open: 6 };
+  }
+  renderVals() {
+    const CQC = [
+      ['status', 'Company Registration Status', 'You', ['Is your limited company already registered with Companies House?']],
+      ['info', 'Company Information', 'Filled in from Companies House. If not formed yet, 3 set-up pages instead', ['Registered Business Name, Trading Name, Company Registration Number', 'Registered Office and Correspondence Address', 'Business Telephone Number, Company Email Address, Website', 'Type of Legal Entity, partners or owners who are not directors']],
+      ['dirs', 'Directors', 'Every director, one after another', ['Full name, date of birth, mobile number, email address', 'Is there another director? (up to four, then "more than four")']],
+      ['svc', 'Primary Service Type and CQC Service User Bands', 'You', ['Which CQC-regulated activities will you provide?', 'CQC service user bands (13 options)']],
+      ['rm', 'Registered Manager Details', 'You', ['Title, full name, date of birth, email, mobile, current address', 'Registered with a health or social care professional body?', 'CV']],
+      ['rmreg', 'Registered Manager Professional Registration', 'Only if registered with a professional body', ['Professional body (11 options)', 'Professional registration number']],
+      ['gp', 'GP Details', 'Registered Manager only', ["GP's name, surgery, address, town, county, postcode", 'Permission for CQC to contact the doctor']],
+      ['ref', 'Reference Details', 'Registered Manager only. Must be the last employer', ["Referee's title, names, address, email, telephone", 'Permission for CQC to contact the referee']],
+      ['confirm', 'Registered Manager and Nominated Individual Confirmation', 'One question, so nothing is asked twice', ['Will the same person serve as both?']],
+      ['ni', 'Nominated Individual pages', 'Only if a different person', ['Details, professional registration, CV', 'DBS: certificate details if done, or IDs and 5-year address history if not']],
+      ['rmdbs', 'DBS Check for Registered Manager', 'Covers the one person if the same as the Nominated Individual', ['Has an Enhanced DBS with the Adult Workforce barred list and countersignature been done?']],
+      ['rmcert', 'DBS Certificate Details', 'If the DBS is done. If not, the DBS application details instead', ['Certificate number, issue date (within 12 months), upload', 'No ID or address history needed when the DBS is done']],
+      ['decl', 'Declaration', 'Last of all', ['Signatory full name, position, signature, date']]
+    ];
+    const TENDER = [['This tender', 'The tender we are bidding for, and your portal access'], ['What has changed', 'Returning clients only: anything new since your last bid'], ['About your company', 'Kept for every bid'], ['Your regulator', 'Your registration and rating'], ['Regulator details', 'Only for the regulator you chose'], ['Ages and specialisms', 'Who you support'], ['Key people', 'Directors, manager and leads'], ['Finance and insurance', 'Turnover and cover. New companies say so here'], ['Track record', 'Contracts you have delivered. Each extra example on its own page'], ['Private clients', 'People who pay for themselves'], ['Workforce', 'Staff numbers, training and recruitment'], ['Partnerships and social value', 'Local work and partners'], ['Documents and policies', 'What you already have'], ['Your evidence', 'Case studies and feedback'], ['Lots', 'Which parts of the tender you are going for'], ['Your services for this tender', 'How you would deliver'], ['Setting details', 'Home care, supported living, property, care home or community support: only those in your lots'], ['Sign-off', 'Your approval for us to submit']].map((x, i) => ['t' + i, x[0], i === 1 ? 'Returning clients only. Everyone else skips it' : 'You', [x[1]]]);
+    const PK = {
+      dom: ['CQC domiciliary', 'CQC registration, domiciliary care', CQC],
+      sl: ['CQC supported living', 'CQC registration, supported living', CQC],
+      full: ['Full start-up', 'Domiciliary care, full start-up package', CQC.concat([['brand', 'Brand and website', 'Extra for this package', ['Logo', 'Colours and tone', 'Photos']]])],
+      tender: ['Tender', 'Tender writing', TENDER],
+      ciw: ['CIW', 'CIW registration, Wales', [['start', 'Before You Start', 'Added. Who is filling it in, and the CIW Online account', ['Your name, authority to apply, CIW Online account']], ['org', 'Organisation Information', 'Filled in from Companies House for a company', ['Legal entity, name, trading name, number, registered office', 'Office in Wales if different, telephone, email, website', 'Preferred language, ICO registration']], ['orghist', 'Organisation History and Group', 'Added. CIW asks this about the organisation', ['Ever registered with a regulator? Owned by another company?']], ['off', 'Organisation Officers', 'Every officer, one after another', ['Name, date of birth, position, email, telephone, home address']], ['svc', 'Service Details', 'You', ['Service name, office, areas (more than one allowed), range of needs', 'Age, gender, people supported, weekly hours (CIW Online bands), client groups', 'Start date, office ownership']], ['how', 'How You Will Work', 'Added. Shapes your policies', ['Personal care, medicines, money, Welsh speakers', 'Learning disability or autism experience (only if chosen)']], ['ri', 'Responsible Individual (RI) Details', 'Picked from your officers, so nothing is typed twice', ['Place of birth, previous surnames, address, NI number', '5-year address history with gap check']], ['dbs', 'DBS Information', 'Done already? No ID documents needed', ['Full 12-digit number, issue date (3 month warning), list checked, Update Service', 'If not done: three ID documents']], ['riq', 'RI Qualifications and Experience', 'Added. CIW Online asks these', ['Qualifications, professional body, investigations, why you are the right RI']], ['hist', 'Registration History', 'A Yes asks for a short note', ['Six questions about past registrations and business interests']], ['others', 'Every other officer: checks, GP and references (2 pages each)', 'Only for officers who are not the RI', ['The same checks as the RI: DBS, two references, GP medical reference, history']], ['refs', 'RI References', 'Two referees, checked for CIW rules', ['Name, role, organisation, relationship, email, telephone', 'Employed you 3 months? Related to you?']], ['gp', 'RI GP Details', 'We send the CIW GP form early', ['GP name, practice, address, telephone']], ['rm', 'Registered Manager Details', 'Same as RI? Only qualifications asked', ['Chosen yet? Social Care Wales registration, Level 5', 'Full details only if a different person']], ['rmx', 'Registered Manager: DBS, references, GP and history', 'Only if the manager is a different person', ['Same DBS rule as the RI: done and on the Update Service means no ID', 'Two referees, GP, registration history']], ['choices', 'Your CIW Choices', 'Decisions only you can make', ['Email notices, sharing your email, conditions of registration']], ['docs', 'Required Documents', 'One upload per person', ['CVs, DBS ID if needed, documents you already have']], ['decl', 'Declaration', 'Last of all', ['Three confirmations, name, position, signature, date']]]],
+      rqia: ['RQIA', 'RQIA registration, Northern Ireland', [['org', 'Organisation Information', 'Filled in from Companies House for a company', ['Legal entity, name, trading name, number, registered office', 'Telephone, email, website, ICO, RQIA Web Portal login']], ['off', 'Organisation Officers', 'Every officer, one after another', ['Name, date of birth, position, email, telephone']], ['svc', 'Service Details', 'You', ['Service type, name, address, HSC Trust areas (more than one allowed)', 'Age range, service users, groups, start date']], ['how', 'How You Will Work', 'Added. Shapes your policies and staffing plan', ['Personal care, medicines, money, starting staff numbers']], ['ri', 'Responsible Individual (RI) Details', 'Picked from your officers, so nothing is typed twice', ['Place of birth, previous surnames, address, 5-year address history']], ['ani', 'AccessNI Information', 'RQIA runs its own check, so ID is always collected', ['Certificate details if you have one', 'Three ID documents, including photo ID and proof of address']], ['riq', 'RI Qualifications and Experience', 'Added', ['Qualifications, professional body, experience']], ['hist', 'Registration History', 'A Yes asks for a short note', ['Five questions about past registrations']], ['refs', 'RI References', 'One must be the current or most recent employer', ['Two referees, relationship for both, relative check']], ['gp', 'RI GP Details', 'Health declaration', ['GP name, practice, address, telephone']], ['rm', 'Registered Manager Details', 'Same as RI? Only qualifications asked', ['NISCC/NMC/HCPC number, Level 5, qualifications', 'If different: details and address history']], ['rmx', 'Registered Manager: AccessNI, references, GP and history', 'Only if the manager is a different person', ['The same AccessNI check as the RI', 'Two referees, GP, registration history']], ['docs', 'Required Documents', 'One upload per person', ['CVs, AccessNI ID if needed, documents you already have']], ['decl', 'Declaration', 'Last of all', ['Three confirmations, name, position, signature, date']]]]
+    };
+    const FULL = { status: ['done', 'Done'], info: ['done', 'Done. Filled in from Companies House'], dirs: ['wait', '1 listed. Companies House shows 2: add Kwame Okafor'], svc: ['done', 'Done'], rm: ['done', 'Done. Ruth Bennett'], rmreg: ['skip', 'Skipped: Ruth is not registered with a professional body'], gp: ['done', 'Done'], ref: ['part', 'You stopped here'], confirm: ['todo', 'Not started'], ni: ['todo', 'Not started. For Amara Okafor, as Ruth is a different person'], rmdbs: ['todo', 'Not started'], rmcert: ['todo', "Only 3 questions, because Ruth's DBS is done. No ID or address history"], decl: ['later', 'Opens when everything else is done'], brand: ['todo', 'Not started'] };
+    const s = this.state; const pk = PK[s.pkg];
+    const isCqc = s.pkg === 'full' || s.pkg === 'dom' || s.pkg === 'sl';
+    const secs = pk[2].map((x, i) => {
+      let st = 'todo', status = 'Not started';
+      if (isCqc && FULL[x[0]]) { st = FULL[x[0]][0]; status = FULL[x[0]][1]; }
+      if (!isCqc && s.pkg === 'tender') { st = i < 2 ? 'done' : 'todo'; status = i < 2 ? 'Done. Filled in for you' : 'Not started'; }
+      if (s.pkg === 'ciw' || s.pkg === 'rqia') { st = i < 3 ? 'done' : (i === 3 ? 'part' : (x[0] === 'decl' ? 'later' : 'todo')); status = i < 3 ? (x[0] === 'org' ? 'Done. Filled in from Companies House' : 'Done') : (i === 3 ? 'You stopped here' : (x[0] === 'decl' ? 'Opens when everything else is done' : 'Not started')); }
+      return {
+        n: String(i + 1), title: x[1], status, who: x[2], st,
+        cls: 'rd-dot st-' + st, isDone: st === 'done', isPart: st === 'part',
+        open: i === s.open, expanded: String(i === s.open), chev: i === s.open ? 'chevron-up' : 'chevron-down',
+        toggle: () => this.setState({ open: i === s.open ? -1 : i }),
+        qs: x[3].map(t => ({ text: t, mark: st === 'done' ? '✓' : '○' }))
+      };
+    });
+    const counted = secs.filter(x => x.st !== 'skip'); const done = counted.filter(x => x.st === 'done').length;
+    const pct = Math.round((done / counted.length) * 100);
+    const pkgs = Object.keys(PK).map(k => ({ label: PK[k][0], on: k === s.pkg, off: k !== s.pkg, pick: () => this.setState({ pkg: k, open: -1 }) }));
+    return {
+      theme: this.props.theme ?? 'light', n16: 16, n20: 20,
+      showDir: isCqc, openDirs: () => this.setState({ open: 2 }),
+      pkgs, pkgName: pk[1], secs,
+      doneText: done + ' of ' + counted.length + ' sections done', pct: String(pct), barCls: 'w' + (Math.round(pct / 10) * 10),
+      resumeTitle: 'Carry on where you left off',
+      resumeSub: isCqc ? 'Reference Details' : (s.pkg === 'ciw' ? 'Organisation Officers' : (s.pkg === 'rqia' ? 'Responsible Individual (RI) Details' : 'About your company')),
+      banner: s.pkg === 'tender' ? 'Fill this in once. Your bid lead uses it for every tender, so each new bid only asks what is new. You can also do it with us on a call.' : 'Grace checks everything when it arrives. Your consultant starts once every check passes and our manager approves the handover. You can fill it in yourself, or do it with us on a call.'
+    };
+  }
+}
+</script>
+</body>
+</html>

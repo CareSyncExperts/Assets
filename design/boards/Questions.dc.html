@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Questions inbox</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+.ob-in{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;box-sizing:border-box;width:100%}
+.ob-ta{width:100%;box-sizing:border-box;min-height:60px;padding:8px 10px;border-radius:8px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:13px;line-height:18px;resize:vertical}
+.ob-pick{min-height:36px;padding:0 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.p-on{border:2px solid var(--cs-action-primary);background:var(--cs-selection-bg);color:var(--cs-text-primary);font-weight:500}
+.p-off{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.ob-pick:focus-visible,.ob-in:focus-visible,.ob-ta:focus-visible,.ob-link:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.g-row{padding:12px 20px;border-top:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:20px}
+.g-fail{box-shadow:inset 4px 0 0 var(--cs-status-error-border)}
+.g-wait{box-shadow:inset 4px 0 0 var(--cs-status-warning-border)}
+.g-pass{box-shadow:none}
+.g-num{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:var(--cs-surface-brand);color:var(--cs-text-brand);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.g-panel{margin-left:40px;padding:12px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:8px}
+.ob-box{padding:12px 14px;border-radius:10px;background:var(--cs-surface-page);border:1px solid var(--cs-border-subtle);display:flex;flex-direction:column;gap:6px}
+.ob-ok{padding:10px 12px;border-radius:10px;background:var(--cs-status-success-bg);color:var(--cs-status-success-text);font-size:13px;line-height:18px}
+.ob-warn{padding:10px 12px;border-radius:10px;background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text);font-size:13px;line-height:18px}
+.ob-lock{padding:10px 12px;border-radius:10px;background:var(--cs-surface-subtle);color:var(--cs-text-primary);font-size:13px;line-height:18px;display:flex;gap:8px;align-items:flex-start}
+.ob-flex{display:flex;gap:8px;align-items:flex-start}
+.ob-k{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-v{font-size:14px;line-height:20px}
+.ob-step{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;flex:1 1 0;min-width:0}
+.s-done{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.s-todo{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.ob-log{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--cs-border-subtle);font-size:13px;line-height:18px}
+.ob-link{color:var(--cs-text-brand);font-weight:500;text-decoration:none;font-size:13px}
+.ob-sheetk{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.ob-grp{width:100%;min-height:40px;padding:8px 0;border:0;border-top:1px solid var(--cs-border-subtle);background:transparent;color:var(--cs-text-primary);font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ob-grp:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+.qi-item{width:100%;padding:14px 20px;border:0;border-top:1px solid var(--cs-border-subtle);font:inherit;text-align:left;cursor:pointer;display:flex;gap:12px;align-items:flex-start;color:var(--cs-text-primary)}
+.qi-sel{background:var(--cs-selection-bg)}
+.qi-uns{background:transparent}
+.qi-item:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:-2px}
+.qi-ta{width:100%;box-sizing:border-box;min-height:120px;padding:10px 12px;border-radius:10px;border:1px solid var(--cs-border-control);background:var(--cs-surface-raised);color:var(--cs-text-primary);font:inherit;font-size:14px;line-height:20px;resize:vertical}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 1260px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Questions" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Questions from clients</h1>
+          <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">{{headSub}}</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="sb-chip c-warn">{{openText}}</span>
+          <span class="sb-chip c-ok">{{answeredText}}</span>
+          <span class="sb-chip c-neutral">0 overdue</span>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <div role="tablist" aria-label="Show" style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+            <sc-if value="{{f.on}}" hint-placeholder-val="{{ false }}"><button class="sb-tab t-on" role="tab" aria-selected="true" onClick="{{f.pick}}">{{f.label}}</button></sc-if>
+            <sc-if value="{{f.off}}" hint-placeholder-val="{{ true }}"><button class="sb-tab t-off" role="tab" aria-selected="false" onClick="{{f.pick}}">{{f.label}}</button></sc-if>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;"><span class="sb-muted">Demo: viewing as</span><sc-for list="{{viewers}}" as="v" hint-placeholder-count="4"><button class="{{v.cls}}" aria-pressed="{{v.pressed}}" onClick="{{v.pick}}">{{v.label}}</button></sc-for></div>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="sb-card" aria-label="Questions">
+            <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div class="sb-row" style="border-top: 0;"><span class="sb-sub">Nothing here. Every question in this view is answered.</span></div></sc-if>
+            <sc-for list="{{items}}" as="q" hint-placeholder-count="5">
+              <button class="{{q.cls}}" onClick="{{q.pick}}" aria-pressed="{{q.pressed}}">
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-weight: 500;">{{q.client}}</span><span class="sb-muted">{{q.where}}</span></span>
+                  <span style="font-size: 14px; line-height: 20px;">{{q.text}}</span>
+                  <span class="sb-muted">{{q.who}}</span>
+                </span>
+                <span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;"><span class="{{q.slaCls}}">{{q.sla}}</span><sc-if value="{{q.senior}}" hint-placeholder-val="{{ false }}"><span class="sb-chip c-brand">With Collins</span></sc-if></span>
+              </button>
+            </sc-for>
+          </section>
+          <section class="sb-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px;" aria-labelledby="sn-h">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><h2 id="sn-h" class="sb-h2">Waiting on a senior</h2><span class="sb-muted">{{seniorTarget}}</span></div>
+            <sc-if value="{{noSenior}}" hint-placeholder-val="{{ false }}"><span class="sb-sub">Nothing waiting on a senior.</span></sc-if>
+            <sc-for list="{{seniorList}}" as="s" hint-placeholder-count="1">
+              <div class="ob-box"><span style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500; font-size: 14px;">{{s.client}}</span><span class="sb-muted">{{s.at}}</span></span><span class="sb-sub">{{s.note}}</span><span class="sb-muted">{{s.by}}</span></div>
+            </sc-for>
+          </section>
+          <section class="sb-card" style="padding: 16px 20px 8px;" aria-labelledby="an-h">
+            <h2 id="an-h" class="sb-h2" style="margin-bottom: 6px;">Answered earlier today</h2>
+            <sc-for list="{{answered}}" as="a" hint-placeholder-count="2"><div class="ob-log" style="flex-direction: column; gap: 2px;"><span><span style="font-weight: 500;">{{a.client}}</span></span><span class="sb-sub">{{a.text}}</span><span class="sb-muted">{{a.by}}</span></div></sc-for>
+          </section>
+        </div>
+        <section class="sb-card" style="flex: 3 1 480px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 14px;" aria-labelledby="qd-h">
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span class="sb-muted">{{sel.where}}</span><h2 id="qd-h" class="sb-h2">{{sel.client}}</h2></div>
+            <span class="{{sel.slaCls}}">{{sel.sla}}</span>
+          </div>
+          <div class="ob-box"><span class="ob-k">Routed</span><span class="sb-sub">{{sel.route}}</span></div>
+          <div style="padding: 12px 14px; border-radius: 10px; background: var(--cs-surface-page); display: flex; flex-direction: column; gap: 6px;">
+            <span class="sb-muted">The question</span><span style="font-size: 15px; line-height: 22px;">{{sel.text}}</span>
+            <span class="sb-muted">{{sel.context}}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-weight: 500; font-size: 14px;">Drafted reply</span>
+            <span class="sb-muted">{{sel.basis}}</span>
+            <textarea class="qi-ta" aria-label="Reply" value="{{sel.reply}}" onChange="{{editReply}}"></textarea>
+          </div>
+          <sc-if value="{{sel.open}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="sb-btn b-pri" onClick="{{send}}">Send reply</button>
+              <button class="sb-btn b-sec" onClick="{{askOpen}}" aria-expanded="{{askExp}}">{{askLabel}}</button>
+              <button class="sb-btn b-gh" onClick="{{book}}">{{bookLabel}}</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{asking}}" hint-placeholder-val="{{ false }}">
+            <div class="g-panel" style="margin-left: 0;">
+              <span class="ob-k">Send to a senior: Collins, director</span>
+              <label class="ob-k" for="qs-note">Your note for Collins</label>
+              <textarea class="ob-ta" id="qs-note" value="{{noteVal}}" onChange="{{onNote}}"></textarea>
+              <span class="sb-muted">The client is not told. The question stays in your list, marked "With Collins", and comes back to you with the answer.</span>
+              <span style="display: flex; gap: 6px;"><button class="sb-btn b-pri" onClick="{{askSend}}">Send to Collins</button><button class="sb-btn b-gh" onClick="{{askOpen}}">Cancel</button></span>
+            </div>
+          </sc-if>
+          <sc-if value="{{sel.isSenior}}" hint-placeholder-val="{{ false }}"><div class="ob-warn" role="status">{{sel.seniorText}}</div></sc-if>
+          <sc-if value="{{sel.done}}" hint-placeholder-val="{{ false }}"><div class="ob-ok" role="status">Sent. The reply appears under the question in the client's Hub, and by email.</div></sc-if>
+          <div style="display: flex; gap: 10px; align-items: flex-start; padding-top: 10px; border-top: 1px solid var(--cs-border-subtle);">
+            <span style="flex: 1; min-width: 0;" class="sb-sub">{{sel.learn}}</span>
+            <button class="sb-btn b-gh" onClick="{{improve}}">{{improveLabel}}</button>
+          </div>
+        </section>
+      </div>
+      <span class="sb-muted">How questions are routed: questions from onboarding forms (CQC, CIW, RQIA and tender) go to Grace. Questions from clients past handover go to their case owner, or to the person covering. A question not answered within 6 working hours alerts the team lead.</span>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1260}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 'mine', me: 'Grace', sel: 0, sent: {}, senior: { 2: { note: 'Kingfisher\'s insurance renews in January, after the bid date. Can they bid with the current certificate and a renewal letter, or do we need the new one first?', at: '09:20', by: 'Grace' } }, asking: false, note: '', replies: {}, booked: {}, improved: {} }; }
+  renderVals() {
+    const st = this.state, f = st.f;
+    const Q = [
+      { to: 'Grace', client: 'Harbour Lane Care Ltd', where: 'CQC onboarding form: DBS for the nominated individual', text: 'I had a DBS for a care job in March 2025. Does that count, or do I need a new one?', who: 'Amara Okafor', sla: 'Reply by 10:00 tomorrow', slaK: 'ok', route: 'To Grace: asked on the CQC onboarding form, before handover.', context: "Her answer so far: not answered yet. Ruth's DBS is done (Enhanced with adult barred list, issued 14 Feb 2026). Amara's 3 ID documents were checked 30 Oct.", basis: "Based on the form's own DBS tip: Enhanced, adult barred list, countersigned, and dated within the last 12 months. 14 similar questions answered before.", reply: "Hi Amara, thank you for asking. For CQC, a DBS counts only if it is an Enhanced check with the adult barred list, countersigned, and issued within the last 12 months. A DBS from March 2025 is more than 12 months old, so it needs to be redone. The good news: your ID is already checked, so we can start the new application for you this week. Choose No on this page and we do the rest. Grace", learn: 'Asked 14 times on this question. Adding "a DBS from another care job counts only if it is Enhanced, with the adult barred list, countersigned and less than 12 months old" to the help text would answer it for most clients.' },
+      { to: 'Grace', client: 'Ty Seren Care Ltd', where: 'CIW onboarding form, page 11: references', text: 'My best referee is my current manager, but I have not told them about my company yet. What should I do?', who: 'Ffion Pryce', sla: 'Reply by 12:00 today', slaK: 'warn', route: 'To Grace: asked on the CIW onboarding form, before handover.', context: 'Referee 1 not filled in yet. Referee 2: a former manager.', basis: "Based on the CIW referee questions in the form and Care Sync's reference guidance", reply: 'Hi Ffion, that is a very common worry. CIW contacts referees itself once the application is in CIW Online, so nothing goes to your manager before then. We can talk through the timing, and who else could give a reference, on a short call. Would tomorrow morning suit you? Grace', learn: 'This question comes up for most new providers. The reassurance box on the CQC form could be added to the CIW and RQIA forms too.' },
+      { to: 'Grace', client: 'Kingfisher Support Ltd', where: 'Tender onboarding form: finance and insurance', text: 'Our insurance renews in January. Can we still use the current certificate for the bid?', who: 'Marcus Hale', sla: 'Reply by 15:00 today', slaK: 'warn', route: 'To Grace: asked on the tender onboarding form, before handover.', context: 'Employer\'s liability and public liability certificates uploaded Sat 31 Oct. Both end on 14 January.', basis: 'Drafted from the tender form. Waiting for Collins before sending.', reply: 'Hi Marcus, thank you for checking early. Please keep the current certificate on your profile for now. We are checking what this tender asks for when cover renews during the bid, and we will tell you today if you need anything from your broker. Grace', learn: 'Insurance end dates could be read from the upload, with a reminder 6 weeks before they end.' },
+      { to: 'Daniel', client: 'Bright Path Care Ltd', where: 'Ask screen', text: 'Is a council flat OK for a home office?', who: 'Joy Adeyemi', sla: 'Reply by 16:00 tomorrow', slaK: 'ok', route: 'To Daniel: Bright Path is past handover and Daniel is the case owner.', context: 'Stage 4 of 11: drafting. Session 2 of 3 with Millicent today at 10:00, Daniel joins.', basis: 'Based on how we handle landlord permission for home offices', reply: 'Hi Joy, it can be. Council tenancies usually need the council\'s written permission before a flat is used for any business, even office work only. We can send the council a short request for you, the same way we do with private landlords. No care happens at the flat, which helps. Let us talk it through in today\'s session at 10:00. Daniel', learn: 'Home office questions come up often. A short "Your office" help note on the Ask screen would answer most of them.' },
+      { to: 'Daniel', client: 'Afon Care Ltd', where: 'Ask screen', text: 'CIW has not heard back from my referee Sarah yet. Should I chase her myself?', who: 'Rhian Example', sla: 'Reply by 11:00 tomorrow', slaK: 'ok', route: 'To Daniel: Afon is past handover and Daniel is the case owner.', context: 'Stage 8 of 11: with CIW. CIW asked referee Sarah Jones 3 days ago. Daniel nudges today. Suitability interview Thu 26 Nov.', basis: 'Based on the CIW stage on the client record', reply: 'Hi Rhian, a short friendly message to Sarah is fine: just ask her to look out for CIW\'s email and reply when she can. We are following up today too, and we will tell you as soon as CIW confirms it has her reference. It does not affect your interview on Thu 26 Nov. Daniel', learn: 'Clients at the "with the regulator" stage often ask about referees. The stage page could say who CIW is waiting on.' }
+    ];
+    const F = [['mine', 'Assigned to me'], ['all', 'All'], ['senior', 'Waiting on a senior']];
+    const by2 = t => { const m = /^(\d{2}):(\d{2})$/.exec(t || ''); return m ? String(Number(m[1]) + 2).padStart(2, '0') + ':' + m[2] : 'within 2 working hours'; };
+    const senior = st.senior;
+    const shown = Q.map((q, i) => Object.assign({ i }, q)).filter(q => !st.sent[q.i] || f === 'all').filter(q => f === 'all' || (f === 'mine' ? q.to === st.me : !!senior[q.i]));
+    const selIdx = shown.some(q => q.i === st.sel) ? st.sel : (shown[0] ? shown[0].i : st.sel);
+    const cur = Q[selIdx];
+    const done = !!st.sent[selIdx];
+    const isSen = !!senior[selIdx] && !done;
+    const open = Q.filter((q, i) => !st.sent[i]).length;
+    const g = Q.filter((q, i) => !st.sent[i] && q.to === 'Grace').length, d = Q.filter((q, i) => !st.sent[i] && q.to === 'Daniel').length;
+    const items = shown.map(q => ({ client: q.client, where: q.where, text: q.text, who: q.who + '. Assigned to ' + q.to, senior: !!senior[q.i] && !st.sent[q.i],
+      sla: st.sent[q.i] ? 'Answered' : q.sla, slaCls: 'sb-chip ' + (st.sent[q.i] ? 'c-ok' : (q.slaK === 'warn' ? 'c-warn' : 'c-info')),
+      cls: 'qi-item ' + (q.i === selIdx ? 'qi-sel' : 'qi-uns'), pressed: String(q.i === selIdx), pick: () => this.setState({ sel: q.i, asking: false }) }));
+    const seniorList = Object.keys(senior).filter(k => !st.sent[k]).map(k => ({ client: Q[k].client, note: senior[k].note, at: 'Asked ' + senior[k].at, by: 'From ' + senior[k].by + ' to Collins. Answer by ' + by2(senior[k].at) + '. Question: "' + Q[k].text + '"' }));
+    const nowT = '09:' + (45 + Object.keys(senior).length);
+    const GQ = (id, fb) => (window.CSR ? window.CSR.get(id, fb) : fb);
+    const seniorTarget = 'Target: ' + GQ('reply-senior', '2 working hours');
+    const headSub = 'From "Not sure? Ask us" on every form question and from the Ask screen. We reply within ' + GQ('reply-client', '1 working day') + '. Questions sent to a senior are answered within ' + GQ('reply-senior', '2 working hours') + '.';
+    return { headSub, seniorTarget,
+      theme: this.props.theme ?? 'light', three: 3, user: st.me === 'Grace' ? { name: 'Grace Whitfield', initials: 'GW' } : { name: 'Daniel Mensah', initials: 'DM' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' }, current: true },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar' },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }],
+      filters: F.map(([k, label]) => ({ label: k === 'senior' ? label + ' (' + seniorList.length + ')' : label, on: f === k, off: f !== k, pick: () => this.setState({ f: k }) })),
+      viewers: ['Grace', 'Daniel'].map(n => ({ label: n, cls: 'ob-pick ' + (st.me === n ? 'p-on' : 'p-off'), pressed: String(st.me === n), pick: () => this.setState({ me: n }) })),
+      items, empty: items.length === 0,
+      openText: open + ' open: Grace ' + g + ', Daniel ' + d, answeredText: (6 + Object.keys(st.sent).length) + ' answered today',
+      sel: { client: cur.client, where: cur.where, text: cur.text, context: cur.context, basis: cur.basis, route: cur.route, reply: st.replies[selIdx] !== undefined ? st.replies[selIdx] : cur.reply, learn: cur.learn,
+        sla: done ? 'Answered' : cur.sla, slaCls: 'sb-chip ' + (done ? 'c-ok' : (cur.slaK === 'warn' ? 'c-warn' : 'c-info')), open: !done, done,
+        isSenior: isSen, seniorText: isSen ? 'With Collins since ' + senior[selIdx].at + '. Your note: ' + senior[selIdx].note : '' },
+      editReply: e => this.setState({ replies: Object.assign({}, st.replies, { [selIdx]: e.target.value }) }),
+      send: () => this.setState({ sent: Object.assign({}, st.sent, { [selIdx]: true }), asking: false }),
+      asking: st.asking && !done, askExp: String(st.asking), askLabel: isSen ? 'Add to the note for Collins' : 'Ask a senior',
+      askOpen: () => this.setState({ asking: !st.asking, note: '' }),
+      noteVal: st.note, onNote: e => this.setState({ note: e.target.value }),
+      askSend: () => this.setState({ asking: false, senior: Object.assign({}, senior, { [selIdx]: { note: st.note.trim() || 'Please check my drafted reply before I send it.', at: nowT, by: cur.to } }) }),
+      seniorList, noSenior: seniorList.length === 0,
+      book: () => this.setState({ booked: Object.assign({}, st.booked, { [selIdx]: true }) }), bookLabel: st.booked[selIdx] ? 'Call link sent to the client' : 'Book a 10 minute call',
+      improve: () => this.setState({ improved: Object.assign({}, st.improved, { [selIdx]: true }) }), improveLabel: st.improved[selIdx] ? 'Sent to the form builder' : 'Improve the help text',
+      answered: [
+        ['Oakleaf Living Ltd', 'Kemi asked if her HR lead can fill in the staff numbers for the Northshire bid. Yes: the task can be passed to someone in her team.', 'Answered by Daniel at 09:12'],
+        ['Willow Bank Supported Living Ltd', 'David asked when they can start bidding for contracts. Most need registration first; the tender profile is built alongside.', 'Answered by Daniel, covering for Olu, at 09:40']
+      ].map(([client, text, by]) => ({ client, text, by }))
+    };
+  }
+}
+</script>
+</body>
+</html>

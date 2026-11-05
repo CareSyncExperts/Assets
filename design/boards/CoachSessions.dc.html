@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Sessions</title>
+<script src="./support.js"></script>
+<script src="./registry.js"></script>
+<link rel="stylesheet" href="ds/caresync/assets/Reference/care-sync-tokens-final.css">
+<link rel="stylesheet" href="ds/caresync/components/bundle.css">
+<script src="ds/caresync/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap">
+<style>
+:root{--font-sans:Kanit, sans-serif}
+body{margin:0}
+.sb-card{background:var(--cs-surface-raised);border-radius:12px;box-shadow:var(--cs-elevation-1);overflow:hidden}
+.sb-h2{margin:0;font-size:18px;line-height:26px;font-weight:500}
+.sb-sub{font-size:13px;line-height:18px;color:var(--cs-text-secondary)}
+.sb-muted{font-size:12px;line-height:16px;color:var(--cs-text-muted)}
+.sb-row{padding:12px 20px;display:flex;gap:14px;align-items:center;border-top:1px solid var(--cs-border-subtle);font-size:14px;line-height:20px}
+.sb-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sb-chip{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.c-ok{background:var(--cs-status-success-bg);color:var(--cs-status-success-text)}
+.c-warn{background:var(--cs-status-warning-bg);color:var(--cs-status-warning-text)}
+.c-bad{background:var(--cs-status-error-bg);color:var(--cs-status-error-text)}
+.c-info{background:var(--cs-status-info-bg);color:var(--cs-status-info-text)}
+.c-neutral{background:var(--cs-surface-subtle);color:var(--cs-text-secondary)}
+.c-brand{background:var(--cs-surface-brand);color:var(--cs-text-brand)}
+.sb-tab{min-height:36px;padding:0 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.t-on{border:2px solid var(--cs-action-primary);background:var(--cs-surface-raised);color:var(--cs-text-primary);font-weight:500}
+.t-off{border:1px solid var(--cs-border-default);background:transparent;color:var(--cs-text-secondary)}
+.sb-btn{min-height:36px;padding:0 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.b-pri{border:0;background:var(--cs-action-primary);color:var(--cs-action-on-primary)}
+.b-sec{border:0;background:var(--cs-action-secondary);color:var(--cs-action-on-secondary)}
+.b-gh{border:1px solid var(--cs-border-default);background:var(--cs-surface-raised);color:var(--cs-text-primary)}
+.sb-tab:focus-visible,.sb-btn:focus-visible{outline:2px solid var(--cs-border-focus);outline-offset:2px}
+.sb-th{font-size:12px;line-height:16px;color:var(--cs-text-muted);font-weight:500}
+.sb-kpi{padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.sb-kv{font-size:26px;line-height:34px;font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--cs-surface-subtle);overflow:hidden}
+.bar span{display:block;height:8px;border-radius:999px;background:var(--cs-action-primary)}
+.w0{width:0}.w5{width:5%}.w10{width:10%}.w15{width:15%}.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}.w40{width:40%}.w45{width:45%}.w50{width:50%}.w55{width:55%}.w60{width:60%}.w65{width:65%}.w70{width:70%}.w75{width:75%}.w80{width:80%}.w85{width:85%}.w90{width:90%}.w95{width:95%}.w100{width:100%}
+
+</style>
+</helmet>
+<div data-cs-theme="{{theme}}" style="min-height: 975px; background: var(--cs-surface-page); color: var(--cs-text-primary); font-family: Kanit, sans-serif; letter-spacing: -0.408px; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <div style="flex: 0 0 270px; background: var(--cs-surface-raised); border-right: 1px solid var(--cs-border-subtle);">
+    <x-import component-from-global-scope="CareSync.SideNav" product="Care Sync Hub" product-sub="Care Sync Experts" label="Staff navigation" sections="{{nav}}"></x-import>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+    <x-import component-from-global-scope="CareSync.TopBar" title="Sessions" notifications="{{three}}" user="{{user}}"></x-import>
+    <main style="padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; max-width: 1280px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 600;">Sessions</h1>
+        <span style="font-size: 15px; line-height: 22px; color: var(--cs-text-secondary);">Millicent's week. Each client has 3 sessions included: kick-off, going through documents, and interview practice.</span>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="sb-card" style="flex: 3 1 560px; min-width: 0;" aria-labelledby="wk-h">
+          <div class="sb-head"><h2 id="wk-h" class="sb-h2">Week starting Monday 2 November, and next week</h2><span class="sb-sub">All by video. Sessions start after handover. Clients book Millicent's open times in their Hub</span></div>
+          <sc-for list="{{week}}" as="s" hint-placeholder-count="6">
+            <div class="sb-row">
+              <span style="width: 92px; flex-shrink: 0; display: flex; flex-direction: column;"><span class="sb-muted">{{s.day}}</span><span style="font-weight: 600;">{{s.time}}</span></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{s.client}}</span><span class="sb-sub">{{s.what}}</span></span>
+              <span class="{{s.cls}}">{{s.used}}</span>
+              <button class="sb-btn b-sec">{{s.cta}}</button>
+            </div>
+          </sc-for>
+        </section>
+        <section class="sb-card" style="flex: 2 1 380px; min-width: 0;" aria-labelledby="iv-h">
+          <div class="sb-head"><h2 id="iv-h" class="sb-h2">Interview readiness</h2><span class="sb-sub">Everyone with a regulator interview booked</span></div>
+          <sc-for list="{{ready}}" as="r" hint-placeholder-count="4">
+            <div class="sb-row" style="flex-direction: column; align-items: stretch; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">{{r.who}}</span><span class="sb-sub">{{r.when}}</span></div>
+              <div class="bar" aria-hidden="true"><span class="{{r.bar}}"></span></div>
+              <span class="sb-muted">{{r.note}}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+      <section class="sb-card" aria-labelledby="nt-h">
+        <div class="sb-head"><h2 id="nt-h" class="sb-h2">After a session: notes in 2 minutes</h2><span class="sb-sub">Saved to the client page. The client sees the summary and next steps, never the private notes</span></div>
+        <div class="sb-row" style="align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+          <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px;"><span class="sb-th">Session</span><span>Bright Path Care Ltd, session 1: kick-off and your plan (Tue 13 Oct)</span></span>
+          <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px;"><span class="sb-th">For the client</span><span>We agreed your plan and dates. Next: session 2 on Mon 2 Nov to go through your documents, with Daniel.</span></span>
+          <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px;"><span class="sb-th">Private note for the team</span><span>Joy is confident on the business side. Patience, the manager, would like help with the medication policy. Cover it in session 2.</span></span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":975}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const week = [
+      ['Mon 2 Nov', '10:00', 'Bright Path Care Ltd', 'Session 2: going through documents, with Joy. Daniel joins as case owner', '2 of 3', 'info', 'Join'],
+      ['Tue 3 Nov', '14:00', 'Willow Bank Supported Living Ltd', 'Session 2: going through documents, with David. Daniel joins, covering for Olu', '2 of 3', 'info', 'Prepare'],
+      ['Thu 5 Nov', '11:00', 'Elm Tree Care Ltd', 'Session 3: interview practice for Claire (CQC interview Tue 24 Nov)', '3 of 3', 'warn', 'Prepare'],
+      ['Mon 9 Nov', '10:00', 'Afon Care Ltd', 'Session 3: interview practice for Rhian (CIW suitability interview Thu 26 Nov)', '3 of 3', 'warn', 'Prepare'],
+      ['Tue 10 Nov', '15:00', 'Westbrook Care Ltd', 'Extra session: interview practice for Leon. Included in the resubmission, at no charge to the client', 'Extra', 'brand', 'Prepare'],
+      ['Wed 11 Nov', '10:00', 'Lagan View Care Ltd', 'Session 3: interview practice for Niamh and the manager (RQIA interviews Tue 8 Dec)', '3 of 3', 'warn', 'Prepare']
+    ].map(([day, time, client, what, used, k, cta]) => ({ day, time, client, what, used, cls: 'sb-chip c-' + k, cta }));
+    const ready = [
+      ['Claire Hughes, Elm Tree (CQC)', 'Tue 24 Nov', 'w40', 'Interview portal 40% done. Practice on Thu 5 Nov. Weak spot: weekend cover'],
+      ['Rhian, Afon Care (CIW)', 'Thu 26 Nov', 'w50', 'Interview portal half done. Practice on Mon 9 Nov. Knows her Statement of Purpose well'],
+      ['Niamh and the manager, Lagan View (RQIA)', 'Tue 8 Dec', 'w30', 'Interview portal started. Practice on Wed 11 Nov. Weak spot: Minimum Standards on medicines'],
+      ['Leon Grant, Westbrook (CQC resubmission)', 'After resubmission', 'w20', 'Extra practice on Tue 10 Nov, because CQC\'s refusal mentioned interview answers on safeguarding referrals']
+    ].map(([who, when, bar, note]) => ({ who, when, bar, note }));
+    return { theme: this.props.theme ?? 'light', three: 3, user: { name: 'Millicent', initials: 'MI' }, nav: [{ items: [
+  { label: 'My day', icon: 'layout-dashboard' },
+  { label: 'Clients', icon: 'users' },
+  { label: 'Onboarding', icon: 'list-checks' },
+  { label: 'Questions', icon: 'inbox', badge: { text: '5', status: 'warning' } },
+  { label: 'Deadlines', icon: 'clock' },
+  { label: 'Sessions', icon: 'calendar', current: true },
+  { label: 'Client care', icon: 'user' },
+  { label: 'Aftercare', icon: 'shield-check' },
+  { label: 'Regulator and tender watch', icon: 'eye' },
+  { label: 'Tenders', icon: 'clipboard-list' }
+] }, { heading: 'Manage', items: [
+  { label: 'Manager dashboard', icon: 'building-2' },
+  { label: 'Team and cover', icon: 'users' },
+  { label: 'Reports', icon: 'trending-up' },
+  { label: 'Super admin', icon: 'settings' }
+] }], week, ready };
+  }
+}
+</script>
+</body>
+</html>
