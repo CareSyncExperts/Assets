@@ -9,8 +9,8 @@ Synthetic data only. British English. Never use em dashes or en dashes (use comm
 Write "Stage N of 11: name". **No application work (stages 2 to 6) starts until every onboarding gate passes and a manager approves the handover.** Sessions (3 included) start after handover.
 
 ## Team (staff)
-- **Collins**: director, super admin 1. Approves prices, handovers, bid or no bid, break-glass.
-- **Rachel Turner**: operations manager, **super admin 2** and **data protection lead** (decided 4 November: managers hold the super admin accounts).
+- **Collins**: director, super admin 1 and **data protection lead** (decided 5 November). Approves prices, handovers, bid or no bid, break-glass. Things Collins proposes as data protection lead are approved or reviewed by Rachel Turner.
+- **Rachel Turner**: operations manager, **super admin 2** (decided 4 November: managers hold the super admin accounts). Not the data protection lead.
 - **Femi Ade**: finance, part time.
 - **Daniel Mensah**: consultant (case owner). CQC, CIW and tenders.
 - **Olu**: consultant. **On leave Mon 2 to Fri 6 November. Daniel covers Olu's clients this week.**
