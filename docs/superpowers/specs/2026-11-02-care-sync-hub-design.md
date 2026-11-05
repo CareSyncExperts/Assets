@@ -2118,7 +2118,7 @@ The CQC interview stays in Care Sync's own interview portal. The Hub links to it
 23. **Answered: payments.** Stripe. CQC domiciliary care and supported living are paid in 2 instalments; the full start-up package in 3. The split is a default the super admin can change in the price book (section 61).
 24. **Third-party links:** agree the wording clients approve before the Hub contacts their landlord, lender, referee or accountant.
 25. **Call recording:** agree the consent wording for recording and summarising calls.
-26. **Answered: super admins.** Managers hold the super admin accounts (section 46). Another manager approves a break-glass request when one is away; nobody approves their own request.
+26. **Answered: super admins.** Managers hold the super admin accounts (section 46). Collins is super admin 1 and the data protection lead (5 November 2026); the second super admin is a manager, to be named. Another manager approves a break-glass request when one is away; nobody approves their own request.
 27. **Accounting software:** do you invoice in Xero, QuickBooks or another system, so invoices, deposits and instalments can sync (section 49.1)?
 28. **Partner access:** confirm that AssuredBid and any other partners should get limited partner logins, and what each partner may see (section 49.3).
 29. **Inconsistencies:** agree the correct founding year, whether "Comprehensive Training" stays on the website, and the evidence behind the "former CQC senior inspector" wording (section 50), so the Hub, emails and sales scripts all say the same thing.
@@ -2638,10 +2638,10 @@ Anything uncertain is marked "check":
 - each supplier's data location and transfer safeguard;
 - which Schedule 1 condition applies to DBS data.
 
-Proposed values are labelled "proposed, for the data protection lead". Examples are the identity and DBS image retention, the vault reveal threshold and backup retention.
+Collins is the data protection lead (decided 5 November 2026). Proposed values are labelled "proposed, for the data protection lead". Examples are the identity and DBS image retention, the vault reveal threshold and backup retention.
 
 ### 62.6 Still for Care Sync to decide
-- **Super admin 2:** the second super admin's real name, and whether they are also the data protection lead. The design uses "Rachel Turner" as a stand-in.
+- **Super admin 2:** decided 5 November 2026: **Collins is super admin 1 and the data protection lead.** The second super admin is a manager, still to be named; the design uses "Rachel Turner" as a stand-in. Because Collins holds both roles, his data protection decisions are reviewed by the other super admin, and he never approves his own request.
 - **Retention:** confirm the proposed rule for identity and DBS images, and the rest of the schedule.
 - **Care Sync's ICO registration number.** The client Security page shows the line only once it is entered.
 - **Prices:**
